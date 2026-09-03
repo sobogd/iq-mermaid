@@ -1,6 +1,12 @@
 {
   "backToSite": "Volver a la página principal",
-  "code": "Código",
+  "header": {
+    "open": "Abrir",
+    "newDocument": "Nuevo documento",
+    "download": "Descargar",
+    "account": "Cuenta",
+    "code": "Código"
+  },
   "toolbar": {
     "undo": "Deshacer",
     "redo": "Rehacer",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Color",
     "shapeTitle": "Forma",
+    "downloadTitle": "Descargar",
+    "openTitle": "Tus documentos",
     "ok": "Aceptar",
     "cancel": "Cancelar"
   },
@@ -62,6 +70,11 @@
     "group": "Área",
     "start": "Inicio",
     "action": "Acción"
+  },
+  "documents": {
+    "delete": "Eliminar documento",
+    "deleteConfirm": "¿Eliminar este documento?",
+    "untitled": "Sin título"
   },
   "text": {
     "copyMermaid": "Copiar mermaid",

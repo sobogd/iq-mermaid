@@ -1,6 +1,12 @@
 {
   "backToSite": "Atpakaļ uz sākumlapu",
-  "code": "Kods",
+  "header": {
+    "open": "Atvērt",
+    "newDocument": "Jauns dokuments",
+    "download": "Lejupielādēt",
+    "account": "Konts",
+    "code": "Kods"
+  },
   "toolbar": {
     "undo": "Atsaukt",
     "redo": "Atkārtot",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Krāsa",
     "shapeTitle": "Forma",
+    "downloadTitle": "Lejupielādēt",
+    "openTitle": "Jūsu dokumenti",
     "ok": "Labi",
     "cancel": "Atcelt"
   },
@@ -62,6 +70,11 @@
     "group": "Apgabals",
     "start": "Sākums",
     "action": "Darbība"
+  },
+  "documents": {
+    "delete": "Dzēst dokumentu",
+    "deleteConfirm": "Dzēst šo dokumentu?",
+    "untitled": "Bez nosaukuma"
   },
   "text": {
     "copyMermaid": "Kopēt mermaid",

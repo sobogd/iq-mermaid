@@ -24,7 +24,7 @@ export default function CodeModal({ code, onChange, onClose, t }) {
           ref={areaRef}
           className="code-input"
           spellCheck={false}
-          aria-label={t.code}
+          aria-label={t.header.code}
           value={code}
           onChange={(e) => onChange(e.target.value)}
         />

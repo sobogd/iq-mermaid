@@ -1,6 +1,12 @@
 {
   "backToSite": "Grįžti į pradinį puslapį",
-  "code": "Kodas",
+  "header": {
+    "open": "Atverti",
+    "newDocument": "Naujas dokumentas",
+    "download": "Atsisiųsti",
+    "account": "Paskyra",
+    "code": "Kodas"
+  },
   "toolbar": {
     "undo": "Anuliuoti",
     "redo": "Pakartoti",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Spalva",
     "shapeTitle": "Forma",
+    "downloadTitle": "Atsisiųsti",
+    "openTitle": "Jūsų dokumentai",
     "ok": "Gerai",
     "cancel": "Atšaukti"
   },
@@ -62,6 +70,11 @@
     "group": "Sritis",
     "start": "Pradžia",
     "action": "Veiksmas"
+  },
+  "documents": {
+    "delete": "Ištrinti dokumentą",
+    "deleteConfirm": "Ištrinti šį dokumentą?",
+    "untitled": "Be pavadinimo"
   },
   "text": {
     "copyMermaid": "Kopijuoti mermaid",

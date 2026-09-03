@@ -1,6 +1,12 @@
 {
   "backToSite": "Назад на почетну страницу",
-  "code": "Код",
+  "header": {
+    "open": "Отвори",
+    "newDocument": "Нови документ",
+    "download": "Преузми",
+    "account": "Налог",
+    "code": "Код"
+  },
   "toolbar": {
     "undo": "Опозови",
     "redo": "Понови",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Боја",
     "shapeTitle": "Облик",
+    "downloadTitle": "Преузми",
+    "openTitle": "Ваши документи",
     "ok": "У реду",
     "cancel": "Откажи"
   },
@@ -62,6 +70,11 @@
     "group": "Област",
     "start": "Старт",
     "action": "Радња"
+  },
+  "documents": {
+    "delete": "Обриши документ",
+    "deleteConfirm": "Обрисати овај документ?",
+    "untitled": "Без наслова"
   },
   "text": {
     "copyMermaid": "Копирај mermaid",

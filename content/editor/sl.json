@@ -1,6 +1,12 @@
 {
   "backToSite": "Nazaj na domačo stran",
-  "code": "Koda",
+  "header": {
+    "open": "Odpri",
+    "newDocument": "Nov dokument",
+    "download": "Prenesi",
+    "account": "Račun",
+    "code": "Koda"
+  },
   "toolbar": {
     "undo": "Razveljavi",
     "redo": "Uveljavi",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Barva",
     "shapeTitle": "Oblika",
+    "downloadTitle": "Prenesi",
+    "openTitle": "Vaši dokumenti",
     "ok": "V redu",
     "cancel": "Prekliči"
   },
@@ -62,6 +70,11 @@
     "group": "Področje",
     "start": "Začetek",
     "action": "Dejanje"
+  },
+  "documents": {
+    "delete": "Izbriši dokument",
+    "deleteConfirm": "Izbrišem ta dokument?",
+    "untitled": "Brez naslova"
   },
   "text": {
     "copyMermaid": "Kopiraj mermaid",

@@ -1,6 +1,12 @@
 {
   "backToSite": "Torna a la pàgina principal",
-  "code": "Codi",
+  "header": {
+    "open": "Obre",
+    "newDocument": "Document nou",
+    "download": "Descarrega",
+    "account": "Compte",
+    "code": "Codi"
+  },
   "toolbar": {
     "undo": "Desfés",
     "redo": "Refés",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Color",
     "shapeTitle": "Forma",
+    "downloadTitle": "Descarrega",
+    "openTitle": "Els teus documents",
     "ok": "D'acord",
     "cancel": "Cancel·la"
   },
@@ -62,6 +70,11 @@
     "group": "Àrea",
     "start": "Inici",
     "action": "Acció"
+  },
+  "documents": {
+    "delete": "Elimina el document",
+    "deleteConfirm": "Vols eliminar aquest document?",
+    "untitled": "Sense títol"
   },
   "text": {
     "copyMermaid": "Copia mermaid",

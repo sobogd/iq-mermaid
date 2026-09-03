@@ -1,6 +1,12 @@
 {
   "backToSite": "На головну сторінку",
-  "code": "Код",
+  "header": {
+    "open": "Відкрити",
+    "newDocument": "Новий документ",
+    "download": "Завантажити",
+    "account": "Обліковий запис",
+    "code": "Код"
+  },
   "toolbar": {
     "undo": "Скасувати дію",
     "redo": "Повторити",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Колір",
     "shapeTitle": "Форма",
+    "downloadTitle": "Завантажити",
+    "openTitle": "Ваші документи",
     "ok": "ОК",
     "cancel": "Скасувати"
   },
@@ -62,6 +70,11 @@
     "group": "Область",
     "start": "Старт",
     "action": "Дія"
+  },
+  "documents": {
+    "delete": "Видалити документ",
+    "deleteConfirm": "Видалити цей документ?",
+    "untitled": "Без назви"
   },
   "text": {
     "copyMermaid": "Копіювати mermaid",

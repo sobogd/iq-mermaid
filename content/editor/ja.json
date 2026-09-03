@@ -1,6 +1,12 @@
 {
   "backToSite": "ホームページに戻る",
-  "code": "コード",
+  "header": {
+    "open": "開く",
+    "newDocument": "新規ドキュメント",
+    "download": "ダウンロード",
+    "account": "アカウント",
+    "code": "コード"
+  },
   "toolbar": {
     "undo": "元に戻す",
     "redo": "やり直す",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "色",
     "shapeTitle": "形状",
+    "downloadTitle": "ダウンロード",
+    "openTitle": "保存したドキュメント",
     "ok": "OK",
     "cancel": "キャンセル"
   },
@@ -62,6 +70,11 @@
     "group": "エリア",
     "start": "開始",
     "action": "アクション"
+  },
+  "documents": {
+    "delete": "ドキュメントを削除",
+    "deleteConfirm": "このドキュメントを削除しますか？",
+    "untitled": "無題"
   },
   "text": {
     "copyMermaid": "Mermaidをコピー",

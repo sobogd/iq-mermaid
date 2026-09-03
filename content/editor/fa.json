@@ -1,6 +1,12 @@
 {
   "backToSite": "بازگشت به صفحه اصلی",
-  "code": "کد",
+  "header": {
+    "open": "باز کردن",
+    "newDocument": "سند جدید",
+    "download": "دانلود",
+    "account": "حساب کاربری",
+    "code": "کد"
+  },
   "toolbar": {
     "undo": "واگرد",
     "redo": "از نو",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "رنگ",
     "shapeTitle": "شکل",
+    "downloadTitle": "دانلود",
+    "openTitle": "اسناد شما",
     "ok": "تأیید",
     "cancel": "انصراف"
   },
@@ -62,6 +70,11 @@
     "group": "ناحیه",
     "start": "شروع",
     "action": "عملیات"
+  },
+  "documents": {
+    "delete": "حذف سند",
+    "deleteConfirm": "این سند حذف شود؟",
+    "untitled": "بدون عنوان"
   },
   "text": {
     "copyMermaid": "کپی mermaid",

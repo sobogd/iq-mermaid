@@ -1,6 +1,12 @@
 {
   "backToSite": "Til baka á forsíðu",
-  "code": "Kóði",
+  "header": {
+    "open": "Opna",
+    "newDocument": "Nýtt skjal",
+    "download": "Sækja",
+    "account": "Aðgangur",
+    "code": "Kóði"
+  },
   "toolbar": {
     "undo": "Afturkalla",
     "redo": "Endurtaka",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Litur",
     "shapeTitle": "Lögun",
+    "downloadTitle": "Sækja",
+    "openTitle": "Skjölin þín",
     "ok": "Í lagi",
     "cancel": "Hætta við"
   },
@@ -62,6 +70,11 @@
     "group": "Svæði",
     "start": "Byrjun",
     "action": "Aðgerð"
+  },
+  "documents": {
+    "delete": "Eyða skjali",
+    "deleteConfirm": "Eyða þessu skjali?",
+    "untitled": "Ónefnt"
   },
   "text": {
     "copyMermaid": "Afrita mermaid",

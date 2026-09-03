@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { renderDiagram } from "./mermaid-client";
+import AskModal from "./AskModal.jsx";
 
 const STORAGE_KEY = "mermaid-visual-editor-data";
 // Bumped whenever the shape of the saved state changes. `migrate` below turns
@@ -57,7 +58,9 @@ const SHAPES = [
 
 // The diagram a first-time visitor lands on. Its two labels come from the
 // locale dictionary, so the starter diagram speaks the page's language.
-const defaultState = (t) => ({
+// Exported: EditorShell needs the exact same starter source (via toMermaid
+// below) to seed a brand new document, rather than re-deriving its shape.
+export const defaultState = (t) => ({
   direction: DEFAULT_DIRECTION,
   blocks: [
     { id: "b1", label: t.defaults.start, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, groupId: null },
@@ -192,7 +195,8 @@ function buildLabel(block) {
 
 const EMPTY_GROUP_PLACEHOLDER_PREFIX = "phEmpty";
 
-function toMermaid(state) {
+// Exported for the same reason as defaultState above.
+export function toMermaid(state) {
   const byId = Object.fromEntries(state.blocks.map((b) => [b.id, b]));
   const groups = state.groups || [];
 
@@ -502,7 +506,6 @@ export default function VisualEditor({
   // translated consistently and are suppressed outright by some browsers.
   const [ask, setAsk] = useState(null); // { kind: "text"|"confirm", title, value?, onDone }
   const [history, setHistory] = useState({ past: [], future: [] });
-  const askInputRef = useRef(null);
   const interactionModeRef = useRef(null);
 
   useEffect(() => {
@@ -1372,7 +1375,9 @@ export default function VisualEditor({
             onClick={copySelected}
             disabled={!selected || selected.type === "edge"}
           >📋</button>
-          <button title={t.toolbar.paste} aria-label={t.toolbar.paste} onClick={startPaste} disabled={!clipboard}>📥</button>
+          {/* 📥 now belongs to the header's Download menu — paste keeps its
+              own icon so the two are never confused at a glance. */}
+          <button title={t.toolbar.paste} aria-label={t.toolbar.paste} onClick={startPaste} disabled={!clipboard}>📌</button>
           <span className="header-sep" />
           {/* Nothing that acts on the current selection lives here any more —
               rename, connect, move, colour, shape and delete are all in the
@@ -1417,54 +1422,25 @@ export default function VisualEditor({
         <div className="modal-backdrop" onMouseDown={() => setShapeModalOpen(false)}>
           <div className="modal-panel" onMouseDown={(e) => e.stopPropagation()}>
             <div className="modal-title">{t.modals.shapeTitle}</div>
-            <div className="modal-shapes">
+            {/* .modal-list / .modal-list-btn / .modal-list-icon: the same
+                icon+label list styling as the Download and Open-document
+                menus in EditorShell — one visual language for every "pick
+                one row" modal in the editor. */}
+            <div className="modal-list">
               {SHAPES.map((s) => (
                 <button
                   key={s.key}
-                  className={"modal-shape-btn" + (selectedBlock.shape === s.key ? " active" : "")}
+                  className={"modal-list-btn" + (selectedBlock.shape === s.key ? " active" : "")}
                   onClick={() => { setBlockShape(s.key); setShapeModalOpen(false); }}
                 >
-                  <span className="modal-shape-emoji">{s.emoji}</span> {t.shapes[s.key]}
+                  <span className="modal-list-icon">{s.emoji}</span> {t.shapes[s.key]}
                 </button>
               ))}
             </div>
           </div>
         </div>
       )}
-      {ask && (
-        <div className="modal-backdrop" onPointerDown={() => setAsk(null)}>
-          <div className="modal-panel" onPointerDown={(e) => e.stopPropagation()}>
-            <div className="modal-title">{ask.title}</div>
-            {ask.kind === "text" && (
-              <input
-                autoFocus
-                className="modal-input"
-                defaultValue={ask.value}
-                onFocus={(e) => e.target.select()}
-                onKeyDown={(e) => {
-                  e.stopPropagation();
-                  if (e.key === "Enter") {
-                    ask.onDone(e.currentTarget.value);
-                    setAsk(null);
-                  }
-                  if (e.key === "Escape") setAsk(null);
-                }}
-                ref={(el) => { if (el) askInputRef.current = el; }}
-              />
-            )}
-            <div className="modal-actions">
-              <button onClick={() => setAsk(null)}>{t.modals.cancel}</button>
-              <button
-                className="primary"
-                onClick={() => {
-                  ask.onDone(ask.kind === "text" ? (askInputRef.current?.value ?? "") : true);
-                  setAsk(null);
-                }}
-              >{t.modals.ok}</button>
-            </div>
-          </div>
-        </div>
-      )}
+      <AskModal ask={ask} onClose={() => setAsk(null)} t={t} />
       {active && zoomSlot && createPortal(
         <>
           <button onClick={() => zoomBy(0.8)} title={t.zoom.out} aria-label={t.zoom.out}>➖</button>

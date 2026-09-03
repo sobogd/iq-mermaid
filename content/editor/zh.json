@@ -1,6 +1,12 @@
 {
   "backToSite": "返回首页",
-  "code": "代码",
+  "header": {
+    "open": "打开",
+    "newDocument": "新建文档",
+    "download": "下载",
+    "account": "账户",
+    "code": "代码"
+  },
   "toolbar": {
     "undo": "撤销",
     "redo": "重做",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "颜色",
     "shapeTitle": "形状",
+    "downloadTitle": "下载",
+    "openTitle": "我的文档",
     "ok": "确定",
     "cancel": "取消"
   },
@@ -62,6 +70,11 @@
     "group": "区域",
     "start": "开始",
     "action": "操作"
+  },
+  "documents": {
+    "delete": "删除文档",
+    "deleteConfirm": "删除此文档？",
+    "untitled": "无标题"
   },
   "text": {
     "copyMermaid": "复制 mermaid",

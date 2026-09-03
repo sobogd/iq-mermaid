@@ -1,6 +1,12 @@
 {
   "backToSite": "Back to the home page",
-  "code": "Code",
+  "header": {
+    "open": "Open",
+    "newDocument": "New document",
+    "download": "Download",
+    "account": "Account",
+    "code": "Code"
+  },
   "toolbar": {
     "undo": "Undo",
     "redo": "Redo",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Colour",
     "shapeTitle": "Shape",
+    "downloadTitle": "Download",
+    "openTitle": "Your documents",
     "ok": "OK",
     "cancel": "Cancel"
   },
@@ -62,6 +70,11 @@
     "group": "Area",
     "start": "Start",
     "action": "Action"
+  },
+  "documents": {
+    "delete": "Delete document",
+    "deleteConfirm": "Delete this document?",
+    "untitled": "Untitled"
   },
   "text": {
     "copyMermaid": "Copy mermaid",

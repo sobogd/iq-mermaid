@@ -1,6 +1,12 @@
 {
   "backToSite": "홈으로 돌아가기",
-  "code": "코드",
+  "header": {
+    "open": "열기",
+    "newDocument": "새 문서",
+    "download": "다운로드",
+    "account": "계정",
+    "code": "코드"
+  },
   "toolbar": {
     "undo": "실행 취소",
     "redo": "다시 실행",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "색상",
     "shapeTitle": "모양",
+    "downloadTitle": "다운로드",
+    "openTitle": "내 문서",
     "ok": "확인",
     "cancel": "취소"
   },
@@ -62,6 +70,11 @@
     "group": "영역",
     "start": "시작",
     "action": "동작"
+  },
+  "documents": {
+    "delete": "문서 삭제",
+    "deleteConfirm": "이 문서를 삭제할까요?",
+    "untitled": "제목 없음"
   },
   "text": {
     "copyMermaid": "mermaid 복사",

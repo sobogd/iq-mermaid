@@ -1,6 +1,12 @@
 {
   "backToSite": "Обратно към началната страница",
-  "code": "Код",
+  "header": {
+    "open": "Отвори",
+    "newDocument": "Нов документ",
+    "download": "Изтегли",
+    "account": "Профил",
+    "code": "Код"
+  },
   "toolbar": {
     "undo": "Отмени",
     "redo": "Повтори",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Цвят",
     "shapeTitle": "Форма",
+    "downloadTitle": "Изтегли",
+    "openTitle": "Вашите документи",
     "ok": "ОК",
     "cancel": "Отказ"
   },
@@ -62,6 +70,11 @@
     "group": "Област",
     "start": "Старт",
     "action": "Действие"
+  },
+  "documents": {
+    "delete": "Изтриване на документ",
+    "deleteConfirm": "Да се изтрие ли този документ?",
+    "untitled": "Без заглавие"
   },
   "text": {
     "copyMermaid": "Копирай mermaid",

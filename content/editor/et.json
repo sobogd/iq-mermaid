@@ -1,6 +1,12 @@
 {
   "backToSite": "Tagasi avalehele",
-  "code": "Kood",
+  "header": {
+    "open": "Ava",
+    "newDocument": "Uus dokument",
+    "download": "Laadi alla",
+    "account": "Konto",
+    "code": "Kood"
+  },
   "toolbar": {
     "undo": "Võta tagasi",
     "redo": "Tee uuesti",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Värv",
     "shapeTitle": "Kuju",
+    "downloadTitle": "Laadi alla",
+    "openTitle": "Sinu dokumendid",
     "ok": "OK",
     "cancel": "Loobu"
   },
@@ -62,6 +70,11 @@
     "group": "Ala",
     "start": "Algus",
     "action": "Tegevus"
+  },
+  "documents": {
+    "delete": "Kustuta dokument",
+    "deleteConfirm": "Kas kustutada see dokument?",
+    "untitled": "Nimetu"
   },
   "text": {
     "copyMermaid": "Kopeeri mermaid",

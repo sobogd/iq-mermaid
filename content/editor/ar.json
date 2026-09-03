@@ -1,6 +1,12 @@
 {
   "backToSite": "العودة إلى الصفحة الرئيسية",
-  "code": "الكود",
+  "header": {
+    "open": "فتح",
+    "newDocument": "مستند جديد",
+    "download": "تنزيل",
+    "account": "الحساب",
+    "code": "الكود"
+  },
   "toolbar": {
     "undo": "تراجع",
     "redo": "إعادة",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "اللون",
     "shapeTitle": "الشكل",
+    "downloadTitle": "تنزيل",
+    "openTitle": "مستنداتك",
     "ok": "موافق",
     "cancel": "إلغاء"
   },
@@ -62,6 +70,11 @@
     "group": "منطقة",
     "start": "بداية",
     "action": "إجراء"
+  },
+  "documents": {
+    "delete": "حذف المستند",
+    "deleteConfirm": "حذف هذا المستند؟",
+    "untitled": "بلا عنوان"
   },
   "text": {
     "copyMermaid": "نسخ mermaid",

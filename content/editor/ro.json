@@ -1,6 +1,12 @@
 {
   "backToSite": "Înapoi la pagina principală",
-  "code": "Cod",
+  "header": {
+    "open": "Deschide",
+    "newDocument": "Document nou",
+    "download": "Descarcă",
+    "account": "Cont",
+    "code": "Cod"
+  },
   "toolbar": {
     "undo": "Anulează",
     "redo": "Refă",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Culoare",
     "shapeTitle": "Formă",
+    "downloadTitle": "Descarcă",
+    "openTitle": "Documentele tale",
     "ok": "OK",
     "cancel": "Renunță"
   },
@@ -62,6 +70,11 @@
     "group": "Zonă",
     "start": "Start",
     "action": "Acțiune"
+  },
+  "documents": {
+    "delete": "Șterge documentul",
+    "deleteConfirm": "Ștergi acest document?",
+    "untitled": "Fără titlu"
   },
   "text": {
     "copyMermaid": "Copiază mermaid",

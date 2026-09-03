@@ -1,6 +1,12 @@
 {
   "backToSite": "На главную страницу",
-  "code": "Код",
+  "header": {
+    "open": "Открыть",
+    "newDocument": "Новый документ",
+    "download": "Скачать",
+    "account": "Аккаунт",
+    "code": "Код"
+  },
   "toolbar": {
     "undo": "Отменить",
     "redo": "Повторить",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Цвет",
     "shapeTitle": "Форма",
+    "downloadTitle": "Скачать",
+    "openTitle": "Ваши документы",
     "ok": "ОК",
     "cancel": "Отмена"
   },
@@ -62,6 +70,11 @@
     "group": "Область",
     "start": "Старт",
     "action": "Действие"
+  },
+  "documents": {
+    "delete": "Удалить документ",
+    "deleteConfirm": "Удалить этот документ?",
+    "untitled": "Без названия"
   },
   "text": {
     "copyMermaid": "Копировать mermaid",

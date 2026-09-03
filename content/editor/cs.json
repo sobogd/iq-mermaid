@@ -1,6 +1,12 @@
 {
   "backToSite": "Zpět na hlavní stránku",
-  "code": "Kód",
+  "header": {
+    "open": "Otevřít",
+    "newDocument": "Nový dokument",
+    "download": "Stáhnout",
+    "account": "Účet",
+    "code": "Kód"
+  },
   "toolbar": {
     "undo": "Zpět",
     "redo": "Znovu",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Barva",
     "shapeTitle": "Tvar",
+    "downloadTitle": "Stáhnout",
+    "openTitle": "Vaše dokumenty",
     "ok": "OK",
     "cancel": "Zrušit"
   },
@@ -62,6 +70,11 @@
     "group": "Oblast",
     "start": "Start",
     "action": "Akce"
+  },
+  "documents": {
+    "delete": "Smazat dokument",
+    "deleteConfirm": "Smazat tento dokument?",
+    "untitled": "Bez názvu"
   },
   "text": {
     "copyMermaid": "Kopírovat mermaid",

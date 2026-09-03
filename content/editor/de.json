@@ -1,6 +1,12 @@
 {
   "backToSite": "Zurück zur Startseite",
-  "code": "Code",
+  "header": {
+    "open": "Öffnen",
+    "newDocument": "Neues Dokument",
+    "download": "Herunterladen",
+    "account": "Konto",
+    "code": "Code"
+  },
   "toolbar": {
     "undo": "Rückgängig",
     "redo": "Wiederholen",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Farbe",
     "shapeTitle": "Form",
+    "downloadTitle": "Herunterladen",
+    "openTitle": "Deine Dokumente",
     "ok": "OK",
     "cancel": "Abbrechen"
   },
@@ -62,6 +70,11 @@
     "group": "Bereich",
     "start": "Start",
     "action": "Aktion"
+  },
+  "documents": {
+    "delete": "Dokument löschen",
+    "deleteConfirm": "Dieses Dokument löschen?",
+    "untitled": "Unbenannt"
   },
   "text": {
     "copyMermaid": "Mermaid kopieren",

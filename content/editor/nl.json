@@ -1,6 +1,12 @@
 {
   "backToSite": "Terug naar de homepage",
-  "code": "Code",
+  "header": {
+    "open": "Openen",
+    "newDocument": "Nieuw document",
+    "download": "Downloaden",
+    "account": "Account",
+    "code": "Code"
+  },
   "toolbar": {
     "undo": "Ongedaan maken",
     "redo": "Opnieuw",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Kleur",
     "shapeTitle": "Vorm",
+    "downloadTitle": "Downloaden",
+    "openTitle": "Jouw documenten",
     "ok": "OK",
     "cancel": "Annuleren"
   },
@@ -62,6 +70,11 @@
     "group": "Gebied",
     "start": "Start",
     "action": "Actie"
+  },
+  "documents": {
+    "delete": "Document verwijderen",
+    "deleteConfirm": "Dit document verwijderen?",
+    "untitled": "Naamloos"
   },
   "text": {
     "copyMermaid": "Mermaid kopiëren",

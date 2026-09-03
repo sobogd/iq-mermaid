@@ -1,6 +1,12 @@
 {
   "backToSite": "Tilbake til forsiden",
-  "code": "Kode",
+  "header": {
+    "open": "Åpne",
+    "newDocument": "Nytt dokument",
+    "download": "Last ned",
+    "account": "Konto",
+    "code": "Kode"
+  },
   "toolbar": {
     "undo": "Angre",
     "redo": "Gjør om",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Farge",
     "shapeTitle": "Form",
+    "downloadTitle": "Last ned",
+    "openTitle": "Dine dokumenter",
     "ok": "OK",
     "cancel": "Avbryt"
   },
@@ -62,6 +70,11 @@
     "group": "Område",
     "start": "Start",
     "action": "Handling"
+  },
+  "documents": {
+    "delete": "Slett dokument",
+    "deleteConfirm": "Slette dette dokumentet?",
+    "untitled": "Uten navn"
   },
   "text": {
     "copyMermaid": "Kopier mermaid",

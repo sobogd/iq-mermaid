@@ -1,6 +1,12 @@
 {
   "backToSite": "Takaisin etusivulle",
-  "code": "Koodi",
+  "header": {
+    "open": "Avaa",
+    "newDocument": "Uusi asiakirja",
+    "download": "Lataa",
+    "account": "Tili",
+    "code": "Koodi"
+  },
   "toolbar": {
     "undo": "Kumoa",
     "redo": "Tee uudelleen",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Väri",
     "shapeTitle": "Muoto",
+    "downloadTitle": "Lataa",
+    "openTitle": "Omat asiakirjat",
     "ok": "OK",
     "cancel": "Peruuta"
   },
@@ -62,6 +70,11 @@
     "group": "Alue",
     "start": "Alku",
     "action": "Toiminto"
+  },
+  "documents": {
+    "delete": "Poista asiakirja",
+    "deleteConfirm": "Poistetaanko tämä asiakirja?",
+    "untitled": "Nimetön"
   },
   "text": {
     "copyMermaid": "Kopioi mermaid",

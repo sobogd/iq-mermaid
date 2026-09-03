@@ -1,6 +1,12 @@
 {
   "backToSite": "Vissza a főoldalra",
-  "code": "Kód",
+  "header": {
+    "open": "Megnyitás",
+    "newDocument": "Új dokumentum",
+    "download": "Letöltés",
+    "account": "Fiók",
+    "code": "Kód"
+  },
   "toolbar": {
     "undo": "Visszavonás",
     "redo": "Újra",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Szín",
     "shapeTitle": "Alak",
+    "downloadTitle": "Letöltés",
+    "openTitle": "Dokumentumaid",
     "ok": "OK",
     "cancel": "Mégse"
   },
@@ -62,6 +70,11 @@
     "group": "Terület",
     "start": "Start",
     "action": "Művelet"
+  },
+  "documents": {
+    "delete": "Dokumentum törlése",
+    "deleteConfirm": "Törlöd ezt a dokumentumot?",
+    "untitled": "Névtelen"
   },
   "text": {
     "copyMermaid": "Mermaid másolása",

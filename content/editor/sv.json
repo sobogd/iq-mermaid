@@ -1,6 +1,12 @@
 {
   "backToSite": "Tillbaka till startsidan",
-  "code": "Kod",
+  "header": {
+    "open": "Öppna",
+    "newDocument": "Nytt dokument",
+    "download": "Ladda ner",
+    "account": "Konto",
+    "code": "Kod"
+  },
   "toolbar": {
     "undo": "Ångra",
     "redo": "Gör om",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Färg",
     "shapeTitle": "Form",
+    "downloadTitle": "Ladda ner",
+    "openTitle": "Dina dokument",
     "ok": "OK",
     "cancel": "Avbryt"
   },
@@ -62,6 +70,11 @@
     "group": "Område",
     "start": "Start",
     "action": "Åtgärd"
+  },
+  "documents": {
+    "delete": "Ta bort dokument",
+    "deleteConfirm": "Ta bort det här dokumentet?",
+    "untitled": "Namnlös"
   },
   "text": {
     "copyMermaid": "Kopiera mermaid",

@@ -1,6 +1,12 @@
 {
   "backToSite": "Ana sayfaya dön",
-  "code": "Kod",
+  "header": {
+    "open": "Aç",
+    "newDocument": "Yeni belge",
+    "download": "İndir",
+    "account": "Hesap",
+    "code": "Kod"
+  },
   "toolbar": {
     "undo": "Geri al",
     "redo": "Yinele",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Renk",
     "shapeTitle": "Şekil",
+    "downloadTitle": "İndir",
+    "openTitle": "Belgeleriniz",
     "ok": "Tamam",
     "cancel": "İptal"
   },
@@ -62,6 +70,11 @@
     "group": "Alan",
     "start": "Başlangıç",
     "action": "Eylem"
+  },
+  "documents": {
+    "delete": "Belgeyi sil",
+    "deleteConfirm": "Bu belge silinsin mi?",
+    "untitled": "Adsız"
   },
   "text": {
     "copyMermaid": "Mermaid'i kopyala",

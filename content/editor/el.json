@@ -1,6 +1,12 @@
 {
   "backToSite": "Επιστροφή στην αρχική σελίδα",
-  "code": "Κώδικας",
+  "header": {
+    "open": "Άνοιγμα",
+    "newDocument": "Νέο έγγραφο",
+    "download": "Λήψη",
+    "account": "Λογαριασμός",
+    "code": "Κώδικας"
+  },
   "toolbar": {
     "undo": "Αναίρεση",
     "redo": "Επανάληψη",
@@ -24,6 +30,8 @@
   "modals": {
     "colorTitle": "Χρώμα",
     "shapeTitle": "Σχήμα",
+    "downloadTitle": "Λήψη",
+    "openTitle": "Τα έγγραφά σας",
     "ok": "OK",
     "cancel": "Άκυρο"
   },
@@ -62,6 +70,11 @@
     "group": "Περιοχή",
     "start": "Έναρξη",
     "action": "Ενέργεια"
+  },
+  "documents": {
+    "delete": "Διαγραφή εγγράφου",
+    "deleteConfirm": "Διαγραφή αυτού του εγγράφου;",
+    "untitled": "Χωρίς τίτλο"
   },
   "text": {
     "copyMermaid": "Αντιγραφή mermaid",

@@ -7,8 +7,17 @@
 export interface EditorTexts {
   /** Title of the logo link back to the marketing site. */
   backToSite: string;
-  /** Label of the button that opens the mermaid source. */
-  code: string;
+  /** Icon-only buttons that live directly in the header (not inside a
+   *  portal), each just a tooltip/aria-label — the icon itself is fixed in
+   *  EditorShell.jsx. */
+  header: {
+    open: string;
+    newDocument: string;
+    download: string;
+    /** Placeholder sign-in entry point; does nothing yet. */
+    account: string;
+    code: string;
+  };
   toolbar: {
     undo: string;
     redo: string;
@@ -25,7 +34,16 @@ export interface EditorTexts {
     shape: string;
   };
   zoom: { in: string; out: string; fit: string };
-  modals: { colorTitle: string; shapeTitle: string; ok: string; cancel: string };
+  modals: {
+    colorTitle: string;
+    shapeTitle: string;
+    /** Heading of the 📥 export-options list. */
+    downloadTitle: string;
+    /** Heading of the 📂 saved-documents list. */
+    openTitle: string;
+    ok: string;
+    cancel: string;
+  };
   /** Banners drawn over the canvas. */
   notices: { renderFailed: string; codeOnly: string };
   /** Keyed by the shape ids in VisualEditor.jsx's SHAPES list. */
@@ -51,6 +69,15 @@ export interface EditorTexts {
   prompts: { edgeLabel: string; rename: string; deleteSelected: string };
   /** Labels new items and the starter diagram are created with. */
   defaults: { block: string; group: string; start: string; action: string };
+  /** The 📂 Open list and the ✏️ New-document flow. */
+  documents: {
+    /** Tooltip on a row's own trash icon in the Open list. */
+    delete: string;
+    /** Confirm-modal title before removing a saved document. */
+    deleteConfirm: string;
+    /** Fallback title for a document with nothing recognisable drawn yet. */
+    untitled: string;
+  };
   text: {
     copyMermaid: string;
     downloadMmd: string;
