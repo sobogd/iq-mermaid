@@ -1,7 +1,12 @@
 {
   "backToSite": "Tagasi avalehele",
-  "tabs": { "visual": "Visuaal", "text": "Kood" },
+  "tabs": {
+    "visual": "Visuaal",
+    "text": "Kood"
+  },
   "toolbar": {
+    "undo": "Võta tagasi",
+    "redo": "Tee uuesti",
     "addBlock": "Lisa plokk",
     "addGroup": "Lisa ala",
     "copy": "Kopeeri (plokk või terve ala koos kõige sisuga)",
@@ -13,8 +18,22 @@
     "color": "Värv",
     "shape": "Kuju"
   },
-  "zoom": { "center": "Tsentreeri uuesti" },
-  "modals": { "colorTitle": "Värv", "shapeTitle": "Kuju" },
+  "zoom": {
+    "in": "Suumi sisse",
+    "out": "Suumi välja",
+    "center": "Tsentreeri uuesti",
+    "fit": "Sobita"
+  },
+  "modals": {
+    "colorTitle": "Värv",
+    "shapeTitle": "Kuju",
+    "ok": "OK",
+    "cancel": "Loobu"
+  },
+  "notices": {
+    "renderFailed": "See muudatus ei ole korrektne mermaid — näidatakse viimast õnnestunud skeemi.",
+    "codeOnly": "Seda skeemitüüpi saab muuta ainult koodina. Siin muutmine asendab selle vooskeemiga."
+  },
   "shapes": {
     "rect": "Ristkülik",
     "rounded": "Ümardatud",
@@ -54,10 +73,10 @@
     "copySvg": "Kopeeri SVG",
     "downloadSvg": "Laadi alla SVG",
     "downloadPng": "Laadi alla PNG",
-    "statusOk": "OK",
-    "statusError": "Viga",
     "statusSvgCopied": "SVG kopeeritud",
-    "statusMermaidCopied": "Mermaid kopeeritud"
+    "statusMermaidCopied": "Mermaid kopeeritud",
+    "statusSaved": "Salvestatud",
+    "statusExportFailed": "Eksport ebaõnnestus"
   },
   "examples": {
     "flowchart": "Vookaart",

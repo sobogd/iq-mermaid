@@ -1,7 +1,12 @@
 {
   "backToSite": "ホームページに戻る",
-  "tabs": { "visual": "ビジュアル", "text": "コード" },
+  "tabs": {
+    "visual": "ビジュアル",
+    "text": "コード"
+  },
   "toolbar": {
+    "undo": "元に戻す",
+    "redo": "やり直す",
     "addBlock": "ブロックを追加",
     "addGroup": "エリアを追加",
     "copy": "コピー(ブロック、またはエリア全体とその中身)",
@@ -13,8 +18,22 @@
     "color": "色",
     "shape": "形状"
   },
-  "zoom": { "center": "中央に戻す" },
-  "modals": { "colorTitle": "色", "shapeTitle": "形状" },
+  "zoom": {
+    "in": "拡大",
+    "out": "縮小",
+    "center": "中央に戻す",
+    "fit": "全体表示"
+  },
+  "modals": {
+    "colorTitle": "色",
+    "shapeTitle": "形状",
+    "ok": "OK",
+    "cancel": "キャンセル"
+  },
+  "notices": {
+    "renderFailed": "この編集は有効な mermaid ではありません。最後に描画できた図を表示しています。",
+    "codeOnly": "この図はコードでのみ編集できます。ここで編集するとフローチャートに置き換わります。"
+  },
   "shapes": {
     "rect": "四角形",
     "rounded": "角丸",
@@ -54,10 +73,10 @@
     "copySvg": "SVGをコピー",
     "downloadSvg": "SVGをダウンロード",
     "downloadPng": "PNGをダウンロード",
-    "statusOk": "OK",
-    "statusError": "エラー",
     "statusSvgCopied": "SVGをコピーしました",
-    "statusMermaidCopied": "Mermaidをコピーしました"
+    "statusMermaidCopied": "Mermaidをコピーしました",
+    "statusSaved": "保存しました",
+    "statusExportFailed": "エクスポートに失敗しました"
   },
   "examples": {
     "flowchart": "フローチャート",

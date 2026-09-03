@@ -1,7 +1,12 @@
 {
   "backToSite": "Vissza a főoldalra",
-  "tabs": { "visual": "Vizuális", "text": "Kód" },
+  "tabs": {
+    "visual": "Vizuális",
+    "text": "Kód"
+  },
   "toolbar": {
+    "undo": "Visszavonás",
+    "redo": "Újra",
     "addBlock": "Blokk hozzáadása",
     "addGroup": "Terület hozzáadása",
     "copy": "Másolás (egy blokk, vagy egy egész terület mindennel együtt)",
@@ -13,8 +18,22 @@
     "color": "Szín",
     "shape": "Alak"
   },
-  "zoom": { "center": "Újraközpontosítás" },
-  "modals": { "colorTitle": "Szín", "shapeTitle": "Alak" },
+  "zoom": {
+    "in": "Nagyítás",
+    "out": "Kicsinyítés",
+    "center": "Újraközpontosítás",
+    "fit": "Igazítás"
+  },
+  "modals": {
+    "colorTitle": "Szín",
+    "shapeTitle": "Alak",
+    "ok": "OK",
+    "cancel": "Mégse"
+  },
+  "notices": {
+    "renderFailed": "Ez a módosítás nem érvényes mermaid — az utolsó sikeres ábra látható.",
+    "codeOnly": "Ez az ábratípus csak kódként szerkeszthető. Az itteni szerkesztés folyamatábrára cseréli."
+  },
   "shapes": {
     "rect": "Téglalap",
     "rounded": "Lekerekített",
@@ -54,10 +73,10 @@
     "copySvg": "SVG másolása",
     "downloadSvg": "SVG letöltése",
     "downloadPng": "PNG letöltése",
-    "statusOk": "OK",
-    "statusError": "Hiba",
     "statusSvgCopied": "SVG másolva",
-    "statusMermaidCopied": "Mermaid másolva"
+    "statusMermaidCopied": "Mermaid másolva",
+    "statusSaved": "Mentve",
+    "statusExportFailed": "Az exportálás nem sikerült"
   },
   "examples": {
     "flowchart": "Folyamatábra",

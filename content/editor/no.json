@@ -1,7 +1,12 @@
 {
   "backToSite": "Tilbake til forsiden",
-  "tabs": { "visual": "Visuelt", "text": "Kode" },
+  "tabs": {
+    "visual": "Visuelt",
+    "text": "Kode"
+  },
   "toolbar": {
+    "undo": "Angre",
+    "redo": "Gjør om",
     "addBlock": "Legg til boks",
     "addGroup": "Legg til område",
     "copy": "Kopier (en boks, eller et helt område med alt i det)",
@@ -13,8 +18,22 @@
     "color": "Farge",
     "shape": "Form"
   },
-  "zoom": { "center": "Sentrer på nytt" },
-  "modals": { "colorTitle": "Farge", "shapeTitle": "Form" },
+  "zoom": {
+    "in": "Zoom inn",
+    "out": "Zoom ut",
+    "center": "Sentrer på nytt",
+    "fit": "Tilpass"
+  },
+  "modals": {
+    "colorTitle": "Farge",
+    "shapeTitle": "Form",
+    "ok": "OK",
+    "cancel": "Avbryt"
+  },
+  "notices": {
+    "renderFailed": "Denne endringen er ikke gyldig mermaid — viser det siste diagrammet som lot seg tegne.",
+    "codeOnly": "Denne diagramtypen kan bare redigeres som kode. Redigerer du her, erstattes den av et flytskjema."
+  },
   "shapes": {
     "rect": "Rektangel",
     "rounded": "Avrundet",
@@ -54,10 +73,10 @@
     "copySvg": "Kopier SVG",
     "downloadSvg": "Last ned SVG",
     "downloadPng": "Last ned PNG",
-    "statusOk": "OK",
-    "statusError": "Feil",
     "statusSvgCopied": "SVG kopiert",
-    "statusMermaidCopied": "Mermaid kopiert"
+    "statusMermaidCopied": "Mermaid kopiert",
+    "statusSaved": "Lagret",
+    "statusExportFailed": "Eksporten mislyktes"
   },
   "examples": {
     "flowchart": "Flytskjema",

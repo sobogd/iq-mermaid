@@ -1,7 +1,12 @@
 {
   "backToSite": "Takaisin etusivulle",
-  "tabs": { "visual": "Visuaalinen", "text": "Koodi" },
+  "tabs": {
+    "visual": "Visuaalinen",
+    "text": "Koodi"
+  },
   "toolbar": {
+    "undo": "Kumoa",
+    "redo": "Tee uudelleen",
     "addBlock": "Lisää lohko",
     "addGroup": "Lisää alue",
     "copy": "Kopioi (lohko tai kokonainen alue kaikkineen)",
@@ -13,8 +18,22 @@
     "color": "Väri",
     "shape": "Muoto"
   },
-  "zoom": { "center": "Keskitä uudelleen" },
-  "modals": { "colorTitle": "Väri", "shapeTitle": "Muoto" },
+  "zoom": {
+    "in": "Lähennä",
+    "out": "Loitonna",
+    "center": "Keskitä uudelleen",
+    "fit": "Sovita"
+  },
+  "modals": {
+    "colorTitle": "Väri",
+    "shapeTitle": "Muoto",
+    "ok": "OK",
+    "cancel": "Peruuta"
+  },
+  "notices": {
+    "renderFailed": "Tämä muokkaus ei ole kelvollista mermaidia — näytetään viimeisin toimiva kaavio.",
+    "codeOnly": "Tätä kaaviotyyppiä muokataan vain koodina. Muokkaus täällä korvaa sen vuokaaviolla."
+  },
   "shapes": {
     "rect": "Suorakulmio",
     "rounded": "Pyöristetty",
@@ -54,10 +73,10 @@
     "copySvg": "Kopioi SVG",
     "downloadSvg": "Lataa SVG",
     "downloadPng": "Lataa PNG",
-    "statusOk": "OK",
-    "statusError": "Virhe",
     "statusSvgCopied": "SVG kopioitu",
-    "statusMermaidCopied": "Mermaid kopioitu"
+    "statusMermaidCopied": "Mermaid kopioitu",
+    "statusSaved": "Tallennettu",
+    "statusExportFailed": "Vienti epäonnistui"
   },
   "examples": {
     "flowchart": "Vuokaavio",

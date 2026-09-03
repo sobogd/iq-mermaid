@@ -1,7 +1,12 @@
 {
   "backToSite": "العودة إلى الصفحة الرئيسية",
-  "tabs": { "visual": "بصري", "text": "الكود" },
+  "tabs": {
+    "visual": "بصري",
+    "text": "الكود"
+  },
   "toolbar": {
+    "undo": "تراجع",
+    "redo": "إعادة",
     "addBlock": "إضافة كتلة",
     "addGroup": "إضافة منطقة",
     "copy": "نسخ (كتلة، أو منطقة كاملة بكل ما فيها)",
@@ -13,8 +18,22 @@
     "color": "اللون",
     "shape": "الشكل"
   },
-  "zoom": { "center": "إعادة التوسيط" },
-  "modals": { "colorTitle": "اللون", "shapeTitle": "الشكل" },
+  "zoom": {
+    "in": "تكبير",
+    "out": "تصغير",
+    "center": "إعادة التوسيط",
+    "fit": "ملاءمة"
+  },
+  "modals": {
+    "colorTitle": "اللون",
+    "shapeTitle": "الشكل",
+    "ok": "موافق",
+    "cancel": "إلغاء"
+  },
+  "notices": {
+    "renderFailed": "هذا التعديل ليس mermaid صالحًا — يُعرض آخر مخطط تم رسمه بنجاح.",
+    "codeOnly": "لا يمكن تحرير هذا النوع من المخططات إلا كشيفرة. التحرير هنا سيستبدله بمخطط انسيابي."
+  },
   "shapes": {
     "rect": "مستطيل",
     "rounded": "دائري الحواف",
@@ -54,10 +73,10 @@
     "copySvg": "نسخ SVG",
     "downloadSvg": "تنزيل SVG",
     "downloadPng": "تنزيل PNG",
-    "statusOk": "تم",
-    "statusError": "خطأ",
     "statusSvgCopied": "تم نسخ SVG",
-    "statusMermaidCopied": "تم نسخ mermaid"
+    "statusMermaidCopied": "تم نسخ mermaid",
+    "statusSaved": "تم الحفظ",
+    "statusExportFailed": "فشل التصدير"
   },
   "examples": {
     "flowchart": "مخطط انسيابي",

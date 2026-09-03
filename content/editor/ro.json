@@ -1,7 +1,12 @@
 {
   "backToSite": "Înapoi la pagina principală",
-  "tabs": { "visual": "Vizual", "text": "Cod" },
+  "tabs": {
+    "visual": "Vizual",
+    "text": "Cod"
+  },
   "toolbar": {
+    "undo": "Anulează",
+    "redo": "Refă",
     "addBlock": "Adaugă un bloc",
     "addGroup": "Adaugă o zonă",
     "copy": "Copiază (un bloc, sau o zonă întreagă cu tot ce conține)",
@@ -13,8 +18,22 @@
     "color": "Culoare",
     "shape": "Formă"
   },
-  "zoom": { "center": "Recentrează" },
-  "modals": { "colorTitle": "Culoare", "shapeTitle": "Formă" },
+  "zoom": {
+    "in": "Mărește",
+    "out": "Micșorează",
+    "center": "Recentrează",
+    "fit": "Încadrează"
+  },
+  "modals": {
+    "colorTitle": "Culoare",
+    "shapeTitle": "Formă",
+    "ok": "OK",
+    "cancel": "Renunță"
+  },
+  "notices": {
+    "renderFailed": "Această modificare nu este mermaid valid — se afișează ultima diagramă reușită.",
+    "codeOnly": "Acest tip de diagramă se editează doar ca text. Editarea aici o înlocuiește cu o schemă logică."
+  },
   "shapes": {
     "rect": "Dreptunghi",
     "rounded": "Rotunjit",
@@ -54,10 +73,10 @@
     "copySvg": "Copiază SVG",
     "downloadSvg": "Descarcă SVG",
     "downloadPng": "Descarcă PNG",
-    "statusOk": "OK",
-    "statusError": "Eroare",
     "statusSvgCopied": "SVG copiat",
-    "statusMermaidCopied": "Mermaid copiat"
+    "statusMermaidCopied": "Mermaid copiat",
+    "statusSaved": "Salvat",
+    "statusExportFailed": "Exportul a eșuat"
   },
   "examples": {
     "flowchart": "Flowchart",

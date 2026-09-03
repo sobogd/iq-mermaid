@@ -1,7 +1,12 @@
 {
   "backToSite": "Torna a la pàgina principal",
-  "tabs": { "visual": "Visual", "text": "Codi" },
+  "tabs": {
+    "visual": "Visual",
+    "text": "Codi"
+  },
   "toolbar": {
+    "undo": "Desfés",
+    "redo": "Refés",
     "addBlock": "Afegeix un bloc",
     "addGroup": "Afegeix una àrea",
     "copy": "Copia (un bloc, o una àrea sencera amb tot el que conté)",
@@ -13,8 +18,22 @@
     "color": "Color",
     "shape": "Forma"
   },
-  "zoom": { "center": "Torna a centrar" },
-  "modals": { "colorTitle": "Color", "shapeTitle": "Forma" },
+  "zoom": {
+    "in": "Apropa",
+    "out": "Allunya",
+    "center": "Torna a centrar",
+    "fit": "Ajusta"
+  },
+  "modals": {
+    "colorTitle": "Color",
+    "shapeTitle": "Forma",
+    "ok": "D'acord",
+    "cancel": "Cancel·la"
+  },
+  "notices": {
+    "renderFailed": "Aquesta edició no és mermaid vàlid: es mostra el darrer diagrama que sí que es va dibuixar.",
+    "codeOnly": "Aquest tipus de diagrama només s'edita com a codi. Si l'edites aquí, el substituiràs per un diagrama de flux."
+  },
   "shapes": {
     "rect": "Rectangle",
     "rounded": "Arrodonit",
@@ -54,10 +73,10 @@
     "copySvg": "Copia SVG",
     "downloadSvg": "Descarrega SVG",
     "downloadPng": "Descarrega PNG",
-    "statusOk": "D'acord",
-    "statusError": "Error",
     "statusSvgCopied": "SVG copiat",
-    "statusMermaidCopied": "Mermaid copiat"
+    "statusMermaidCopied": "Mermaid copiat",
+    "statusSaved": "Desat",
+    "statusExportFailed": "L'exportació ha fallat"
   },
   "examples": {
     "flowchart": "Flowchart",

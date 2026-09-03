@@ -1,7 +1,12 @@
 {
   "backToSite": "Nazaj na domačo stran",
-  "tabs": { "visual": "Vizualno", "text": "Koda" },
+  "tabs": {
+    "visual": "Vizualno",
+    "text": "Koda"
+  },
   "toolbar": {
+    "undo": "Razveljavi",
+    "redo": "Uveljavi",
     "addBlock": "Dodaj blok",
     "addGroup": "Dodaj področje",
     "copy": "Kopiraj (blok ali celo področje z vsem, kar je v njem)",
@@ -13,8 +18,22 @@
     "color": "Barva",
     "shape": "Oblika"
   },
-  "zoom": { "center": "Ponovno centriraj" },
-  "modals": { "colorTitle": "Barva", "shapeTitle": "Oblika" },
+  "zoom": {
+    "in": "Približaj",
+    "out": "Oddalji",
+    "center": "Ponovno centriraj",
+    "fit": "Prilagodi"
+  },
+  "modals": {
+    "colorTitle": "Barva",
+    "shapeTitle": "Oblika",
+    "ok": "V redu",
+    "cancel": "Prekliči"
+  },
+  "notices": {
+    "renderFailed": "Ta sprememba ni veljaven mermaid — prikazan je zadnji uspešen diagram.",
+    "codeOnly": "To vrsto diagrama je mogoče urejati samo kot kodo. Urejanje tukaj ga bo zamenjalo z diagramom poteka."
+  },
   "shapes": {
     "rect": "Pravokotnik",
     "rounded": "Zaobljen",
@@ -54,10 +73,10 @@
     "copySvg": "Kopiraj SVG",
     "downloadSvg": "Prenesi SVG",
     "downloadPng": "Prenesi PNG",
-    "statusOk": "V redu",
-    "statusError": "Napaka",
     "statusSvgCopied": "SVG kopiran",
-    "statusMermaidCopied": "Mermaid kopiran"
+    "statusMermaidCopied": "Mermaid kopiran",
+    "statusSaved": "Shranjeno",
+    "statusExportFailed": "Izvoz ni uspel"
   },
   "examples": {
     "flowchart": "Flowchart",

@@ -1,7 +1,12 @@
 {
   "backToSite": "Ana sayfaya dön",
-  "tabs": { "visual": "Görsel", "text": "Kod" },
+  "tabs": {
+    "visual": "Görsel",
+    "text": "Kod"
+  },
   "toolbar": {
+    "undo": "Geri al",
+    "redo": "Yinele",
     "addBlock": "Blok ekle",
     "addGroup": "Alan ekle",
     "copy": "Kopyala (bir blok veya içindeki her şeyle birlikte tüm bir alan)",
@@ -13,8 +18,22 @@
     "color": "Renk",
     "shape": "Şekil"
   },
-  "zoom": { "center": "Yeniden ortala" },
-  "modals": { "colorTitle": "Renk", "shapeTitle": "Şekil" },
+  "zoom": {
+    "in": "Yakınlaştır",
+    "out": "Uzaklaştır",
+    "center": "Yeniden ortala",
+    "fit": "Sığdır"
+  },
+  "modals": {
+    "colorTitle": "Renk",
+    "shapeTitle": "Şekil",
+    "ok": "Tamam",
+    "cancel": "İptal"
+  },
+  "notices": {
+    "renderFailed": "Bu düzenleme geçerli mermaid değil — çizilebilen son diyagram gösteriliyor.",
+    "codeOnly": "Bu diyagram türü yalnızca kod olarak düzenlenir. Burada düzenlemek onu bir akış şemasıyla değiştirir."
+  },
   "shapes": {
     "rect": "Dikdörtgen",
     "rounded": "Yuvarlak köşeli",
@@ -54,10 +73,10 @@
     "copySvg": "SVG'yi kopyala",
     "downloadSvg": "SVG indir",
     "downloadPng": "PNG indir",
-    "statusOk": "Tamam",
-    "statusError": "Hata",
     "statusSvgCopied": "SVG kopyalandı",
-    "statusMermaidCopied": "Mermaid kopyalandı"
+    "statusMermaidCopied": "Mermaid kopyalandı",
+    "statusSaved": "Kaydedildi",
+    "statusExportFailed": "Dışa aktarma başarısız"
   },
   "examples": {
     "flowchart": "Akış şeması",

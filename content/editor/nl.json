@@ -1,7 +1,12 @@
 {
   "backToSite": "Terug naar de homepage",
-  "tabs": { "visual": "Visueel", "text": "Code" },
+  "tabs": {
+    "visual": "Visueel",
+    "text": "Code"
+  },
   "toolbar": {
+    "undo": "Ongedaan maken",
+    "redo": "Opnieuw",
     "addBlock": "Blok toevoegen",
     "addGroup": "Gebied toevoegen",
     "copy": "Kopiëren (een blok, of een heel gebied met alles erin)",
@@ -13,8 +18,22 @@
     "color": "Kleur",
     "shape": "Vorm"
   },
-  "zoom": { "center": "Centreren" },
-  "modals": { "colorTitle": "Kleur", "shapeTitle": "Vorm" },
+  "zoom": {
+    "in": "Inzoomen",
+    "out": "Uitzoomen",
+    "center": "Centreren",
+    "fit": "Passend maken"
+  },
+  "modals": {
+    "colorTitle": "Kleur",
+    "shapeTitle": "Vorm",
+    "ok": "OK",
+    "cancel": "Annuleren"
+  },
+  "notices": {
+    "renderFailed": "Deze bewerking is geen geldige mermaid — je ziet het laatste diagram dat wel werkte.",
+    "codeOnly": "Dit diagramtype bewerk je alleen als code. Hier bewerken vervangt het door een stroomschema."
+  },
   "shapes": {
     "rect": "Rechthoek",
     "rounded": "Afgerond",
@@ -54,10 +73,10 @@
     "copySvg": "SVG kopiëren",
     "downloadSvg": "Download SVG",
     "downloadPng": "Download PNG",
-    "statusOk": "OK",
-    "statusError": "Fout",
     "statusSvgCopied": "SVG gekopieerd",
-    "statusMermaidCopied": "Mermaid gekopieerd"
+    "statusMermaidCopied": "Mermaid gekopieerd",
+    "statusSaved": "Opgeslagen",
+    "statusExportFailed": "Exporteren mislukt"
   },
   "examples": {
     "flowchart": "Flowchart",

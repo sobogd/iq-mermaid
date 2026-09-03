@@ -1,7 +1,12 @@
 {
   "backToSite": "Voltar à página inicial",
-  "tabs": { "visual": "Visual", "text": "Código" },
+  "tabs": {
+    "visual": "Visual",
+    "text": "Código"
+  },
   "toolbar": {
+    "undo": "Desfazer",
+    "redo": "Refazer",
     "addBlock": "Adicionar um bloco",
     "addGroup": "Adicionar uma área",
     "copy": "Copiar (um bloco, ou uma área inteira com tudo o que contém)",
@@ -13,8 +18,22 @@
     "color": "Cor",
     "shape": "Forma"
   },
-  "zoom": { "center": "Recentrar" },
-  "modals": { "colorTitle": "Cor", "shapeTitle": "Forma" },
+  "zoom": {
+    "in": "Aproximar",
+    "out": "Afastar",
+    "center": "Recentrar",
+    "fit": "Ajustar"
+  },
+  "modals": {
+    "colorTitle": "Cor",
+    "shapeTitle": "Forma",
+    "ok": "OK",
+    "cancel": "Cancelar"
+  },
+  "notices": {
+    "renderFailed": "Esta edição não é mermaid válido — a mostrar o último diagrama que funcionou.",
+    "codeOnly": "Este tipo de diagrama só se edita como código. Editar aqui substitui-o por um fluxograma."
+  },
   "shapes": {
     "rect": "Retângulo",
     "rounded": "Arredondado",
@@ -54,10 +73,10 @@
     "copySvg": "Copiar SVG",
     "downloadSvg": "Transferir SVG",
     "downloadPng": "Transferir PNG",
-    "statusOk": "OK",
-    "statusError": "Erro",
     "statusSvgCopied": "SVG copiado",
-    "statusMermaidCopied": "Mermaid copiado"
+    "statusMermaidCopied": "Mermaid copiado",
+    "statusSaved": "Guardado",
+    "statusExportFailed": "Falha na exportação"
   },
   "examples": {
     "flowchart": "Fluxograma",

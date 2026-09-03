@@ -1,7 +1,12 @@
 {
   "backToSite": "Til baka á forsíðu",
-  "tabs": { "visual": "Sjónrænt", "text": "Kóði" },
+  "tabs": {
+    "visual": "Sjónrænt",
+    "text": "Kóði"
+  },
   "toolbar": {
+    "undo": "Afturkalla",
+    "redo": "Endurtaka",
     "addBlock": "Bæta við kubbi",
     "addGroup": "Bæta við svæði",
     "copy": "Afrita (kubb, eða heilt svæði með öllu í því)",
@@ -13,8 +18,22 @@
     "color": "Litur",
     "shape": "Lögun"
   },
-  "zoom": { "center": "Miðja aftur" },
-  "modals": { "colorTitle": "Litur", "shapeTitle": "Lögun" },
+  "zoom": {
+    "in": "Þysja inn",
+    "out": "Þysja út",
+    "center": "Miðja aftur",
+    "fit": "Laga að glugga"
+  },
+  "modals": {
+    "colorTitle": "Litur",
+    "shapeTitle": "Lögun",
+    "ok": "Í lagi",
+    "cancel": "Hætta við"
+  },
+  "notices": {
+    "renderFailed": "Þessi breyting er ekki gilt mermaid — sýnir síðustu skýringarmynd sem tókst að teikna.",
+    "codeOnly": "Þessari gerð skýringarmyndar er aðeins hægt að breyta sem kóða. Breyting hér skiptir henni út fyrir flæðirit."
+  },
   "shapes": {
     "rect": "Rétthyrningur",
     "rounded": "Ávalur",
@@ -54,10 +73,10 @@
     "copySvg": "Afrita SVG",
     "downloadSvg": "Sækja SVG",
     "downloadPng": "Sækja PNG",
-    "statusOk": "Í lagi",
-    "statusError": "Villa",
     "statusSvgCopied": "SVG afritað",
-    "statusMermaidCopied": "Mermaid afritað"
+    "statusMermaidCopied": "Mermaid afritað",
+    "statusSaved": "Vistað",
+    "statusExportFailed": "Útflutningur mistókst"
   },
   "examples": {
     "flowchart": "Flæðirit",

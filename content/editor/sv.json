@@ -1,7 +1,12 @@
 {
   "backToSite": "Tillbaka till startsidan",
-  "tabs": { "visual": "Visuell", "text": "Kod" },
+  "tabs": {
+    "visual": "Visuell",
+    "text": "Kod"
+  },
   "toolbar": {
+    "undo": "Ångra",
+    "redo": "Gör om",
     "addBlock": "Lägg till ett block",
     "addGroup": "Lägg till ett område",
     "copy": "Kopiera (ett block, eller ett helt område med allt i det)",
@@ -13,8 +18,22 @@
     "color": "Färg",
     "shape": "Form"
   },
-  "zoom": { "center": "Centrera om" },
-  "modals": { "colorTitle": "Färg", "shapeTitle": "Form" },
+  "zoom": {
+    "in": "Zooma in",
+    "out": "Zooma ut",
+    "center": "Centrera om",
+    "fit": "Anpassa"
+  },
+  "modals": {
+    "colorTitle": "Färg",
+    "shapeTitle": "Form",
+    "ok": "OK",
+    "cancel": "Avbryt"
+  },
+  "notices": {
+    "renderFailed": "Den här ändringen är inte giltig mermaid — visar det senaste diagram som gick att rita.",
+    "codeOnly": "Den här diagramtypen redigeras bara som kod. Redigerar du här ersätts den av ett flödesschema."
+  },
   "shapes": {
     "rect": "Rektangel",
     "rounded": "Rundad",
@@ -54,10 +73,10 @@
     "copySvg": "Kopiera SVG",
     "downloadSvg": "Ladda ner SVG",
     "downloadPng": "Ladda ner PNG",
-    "statusOk": "OK",
-    "statusError": "Fel",
     "statusSvgCopied": "SVG kopierad",
-    "statusMermaidCopied": "Mermaid kopierad"
+    "statusMermaidCopied": "Mermaid kopierad",
+    "statusSaved": "Sparat",
+    "statusExportFailed": "Exporten misslyckades"
   },
   "examples": {
     "flowchart": "Flödesdiagram",

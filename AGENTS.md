@@ -21,9 +21,13 @@ easy to get wrong.
   That is what makes the language switcher a pure prefix swap
   (`swapLocale` in `lib/locale-paths.ts`).
 - **The editor is `.jsx` on purpose.** `app/_editor/{VisualEditor,TextEditor,EditorShell}.jsx`
-  are a near-verbatim port of a standalone Vite app; they are excluded from
-  `tsc` (`allowJs`, not in `include`). Strings come from the `t` prop
-  (`app/_editor/texts.ts` declares its shape) — never hardcode UI text there.
+  are a port of a standalone Vite app; they are excluded from `tsc` (`allowJs`,
+  not in `include`). Strings come from the `t` prop (`app/_editor/texts.ts`
+  declares its shape) — never hardcode UI text there.
+- **One mermaid instance**, configured in `app/_editor/mermaid-client.js`
+  (`securityLevel: "strict"` — this editor invites pasted diagrams, and
+  "loose" lets a paste run `click X call fn()`). Exports live in
+  `app/_editor/export.js` and act on the shared source, so both tabs export.
 - **mermaid must stay out of the marketing bundle.** It is ~500 kB and touches
   `document` at import time, so it is only ever reached through
   `EditorClient.tsx`'s `dynamic(..., { ssr: false })`. The hero's diagram is a
@@ -41,4 +45,16 @@ easy to get wrong.
   and `TWITTER_CARD` from `lib/site.ts` in every page.
 - Behind nginx TLS termination `req.url` reports `http://`. Build absolute
   URLs from `SITE_URL`, never from the request.
+- **Never put the rendered diagram back on `dangerouslySetInnerHTML`.** React 19
+  re-applies that prop on every commit that touches the element (React 18 only
+  wrote when the string changed), so panning alone reparsed the SVG and threw
+  away the listeners wired to it — selection and every armed mode died
+  silently. `VisualEditor` writes it in a `useLayoutEffect` instead.
+- **PNG export needs `htmlLabels: false`.** Chrome taints a canvas the moment
+  an SVG containing `<foreignObject>` is drawn on it, and mermaid puts every
+  HTML label in one — `toBlob` then throws. `renderForExport` re-renders with
+  an init directive that turns them off.
+- **Do not capture the pointer on `pointerdown`.** Capturing retargets the
+  events the browser builds `click`/`dblclick` from, which kills
+  double-click-to-rename. Capture only once a drag has actually started.
 - Deploy is the `release` branch, not `main`.

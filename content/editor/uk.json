@@ -1,7 +1,12 @@
 {
   "backToSite": "На головну сторінку",
-  "tabs": { "visual": "Візуально", "text": "Код" },
+  "tabs": {
+    "visual": "Візуально",
+    "text": "Код"
+  },
   "toolbar": {
+    "undo": "Скасувати дію",
+    "redo": "Повторити",
     "addBlock": "Додати блок",
     "addGroup": "Додати область",
     "copy": "Копіювати (блок або цілу область з усім вмістом)",
@@ -13,8 +18,22 @@
     "color": "Колір",
     "shape": "Форма"
   },
-  "zoom": { "center": "Відцентрувати" },
-  "modals": { "colorTitle": "Колір", "shapeTitle": "Форма" },
+  "zoom": {
+    "in": "Наблизити",
+    "out": "Віддалити",
+    "center": "Відцентрувати",
+    "fit": "Вписати"
+  },
+  "modals": {
+    "colorTitle": "Колір",
+    "shapeTitle": "Форма",
+    "ok": "ОК",
+    "cancel": "Скасувати"
+  },
+  "notices": {
+    "renderFailed": "Це невалідний mermaid — показано останню вдалу схему.",
+    "codeOnly": "Цей тип діаграми редагується лише кодом. Правка тут замінить його блок-схемою."
+  },
   "shapes": {
     "rect": "Прямокутник",
     "rounded": "Заокруглений",
@@ -54,10 +73,10 @@
     "copySvg": "Копіювати SVG",
     "downloadSvg": "Завантажити SVG",
     "downloadPng": "Завантажити PNG",
-    "statusOk": "Готово",
-    "statusError": "Помилка",
     "statusSvgCopied": "SVG скопійовано",
-    "statusMermaidCopied": "Mermaid скопійовано"
+    "statusMermaidCopied": "Mermaid скопійовано",
+    "statusSaved": "Збережено",
+    "statusExportFailed": "Не вдалося експортувати"
   },
   "examples": {
     "flowchart": "Блок-схема",

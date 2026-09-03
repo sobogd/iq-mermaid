@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import mermaid from "mermaid";
+import mermaid from "./mermaid-client";
 
 // The six starter diagrams offered in the "Example…" picker. Mermaid keywords
 // are identical in every language, so only the node labels are translated —
@@ -49,14 +49,11 @@ const examples = (t) => ({
     ${t.sample.task2} :after a1, 5d`,
 });
 
-mermaid.initialize({ startOnLoad: false, theme: "default", securityLevel: "loose" });
-
 let renderSeq = 0;
 
-export default function TextEditor({ active, actionsSlot, code, onChange, t }) {
+export default function TextEditor({ active, actionsSlot, code, onChange, themeSeq, t }) {
   const EXAMPLES = examples(t);
   const [error, setError] = useState("");
-  const [status, setStatus] = useState("");
   const previewRef = useRef(null);
   const debounceRef = useRef(null);
 
@@ -65,7 +62,7 @@ export default function TextEditor({ active, actionsSlot, code, onChange, t }) {
     debounceRef.current = setTimeout(render, 300);
     return () => clearTimeout(debounceRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [code]);
+  }, [code, themeSeq]);
 
   async function render() {
     const source = code.trim();
@@ -79,93 +76,14 @@ export default function TextEditor({ active, actionsSlot, code, onChange, t }) {
       const { svg } = await mermaid.render(id, source);
       if (previewRef.current) previewRef.current.innerHTML = svg;
       setError("");
-      setStatus(t.text.statusOk);
     } catch (err) {
+      // The preview keeps whatever last rendered; the message says why it did
+      // not change. Blanking it on every keystroke mid-word is worse than
+      // showing a diagram that is one edit out of date.
       setError(err.message || String(err));
-      setStatus(t.text.statusError);
       const stray = document.getElementById(id);
       if (stray) stray.remove();
     }
-  }
-
-  function getSvgElement() {
-    return previewRef.current ? previewRef.current.querySelector("svg") : null;
-  }
-
-  async function copySvg() {
-    const svg = getSvgElement();
-    if (!svg) return;
-    await navigator.clipboard.writeText(svg.outerHTML);
-    setStatus(t.text.statusSvgCopied);
-  }
-
-  function downloadSvg() {
-    const svg = getSvgElement();
-    if (!svg) return;
-    const blob = new Blob([svg.outerHTML], { type: "image/svg+xml" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "diagram.svg";
-    a.click();
-    URL.revokeObjectURL(url);
-  }
-
-  function downloadPng() {
-    const svg = getSvgElement();
-    if (!svg) return;
-    const svgData = new XMLSerializer().serializeToString(svg);
-    const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
-    const url = URL.createObjectURL(svgBlob);
-    const img = new Image();
-    const bbox = svg.getBoundingClientRect();
-    img.onload = () => {
-      const scale = 2;
-      const canvas = document.createElement("canvas");
-      canvas.width = (bbox.width || 800) * scale;
-      canvas.height = (bbox.height || 600) * scale;
-      const ctx = canvas.getContext("2d");
-      ctx.fillStyle = "#fff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.scale(scale, scale);
-      ctx.drawImage(img, 0, 0);
-      URL.revokeObjectURL(url);
-      canvas.toBlob((blob) => {
-        const pngUrl = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = pngUrl;
-        a.download = "diagram.png";
-        a.click();
-        URL.revokeObjectURL(pngUrl);
-      });
-    };
-    img.src = url;
-  }
-
-  async function copyMermaid() {
-    await navigator.clipboard.writeText(code);
-    setStatus(t.text.statusMermaidCopied);
-  }
-
-  function downloadMermaid() {
-    const blob = new Blob([code], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "diagram.mmd";
-    a.click();
-    URL.revokeObjectURL(url);
-  }
-
-  function downloadMarkdown() {
-    const content = "```mermaid\n" + code + "\n```\n";
-    const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "diagram.md";
-    a.click();
-    URL.revokeObjectURL(url);
   }
 
   function onExampleChange(e) {
@@ -178,21 +96,12 @@ export default function TextEditor({ active, actionsSlot, code, onChange, t }) {
   return (
     <div className="text-editor" style={{ flexDirection: "column", flex: 1 }}>
       {active && actionsSlot && createPortal(
-        <>
-          <select onChange={onExampleChange} defaultValue="">
-            <option value="">{t.text.examplePlaceholder}</option>
-            {Object.keys(EXAMPLES).map((key) => (
-              <option key={key} value={key}>{t.examples[key]}</option>
-            ))}
-          </select>
-          <button onClick={copyMermaid}>{t.text.copyMermaid}</button>
-          <button onClick={downloadMermaid}>{t.text.downloadMmd}</button>
-          <button onClick={downloadMarkdown}>{t.text.downloadMd}</button>
-          <button onClick={copySvg}>{t.text.copySvg}</button>
-          <button onClick={downloadSvg}>{t.text.downloadSvg}</button>
-          <button onClick={downloadPng}>{t.text.downloadPng}</button>
-          <span className="status-line">{status}</span>
-        </>,
+        <select onChange={onExampleChange} defaultValue="" aria-label={t.text.examplePlaceholder}>
+          <option value="">{t.text.examplePlaceholder}</option>
+          {Object.keys(EXAMPLES).map((key) => (
+            <option key={key} value={key}>{t.examples[key]}</option>
+          ))}
+        </select>,
         actionsSlot
       )}
       <div style={{ flex: 1, display: "flex", minHeight: 0 }}>
@@ -200,6 +109,7 @@ export default function TextEditor({ active, actionsSlot, code, onChange, t }) {
           <textarea
             className="code-input"
             spellCheck={false}
+            aria-label={t.tabs.text}
             value={code}
             onChange={(e) => onChange(e.target.value)}
           />

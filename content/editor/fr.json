@@ -1,7 +1,12 @@
 {
   "backToSite": "Retour à la page d'accueil",
-  "tabs": { "visual": "Visuel", "text": "Code" },
+  "tabs": {
+    "visual": "Visuel",
+    "text": "Code"
+  },
   "toolbar": {
+    "undo": "Annuler la dernière action",
+    "redo": "Rétablir",
     "addBlock": "Ajouter un bloc",
     "addGroup": "Ajouter une zone",
     "copy": "Copier (un bloc, ou toute une zone avec son contenu)",
@@ -13,8 +18,22 @@
     "color": "Couleur",
     "shape": "Forme"
   },
-  "zoom": { "center": "Recentrer" },
-  "modals": { "colorTitle": "Couleur", "shapeTitle": "Forme" },
+  "zoom": {
+    "in": "Zoom avant",
+    "out": "Zoom arrière",
+    "center": "Recentrer",
+    "fit": "Ajuster"
+  },
+  "modals": {
+    "colorTitle": "Couleur",
+    "shapeTitle": "Forme",
+    "ok": "OK",
+    "cancel": "Annuler"
+  },
+  "notices": {
+    "renderFailed": "Cette modification n'est pas du mermaid valide — voici le dernier diagramme affiché.",
+    "codeOnly": "Ce type de diagramme ne se modifie qu'en code. Une modification ici le remplacera par un organigramme."
+  },
   "shapes": {
     "rect": "Rectangle",
     "rounded": "Arrondi",
@@ -54,10 +73,10 @@
     "copySvg": "Copier le SVG",
     "downloadSvg": "Télécharger le SVG",
     "downloadPng": "Télécharger le PNG",
-    "statusOk": "OK",
-    "statusError": "Erreur",
     "statusSvgCopied": "SVG copié",
-    "statusMermaidCopied": "Mermaid copié"
+    "statusMermaidCopied": "Mermaid copié",
+    "statusSaved": "Enregistré",
+    "statusExportFailed": "Échec de l'export"
   },
   "examples": {
     "flowchart": "Flowchart",

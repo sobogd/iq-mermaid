@@ -1,7 +1,12 @@
 {
   "backToSite": "Atpakaļ uz sākumlapu",
-  "tabs": { "visual": "Vizuālais", "text": "Kods" },
+  "tabs": {
+    "visual": "Vizuālais",
+    "text": "Kods"
+  },
   "toolbar": {
+    "undo": "Atsaukt",
+    "redo": "Atkārtot",
     "addBlock": "Pievienot bloku",
     "addGroup": "Pievienot apgabalu",
     "copy": "Kopēt (bloku vai visu apgabalu ar tā saturu)",
@@ -13,8 +18,22 @@
     "color": "Krāsa",
     "shape": "Forma"
   },
-  "zoom": { "center": "Atcentrēt" },
-  "modals": { "colorTitle": "Krāsa", "shapeTitle": "Forma" },
+  "zoom": {
+    "in": "Tuvināt",
+    "out": "Tālināt",
+    "center": "Atcentrēt",
+    "fit": "Ietilpināt"
+  },
+  "modals": {
+    "colorTitle": "Krāsa",
+    "shapeTitle": "Forma",
+    "ok": "Labi",
+    "cancel": "Atcelt"
+  },
+  "notices": {
+    "renderFailed": "Šis labojums nav derīgs mermaid — rādīta pēdējā veiksmīgā diagramma.",
+    "codeOnly": "Šo diagrammas veidu var rediģēt tikai kā kodu. Rediģēšana šeit to aizstās ar blokshēmu."
+  },
   "shapes": {
     "rect": "Taisnstūris",
     "rounded": "Noapaļots",
@@ -54,10 +73,10 @@
     "copySvg": "Kopēt SVG",
     "downloadSvg": "Lejupielādēt SVG",
     "downloadPng": "Lejupielādēt PNG",
-    "statusOk": "OK",
-    "statusError": "Kļūda",
     "statusSvgCopied": "SVG nokopēts",
-    "statusMermaidCopied": "Mermaid nokopēts"
+    "statusMermaidCopied": "Mermaid nokopēts",
+    "statusSaved": "Saglabāts",
+    "statusExportFailed": "Eksportēšana neizdevās"
   },
   "examples": {
     "flowchart": "Plūsmas diagramma",

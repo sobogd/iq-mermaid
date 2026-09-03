@@ -1,7 +1,12 @@
 {
   "backToSite": "Powrót do strony głównej",
-  "tabs": { "visual": "Wizualny", "text": "Kod" },
+  "tabs": {
+    "visual": "Wizualny",
+    "text": "Kod"
+  },
   "toolbar": {
+    "undo": "Cofnij",
+    "redo": "Ponów",
     "addBlock": "Dodaj blok",
     "addGroup": "Dodaj obszar",
     "copy": "Kopiuj (blok lub cały obszar wraz z zawartością)",
@@ -13,8 +18,22 @@
     "color": "Kolor",
     "shape": "Kształt"
   },
-  "zoom": { "center": "Wyśrodkuj" },
-  "modals": { "colorTitle": "Kolor", "shapeTitle": "Kształt" },
+  "zoom": {
+    "in": "Powiększ",
+    "out": "Pomniejsz",
+    "center": "Wyśrodkuj",
+    "fit": "Dopasuj"
+  },
+  "modals": {
+    "colorTitle": "Kolor",
+    "shapeTitle": "Kształt",
+    "ok": "OK",
+    "cancel": "Anuluj"
+  },
+  "notices": {
+    "renderFailed": "Ta zmiana to niepoprawny mermaid — pokazujemy ostatni poprawny diagram.",
+    "codeOnly": "Ten typ diagramu edytuje się tylko jako kod. Edycja tutaj zastąpi go schematem blokowym."
+  },
   "shapes": {
     "rect": "Prostokąt",
     "rounded": "Zaokrąglony",
@@ -54,10 +73,10 @@
     "copySvg": "Kopiuj SVG",
     "downloadSvg": "Pobierz SVG",
     "downloadPng": "Pobierz PNG",
-    "statusOk": "OK",
-    "statusError": "Błąd",
     "statusSvgCopied": "SVG skopiowane",
-    "statusMermaidCopied": "Mermaid skopiowany"
+    "statusMermaidCopied": "Mermaid skopiowany",
+    "statusSaved": "Zapisano",
+    "statusExportFailed": "Eksport nie powiódł się"
   },
   "examples": {
     "flowchart": "Flowchart",

@@ -1,7 +1,12 @@
 {
   "backToSite": "Επιστροφή στην αρχική σελίδα",
-  "tabs": { "visual": "Οπτικό", "text": "Κώδικας" },
+  "tabs": {
+    "visual": "Οπτικό",
+    "text": "Κώδικας"
+  },
   "toolbar": {
+    "undo": "Αναίρεση",
+    "redo": "Επανάληψη",
     "addBlock": "Προσθήκη block",
     "addGroup": "Προσθήκη περιοχής",
     "copy": "Αντιγραφή (ένα block, ή ολόκληρη περιοχή με όλο το περιεχόμενό της)",
@@ -13,8 +18,22 @@
     "color": "Χρώμα",
     "shape": "Σχήμα"
   },
-  "zoom": { "center": "Επαναφορά κέντρου" },
-  "modals": { "colorTitle": "Χρώμα", "shapeTitle": "Σχήμα" },
+  "zoom": {
+    "in": "Μεγέθυνση",
+    "out": "Σμίκρυνση",
+    "center": "Επαναφορά κέντρου",
+    "fit": "Προσαρμογή"
+  },
+  "modals": {
+    "colorTitle": "Χρώμα",
+    "shapeTitle": "Σχήμα",
+    "ok": "OK",
+    "cancel": "Άκυρο"
+  },
+  "notices": {
+    "renderFailed": "Αυτή η αλλαγή δεν είναι έγκυρο mermaid — εμφανίζεται το τελευταίο διάγραμμα που σχεδιάστηκε.",
+    "codeOnly": "Αυτός ο τύπος διαγράμματος επεξεργάζεται μόνο ως κώδικας. Η επεξεργασία εδώ θα τον αντικαταστήσει με διάγραμμα ροής."
+  },
   "shapes": {
     "rect": "Ορθογώνιο",
     "rounded": "Στρογγυλεμένο",
@@ -54,10 +73,10 @@
     "copySvg": "Αντιγραφή SVG",
     "downloadSvg": "Λήψη SVG",
     "downloadPng": "Λήψη PNG",
-    "statusOk": "Εντάξει",
-    "statusError": "Σφάλμα",
     "statusSvgCopied": "Το SVG αντιγράφηκε",
-    "statusMermaidCopied": "Το mermaid αντιγράφηκε"
+    "statusMermaidCopied": "Το mermaid αντιγράφηκε",
+    "statusSaved": "Αποθηκεύτηκε",
+    "statusExportFailed": "Η εξαγωγή απέτυχε"
   },
   "examples": {
     "flowchart": "Flowchart",

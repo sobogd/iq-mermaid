@@ -1,7 +1,12 @@
 {
   "backToSite": "Zpět na hlavní stránku",
-  "tabs": { "visual": "Vizuál", "text": "Kód" },
+  "tabs": {
+    "visual": "Vizuál",
+    "text": "Kód"
+  },
   "toolbar": {
+    "undo": "Zpět",
+    "redo": "Znovu",
     "addBlock": "Přidat blok",
     "addGroup": "Přidat oblast",
     "copy": "Kopírovat (blok, nebo celou oblast se vším uvnitř)",
@@ -13,8 +18,22 @@
     "color": "Barva",
     "shape": "Tvar"
   },
-  "zoom": { "center": "Vycentrovat" },
-  "modals": { "colorTitle": "Barva", "shapeTitle": "Tvar" },
+  "zoom": {
+    "in": "Přiblížit",
+    "out": "Oddálit",
+    "center": "Vycentrovat",
+    "fit": "Přizpůsobit"
+  },
+  "modals": {
+    "colorTitle": "Barva",
+    "shapeTitle": "Tvar",
+    "ok": "OK",
+    "cancel": "Zrušit"
+  },
+  "notices": {
+    "renderFailed": "Tato úprava není platný mermaid — zobrazuje se poslední funkční diagram.",
+    "codeOnly": "Tento typ diagramu lze upravovat jen jako kód. Úprava zde ho nahradí vývojovým diagramem."
+  },
   "shapes": {
     "rect": "Obdélník",
     "rounded": "Zaoblený",
@@ -54,10 +73,10 @@
     "copySvg": "Kopírovat SVG",
     "downloadSvg": "Stáhnout SVG",
     "downloadPng": "Stáhnout PNG",
-    "statusOk": "OK",
-    "statusError": "Chyba",
     "statusSvgCopied": "SVG zkopírováno",
-    "statusMermaidCopied": "Mermaid zkopírován"
+    "statusMermaidCopied": "Mermaid zkopírován",
+    "statusSaved": "Uloženo",
+    "statusExportFailed": "Export selhal"
   },
   "examples": {
     "flowchart": "Flowchart",

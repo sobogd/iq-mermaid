@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import mermaid from "mermaid";
-
-mermaid.initialize({ startOnLoad: false, theme: "default", securityLevel: "loose" });
+import mermaid from "./mermaid-client";
 
 const STORAGE_KEY = "mermaid-visual-editor-data";
+// Bumped whenever the shape of the saved state changes. `migrate` below turns
+// anything older into the current shape instead of letting a stale object
+// reach the reducer and render `undefined` all over the diagram.
+const STORAGE_VERSION = 2;
 
 const DEFAULT_COLOR = "#ECECFF"; // mermaid default-theme node fill (mainBkg)
 const DEFAULT_SHAPE = "rect";
@@ -17,6 +19,15 @@ const MIN_ZOOM = 0.02;
 const MAX_ZOOM = 16;
 
 const COLORS = [DEFAULT_COLOR, "#2563eb", "#16a34a", "#dc2626", "#d97706", "#7c3aed", "#0891b2", "#db2777"];
+
+const DEFAULT_DIRECTION = "TD";
+const DIRECTIONS = ["TD", "TB", "BT", "LR", "RL"];
+
+// Arrow styles mermaid understands. Stored per edge so a pasted diagram keeps
+// its dotted and thick links instead of having every one of them flattened
+// into a plain arrow on the first visual edit.
+const DEFAULT_LINK = "-->";
+const LINKS = ["-->", "---", "-.->", "-.-", "==>", "==="];
 
 // Every classic mermaid flowchart node shape (bracket syntax). No custom
 // sizing/CSS needed for any of them — mermaid itself renders the shape, we
@@ -43,39 +54,73 @@ const SHAPES = [
 // The diagram a first-time visitor lands on. Its two labels come from the
 // locale dictionary, so the starter diagram speaks the page's language.
 const defaultState = (t) => ({
+  direction: DEFAULT_DIRECTION,
   blocks: [
     { id: "b1", label: t.defaults.start, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, groupId: null },
     { id: "b2", label: t.defaults.action, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, groupId: null },
   ],
-  edges: [{ id: "e1", from: "b1", to: "b2", label: "" }],
+  edges: [{ id: "e1", from: "b1", to: "b2", label: "", link: DEFAULT_LINK }],
   groups: [],
   nextBlock: 3,
   nextEdge: 2,
   nextGroup: 1,
 });
 
+// Fills in everything a state saved by an older build cannot have. Kept
+// permissive on purpose: a diagram someone drew months ago is worth more than
+// a clean reducer.
+function migrate(raw) {
+  const state = raw && raw.version === STORAGE_VERSION ? raw.state : raw;
+  if (!state || !Array.isArray(state.blocks)) return null;
+  return {
+    direction: DIRECTIONS.includes(state.direction) ? state.direction : DEFAULT_DIRECTION,
+    blocks: state.blocks.map((b) => ({ groupId: null, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, ...b })),
+    edges: (state.edges || []).map((e) => ({ label: "", link: DEFAULT_LINK, ...e })),
+    groups: (state.groups || []).map((g) => ({ color: null, parentId: null, ...g })),
+    nextBlock: state.nextBlock || state.blocks.length + 1,
+    nextEdge: state.nextEdge || (state.edges || []).length + 1,
+    nextGroup: state.nextGroup || (state.groups || []).length + 1,
+  };
+}
+
 function loadState(t) {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? { groups: [], nextGroup: 1, ...JSON.parse(raw) } : defaultState(t);
+    return (raw && migrate(JSON.parse(raw))) || defaultState(t);
   } catch {
     return defaultState(t);
   }
 }
 
+function saveState(state) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: STORAGE_VERSION, state }));
+  } catch {
+    // Private mode, or the quota is full. Losing the autosave is survivable;
+    // taking the editor down with an exception is not.
+  }
+}
+
 // True if `parentId` is `id` itself or a descendant of `id` in the group tree
 // — assigning it as a parent would create a cycle.
-function isSelfOrDescendant(groups, id, parentId) {
+function isSelfOrDescendant(groups, id, parentId, seen = new Set()) {
+  // `seen` guards against a parent cycle in state restored from storage:
+  // without it a corrupted file takes the tab down with a stack overflow
+  // rather than just rendering oddly.
+  if (seen.has(id)) return false;
+  seen.add(id);
   const children = groups.filter((g) => g.parentId === id).map((g) => g.id);
   if (children.includes(parentId)) return true;
-  return children.some((childId) => isSelfOrDescendant(groups, childId, parentId));
+  return children.some((childId) => isSelfOrDescendant(groups, childId, parentId, seen));
 }
 
 // All group ids nested (at any depth) under `id` — used to pull a whole
 // area's subtree into a copy without reaching outside it.
-function getDescendantGroupIds(groups, id) {
-  const direct = groups.filter((g) => g.parentId === id).map((g) => g.id);
-  return direct.concat(direct.flatMap((childId) => getDescendantGroupIds(groups, childId)));
+function getDescendantGroupIds(groups, id, seen = new Set()) {
+  if (seen.has(id)) return [];
+  seen.add(id);
+  const direct = groups.filter((g) => g.parentId === id && !seen.has(g.id)).map((g) => g.id);
+  return direct.concat(direct.flatMap((childId) => getDescendantGroupIds(groups, childId, seen)));
 }
 
 // Removing a group promotes its nested child groups to its own parent (the
@@ -116,12 +161,25 @@ function escapeRegex(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// Plain quoted labels, not mermaid "markdown strings" (`["`text`"]`). The
+// editor never generates bold or italic inside a label, and markdown strings
+// force mermaid to lay the label out in a <foreignObject> — which is what
+// taints the export canvas and made PNG download impossible.
 const MERMAID_BRACKETS = Object.fromEntries(
-  SHAPE_DELIMS.map(({ key, open, close }) => [key, (t) => `${open}"\`${t}\`"${close}`])
+  SHAPE_DELIMS.map(({ key, open, close }) => [key, (t) => `${open}"${t}"${close}`])
 );
 
 function sanitizeLabel(text) {
   return text.replace(/"/g, "'").replace(/`/g, "'");
+}
+
+// Edge labels sit between two pipes (`A -->|text| B`), so a pipe inside one
+// ends the label early and the whole diagram stops parsing — which used to
+// blank the canvas with no explanation. Quoting the label makes mermaid read
+// it literally; the broken-bar substitution is the last resort for a pipe,
+// which even quoting does not always survive.
+function sanitizeEdgeLabel(text) {
+  return sanitizeLabel(text).replace(/\|/g, "\u00a6").replace(/[\r\n]+/g, " ");
 }
 
 function buildLabel(block) {
@@ -134,7 +192,7 @@ function toMermaid(state) {
   const byId = Object.fromEntries(state.blocks.map((b) => [b.id, b]));
   const groups = state.groups || [];
 
-  const lines = ["flowchart TD"];
+  const lines = [`flowchart ${DIRECTIONS.includes(state.direction) ? state.direction : DEFAULT_DIRECTION}`];
 
   const nodeLine = (b) => {
     const wrap = MERMAID_BRACKETS[b.shape] || MERMAID_BRACKETS.rect;
@@ -143,7 +201,7 @@ function toMermaid(state) {
 
   const emitGroup = (grp, depth) => {
     const indent = "    ".repeat(depth + 1);
-    lines.push(`${indent}subgraph ${grp.id}["${grp.label.replace(/"/g, "'")}"]`);
+    lines.push(`${indent}subgraph ${grp.id}["${sanitizeLabel(grp.label)}"]`);
     const members = state.blocks.filter((b) => b.groupId === grp.id);
     for (const b of members) lines.push(`${indent}    ${nodeLine(b)}`);
     const children = groups.filter((g) => g.parentId === grp.id);
@@ -164,7 +222,12 @@ function toMermaid(state) {
   }
   for (const e of state.edges) {
     if (!byId[e.from] || !byId[e.to]) continue;
-    lines.push(e.label ? `    ${e.from} -->|${e.label}| ${e.to}` : `    ${e.from} --> ${e.to}`);
+    const link = LINKS.includes(e.link) ? e.link : DEFAULT_LINK;
+    lines.push(
+      e.label
+        ? `    ${e.from} ${link}|"${sanitizeEdgeLabel(e.label)}"| ${e.to}`
+        : `    ${e.from} ${link} ${e.to}`,
+    );
   }
   for (const b of state.blocks) {
     if (b.color && b.color !== DEFAULT_COLOR) {
@@ -195,8 +258,12 @@ const NODE_RE = new RegExp(
   "g"
 );
 const EDGE_INLINE_SHAPE = "(?:" + SHAPE_DELIMS.map(({ open, close }) => `${escapeRegex(open)}.*?${escapeRegex(close)}`).join("|") + ")?";
+// The connector is captured, not just matched: dotted (`-.->`), thick (`==>`)
+// and open (`---`) links used to fall outside this pattern entirely, so every
+// such arrow in a pasted diagram was silently dropped on import.
+const LINK_PATTERN = "(-\\.-+>|-\\.-+|={2,}>|={3,}|-{2,}>|-{3,})";
 const EDGE_RE = new RegExp(
-  "([A-Za-z][A-Za-z0-9_]*)" + EDGE_INLINE_SHAPE + "\\s*--+>\\s*(?:\\|(.*?)\\|\\s*)?([A-Za-z][A-Za-z0-9_]*)",
+  "([A-Za-z][A-Za-z0-9_]*)" + EDGE_INLINE_SHAPE + "\\s*" + LINK_PATTERN + "\\s*(?:\\|(.*?)\\|\\s*)?([A-Za-z][A-Za-z0-9_]*)",
   "g"
 );
 const SUBGRAPH_RE = /^subgraph\s+([A-Za-z][A-Za-z0-9_]*)\s*(?:\[(?:"([^"]*)"|([^\]]*))\])?/i;
@@ -205,9 +272,16 @@ const STYLE_RE = /^style\s+([A-Za-z][A-Za-z0-9_]*)\s+fill:\s*(#[0-9a-fA-F]{3,8})
 // Flowchart-only, best-effort. Every property (label, shape, color, group
 // membership) is derivable from the text itself, so unlike positions there is
 // nothing to preserve from the previous diagram besides id counters.
+// `graph` is mermaid's older spelling of `flowchart` and still the one most
+// snippets in the wild use — refusing it meant half the examples people paste
+// never reached the canvas.
+const HEADER_RE = /^(?:flowchart|graph)\s*(TD|TB|BT|LR|RL)?\b/i;
+
 function parseFlowchart(text, prev) {
   const trimmed = text.trim();
-  if (!/^flowchart\b/i.test(trimmed)) return null;
+  const header = trimmed.match(HEADER_RE);
+  if (!header) return null;
+  const direction = (header[1] || DEFAULT_DIRECTION).toUpperCase();
 
   const lines = trimmed.split("\n").slice(1);
 
@@ -255,9 +329,10 @@ function parseFlowchart(text, prev) {
 
     EDGE_RE.lastIndex = 0;
     while ((m = EDGE_RE.exec(line))) {
-      edgeList.push({ from: m[1], label: (m[2] || "").trim(), to: m[3] });
+      const link = LINKS.includes(m[2]) ? m[2] : DEFAULT_LINK;
+      edgeList.push({ from: m[1], link, label: unwrapLabel(m[3] || ""), to: m[4] });
       if (!blockInfo[m[1]] && !blockOrder.includes(m[1])) blockOrder.push(m[1]);
-      if (!blockInfo[m[3]] && !blockOrder.includes(m[3])) blockOrder.push(m[3]);
+      if (!blockInfo[m[4]] && !blockOrder.includes(m[4])) blockOrder.push(m[4]);
     }
   }
 
@@ -284,7 +359,13 @@ function parseFlowchart(text, prev) {
     };
   });
 
-  const edges = edgeList.map((e, i) => ({ id: "e" + (i + 1), from: e.from, to: e.to, label: e.label }));
+  const edges = edgeList.map((e, i) => ({
+    id: "e" + (i + 1),
+    from: e.from,
+    to: e.to,
+    label: e.label,
+    link: e.link,
+  }));
 
   const maxSuffix = (ids, prefix) =>
     ids.reduce((max, id) => {
@@ -293,6 +374,7 @@ function parseFlowchart(text, prev) {
     }, 1);
 
   return {
+    direction,
     blocks,
     edges,
     groups,
@@ -312,7 +394,10 @@ function parseFlowchart(text, prev) {
 function extractOurId(el, diagramId) {
   if (!el.id) return null;
   const m = el.id.match(/flowchart-(.+)-\d+$/);
-  if (m) return m[1];
+  // The invisible node that keeps an empty subgraph rendered is not something
+  // anyone can mean to click: it has no entry in `blocks`, so selecting it
+  // used to arm the toolbar for a block that does not exist.
+  if (m) return m[1].startsWith(EMPTY_GROUP_PLACEHOLDER_PREFIX) ? null : m[1];
   if (diagramId && el.id.startsWith(diagramId + "-")) return el.id.slice(diagramId.length + 1);
   return null;
 }
@@ -325,15 +410,13 @@ function findDiagramElement(svgRoot, diagramId, ourId) {
   return null;
 }
 
-// Edge paths get id "...-L_<from>_<to>_<counter>" (getEdgeId in mermaid).
-// The counter is NOT a plain 0-based index among parallel edges: mermaid's
-// flowchart DB assigns 0 to the first edge of a (from,to) pair and N+1 to the
-// (N+1)th one — i.e. 0, 2, 3, 4… (1 is never used). Confirmed against a real
-// render with two parallel edges (got "..._0" and "..._2").
-function mermaidEdgeCounter(indexAmongPair) {
-  return indexAmongPair === 0 ? 0 : indexAmongPair + 1;
-}
-
+// Edge paths carry an id shaped like "...-L_<from>_<to>_<counter>". The
+// counter mermaid assigns to parallel edges is an implementation detail that
+// has already changed shape once (it goes 0, 2, 3… — 1 is never used), so
+// matching it arithmetically made edge selection quietly depend on a mermaid
+// version. Instead: take every path belonging to this (from,to) pair in
+// document order and pick the nth, where n is this edge's position among the
+// parallel edges of the same pair. Order is what mermaid actually guarantees.
 function findEdgeElement(svgRoot, state, edgeId) {
   const edge = state.edges.find((e) => e.id === edgeId);
   if (!svgRoot || !edge) return null;
@@ -342,11 +425,11 @@ function findEdgeElement(svgRoot, state, edgeId) {
     if (e.id === edgeId) break;
     if (e.from === edge.from && e.to === edge.to) n++;
   }
-  const needle = `L_${edge.from}_${edge.to}_${mermaidEdgeCounter(n)}`;
-  for (const el of svgRoot.querySelectorAll("path[id]")) {
-    if (el.id.includes(needle)) return el;
-  }
-  return null;
+  const needle = `L_${edge.from}_${edge.to}_`;
+  const candidates = [...svgRoot.querySelectorAll("path[id]")].filter(
+    (el) => el.id.includes(needle) && !el.classList.contains("edge-hit-overlay"),
+  );
+  return candidates[n] ?? candidates[0] ?? null;
 }
 
 // Walks up from a raw DOM event target to the nearest interactive diagram
@@ -364,7 +447,17 @@ function resolveTarget(el, svgRoot, diagramId) {
   return null;
 }
 
-export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChange, importText, importSeq, t }) {
+export default function VisualEditor({
+  active,
+  actionsSlot,
+  zoomSlot,
+  onCodeChange,
+  importText,
+  importSeq,
+  themeSeq,
+  codeOnly,
+  t,
+}) {
   // Lazy initializer, so the starter diagram is built once with this locale's
   // labels rather than on every render.
   const [state, setState] = useState(() => loadState(t));
@@ -389,10 +482,20 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
   const [interactionMode, setInteractionMode] = useState(null); // { type: 'connect'|'move', id, kind }
   const [colorModalOpen, setColorModalOpen] = useState(false);
   const [shapeModalOpen, setShapeModalOpen] = useState(false);
+  // Whatever mermaid last refused to render. The canvas keeps showing the last
+  // diagram that worked instead of going blank, which is what a single stray
+  // character in a label used to do.
+  const [renderError, setRenderError] = useState(null);
+  // Text prompt / confirmation rendered in the app's own modal, replacing
+  // window.prompt and window.confirm — those cannot be styled, cannot be
+  // translated consistently and are suppressed outright by some browsers.
+  const [ask, setAsk] = useState(null); // { kind: "text"|"confirm", title, value?, onDone }
+  const [history, setHistory] = useState({ past: [], future: [] });
+  const askInputRef = useRef(null);
   const interactionModeRef = useRef(null);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    saveState(state);
   }, [state]);
 
   useEffect(() => {
@@ -444,12 +547,33 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
     const text = toMermaid(state);
     const id = "visual-mermaid-" + (++renderSeqRef.current);
     mermaid.render(id, text).then(({ svg }) => {
-      if (!cancelled) setRendered({ html: svg, diagramId: id });
-    }).catch(() => {
-      if (!cancelled) setRendered({ html: "", diagramId: id });
+      if (cancelled) return;
+      setRendered({ html: svg, diagramId: id });
+      setRenderError(null);
+    }).catch((err) => {
+      // Do NOT clear `rendered`: wiping the canvas on a parse error looks
+      // exactly like losing the whole diagram, and the state behind it is
+      // still perfectly good.
+      if (!cancelled) setRenderError(String(err?.message || err).split("\n")[0]);
     });
     return () => { cancelled = true; };
-  }, [state]);
+    // themeSeq: the shell flips mermaid between its light and dark theme when
+    // the OS colour scheme changes, and the diagram has to be drawn again for
+    // that to show.
+  }, [state, themeSeq]);
+
+  // The rendered SVG is written imperatively rather than through
+  // `dangerouslySetInnerHTML`. React 19 re-applies that prop on every commit
+  // that updates this element — panning alone changes its `style`, so React
+  // reparsed the markup and swapped in a fresh <svg> behind our backs, taking
+  // the mousedown/dblclick listeners wired below with it. Selection, renaming
+  // and every armed mode silently stopped working after the first pan.
+  //
+  // A layout effect, not a passive one: the effects below measure and decorate
+  // this SVG, and they must run against the element that is actually on screen.
+  useLayoutEffect(() => {
+    if (hostRef.current) hostRef.current.innerHTML = rendered.html;
+  }, [rendered.html]);
 
   // mermaid re-lays-out the *entire* diagram on every edit, not just what
   // changed — so even though `view` (pan/zoom) itself is never touched here,
@@ -500,9 +624,45 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
     };
   }
 
+  const HISTORY_LIMIT = 50;
+
   function updateState(updater) {
     captureAnchor();
-    setState(updater);
+    setState((prev) => {
+      const next = typeof updater === "function" ? updater(prev) : updater;
+      // A no-op update (an armed mode resolved against an invalid target, say)
+      // must not push an undo step, or Ctrl+Z starts doing nothing visible.
+      if (next !== prev) {
+        setHistory((h) => ({ past: [...h.past, prev].slice(-HISTORY_LIMIT), future: [] }));
+      }
+      return next;
+    });
+  }
+
+  function undo() {
+    captureAnchor();
+    setHistory((h) => {
+      if (!h.past.length) return h;
+      const prev = h.past[h.past.length - 1];
+      setState((current) => {
+        setSelected(null);
+        return prev === current ? current : prev;
+      });
+      return { past: h.past.slice(0, -1), future: [stateRef.current, ...h.future].slice(0, HISTORY_LIMIT) };
+    });
+  }
+
+  function redo() {
+    captureAnchor();
+    setHistory((h) => {
+      if (!h.future.length) return h;
+      const next = h.future[0];
+      setState(() => {
+        setSelected(null);
+        return next;
+      });
+      return { past: [...h.past, stateRef.current].slice(-HISTORY_LIMIT), future: h.future.slice(1) };
+    });
   }
 
   useEffect(() => {
@@ -524,6 +684,27 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rendered]);
+
+  // Scales the whole diagram down (never up past 1:1) until it sits inside the
+  // viewport. "Re-centre" alone always went back to 100%, which is useless on
+  // the large diagrams this editor is meant for.
+  function fitView() {
+    const wrap = wrapRef.current;
+    const svgEl = hostRef.current && hostRef.current.querySelector("svg");
+    if (!wrap || !svgEl) return;
+    const vb = svgEl.viewBox && svgEl.viewBox.baseVal;
+    if (!vb || !vb.width || !vb.height) return centerView(1);
+    const pad = 32;
+    const zoom = Math.min(
+      MAX_ZOOM,
+      Math.max(MIN_ZOOM, Math.min((wrap.clientWidth - pad) / vb.width, (wrap.clientHeight - pad) / vb.height, 1)),
+    );
+    setView({
+      zoom,
+      x: wrap.clientWidth / 2 - (vb.x + vb.width / 2) * zoom,
+      y: wrap.clientHeight / 2 - (vb.y + vb.height / 2) * zoom,
+    });
+  }
 
   function centerView(zoom) {
     const wrap = wrapRef.current;
@@ -674,9 +855,18 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
       if (target.kind === "edge") {
         const edge = stateRef.current.edges.find((ed) => ed.id === target.id);
         if (!edge) return;
-        const value = prompt(t.prompts.edgeLabel, edge.label || "");
-        if (value === null) return;
-        updateState((s) => ({ ...s, edges: s.edges.map((ed) => (ed.id === edge.id ? { ...ed, label: value.trim() } : ed)) }));
+        setAsk({
+          kind: "text",
+          title: t.prompts.edgeLabel,
+          value: edge.label || "",
+          onDone: (value) => {
+            if (value == null) return;
+            updateState((st) => ({
+              ...st,
+              edges: st.edges.map((ed) => (ed.id === edge.id ? { ...ed, label: value.trim() } : ed)),
+            }));
+          },
+        });
         return;
       }
       const labelEl = target.el.querySelector(".nodeLabel, .cluster-label") || target.el;
@@ -688,10 +878,10 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
       setRenameOverlay({ kind: target.kind, id: target.id, rect, value: current || "" });
     }
 
-    svgEl.addEventListener("mousedown", onMouseDown);
+    svgEl.addEventListener("pointerdown", onMouseDown);
     svgEl.addEventListener("dblclick", onDblClick);
     return () => {
-      svgEl.removeEventListener("mousedown", onMouseDown);
+      svgEl.removeEventListener("pointerdown", onMouseDown);
       svgEl.removeEventListener("dblclick", onDblClick);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -756,7 +946,7 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
     }));
   }
 
-  function onCanvasMouseDown(e) {
+  function onCanvasPointerDown(e) {
     const mode = interactionModeRef.current;
     const target = pendingTargetRef.current;
     pendingTargetRef.current = null;
@@ -768,7 +958,16 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
       return;
     }
     const v = viewRef.current;
-    panRef.current = { startX: e.clientX, startY: e.clientY, startViewX: v.x, startViewY: v.y, moved: false, target };
+    panRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      startViewX: v.x,
+      startViewY: v.y,
+      moved: false,
+      target,
+      pointerId: e.pointerId,
+      captured: false,
+    };
     setIsPanning(true);
   }
 
@@ -782,7 +981,19 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
       if (panRef.current) {
         const p = panRef.current;
         const dx = e.clientX - p.startX, dy = e.clientY - p.startY;
-        if (!p.moved && (Math.abs(dx) >= 3 || Math.abs(dy) >= 3)) p.moved = true;
+        if (!p.moved && (Math.abs(dx) >= 3 || Math.abs(dy) >= 3)) {
+          p.moved = true;
+          // Capture only once this is definitely a drag. Capturing on the
+          // initial pointerdown would retarget every following event at the
+          // wrapper, and the browser builds click/dblclick from those — which
+          // silently killed double-click-to-rename and the edge label dialog.
+          if (p.pointerId != null && wrapRef.current?.setPointerCapture) {
+            try {
+              wrapRef.current.setPointerCapture(p.pointerId);
+              p.captured = true;
+            } catch { /* not capturable */ }
+          }
+        }
         if (p.moved) {
           setView((v) => ({ ...v, x: p.startViewX + dx, y: p.startViewY + dy }));
         }
@@ -794,15 +1005,22 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
         if (!p.moved) {
           setSelected(p.target ? { type: p.target.kind, id: p.target.id } : null);
         }
+        if (p.captured && wrapRef.current?.releasePointerCapture) {
+          try { wrapRef.current.releasePointerCapture(p.pointerId); } catch { /* already gone */ }
+        }
         panRef.current = null;
         setIsPanning(false);
       }
     }
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
+    // Pointer events, not mouse events: this is the whole difference between
+    // an editor that works on a tablet and one that does nothing there.
+    window.addEventListener("pointermove", onMouseMove);
+    window.addEventListener("pointerup", onMouseUp);
+    window.addEventListener("pointercancel", onMouseUp);
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("pointermove", onMouseMove);
+      window.removeEventListener("pointerup", onMouseUp);
+      window.removeEventListener("pointercancel", onMouseUp);
     };
   }, []);
 
@@ -832,9 +1050,21 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
       if (e.target.isContentEditable || tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
       const meta = e.metaKey || e.ctrlKey;
 
+      if (e.key === "Escape" && ask) {
+        setAsk(null);
+        return;
+      }
+
       if (e.key === "Escape" && (colorModalOpen || shapeModalOpen)) {
         setColorModalOpen(false);
         setShapeModalOpen(false);
+        return;
+      }
+
+      if (meta && e.key.toLowerCase() === "z") {
+        e.preventDefault();
+        if (e.shiftKey) redo();
+        else undo();
         return;
       }
 
@@ -874,7 +1104,7 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [selected, state, interactionMode, colorModalOpen, shapeModalOpen, clipboard]);
+  }, [selected, state, interactionMode, colorModalOpen, shapeModalOpen, clipboard, ask, history]);
 
   function addBlock() {
     updateState((s) => ({
@@ -982,9 +1212,23 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
   }
 
   function clearAll() {
-    if (!confirm(t.prompts.clearAll)) return;
-    updateState({ blocks: [], edges: [], groups: [], nextBlock: 1, nextEdge: 1, nextGroup: 1 });
-    setSelected(null);
+    setAsk({
+      kind: "confirm",
+      title: t.prompts.clearAll,
+      onDone: (ok) => {
+        if (!ok) return;
+        updateState((st) => ({
+          ...st,
+          blocks: [],
+          edges: [],
+          groups: [],
+          nextBlock: 1,
+          nextEdge: 1,
+          nextGroup: 1,
+        }));
+        setSelected(null);
+      },
+    });
   }
 
   function addGroup() {
@@ -1026,24 +1270,37 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
     <div className="visual-editor">
       {active && actionsSlot && createPortal(
         <>
-          <button title={t.toolbar.addBlock} onClick={addBlockContextual}>➕</button>
-          <button title={t.toolbar.addGroup} onClick={addGroup}>📦</button>
           <button
-            title={t.toolbar.copy}
+            title={t.toolbar.undo}
+            aria-label={t.toolbar.undo}
+            onClick={undo}
+            disabled={!history.past.length}
+          >↩️</button>
+          <button
+            title={t.toolbar.redo}
+            aria-label={t.toolbar.redo}
+            onClick={redo}
+            disabled={!history.future.length}
+          >↪️</button>
+          <span className="header-sep" />
+          <button title={t.toolbar.addBlock} aria-label={t.toolbar.addBlock} onClick={addBlockContextual}>➕</button>
+          <button title={t.toolbar.addGroup} aria-label={t.toolbar.addGroup} onClick={addGroup}>📦</button>
+          <button
+            title={t.toolbar.copy} aria-label={t.toolbar.copy}
             onClick={copySelected}
             disabled={!selected || selected.type === "edge"}
           >📋</button>
-          <button title={t.toolbar.paste} onClick={startPaste} disabled={!clipboard}>📥</button>
-          <button title={t.toolbar.delete} className="danger" onClick={deleteSelected} disabled={!selected}>🗑️</button>
-          <button title={t.toolbar.clearAll} className="danger" onClick={clearAll}>🧹</button>
+          <button title={t.toolbar.paste} aria-label={t.toolbar.paste} onClick={startPaste} disabled={!clipboard}>📥</button>
+          <button title={t.toolbar.delete} aria-label={t.toolbar.delete} className="danger" onClick={deleteSelected} disabled={!selected}>🗑️</button>
+          <button title={t.toolbar.clearAll} aria-label={t.toolbar.clearAll} className="danger" onClick={clearAll}>🧹</button>
           <span className="header-sep" />
           <button
-            title={t.toolbar.connect}
+            title={t.toolbar.connect} aria-label={t.toolbar.connect}
             onClick={() => selectedBlock && setInteractionMode({ type: "connect", id: selectedBlock.id })}
             disabled={!selectedBlock}
           >➡️</button>
           <button
-            title={t.toolbar.move}
+            title={t.toolbar.move} aria-label={t.toolbar.move}
             onClick={() => {
               if (selectedBlock) setInteractionMode({ type: "move", id: selectedBlock.id, kind: "block" });
               else if (selectedGroup) setInteractionMode({ type: "move", id: selectedGroup.id, kind: "group" });
@@ -1051,12 +1308,12 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
             disabled={!selectedBlock && !selectedGroup}
           >✋</button>
           <button
-            title={t.toolbar.color}
+            title={t.toolbar.color} aria-label={t.toolbar.color}
             onClick={() => setColorModalOpen(true)}
             disabled={!selectedBlock && !selectedGroup}
           >🎨</button>
           <button
-            title={t.toolbar.shape}
+            title={t.toolbar.shape} aria-label={t.toolbar.shape}
             onClick={() => selectedBlock && setShapeModalOpen(true)}
             disabled={!selectedBlock}
           >🔷</button>
@@ -1114,12 +1371,47 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
           </div>
         </div>
       )}
+      {ask && (
+        <div className="modal-backdrop" onPointerDown={() => setAsk(null)}>
+          <div className="modal-panel" onPointerDown={(e) => e.stopPropagation()}>
+            <div className="modal-title">{ask.title}</div>
+            {ask.kind === "text" && (
+              <input
+                autoFocus
+                className="modal-input"
+                defaultValue={ask.value}
+                onFocus={(e) => e.target.select()}
+                onKeyDown={(e) => {
+                  e.stopPropagation();
+                  if (e.key === "Enter") {
+                    ask.onDone(e.currentTarget.value);
+                    setAsk(null);
+                  }
+                  if (e.key === "Escape") setAsk(null);
+                }}
+                ref={(el) => { if (el) askInputRef.current = el; }}
+              />
+            )}
+            <div className="modal-actions">
+              <button onClick={() => setAsk(null)}>{t.modals.cancel}</button>
+              <button
+                className="primary"
+                onClick={() => {
+                  ask.onDone(ask.kind === "text" ? (askInputRef.current?.value ?? "") : true);
+                  setAsk(null);
+                }}
+              >{t.modals.ok}</button>
+            </div>
+          </div>
+        </div>
+      )}
       {active && zoomSlot && createPortal(
         <>
-          <button onClick={() => zoomBy(0.8)}>−</button>
+          <button onClick={() => zoomBy(0.8)} title={t.zoom.out} aria-label={t.zoom.out}>−</button>
           <span className="zoom-value">{Math.round(view.zoom * 100)}%</span>
-          <button onClick={() => zoomBy(1.25)}>+</button>
+          <button onClick={() => zoomBy(1.25)} title={t.zoom.in} aria-label={t.zoom.in}>+</button>
           <button onClick={() => centerView(1)}>{t.zoom.center}</button>
+          <button onClick={fitView}>{t.zoom.fit}</button>
         </>,
         zoomSlot
       )}
@@ -1132,15 +1424,21 @@ export default function VisualEditor({ active, actionsSlot, zoomSlot, onCodeChan
           }
           ref={wrapRef}
           onDoubleClick={onCanvasDoubleClick}
-          onMouseDown={onCanvasMouseDown}
+          onPointerDown={onCanvasPointerDown}
         >
           <div
             className="mermaid-host"
             ref={hostRef}
             style={{ transform: `translate(${view.x}px, ${view.y}px) scale(${view.zoom})` }}
-            dangerouslySetInnerHTML={{ __html: rendered.html }}
           />
         </div>
+        {codeOnly && <div className="canvas-notice canvas-notice-warn">{t.notices.codeOnly}</div>}
+        {renderError && (
+          <div className="canvas-notice canvas-notice-error">
+            <strong>{t.notices.renderFailed}</strong>
+            <span>{renderError}</span>
+          </div>
+        )}
         {interactionMode && (
           <div className="mode-hint">
             {interactionMode.type === "connect" && t.hints.connect}

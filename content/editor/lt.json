@@ -1,7 +1,12 @@
 {
   "backToSite": "Grįžti į pradinį puslapį",
-  "tabs": { "visual": "Vizualus", "text": "Kodas" },
+  "tabs": {
+    "visual": "Vizualus",
+    "text": "Kodas"
+  },
   "toolbar": {
+    "undo": "Anuliuoti",
+    "redo": "Pakartoti",
     "addBlock": "Pridėti bloką",
     "addGroup": "Pridėti sritį",
     "copy": "Kopijuoti (bloką arba visą sritį su viskuo joje)",
@@ -13,8 +18,22 @@
     "color": "Spalva",
     "shape": "Forma"
   },
-  "zoom": { "center": "Centruoti" },
-  "modals": { "colorTitle": "Spalva", "shapeTitle": "Forma" },
+  "zoom": {
+    "in": "Priartinti",
+    "out": "Atitolinti",
+    "center": "Centruoti",
+    "fit": "Pritaikyti"
+  },
+  "modals": {
+    "colorTitle": "Spalva",
+    "shapeTitle": "Forma",
+    "ok": "Gerai",
+    "cancel": "Atšaukti"
+  },
+  "notices": {
+    "renderFailed": "Šis pakeitimas nėra tinkamas mermaid — rodoma paskutinė veikusi diagrama.",
+    "codeOnly": "Šio tipo diagramą galima redaguoti tik kaip kodą. Redaguodami čia pakeisite ją blokine schema."
+  },
   "shapes": {
     "rect": "Stačiakampis",
     "rounded": "Suapvalintas",
@@ -54,10 +73,10 @@
     "copySvg": "Kopijuoti SVG",
     "downloadSvg": "Atsisiųsti SVG",
     "downloadPng": "Atsisiųsti PNG",
-    "statusOk": "Gerai",
-    "statusError": "Klaida",
     "statusSvgCopied": "SVG nukopijuotas",
-    "statusMermaidCopied": "Mermaid nukopijuotas"
+    "statusMermaidCopied": "Mermaid nukopijuotas",
+    "statusSaved": "Išsaugota",
+    "statusExportFailed": "Nepavyko eksportuoti"
   },
   "examples": {
     "flowchart": "Blokinė schema",

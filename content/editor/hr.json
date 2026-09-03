@@ -1,7 +1,12 @@
 {
   "backToSite": "Natrag na početnu stranicu",
-  "tabs": { "visual": "Vizualno", "text": "Kod" },
+  "tabs": {
+    "visual": "Vizualno",
+    "text": "Kod"
+  },
   "toolbar": {
+    "undo": "Poništi",
+    "redo": "Ponovi",
     "addBlock": "Dodaj blok",
     "addGroup": "Dodaj područje",
     "copy": "Kopiraj (blok, ili cijelo područje sa svime unutra)",
@@ -13,8 +18,22 @@
     "color": "Boja",
     "shape": "Oblik"
   },
-  "zoom": { "center": "Ponovno centriraj" },
-  "modals": { "colorTitle": "Boja", "shapeTitle": "Oblik" },
+  "zoom": {
+    "in": "Približi",
+    "out": "Udalji",
+    "center": "Ponovno centriraj",
+    "fit": "Prilagodi"
+  },
+  "modals": {
+    "colorTitle": "Boja",
+    "shapeTitle": "Oblik",
+    "ok": "U redu",
+    "cancel": "Odustani"
+  },
+  "notices": {
+    "renderFailed": "Ova izmjena nije valjani mermaid — prikazan je posljednji uspješan dijagram.",
+    "codeOnly": "Ovaj se tip dijagrama uređuje samo kao kod. Uređivanje ovdje zamijenit će ga dijagramom toka."
+  },
   "shapes": {
     "rect": "Pravokutnik",
     "rounded": "Zaobljeni",
@@ -54,10 +73,10 @@
     "copySvg": "Kopiraj SVG",
     "downloadSvg": "Preuzmi SVG",
     "downloadPng": "Preuzmi PNG",
-    "statusOk": "U redu",
-    "statusError": "Greška",
     "statusSvgCopied": "SVG kopiran",
-    "statusMermaidCopied": "Mermaid kopiran"
+    "statusMermaidCopied": "Mermaid kopiran",
+    "statusSaved": "Spremljeno",
+    "statusExportFailed": "Izvoz nije uspio"
   },
   "examples": {
     "flowchart": "Dijagram tijeka",

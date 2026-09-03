@@ -1,7 +1,12 @@
 {
   "backToSite": "Back to the home page",
-  "tabs": { "visual": "Visual", "text": "Code" },
+  "tabs": {
+    "visual": "Visual",
+    "text": "Code"
+  },
   "toolbar": {
+    "undo": "Undo",
+    "redo": "Redo",
     "addBlock": "Add a block",
     "addGroup": "Add an area",
     "copy": "Copy (a block, or a whole area with everything in it)",
@@ -13,8 +18,22 @@
     "color": "Colour",
     "shape": "Shape"
   },
-  "zoom": { "center": "Re-centre" },
-  "modals": { "colorTitle": "Colour", "shapeTitle": "Shape" },
+  "zoom": {
+    "in": "Zoom in",
+    "out": "Zoom out",
+    "center": "Re-centre",
+    "fit": "Fit"
+  },
+  "modals": {
+    "colorTitle": "Colour",
+    "shapeTitle": "Shape",
+    "ok": "OK",
+    "cancel": "Cancel"
+  },
+  "notices": {
+    "renderFailed": "This edit is not valid mermaid — showing the last diagram that rendered.",
+    "codeOnly": "This diagram type can only be edited as code. Editing here replaces it with a flowchart."
+  },
   "shapes": {
     "rect": "Rectangle",
     "rounded": "Rounded",
@@ -54,10 +73,10 @@
     "copySvg": "Copy SVG",
     "downloadSvg": "Download SVG",
     "downloadPng": "Download PNG",
-    "statusOk": "OK",
-    "statusError": "Error",
     "statusSvgCopied": "SVG copied",
-    "statusMermaidCopied": "Mermaid copied"
+    "statusMermaidCopied": "Mermaid copied",
+    "statusSaved": "Saved",
+    "statusExportFailed": "Export failed"
   },
   "examples": {
     "flowchart": "Flowchart",

@@ -1,7 +1,12 @@
 {
   "backToSite": "بازگشت به صفحه اصلی",
-  "tabs": { "visual": "بصری", "text": "کد" },
+  "tabs": {
+    "visual": "بصری",
+    "text": "کد"
+  },
   "toolbar": {
+    "undo": "واگرد",
+    "redo": "از نو",
     "addBlock": "افزودن بلوک",
     "addGroup": "افزودن ناحیه",
     "copy": "کپی (یک بلوک، یا کل یک ناحیه با همه محتوایش)",
@@ -13,8 +18,22 @@
     "color": "رنگ",
     "shape": "شکل"
   },
-  "zoom": { "center": "وسط‌چین دوباره" },
-  "modals": { "colorTitle": "رنگ", "shapeTitle": "شکل" },
+  "zoom": {
+    "in": "بزرگ‌نمایی",
+    "out": "کوچک‌نمایی",
+    "center": "وسط‌چین دوباره",
+    "fit": "اندازهٔ مناسب"
+  },
+  "modals": {
+    "colorTitle": "رنگ",
+    "shapeTitle": "شکل",
+    "ok": "تأیید",
+    "cancel": "انصراف"
+  },
+  "notices": {
+    "renderFailed": "این ویرایش mermaid معتبری نیست — آخرین نمودار موفق نمایش داده می‌شود.",
+    "codeOnly": "این نوع نمودار فقط به‌صورت کد ویرایش می‌شود. ویرایش در اینجا آن را با یک فلوچارت جایگزین می‌کند."
+  },
   "shapes": {
     "rect": "مستطیل",
     "rounded": "گرد",
@@ -54,10 +73,10 @@
     "copySvg": "کپی SVG",
     "downloadSvg": "دانلود SVG",
     "downloadPng": "دانلود PNG",
-    "statusOk": "تأیید شد",
-    "statusError": "خطا",
     "statusSvgCopied": "SVG کپی شد",
-    "statusMermaidCopied": "mermaid کپی شد"
+    "statusMermaidCopied": "mermaid کپی شد",
+    "statusSaved": "ذخیره شد",
+    "statusExportFailed": "خروجی گرفتن ناموفق بود"
   },
   "examples": {
     "flowchart": "فلوچارت",

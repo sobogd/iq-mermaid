@@ -1,10 +1,16 @@
 /* Editor chrome. Ported from the standalone Vite app's App.css, repainted in
-   the site's own tokens (app/globals.css) so /app and the marketing pages
-   read as one product instead of two. The diagram canvas itself stays white
-   in both themes: mermaid renders its own colours and a dark backdrop would
-   put light-on-light nodes on a dark page. */
+   the site's own tokens (app/globals.css) so /app and the marketing pages read
+   as one product instead of two.
 
-.app {
+   Every rule is scoped under `.iqm-root`: the class names below (.app-header,
+   .tabs, .brand, .modal-panel) are generic enough to collide with anything the
+   marketing side might add later, and a stylesheet loaded on one route still
+   applies globally.
+
+   The diagram canvas stays white in both themes: mermaid draws its own
+   colours, and its dark theme is selected in JS (see mermaid-client.js). */
+
+.iqm-root {
   height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -12,15 +18,16 @@
   color: var(--text);
 }
 
-.app-header {
+.iqm-root .app-header {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   padding: 8px 16px;
   background: var(--accent);
   border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
 }
-.brand {
+.iqm-root .brand {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -28,15 +35,15 @@
   color: inherit;
   flex-shrink: 0;
 }
-.brand-badge {
+.iqm-root .brand-badge {
   width: 26px;
   height: 26px;
 }
-.brand-name {
+.iqm-root .brand-name {
   font-size: 15px;
   font-weight: 600;
 }
-.header-actions {
+.iqm-root .header-actions {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -44,19 +51,25 @@
   flex: 1;
   min-width: 0;
 }
-.header-zoom {
+.iqm-root .header-zoom,
+.iqm-root .header-export {
   display: flex;
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
+  flex-wrap: wrap;
 }
-.header-sep {
+.iqm-root .header-export button {
+  font-size: 12px;
+  padding: 5px 9px;
+}
+.iqm-root .header-sep {
   width: 1px;
   align-self: stretch;
   background: var(--border);
   margin: 0 2px;
 }
-.tabs {
+.iqm-root .tabs {
   display: flex;
   gap: 4px;
   background: var(--bg);
@@ -65,7 +78,7 @@
   padding: 3px;
   flex-shrink: 0;
 }
-.tabs button {
+.iqm-root .tabs button {
   background: transparent;
   border: none;
   color: var(--hint);
@@ -75,19 +88,20 @@
   font-weight: 600;
   cursor: pointer;
 }
-.tabs button.active {
+.iqm-root .tabs button.active {
   background: linear-gradient(135deg, hsl(9, 100%, 58%), hsl(35, 95%, 55%));
   color: #fff;
 }
 
-.app-main {
+.iqm-root .app-main {
   flex: 1;
   min-height: 0;
   display: flex;
 }
 
-.app button,
-.app select {
+.iqm-root button,
+.iqm-root select,
+.iqm-root .modal-input {
   background: var(--card);
   color: var(--text);
   border: 1px solid var(--border);
@@ -96,33 +110,39 @@
   font-size: 13px;
   cursor: pointer;
 }
-.app button:hover {
+.iqm-root button:hover {
   border-color: var(--button);
 }
-.app button.danger {
+.iqm-root button.danger {
   border-color: hsl(0 60% 50% / 0.4);
 }
-.app button.danger:hover {
+.iqm-root button.danger:hover {
   background: hsl(0 60% 50% / 0.12);
 }
-.app button:disabled {
+.iqm-root button.primary {
+  background: linear-gradient(135deg, hsl(9, 100%, 58%), hsl(35, 95%, 55%));
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+}
+.iqm-root button:disabled {
   opacity: 0.3;
   cursor: default;
 }
-.app button:disabled:hover {
+.iqm-root button:disabled:hover {
   border-color: var(--border);
 }
 
-.header-actions button {
+.iqm-root .header-actions button {
   font-size: 18px;
   line-height: 1;
   padding: 6px 10px;
 }
-.header-zoom button {
+.iqm-root .header-zoom button {
   padding: 6px 10px;
 }
 
-.modal-backdrop {
+.iqm-root .modal-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -131,60 +151,72 @@
   justify-content: center;
   z-index: 100;
 }
-.modal-panel {
+.iqm-root .modal-panel {
   background: var(--accent);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 16px;
-  min-width: 220px;
+  min-width: 260px;
+  max-width: min(420px, 90vw);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
-.modal-title {
+.iqm-root .modal-title {
   font-size: 13px;
   color: var(--hint);
   margin-bottom: 10px;
 }
-.modal-swatches {
+.iqm-root .modal-input {
+  width: 100%;
+  cursor: text;
+  font-size: 14px;
+}
+.iqm-root .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+.iqm-root .modal-swatches {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
 }
-.modal-shapes {
+.iqm-root .modal-shapes {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-.modal-shape-btn {
+.iqm-root .modal-shape-btn {
   display: flex;
   align-items: center;
   gap: 8px;
   text-align: left;
 }
-.modal-shape-btn.active {
+.iqm-root .modal-shape-btn.active {
   border-color: var(--button);
 }
-.modal-shape-emoji {
+.iqm-root .modal-shape-emoji {
   font-size: 16px;
 }
 
 /* --- Text editor --- */
-.text-editor {
+.iqm-root .text-editor {
   flex: 1;
   display: flex;
   min-height: 0;
 }
-.editor-pane,
-.preview-pane {
+.iqm-root .editor-pane,
+.iqm-root .preview-pane {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
 }
-.editor-pane {
+.iqm-root .editor-pane {
   border-right: 1px solid var(--border);
 }
-.code-input {
+.iqm-root .code-input {
   flex: 1;
   resize: none;
   border: none;
@@ -196,12 +228,12 @@
   line-height: 1.5;
   padding: 16px;
 }
-.preview-pane {
+.iqm-root .preview-pane {
   background: #fff;
   overflow: auto;
   padding: 16px;
 }
-.preview-error {
+.iqm-root .preview-error {
   color: #b91c1c;
   background: #fef2f2;
   border: 1px solid #fecaca;
@@ -212,47 +244,51 @@
   font-size: 12px;
   white-space: pre-wrap;
 }
-.status-line {
+.iqm-root .status-line {
   font-size: 12px;
   color: var(--hint);
   padding: 4px 8px;
+  min-width: 0;
 }
 
 /* --- Visual editor --- */
-.visual-editor {
+.iqm-root .visual-editor {
   flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;
 }
-.canvas-stage {
+.iqm-root .canvas-stage {
   flex: 1;
   min-height: 0;
   position: relative;
   display: flex;
 }
-.canvas-wrap {
+.iqm-root .canvas-wrap {
   flex: 1;
   min-width: 0;
   overflow: hidden;
   position: relative;
   cursor: grab;
   background: #ffffff;
+  /* The canvas handles its own panning through pointer events; without this
+     a touch drag scrolls the page instead. */
+  touch-action: none;
 }
-.canvas-wrap.panning {
+.iqm-root .canvas-wrap.panning {
   cursor: grabbing;
 }
-.mermaid-host {
+.iqm-root .mermaid-host {
   position: absolute;
   top: 0;
   left: 0;
   transform-origin: 0 0;
 }
-.mermaid-host svg {
+.iqm-root .mermaid-host svg {
   display: block;
   max-width: none;
 }
-.zoom-value {
+.iqm-root .zoom-value {
   font-size: 12px;
   color: var(--hint);
   min-width: 42px;
@@ -261,49 +297,54 @@
 
 /* The diagram itself is a real mermaid.render() SVG — visually identical to
    the text preview by construction. These rules only add interactivity
-   affordances on top; scoped to .canvas-wrap so the read-only preview pane
-   in the text tab (which also has .node/.cluster elements) is unaffected. */
-.canvas-wrap .node,
-.canvas-wrap .cluster {
+   affordances on top; scoped to .canvas-wrap so the read-only preview pane in
+   the text tab (which also has .node/.cluster elements) is unaffected. */
+.iqm-root .canvas-wrap .node,
+.iqm-root .canvas-wrap .cluster {
   cursor: pointer;
 }
-.canvas-wrap .diagram-selected rect,
-.canvas-wrap .diagram-selected polygon,
-.canvas-wrap .diagram-selected circle,
-.canvas-wrap .diagram-selected ellipse,
-.canvas-wrap .diagram-selected path.basic {
+/* The invisible node that keeps an empty subgraph rendered is not a thing
+   anyone can mean to click. */
+.iqm-root .canvas-wrap .node[id*="-phEmpty"] {
+  pointer-events: none;
+}
+.iqm-root .canvas-wrap .diagram-selected rect,
+.iqm-root .canvas-wrap .diagram-selected polygon,
+.iqm-root .canvas-wrap .diagram-selected circle,
+.iqm-root .canvas-wrap .diagram-selected ellipse,
+.iqm-root .canvas-wrap .diagram-selected path.basic {
   stroke: hsl(23 100% 42%) !important;
   stroke-width: 3px !important;
 }
-.canvas-wrap path[id*="L_"] {
+.iqm-root .canvas-wrap path[id*="L_"] {
   cursor: pointer;
 }
-.canvas-wrap path.diagram-selected {
+.iqm-root .canvas-wrap path.diagram-selected {
   stroke: hsl(23 100% 42%) !important;
   stroke-width: 3px !important;
 }
 
 /* Pure-CSS hover feedback while a connect/move mode is armed — no JS needed
    since the browser already knows what's under the cursor. */
-.canvas-wrap.mode-connect,
-.canvas-wrap.mode-move,
-.canvas-wrap.mode-paste {
+.iqm-root .canvas-wrap.mode-connect,
+.iqm-root .canvas-wrap.mode-move,
+.iqm-root .canvas-wrap.mode-paste {
   cursor: crosshair;
 }
-.canvas-wrap.mode-connect .node:hover rect,
-.canvas-wrap.mode-connect .node:hover polygon,
-.canvas-wrap.mode-connect .node:hover circle,
-.canvas-wrap.mode-connect .node:hover ellipse {
+.iqm-root .canvas-wrap.mode-connect .node:hover rect,
+.iqm-root .canvas-wrap.mode-connect .node:hover polygon,
+.iqm-root .canvas-wrap.mode-connect .node:hover circle,
+.iqm-root .canvas-wrap.mode-connect .node:hover ellipse {
   stroke: hsl(23 100% 42%) !important;
   stroke-width: 3px !important;
 }
-.canvas-wrap.mode-move .cluster:hover rect,
-.canvas-wrap.mode-paste .cluster:hover rect {
+.iqm-root .canvas-wrap.mode-move .cluster:hover rect,
+.iqm-root .canvas-wrap.mode-paste .cluster:hover rect {
   stroke: hsl(23 100% 42%) !important;
   stroke-width: 3px !important;
 }
 
-.mode-hint {
+.iqm-root .mode-hint {
   position: absolute;
   top: 12px;
   left: 50%;
@@ -318,7 +359,38 @@
   pointer-events: none;
 }
 
-.swatch {
+/* Banners over the canvas: a render failure (the diagram on screen is one edit
+   old) and the code-only notice (this diagram type cannot be edited here). */
+.iqm-root .canvas-notice {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  z-index: 10;
+  pointer-events: none;
+}
+.iqm-root .canvas-notice-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+.iqm-root .canvas-notice-warn {
+  top: 12px;
+  bottom: auto;
+  background: hsl(38 92% 95%);
+  border: 1px solid hsl(38 92% 80%);
+  color: hsl(25 80% 30%);
+}
+
+.iqm-root .swatch {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -326,10 +398,10 @@
   padding: 0;
   cursor: pointer;
 }
-.swatch.active {
+.iqm-root .swatch.active {
   border-color: var(--text);
 }
-.swatch-custom {
+.iqm-root .swatch-custom {
   width: 26px;
   height: 26px;
   padding: 0;
@@ -339,7 +411,7 @@
   cursor: pointer;
 }
 
-.rename-overlay {
+.iqm-root .rename-overlay {
   z-index: 50;
   font-family: "trebuchet ms", verdana, arial, sans-serif;
   font-size: 16px;
@@ -348,4 +420,9 @@
   border-radius: 3px;
   background: #fff;
   color: #131300;
+}
+
+.editor-loading {
+  height: 100dvh;
+  background: var(--bg);
 }

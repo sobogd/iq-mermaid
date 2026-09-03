@@ -1,7 +1,12 @@
 {
   "backToSite": "返回首页",
-  "tabs": { "visual": "可视化", "text": "代码" },
+  "tabs": {
+    "visual": "可视化",
+    "text": "代码"
+  },
   "toolbar": {
+    "undo": "撤销",
+    "redo": "重做",
     "addBlock": "添加节点",
     "addGroup": "添加区域",
     "copy": "复制（单个节点，或包含全部内容的整个区域）",
@@ -13,8 +18,22 @@
     "color": "颜色",
     "shape": "形状"
   },
-  "zoom": { "center": "重新居中" },
-  "modals": { "colorTitle": "颜色", "shapeTitle": "形状" },
+  "zoom": {
+    "in": "放大",
+    "out": "缩小",
+    "center": "重新居中",
+    "fit": "适应窗口"
+  },
+  "modals": {
+    "colorTitle": "颜色",
+    "shapeTitle": "形状",
+    "ok": "确定",
+    "cancel": "取消"
+  },
+  "notices": {
+    "renderFailed": "这不是有效的 mermaid，显示最后一次成功渲染的图。",
+    "codeOnly": "该图类型只能以代码编辑。在此编辑会将其替换为流程图。"
+  },
   "shapes": {
     "rect": "矩形",
     "rounded": "圆角矩形",
@@ -54,10 +73,10 @@
     "copySvg": "复制 SVG",
     "downloadSvg": "下载 SVG",
     "downloadPng": "下载 PNG",
-    "statusOk": "成功",
-    "statusError": "错误",
     "statusSvgCopied": "已复制 SVG",
-    "statusMermaidCopied": "已复制 mermaid 代码"
+    "statusMermaidCopied": "已复制 mermaid 代码",
+    "statusSaved": "已保存",
+    "statusExportFailed": "导出失败"
   },
   "examples": {
     "flowchart": "流程图",

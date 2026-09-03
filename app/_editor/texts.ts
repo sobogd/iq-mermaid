@@ -9,6 +9,8 @@ export interface EditorTexts {
   backToSite: string;
   tabs: { visual: string; text: string };
   toolbar: {
+    undo: string;
+    redo: string;
     addBlock: string;
     addGroup: string;
     copy: string;
@@ -20,8 +22,10 @@ export interface EditorTexts {
     color: string;
     shape: string;
   };
-  zoom: { center: string };
-  modals: { colorTitle: string; shapeTitle: string };
+  zoom: { in: string; out: string; center: string; fit: string };
+  modals: { colorTitle: string; shapeTitle: string; ok: string; cancel: string };
+  /** Banners drawn over the canvas. */
+  notices: { renderFailed: string; codeOnly: string };
   /** Keyed by the shape ids in VisualEditor.jsx's SHAPES list. */
   shapes: {
     rect: string;
@@ -53,10 +57,10 @@ export interface EditorTexts {
     copySvg: string;
     downloadSvg: string;
     downloadPng: string;
-    statusOk: string;
-    statusError: string;
     statusSvgCopied: string;
     statusMermaidCopied: string;
+    statusSaved: string;
+    statusExportFailed: string;
   };
   /** Names of the six starter diagrams in the example picker. */
   examples: {
