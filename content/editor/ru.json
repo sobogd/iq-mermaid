@@ -87,5 +87,27 @@
     "statusMermaidCopied": "Mermaid скопирован",
     "statusSaved": "Сохранено",
     "statusExportFailed": "Не удалось экспортировать"
+  },
+  "auth": {
+    "title": "Войдите, чтобы открыть редактор",
+    "subtitle": "Введите почту — пришлём одноразовый код.",
+    "emailLabel": "Почта",
+    "emailPlaceholder": "you@example.com",
+    "sendCode": "Отправить код",
+    "codeLabel": "Одноразовый код",
+    "codePlaceholder": "6-значный код",
+    "verify": "Войти",
+    "back": "Другая почта",
+    "codeSent": "Мы отправили 6-значный код на {email}",
+    "resend": "Отправить ещё раз",
+    "sending": "Отправка…",
+    "verifying": "Вход…",
+    "invalidEmail": "Введите корректный email.",
+    "invalidCode": "Похоже, код неверный.",
+    "codeExpired": "Код истёк — запросите новый.",
+    "tooManyAttempts": "Слишком много попыток. Подождите и попробуйте снова.",
+    "genericError": "Что-то пошло не так. Попробуйте ещё раз.",
+    "signedInAs": "Вы вошли как",
+    "signOut": "Выйти"
   }
 }

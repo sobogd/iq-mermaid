@@ -10,7 +10,6 @@ import { PageTracker } from "../_landing/PageTracker";
 import { analytics } from "@/lib/analytics";
 import {
   deleteDocument,
-  loadCurrentDocumentId,
   loadDocuments,
   newDocumentId,
   saveCurrentDocumentId,
@@ -32,7 +31,7 @@ const formatDate = (ms) =>
 // The editor: a full-height canvas, with the mermaid source available as a
 // sheet over it. The two are kept in sync in both directions. Ported from the
 // standalone Vite app; the strings come from `t` (content/editor/<locale>.json).
-export default function EditorShell({ t, homeHref }) {
+export default function EditorShell({ t, homeHref, email, onSignOut }) {
   // Gates the canvas' first mount until the boot effect below has resolved
   // which document is actually open — VisualEditor has its own localStorage
   // cache and would otherwise flash whatever THAT happened to hold for one
@@ -76,25 +75,43 @@ export default function EditorShell({ t, homeHref }) {
   // first-time visitor has always landed on. Runs once; every later switch
   // goes through openDocument/startNewDocument below.
   useEffect(() => {
-    let list = loadDocuments();
-    const lastId = loadCurrentDocumentId();
-    let doc = list.find((d) => d.id === lastId);
-    if (!doc) {
-      const id = newDocumentId();
-      // saveDocument derives the title the exact same way every later save
-      // does, rather than a second, hand-rolled copy of that logic here.
-      list = saveDocument(id, toMermaid(defaultState(t)), t.documents.untitled);
-      doc = list.find((d) => d.id === id);
-      saveCurrentDocumentId(id);
-    }
-    setDocs(list);
-    currentDocIdRef.current = doc.id;
-    setCurrentDocId(doc.id);
-    setCode(doc.code);
-    lastVisualCodeRef.current = doc.code;
-    setImportText(doc.code);
-    setImportSeq((n) => n + 1);
-    setReady(true);
+    let cancelled = false;
+    (async () => {
+      let list = [];
+      let lastId = null;
+      try {
+        ({ docs: list, currentId: lastId } = await loadDocuments());
+      } catch {
+        // Storage unreachable — fall through to a fresh in-memory document so
+        // the editor still opens instead of a blank page.
+      }
+      let doc = list.find((d) => d.id === lastId);
+      if (!doc) {
+        const id = newDocumentId();
+        const seedCode = toMermaid(defaultState(t));
+        try {
+          // saveDocument derives the title the exact same way every later save
+          // does, rather than a second, hand-rolled copy of that logic here.
+          list = await saveDocument(id, seedCode, t.documents.untitled);
+          await saveCurrentDocumentId(id);
+        } catch {
+          list = [{ id, title: t.documents.untitled, code: seedCode, updatedAt: Date.now() }];
+        }
+        doc = list.find((d) => d.id === id) || list[0];
+      }
+      if (cancelled) return;
+      setDocs(list);
+      currentDocIdRef.current = doc.id;
+      setCurrentDocId(doc.id);
+      setCode(doc.code);
+      lastVisualCodeRef.current = doc.code;
+      setImportText(doc.code);
+      setImportSeq((n) => n + 1);
+      setReady(true);
+    })();
+    return () => {
+      cancelled = true;
+    };
     // Runs once at mount — every later document switch is a deliberate user
     // action (openDocument/startNewDocument), not a reaction to props/state.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -108,7 +125,9 @@ export default function EditorShell({ t, homeHref }) {
     if (!ready || !currentDocIdRef.current) return;
     clearTimeout(docSaveDebounceRef.current);
     docSaveDebounceRef.current = setTimeout(() => {
-      setDocs(saveDocument(currentDocIdRef.current, code, t.documents.untitled));
+      saveDocument(currentDocIdRef.current, code, t.documents.untitled)
+        .then(setDocs)
+        .catch(() => {});
     }, DOC_SAVE_DEBOUNCE);
     return () => clearTimeout(docSaveDebounceRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -162,14 +181,18 @@ export default function EditorShell({ t, homeHref }) {
   // left would be wrong: it was just deleted. Without the flag, this would
   // silently resurrect it — flush always re-persists under
   // currentDocIdRef.current, which at that point is still the deleted id.
-  function switchTo(id, sourceCode, { flush = true } = {}) {
+  async function switchTo(id, sourceCode, { flush = true } = {}) {
     clearTimeout(docSaveDebounceRef.current);
     if (flush && currentDocIdRef.current) {
-      setDocs(saveDocument(currentDocIdRef.current, code, t.documents.untitled));
+      try {
+        setDocs(await saveDocument(currentDocIdRef.current, code, t.documents.untitled));
+      } catch {
+        // Best-effort flush; the switch still proceeds even if storage is down.
+      }
     }
     currentDocIdRef.current = id;
     setCurrentDocId(id);
-    saveCurrentDocumentId(id);
+    saveCurrentDocumentId(id).catch(() => {});
     setCode(sourceCode);
     lastVisualCodeRef.current = sourceCode;
     setImportText(sourceCode);
@@ -186,11 +209,15 @@ export default function EditorShell({ t, homeHref }) {
   // blank one is created and opened — nothing is lost, it is just no longer
   // the one in front of you. `flush: false` only when called after the
   // current document was just deleted (see confirmDeleteDocument).
-  function startNewDocument({ flush = true } = {}) {
+  async function startNewDocument({ flush = true } = {}) {
     const seedCode = toMermaid(defaultState(t));
     const id = newDocumentId();
-    switchTo(id, seedCode, { flush });
-    setDocs(saveDocument(id, seedCode, t.documents.untitled));
+    await switchTo(id, seedCode, { flush });
+    try {
+      setDocs(await saveDocument(id, seedCode, t.documents.untitled));
+    } catch {
+      // Non-fatal: the new document still lives on screen.
+    }
     setOpenOpen(false);
   }
 
@@ -198,18 +225,23 @@ export default function EditorShell({ t, homeHref }) {
     setDocAsk({
       kind: "confirm",
       title: t.documents.deleteConfirm,
-      onDone: (ok) => {
+      onDone: async (ok) => {
         if (!ok) return;
         analytics.track("Click", "Delete document");
         const wasCurrent = doc.id === currentDocIdRef.current;
-        const next = deleteDocument(doc.id);
+        let next;
+        try {
+          next = await deleteDocument(doc.id);
+        } catch {
+          return;
+        }
         setDocs(next);
         if (!wasCurrent) return;
         // The document you were looking at is the one just deleted: fall
         // back to whatever else exists, or start fresh if nothing does —
         // never flush, or the deleted document comes right back.
-        if (next.length) switchTo(next[0].id, next[0].code, { flush: false });
-        else startNewDocument({ flush: false });
+        if (next.length) await switchTo(next[0].id, next[0].code, { flush: false });
+        else await startNewDocument({ flush: false });
       },
     });
   }
@@ -282,13 +314,14 @@ export default function EditorShell({ t, homeHref }) {
         >
           💻
         </button>
-        {/* Account/sign-in: not wired up yet, on purpose — just the entry
-            point for later. */}
         <button
           className="header-icon-btn"
-          onClick={() => {}}
-          title={t.header.account}
-          aria-label={t.header.account}
+          onClick={() => {
+            analytics.track("Click", "Sign out");
+            onSignOut();
+          }}
+          title={`${t.auth.signedInAs} ${email}`}
+          aria-label={t.auth.signOut}
         >
           🔑
         </button>

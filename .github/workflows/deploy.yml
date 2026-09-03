@@ -8,6 +8,13 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASS: ${{ secrets.SMTP_PASS }}
+      FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -48,20 +55,31 @@ jobs:
           target: "/home/deploy/apps/iq-mermaid"
           overwrite: true
 
-      - name: Restart on VPS
+      - name: Configure env and restart on VPS
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SERVER_IP }}
           username: deployer
           key: ${{ secrets.SSH_KEY }}
           command_timeout: 10m
+          envs: DATABASE_URL,SMTP_HOST,SMTP_PORT,SMTP_USER,SMTP_PASS,FROM_EMAIL
           script: |
             export PATH=$PATH:/usr/bin:/usr/local/bin:/home/deployer/.npm-global/bin
             cd /home/deploy/apps/iq-mermaid
 
-            # The app has no database, no API keys and no secrets of any kind
-            # — it is a static site plus a client-side editor. PORT is the
-            # whole runtime configuration.
+            # Runtime config for the account/auth + database feature. Next loads
+            # .env.production automatically under `next start` (NODE_ENV=production).
+            # umask 077 so the SMTP password is owner-only on the box.
+            umask 077
+            cat > .env.production <<ENV
+            DATABASE_URL="$DATABASE_URL"
+            SMTP_HOST="$SMTP_HOST"
+            SMTP_PORT="$SMTP_PORT"
+            SMTP_USER="$SMTP_USER"
+            SMTP_PASS="$SMTP_PASS"
+            FROM_EMAIL="$FROM_EMAIL"
+            ENV
+
             npm ci --omit=dev
             # PORT must be a real env var — next start ignores PORT from .env
             PORT=8204 pm2 restart iq-mermaid --update-env || PORT=8204 pm2 start npm --name "iq-mermaid" -- start

@@ -1,12 +1,14 @@
-// Multi-document storage. Every saved diagram is kept in localStorage as
+// Multi-document storage, backed by the account's database (via /api/documents)
+// instead of localStorage. Every saved diagram is kept as
 // { id, title, code, updatedAt }; `code` — the mermaid source — is the ONLY
 // thing persisted per document. The canvas' own block/edge/group state is
 // re-derived from it through the exact same import pipeline the source-sheet
 // modal already uses, so a document never needs a second, richer format that
 // could drift out of sync with what toMermaid()/parseFlowchart() actually
 // round-trip.
-const DOCS_KEY = "mermaid-documents";
-const CURRENT_KEY = "mermaid-current-document";
+//
+// `deriveTitle` and `newDocumentId` stay client-side (pure helpers); the rest
+// are async calls into the account API.
 
 // A bare diagram-type declaration with nothing drawn yet ("flowchart TD" and
 // nothing else) is what's left once every block in a document has been
@@ -15,23 +17,18 @@ const CURRENT_KEY = "mermaid-current-document";
 const BARE_TYPE_RE =
   /^(flowchart\s+\w+|graph\s+\w+|sequenceDiagram|classDiagram|stateDiagram(-v2)?|erDiagram|gantt|pie|journey|mindmap|timeline|quadrantChart|gitGraph)$/i;
 
-function readDocs() {
-  try {
-    const raw = localStorage.getItem(DOCS_KEY);
-    const list = raw ? JSON.parse(raw) : [];
-    return Array.isArray(list) ? list.filter((d) => d && typeof d.id === "string") : [];
-  } catch {
-    return [];
-  }
+async function api(path, init = {}) {
+  const res = await fetch(path, {
+    credentials: "same-origin",
+    headers: init.body ? { "Content-Type": "application/json" } : undefined,
+    ...init,
+  });
+  if (!res.ok) throw new Error(`API ${res.status} for ${path}`);
+  return res.json();
 }
 
-function writeDocs(list) {
-  try {
-    localStorage.setItem(DOCS_KEY, JSON.stringify(list));
-  } catch {
-    // Private mode, or the quota is full. Losing the list is survivable; the
-    // document still on screen is not affected.
-  }
+function sortList(list) {
+  return (Array.isArray(list) ? list : []).sort((a, b) => b.updatedAt - a.updatedAt);
 }
 
 export function newDocumentId() {
@@ -54,42 +51,31 @@ export function deriveTitle(code, untitledFallback) {
   return firstLine.length > 60 ? `${firstLine.slice(0, 60)}…` : firstLine;
 }
 
-/** Every saved document, most recently edited first. */
-export function loadDocuments() {
-  return readDocs().sort((a, b) => b.updatedAt - a.updatedAt);
+/** Every saved document (most recently edited first) plus the id of the one
+ *  that was open last, in one round trip. */
+export async function loadDocuments() {
+  const { docs, currentId } = await api("/api/documents");
+  return { docs: sortList(docs), currentId: currentId ?? null };
 }
 
-export function loadCurrentDocumentId() {
-  try {
-    return localStorage.getItem(CURRENT_KEY);
-  } catch {
-    return null;
-  }
+/** Remember which document is open, persisted per account. */
+export async function saveCurrentDocumentId(id) {
+  await api("/api/documents", { method: "PUT", body: JSON.stringify({ id }) });
 }
 
-export function saveCurrentDocumentId(id) {
-  try {
-    localStorage.setItem(CURRENT_KEY, id);
-  } catch {
-    /* quota or private mode */
-  }
-}
-
-/** Insert or update one document's source and derived title; returns the
- *  full, re-sorted list so the caller can put it straight into state. */
-export function saveDocument(id, code, untitledFallback) {
-  const list = readDocs();
+/** Insert or update one document's source and derived title; returns the full,
+ *  re-sorted list so the caller can put it straight into state. */
+export async function saveDocument(id, code, untitledFallback) {
   const title = deriveTitle(code, untitledFallback);
   const updatedAt = Date.now();
-  const idx = list.findIndex((d) => d.id === id);
-  if (idx === -1) list.push({ id, title, code, updatedAt });
-  else list[idx] = { ...list[idx], title, code, updatedAt };
-  writeDocs(list);
-  return list.sort((a, b) => b.updatedAt - a.updatedAt);
+  const { docs } = await api("/api/documents", {
+    method: "POST",
+    body: JSON.stringify({ id, code, title, updatedAt }),
+  });
+  return sortList(docs);
 }
 
-export function deleteDocument(id) {
-  const list = readDocs().filter((d) => d.id !== id);
-  writeDocs(list);
-  return list.sort((a, b) => b.updatedAt - a.updatedAt);
+export async function deleteDocument(id) {
+  const { docs } = await api(`/api/documents/${encodeURIComponent(id)}`, { method: "DELETE" });
+  return sortList(docs);
 }

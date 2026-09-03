@@ -87,5 +87,27 @@
     "statusMermaidCopied": "Mermaid kopieret",
     "statusSaved": "Gemt",
     "statusExportFailed": "Eksport mislykkedes"
+  },
+  "auth": {
+    "title": "Sign in to open the editor",
+    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "sendCode": "Send code",
+    "codeLabel": "One-time code",
+    "codePlaceholder": "6-digit code",
+    "verify": "Sign in",
+    "back": "Use a different email",
+    "codeSent": "We've emailed a 6-digit code to {email}",
+    "resend": "Resend code",
+    "sending": "Sending…",
+    "verifying": "Signing in…",
+    "invalidEmail": "Enter a valid email address.",
+    "invalidCode": "That code doesn't look right.",
+    "codeExpired": "That code has expired — send a new one.",
+    "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
+    "genericError": "Something went wrong. Please try again.",
+    "signedInAs": "Signed in as",
+    "signOut": "Sign out"
   }
 }

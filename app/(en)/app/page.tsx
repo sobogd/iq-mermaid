@@ -24,5 +24,5 @@ export const metadata: Metadata = {
 };
 
 export default function EnAppPage() {
-  return <EditorClient t={EDITOR.en} homeHref="/" />;
+  return <EditorClient t={EDITOR.en} homeHref="/" brand={texts.footer.brand} />;
 }

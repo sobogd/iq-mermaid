@@ -7,6 +7,29 @@
 export interface EditorTexts {
   /** Title of the logo link back to the marketing site. */
   backToSite: string;
+  /** The email-OTP sign-in gate shown before the editor unlocks. */
+  auth: {
+    title: string;
+    subtitle: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    sendCode: string;
+    codeLabel: string;
+    codePlaceholder: string;
+    verify: string;
+    back: string;
+    codeSent: string;
+    resend: string;
+    sending: string;
+    verifying: string;
+    invalidEmail: string;
+    invalidCode: string;
+    codeExpired: string;
+    tooManyAttempts: string;
+    genericError: string;
+    signedInAs: string;
+    signOut: string;
+  };
   /** Icon-only buttons that live directly in the header (not inside a
    *  portal), each just a tooltip/aria-label — the icon itself is fixed in
    *  EditorShell.jsx. */

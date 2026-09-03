@@ -42,5 +42,5 @@ export async function generateMetadata({ params }: { params: Promise<{ seg: stri
 export default async function LocaleAppPage({ params }: { params: Promise<{ seg: string }> }) {
   const { seg } = await params;
   if (!isReadyLocale(seg)) notFound();
-  return <EditorClient t={EDITOR[seg]} homeHref={localeHome(seg)} />;
+  return <EditorClient t={EDITOR[seg]} homeHref={localeHome(seg)} brand={CHROME[seg].footer.brand} />;
 }

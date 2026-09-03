@@ -4,8 +4,9 @@ import { locales, defaultLocale, type Locale } from "@/lib/locales";
 // Next.js 16 renamed the `middleware` file convention to `proxy`. Only one
 // per project, so the whole edge-side routing lives in this function.
 //
-// The site is fully static and has no sessions, no accounts and no analytics:
-// the only job here is sending a first-time visitor to their own language.
+// Language routing only. Accounts/sessions now live in /api route handlers and
+// are gated client-side in the editor, not here — this function still just
+// sends a first-time visitor to their own language.
 
 function isAssetPath(pathname: string): boolean {
   return pathname.startsWith("/_next") || /\.[a-zA-Z0-9]+$/.test(pathname);
