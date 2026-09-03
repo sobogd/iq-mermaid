@@ -1,9 +1,6 @@
 {
   "backToSite": "На главную страницу",
-  "tabs": {
-    "visual": "Визуал",
-    "text": "Код"
-  },
+  "code": "Код",
   "toolbar": {
     "undo": "Отменить",
     "redo": "Повторить",
@@ -14,7 +11,6 @@
     "copy": "Копировать (блок или всю область целиком)",
     "paste": "Вставить — затем кликните, куда",
     "delete": "Удалить выделенное",
-    "clearAll": "Очистить всё",
     "connect": "Провести стрелку к другому блоку",
     "move": "Переместить в область или из неё",
     "color": "Цвет",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Приблизить",
     "out": "Отдалить",
-    "center": "Центрировать",
     "fit": "Вписать"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Подпись стрелки:",
     "rename": "Название:",
-    "clearAll": "Удалить всё?",
     "deleteSelected": "Удалить этот элемент?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Действие"
   },
   "text": {
-    "examplePlaceholder": "Пример…",
     "copyMermaid": "Копировать mermaid",
     "downloadMmd": "Скачать .mmd",
     "downloadMd": "Скачать .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid скопирован",
     "statusSaved": "Сохранено",
     "statusExportFailed": "Не удалось экспортировать"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Sequence-диаграмма",
-    "class": "Диаграмма классов",
-    "state": "Диаграмма состояний",
-    "er": "ER-диаграмма",
-    "gantt": "Диаграмма Ганта"
-  },
-  "sample": {
-    "start": "Старт",
-    "condition": "Готово?",
-    "yes": "Да",
-    "no": "Нет",
-    "action1": "Отправить",
-    "action2": "Исправить",
-    "end": "Готово",
-    "project": "Проект",
-    "phase": "Этап 1",
-    "task1": "Задача 1",
-    "task2": "Задача 2"
   }
 }

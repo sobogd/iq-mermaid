@@ -1,9 +1,6 @@
 {
   "backToSite": "Powrót do strony głównej",
-  "tabs": {
-    "visual": "Wizualny",
-    "text": "Kod"
-  },
+  "code": "Kod",
   "toolbar": {
     "undo": "Cofnij",
     "redo": "Ponów",
@@ -14,7 +11,6 @@
     "copy": "Kopiuj (blok lub cały obszar wraz z zawartością)",
     "paste": "Wklej — potem kliknij, gdzie ma trafić",
     "delete": "Usuń zaznaczenie",
-    "clearAll": "Wyczyść wszystko",
     "connect": "Narysuj strzałkę do innego bloku",
     "move": "Przenieś do obszaru lub poza niego",
     "color": "Kolor",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Powiększ",
     "out": "Pomniejsz",
-    "center": "Wyśrodkuj",
     "fit": "Dopasuj"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Etykieta strzałki:",
     "rename": "Nazwa:",
-    "clearAll": "Usunąć wszystko?",
     "deleteSelected": "Usunąć ten element?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Akcja"
   },
   "text": {
-    "examplePlaceholder": "Przykład…",
     "copyMermaid": "Kopiuj mermaid",
     "downloadMmd": "Pobierz .mmd",
     "downloadMd": "Pobierz .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid skopiowany",
     "statusSaved": "Zapisano",
     "statusExportFailed": "Eksport nie powiódł się"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Diagram sekwencji",
-    "class": "Diagram klas",
-    "state": "Diagram stanów",
-    "er": "Diagram ER",
-    "gantt": "Wykres Gantta"
-  },
-  "sample": {
-    "start": "Start",
-    "condition": "Gotowe?",
-    "yes": "Tak",
-    "no": "Nie",
-    "action1": "Wdróż",
-    "action2": "Napraw",
-    "end": "Koniec",
-    "project": "Projekt",
-    "phase": "Faza 1",
-    "task1": "Zadanie 1",
-    "task2": "Zadanie 2"
   }
 }

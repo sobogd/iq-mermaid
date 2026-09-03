@@ -1,9 +1,6 @@
 {
   "backToSite": "Tilbage til forsiden",
-  "tabs": {
-    "visual": "Visuel",
-    "text": "Kode"
-  },
+  "code": "Kode",
   "toolbar": {
     "undo": "Fortryd",
     "redo": "Gentag",
@@ -14,7 +11,6 @@
     "copy": "Kopiér (en blok, eller et helt område med alt indhold)",
     "paste": "Indsæt — klik derefter, hvor det skal placeres",
     "delete": "Slet markeringen",
-    "clearAll": "Ryd alt",
     "connect": "Tegn en pil til en anden blok",
     "move": "Flyt ind i et område, eller ud af et",
     "color": "Farve",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Zoom ind",
     "out": "Zoom ud",
-    "center": "Centrér på ny",
     "fit": "Tilpas"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Pil-label:",
     "rename": "Navn:",
-    "clearAll": "Slet alt?",
     "deleteSelected": "Slet dette element?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Handling"
   },
   "text": {
-    "examplePlaceholder": "Eksempel…",
     "copyMermaid": "Kopiér mermaid",
     "downloadMmd": "Download .mmd",
     "downloadMd": "Download .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid kopieret",
     "statusSaved": "Gemt",
     "statusExportFailed": "Eksport mislykkedes"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Sequence-diagram",
-    "class": "Class-diagram",
-    "state": "State-diagram",
-    "er": "ER-diagram",
-    "gantt": "Gantt-diagram"
-  },
-  "sample": {
-    "start": "Start",
-    "condition": "Klar?",
-    "yes": "Ja",
-    "no": "Nej",
-    "action1": "Send den",
-    "action2": "Ret den",
-    "end": "Færdig",
-    "project": "Projekt",
-    "phase": "Fase 1",
-    "task1": "Opgave 1",
-    "task2": "Opgave 2"
   }
 }

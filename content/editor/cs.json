@@ -1,9 +1,6 @@
 {
   "backToSite": "Zpět na hlavní stránku",
-  "tabs": {
-    "visual": "Vizuál",
-    "text": "Kód"
-  },
+  "code": "Kód",
   "toolbar": {
     "undo": "Zpět",
     "redo": "Znovu",
@@ -14,7 +11,6 @@
     "copy": "Kopírovat (blok, nebo celou oblast se vším uvnitř)",
     "paste": "Vložit — pak klikněte kam",
     "delete": "Smazat výběr",
-    "clearAll": "Vymazat vše",
     "connect": "Nakreslit šipku k jinému bloku",
     "move": "Přesunout do oblasti, nebo ven z ní",
     "color": "Barva",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Přiblížit",
     "out": "Oddálit",
-    "center": "Vycentrovat",
     "fit": "Přizpůsobit"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Popisek šipky:",
     "rename": "Název:",
-    "clearAll": "Smazat vše?",
     "deleteSelected": "Smazat tento prvek?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Akce"
   },
   "text": {
-    "examplePlaceholder": "Příklad…",
     "copyMermaid": "Kopírovat mermaid",
     "downloadMmd": "Stáhnout .mmd",
     "downloadMd": "Stáhnout .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid zkopírován",
     "statusSaved": "Uloženo",
     "statusExportFailed": "Export selhal"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Sekvenční diagram",
-    "class": "Class diagram",
-    "state": "State diagram",
-    "er": "ER diagram",
-    "gantt": "Gantt diagram"
-  },
-  "sample": {
-    "start": "Start",
-    "condition": "Připraveno?",
-    "yes": "Ano",
-    "no": "Ne",
-    "action1": "Odeslat",
-    "action2": "Opravit",
-    "end": "Hotovo",
-    "project": "Projekt",
-    "phase": "Fáze 1",
-    "task1": "Úkol 1",
-    "task2": "Úkol 2"
   }
 }

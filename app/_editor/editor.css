@@ -3,7 +3,7 @@
    as one product instead of two.
 
    Every rule is scoped under `.iqm-root`: the class names below (.app-header,
-   .tabs, .brand, .modal-panel) are generic enough to collide with anything the
+   .brand, .modal-panel, .code-input) are generic enough to collide with anything the
    marketing side might add later, and a stylesheet loaded on one route still
    applies globally.
 
@@ -69,30 +69,6 @@
   background: var(--border);
   margin: 0 2px;
 }
-.iqm-root .tabs {
-  display: flex;
-  gap: 4px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 3px;
-  flex-shrink: 0;
-}
-.iqm-root .tabs button {
-  background: transparent;
-  border: none;
-  color: var(--hint);
-  padding: 5px 14px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.iqm-root .tabs button.active {
-  background: linear-gradient(135deg, hsl(9, 100%, 58%), hsl(35, 95%, 55%));
-  color: #fff;
-}
-
 .iqm-root .app-main {
   flex: 1;
   min-height: 0;
@@ -200,50 +176,97 @@
   font-size: 16px;
 }
 
-/* --- Text editor --- */
-.iqm-root .text-editor {
-  flex: 1;
-  display: flex;
-  min-height: 0;
+/* --- Source sheet --- */
+.iqm-root .code-button {
+  flex-shrink: 0;
+  font-size: 16px;
+  line-height: 1;
 }
-.iqm-root .editor-pane,
-.iqm-root .preview-pane {
-  flex: 1;
-  min-width: 0;
+.iqm-root .code-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 120;
 }
-.iqm-root .editor-pane {
-  border-right: 1px solid var(--border);
+.iqm-root .code-modal {
+  position: relative;
+  width: min(900px, 100%);
+  height: min(80vh, 100%);
+  background: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
 }
 .iqm-root .code-input {
-  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
   resize: none;
   border: none;
   outline: none;
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 13px;
   line-height: 1.5;
-  padding: 16px;
+  /* Room on the right for the scrollbar gutter plus the close button that
+     floats over it. */
+  padding: 16px 64px 16px 16px;
+  /* `scroll`, not `auto`: the bar stays on screen whether or not the text
+     overflows, instead of popping in and shifting the line width under the
+     reader's eye the moment it does. When the text fits, the browser draws
+     the thumb the full height of the track — the same "there but nothing to
+     drag" look a disabled control has, with no extra state to track for it. */
+  overflow-y: scroll;
+  /* Firefox draws its own thin bar from these two properties; Chrome/Safari
+     ignore them and use the ::-webkit-scrollbar rules below instead. Setting
+     both is what keeps the bar's width and colours identical on Windows and
+     macOS — native scrollbars on the two platforms do not match, a drawn one
+     does. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
-.iqm-root .preview-pane {
-  background: #fff;
-  overflow: auto;
-  padding: 16px;
+.iqm-root .code-input::-webkit-scrollbar {
+  width: 12px;
 }
-.iqm-root .preview-error {
-  color: #b91c1c;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 6px;
-  padding: 12px;
-  margin-bottom: 16px;
-  font-family: monospace;
-  font-size: 12px;
-  white-space: pre-wrap;
+.iqm-root .code-input::-webkit-scrollbar-track {
+  background: transparent;
 }
+.iqm-root .code-input::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 999px;
+  /* Transparent border + padding-box clip inset the visible thumb inside the
+     12px track, so it reads as a slim pill rather than a wall flush with the
+     edge. */
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+.iqm-root .code-input::-webkit-scrollbar-thumb:hover {
+  background-color: var(--hint);
+}
+.iqm-root .code-modal-close {
+  position: absolute;
+  top: 10px;
+  /* Clear of the always-on scrollbar (12px track) plus a matching gap on
+     both sides, so the button reads as its own control and not as part of
+     the scrollbar. */
+  right: 22px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+  border-radius: 8px;
+}
+
 .iqm-root .status-line {
   font-size: 12px;
   color: var(--hint);
@@ -274,6 +297,12 @@
   /* The canvas handles its own panning through pointer events; without this
      a touch drag scrolls the page instead. */
   touch-action: none;
+  /* A pan is a press-and-drag, which the browser otherwise reads as "select
+     the text you dragged across" — so panning used to highlight every label on
+     the diagram. Labels are not prose to be copied; the source in the code tab
+     is. */
+  user-select: none;
+  -webkit-user-select: none;
 }
 .iqm-root .canvas-wrap.panning {
   cursor: grabbing;
@@ -288,13 +317,6 @@
   display: block;
   max-width: none;
 }
-.iqm-root .zoom-value {
-  font-size: 12px;
-  color: var(--hint);
-  min-width: 42px;
-  text-align: center;
-}
-
 /* The diagram itself is a real mermaid.render() SVG — visually identical to
    the text preview by construction. These rules only add interactivity
    affordances on top; scoped to .canvas-wrap so the read-only preview pane in

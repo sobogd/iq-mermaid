@@ -1,9 +1,6 @@
 {
   "backToSite": "Back to the home page",
-  "tabs": {
-    "visual": "Visual",
-    "text": "Code"
-  },
+  "code": "Code",
   "toolbar": {
     "undo": "Undo",
     "redo": "Redo",
@@ -14,7 +11,6 @@
     "copy": "Copy (a block, or a whole area with everything in it)",
     "paste": "Paste — then click where it goes",
     "delete": "Delete the selection",
-    "clearAll": "Clear everything",
     "connect": "Draw an arrow to another block",
     "move": "Move into an area, or out of one",
     "color": "Colour",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Zoom in",
     "out": "Zoom out",
-    "center": "Re-centre",
     "fit": "Fit"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Arrow label:",
     "rename": "Name:",
-    "clearAll": "Delete everything?",
     "deleteSelected": "Delete this element?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Action"
   },
   "text": {
-    "examplePlaceholder": "Example…",
     "copyMermaid": "Copy mermaid",
     "downloadMmd": "Download .mmd",
     "downloadMd": "Download .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid copied",
     "statusSaved": "Saved",
     "statusExportFailed": "Export failed"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Sequence diagram",
-    "class": "Class diagram",
-    "state": "State diagram",
-    "er": "ER diagram",
-    "gantt": "Gantt chart"
-  },
-  "sample": {
-    "start": "Start",
-    "condition": "Ready?",
-    "yes": "Yes",
-    "no": "No",
-    "action1": "Ship it",
-    "action2": "Fix it",
-    "end": "Done",
-    "project": "Project",
-    "phase": "Phase 1",
-    "task1": "Task 1",
-    "task2": "Task 2"
   }
 }

@@ -1,9 +1,6 @@
 {
   "backToSite": "Vissza a főoldalra",
-  "tabs": {
-    "visual": "Vizuális",
-    "text": "Kód"
-  },
+  "code": "Kód",
   "toolbar": {
     "undo": "Visszavonás",
     "redo": "Újra",
@@ -14,7 +11,6 @@
     "copy": "Másolás (egy blokk, vagy egy egész terület mindennel együtt)",
     "paste": "Beillesztés — majd kattints, hova kerüljön",
     "delete": "Kijelölés törlése",
-    "clearAll": "Minden törlése",
     "connect": "Nyíl húzása egy másik blokkhoz",
     "move": "Mozgatás egy területbe, vagy ki belőle",
     "color": "Szín",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Nagyítás",
     "out": "Kicsinyítés",
-    "center": "Újraközpontosítás",
     "fit": "Igazítás"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Nyíl felirata:",
     "rename": "Név:",
-    "clearAll": "Törlöd az egészet?",
     "deleteSelected": "Törlöd ezt az elemet?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Művelet"
   },
   "text": {
-    "examplePlaceholder": "Példa…",
     "copyMermaid": "Mermaid másolása",
     "downloadMmd": "Letöltés .mmd",
     "downloadMd": "Letöltés .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid másolva",
     "statusSaved": "Mentve",
     "statusExportFailed": "Az exportálás nem sikerült"
-  },
-  "examples": {
-    "flowchart": "Folyamatábra",
-    "sequence": "Szekvenciadiagram",
-    "class": "Osztálydiagram",
-    "state": "Állapotdiagram",
-    "er": "ER diagram",
-    "gantt": "Gantt diagram"
-  },
-  "sample": {
-    "start": "Start",
-    "condition": "Kész?",
-    "yes": "Igen",
-    "no": "Nem",
-    "action1": "Küldd el",
-    "action2": "Javítsd ki",
-    "end": "Kész",
-    "project": "Projekt",
-    "phase": "1. fázis",
-    "task1": "1. feladat",
-    "task2": "2. feladat"
   }
 }

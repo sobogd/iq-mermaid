@@ -1,9 +1,6 @@
 {
   "backToSite": "Natrag na početnu stranicu",
-  "tabs": {
-    "visual": "Vizualno",
-    "text": "Kod"
-  },
+  "code": "Kod",
   "toolbar": {
     "undo": "Poništi",
     "redo": "Ponovi",
@@ -14,7 +11,6 @@
     "copy": "Kopiraj (blok, ili cijelo područje sa svime unutra)",
     "paste": "Zalijepi — zatim kliknite gdje ide",
     "delete": "Izbriši odabrano",
-    "clearAll": "Obriši sve",
     "connect": "Nacrtaj strelicu prema drugom bloku",
     "move": "Pomakni u područje, ili izvan njega",
     "color": "Boja",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Približi",
     "out": "Udalji",
-    "center": "Ponovno centriraj",
     "fit": "Prilagodi"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Oznaka strelice:",
     "rename": "Naziv:",
-    "clearAll": "Izbrisati sve?",
     "deleteSelected": "Izbrisati ovaj element?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Radnja"
   },
   "text": {
-    "examplePlaceholder": "Primjer…",
     "copyMermaid": "Kopiraj mermaid",
     "downloadMmd": "Preuzmi .mmd",
     "downloadMd": "Preuzmi .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid kopiran",
     "statusSaved": "Spremljeno",
     "statusExportFailed": "Izvoz nije uspio"
-  },
-  "examples": {
-    "flowchart": "Dijagram tijeka",
-    "sequence": "Dijagram slijeda",
-    "class": "Dijagram klasa",
-    "state": "Dijagram stanja",
-    "er": "ER dijagram",
-    "gantt": "Gantt dijagram"
-  },
-  "sample": {
-    "start": "Početak",
-    "condition": "Spremno?",
-    "yes": "Da",
-    "no": "Ne",
-    "action1": "Pošalji",
-    "action2": "Popravi",
-    "end": "Gotovo",
-    "project": "Projekt",
-    "phase": "Faza 1",
-    "task1": "Zadatak 1",
-    "task2": "Zadatak 2"
   }
 }

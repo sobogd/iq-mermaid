@@ -1,9 +1,6 @@
 {
   "backToSite": "Tillbaka till startsidan",
-  "tabs": {
-    "visual": "Visuell",
-    "text": "Kod"
-  },
+  "code": "Kod",
   "toolbar": {
     "undo": "Ångra",
     "redo": "Gör om",
@@ -14,7 +11,6 @@
     "copy": "Kopiera (ett block, eller ett helt område med allt i det)",
     "paste": "Klistra in — klicka sedan där det ska hamna",
     "delete": "Ta bort markeringen",
-    "clearAll": "Rensa allt",
     "connect": "Dra en pil till ett annat block",
     "move": "Flytta in i ett område, eller ut ur ett",
     "color": "Färg",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Zooma in",
     "out": "Zooma ut",
-    "center": "Centrera om",
     "fit": "Anpassa"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Pilens etikett:",
     "rename": "Namn:",
-    "clearAll": "Ta bort allt?",
     "deleteSelected": "Ta bort det här elementet?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Åtgärd"
   },
   "text": {
-    "examplePlaceholder": "Exempel…",
     "copyMermaid": "Kopiera mermaid",
     "downloadMmd": "Ladda ner .mmd",
     "downloadMd": "Ladda ner .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid kopierad",
     "statusSaved": "Sparat",
     "statusExportFailed": "Exporten misslyckades"
-  },
-  "examples": {
-    "flowchart": "Flödesdiagram",
-    "sequence": "Sekvensdiagram",
-    "class": "Klassdiagram",
-    "state": "Tillståndsdiagram",
-    "er": "ER-diagram",
-    "gantt": "Gantt-schema"
-  },
-  "sample": {
-    "start": "Start",
-    "condition": "Klar?",
-    "yes": "Ja",
-    "no": "Nej",
-    "action1": "Släpp den",
-    "action2": "Fixa den",
-    "end": "Klart",
-    "project": "Projekt",
-    "phase": "Fas 1",
-    "task1": "Uppgift 1",
-    "task2": "Uppgift 2"
   }
 }

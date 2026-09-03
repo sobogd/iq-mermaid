@@ -1,9 +1,6 @@
 {
   "backToSite": "Обратно към началната страница",
-  "tabs": {
-    "visual": "Визуално",
-    "text": "Код"
-  },
+  "code": "Код",
   "toolbar": {
     "undo": "Отмени",
     "redo": "Повтори",
@@ -14,7 +11,6 @@
     "copy": "Копирай (блок или цяла област с всичко в нея)",
     "paste": "Постави — после кликни къде да отиде",
     "delete": "Изтрий избраното",
-    "clearAll": "Изчисти всичко",
     "connect": "Начертай стрелка към друг блок",
     "move": "Премести в област, или извън нея",
     "color": "Цвят",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Приближи",
     "out": "Отдалечи",
-    "center": "Центрирай наново",
     "fit": "Побери"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Етикет на стрелката:",
     "rename": "Име:",
-    "clearAll": "Да изтрия ли всичко?",
     "deleteSelected": "Да се изтрие ли този елемент?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Действие"
   },
   "text": {
-    "examplePlaceholder": "Пример…",
     "copyMermaid": "Копирай mermaid",
     "downloadMmd": "Изтегли .mmd",
     "downloadMd": "Изтегли .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid копиран",
     "statusSaved": "Запазено",
     "statusExportFailed": "Експортът е неуспешен"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Sequence диаграма",
-    "class": "Class диаграма",
-    "state": "State диаграма",
-    "er": "ER диаграма",
-    "gantt": "Gantt диаграма"
-  },
-  "sample": {
-    "start": "Старт",
-    "condition": "Готово?",
-    "yes": "Да",
-    "no": "Не",
-    "action1": "Пусни го",
-    "action2": "Оправи го",
-    "end": "Край",
-    "project": "Проект",
-    "phase": "Фаза 1",
-    "task1": "Задача 1",
-    "task2": "Задача 2"
   }
 }

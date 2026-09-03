@@ -1,9 +1,6 @@
 {
   "backToSite": "Grįžti į pradinį puslapį",
-  "tabs": {
-    "visual": "Vizualus",
-    "text": "Kodas"
-  },
+  "code": "Kodas",
   "toolbar": {
     "undo": "Anuliuoti",
     "redo": "Pakartoti",
@@ -14,7 +11,6 @@
     "copy": "Kopijuoti (bloką arba visą sritį su viskuo joje)",
     "paste": "Įklijuoti — tada spustelėk, kur turi atsirasti",
     "delete": "Ištrinti pažymėjimą",
-    "clearAll": "Išvalyti viską",
     "connect": "Nubrėžti rodyklę į kitą bloką",
     "move": "Perkelti į sritį arba iš jos",
     "color": "Spalva",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Priartinti",
     "out": "Atitolinti",
-    "center": "Centruoti",
     "fit": "Pritaikyti"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Rodyklės etiketė:",
     "rename": "Pavadinimas:",
-    "clearAll": "Ištrinti viską?",
     "deleteSelected": "Ištrinti šį elementą?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Veiksmas"
   },
   "text": {
-    "examplePlaceholder": "Pavyzdys…",
     "copyMermaid": "Kopijuoti mermaid",
     "downloadMmd": "Atsisiųsti .mmd",
     "downloadMd": "Atsisiųsti .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid nukopijuotas",
     "statusSaved": "Išsaugota",
     "statusExportFailed": "Nepavyko eksportuoti"
-  },
-  "examples": {
-    "flowchart": "Blokinė schema",
-    "sequence": "Sekos diagrama",
-    "class": "Klasių diagrama",
-    "state": "Būsenų diagrama",
-    "er": "ER diagrama",
-    "gantt": "Ganto diagrama"
-  },
-  "sample": {
-    "start": "Pradžia",
-    "condition": "Paruošta?",
-    "yes": "Taip",
-    "no": "Ne",
-    "action1": "Išleisti",
-    "action2": "Taisyti",
-    "end": "Atlikta",
-    "project": "Projektas",
-    "phase": "1 fazė",
-    "task1": "1 užduotis",
-    "task2": "2 užduotis"
   }
 }

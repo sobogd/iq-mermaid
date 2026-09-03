@@ -1,9 +1,6 @@
 {
   "backToSite": "Назад на почетну страницу",
-  "tabs": {
-    "visual": "Визуел",
-    "text": "Код"
-  },
+  "code": "Код",
   "toolbar": {
     "undo": "Опозови",
     "redo": "Понови",
@@ -14,7 +11,6 @@
     "copy": "Копирај (блок или целу област са свим унутра)",
     "paste": "Налепи — затим кликните где иде",
     "delete": "Обриши избор",
-    "clearAll": "Обриши све",
     "connect": "Повуци стрелицу до другог блока",
     "move": "Помери у област, или из ње",
     "color": "Боја",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Увећај",
     "out": "Умањи",
-    "center": "Поново центрирај",
     "fit": "Уклопи"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Ознака стрелице:",
     "rename": "Назив:",
-    "clearAll": "Обрисати све?",
     "deleteSelected": "Обрисати овај елемент?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Радња"
   },
   "text": {
-    "examplePlaceholder": "Пример…",
     "copyMermaid": "Копирај mermaid",
     "downloadMmd": "Преузми .mmd",
     "downloadMd": "Преузми .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid копиран",
     "statusSaved": "Сачувано",
     "statusExportFailed": "Извоз није успео"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Sequence дијаграм",
-    "class": "Дијаграм класа",
-    "state": "Дијаграм стања",
-    "er": "ER дијаграм",
-    "gantt": "Gantt дијаграм"
-  },
-  "sample": {
-    "start": "Старт",
-    "condition": "Спремно?",
-    "yes": "Да",
-    "no": "Не",
-    "action1": "Пошаљи",
-    "action2": "Исправи",
-    "end": "Готово",
-    "project": "Пројекат",
-    "phase": "Фаза 1",
-    "task1": "Задатак 1",
-    "task2": "Задатак 2"
   }
 }

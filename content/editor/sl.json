@@ -1,9 +1,6 @@
 {
   "backToSite": "Nazaj na domačo stran",
-  "tabs": {
-    "visual": "Vizualno",
-    "text": "Koda"
-  },
+  "code": "Koda",
   "toolbar": {
     "undo": "Razveljavi",
     "redo": "Uveljavi",
@@ -14,7 +11,6 @@
     "copy": "Kopiraj (blok ali celo področje z vsem, kar je v njem)",
     "paste": "Prilepi — nato klikni, kam gre",
     "delete": "Izbriši izbrano",
-    "clearAll": "Počisti vse",
     "connect": "Nariši puščico do drugega bloka",
     "move": "Premakni v področje ali iz njega",
     "color": "Barva",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Približaj",
     "out": "Oddalji",
-    "center": "Ponovno centriraj",
     "fit": "Prilagodi"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Oznaka puščice:",
     "rename": "Ime:",
-    "clearAll": "Izbrišem vse?",
     "deleteSelected": "Izbrišem ta element?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Dejanje"
   },
   "text": {
-    "examplePlaceholder": "Primer …",
     "copyMermaid": "Kopiraj mermaid",
     "downloadMmd": "Prenesi .mmd",
     "downloadMd": "Prenesi .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid kopiran",
     "statusSaved": "Shranjeno",
     "statusExportFailed": "Izvoz ni uspel"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Sekvenčni diagram",
-    "class": "Razredni diagram",
-    "state": "Stanjski diagram",
-    "er": "ER diagram",
-    "gantt": "Gantogram"
-  },
-  "sample": {
-    "start": "Začetek",
-    "condition": "Pripravljen?",
-    "yes": "Da",
-    "no": "Ne",
-    "action1": "Objavi",
-    "action2": "Popravi",
-    "end": "Konec",
-    "project": "Projekt",
-    "phase": "Faza 1",
-    "task1": "Naloga 1",
-    "task2": "Naloga 2"
   }
 }

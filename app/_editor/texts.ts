@@ -7,7 +7,8 @@
 export interface EditorTexts {
   /** Title of the logo link back to the marketing site. */
   backToSite: string;
-  tabs: { visual: string; text: string };
+  /** Label of the button that opens the mermaid source. */
+  code: string;
   toolbar: {
     undo: string;
     redo: string;
@@ -18,13 +19,12 @@ export interface EditorTexts {
     copy: string;
     paste: string;
     delete: string;
-    clearAll: string;
     connect: string;
     move: string;
     color: string;
     shape: string;
   };
-  zoom: { in: string; out: string; center: string; fit: string };
+  zoom: { in: string; out: string; fit: string };
   modals: { colorTitle: string; shapeTitle: string; ok: string; cancel: string };
   /** Banners drawn over the canvas. */
   notices: { renderFailed: string; codeOnly: string };
@@ -48,11 +48,10 @@ export interface EditorTexts {
   /** Banner shown while a connect / move / paste mode is armed. */
   hints: { connect: string; move: string; paste: string };
   /** Native prompt() and confirm() copy. */
-  prompts: { edgeLabel: string; rename: string; clearAll: string; deleteSelected: string };
+  prompts: { edgeLabel: string; rename: string; deleteSelected: string };
   /** Labels new items and the starter diagram are created with. */
   defaults: { block: string; group: string; start: string; action: string };
   text: {
-    examplePlaceholder: string;
     copyMermaid: string;
     downloadMmd: string;
     downloadMd: string;
@@ -63,28 +62,5 @@ export interface EditorTexts {
     statusMermaidCopied: string;
     statusSaved: string;
     statusExportFailed: string;
-  };
-  /** Names of the six starter diagrams in the example picker. */
-  examples: {
-    flowchart: string;
-    sequence: string;
-    class: string;
-    state: string;
-    er: string;
-    gantt: string;
-  };
-  /** Node labels inside the flowchart and gantt starter diagrams. */
-  sample: {
-    start: string;
-    condition: string;
-    yes: string;
-    no: string;
-    action1: string;
-    action2: string;
-    end: string;
-    project: string;
-    phase: string;
-    task1: string;
-    task2: string;
   };
 }

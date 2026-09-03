@@ -1,9 +1,6 @@
 {
   "backToSite": "Til baka á forsíðu",
-  "tabs": {
-    "visual": "Sjónrænt",
-    "text": "Kóði"
-  },
+  "code": "Kóði",
   "toolbar": {
     "undo": "Afturkalla",
     "redo": "Endurtaka",
@@ -14,7 +11,6 @@
     "copy": "Afrita (kubb, eða heilt svæði með öllu í því)",
     "paste": "Líma — smelltu svo þar sem það á að fara",
     "delete": "Eyða völdu",
-    "clearAll": "Hreinsa allt",
     "connect": "Teikna ör á annan kubb",
     "move": "Færa inn í svæði, eða út úr því",
     "color": "Litur",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Þysja inn",
     "out": "Þysja út",
-    "center": "Miðja aftur",
     "fit": "Laga að glugga"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Merking örvar:",
     "rename": "Nafn:",
-    "clearAll": "Eyða öllu?",
     "deleteSelected": "Eyða þessu atriði?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Aðgerð"
   },
   "text": {
-    "examplePlaceholder": "Dæmi…",
     "copyMermaid": "Afrita mermaid",
     "downloadMmd": "Sækja .mmd",
     "downloadMd": "Sækja .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid afritað",
     "statusSaved": "Vistað",
     "statusExportFailed": "Útflutningur mistókst"
-  },
-  "examples": {
-    "flowchart": "Flæðirit",
-    "sequence": "Runurit",
-    "class": "Klasarit",
-    "state": "Stöðurit",
-    "er": "ER rit",
-    "gantt": "Gantt rit"
-  },
-  "sample": {
-    "start": "Byrjun",
-    "condition": "Tilbúið?",
-    "yes": "Já",
-    "no": "Nei",
-    "action1": "Senda út",
-    "action2": "Laga",
-    "end": "Lokið",
-    "project": "Verkefni",
-    "phase": "Áfangi 1",
-    "task1": "Verkefni 1",
-    "task2": "Verkefni 2"
   }
 }

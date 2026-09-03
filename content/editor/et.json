@@ -1,9 +1,6 @@
 {
   "backToSite": "Tagasi avalehele",
-  "tabs": {
-    "visual": "Visuaal",
-    "text": "Kood"
-  },
+  "code": "Kood",
   "toolbar": {
     "undo": "Võta tagasi",
     "redo": "Tee uuesti",
@@ -14,7 +11,6 @@
     "copy": "Kopeeri (plokk või terve ala koos kõige sisuga)",
     "paste": "Kleebi — seejärel klõpsa, kuhu see läheb",
     "delete": "Kustuta valik",
-    "clearAll": "Kustuta kõik",
     "connect": "Tõmba nool teise ploki juurde",
     "move": "Liiguta alasse või sealt välja",
     "color": "Värv",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Suumi sisse",
     "out": "Suumi välja",
-    "center": "Tsentreeri uuesti",
     "fit": "Sobita"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Noole silt:",
     "rename": "Nimi:",
-    "clearAll": "Kustutada kõik?",
     "deleteSelected": "Kas kustutada see element?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Tegevus"
   },
   "text": {
-    "examplePlaceholder": "Näide…",
     "copyMermaid": "Kopeeri mermaid",
     "downloadMmd": "Laadi alla .mmd",
     "downloadMd": "Laadi alla .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid kopeeritud",
     "statusSaved": "Salvestatud",
     "statusExportFailed": "Eksport ebaõnnestus"
-  },
-  "examples": {
-    "flowchart": "Vookaart",
-    "sequence": "Jadadiagramm",
-    "class": "Klassidiagramm",
-    "state": "Olekudiagramm",
-    "er": "ER-diagramm",
-    "gantt": "Gantti diagramm"
-  },
-  "sample": {
-    "start": "Algus",
-    "condition": "Valmis?",
-    "yes": "Jah",
-    "no": "Ei",
-    "action1": "Saada välja",
-    "action2": "Paranda",
-    "end": "Valmis",
-    "project": "Projekt",
-    "phase": "Faas 1",
-    "task1": "Ülesanne 1",
-    "task2": "Ülesanne 2"
   }
 }

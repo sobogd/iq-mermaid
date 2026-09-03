@@ -1,9 +1,6 @@
 {
   "backToSite": "Zurück zur Startseite",
-  "tabs": {
-    "visual": "Visuell",
-    "text": "Code"
-  },
+  "code": "Code",
   "toolbar": {
     "undo": "Rückgängig",
     "redo": "Wiederholen",
@@ -14,7 +11,6 @@
     "copy": "Kopieren (ein Block oder ein ganzer Bereich mit allem darin)",
     "paste": "Einfügen — dann klicken, wohin es soll",
     "delete": "Auswahl löschen",
-    "clearAll": "Alles löschen",
     "connect": "Pfeil zu einem anderen Block ziehen",
     "move": "In einen Bereich verschieben, oder heraus",
     "color": "Farbe",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Vergrößern",
     "out": "Verkleinern",
-    "center": "Neu zentrieren",
     "fit": "Einpassen"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Pfeilbeschriftung:",
     "rename": "Name:",
-    "clearAll": "Alles löschen?",
     "deleteSelected": "Dieses Element löschen?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Aktion"
   },
   "text": {
-    "examplePlaceholder": "Beispiel…",
     "copyMermaid": "Mermaid kopieren",
     "downloadMmd": ".mmd herunterladen",
     "downloadMd": ".md herunterladen (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid kopiert",
     "statusSaved": "Gespeichert",
     "statusExportFailed": "Export fehlgeschlagen"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Sequenzdiagramm",
-    "class": "Klassendiagramm",
-    "state": "Zustandsdiagramm",
-    "er": "ER-Diagramm",
-    "gantt": "Gantt-Diagramm"
-  },
-  "sample": {
-    "start": "Start",
-    "condition": "Bereit?",
-    "yes": "Ja",
-    "no": "Nein",
-    "action1": "Ausliefern",
-    "action2": "Beheben",
-    "end": "Fertig",
-    "project": "Projekt",
-    "phase": "Phase 1",
-    "task1": "Aufgabe 1",
-    "task2": "Aufgabe 2"
   }
 }

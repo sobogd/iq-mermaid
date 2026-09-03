@@ -44,9 +44,36 @@ export function configureMermaid(dark) {
 
 configureMermaid(false);
 
+// mermaid has to put the diagram in a real document to measure its text, and
+// with no container given it appends one to the end of <body> — which paints,
+// unlaid-out, in the bottom-left corner of the page for a frame before it is
+// taken away again. Handing it an off-screen element of our own keeps the
+// measuring where nobody can see it. Not `display:none` or `visibility:hidden`:
+// an element that is not rendered cannot be measured, which is the whole point
+// of the exercise.
+let sandbox = null;
+
+function measuringSandbox() {
+  if (typeof document === "undefined") return undefined;
+  if (!sandbox || !sandbox.isConnected) {
+    sandbox = document.createElement("div");
+    sandbox.setAttribute("aria-hidden", "true");
+    Object.assign(sandbox.style, {
+      position: "absolute",
+      left: "-200000px",
+      top: "0",
+      width: "10000px",
+      height: "10000px",
+      pointerEvents: "none",
+    });
+    document.body.appendChild(sandbox);
+  }
+  return sandbox;
+}
+
 /** Render for the screen. Returns the SVG markup. */
 export async function renderDiagram(id, source) {
-  const { svg } = await mermaid.render(id, source);
+  const { svg } = await mermaid.render(id, source, measuringSandbox());
   return svg;
 }
 
@@ -72,7 +99,7 @@ export async function renderForExport(id, source) {
   try {
     // Belt and braces: the global config alone is not always enough for the
     // flowchart-v2 renderer, and an init directive is applied per render.
-    const { svg } = await mermaid.render(id, `${NO_HTML_LABELS}\n${source}`);
+    const { svg } = await mermaid.render(id, `${NO_HTML_LABELS}\n${source}`, measuringSandbox());
     return svg;
   } finally {
     configureMermaid(currentTheme === "dark");

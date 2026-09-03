@@ -1,9 +1,6 @@
 {
   "backToSite": "Torna a la pàgina principal",
-  "tabs": {
-    "visual": "Visual",
-    "text": "Codi"
-  },
+  "code": "Codi",
   "toolbar": {
     "undo": "Desfés",
     "redo": "Refés",
@@ -14,7 +11,6 @@
     "copy": "Copia (un bloc, o una àrea sencera amb tot el que conté)",
     "paste": "Enganxa — després fes clic on ha d'anar",
     "delete": "Elimina la selecció",
-    "clearAll": "Esborra-ho tot",
     "connect": "Dibuixa una fletxa cap a un altre bloc",
     "move": "Mou dins d'una àrea, o fora d'una",
     "color": "Color",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Apropa",
     "out": "Allunya",
-    "center": "Torna a centrar",
     "fit": "Ajusta"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Etiqueta de la fletxa:",
     "rename": "Nom:",
-    "clearAll": "Vols eliminar-ho tot?",
     "deleteSelected": "Vols eliminar aquest element?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Acció"
   },
   "text": {
-    "examplePlaceholder": "Exemple…",
     "copyMermaid": "Copia mermaid",
     "downloadMmd": "Descarrega .mmd",
     "downloadMd": "Descarrega .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid copiat",
     "statusSaved": "Desat",
     "statusExportFailed": "L'exportació ha fallat"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Diagrama de seqüència",
-    "class": "Diagrama de classes",
-    "state": "Diagrama d'estats",
-    "er": "Diagrama ER",
-    "gantt": "Diagrama de Gantt"
-  },
-  "sample": {
-    "start": "Inici",
-    "condition": "Llest?",
-    "yes": "Sí",
-    "no": "No",
-    "action1": "Envia-ho",
-    "action2": "Arregla-ho",
-    "end": "Fet",
-    "project": "Projecte",
-    "phase": "Fase 1",
-    "task1": "Tasca 1",
-    "task2": "Tasca 2"
   }
 }

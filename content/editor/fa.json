@@ -1,9 +1,6 @@
 {
   "backToSite": "بازگشت به صفحه اصلی",
-  "tabs": {
-    "visual": "بصری",
-    "text": "کد"
-  },
+  "code": "کد",
   "toolbar": {
     "undo": "واگرد",
     "redo": "از نو",
@@ -14,7 +11,6 @@
     "copy": "کپی (یک بلوک، یا کل یک ناحیه با همه محتوایش)",
     "paste": "پیست — سپس روی جایی که باید برود کلیک کنید",
     "delete": "حذف انتخاب‌شده",
-    "clearAll": "پاک کردن همه‌چیز",
     "connect": "پیکانی به بلوک دیگر بکشید",
     "move": "جابه‌جایی به داخل یک ناحیه، یا خارج از آن",
     "color": "رنگ",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "بزرگ‌نمایی",
     "out": "کوچک‌نمایی",
-    "center": "وسط‌چین دوباره",
     "fit": "اندازهٔ مناسب"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "برچسب پیکان:",
     "rename": "نام:",
-    "clearAll": "همه‌چیز حذف شود؟",
     "deleteSelected": "این عنصر حذف شود؟"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "عملیات"
   },
   "text": {
-    "examplePlaceholder": "نمونه…",
     "copyMermaid": "کپی mermaid",
     "downloadMmd": "دانلود ‎.mmd",
     "downloadMd": "دانلود ‎.md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "mermaid کپی شد",
     "statusSaved": "ذخیره شد",
     "statusExportFailed": "خروجی گرفتن ناموفق بود"
-  },
-  "examples": {
-    "flowchart": "فلوچارت",
-    "sequence": "نمودار توالی",
-    "class": "نمودار کلاس",
-    "state": "نمودار حالت",
-    "er": "نمودار ER",
-    "gantt": "نمودار گانت"
-  },
-  "sample": {
-    "start": "شروع",
-    "condition": "آماده است؟",
-    "yes": "بله",
-    "no": "خیر",
-    "action1": "ارسالش کن",
-    "action2": "درستش کن",
-    "end": "پایان",
-    "project": "پروژه",
-    "phase": "فاز ۱",
-    "task1": "وظیفه ۱",
-    "task2": "وظیفه ۲"
   }
 }

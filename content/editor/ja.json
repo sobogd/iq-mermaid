@@ -1,9 +1,6 @@
 {
   "backToSite": "ホームページに戻る",
-  "tabs": {
-    "visual": "ビジュアル",
-    "text": "コード"
-  },
+  "code": "コード",
   "toolbar": {
     "undo": "元に戻す",
     "redo": "やり直す",
@@ -14,7 +11,6 @@
     "copy": "コピー(ブロック、またはエリア全体とその中身)",
     "paste": "貼り付け ― その後、貼り付け先をクリック",
     "delete": "選択を削除",
-    "clearAll": "すべて消去",
     "connect": "別のブロックへ矢印を描く",
     "move": "エリアの中へ、または外へ移動",
     "color": "色",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "拡大",
     "out": "縮小",
-    "center": "中央に戻す",
     "fit": "全体表示"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "矢印のラベル:",
     "rename": "名前:",
-    "clearAll": "すべて削除しますか?",
     "deleteSelected": "この要素を削除しますか？"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "アクション"
   },
   "text": {
-    "examplePlaceholder": "例…",
     "copyMermaid": "Mermaidをコピー",
     "downloadMmd": ".mmdをダウンロード",
     "downloadMd": ".md(Notion)をダウンロード",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaidをコピーしました",
     "statusSaved": "保存しました",
     "statusExportFailed": "エクスポートに失敗しました"
-  },
-  "examples": {
-    "flowchart": "フローチャート",
-    "sequence": "シーケンス図",
-    "class": "クラス図",
-    "state": "状態遷移図",
-    "er": "ER図",
-    "gantt": "ガントチャート"
-  },
-  "sample": {
-    "start": "開始",
-    "condition": "準備完了?",
-    "yes": "はい",
-    "no": "いいえ",
-    "action1": "リリースする",
-    "action2": "修正する",
-    "end": "完了",
-    "project": "プロジェクト",
-    "phase": "フェーズ1",
-    "task1": "タスク1",
-    "task2": "タスク2"
   }
 }

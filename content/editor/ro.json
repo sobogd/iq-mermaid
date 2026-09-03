@@ -1,9 +1,6 @@
 {
   "backToSite": "Înapoi la pagina principală",
-  "tabs": {
-    "visual": "Vizual",
-    "text": "Cod"
-  },
+  "code": "Cod",
   "toolbar": {
     "undo": "Anulează",
     "redo": "Refă",
@@ -14,7 +11,6 @@
     "copy": "Copiază (un bloc, sau o zonă întreagă cu tot ce conține)",
     "paste": "Lipește — apoi dă click unde vrei să apară",
     "delete": "Șterge selecția",
-    "clearAll": "Șterge tot",
     "connect": "Trage o săgeată către alt bloc",
     "move": "Mută într-o zonă, sau afară din una",
     "color": "Culoare",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Mărește",
     "out": "Micșorează",
-    "center": "Recentrează",
     "fit": "Încadrează"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Eticheta săgeții:",
     "rename": "Nume:",
-    "clearAll": "Ștergi tot?",
     "deleteSelected": "Ștergi acest element?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Acțiune"
   },
   "text": {
-    "examplePlaceholder": "Exemplu…",
     "copyMermaid": "Copiază mermaid",
     "downloadMmd": "Descarcă .mmd",
     "downloadMd": "Descarcă .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid copiat",
     "statusSaved": "Salvat",
     "statusExportFailed": "Exportul a eșuat"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Diagramă de secvență",
-    "class": "Diagramă de clase",
-    "state": "Diagramă de stare",
-    "er": "Diagramă ER",
-    "gantt": "Diagramă Gantt"
-  },
-  "sample": {
-    "start": "Start",
-    "condition": "Gata?",
-    "yes": "Da",
-    "no": "Nu",
-    "action1": "Lansează",
-    "action2": "Repară",
-    "end": "Gata",
-    "project": "Proiect",
-    "phase": "Faza 1",
-    "task1": "Sarcina 1",
-    "task2": "Sarcina 2"
   }
 }

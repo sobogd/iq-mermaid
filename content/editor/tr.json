@@ -1,9 +1,6 @@
 {
   "backToSite": "Ana sayfaya dön",
-  "tabs": {
-    "visual": "Görsel",
-    "text": "Kod"
-  },
+  "code": "Kod",
   "toolbar": {
     "undo": "Geri al",
     "redo": "Yinele",
@@ -14,7 +11,6 @@
     "copy": "Kopyala (bir blok veya içindeki her şeyle birlikte tüm bir alan)",
     "paste": "Yapıştır — sonra nereye gideceğine tıklayın",
     "delete": "Seçimi sil",
-    "clearAll": "Her şeyi temizle",
     "connect": "Başka bir bloğa ok çiz",
     "move": "Bir alana taşı veya dışına çıkar",
     "color": "Renk",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Yakınlaştır",
     "out": "Uzaklaştır",
-    "center": "Yeniden ortala",
     "fit": "Sığdır"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Ok etiketi:",
     "rename": "Ad:",
-    "clearAll": "Her şey silinsin mi?",
     "deleteSelected": "Bu öğe silinsin mi?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Eylem"
   },
   "text": {
-    "examplePlaceholder": "Örnek…",
     "copyMermaid": "Mermaid'i kopyala",
     "downloadMmd": ".mmd indir",
     "downloadMd": ".md indir (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid kopyalandı",
     "statusSaved": "Kaydedildi",
     "statusExportFailed": "Dışa aktarma başarısız"
-  },
-  "examples": {
-    "flowchart": "Akış şeması",
-    "sequence": "Sıralama diyagramı",
-    "class": "Sınıf diyagramı",
-    "state": "Durum diyagramı",
-    "er": "ER diyagramı",
-    "gantt": "Gantt şeması"
-  },
-  "sample": {
-    "start": "Başlangıç",
-    "condition": "Hazır mı?",
-    "yes": "Evet",
-    "no": "Hayır",
-    "action1": "Yayınla",
-    "action2": "Düzelt",
-    "end": "Tamamlandı",
-    "project": "Proje",
-    "phase": "Aşama 1",
-    "task1": "Görev 1",
-    "task2": "Görev 2"
   }
 }

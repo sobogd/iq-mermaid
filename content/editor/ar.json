@@ -1,9 +1,6 @@
 {
   "backToSite": "العودة إلى الصفحة الرئيسية",
-  "tabs": {
-    "visual": "بصري",
-    "text": "الكود"
-  },
+  "code": "الكود",
   "toolbar": {
     "undo": "تراجع",
     "redo": "إعادة",
@@ -14,7 +11,6 @@
     "copy": "نسخ (كتلة، أو منطقة كاملة بكل ما فيها)",
     "paste": "لصق — ثم انقر في المكان المطلوب",
     "delete": "حذف التحديد",
-    "clearAll": "مسح كل شيء",
     "connect": "ارسم سهمًا إلى كتلة أخرى",
     "move": "نقل إلى منطقة، أو خارجها",
     "color": "اللون",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "تكبير",
     "out": "تصغير",
-    "center": "إعادة التوسيط",
     "fit": "ملاءمة"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "تسمية السهم:",
     "rename": "الاسم:",
-    "clearAll": "حذف كل شيء؟",
     "deleteSelected": "حذف هذا العنصر؟"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "إجراء"
   },
   "text": {
-    "examplePlaceholder": "مثال…",
     "copyMermaid": "نسخ mermaid",
     "downloadMmd": "تنزيل .mmd",
     "downloadMd": "تنزيل .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "تم نسخ mermaid",
     "statusSaved": "تم الحفظ",
     "statusExportFailed": "فشل التصدير"
-  },
-  "examples": {
-    "flowchart": "مخطط انسيابي",
-    "sequence": "مخطط تسلسلي",
-    "class": "مخطط فئات",
-    "state": "مخطط حالة",
-    "er": "مخطط ER",
-    "gantt": "مخطط جانت"
-  },
-  "sample": {
-    "start": "بداية",
-    "condition": "جاهز؟",
-    "yes": "نعم",
-    "no": "لا",
-    "action1": "أطلقه",
-    "action2": "أصلحه",
-    "end": "تم",
-    "project": "مشروع",
-    "phase": "المرحلة 1",
-    "task1": "المهمة 1",
-    "task2": "المهمة 2"
   }
 }

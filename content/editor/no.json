@@ -1,9 +1,6 @@
 {
   "backToSite": "Tilbake til forsiden",
-  "tabs": {
-    "visual": "Visuelt",
-    "text": "Kode"
-  },
+  "code": "Kode",
   "toolbar": {
     "undo": "Angre",
     "redo": "Gjør om",
@@ -14,7 +11,6 @@
     "copy": "Kopier (en boks, eller et helt område med alt i det)",
     "paste": "Lim inn – klikk deretter hvor det skal plasseres",
     "delete": "Slett valget",
-    "clearAll": "Fjern alt",
     "connect": "Tegn en pil til en annen boks",
     "move": "Flytt inn i et område, eller ut av et",
     "color": "Farge",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Zoom inn",
     "out": "Zoom ut",
-    "center": "Sentrer på nytt",
     "fit": "Tilpass"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Piletekst:",
     "rename": "Navn:",
-    "clearAll": "Slette alt?",
     "deleteSelected": "Slette dette elementet?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Handling"
   },
   "text": {
-    "examplePlaceholder": "Eksempel…",
     "copyMermaid": "Kopier mermaid",
     "downloadMmd": "Last ned .mmd",
     "downloadMd": "Last ned .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid kopiert",
     "statusSaved": "Lagret",
     "statusExportFailed": "Eksporten mislyktes"
-  },
-  "examples": {
-    "flowchart": "Flytskjema",
-    "sequence": "Sekvensdiagram",
-    "class": "Klassediagram",
-    "state": "Tilstandsdiagram",
-    "er": "ER-diagram",
-    "gantt": "Gantt-diagram"
-  },
-  "sample": {
-    "start": "Start",
-    "condition": "Klar?",
-    "yes": "Ja",
-    "no": "Nei",
-    "action1": "Send den",
-    "action2": "Fiks den",
-    "end": "Ferdig",
-    "project": "Prosjekt",
-    "phase": "Fase 1",
-    "task1": "Oppgave 1",
-    "task2": "Oppgave 2"
   }
 }

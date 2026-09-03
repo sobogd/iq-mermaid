@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import mermaid from "./mermaid-client";
+import { renderDiagram } from "./mermaid-client";
 
 const STORAGE_KEY = "mermaid-visual-editor-data";
 // Bumped whenever the shape of the saved state changes. `migrate` below turns
@@ -17,6 +17,10 @@ const DEFAULT_SHAPE = "rect";
 // either, so both bounds stay generous instead of tied to viewport size.
 const MIN_ZOOM = 0.02;
 const MAX_ZOOM = 16;
+
+// 100% means label text this tall on screen; mermaid's own default is 16.
+const READABLE_FONT_PX = 12;
+const DEFAULT_FONT_PX = 16;
 
 const COLORS = [DEFAULT_COLOR, "#2563eb", "#16a34a", "#dc2626", "#d97706", "#7c3aed", "#0891b2", "#db2777"];
 
@@ -467,11 +471,17 @@ export default function VisualEditor({
   const [rendered, setRendered] = useState({ html: "", diagramId: "" });
   // Screen position of the floating toolbar that hangs over the selection.
   const [toolbar, setToolbar] = useState(null); // { x, y, below }
+  // Where to offer "add a block / add an area", after a click on bare canvas.
+  const [addAt, setAddAt] = useState(null); // { x, y }
+  // Mermaid's own label font size in CSS px at zoom 1 — read back from the
+  // render rather than assumed, since a theme can change it.
+  const [baseFont, setBaseFont] = useState(DEFAULT_FONT_PX);
   const wrapRef = useRef(null); // outer viewport, fixed size, clips content
   const hostRef = useRef(null); // holds the injected mermaid SVG, transformed by pan/zoom
   const viewRef = useRef(view);
-  const anchorRef = useRef(null); // { id, screenX, screenY } captured just before an edit, to keep it visually still
   const stateRef = useRef(state);
+  const selectedRef = useRef(null);
+  const addAtRef = useRef(null);
   const panRef = useRef(null); // { startX, startY, startViewX, startViewY, moved, target }
   const pendingTargetRef = useRef(null); // resolved target from the last mousedown, read once at pan-arm time
   const [clipboard, setClipboard] = useState(null); // { type, rootId, blocks, groups, edges }
@@ -506,6 +516,24 @@ export default function VisualEditor({
   useEffect(() => {
     stateRef.current = state;
   }, [state]);
+
+  useEffect(() => {
+    selectedRef.current = selected;
+  }, [selected]);
+
+  useEffect(() => {
+    addAtRef.current = addAt;
+  }, [addAt]);
+
+  // It is anchored to a point on the canvas, so it stops meaning anything as
+  // soon as the canvas moves under it or the attention goes somewhere else.
+  useEffect(() => {
+    if (ask || colorModalOpen || shapeModalOpen || interactionMode) setAddAt(null);
+  }, [ask, colorModalOpen, shapeModalOpen, interactionMode]);
+
+  useEffect(() => {
+    setAddAt(null);
+  }, [view]);
 
   useEffect(() => {
     interactionModeRef.current = interactionMode;
@@ -547,7 +575,7 @@ export default function VisualEditor({
     let cancelled = false;
     const text = toMermaid(state);
     const id = "visual-mermaid-" + (++renderSeqRef.current);
-    mermaid.render(id, text).then(({ svg }) => {
+    renderDiagram(id, text).then((svg) => {
       if (cancelled) return;
       setRendered({ html: svg, diagramId: id });
       setRenderError(null);
@@ -573,62 +601,53 @@ export default function VisualEditor({
   // A layout effect, not a passive one: the effects below measure and decorate
   // this SVG, and they must run against the element that is actually on screen.
   useLayoutEffect(() => {
-    if (hostRef.current) hostRef.current.innerHTML = rendered.html;
+    const host = hostRef.current;
+    if (!host) return;
+
+    // Where the drawing starts on screen right now. Mermaid re-lays out the
+    // WHOLE diagram on every edit, so without this the picture slides under a
+    // perfectly stationary viewport — delete a node near the top and everything
+    // below it jumps up. Pinning the top-left corner of the drawing to the same
+    // screen point makes the diagram grow and shrink towards the bottom right
+    // instead, and leaves the reader's own pan and zoom untouched.
+    const previous = host.querySelector("svg") ? contentRect(host.querySelector("svg")) : null;
+
+    host.innerHTML = rendered.html;
+    const svgEl = host.querySelector("svg");
+    if (!svgEl) return;
+    // Mermaid ships the SVG with width="100%" and a max-width style, meant for
+    // a normal flow container. `.mermaid-host` is absolutely positioned, so a
+    // percentage width has nothing to resolve against and the browser squeezed
+    // the drawing into a couple of hundred pixels — a 2650-unit diagram was
+    // being drawn at 298 px, i.e. 11% of its size, with labels under 2 px tall.
+    // Pinning the intrinsic size makes one user unit exactly one CSS pixel at
+    // zoom 1, which is what every measurement here assumes.
+    const vb = svgEl.viewBox && svgEl.viewBox.baseVal;
+    if (vb && vb.width && vb.height) {
+      svgEl.setAttribute("width", String(vb.width));
+      svgEl.setAttribute("height", String(vb.height));
+    }
+    svgEl.style.maxWidth = "none";
+
+    if (previous) {
+      const next = contentRect(svgEl);
+      if (next) {
+        const dx = previous.left - next.left;
+        const dy = previous.top - next.top;
+        if (dx || dy) setView((v) => ({ ...v, x: v.x + dx, y: v.y + dy }));
+      }
+    }
   }, [rendered.html]);
 
-  // mermaid re-lays-out the *entire* diagram on every edit, not just what
-  // changed — so even though `view` (pan/zoom) itself is never touched here,
-  // content can visibly jump under a static viewport. Remember where the
-  // selected block/area sits on screen right before an edit; once the new
-  // SVG is in, nudge the view so that same element lands back in the same
-  // screen spot, cancelling out the relayout shift.
-  function captureAnchor() {
-    const svgEl = hostRef.current && hostRef.current.querySelector("svg");
-    const wrap = wrapRef.current;
-    if (!svgEl || !wrap) { anchorRef.current = null; return; }
-    const v = viewRef.current;
-
-    let anchorId = null;
-    let bbox = null;
-    if (selected && (selected.type === "block" || selected.type === "group")) {
-      const el = findDiagramElement(svgEl, rendered.diagramId, selected.id);
-      if (el) {
-        try { bbox = el.getBBox(); anchorId = selected.id; } catch { /* no bbox, fall through */ }
-      }
-    }
-    if (!anchorId) {
-      // Nothing selected (the common case right after editing in the Text
-      // tab) — anchor on whatever element is closest to the current
-      // viewport center instead, so panning/zooming into one part of a big
-      // diagram survives an edit even without clicking anything first.
-      const wrapRect = wrap.getBoundingClientRect();
-      const cx = wrapRect.width / 2, cy = wrapRect.height / 2;
-      let bestDist = Infinity;
-      for (const el of svgEl.querySelectorAll(".node, .cluster")) {
-        const id = extractOurId(el, rendered.diagramId);
-        if (!id) continue;
-        let b;
-        try { b = el.getBBox(); } catch { continue; }
-        const screenX = v.x + (b.x + b.width / 2) * v.zoom;
-        const screenY = v.y + (b.y + b.height / 2) * v.zoom;
-        const dx = screenX - cx, dy = screenY - cy;
-        const dist = dx * dx + dy * dy;
-        if (dist < bestDist) { bestDist = dist; anchorId = id; bbox = b; }
-      }
-    }
-    if (!anchorId || !bbox) { anchorRef.current = null; return; }
-
-    anchorRef.current = {
-      id: anchorId,
-      screenX: v.x + (bbox.x + bbox.width / 2) * v.zoom,
-      screenY: v.y + (bbox.y + bbox.height / 2) * v.zoom,
-    };
-  }
-
+  // The view (pan + zoom) is the reader's, not ours. There used to be an
+  // "anchor" here that measured the selected element before an edit and nudged
+  // the view afterwards to cancel out mermaid's relayout — but mermaid relays
+  // out the whole diagram on every change, so the correction itself is what
+  // read as the canvas twitching after a paste, a copy or a rename. Nothing
+  // moves the view now except the reader and the two explicit buttons.
   const HISTORY_LIMIT = 50;
 
   function updateState(updater) {
-    captureAnchor();
     setState((prev) => {
       const next = typeof updater === "function" ? updater(prev) : updater;
       // A no-op update (an armed mode resolved against an invalid target, say)
@@ -641,7 +660,6 @@ export default function VisualEditor({
   }
 
   function undo() {
-    captureAnchor();
     setHistory((h) => {
       if (!h.past.length) return h;
       const prev = h.past[h.past.length - 1];
@@ -654,7 +672,6 @@ export default function VisualEditor({
   }
 
   function redo() {
-    captureAnchor();
     setHistory((h) => {
       if (!h.future.length) return h;
       const next = h.future[0];
@@ -666,73 +683,92 @@ export default function VisualEditor({
     });
   }
 
-  useEffect(() => {
-    const anchor = anchorRef.current;
-    anchorRef.current = null;
-    if (!anchor) return;
-    const svgEl = hostRef.current && hostRef.current.querySelector("svg");
-    if (!svgEl) return;
-    const el = findDiagramElement(svgEl, rendered.diagramId, anchor.id);
-    if (!el) return;
-    let bbox;
-    try { bbox = el.getBBox(); } catch { return; }
-    const localCx = bbox.x + bbox.width / 2;
-    const localCy = bbox.y + bbox.height / 2;
-    setView((v) => {
-      const screenX = v.x + localCx * v.zoom;
-      const screenY = v.y + localCy * v.zoom;
-      return { ...v, x: v.x + (anchor.screenX - screenX), y: v.y + (anchor.screenY - screenY) };
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rendered]);
+  // What "100%" means here: label text on screen at READABLE_FONT_PX. Mermaid
+  // draws labels at its own font size (16 by default) at zoom 1, so the zoom
+  // that counts as 100% is READABLE_FONT_PX / that size. Reporting mermaid's
+  // native pixel size as 100% instead told the reader nothing — the number they
+  // care about is how big the text is.
+  const zoom100 = READABLE_FONT_PX / baseFont;
 
-  // Scales the whole diagram down (never up past 1:1) until it sits inside the
-  // viewport. "Re-centre" alone always went back to 100%, which is useless on
-  // the large diagrams this editor is meant for.
+  /** Screen rectangle of what is actually drawn. Deliberately not the SVG's
+   *  viewBox: mermaid pads it well past the content (on the ELK renderer by
+   *  several hundred units), so fitting to it shrank the diagram far more than
+   *  needed and parked it off-centre. getBBox is the union of the real
+   *  geometry, and the screen CTM folds in both the viewBox scale and our own
+   *  pan/zoom transform, so no coordinate system has to be guessed at. */
+  function contentRect(svgEl) {
+    try {
+      const bb = svgEl.getBBox();
+      const ctm = svgEl.getScreenCTM();
+      if (!ctm || !bb.width || !bb.height) return null;
+      const a = new DOMPoint(bb.x, bb.y).matrixTransform(ctm);
+      const b = new DOMPoint(bb.x + bb.width, bb.y + bb.height).matrixTransform(ctm);
+      const width = b.x - a.x;
+      const height = b.y - a.y;
+      if (width <= 0 || height <= 0) return null;
+      return { left: a.x, top: a.y, width, height };
+    } catch {
+      return null;
+    }
+  }
+
+  /** Whole diagram inside the visible area, centred. Never magnifies past
+   *  100%: a two-node diagram would otherwise open at 600% with text the size
+   *  of a headline. Fitting means "nothing is cut off", not "fill every
+   *  pixel". */
   function fitView() {
     const wrap = wrapRef.current;
     const svgEl = hostRef.current && hostRef.current.querySelector("svg");
-    if (!wrap || !svgEl) return;
-    const vb = svgEl.viewBox && svgEl.viewBox.baseVal;
-    if (!vb || !vb.width || !vb.height) return centerView(1);
-    const pad = 32;
-    const zoom = Math.min(
-      MAX_ZOOM,
-      Math.max(MIN_ZOOM, Math.min((wrap.clientWidth - pad) / vb.width, (wrap.clientHeight - pad) / vb.height, 1)),
-    );
-    setView({
-      zoom,
-      x: wrap.clientWidth / 2 - (vb.x + vb.width / 2) * zoom,
-      y: wrap.clientHeight / 2 - (vb.y + vb.height / 2) * zoom,
-    });
+    if (!wrap || !svgEl) return false;
+    const content = contentRect(svgEl);
+    const wr = wrap.getBoundingClientRect();
+    if (!content || !wr.width || !wr.height) return false;
+
+    const pad = 48;
+    const v = viewRef.current;
+    // Everything is measured at the CURRENT zoom, so the fit is a relative
+    // correction to it rather than an absolute scale we have to derive.
+    const k = Math.min((wr.width - pad) / content.width, (wr.height - pad) / content.height);
+    const zoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, Math.min(v.zoom * k, zoom100)));
+
+    // Centre of the content expressed in the untransformed host coordinates,
+    // so it can be re-placed at the middle of the viewport at the new zoom.
+    const localCx = (content.left + content.width / 2 - wr.left - v.x) / v.zoom;
+    const localCy = (content.top + content.height / 2 - wr.top - v.y) / v.zoom;
+    setView({ zoom, x: wr.width / 2 - localCx * zoom, y: wr.height / 2 - localCy * zoom });
+    return true;
   }
 
-  function centerView(zoom) {
-    const wrap = wrapRef.current;
+  // Measure the label font of whatever mermaid just drew, so "100%" means the
+  // same thing whichever theme is active.
+  useEffect(() => {
     const svgEl = hostRef.current && hostRef.current.querySelector("svg");
-    if (!wrap) return;
-    const w = wrap.clientWidth, h = wrap.clientHeight;
-    let cx = 0, cy = 0;
-    if (svgEl && svgEl.viewBox && svgEl.viewBox.baseVal && svgEl.viewBox.baseVal.width) {
-      const vb = svgEl.viewBox.baseVal;
-      cx = vb.x + vb.width / 2;
-      cy = vb.y + vb.height / 2;
-    }
-    const z = zoom || 1;
-    setView({ zoom: z, x: w / 2 - cx * z, y: h / 2 - cy * z });
-  }
+    if (!svgEl) return;
+    const label = svgEl.querySelector(".nodeLabel, .cluster-label, text");
+    const size = label ? parseFloat(getComputedStyle(label).fontSize) : NaN;
+    if (Number.isFinite(size) && size > 0) setBaseFont(size);
+  }, [rendered.html]);
 
   useEffect(() => {
-    // Auto-center only once, right after the first diagram render — not on
-    // every subsequent edit, or the view would snap back to zoom=1 on every
-    // reparent/rename/color change instead of preserving what the user set.
+    // Fit once, on the first diagram — the reader should open the editor
+    // looking at the whole thing. Only once: re-fitting on every edit would
+    // yank the view out from under them.
+    //
+    // The flag is set from inside the callback rather than before it. The first
+    // diagram renders twice in a row at start-up (the shell picks mermaid's
+    // light or dark theme right after mount), and marking the fit as done up
+    // front meant the cancelled first attempt was the only one there ever was.
     if (hasCenteredRef.current || !rendered.html) return;
-    hasCenteredRef.current = true;
-    const raf = requestAnimationFrame(() => centerView(1));
+    const raf = requestAnimationFrame(() => {
+      if (fitView()) hasCenteredRef.current = true;
+    });
     return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rendered.html]);
 
+  // Trackpad and wheel: two fingers pan, pinch (which the browser reports as a
+  // ctrl-wheel) zooms about the pointer. Registered natively because it has to
+  // be non-passive to preventDefault the page scroll.
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
@@ -960,6 +996,12 @@ export default function VisualEditor({
   }
 
   function onCanvasPointerDown(e) {
+    // Whatever this press turns out to be — a pan, a selection, a click
+    // somewhere else — the offer to add something here is stale the moment it
+    // starts. A clean click on bare canvas puts it back on release, unless it
+    // was already open: then this click is the one that dismisses it.
+    const hadAdd = addAtRef.current != null;
+    setAddAt(null);
     const mode = interactionModeRef.current;
     const target = pendingTargetRef.current;
     pendingTargetRef.current = null;
@@ -978,6 +1020,7 @@ export default function VisualEditor({
       startViewY: v.y,
       moved: false,
       target,
+      hadAdd,
       pointerId: e.pointerId,
       captured: false,
     };
@@ -1016,7 +1059,24 @@ export default function VisualEditor({
       if (panRef.current) {
         const p = panRef.current;
         if (!p.moved) {
-          setSelected(p.target ? { type: p.target.kind, id: p.target.id } : null);
+          if (p.target) {
+            setSelected({ type: p.target.kind, id: p.target.id });
+            setAddAt(null);
+          } else if (selectedRef.current) {
+            // The first click on bare canvas is how you let go of the current
+            // selection. Offering "add something here" in the same gesture
+            // would put a menu under the pointer every time someone deselects.
+            setSelected(null);
+            setAddAt(null);
+          } else if (p.hadAdd) {
+            // It was already open: this click closes it (done above) and
+            // nothing else. Clicking elsewhere should be a way out of the
+            // menu, not a way to drag it around the canvas.
+          } else {
+            const stage = stageRef.current;
+            const r = stage ? stage.getBoundingClientRect() : null;
+            setAddAt(r ? { x: p.startX - r.left, y: p.startY - r.top } : null);
+          }
         }
         if (p.captured && wrapRef.current?.releasePointerCapture) {
           try { wrapRef.current.releasePointerCapture(p.pointerId); } catch { /* already gone */ }
@@ -1079,6 +1139,11 @@ export default function VisualEditor({
       if (e.target.isContentEditable || tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
       const meta = e.metaKey || e.ctrlKey;
 
+      if (e.key === "Escape" && addAt) {
+        setAddAt(null);
+        return;
+      }
+
       if (e.key === "Escape" && ask) {
         setAsk(null);
         return;
@@ -1121,7 +1186,7 @@ export default function VisualEditor({
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [selected, state, interactionMode, colorModalOpen, shapeModalOpen, clipboard, ask, history]);
+  }, [selected, state, interactionMode, colorModalOpen, shapeModalOpen, clipboard, ask, history, addAt]);
 
   function addBlock() {
     updateState((s) => ({
@@ -1139,11 +1204,12 @@ export default function VisualEditor({
     }));
   }
 
-  // A selected area gets the new block dropped straight into it; otherwise
-  // it's added ungrouped, same as before.
-  function addBlockContextual() {
-    if (selected && selected.type === "group") addBlockToGroup(selected.id);
-    else addBlock();
+  function addGroupToGroup(parentId) {
+    updateState((s) => ({
+      ...s,
+      groups: [...s.groups, { id: "g" + s.nextGroup, label: t.defaults.group, color: null, parentId }],
+      nextGroup: s.nextGroup + 1,
+    }));
   }
 
   // A block copies just itself. An area copies its whole subtree — nested
@@ -1249,26 +1315,6 @@ export default function VisualEditor({
     }));
   }
 
-  function clearAll() {
-    setAsk({
-      kind: "confirm",
-      title: t.prompts.clearAll,
-      onDone: (ok) => {
-        if (!ok) return;
-        updateState((st) => ({
-          ...st,
-          blocks: [],
-          edges: [],
-          groups: [],
-          nextBlock: 1,
-          nextEdge: 1,
-          nextGroup: 1,
-        }));
-        setSelected(null);
-      },
-    });
-  }
-
   function addGroup() {
     updateState((s) => ({
       ...s,
@@ -1321,29 +1367,16 @@ export default function VisualEditor({
             disabled={!history.future.length}
           >↪️</button>
           <span className="header-sep" />
-          <button title={t.toolbar.addBlock} aria-label={t.toolbar.addBlock} onClick={addBlockContextual}>➕</button>
-          <button title={t.toolbar.addGroup} aria-label={t.toolbar.addGroup} onClick={addGroup}>📦</button>
           <button
             title={t.toolbar.copy} aria-label={t.toolbar.copy}
             onClick={copySelected}
             disabled={!selected || selected.type === "edge"}
           >📋</button>
           <button title={t.toolbar.paste} aria-label={t.toolbar.paste} onClick={startPaste} disabled={!clipboard}>📥</button>
-          <button title={t.toolbar.clearAll} aria-label={t.toolbar.clearAll} className="danger" onClick={clearAll}>🧹</button>
           <span className="header-sep" />
-          {/* Rename, connect, move and delete are not here any more: they act on
-              one element, so they live in the toolbar that hangs over it.
-              Colour and shape stay — they are pickers, not one-shot actions. */}
-          <button
-            title={t.toolbar.color} aria-label={t.toolbar.color}
-            onClick={() => setColorModalOpen(true)}
-            disabled={!selectedBlock && !selectedGroup}
-          >🎨</button>
-          <button
-            title={t.toolbar.shape} aria-label={t.toolbar.shape}
-            onClick={() => selectedBlock && setShapeModalOpen(true)}
-            disabled={!selectedBlock}
-          >🔷</button>
+          {/* Nothing that acts on the current selection lives here any more —
+              rename, connect, move, colour, shape and delete are all in the
+              toolbar that hangs over the element itself. */}
         </>,
         actionsSlot
       )}
@@ -1434,11 +1467,9 @@ export default function VisualEditor({
       )}
       {active && zoomSlot && createPortal(
         <>
-          <button onClick={() => zoomBy(0.8)} title={t.zoom.out} aria-label={t.zoom.out}>−</button>
-          <span className="zoom-value">{Math.round(view.zoom * 100)}%</span>
-          <button onClick={() => zoomBy(1.25)} title={t.zoom.in} aria-label={t.zoom.in}>+</button>
-          <button onClick={() => centerView(1)}>{t.zoom.center}</button>
-          <button onClick={fitView}>{t.zoom.fit}</button>
+          <button onClick={() => zoomBy(0.8)} title={t.zoom.out} aria-label={t.zoom.out}>➖</button>
+          <button onClick={() => zoomBy(1.25)} title={t.zoom.in} aria-label={t.zoom.in}>➕</button>
+          <button onClick={fitView} title={t.zoom.fit} aria-label={t.zoom.fit}>🖥️</button>
         </>,
         zoomSlot
       )}
@@ -1479,6 +1510,20 @@ export default function VisualEditor({
                 onClick={() => setInteractionMode({ type: "connect", id: selected.id })}
               >➡️</button>
             )}
+            {selected.type === "group" && (
+              <button
+                title={t.toolbar.addBlock}
+                aria-label={t.toolbar.addBlock}
+                onClick={() => addBlockToGroup(selected.id)}
+              >➕</button>
+            )}
+            {selected.type === "group" && (
+              <button
+                title={t.toolbar.addGroup}
+                aria-label={t.toolbar.addGroup}
+                onClick={() => addGroupToGroup(selected.id)}
+              >📦</button>
+            )}
             {selected.type === "edge" && (
               <button
                 title={t.toolbar.reverse}
@@ -1493,12 +1538,44 @@ export default function VisualEditor({
                 onClick={() => setInteractionMode({ type: "move", id: selected.id, kind: selected.type })}
               >✋</button>
             )}
+            {selected.type !== "edge" && (
+              <button
+                title={t.toolbar.color}
+                aria-label={t.toolbar.color}
+                onClick={() => setColorModalOpen(true)}
+              >🎨</button>
+            )}
+            {selected.type === "block" && (
+              <button
+                title={t.toolbar.shape}
+                aria-label={t.toolbar.shape}
+                onClick={() => setShapeModalOpen(true)}
+              >🔷</button>
+            )}
             <button
               className="danger"
               title={t.toolbar.delete}
               aria-label={t.toolbar.delete}
               onClick={deleteSelected}
             >🗑️</button>
+          </div>
+        )}
+        {addAt && !selected && !interactionMode && !ask && (
+          <div
+            className="element-toolbar"
+            style={{ left: addAt.x, top: addAt.y }}
+            onPointerDown={(e) => e.stopPropagation()}
+          >
+            <button
+              title={t.toolbar.addBlock}
+              aria-label={t.toolbar.addBlock}
+              onClick={() => { addBlock(); setAddAt(null); }}
+            >➕</button>
+            <button
+              title={t.toolbar.addGroup}
+              aria-label={t.toolbar.addGroup}
+              onClick={() => { addGroup(); setAddAt(null); }}
+            >📦</button>
           </div>
         )}
         {codeOnly && <div className="canvas-notice canvas-notice-warn">{t.notices.codeOnly}</div>}

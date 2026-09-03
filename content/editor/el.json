@@ -1,9 +1,6 @@
 {
   "backToSite": "Επιστροφή στην αρχική σελίδα",
-  "tabs": {
-    "visual": "Οπτικό",
-    "text": "Κώδικας"
-  },
+  "code": "Κώδικας",
   "toolbar": {
     "undo": "Αναίρεση",
     "redo": "Επανάληψη",
@@ -14,7 +11,6 @@
     "copy": "Αντιγραφή (ένα block, ή ολόκληρη περιοχή με όλο το περιεχόμενό της)",
     "paste": "Επικόλληση — μετά κάντε κλικ εκεί που θα πάει",
     "delete": "Διαγραφή της επιλογής",
-    "clearAll": "Καθαρισμός όλων",
     "connect": "Σχεδιάστε βέλος προς άλλο block",
     "move": "Μετακίνηση μέσα σε περιοχή, ή έξω από αυτή",
     "color": "Χρώμα",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Μεγέθυνση",
     "out": "Σμίκρυνση",
-    "center": "Επαναφορά κέντρου",
     "fit": "Προσαρμογή"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Ετικέτα βέλους:",
     "rename": "Όνομα:",
-    "clearAll": "Διαγραφή όλων;",
     "deleteSelected": "Διαγραφή αυτού του στοιχείου;"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Ενέργεια"
   },
   "text": {
-    "examplePlaceholder": "Παράδειγμα…",
     "copyMermaid": "Αντιγραφή mermaid",
     "downloadMmd": "Λήψη .mmd",
     "downloadMd": "Λήψη .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Το mermaid αντιγράφηκε",
     "statusSaved": "Αποθηκεύτηκε",
     "statusExportFailed": "Η εξαγωγή απέτυχε"
-  },
-  "examples": {
-    "flowchart": "Flowchart",
-    "sequence": "Sequence diagram",
-    "class": "Class diagram",
-    "state": "State diagram",
-    "er": "ER diagram",
-    "gantt": "Gantt chart"
-  },
-  "sample": {
-    "start": "Έναρξη",
-    "condition": "Έτοιμο;",
-    "yes": "Ναι",
-    "no": "Όχι",
-    "action1": "Αποστολή",
-    "action2": "Διόρθωση",
-    "end": "Ολοκληρώθηκε",
-    "project": "Έργο",
-    "phase": "Φάση 1",
-    "task1": "Εργασία 1",
-    "task2": "Εργασία 2"
   }
 }

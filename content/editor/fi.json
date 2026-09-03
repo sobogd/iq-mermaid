@@ -1,9 +1,6 @@
 {
   "backToSite": "Takaisin etusivulle",
-  "tabs": {
-    "visual": "Visuaalinen",
-    "text": "Koodi"
-  },
+  "code": "Koodi",
   "toolbar": {
     "undo": "Kumoa",
     "redo": "Tee uudelleen",
@@ -14,7 +11,6 @@
     "copy": "Kopioi (lohko tai kokonainen alue kaikkineen)",
     "paste": "Liitä — klikkaa sitten mihin se menee",
     "delete": "Poista valinta",
-    "clearAll": "Tyhjennä kaikki",
     "connect": "Piirrä nuoli toiseen lohkoon",
     "move": "Siirrä alueeseen tai pois siitä",
     "color": "Väri",
@@ -23,7 +19,6 @@
   "zoom": {
     "in": "Lähennä",
     "out": "Loitonna",
-    "center": "Keskitä uudelleen",
     "fit": "Sovita"
   },
   "modals": {
@@ -60,7 +55,6 @@
   "prompts": {
     "edgeLabel": "Nuolen selite:",
     "rename": "Nimi:",
-    "clearAll": "Poistetaanko kaikki?",
     "deleteSelected": "Poistetaanko tämä elementti?"
   },
   "defaults": {
@@ -70,7 +64,6 @@
     "action": "Toiminto"
   },
   "text": {
-    "examplePlaceholder": "Esimerkki…",
     "copyMermaid": "Kopioi mermaid",
     "downloadMmd": "Lataa .mmd",
     "downloadMd": "Lataa .md (Notion)",
@@ -81,26 +74,5 @@
     "statusMermaidCopied": "Mermaid kopioitu",
     "statusSaved": "Tallennettu",
     "statusExportFailed": "Vienti epäonnistui"
-  },
-  "examples": {
-    "flowchart": "Vuokaavio",
-    "sequence": "Sekvenssikaavio",
-    "class": "Luokkakaavio",
-    "state": "Tilakaavio",
-    "er": "ER-kaavio",
-    "gantt": "Gantt-kaavio"
-  },
-  "sample": {
-    "start": "Alku",
-    "condition": "Valmis?",
-    "yes": "Kyllä",
-    "no": "Ei",
-    "action1": "Julkaise",
-    "action2": "Korjaa",
-    "end": "Valmis",
-    "project": "Projekti",
-    "phase": "Vaihe 1",
-    "task1": "Tehtävä 1",
-    "task2": "Tehtävä 2"
   }
 }
