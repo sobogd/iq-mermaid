@@ -33,7 +33,7 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
     paragraphs: [
       `Last updated: ${LEGAL_LAST_UPDATED}`,
       `This Privacy Policy explains how ${OPERATOR.brand} — a service operated by ${OPERATOR.legalName}, ${OPERATOR.status}, with fiscal address at ${OPERATOR.fiscalAddress} (Tax ID: ${OPERATOR.taxId}) ("${OPERATOR.brand}", "we", "us") — handles personal data when you use the diagram editor at ${OPERATOR.domain}.`,
-      `The short version: there is no account, no sign-in and no payment, the diagrams you create never leave your browser, and we run no analytics and no advertising trackers. The only personal data that reaches us is what any web server unavoidably receives in order to send you a page.`,
+      `The short version: there is no account, no sign-in and no payment, the diagrams you create never leave your browser, and we run no third-party analytics and no advertising trackers — the only usage measurement is our own, cookieless one, described below.`,
       `We comply with the General Data Protection Regulation (GDPR), the Spanish Organic Law on Data Protection and Guarantee of Digital Rights (LOPDGDD), and the ePrivacy Directive.`,
     ],
   },
@@ -49,6 +49,7 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
     heading: "2. What we process",
     paragraphs: [
       `Server logs. Like any web server, ours records the request it answers: your IP address, the time, the page requested, the HTTP status, your browser's user-agent string and the referring page. These entries are what makes it possible to diagnose an outage and to detect abusive traffic.`,
+      `Usage measurement — our own, cookieless. For each visit we store which pages were opened and which actions were taken (an event is a page, an action and a short English label such as "Home / Click / Header open editor"), the interface language, the device type and operating system, the browser's language header, the approximate location (country, region, city) derived from the IP address, and where the visit came from (a "?from=" campaign tag or the search engine that referred it). This is handled by a separate analytics service we also operate in the European Union, which your browser talks to directly rather than through this site's own server. The visit itself is identified by a salted hash of your IP address, browser user agent and language header, computed by that service. The raw IP address and the raw user agent are never stored, and the salt is replaced every day and the old one destroyed — which makes visits from different days impossible to link back together. Since the editor has no account system, nothing about a visit is ever linked to a name or an email.`,
       `Correspondence. If you write to us, we hold your message and your email address for as long as it takes to answer you and to keep a record of the exchange.`,
       `That is the complete list. We do not ask for your name, your email address or any other identifier in order to use the editor.`,
     ],
@@ -66,13 +67,14 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
     paragraphs: [
       `The editor saves your current diagram in your browser's local storage so that it is still there when you come back. This is technical storage strictly necessary to provide the feature you asked for, it stays on your device, and it is never sent to us — which is why no cookie banner is shown.`,
       `You can erase it at any time by clearing your browser's site data for ${OPERATOR.domain}, or by using the editor's own "Clear everything" button. Doing so deletes the diagram permanently; we hold no backup.`,
-      `We set no advertising cookies and no analytics cookies.`,
+      `We set no advertising cookies and no analytics cookies. The usage measurement described in section 2 deliberately sets none either: it stores nothing on your device at all, not a cookie, not a local-storage entry, not a device identifier — a visit is recognised entirely from the request itself, on our server.`,
     ],
   },
   {
     heading: "5. Legal bases",
     paragraphs: [
       `Server logs are processed on the basis of our legitimate interest (Article 6(1)(f) GDPR) in keeping the service available and secure. The interest is narrow, the data is kept briefly, and it is not used to build a profile of anyone.`,
+      `Usage measurement is processed on the same legitimate-interest basis: it tells us which parts of the editor people actually use, without building a cross-visit or cross-site profile of anyone. You can object at any time by emailing ${OPERATOR.contactEmail}, and we will delete the visits concerned.`,
       `Correspondence is processed on the basis of our legitimate interest in answering the messages sent to us.`,
       `Local storage on your device is strictly necessary for the functioning of a service you have explicitly requested, and therefore does not require consent under the ePrivacy Directive.`,
     ],
@@ -80,7 +82,7 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
   {
     heading: "6. Who processes data on our behalf",
     paragraphs: [
-      `${OPERATOR.hostingProvider} — hosting for the server that serves this website, inside the European Union. Server logs are generated and stored there.`,
+      `${OPERATOR.hostingProvider} — hosting for the server that serves this website, and for the separate analytics service described in section 2, both inside the European Union.`,
       `Cloudflare — DNS for the domain.`,
       `We do not sell, rent or trade personal data, and we share none of it for advertising purposes.`,
     ],
@@ -89,6 +91,7 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
     heading: "7. How long we keep it",
     paragraphs: [
       `Server logs are rotated and deleted within 30 days, except for individual entries retained longer where they document an ongoing security incident.`,
+      `Usage measurement (visits and events) is kept for 12 months, then deleted. The daily salt that produced a visit's hash is destroyed after a day, so older visits cannot be traced back to a device even by us.`,
       `Correspondence is kept for as long as needed to handle your request and, where relevant, to comply with a legal obligation.`,
       `Diagrams have no retention period because we never receive them.`,
     ],
@@ -103,7 +106,7 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
     heading: "9. Your rights",
     paragraphs: [
       `Under the GDPR you have the right to access your personal data, to have it corrected or erased, to restrict or object to its processing, and to receive it in a portable form. To exercise any of these rights, write to ${OPERATOR.contactEmail}.`,
-      `In practice, an access request here can only concern server logs or correspondence, since nothing else about you exists on our side. Because logs are keyed by IP address and not by identity, we may need additional information from you to locate the entries that relate to you — and we will not collect extra data purely in order to identify you.`,
+      `In practice, an access request here can only concern server logs, usage measurement or correspondence, since nothing else about you exists on our side. Because logs and usage measurement are keyed by IP address and a rotating hash, not by identity, we may need additional information from you to locate the entries that relate to you — and we will not collect extra data purely in order to identify you.`,
       `You also have the right to lodge a complaint with the Spanish Data Protection Agency (Agencia Española de Protección de Datos, www.aepd.es) or with the supervisory authority of your country of residence.`,
     ],
   },

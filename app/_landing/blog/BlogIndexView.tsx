@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Header } from "../Header";
 import { Footer, productLinksFor } from "../Footer";
 import { Container, Band, PAGE } from "../shell";
+import { PageTracker } from "../PageTracker";
 import { localeHome, localePath } from "@/lib/locale-paths";
 import type { Locale } from "@/lib/locales";
 import type { SiteTexts } from "../types";
@@ -60,6 +61,7 @@ export function BlogIndexView({
         texts={texts.footer}
         productLinks={productLinksFor(locale, { editor: texts.header.openEditor, blog: texts.header.blog })}
       />
+      <PageTracker page="Blog" />
     </main>
   );
 }

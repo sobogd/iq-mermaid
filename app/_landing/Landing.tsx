@@ -1,5 +1,6 @@
 import { Header } from "./Header";
 import { Footer, productLinksFor } from "./Footer";
+import { PageTracker } from "./PageTracker";
 import { Hero } from "./Hero";
 import { StatCards } from "./StatCards";
 import { Spotlights } from "./Spotlights";
@@ -66,6 +67,7 @@ export function Landing({ locale, texts }: { locale: Locale; texts: SiteTexts })
         texts={texts.footer}
         productLinks={productLinksFor(locale, { editor: texts.header.openEditor, blog: texts.header.blog })}
       />
+      <PageTracker page="Home" />
     </main>
   );
 }

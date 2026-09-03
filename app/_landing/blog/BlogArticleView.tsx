@@ -3,6 +3,7 @@ import { Header } from "../Header";
 import { Footer, productLinksFor } from "../Footer";
 import { FinalCta } from "../FinalCta";
 import { Breadcrumbs } from "../Breadcrumbs";
+import { PageTracker } from "../PageTracker";
 import { Container, Band, PAGE, PRIMARY_BTN } from "../shell";
 import { localeHome, localePath } from "@/lib/locale-paths";
 import type { Locale } from "@/lib/locales";
@@ -217,6 +218,7 @@ export function BlogArticleView({
         texts={texts.footer}
         productLinks={productLinksFor(locale, { editor: texts.header.openEditor, blog: texts.header.blog })}
       />
+      <PageTracker page="Blog article" />
     </main>
   );
 }

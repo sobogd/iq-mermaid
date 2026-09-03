@@ -6,6 +6,8 @@ import AskModal from "./AskModal.jsx";
 import { LogoIcon } from "../_landing/LogoIcon";
 import { configureMermaid } from "./mermaid-client";
 import * as exporters from "./export";
+import { PageTracker } from "../_landing/PageTracker";
+import { analytics } from "@/lib/analytics";
 import {
   deleteDocument,
   loadCurrentDocumentId,
@@ -125,11 +127,13 @@ export default function EditorShell({ t, homeHref }) {
     statusTimerRef.current = setTimeout(() => setStatus(""), 2500);
   }
 
-  async function runExport(fn, okMessage) {
+  async function runExport(fn, okMessage, key) {
     try {
       await fn(code);
+      analytics.track("Export", key);
       flash(okMessage);
     } catch {
+      analytics.track("Show", `Export failed: ${key}`);
       flash(t.text.statusExportFailed);
     }
   }
@@ -173,6 +177,7 @@ export default function EditorShell({ t, homeHref }) {
   }
 
   function openDocument(doc) {
+    analytics.track("Click", "Open document");
     switchTo(doc.id, doc.code);
     setOpenOpen(false);
   }
@@ -195,6 +200,7 @@ export default function EditorShell({ t, homeHref }) {
       title: t.documents.deleteConfirm,
       onDone: (ok) => {
         if (!ok) return;
+        analytics.track("Click", "Delete document");
         const wasCurrent = doc.id === currentDocIdRef.current;
         const next = deleteDocument(doc.id);
         setDocs(next);
@@ -211,16 +217,17 @@ export default function EditorShell({ t, homeHref }) {
   const codeOnly = !isFlowchart(code);
 
   const exportActions = [
-    { icon: "📋", label: t.text.copyMermaid, run: () => runExport(exporters.copyMermaid, t.text.statusMermaidCopied) },
-    { icon: "💾", label: t.text.downloadMmd, run: () => runExport(exporters.downloadMermaid, t.text.statusSaved) },
-    { icon: "📝", label: t.text.downloadMd, run: () => runExport(exporters.downloadMarkdown, t.text.statusSaved) },
-    { icon: "📋", label: t.text.copySvg, run: () => runExport(exporters.copySvg, t.text.statusSvgCopied) },
-    { icon: "💾", label: t.text.downloadSvg, run: () => runExport(exporters.downloadSvg, t.text.statusSaved) },
-    { icon: "🖼️", label: t.text.downloadPng, run: () => runExport(exporters.downloadPng, t.text.statusSaved) },
+    { icon: "📋", label: t.text.copyMermaid, run: () => runExport(exporters.copyMermaid, t.text.statusMermaidCopied, "Copy mermaid") },
+    { icon: "💾", label: t.text.downloadMmd, run: () => runExport(exporters.downloadMermaid, t.text.statusSaved, "Download mmd") },
+    { icon: "📝", label: t.text.downloadMd, run: () => runExport(exporters.downloadMarkdown, t.text.statusSaved, "Download md") },
+    { icon: "📋", label: t.text.copySvg, run: () => runExport(exporters.copySvg, t.text.statusSvgCopied, "Copy svg") },
+    { icon: "💾", label: t.text.downloadSvg, run: () => runExport(exporters.downloadSvg, t.text.statusSaved, "Download svg") },
+    { icon: "🖼️", label: t.text.downloadPng, run: () => runExport(exporters.downloadPng, t.text.statusSaved, "Download png") },
   ];
 
   return (
     <div className="iqm-root app">
+      <PageTracker page="App" />
       <header className="app-header">
         <Link href={homeHref} className="brand" title={t.backToSite}>
           <LogoIcon className="brand-badge" />
@@ -231,7 +238,10 @@ export default function EditorShell({ t, homeHref }) {
         <span className="header-sep" />
         <button
           className="header-icon-btn"
-          onClick={() => setOpenOpen(true)}
+          onClick={() => {
+            analytics.track("Click", "Open documents");
+            setOpenOpen(true);
+          }}
           title={t.header.open}
           aria-label={t.header.open}
         >
@@ -239,7 +249,10 @@ export default function EditorShell({ t, homeHref }) {
         </button>
         <button
           className="header-icon-btn"
-          onClick={() => startNewDocument()}
+          onClick={() => {
+            analytics.track("Click", "New document");
+            startNewDocument();
+          }}
           title={t.header.newDocument}
           aria-label={t.header.newDocument}
         >
@@ -248,7 +261,10 @@ export default function EditorShell({ t, homeHref }) {
         <span className="header-sep" />
         <button
           className="header-icon-btn"
-          onClick={() => setDownloadOpen(true)}
+          onClick={() => {
+            analytics.track("Click", "Download menu");
+            setDownloadOpen(true);
+          }}
           title={t.header.download}
           aria-label={t.header.download}
         >
@@ -257,7 +273,10 @@ export default function EditorShell({ t, homeHref }) {
         <span className="header-sep" />
         <button
           className="header-icon-btn"
-          onClick={() => setCodeOpen(true)}
+          onClick={() => {
+            analytics.track("Click", "Code view");
+            setCodeOpen(true);
+          }}
           title={t.header.code}
           aria-label={t.header.code}
         >

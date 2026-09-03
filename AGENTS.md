@@ -1,9 +1,12 @@
 # IQ Mermaid — notes for agents
 
 Free mermaid diagram editor on **iq-mermaid.com**. Next.js 16, fully static,
-no database, no API routes, no auth, no analytics, no payments. Read
-`README.md` first for the layout; this file only covers the things that are
-easy to get wrong.
+no database, no API routes, no auth, no payments. Usage is tracked by a
+cookieless, first-party pipeline (`lib/analytics.ts` posts straight to
+iq-metrix under the e.iq-mermaid.com alias — same pattern as translator, see
+its `docs/analytics.md`); nothing is stored on the visitor's device, so the
+site still needs no cookie banner. Read `README.md` first for the layout;
+this file only covers the things that are easy to get wrong.
 
 ## Rules
 
@@ -57,4 +60,4 @@ easy to get wrong.
 - **Do not capture the pointer on `pointerdown`.** Capturing retargets the
   events the browser builds `click`/`dblclick` from, which kills
   double-click-to-rename. Capture only once a drag has actually started.
-- Deploy is the `release` branch, not `main`.
+- Deploy fires on push to `main` (see `.github/workflows/deploy.yml`).

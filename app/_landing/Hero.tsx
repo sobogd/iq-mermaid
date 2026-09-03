@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CARD, OUTLINE_BTN, PRIMARY_BTN } from "./shell";
 import { DiagramPreview } from "./DiagramPreview";
+import { TrackedNavLink } from "./TrackedLink";
 
 export type HeroTexts = {
   badgeFree: string;
@@ -47,12 +48,12 @@ export function Hero({ texts, appHref }: { texts: HeroTexts; appHref: string }) 
         </h1>
         <p className="text-sm leading-relaxed text-hint/80 sm:text-base">{texts.description}</p>
         <div className="mt-1 flex flex-wrap items-center gap-3">
-          <Link href={appHref} className={PRIMARY_BTN}>
+          <TrackedNavLink href={appHref} track="Hero open editor" className={PRIMARY_BTN}>
             {texts.ctaOpen}
-          </Link>
-          <Link href="#features" className={OUTLINE_BTN}>
+          </TrackedNavLink>
+          <TrackedNavLink href="#features" track="Hero learn more" className={OUTLINE_BTN}>
             {texts.ctaLearn}
-          </Link>
+          </TrackedNavLink>
         </div>
       </div>
 

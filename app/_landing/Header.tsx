@@ -9,6 +9,7 @@ import { LogoIcon } from "./LogoIcon";
 import { localePath } from "@/lib/locale-paths";
 import { lockScroll } from "@/lib/scroll-lock";
 import { defaultLocale, type Locale } from "@/lib/locales";
+import { analytics } from "@/lib/analytics";
 
 export type HeaderTexts = {
   logo: string;
@@ -41,10 +42,13 @@ export function Header({
   texts?: HeaderTexts;
 }) {
   const appHref = localePath(locale, "app");
+  // `key` is the locale-stable analytics label; `label` is the translated
+  // text shown to the visitor — names must not vary by language, or one
+  // funnel becomes thirty.
   const links = [
-    { href: `${homeHref}#features`, label: texts.features },
-    { href: localePath(locale, "blog"), label: texts.blog },
-    { href: `${homeHref}#faq`, label: texts.faq },
+    { href: `${homeHref}#features`, label: texts.features, key: "features" },
+    { href: localePath(locale, "blog"), label: texts.blog, key: "blog" },
+    { href: `${homeHref}#faq`, label: texts.faq, key: "faq" },
   ];
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -86,22 +90,36 @@ export function Header({
         <Link
           href={homeHref}
           className="flex shrink-0 items-center gap-1.5 text-lg font-semibold tracking-tight sm:text-xl"
+          onClick={() => analytics.track("Click", "Header logo")}
         >
           <LogoIcon className="h-7 w-7 sm:h-8 sm:w-8" />
           {texts.logo}
         </Link>
         <nav className="mr-auto hidden items-center gap-6 pl-8 text-sm font-semibold sm:flex">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="transition-opacity hover:opacity-70">
+            <Link
+              key={l.href}
+              href={l.href}
+              className="transition-opacity hover:opacity-70"
+              onClick={() => analytics.track("Click", `Header ${l.key}`)}
+            >
               {l.label}
             </Link>
           ))}
         </nav>
-        <Link href={appHref} className={`hidden shrink-0 sm:inline-flex ${PRIMARY_BTN}`}>
+        <Link
+          href={appHref}
+          className={`hidden shrink-0 sm:inline-flex ${PRIMARY_BTN}`}
+          onClick={() => analytics.track("Click", "Header open editor")}
+        >
           {texts.openEditor}
         </Link>
         <div className="flex min-w-0 items-center gap-2 sm:hidden">
-          <Link href={appHref} className={`${PRIMARY_BTN} h-9 px-3`}>
+          <Link
+            href={appHref}
+            className={`${PRIMARY_BTN} h-9 px-3`}
+            onClick={() => analytics.track("Click", "Header open editor")}
+          >
             {texts.openEditor}
           </Link>
           <div className="relative" ref={menuRef}>
@@ -109,7 +127,10 @@ export function Header({
               type="button"
               aria-label={texts.menu}
               aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
+              onClick={() => {
+                analytics.track("Click", `Header menu ${menuOpen ? "close" : "open"}`);
+                setMenuOpen((v) => !v);
+              }}
               className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-transparent text-text transition-all hover:bg-card active:scale-[0.99]"
             >
               {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -135,7 +156,10 @@ export function Header({
                           key={l.href}
                           href={l.href}
                           className="rounded-lg px-3 py-2 text-sm font-semibold transition-opacity hover:opacity-70"
-                          onClick={() => setMenuOpen(false)}
+                          onClick={() => {
+                            analytics.track("Click", `Mobile menu ${l.key}`);
+                            setMenuOpen(false);
+                          }}
                         >
                           {l.label}
                         </Link>
@@ -145,7 +169,10 @@ export function Header({
                       <Link
                         href={appHref}
                         className={`${PRIMARY_BTN} w-full`}
-                        onClick={() => setMenuOpen(false)}
+                        onClick={() => {
+                          analytics.track("Click", "Mobile menu open editor");
+                          setMenuOpen(false);
+                        }}
                       >
                         {texts.openEditor}
                       </Link>

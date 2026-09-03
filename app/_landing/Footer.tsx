@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { NARROW } from "./shell";
 import { defaultLocale, type Locale } from "@/lib/locales";
 import { localePath, swapLocale } from "@/lib/locale-paths";
 import { LOCALE_NAMES } from "@/lib/locale-names";
 import { READY_LOCALES } from "@/content";
+import { TrackedLink } from "./TrackedLink";
 
 export type FooterTexts = {
   tagline: string;
@@ -31,8 +31,9 @@ export function Footer({
   locale?: Locale;
   pathname?: string;
   texts?: FooterTexts;
-  /** Editor + blog, labelled in the page's own language. */
-  productLinks?: { href: string; label: string }[];
+  /** Editor + blog, labelled in the page's own language. `key` is the
+   *  locale-stable analytics label. */
+  productLinks?: { href: string; label: string; key: string }[];
 }) {
   return (
     <footer data-section="footer" className="border-t border-border py-8">
@@ -47,13 +48,14 @@ export function Footer({
                     {l.label}
                   </span>
                 ) : (
-                  <Link
+                  <TrackedLink
                     key={l.href}
                     href={l.href}
+                    track={`Footer ${l.key}`}
                     className="text-sm text-hint transition-colors hover:text-text"
                   >
                     {l.label}
-                  </Link>
+                  </TrackedLink>
                 ),
               )}
             </nav>
@@ -71,13 +73,14 @@ export function Footer({
                   {LOCALE_NAMES[l] ?? l}
                 </span>
               ) : (
-                <Link
+                <TrackedLink
                   key={l}
                   href={swapLocale(pathname, l)}
+                  track={`Footer language ${l}`}
                   className="text-sm text-hint transition-colors hover:text-text"
                 >
                   {LOCALE_NAMES[l] ?? l}
-                </Link>
+                </TrackedLink>
               ),
             )}
           </nav>
@@ -87,12 +90,12 @@ export function Footer({
         <div className="mt-6 flex flex-col items-center justify-between gap-3 text-sm text-hint sm:flex-row">
           <span>{`© ${new Date().getFullYear()} ${texts.brand}`}</span>
           <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-            <Link href="/privacy" className="transition-colors hover:text-text">
+            <TrackedLink href="/privacy" track="Footer privacy" className="transition-colors hover:text-text">
               Privacy
-            </Link>
-            <Link href="/terms" className="transition-colors hover:text-text">
+            </TrackedLink>
+            <TrackedLink href="/terms" track="Footer terms" className="transition-colors hover:text-text">
               Terms
-            </Link>
+            </TrackedLink>
           </nav>
           <span>{texts.tagline}</span>
         </div>
@@ -105,9 +108,9 @@ export function Footer({
 export function productLinksFor(
   locale: Locale,
   labels: { editor: string; blog: string },
-): { href: string; label: string }[] {
+): { href: string; label: string; key: string }[] {
   return [
-    { href: localePath(locale, "app"), label: labels.editor },
-    { href: localePath(locale, "blog"), label: labels.blog },
+    { href: localePath(locale, "app"), label: labels.editor, key: "editor" },
+    { href: localePath(locale, "blog"), label: labels.blog, key: "blog" },
   ];
 }

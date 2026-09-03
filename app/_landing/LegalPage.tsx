@@ -1,6 +1,7 @@
 import { Header } from "./Header";
 import { Footer, productLinksFor } from "./Footer";
 import { Container, Band, PAGE } from "./shell";
+import { PageTracker } from "./PageTracker";
 import type { LegalSection } from "./legal-content";
 import { CHROME } from "@/content";
 
@@ -72,6 +73,7 @@ export function LegalPage({
           blog: chrome.header.blog,
         })}
       />
+      <PageTracker page="Legal" />
     </main>
   );
 }
