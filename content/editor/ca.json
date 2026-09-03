@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Desfés",
     "redo": "Refés",
+    "rename": "Reanomena",
+    "reverse": "Inverteix la fletxa",
     "addBlock": "Afegeix un bloc",
     "addGroup": "Afegeix una àrea",
     "copy": "Copia (un bloc, o una àrea sencera amb tot el que conté)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Etiqueta de la fletxa:",
-    "clearAll": "Vols eliminar-ho tot?"
+    "rename": "Nom:",
+    "clearAll": "Vols eliminar-ho tot?",
+    "deleteSelected": "Vols eliminar aquest element?"
   },
   "defaults": {
     "block": "Bloc",

@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Rückgängig",
     "redo": "Wiederholen",
+    "rename": "Umbenennen",
+    "reverse": "Pfeil umdrehen",
     "addBlock": "Block hinzufügen",
     "addGroup": "Bereich hinzufügen",
     "copy": "Kopieren (ein Block oder ein ganzer Bereich mit allem darin)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Pfeilbeschriftung:",
-    "clearAll": "Alles löschen?"
+    "rename": "Name:",
+    "clearAll": "Alles löschen?",
+    "deleteSelected": "Dieses Element löschen?"
   },
   "defaults": {
     "block": "Block",

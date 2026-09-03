@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Geri al",
     "redo": "Yinele",
+    "rename": "Yeniden adlandır",
+    "reverse": "Oku ters çevir",
     "addBlock": "Blok ekle",
     "addGroup": "Alan ekle",
     "copy": "Kopyala (bir blok veya içindeki her şeyle birlikte tüm bir alan)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Ok etiketi:",
-    "clearAll": "Her şey silinsin mi?"
+    "rename": "Ad:",
+    "clearAll": "Her şey silinsin mi?",
+    "deleteSelected": "Bu öğe silinsin mi?"
   },
   "defaults": {
     "block": "Blok",

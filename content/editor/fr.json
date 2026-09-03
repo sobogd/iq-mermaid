@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Annuler la dernière action",
     "redo": "Rétablir",
+    "rename": "Renommer",
+    "reverse": "Inverser la flèche",
     "addBlock": "Ajouter un bloc",
     "addGroup": "Ajouter une zone",
     "copy": "Copier (un bloc, ou toute une zone avec son contenu)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Libellé de la flèche :",
-    "clearAll": "Tout supprimer ?"
+    "rename": "Nom :",
+    "clearAll": "Tout supprimer ?",
+    "deleteSelected": "Supprimer cet élément ?"
   },
   "defaults": {
     "block": "Bloc",

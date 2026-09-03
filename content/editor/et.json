@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Võta tagasi",
     "redo": "Tee uuesti",
+    "rename": "Nimeta ümber",
+    "reverse": "Pööra nool ümber",
     "addBlock": "Lisa plokk",
     "addGroup": "Lisa ala",
     "copy": "Kopeeri (plokk või terve ala koos kõige sisuga)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Noole silt:",
-    "clearAll": "Kustutada kõik?"
+    "rename": "Nimi:",
+    "clearAll": "Kustutada kõik?",
+    "deleteSelected": "Kas kustutada see element?"
   },
   "defaults": {
     "block": "Plokk",

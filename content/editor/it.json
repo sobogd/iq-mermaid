@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Annulla l'ultima azione",
     "redo": "Ripeti",
+    "rename": "Rinomina",
+    "reverse": "Inverti la freccia",
     "addBlock": "Aggiungi un blocco",
     "addGroup": "Aggiungi un'area",
     "copy": "Copia (un blocco, o un'intera area con tutto il contenuto)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Etichetta della freccia:",
-    "clearAll": "Eliminare tutto?"
+    "rename": "Nome:",
+    "clearAll": "Eliminare tutto?",
+    "deleteSelected": "Eliminare questo elemento?"
   },
   "defaults": {
     "block": "Blocco",

@@ -411,15 +411,31 @@
   cursor: pointer;
 }
 
-.iqm-root .rename-overlay {
-  z-index: 50;
-  font-family: "trebuchet ms", verdana, arial, sans-serif;
+/* Actions for the current selection, floating over the element they act on
+   rather than sitting in the header where they are nowhere near it. */
+.iqm-root .element-toolbar {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--accent);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  /* Centred on the element and lifted clear of it. */
+  transform: translate(-50%, calc(-100% - 10px));
+  white-space: nowrap;
+}
+.iqm-root .element-toolbar.below {
+  transform: translate(-50%, 10px);
+}
+.iqm-root .element-toolbar button {
   font-size: 16px;
-  padding: 2px 4px;
-  border: 2px solid hsl(23 100% 42%);
-  border-radius: 3px;
-  background: #fff;
-  color: #131300;
+  line-height: 1;
+  padding: 5px 8px;
+  border-radius: 7px;
 }
 
 .editor-loading {

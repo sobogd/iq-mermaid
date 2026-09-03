@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "撤销",
     "redo": "重做",
+    "rename": "重命名",
+    "reverse": "反转箭头方向",
     "addBlock": "添加节点",
     "addGroup": "添加区域",
     "copy": "复制（单个节点，或包含全部内容的整个区域）",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "箭头标签：",
-    "clearAll": "确定删除全部内容吗？"
+    "rename": "名称：",
+    "clearAll": "确定删除全部内容吗？",
+    "deleteSelected": "删除此元素？"
   },
   "defaults": {
     "block": "节点",

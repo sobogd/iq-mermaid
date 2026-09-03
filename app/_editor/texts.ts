@@ -11,6 +11,8 @@ export interface EditorTexts {
   toolbar: {
     undo: string;
     redo: string;
+    rename: string;
+    reverse: string;
     addBlock: string;
     addGroup: string;
     copy: string;
@@ -46,7 +48,7 @@ export interface EditorTexts {
   /** Banner shown while a connect / move / paste mode is armed. */
   hints: { connect: string; move: string; paste: string };
   /** Native prompt() and confirm() copy. */
-  prompts: { edgeLabel: string; clearAll: string };
+  prompts: { edgeLabel: string; rename: string; clearAll: string; deleteSelected: string };
   /** Labels new items and the starter diagram are created with. */
   defaults: { block: string; group: string; start: string; action: string };
   text: {

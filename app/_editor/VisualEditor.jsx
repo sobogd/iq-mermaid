@@ -465,7 +465,8 @@ export default function VisualEditor({
   const [view, setView] = useState({ x: 0, y: 0, zoom: 1 }); // pan (screen px) + zoom
   const [isPanning, setIsPanning] = useState(false);
   const [rendered, setRendered] = useState({ html: "", diagramId: "" });
-  const [renameOverlay, setRenameOverlay] = useState(null); // { kind, id, rect, value }
+  // Screen position of the floating toolbar that hangs over the selection.
+  const [toolbar, setToolbar] = useState(null); // { x, y, below }
   const wrapRef = useRef(null); // outer viewport, fixed size, clips content
   const hostRef = useRef(null); // holds the injected mermaid SVG, transformed by pan/zoom
   const viewRef = useRef(view);
@@ -478,7 +479,7 @@ export default function VisualEditor({
   const importAppliedRef = useRef(false);
   const renderSeqRef = useRef(0);
   const hasCenteredRef = useRef(false);
-  const cancelRenameRef = useRef(false);
+  const stageRef = useRef(null);
   const [interactionMode, setInteractionMode] = useState(null); // { type: 'connect'|'move', id, kind }
   const [colorModalOpen, setColorModalOpen] = useState(false);
   const [shapeModalOpen, setShapeModalOpen] = useState(false);
@@ -853,29 +854,10 @@ export default function VisualEditor({
       if (!target) return;
       e.stopPropagation();
       if (target.kind === "edge") {
-        const edge = stateRef.current.edges.find((ed) => ed.id === target.id);
-        if (!edge) return;
-        setAsk({
-          kind: "text",
-          title: t.prompts.edgeLabel,
-          value: edge.label || "",
-          onDone: (value) => {
-            if (value == null) return;
-            updateState((st) => ({
-              ...st,
-              edges: st.edges.map((ed) => (ed.id === edge.id ? { ...ed, label: value.trim() } : ed)),
-            }));
-          },
-        });
+        askRename("edge", target.id);
         return;
       }
-      const labelEl = target.el.querySelector(".nodeLabel, .cluster-label") || target.el;
-      const rect = labelEl.getBoundingClientRect();
-      const current = target.kind === "block"
-        ? (getById(target.id) || {}).label
-        : (stateRef.current.groups.find((g) => g.id === target.id) || {}).label;
-      cancelRenameRef.current = false;
-      setRenameOverlay({ kind: target.kind, id: target.id, rect, value: current || "" });
+      askRename(target.kind, target.id);
     }
 
     svgEl.addEventListener("pointerdown", onMouseDown);
@@ -932,6 +914,37 @@ export default function VisualEditor({
     }
   }, [rendered, state]);
 
+
+  // The toolbar hovers over whatever is selected, so its position has to be
+  // recomputed whenever the selection, the diagram or the view changes. It is
+  // measured off the live SVG rather than derived from the model — mermaid owns
+  // the layout, we only read it back.
+  useEffect(() => {
+    const stage = stageRef.current;
+    const svgEl = hostRef.current && hostRef.current.querySelector("svg");
+    if (!stage || !svgEl || !selected || interactionMode || ask) {
+      setToolbar(null);
+      return;
+    }
+    const el =
+      selected.type === "edge"
+        ? findEdgeElement(svgEl, state, selected.id)
+        : findDiagramElement(svgEl, rendered.diagramId, selected.id);
+    if (!el) {
+      setToolbar(null);
+      return;
+    }
+    const r = el.getBoundingClientRect();
+    const s = stage.getBoundingClientRect();
+    // Above the element by default; below it when there is no room, so the
+    // toolbar never ends up outside the canvas.
+    const below = r.top - s.top < 56;
+    setToolbar({
+      x: Math.min(Math.max(r.left + r.width / 2 - s.left, 90), Math.max(90, s.width - 90)),
+      y: below ? r.bottom - s.top : r.top - s.top,
+      below,
+    });
+  }, [selected, rendered, view, state, interactionMode, ask]);
 
   function isEmptyTarget(e) {
     return e.target === wrapRef.current || e.target === hostRef.current;
@@ -1024,23 +1037,39 @@ export default function VisualEditor({
     };
   }, []);
 
-  function commitRename(value) {
-    setRenameOverlay((overlay) => {
-      if (!overlay) return null;
-      if (cancelRenameRef.current) { cancelRenameRef.current = false; return null; }
-      const trimmed = value.trim();
-      if (overlay.kind === "block") {
-        updateState((s) => ({
-          ...s,
-          blocks: s.blocks.map((b) => (b.id === overlay.id ? { ...b, label: trimmed || t.defaults.block } : b)),
-        }));
-      } else {
-        updateState((s) => ({
-          ...s,
-          groups: s.groups.map((g) => (g.id === overlay.id ? { ...g, label: trimmed || t.defaults.group } : g)),
-        }));
-      }
-      return null;
+  // One rename path for everything: the toolbar button and the double-click
+  // both open the same modal, so a block, an area and an arrow label are all
+  // edited the same way.
+  function askRename(kind, id) {
+    const current =
+      kind === "block"
+        ? (stateRef.current.blocks.find((b) => b.id === id) || {}).label
+        : kind === "group"
+          ? (stateRef.current.groups.find((g) => g.id === id) || {}).label
+          : (stateRef.current.edges.find((e) => e.id === id) || {}).label;
+    setAsk({
+      kind: "text",
+      title: kind === "edge" ? t.prompts.edgeLabel : t.prompts.rename,
+      value: current || "",
+      onDone: (value) => {
+        if (value == null) return;
+        const trimmed = value.trim();
+        updateState((st) => {
+          if (kind === "block") {
+            return {
+              ...st,
+              blocks: st.blocks.map((b) => (b.id === id ? { ...b, label: trimmed || t.defaults.block } : b)),
+            };
+          }
+          if (kind === "group") {
+            return {
+              ...st,
+              groups: st.groups.map((g) => (g.id === id ? { ...g, label: trimmed || t.defaults.group } : g)),
+            };
+          }
+          return { ...st, edges: st.edges.map((e) => (e.id === id ? { ...e, label: trimmed } : e)) };
+        });
+      },
     });
   }
 
@@ -1086,20 +1115,8 @@ export default function VisualEditor({
       }
 
       if ((e.key === "Delete" || e.key === "Backspace") && selected) {
-        updateState((s) => {
-          if (selected.type === "block") {
-            return {
-              ...s,
-              blocks: s.blocks.filter((b) => b.id !== selected.id),
-              edges: s.edges.filter((ed) => ed.from !== selected.id && ed.to !== selected.id),
-            };
-          }
-          if (selected.type === "group") {
-            return removeGroup(s, selected.id);
-          }
-          return { ...s, edges: s.edges.filter((ed) => ed.id !== selected.id) };
-        });
-        setSelected(null);
+        e.preventDefault();
+        deleteSelected();
       }
     }
     document.addEventListener("keydown", onKeyDown);
@@ -1193,22 +1210,43 @@ export default function VisualEditor({
     setInteractionMode({ type: "paste", clip: clipboard });
   }
 
-  function deleteSelected() {
-    if (!selected) return;
+  function removeSelected(sel) {
     updateState((s) => {
-      if (selected.type === "block") {
+      if (sel.type === "block") {
         return {
           ...s,
-          blocks: s.blocks.filter((b) => b.id !== selected.id),
-          edges: s.edges.filter((ed) => ed.from !== selected.id && ed.to !== selected.id),
+          blocks: s.blocks.filter((b) => b.id !== sel.id),
+          edges: s.edges.filter((ed) => ed.from !== sel.id && ed.to !== sel.id),
         };
       }
-      if (selected.type === "group") {
-        return removeGroup(s, selected.id);
+      if (sel.type === "group") {
+        return removeGroup(s, sel.id);
       }
-      return { ...s, edges: s.edges.filter((ed) => ed.id !== selected.id) };
+      return { ...s, edges: s.edges.filter((ed) => ed.id !== sel.id) };
     });
     setSelected(null);
+  }
+
+  function deleteSelected() {
+    if (!selected) return;
+    const sel = selected;
+    setAsk({
+      kind: "confirm",
+      title: t.prompts.deleteSelected,
+      onDone: (ok) => {
+        if (ok) removeSelected(sel);
+      },
+    });
+  }
+
+  // Turns an arrow around. Kept as its own action rather than "delete and draw
+  // it the other way" because that would lose the label and the line style.
+  function reverseSelectedEdge() {
+    if (!selected || selected.type !== "edge") return;
+    updateState((s) => ({
+      ...s,
+      edges: s.edges.map((e) => (e.id === selected.id ? { ...e, from: e.to, to: e.from } : e)),
+    }));
   }
 
   function clearAll() {
@@ -1291,22 +1329,11 @@ export default function VisualEditor({
             disabled={!selected || selected.type === "edge"}
           >📋</button>
           <button title={t.toolbar.paste} aria-label={t.toolbar.paste} onClick={startPaste} disabled={!clipboard}>📥</button>
-          <button title={t.toolbar.delete} aria-label={t.toolbar.delete} className="danger" onClick={deleteSelected} disabled={!selected}>🗑️</button>
           <button title={t.toolbar.clearAll} aria-label={t.toolbar.clearAll} className="danger" onClick={clearAll}>🧹</button>
           <span className="header-sep" />
-          <button
-            title={t.toolbar.connect} aria-label={t.toolbar.connect}
-            onClick={() => selectedBlock && setInteractionMode({ type: "connect", id: selectedBlock.id })}
-            disabled={!selectedBlock}
-          >➡️</button>
-          <button
-            title={t.toolbar.move} aria-label={t.toolbar.move}
-            onClick={() => {
-              if (selectedBlock) setInteractionMode({ type: "move", id: selectedBlock.id, kind: "block" });
-              else if (selectedGroup) setInteractionMode({ type: "move", id: selectedGroup.id, kind: "group" });
-            }}
-            disabled={!selectedBlock && !selectedGroup}
-          >✋</button>
+          {/* Rename, connect, move and delete are not here any more: they act on
+              one element, so they live in the toolbar that hangs over it.
+              Colour and shape stay — they are pickers, not one-shot actions. */}
           <button
             title={t.toolbar.color} aria-label={t.toolbar.color}
             onClick={() => setColorModalOpen(true)}
@@ -1415,7 +1442,7 @@ export default function VisualEditor({
         </>,
         zoomSlot
       )}
-      <div className="canvas-stage">
+      <div className="canvas-stage" ref={stageRef}>
         <div
           className={
             "canvas-wrap" +
@@ -1432,6 +1459,48 @@ export default function VisualEditor({
             style={{ transform: `translate(${view.x}px, ${view.y}px) scale(${view.zoom})` }}
           />
         </div>
+        {toolbar && selected && (
+          <div
+            className={`element-toolbar${toolbar.below ? " below" : ""}`}
+            style={{ left: toolbar.x, top: toolbar.y }}
+            /* The toolbar sits over the canvas but outside .canvas-wrap, so a
+               press on it neither starts a pan nor clears the selection. */
+            onPointerDown={(e) => e.stopPropagation()}
+          >
+            <button
+              title={t.toolbar.rename}
+              aria-label={t.toolbar.rename}
+              onClick={() => askRename(selected.type, selected.id)}
+            >✏️</button>
+            {selected.type === "block" && (
+              <button
+                title={t.toolbar.connect}
+                aria-label={t.toolbar.connect}
+                onClick={() => setInteractionMode({ type: "connect", id: selected.id })}
+              >➡️</button>
+            )}
+            {selected.type === "edge" && (
+              <button
+                title={t.toolbar.reverse}
+                aria-label={t.toolbar.reverse}
+                onClick={reverseSelectedEdge}
+              >🔄</button>
+            )}
+            {selected.type !== "edge" && (
+              <button
+                title={t.toolbar.move}
+                aria-label={t.toolbar.move}
+                onClick={() => setInteractionMode({ type: "move", id: selected.id, kind: selected.type })}
+              >✋</button>
+            )}
+            <button
+              className="danger"
+              title={t.toolbar.delete}
+              aria-label={t.toolbar.delete}
+              onClick={deleteSelected}
+            >🗑️</button>
+          </div>
+        )}
         {codeOnly && <div className="canvas-notice canvas-notice-warn">{t.notices.codeOnly}</div>}
         {renderError && (
           <div className="canvas-notice canvas-notice-error">
@@ -1445,27 +1514,6 @@ export default function VisualEditor({
             {interactionMode.type === "move" && t.hints.move}
             {interactionMode.type === "paste" && t.hints.paste}
           </div>
-        )}
-        {renameOverlay && (
-          <input
-            autoFocus
-            className="rename-overlay"
-            style={{
-              position: "fixed",
-              left: renameOverlay.rect.left - 6,
-              top: renameOverlay.rect.top - 4,
-              width: Math.max(60, renameOverlay.rect.width + 12),
-              height: renameOverlay.rect.height + 8,
-            }}
-            defaultValue={renameOverlay.value}
-            onFocus={(e) => e.target.select()}
-            onBlur={(e) => commitRename(e.target.value)}
-            onKeyDown={(e) => {
-              e.stopPropagation();
-              if (e.key === "Enter") e.target.blur();
-              if (e.key === "Escape") { cancelRenameRef.current = true; e.target.blur(); }
-            }}
-          />
         )}
       </div>
     </div>

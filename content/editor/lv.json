@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Atsaukt",
     "redo": "Atkārtot",
+    "rename": "Pārdēvēt",
+    "reverse": "Apgriezt bultu",
     "addBlock": "Pievienot bloku",
     "addGroup": "Pievienot apgabalu",
     "copy": "Kopēt (bloku vai visu apgabalu ar tā saturu)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Bultas etiķete:",
-    "clearAll": "Dzēst visu?"
+    "rename": "Nosaukums:",
+    "clearAll": "Dzēst visu?",
+    "deleteSelected": "Dzēst šo elementu?"
   },
   "defaults": {
     "block": "Bloks",

@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Anulează",
     "redo": "Refă",
+    "rename": "Redenumește",
+    "reverse": "Inversează săgeata",
     "addBlock": "Adaugă un bloc",
     "addGroup": "Adaugă o zonă",
     "copy": "Copiază (un bloc, sau o zonă întreagă cu tot ce conține)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Eticheta săgeții:",
-    "clearAll": "Ștergi tot?"
+    "rename": "Nume:",
+    "clearAll": "Ștergi tot?",
+    "deleteSelected": "Ștergi acest element?"
   },
   "defaults": {
     "block": "Bloc",

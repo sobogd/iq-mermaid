@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Fortryd",
     "redo": "Gentag",
+    "rename": "Omdøb",
+    "reverse": "Vend pilen",
     "addBlock": "Tilføj en blok",
     "addGroup": "Tilføj et område",
     "copy": "Kopiér (en blok, eller et helt område med alt indhold)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Pil-label:",
-    "clearAll": "Slet alt?"
+    "rename": "Navn:",
+    "clearAll": "Slet alt?",
+    "deleteSelected": "Slet dette element?"
   },
   "defaults": {
     "block": "Blok",

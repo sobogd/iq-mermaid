@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Afturkalla",
     "redo": "Endurtaka",
+    "rename": "Endurnefna",
+    "reverse": "Snúa örinni við",
     "addBlock": "Bæta við kubbi",
     "addGroup": "Bæta við svæði",
     "copy": "Afrita (kubb, eða heilt svæði með öllu í því)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Merking örvar:",
-    "clearAll": "Eyða öllu?"
+    "rename": "Nafn:",
+    "clearAll": "Eyða öllu?",
+    "deleteSelected": "Eyða þessu atriði?"
   },
   "defaults": {
     "block": "Kubbur",

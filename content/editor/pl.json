@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Cofnij",
     "redo": "Ponów",
+    "rename": "Zmień nazwę",
+    "reverse": "Odwróć strzałkę",
     "addBlock": "Dodaj blok",
     "addGroup": "Dodaj obszar",
     "copy": "Kopiuj (blok lub cały obszar wraz z zawartością)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Etykieta strzałki:",
-    "clearAll": "Usunąć wszystko?"
+    "rename": "Nazwa:",
+    "clearAll": "Usunąć wszystko?",
+    "deleteSelected": "Usunąć ten element?"
   },
   "defaults": {
     "block": "Blok",

@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "실행 취소",
     "redo": "다시 실행",
+    "rename": "이름 변경",
+    "reverse": "화살표 방향 바꾸기",
     "addBlock": "블록 추가",
     "addGroup": "영역 추가",
     "copy": "복사 (블록 하나, 또는 안의 모든 것을 포함한 영역 전체)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "화살표 라벨:",
-    "clearAll": "전부 삭제할까요?"
+    "rename": "이름:",
+    "clearAll": "전부 삭제할까요?",
+    "deleteSelected": "이 요소를 삭제할까요?"
   },
   "defaults": {
     "block": "블록",

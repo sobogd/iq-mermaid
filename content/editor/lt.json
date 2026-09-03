@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Anuliuoti",
     "redo": "Pakartoti",
+    "rename": "Pervadinti",
+    "reverse": "Apversti rodyklę",
     "addBlock": "Pridėti bloką",
     "addGroup": "Pridėti sritį",
     "copy": "Kopijuoti (bloką arba visą sritį su viskuo joje)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Rodyklės etiketė:",
-    "clearAll": "Ištrinti viską?"
+    "rename": "Pavadinimas:",
+    "clearAll": "Ištrinti viską?",
+    "deleteSelected": "Ištrinti šį elementą?"
   },
   "defaults": {
     "block": "Blokas",

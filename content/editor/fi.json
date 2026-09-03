@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Kumoa",
     "redo": "Tee uudelleen",
+    "rename": "Nimeä uudelleen",
+    "reverse": "Käännä nuoli",
     "addBlock": "Lisää lohko",
     "addGroup": "Lisää alue",
     "copy": "Kopioi (lohko tai kokonainen alue kaikkineen)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Nuolen selite:",
-    "clearAll": "Poistetaanko kaikki?"
+    "rename": "Nimi:",
+    "clearAll": "Poistetaanko kaikki?",
+    "deleteSelected": "Poistetaanko tämä elementti?"
   },
   "defaults": {
     "block": "Lohko",

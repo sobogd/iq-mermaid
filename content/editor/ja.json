@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "元に戻す",
     "redo": "やり直す",
+    "rename": "名前を変更",
+    "reverse": "矢印の向きを反転",
     "addBlock": "ブロックを追加",
     "addGroup": "エリアを追加",
     "copy": "コピー(ブロック、またはエリア全体とその中身)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "矢印のラベル:",
-    "clearAll": "すべて削除しますか?"
+    "rename": "名前:",
+    "clearAll": "すべて削除しますか?",
+    "deleteSelected": "この要素を削除しますか？"
   },
   "defaults": {
     "block": "ブロック",

@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Ångra",
     "redo": "Gör om",
+    "rename": "Byt namn",
+    "reverse": "Vänd pilen",
     "addBlock": "Lägg till ett block",
     "addGroup": "Lägg till ett område",
     "copy": "Kopiera (ett block, eller ett helt område med allt i det)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Pilens etikett:",
-    "clearAll": "Ta bort allt?"
+    "rename": "Namn:",
+    "clearAll": "Ta bort allt?",
+    "deleteSelected": "Ta bort det här elementet?"
   },
   "defaults": {
     "block": "Block",

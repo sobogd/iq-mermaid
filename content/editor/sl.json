@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Razveljavi",
     "redo": "Uveljavi",
+    "rename": "Preimenuj",
+    "reverse": "Obrni puščico",
     "addBlock": "Dodaj blok",
     "addGroup": "Dodaj področje",
     "copy": "Kopiraj (blok ali celo področje z vsem, kar je v njem)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Oznaka puščice:",
-    "clearAll": "Izbrišem vse?"
+    "rename": "Ime:",
+    "clearAll": "Izbrišem vse?",
+    "deleteSelected": "Izbrišem ta element?"
   },
   "defaults": {
     "block": "Blok",

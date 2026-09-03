@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Undo",
     "redo": "Redo",
+    "rename": "Rename",
+    "reverse": "Turn the arrow around",
     "addBlock": "Add a block",
     "addGroup": "Add an area",
     "copy": "Copy (a block, or a whole area with everything in it)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Arrow label:",
-    "clearAll": "Delete everything?"
+    "rename": "Name:",
+    "clearAll": "Delete everything?",
+    "deleteSelected": "Delete this element?"
   },
   "defaults": {
     "block": "Block",

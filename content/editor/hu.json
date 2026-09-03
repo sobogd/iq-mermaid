@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Visszavonás",
     "redo": "Újra",
+    "rename": "Átnevezés",
+    "reverse": "Nyíl megfordítása",
     "addBlock": "Blokk hozzáadása",
     "addGroup": "Terület hozzáadása",
     "copy": "Másolás (egy blokk, vagy egy egész terület mindennel együtt)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Nyíl felirata:",
-    "clearAll": "Törlöd az egészet?"
+    "rename": "Név:",
+    "clearAll": "Törlöd az egészet?",
+    "deleteSelected": "Törlöd ezt az elemet?"
   },
   "defaults": {
     "block": "Blokk",

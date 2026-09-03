@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Deshacer",
     "redo": "Rehacer",
+    "rename": "Renombrar",
+    "reverse": "Invertir la flecha",
     "addBlock": "Añadir un bloque",
     "addGroup": "Añadir un área",
     "copy": "Copiar (un bloque, o un área completa con todo su contenido)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Etiqueta de la flecha:",
-    "clearAll": "¿Eliminar todo?"
+    "rename": "Nombre:",
+    "clearAll": "¿Eliminar todo?",
+    "deleteSelected": "¿Eliminar este elemento?"
   },
   "defaults": {
     "block": "Bloque",

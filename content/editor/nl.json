@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Ongedaan maken",
     "redo": "Opnieuw",
+    "rename": "Hernoemen",
+    "reverse": "Pijl omdraaien",
     "addBlock": "Blok toevoegen",
     "addGroup": "Gebied toevoegen",
     "copy": "Kopiëren (een blok, of een heel gebied met alles erin)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Pijllabel:",
-    "clearAll": "Alles verwijderen?"
+    "rename": "Naam:",
+    "clearAll": "Alles verwijderen?",
+    "deleteSelected": "Dit element verwijderen?"
   },
   "defaults": {
     "block": "Blok",

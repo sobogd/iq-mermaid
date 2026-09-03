@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Desfazer",
     "redo": "Refazer",
+    "rename": "Renomear",
+    "reverse": "Inverter a seta",
     "addBlock": "Adicionar um bloco",
     "addGroup": "Adicionar uma área",
     "copy": "Copiar (um bloco, ou uma área inteira com tudo o que contém)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Texto da seta:",
-    "clearAll": "Eliminar tudo?"
+    "rename": "Nome:",
+    "clearAll": "Eliminar tudo?",
+    "deleteSelected": "Eliminar este elemento?"
   },
   "defaults": {
     "block": "Bloco",

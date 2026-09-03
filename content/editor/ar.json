@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "تراجع",
     "redo": "إعادة",
+    "rename": "إعادة تسمية",
+    "reverse": "عكس اتجاه السهم",
     "addBlock": "إضافة كتلة",
     "addGroup": "إضافة منطقة",
     "copy": "نسخ (كتلة، أو منطقة كاملة بكل ما فيها)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "تسمية السهم:",
-    "clearAll": "حذف كل شيء؟"
+    "rename": "الاسم:",
+    "clearAll": "حذف كل شيء؟",
+    "deleteSelected": "حذف هذا العنصر؟"
   },
   "defaults": {
     "block": "كتلة",

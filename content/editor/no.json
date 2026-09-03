@@ -7,6 +7,8 @@
   "toolbar": {
     "undo": "Angre",
     "redo": "Gjør om",
+    "rename": "Gi nytt navn",
+    "reverse": "Snu pilen",
     "addBlock": "Legg til boks",
     "addGroup": "Legg til område",
     "copy": "Kopier (en boks, eller et helt område med alt i det)",
@@ -57,7 +59,9 @@
   },
   "prompts": {
     "edgeLabel": "Piletekst:",
-    "clearAll": "Slette alt?"
+    "rename": "Navn:",
+    "clearAll": "Slette alt?",
+    "deleteSelected": "Slette dette elementet?"
   },
   "defaults": {
     "block": "Boks",
