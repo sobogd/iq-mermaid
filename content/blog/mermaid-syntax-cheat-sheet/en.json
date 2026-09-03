@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid Syntax Cheat Sheet with Examples",
+    "description": "The mermaid syntax you actually use: node shapes, arrow types, subgraphs, styling and one working example per diagram type. Copy, paste, edit."
+  },
+  "card": {
+    "title": "Mermaid syntax cheat sheet",
+    "excerpt": "Node shapes, arrows, subgraphs and styling in one page — plus a working example of every diagram type mermaid renders."
+  },
+  "h1": "Mermaid syntax cheat sheet",
+  "intro": "Mermaid has a large reference and a small subset that covers almost everything people draw. This page is that subset: shapes, arrows, grouping, colours, and one copy-paste example per diagram type. Every snippet below renders as-is — paste it into the [editor](app:) to see it.",
+  "blocks": [
+    { "type": "h2", "text": "The shortest diagram that works" },
+    {
+      "type": "p",
+      "text": "A flowchart needs one declaration line and one arrow. `TD` means top-down; use `LR` for left-to-right, which suits wide processes better."
+    },
+    {
+      "type": "code",
+      "caption": "A three-node flowchart, top to bottom.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` and `C` are node ids — internal names, never drawn. The text in brackets is the label, and the bracket **style** is what picks the shape."
+    },
+
+    { "type": "h2", "text": "Node shapes" },
+    {
+      "type": "p",
+      "text": "Shape is chosen by the delimiter pair around the label. These are the ones worth remembering:"
+    },
+    {
+      "type": "table",
+      "headers": ["Syntax", "Shape", "Usual meaning"],
+      "rows": [
+        ["`A[Text]`", "Rectangle", "A step or action"],
+        ["`A(Text)`", "Rounded", "A start or end point"],
+        ["`A([Text])`", "Pill", "A terminator"],
+        ["`A[[Text]]`", "Subroutine", "A call into another process"],
+        ["`A[(Text)]`", "Cylinder", "A database or store"],
+        ["`A((Text))`", "Circle", "A junction"],
+        ["`A{Text}`", "Diamond", "A decision"],
+        ["`A{{Text}}`", "Hexagon", "A preparation step"],
+        ["`A[/Text/]`", "Parallelogram", "Input or output"],
+        ["`A[/Text\\]`", "Trapezoid", "A manual operation"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Quote the label when it contains brackets, colons or quotes: `A[\"Load (raw) data\"]`. Without quotes the parser sees your punctuation as syntax."
+    },
+
+    { "type": "h2", "text": "Arrows" },
+    {
+      "type": "table",
+      "headers": ["Syntax", "Result"],
+      "rows": [
+        ["`A --> B`", "Arrow"],
+        ["`A --- B`", "Line, no arrowhead"],
+        ["`A -.-> B`", "Dotted arrow"],
+        ["`A ==> B`", "Thick arrow"],
+        ["`A -->|label| B`", "Arrow with a label on it"],
+        ["`A --> B --> C`", "Chain, written on one line"],
+        ["`A --> B & C`", "One source, two targets"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Arrow length is meaningful too: `-->` is one rank, `--->` pushes the target one rank further down. It is the simplest layout control mermaid gives you."
+    },
+
+    { "type": "h2", "text": "Grouping with subgraphs" },
+    {
+      "type": "p",
+      "text": "A `subgraph` draws a labelled box around nodes. Subgraphs nest, and arrows may cross their borders freely."
+    },
+    {
+      "type": "code",
+      "caption": "Two services, each with its own store.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Colour and styling" },
+    {
+      "type": "p",
+      "text": "`style` paints one node. `classDef` plus `class` paints a set of them, which is what you want past three or four nodes."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Colours are part of the diagram source, so they survive export and travel with the file. Nothing here depends on a theme setting in the tool that renders it."
+    },
+
+    { "type": "h2", "text": "One example per diagram type" },
+    {
+      "type": "h3",
+      "text": "Sequence diagram"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Class diagram" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "State diagram" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Entity relationship diagram" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantt chart" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Where mermaid renders on its own" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — a fenced ```mermaid block renders in issues, pull requests, comments and README files.",
+        "**GitLab** — the same fenced block, in issues, merge requests and the wiki.",
+        "**Notion** — a code block with the language set to Mermaid renders next to the source.",
+        "**Obsidian** — a fenced mermaid block renders in preview mode.",
+        "**Docs sites** — Docusaurus, MkDocs Material and VitePress all support mermaid blocks."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "That is the real reason to keep diagrams as mermaid rather than as images: the diagram lives in the same text file as the thing it describes, and a code review can see what changed in it."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Try any snippet on this page",
+      "text": "Paste it into the code tab and it renders instantly — or build the same diagram on the canvas and read the syntax back.",
+      "buttonLabel": "Open the editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Frequently asked",
+      "items": [
+        {
+          "q": "How do I add a line break inside a node label?",
+          "a": "Use `<br>` inside a quoted label: `A[\"First line<br>Second line\"]`. Mermaid renders the label as HTML, so the tag works even though the rest of the syntax is not HTML."
+        },
+        {
+          "q": "Why does my label break the diagram?",
+          "a": "Almost always an unquoted bracket, parenthesis, colon or quote inside the label. Wrap the whole label in double quotes and the parser stops treating your punctuation as syntax."
+        },
+        {
+          "q": "Can I control the layout?",
+          "a": "Only indirectly. Pick the direction (`TD`, `LR`, `BT`, `RL`), use longer arrows (`--->`) to push nodes further apart, and group related nodes into subgraphs. Mermaid computes the rest — there are no coordinates."
+        },
+        {
+          "q": "Which mermaid version does this editor use?",
+          "a": "Mermaid 11, the current major version, so everything documented for v10 and v11 syntax renders here."
+        }
+      ]
+    }
+  ]
+}

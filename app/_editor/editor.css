@@ -1,0 +1,351 @@
+/* Editor chrome. Ported from the standalone Vite app's App.css, repainted in
+   the site's own tokens (app/globals.css) so /app and the marketing pages
+   read as one product instead of two. The diagram canvas itself stays white
+   in both themes: mermaid renders its own colours and a dark backdrop would
+   put light-on-light nodes on a dark page. */
+
+.app {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  background: var(--accent);
+  border-bottom: 1px solid var(--border);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+.brand-badge {
+  width: 26px;
+  height: 26px;
+}
+.brand-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+.header-zoom {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.header-sep {
+  width: 1px;
+  align-self: stretch;
+  background: var(--border);
+  margin: 0 2px;
+}
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+  flex-shrink: 0;
+}
+.tabs button {
+  background: transparent;
+  border: none;
+  color: var(--hint);
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tabs button.active {
+  background: linear-gradient(135deg, hsl(9, 100%, 58%), hsl(35, 95%, 55%));
+  color: #fff;
+}
+
+.app-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.app button,
+.app select {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.app button:hover {
+  border-color: var(--button);
+}
+.app button.danger {
+  border-color: hsl(0 60% 50% / 0.4);
+}
+.app button.danger:hover {
+  background: hsl(0 60% 50% / 0.12);
+}
+.app button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.app button:disabled:hover {
+  border-color: var(--border);
+}
+
+.header-actions button {
+  font-size: 18px;
+  line-height: 1;
+  padding: 6px 10px;
+}
+.header-zoom button {
+  padding: 6px 10px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.modal-panel {
+  background: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 220px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+.modal-title {
+  font-size: 13px;
+  color: var(--hint);
+  margin-bottom: 10px;
+}
+.modal-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.modal-shapes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.modal-shape-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+.modal-shape-btn.active {
+  border-color: var(--button);
+}
+.modal-shape-emoji {
+  font-size: 16px;
+}
+
+/* --- Text editor --- */
+.text-editor {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+.editor-pane,
+.preview-pane {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.editor-pane {
+  border-right: 1px solid var(--border);
+}
+.code-input {
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 16px;
+}
+.preview-pane {
+  background: #fff;
+  overflow: auto;
+  padding: 16px;
+}
+.preview-error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-family: monospace;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+.status-line {
+  font-size: 12px;
+  color: var(--hint);
+  padding: 4px 8px;
+}
+
+/* --- Visual editor --- */
+.visual-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.canvas-stage {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  display: flex;
+}
+.canvas-wrap {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+  background: #ffffff;
+}
+.canvas-wrap.panning {
+  cursor: grabbing;
+}
+.mermaid-host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+.mermaid-host svg {
+  display: block;
+  max-width: none;
+}
+.zoom-value {
+  font-size: 12px;
+  color: var(--hint);
+  min-width: 42px;
+  text-align: center;
+}
+
+/* The diagram itself is a real mermaid.render() SVG — visually identical to
+   the text preview by construction. These rules only add interactivity
+   affordances on top; scoped to .canvas-wrap so the read-only preview pane
+   in the text tab (which also has .node/.cluster elements) is unaffected. */
+.canvas-wrap .node,
+.canvas-wrap .cluster {
+  cursor: pointer;
+}
+.canvas-wrap .diagram-selected rect,
+.canvas-wrap .diagram-selected polygon,
+.canvas-wrap .diagram-selected circle,
+.canvas-wrap .diagram-selected ellipse,
+.canvas-wrap .diagram-selected path.basic {
+  stroke: hsl(23 100% 42%) !important;
+  stroke-width: 3px !important;
+}
+.canvas-wrap path[id*="L_"] {
+  cursor: pointer;
+}
+.canvas-wrap path.diagram-selected {
+  stroke: hsl(23 100% 42%) !important;
+  stroke-width: 3px !important;
+}
+
+/* Pure-CSS hover feedback while a connect/move mode is armed — no JS needed
+   since the browser already knows what's under the cursor. */
+.canvas-wrap.mode-connect,
+.canvas-wrap.mode-move,
+.canvas-wrap.mode-paste {
+  cursor: crosshair;
+}
+.canvas-wrap.mode-connect .node:hover rect,
+.canvas-wrap.mode-connect .node:hover polygon,
+.canvas-wrap.mode-connect .node:hover circle,
+.canvas-wrap.mode-connect .node:hover ellipse {
+  stroke: hsl(23 100% 42%) !important;
+  stroke-width: 3px !important;
+}
+.canvas-wrap.mode-move .cluster:hover rect,
+.canvas-wrap.mode-paste .cluster:hover rect {
+  stroke: hsl(23 100% 42%) !important;
+  stroke-width: 3px !important;
+}
+
+.mode-hint {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--text);
+  border: 1px solid var(--button);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.swatch.active {
+  border-color: var(--text);
+}
+.swatch-custom {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+}
+
+.rename-overlay {
+  z-index: 50;
+  font-family: "trebuchet ms", verdana, arial, sans-serif;
+  font-size: 16px;
+  padding: 2px 4px;
+  border: 2px solid hsl(23 100% 42%);
+  border-radius: 3px;
+  background: #fff;
+  color: #131300;
+}

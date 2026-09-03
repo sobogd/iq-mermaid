@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Sequence Diagram: Syntax and Examples",
+    "description": "How to write a mermaid sequence diagram: participants, arrow types, activation bars, loops, alt blocks and notes — with copy-paste examples."
+  },
+  "card": {
+    "title": "Mermaid sequence diagrams",
+    "excerpt": "Participants, arrow types, activation bars, loops and alt blocks — the whole sequence diagram syntax with runnable examples."
+  },
+  "h1": "How to write a mermaid sequence diagram",
+  "intro": "A sequence diagram shows who talks to whom, in what order. In mermaid it takes about as long to write as it takes to describe out loud, which is why it is the diagram type that survives longest in a codebase. Everything below is copy-paste ready for the [editor](app:).",
+  "blocks": [
+    { "type": "h2", "text": "The minimum" },
+    {
+      "type": "p",
+      "text": "Declare the diagram type, then write one line per message. Participants are created on first mention, in the order they appear."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Declare participants explicitly with `participant User` when you want a specific left-to-right order rather than the order of first mention."
+    },
+
+    { "type": "h2", "text": "Arrow types" },
+    {
+      "type": "table",
+      "headers": ["Syntax", "Meaning"],
+      "rows": [
+        ["`A->>B: text`", "Request — solid line, filled arrowhead"],
+        ["`A-->>B: text`", "Response — dashed line, filled arrowhead"],
+        ["`A->B: text`", "Solid line, open arrowhead"],
+        ["`A-)B: text`", "Async message — open arrowhead, no reply expected"],
+        ["`A-xB: text`", "Message that fails or is dropped"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The convention worth keeping: **solid for the call, dashed for the return**. A reader can then tell a request from a response without reading a single label."
+    },
+
+    { "type": "h2", "text": "Participants and aliases" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Use `actor U as Browser` instead of `participant` to draw a stick figure — worth it for the human at the left edge of an authentication flow."
+    },
+
+    { "type": "h2", "text": "Activation bars" },
+    {
+      "type": "p",
+      "text": "Activation bars show how long a participant is busy. Either mark them explicitly with `activate`/`deactivate`, or append `+` and `-` to the arrows, which is shorter and harder to get out of balance."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Loops, conditionals and parallel work" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — repetition.",
+        "`alt <label>` … `else <label>` … `end` — mutually exclusive branches.",
+        "`opt <label>` … `end` — a branch that may simply not happen.",
+        "`par <label>` … `and <label>` … `end` — things happening at the same time.",
+        "`critical` / `break` — a section that must not be interrupted, and an early exit."
+      ]
+    },
+
+    { "type": "h2", "text": "Notes" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` spans two participants and is the right place for a constraint that belongs to the interaction rather than to either side of it."
+    },
+
+    { "type": "h2", "text": "A full example" },
+    {
+      "type": "code",
+      "caption": "OAuth login, end to end.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Edit this diagram",
+      "text": "Paste it into the code tab and change a line — the preview redraws as you type.",
+      "buttonLabel": "Open the editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Frequently asked",
+      "items": [
+        {
+          "q": "How do I number the messages?",
+          "a": "Put `autonumber` on the line right after `sequenceDiagram`. Every message then gets a sequential number, which makes a diagram much easier to talk about in review comments."
+        },
+        {
+          "q": "Can a participant send a message to itself?",
+          "a": "Yes — write the same name on both sides: `API->>API: retry`. Mermaid draws the loop back into the same lifeline."
+        },
+        {
+          "q": "How do I show that a participant is destroyed?",
+          "a": "Use `destroy <name>` before the message that ends it, or `create participant <name>` to have it appear mid-diagram rather than at the top."
+        },
+        {
+          "q": "Can I edit a sequence diagram on the visual canvas?",
+          "a": "The visual canvas edits flowcharts. Sequence diagrams are written on the code tab, where they render live in the preview — which is usually faster anyway, since a sequence diagram is essentially a list of lines."
+        }
+      ]
+    }
+  ]
+}

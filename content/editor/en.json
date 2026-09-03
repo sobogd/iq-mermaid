@@ -1,0 +1,83 @@
+{
+  "backToSite": "Back to the home page",
+  "tabs": { "visual": "Visual", "text": "Code" },
+  "toolbar": {
+    "addBlock": "Add a block",
+    "addGroup": "Add an area",
+    "copy": "Copy (a block, or a whole area with everything in it)",
+    "paste": "Paste — then click where it goes",
+    "delete": "Delete the selection",
+    "clearAll": "Clear everything",
+    "connect": "Draw an arrow to another block",
+    "move": "Move into an area, or out of one",
+    "color": "Colour",
+    "shape": "Shape"
+  },
+  "zoom": { "center": "Re-centre" },
+  "modals": { "colorTitle": "Colour", "shapeTitle": "Shape" },
+  "shapes": {
+    "rect": "Rectangle",
+    "rounded": "Rounded",
+    "pill": "Pill",
+    "circle": "Circle",
+    "diamond": "Diamond",
+    "subroutine": "Subroutine",
+    "cylinder": "Database",
+    "hexagon": "Hexagon",
+    "asymmetric": "Flag",
+    "parallelogram": "Parallelogram",
+    "parallelogramAlt": "Parallelogram (mirrored)",
+    "trapezoid": "Trapezoid",
+    "trapezoidAlt": "Trapezoid (mirrored)",
+    "doubleCircle": "Double circle"
+  },
+  "hints": {
+    "connect": "Click the block the arrow should point at · Esc to cancel",
+    "move": "Click an area to move it in, or empty space to move it out · Esc to cancel",
+    "paste": "Click an area or empty space to paste into · Esc to cancel"
+  },
+  "prompts": {
+    "edgeLabel": "Arrow label:",
+    "clearAll": "Delete everything?"
+  },
+  "defaults": {
+    "block": "Block",
+    "group": "Area",
+    "start": "Start",
+    "action": "Action"
+  },
+  "text": {
+    "examplePlaceholder": "Example…",
+    "copyMermaid": "Copy mermaid",
+    "downloadMmd": "Download .mmd",
+    "downloadMd": "Download .md (Notion)",
+    "copySvg": "Copy SVG",
+    "downloadSvg": "Download SVG",
+    "downloadPng": "Download PNG",
+    "statusOk": "OK",
+    "statusError": "Error",
+    "statusSvgCopied": "SVG copied",
+    "statusMermaidCopied": "Mermaid copied"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Sequence diagram",
+    "class": "Class diagram",
+    "state": "State diagram",
+    "er": "ER diagram",
+    "gantt": "Gantt chart"
+  },
+  "sample": {
+    "start": "Start",
+    "condition": "Ready?",
+    "yes": "Yes",
+    "no": "No",
+    "action1": "Ship it",
+    "action2": "Fix it",
+    "end": "Done",
+    "project": "Project",
+    "phase": "Phase 1",
+    "task1": "Task 1",
+    "task2": "Task 2"
+  }
+}

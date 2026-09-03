@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-chrome: var(--accent);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-hint: var(--hint);
+  --color-button: var(--button);
+  --color-button-text: var(--button-text);
+  --animate-wave: wave 1s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 1.6s ease-out infinite;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 hsl(9 100% 58% / 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 10px hsl(9 100% 58% / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 hsl(9 100% 58% / 0);
+  }
+}
+
+/* Same palette as iq-rest's landing (app/globals.css there): warm paper
+   light theme, warm #1A1612 dark theme, brand-orange accent. */
+:root {
+  --bg: hsl(38 30% 97%);
+  --accent: hsl(40 33% 99%); /* header / footer surface */
+  --card: hsl(40 33% 99%);
+  --text: hsl(30 12% 8%);
+  --hint: hsl(30 8% 42%);
+  --border: hsl(36 20% 91%);
+  --button: hsl(23 100% 42%);
+  --button-text: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: hsl(30 18% 9%); /* #1A1612 */
+    --accent: hsl(30 18% 9%);
+    --card: hsl(30 18% 9%);
+    --text: hsl(40 38% 95%); /* #f7f3ec */
+    --hint: hsl(36 11% 60%); /* #a59c8f */
+    --border: hsl(0 0% 12%);
+    --button: hsl(23 100% 58%);
+    --button-text: #ffffff;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Tailwind v4 preflight leaves buttons with the browser-default arrow cursor;
+ * every interactive control should read as clickable, like links do. */
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
+}

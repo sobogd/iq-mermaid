@@ -1,0 +1,93 @@
+name: Deploy to Prod (release)
+
+on:
+  push:
+    branches: [release]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Full history: the IndexNow step below diffs this push against the
+          # previous one to work out which pages changed. The default shallow
+          # clone has no such range and would force a full submit on every
+          # release. gen-lastmod.mjs needs the history too.
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check content is complete
+        # A locale missing half its files renders a half-English page. The
+        # generated index is regenerated here too, so a forgotten
+        # `node scripts/gen-content-index.mjs` cannot ship a stale one.
+        run: |
+          node scripts/gen-content-index.mjs
+          node scripts/validate-content.mjs
+          git diff --exit-code content/index.ts
+
+      - name: Build
+        run: npm run build
+
+      - name: Copy build to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: deployer
+          key: ${{ secrets.SSH_KEY }}
+          source: ".next/,package.json,package-lock.json,public/"
+          target: "/home/deploy/apps/iq-mermaid"
+          overwrite: true
+
+      - name: Restart on VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: deployer
+          key: ${{ secrets.SSH_KEY }}
+          command_timeout: 10m
+          script: |
+            export PATH=$PATH:/usr/bin:/usr/local/bin:/home/deployer/.npm-global/bin
+            cd /home/deploy/apps/iq-mermaid
+
+            # The app has no database, no API keys and no secrets of any kind
+            # — it is a static site plus a client-side editor. PORT is the
+            # whole runtime configuration.
+            npm ci --omit=dev
+            # PORT must be a real env var — next start ignores PORT from .env
+            PORT=8204 pm2 restart iq-mermaid --update-env || PORT=8204 pm2 start npm --name "iq-mermaid" -- start
+            pm2 save
+
+      - name: Wait for prod to answer
+        continue-on-error: true
+        run: |
+          for i in $(seq 1 30); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' https://iq-mermaid.com/sitemap.xml || true)
+            if [ "$code" = "200" ]; then echo "prod up after ${i}s"; exit 0; fi
+            sleep 1
+          done
+          echo "prod did not answer 200 in 30s"
+          exit 1
+
+      # IndexNow: tell Bing (and Yandex/Seznam/Naver, one endpoint fans out)
+      # what this deploy changed, instead of waiting for the next crawl.
+      # Bing's index is what search inside ChatGPT runs on, so this is the
+      # cheapest lever on AI visibility there is.
+      - name: Ping IndexNow
+        # Never fails the release: the deploy already succeeded and indexing
+        # is not release-critical.
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+          BEFORE_SHA: ${{ github.event.before }}
+          CURRENT_SHA: ${{ github.sha }}
+        run: node scripts/indexnow-submit.mjs

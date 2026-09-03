@@ -1,0 +1,108 @@
+// JSON-LD builders, shared by the home / app / blog templates so all three
+// describe the same entity instead of three slightly different ones.
+import { BRAND, SITE_URL } from "./site";
+import { localeHome, localePath } from "./locale-paths";
+import { OG_LOCALES } from "./og-locales";
+
+const ORG_ID = `${SITE_URL}/#organization`;
+const APP_ID = `${SITE_URL}/#app`;
+
+export function organizationLd() {
+  return {
+    "@type": "Organization",
+    "@id": ORG_ID,
+    name: BRAND,
+    url: SITE_URL,
+    logo: `${SITE_URL}/icon-512.png`,
+    image: `${SITE_URL}/og.png`,
+  };
+}
+
+export function webSiteLd(locale: string) {
+  return {
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: BRAND,
+    inLanguage: (OG_LOCALES[locale] ?? "en_US").replace("_", "-"),
+    publisher: { "@id": ORG_ID },
+  };
+}
+
+// A single free Offer, not an AggregateOffer: the editor really is free with
+// no paid tier behind it, so `price: 0` is the accurate description rather
+// than the misleading one it would be on a freemium product.
+export function softwareApplicationLd(description: string) {
+  return {
+    "@type": ["SoftwareApplication", "WebApplication"],
+    "@id": APP_ID,
+    name: BRAND,
+    applicationCategory: "DeveloperApplication",
+    applicationSubCategory: "Diagramming",
+    operatingSystem: "Web",
+    browserRequirements: "Requires JavaScript",
+    url: `${SITE_URL}/app`,
+    description,
+    publisher: { "@id": ORG_ID },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+  };
+}
+
+export function faqPageLd(items: { q: string; a: string }[]) {
+  return {
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+}
+
+export function breadcrumbLd(locale: string, trail: { name: string; url: string }[]) {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: BRAND, item: `${SITE_URL}${localeHome(locale)}` },
+      ...trail.map((t, i) => ({
+        "@type": "ListItem",
+        position: i + 2,
+        name: t.name,
+        item: t.url,
+      })),
+    ],
+  };
+}
+
+export function blogPostingLd(
+  locale: string,
+  entry: { id: string; date: string; dateModified?: string },
+  content: { h1: string; description: string },
+) {
+  return {
+    "@type": "BlogPosting",
+    headline: content.h1,
+    description: content.description,
+    inLanguage: locale,
+    datePublished: entry.date,
+    dateModified: entry.dateModified ?? entry.date,
+    author: { "@id": ORG_ID },
+    publisher: { "@id": ORG_ID },
+    image: `${SITE_URL}/og.png`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}${localePath(locale, `blog/${entry.id}`)}`,
+    },
+  };
+}
+
+// One <script> per page: a @graph keeps the nodes cross-referenced by @id
+// instead of repeating the organization in every block.
+export function graphLd(nodes: object[]) {
+  return { "@context": "https://schema.org", "@graph": nodes };
+}

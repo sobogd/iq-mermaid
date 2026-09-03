@@ -1,0 +1,38 @@
+export type FaqItem = { q: string; a: string };
+
+// Same layout as iq-rest's Faq: tinted 40% column on the left (heading/sub,
+// sticky while the right column scrolls, no gradient on the accent — that's
+// Hero-only there), plain 60% column on the right with the questions.
+export function Faq({
+  heading,
+  headingAccent,
+  sub,
+  items,
+}: {
+  heading: string;
+  headingAccent: string;
+  sub: string;
+  items: FaqItem[];
+}) {
+  return (
+    <div className="grid grid-cols-1 rounded-2xl border border-border lg:grid-cols-[2fr_3fr]">
+      <div className="rounded-t-2xl bg-[hsl(28_48%_93%)] dark:bg-[hsl(28_15%_13%)] lg:rounded-t-none lg:rounded-l-2xl">
+        <div className="flex flex-col items-start gap-3 p-5 text-start sm:p-6 lg:sticky lg:top-16">
+          <h2 className="text-2xl font-medium leading-[1.15] tracking-tight sm:text-[1.75rem]">
+            {heading} {headingAccent}
+          </h2>
+          <p className="text-sm leading-relaxed text-hint/80 sm:text-base">{sub}</p>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-8 p-5 sm:p-6">
+        {items.map((item) => (
+          <div key={item.q}>
+            <h3 className="mb-2 text-base font-medium tracking-tight sm:text-lg">{item.q}</h3>
+            <p className="text-sm leading-relaxed text-hint">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

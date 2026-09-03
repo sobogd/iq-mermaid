@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Mermaid Live Editor — Free Online Diagram Editor",
+    "description": "Free mermaid live editor: draw a diagram visually or write mermaid code, both stay in sync. Flowchart, sequence, class, ER, state, gantt. No sign-up, export SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — free, online, no sign-up",
+    "ogDescription": "Draw diagrams on a canvas or write mermaid code. Both views stay in sync. Export to SVG, PNG, .mmd or Markdown.",
+    "twitterTitle": "Free mermaid live editor",
+    "twitterDescription": "Visual canvas and mermaid code, side by side. No sign-up, no paywall."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Features",
+    "blog": "Guides",
+    "faq": "FAQ",
+    "openEditor": "Open editor",
+    "menu": "Menu"
+  },
+  "hero": {
+    "badgeFree": "Free forever",
+    "badgeNoSignup": "No sign-up",
+    "badgeDiagrams": "8 diagram types",
+    "title": "Mermaid live editor,",
+    "titleAccent": "visual and code in one place",
+    "description": "Most mermaid editors give you a text box and a preview. This one also gives you a canvas: click to add a block, drag an arrow, group things into areas — and the mermaid code writes itself. Switch to the code tab and edit it by hand; the canvas follows.",
+    "ctaOpen": "Open the editor",
+    "ctaLearn": "See what it does",
+    "mockCodeLabel": "Mermaid code",
+    "mockDiagramLabel": "Rendered diagram"
+  },
+  "statCards": [
+    { "title": "Renders as you type", "sub": "The real mermaid engine, redrawn a few hundred milliseconds after your last keystroke." },
+    { "title": "Code and canvas sync", "sub": "Edit either side. The other one catches up — no copy-paste between two tools." },
+    { "title": "14 node shapes", "sub": "Rectangle, rounded, pill, circle, diamond, database, hexagon and the rest, one click each." },
+    { "title": "Free, no account", "sub": "No sign-up, no trial, no export watermark. Your diagram stays in your browser." }
+  ],
+  "spotlights": [
+    {
+      "heading": "A canvas, not just a text box",
+      "sub": "The visual tab is a real editor on top of the rendered diagram: click a node to select it, double-click to rename it in place, drag anywhere to pan.",
+      "bullets": [
+        { "title": "Click to build", "sub": "Add a block, point an arrow at another one, label the arrow. No syntax to remember before you start." },
+        { "title": "Pick a shape", "sub": "Fourteen mermaid flowchart shapes — decision diamonds, database cylinders, subroutines — from one picker." },
+        { "title": "Colour anything", "sub": "Eight presets plus a colour picker, applied to a single node or to a whole area." }
+      ]
+    },
+    {
+      "heading": "Mermaid code that stays yours",
+      "sub": "The text tab is plain mermaid — the same syntax GitHub, GitLab, Notion and Obsidian already render. Nothing here is a proprietary format.",
+      "bullets": [
+        { "title": "Write it by hand", "sub": "Type mermaid directly and watch it render. Six ready-made examples to start from." },
+        { "title": "Round-trips", "sub": "Flowcharts you paste in are parsed back onto the canvas — nodes, shapes, colours, subgraphs and all." },
+        { "title": "Every diagram type", "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — the preview renders whatever mermaid supports." }
+      ]
+    },
+    {
+      "heading": "Big diagrams stay readable",
+      "sub": "Architecture diagrams outgrow one screen fast. Pan, zoom and grouping are built for that instead of fighting it.",
+      "bullets": [
+        { "title": "Areas and nesting", "sub": "Group blocks into subgraphs, nest an area inside another, move a whole subtree in one gesture." },
+        { "title": "Zoom from 2% to 1600%", "sub": "Scroll to pan, ctrl-scroll to zoom, or re-centre with one button." },
+        { "title": "Saved as you go", "sub": "Your diagram is written to the browser's local storage on every edit — close the tab and come back to it." }
+      ]
+    },
+    {
+      "heading": "Export and get on with it",
+      "sub": "Nothing is locked in. Take the picture, take the source, or take a Markdown block ready to paste into a document.",
+      "bullets": [
+        { "title": "No paywall", "sub": "Every feature, including export, is free. There is no paid tier to upgrade to." },
+        { "title": "Nothing leaves your browser", "sub": "There is no account and no server-side diagram storage — rendering happens locally." },
+        { "title": "SVG, PNG, .mmd, .md", "sub": "Copy the SVG markup, download a 2x PNG, save the mermaid source, or grab a fenced Markdown block." }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "How it compares to",
+    "titleAccent": "the usual options",
+    "description": "Diagram-as-code tools make you write everything by hand. Drag-and-drop tools give you a picture you cannot diff. This one refuses to pick a side.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Typical tool",
+    "rows": [
+      {
+        "title": "Getting started",
+        "us": "Double-click the canvas and a node appears. You can learn the syntax later, or never.",
+        "them": "Read the syntax reference first, or accept a drawing tool with no text representation at all."
+      },
+      {
+        "title": "The output format",
+        "us": "Plain mermaid — the same text GitHub, GitLab and Notion render natively.",
+        "them": "A proprietary file that only opens in the tool that made it."
+      },
+      {
+        "title": "Editing later",
+        "us": "Change the code or move the blocks. Both directions work on the same diagram.",
+        "them": "One direction only: code-first tools have no canvas, canvas-first tools have no source."
+      },
+      {
+        "title": "Price",
+        "us": "Free, no account, no export limits.",
+        "them": "Free tier capped at a few diagrams, with export or collaboration behind a subscription."
+      },
+      {
+        "title": "Where the data lives",
+        "us": "Your browser's local storage. No sign-in, nothing uploaded.",
+        "them": "An account on someone's server, with your diagrams attached to it."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Mermaid editor",
+    "headingAccent": "questions",
+    "sub": "What people ask before opening it. No sign-up needed — the editor is one click away.",
+    "items": [
+      {
+        "q": "What is mermaid?",
+        "a": "Mermaid is a text syntax for diagrams: you describe nodes and arrows in a few lines, and a renderer draws the picture. GitHub, GitLab, Notion and Obsidian render it inside Markdown, so a mermaid block stays readable in a pull request or a wiki page."
+      },
+      {
+        "q": "Is this mermaid editor really free?",
+        "a": "Yes. Every feature, including SVG and PNG export, is free, and there is no account to create. There is no paid tier — nothing is held back."
+      },
+      {
+        "q": "Do I need to know mermaid syntax?",
+        "a": "No. Start on the visual tab: double-click the canvas to add a block, select it and draw an arrow to another one. The mermaid code is generated for you and you can read it whenever you want to learn the syntax."
+      },
+      {
+        "q": "Which diagram types are supported?",
+        "a": "The code tab renders anything mermaid supports — flowchart, sequence, class, state, entity relationship, gantt, git graph, pie and more. The visual canvas edits flowcharts specifically, which is what most diagrams are."
+      },
+      {
+        "q": "Can I export to PNG or SVG?",
+        "a": "Yes. Copy the SVG markup to the clipboard, download the SVG file, or download a PNG rendered at 2x for slides and documents. You can also save the mermaid source as .mmd or as a fenced Markdown block."
+      },
+      {
+        "q": "Where is my diagram stored?",
+        "a": "In your browser's local storage, on your own device. There is no account and no server-side copy, so clearing your browser data or switching devices means starting fresh — export the source if you want to keep it."
+      },
+      {
+        "q": "Can I paste in an existing mermaid diagram?",
+        "a": "Yes. Paste it into the code tab; a flowchart is parsed back onto the visual canvas with its nodes, shapes, colours and subgraphs intact. Other diagram types render in the preview but stay code-only."
+      },
+      {
+        "q": "Does it work offline?",
+        "a": "Rendering happens entirely in your browser, so once the page has loaded the editor keeps working without a connection. Your diagram is in local storage, not on a server."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Open the editor.",
+    "headingAccent": "Nothing to sign up for.",
+    "sub": "A blank canvas, a code tab and every export option — free, in your browser, right now.",
+    "ctaLabel": "Open the editor"
+  },
+  "footer": {
+    "tagline": "Free online mermaid editor",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Product",
+    "languagesHeading": "Languages"
+  },
+  "app": {
+    "metaTitle": "Mermaid Editor — draw and code side by side",
+    "metaDescription": "The free mermaid editor: a visual canvas and the mermaid source, kept in sync. Export to SVG, PNG, .mmd or Markdown.",
+    "backToSite": "Back to the home page"
+  },
+  "blog": {
+    "metaTitle": "Mermaid Guides — syntax, exports and examples",
+    "metaDescription": "Short, practical guides to mermaid: syntax you actually use, how to export a diagram to PNG or SVG, and how to write a sequence diagram.",
+    "title": "Mermaid guides",
+    "intro": "Short, practical notes on mermaid — the syntax worth memorising, the exports people ask for, and the diagram types that come up most. Every example is one paste away from the editor.",
+    "readMore": "Read the guide",
+    "backToBlog": "All guides",
+    "relatedHeading": "More guides"
+  }
+}
