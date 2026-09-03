@@ -1,0 +1,161 @@
+{
+  "meta": {
+    "title": "Mermaid als PNG, SVG oder Markdown exportieren",
+    "description": "Mermaid-Diagramm als PNG oder SVG exportieren, SVG-Markup kopieren oder als Text für GitHub und Notion behalten — und welche Wahl wann richtig ist."
+  },
+  "card": {
+    "title": "Mermaid als PNG oder SVG exportieren",
+    "excerpt": "Vier Wege aus einem Mermaid-Diagramm hinaus — PNG, SVG, .mmd-Quelle und ein Markdown-Block — und wann welcher die richtige Antwort ist."
+  },
+  "h1": "Ein Mermaid-Diagramm als PNG, SVG oder Markdown exportieren",
+  "intro": "Ein Diagramm nützt nur dort, wo man es sehen kann. Mermaid bietet vier Wege hinaus — ein Bild, einen Vektor, den Quelltext oder einen Markdown-Block, der sich selbst rendert — und der richtige hängt ganz davon ab, wohin das Diagramm soll. Das ist die Kurzversion, plus was bei jedem einzelnen schiefgehen kann.",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "Zuerst das Format wählen"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Ziel",
+        "Verwendung",
+        "Warum"
+      ],
+      "rows": [
+        [
+          "GitHub, GitLab, Notion, Obsidian",
+          "Ein Markdown-Block",
+          "Rendert nativ und bleibt diffbar — keine Datei, die synchron gehalten werden muss."
+        ],
+        [
+          "Folien, ein Spec, eine Chatnachricht",
+          "PNG",
+          "Lässt sich überall einfügen, braucht keinen Renderer, sieht überall gleich aus."
+        ],
+        [
+          "Eine Website, ein gedrucktes Dokument",
+          "SVG",
+          "Vektor — scharf in jeder Größe, und der Text bleibt selektierbar."
+        ],
+        [
+          "Ein anderer Editor, ein Repo",
+          "`.mmd`-Quelle",
+          "Später editierbar. Ein Bild ist eine Sackgasse."
+        ]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Wenn das Ziel Mermaid selbst rendert, exportiere gar nicht erst. Ein als Text committetes Diagramm lässt sich Zeile für Zeile reviewen; dasselbe Diagramm als PNG committet lässt sich nur ersetzen."
+    },
+    {
+      "type": "h2",
+      "text": "Aus diesem Editor exportieren"
+    },
+    {
+      "type": "p",
+      "text": "Öffne den Code-Tab — die Export-Buttons sitzen in der Toolbar, und jeder wirkt auf das, was gerade gerendert ist."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**SVG kopieren** — legt das `<svg>`-Markup in die Zwischenablage, bereit zum direkten Einfügen in eine HTML-Datei oder ein Design-Tool.",
+        "**SVG herunterladen** — speichert `diagram.svg`.",
+        "**PNG herunterladen** — speichert `diagram.png`, gerendert in 2-facher Auflösung mit weißem Hintergrund, sodass es auf einem hochauflösenden Bildschirm scharf bleibt und nie als transparenter Fleck auf einer weißen Folie landet.",
+        "**.mmd herunterladen** — speichert die Mermaid-Quelle als reine Textdatei.",
+        "**.md herunterladen (Notion)** — speichert die Quelle in einem umschlossenen ```mermaid-Block, den Notion, GitHub und Obsidian beim Einfügen rendern."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Für eine Foliensammlung nimm das PNG. Für alles, was skaliert werden wird — eine Dokumentüberschrift, ein Poster, ein Druck — nimm das SVG; ein PNG, das über seine Exportgröße hinaus vergrößert wird, wirkt sofort unscharf."
+    },
+    {
+      "type": "h2",
+      "text": "Stattdessen als Text behalten"
+    },
+    {
+      "type": "p",
+      "text": "Der umschlossene Block ist der einzige Export, der an Ort und Stelle editierbar bleibt. Drei Backticks, das Wort `mermaid`, dein Diagramm, drei Backticks:"
+    },
+    {
+      "type": "code",
+      "caption": "Füge das in ein GitHub-README ein, und es rendert.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — rendert in README-Dateien, Issues, Pull Requests und Kommentaren.",
+        "**GitLab** — rendert im Wiki, in Issues und Merge Requests.",
+        "**Notion** — in einen Code-Block einfügen und die Sprache auf Mermaid setzen.",
+        "**Obsidian** — rendert in der Vorschau und in veröffentlichten Notizen.",
+        "**Docusaurus / MkDocs Material / VitePress** — Mermaid-Blöcke rendern in gebauten Docs."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Was schiefgehen kann"
+    },
+    {
+      "type": "h3",
+      "text": "Das PNG ist unscharf"
+    },
+    {
+      "type": "p",
+      "text": "Ein PNG hat eine feste Auflösung: Es wird in einer festgelegten Pixelgröße exportiert, und Skalieren darüber hinaus interpoliert. Dieser Editor exportiert deshalb in 2-facher Auflösung. Reicht das immer noch nicht, exportiere das SVG und konvertiere es in der benötigten Größe — oder benutze einfach das SVG."
+    },
+    {
+      "type": "h3",
+      "text": "Das SVG hat keinen Hintergrund"
+    },
+    {
+      "type": "p",
+      "text": "SVG-Exporte sind absichtlich transparent, sodass dunkler Knotentext auf einer dunklen Folie verschwindet. Entweder das SVG auf eine helle Karte legen, oder das PNG nehmen, das auf Weiß exportiert wird."
+    },
+    {
+      "type": "h3",
+      "text": "Schriften sehen woanders anders aus"
+    },
+    {
+      "type": "p",
+      "text": "Ein SVG referenziert Schriftfamilien, statt sie einzubetten, sodass ein Rechner ohne diese Schrift eine andere ersetzt und die Beschriftungsboxen nicht mehr passen. Nutze das PNG, wenn du die Schriften beim Betrachter nicht kontrollieren kannst."
+    },
+    {
+      "type": "h3",
+      "text": "Das Diagramm wird abgeschnitten"
+    },
+    {
+      "type": "p",
+      "text": "Der Export liest, was gerade gerendert ist — zentriere die Ansicht also neu, bevor du ein großes Diagramm exportierst. Wenn eine Knotenbeschriftung riesig ist, brich sie mit `<br>` um — Mermaid umbricht Beschriftungen nicht von selbst."
+    },
+    {
+      "type": "cta",
+      "heading": "In zwei Klicks exportieren",
+      "text": "Öffne den Editor, füge dein Diagramm ein oder zeichne es, und nimm das SVG, das PNG oder die Quelle. Nichts davon steckt hinter einem Konto.",
+      "buttonLabel": "Editor öffnen"
+    },
+    {
+      "type": "faq",
+      "heading": "Häufig gefragt",
+      "items": [
+        {
+          "q": "Wie konvertiere ich Mermaid zu PNG?",
+          "a": "Rendere das Diagramm und nutze dann PNG herunterladen. Der Editor zeichnet das gerenderte SVG auf einer Canvas in 2-facher Auflösung mit weißem Hintergrund und speichert das Ergebnis — kein Server-Roundtrip, das Diagramm verlässt also nie deinen Browser."
+        },
+        {
+          "q": "Kann ich ein transparentes PNG exportieren?",
+          "a": "Nicht über den PNG-Button — er füllt absichtlich mit Weiß, weil dunkler Diagrammtext auf transparentem Hintergrund an den meisten Stellen, an denen ein PNG eingefügt wird, unlesbar ist. Exportiere stattdessen das SVG; das ist transparent."
+        },
+        {
+          "q": "Gibt es ein Größenlimit?",
+          "a": "Kein festes. Der Export passiert in deinem Browser, das praktische Limit ist also das, was dein Browser noch rendert — was weit über dem Punkt liegt, an dem ein Diagramm für einen Menschen noch lesbar ist."
+        },
+        {
+          "q": "Wie halte ich das Diagramm nach dem Export editierbar?",
+          "a": "Behalte die Quelle. Lade die `.mmd`-Datei oder den Markdown-Block zusätzlich zum Bild herunter; ein PNG oder SVG lässt sich nicht zurück in Mermaid verwandeln, aber die Quelle lässt sich direkt wieder in den Editor einfügen."
+        }
+      ]
+    }
+  ]
+}

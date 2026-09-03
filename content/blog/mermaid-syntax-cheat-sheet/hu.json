@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid Szintaxis Puska Példákkal",
+    "description": "A mermaid szintaxis, amit ténylegesen használsz: csomópont-alakok, nyilak, alcsoportok, stílusok és egy példa minden diagramtípushoz. Másold, illeszd be, szerkeszd."
+  },
+  "card": {
+    "title": "Mermaid szintaxis puska",
+    "excerpt": "Csomópont-alakok, nyilak, alcsoportok és stílusok egy oldalon — plusz egy működő példa minden diagramtípusból, amit a mermaid renderel."
+  },
+  "h1": "Mermaid szintaxis puska",
+  "intro": "A mermaidnak nagy a referenciája, de van egy kis részhalmaza, ami szinte mindent lefed, amit az emberek rajzolnak. Ez az oldal az a részhalmaz: alakok, nyilak, csoportosítás, színek, és egy másolható példa minden diagramtípushoz. Az alábbi minden kódrészlet változtatás nélkül renderelődik — illeszd be a [szerkesztőbe](app:), hogy lásd.",
+  "blocks": [
+    { "type": "h2", "text": "A legrövidebb működő diagram" },
+    {
+      "type": "p",
+      "text": "Egy folyamatábrához egy deklarációs sor és egy nyíl kell. A `TD` felülről lefelé jelent; használj `LR`-t balról jobbra, ami jobban illik a széles folyamatokhoz."
+    },
+    {
+      "type": "code",
+      "caption": "Egy háromcsomópontos folyamatábra, felülről lefelé.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "Az `A`, `B` és `C` csomópont-azonosítók — belső nevek, sosem jelennek meg. A szögletes zárójelben lévő szöveg a felirat, és a zárójel **stílusa** választja ki az alakot."
+    },
+
+    { "type": "h2", "text": "Csomópont-alakok" },
+    {
+      "type": "p",
+      "text": "Az alakot a felirat körüli határolójel-pár választja ki. Ezeket érdemes megjegyezni:"
+    },
+    {
+      "type": "table",
+      "headers": ["Szintaxis", "Alak", "Szokásos jelentés"],
+      "rows": [
+        ["`A[Text]`", "Téglalap", "Egy lépés vagy művelet"],
+        ["`A(Text)`", "Lekerekített", "Egy kezdő- vagy végpont"],
+        ["`A([Text])`", "Pirula", "Egy terminátor"],
+        ["`A[[Text]]`", "Alfolyamat", "Hívás egy másik folyamatba"],
+        ["`A[(Text)]`", "Henger", "Egy adatbázis vagy tároló"],
+        ["`A((Text))`", "Kör", "Egy elágazási pont"],
+        ["`A{Text}`", "Rombusz", "Egy döntés"],
+        ["`A{{Text}}`", "Hatszög", "Egy előkészítő lépés"],
+        ["`A[/Text/]`", "Paralelogramma", "Bemenet vagy kimenet"],
+        ["`A[/Text\\]`", "Trapéz", "Egy manuális művelet"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Idézőjelbe kell tenni a feliratot, ha zárójelet, kettőspontot vagy idézőjelet tartalmaz: `A[\"Load (raw) data\"]`. Idézőjelek nélkül a feldolgozó az írásjeleidet szintaxisként értelmezi."
+    },
+
+    { "type": "h2", "text": "Nyilak" },
+    {
+      "type": "table",
+      "headers": ["Szintaxis", "Eredmény"],
+      "rows": [
+        ["`A --> B`", "Nyíl"],
+        ["`A --- B`", "Vonal, nyílhegy nélkül"],
+        ["`A -.-> B`", "Pontozott nyíl"],
+        ["`A ==> B`", "Vastag nyíl"],
+        ["`A -->|label| B`", "Nyíl felirattal"],
+        ["`A --> B --> C`", "Lánc, egy sorba írva"],
+        ["`A --> B & C`", "Egy forrás, két cél"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "A nyíl hossza is számít: a `-->` egy szintet jelent, a `--->` a célt egy szinttel lejjebb tolja. Ez a legegyszerűbb elrendezés-vezérlés, amit a mermaid ad."
+    },
+
+    { "type": "h2", "text": "Csoportosítás alcsoportokkal" },
+    {
+      "type": "p",
+      "text": "Egy `subgraph` egy feliratozott dobozt rajzol a csomópontok köré. Az alcsoportok egymásba ágyazhatók, és a nyilak szabadon átlépik a határaikat."
+    },
+    {
+      "type": "code",
+      "caption": "Két szolgáltatás, mindegyiknek saját tárolójával.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Szín és stílus" },
+    {
+      "type": "p",
+      "text": "A `style` egyetlen csomópontot fest be. A `classDef` és a `class` együtt egy csoportnyi csomópontot fest be, ami három-négy csomópont felett hasznosabb."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "A színek a diagram forrásának részei, így túlélik az exportálást, és a fájllal együtt utaznak. Semmi itt nem függ a renderelő eszköz témabeállításától."
+    },
+
+    { "type": "h2", "text": "Egy példa minden diagramtípushoz" },
+    {
+      "type": "h3",
+      "text": "Szekvenciadiagram"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Osztálydiagram" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Állapotdiagram" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Entitás-kapcsolat diagram" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantt diagram" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Hol renderel a mermaid önmagában" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — egy körbekerített ```mermaid blokk renderelődik issue-kban, pull requestekben, kommentekben és README fájlokban.",
+        "**GitLab** — ugyanaz a körbekerített blokk, issue-kban, merge requestekben és a wikiben.",
+        "**Notion** — egy kódblokk, aminek a nyelve Mermaidra van állítva, a forrás mellett renderelődik.",
+        "**Obsidian** — egy körbekerített mermaid blokk renderelődik előnézeti módban.",
+        "**Dokumentációs oldalak** — a Docusaurus, a MkDocs Material és a VitePress is támogatja a mermaid blokkokat."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Ez az igazi oka annak, hogy a diagramokat mermaidként érdemes megtartani, nem képként: a diagram ugyanabban a szövegfájlban él, mint amit leír, és egy code review láthatja, mi változott benne."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Próbáld ki bármelyik részletet ezen az oldalon",
+      "text": "Illeszd be a kód fülbe, és azonnal renderelődik — vagy építsd meg ugyanazt a diagramot a vásznon, és olvasd vissza a szintaxist.",
+      "buttonLabel": "Szerkesztő megnyitása"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Gyakran ismételt kérdések",
+      "items": [
+        {
+          "q": "Hogyan tegyek sortörést egy csomópont feliratán belül?",
+          "a": "Használj `<br>`-t egy idézőjelbe tett feliraton belül: `A[\"First line<br>Second line\"]`. A mermaid a feliratot HTML-ként rendereli, így a tag működik, még ha a szintaxis többi része nem is HTML."
+        },
+        {
+          "q": "Miért töri el a diagramomat a feliratom?",
+          "a": "Szinte mindig egy idézőjel nélküli zárójel, kerek zárójel, kettőspont vagy idézőjel van a feliratban. Tedd az egész feliratot dupla idézőjelbe, és a feldolgozó leáll azzal, hogy az írásjeleidet szintaxisként kezelje."
+        },
+        {
+          "q": "Tudom irányítani az elrendezést?",
+          "a": "Csak közvetve. Válaszd ki az irányt (`TD`, `LR`, `BT`, `RL`), használj hosszabb nyilakat (`--->`) a csomópontok távolabb tolásához, és csoportosítsd az összetartozó csomópontokat alcsoportokba. A többit a mermaid számolja ki — nincsenek koordináták."
+        },
+        {
+          "q": "Melyik mermaid verziót használja ez a szerkesztő?",
+          "a": "A Mermaid 11-et, a jelenlegi főverziót, így minden, ami a v10 és v11 szintaxishoz dokumentált, itt renderelődik."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid secības diagramma: sintakse un piemēri",
+    "description": "Kā uzrakstīt mermaid secības diagrammu: dalībnieki, bultu veidi, aktivācijas joslas, cikli, alt bloki un piezīmes — ar kopējamiem piemēriem."
+  },
+  "card": {
+    "title": "Mermaid secības diagrammas",
+    "excerpt": "Dalībnieki, bultu veidi, aktivācijas joslas, cikli un alt bloki — visa secības diagrammas sintakse ar izpildāmiem piemēriem."
+  },
+  "h1": "Kā uzrakstīt mermaid secības diagrammu",
+  "intro": "Secības diagramma rāda, kurš ar kuru sazinās un kādā secībā. Mermaid to uzrakstīt aizņem apmēram tikpat ilgi, cik prasa aprakstīt skaļā balsī, tāpēc tas ir diagrammas veids, kas koda bāzē noturas visilgāk. Viss zemāk ir gatavs kopēšanai un ielīmēšanai [redaktorā](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Minimums" },
+    {
+      "type": "p",
+      "text": "Deklarējiet diagrammas veidu, tad rakstiet pa vienai rindai katram ziņojumam. Dalībnieki tiek izveidoti pie pirmās pieminēšanas, secībā, kādā tie parādās."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Deklarējiet dalībniekus tieši ar `participant User`, ja vēlaties konkrētu secību no kreisās uz labo, nevis pirmās pieminēšanas secību."
+    },
+
+    { "type": "h2", "text": "Bultu veidi" },
+    {
+      "type": "table",
+      "headers": ["Sintakse", "Nozīme"],
+      "rows": [
+        ["`A->>B: text`", "Pieprasījums — pilna līnija, aizpildīts bultas gals"],
+        ["`A-->>B: text`", "Atbilde — pārtraukta līnija, aizpildīts bultas gals"],
+        ["`A->B: text`", "Pilna līnija, tukšs bultas gals"],
+        ["`A-)B: text`", "Asinhrons ziņojums — tukšs bultas gals, atbilde nav gaidāma"],
+        ["`A-xB: text`", "Ziņojums, kas neizdodas vai tiek pazaudēts"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Konvencija, ko vērts ievērot: **pilna līnija izsaukumam, pārtraukta atgriešanai**. Tad lasītājs var atšķirt pieprasījumu no atbildes, nelasot nevienu etiķeti."
+    },
+
+    { "type": "h2", "text": "Dalībnieki un pseidonīmi" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Izmantojiet `actor U as Browser` nevis `participant`, lai uzzīmētu stilizētu figūriņu — noder cilvēkam autentifikācijas plūsmas kreisajā malā."
+    },
+
+    { "type": "h2", "text": "Aktivācijas joslas" },
+    {
+      "type": "p",
+      "text": "Aktivācijas joslas rāda, cik ilgi dalībnieks ir aizņemts. Atzīmējiet tās tieši ar `activate`/`deactivate`, vai pievienojiet bultām `+` un `-`, kas ir īsāk un grūtāk sabojāt līdzsvaru."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Cikli, nosacījumi un paralēls darbs" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — atkārtošana.",
+        "`alt <label>` … `else <label>` … `end` — savstarpēji izslēdzoši zari.",
+        "`opt <label>` … `end` — zars, kas var arī nenotikt.",
+        "`par <label>` … `and <label>` … `end` — lietas, kas notiek vienlaikus.",
+        "`critical` / `break` — sadaļa, kuru nedrīkst pārtraukt, un agrīna izeja."
+      ]
+    },
+
+    { "type": "h2", "text": "Piezīmes" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` aptver divus dalībniekus un ir īstā vieta ierobežojumam, kas pieder mijiedarbībai, nevis kādai no pusēm."
+    },
+
+    { "type": "h2", "text": "Pilns piemērs" },
+    {
+      "type": "code",
+      "caption": "OAuth pieteikšanās, no sākuma līdz beigām.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Rediģējiet šo diagrammu",
+      "text": "Ielīmējiet to koda cilnē un mainiet rindu — priekšskatījums pārzīmējas rakstīšanas laikā.",
+      "buttonLabel": "Atvērt redaktoru"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Biežāk uzdotie jautājumi",
+      "items": [
+        {
+          "q": "Kā numurēt ziņojumus?",
+          "a": "Ierakstiet `autonumber` rindā tieši aiz `sequenceDiagram`. Tad katrs ziņojums saņem secīgu numuru, kas ievērojami atvieglo diagrammas apspriešanu pārskata komentāros."
+        },
+        {
+          "q": "Vai dalībnieks var nosūtīt ziņojumu pats sev?",
+          "a": "Jā — uzrakstiet to pašu nosaukumu abās pusēs: `API->>API: retry`. Mermaid uzzīmē cilpu atpakaļ tajā pašā dzīves līnijā."
+        },
+        {
+          "q": "Kā parādīt, ka dalībnieks tiek iznīcināts?",
+          "a": "Izmantojiet `destroy <name>` pirms ziņojuma, kas to noslēdz, vai `create participant <name>`, lai tas parādītos diagrammas vidū, nevis augšā."
+        },
+        {
+          "q": "Vai varu rediģēt secības diagrammu vizuālajā audeklā?",
+          "a": "Vizuālais audekls rediģē plūsmas diagrammas. Secības diagrammas raksta koda cilnē, kur tās atveidojas dzīvē priekšskatījumā — parasti tas ir ātrāk, jo secības diagramma būtībā ir rindu saraksts."
+        }
+      ]
+    }
+  ]
+}

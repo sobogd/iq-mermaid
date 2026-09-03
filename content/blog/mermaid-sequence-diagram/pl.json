@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Diagram Sekwencji Mermaid: Składnia i Przykłady",
+    "description": "Jak napisać diagram sekwencji w mermaid: uczestnicy, typy strzałek, paski aktywacji, pętle, bloki alt i notatki — z przykładami do skopiowania."
+  },
+  "card": {
+    "title": "Diagramy sekwencji mermaid",
+    "excerpt": "Uczestnicy, typy strzałek, paski aktywacji, pętle i bloki alt — cała składnia diagramu sekwencji z działającymi przykładami."
+  },
+  "h1": "Jak napisać diagram sekwencji w mermaid",
+  "intro": "Diagram sekwencji pokazuje, kto z kim rozmawia i w jakiej kolejności. W mermaid napisanie go zajmuje mniej więcej tyle samo czasu, ile opisanie go na głos, dlatego to typ diagramu, który przetrwa w repozytorium kodu najdłużej. Wszystko poniżej jest gotowe do skopiowania do [edytora](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Minimum" },
+    {
+      "type": "p",
+      "text": "Zadeklaruj typ diagramu, a potem napisz jedną linię na wiadomość. Uczestnicy są tworzeni przy pierwszej wzmiance, w kolejności, w jakiej się pojawiają."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Zadeklaruj uczestników jawnie za pomocą `participant User`, gdy chcesz konkretnej kolejności od lewej do prawej, zamiast kolejności pierwszej wzmianki."
+    },
+
+    { "type": "h2", "text": "Typy strzałek" },
+    {
+      "type": "table",
+      "headers": ["Składnia", "Znaczenie"],
+      "rows": [
+        ["`A->>B: text`", "Żądanie — linia ciągła, wypełniony grot"],
+        ["`A-->>B: text`", "Odpowiedź — linia przerywana, wypełniony grot"],
+        ["`A->B: text`", "Linia ciągła, otwarty grot"],
+        ["`A-)B: text`", "Wiadomość asynchroniczna — otwarty grot, bez oczekiwanej odpowiedzi"],
+        ["`A-xB: text`", "Wiadomość, która kończy się niepowodzeniem lub zostaje odrzucona"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Warto trzymać się konwencji: **linia ciągła dla wywołania, przerywana dla odpowiedzi**. Czytelnik rozpozna wtedy żądanie od odpowiedzi bez czytania choćby jednej etykiety."
+    },
+
+    { "type": "h2", "text": "Uczestnicy i aliasy" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Użyj `actor U as Browser` zamiast `participant`, aby narysować figurkę — warto przy człowieku po lewej stronie przepływu uwierzytelniania."
+    },
+
+    { "type": "h2", "text": "Paski aktywacji" },
+    {
+      "type": "p",
+      "text": "Paski aktywacji pokazują, jak długo dany uczestnik jest zajęty. Oznacz je jawnie za pomocą `activate`/`deactivate` albo dodaj `+` i `-` do strzałek, co jest krótsze i trudniej wtedy stracić równowagę."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Pętle, warunki i praca równoległa" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — powtórzenie.",
+        "`alt <label>` … `else <label>` … `end` — wzajemnie wykluczające się gałęzie.",
+        "`opt <label>` … `end` — gałąź, która może po prostu nie wystąpić.",
+        "`par <label>` … `and <label>` … `end` — rzeczy dziejące się w tym samym czasie.",
+        "`critical` / `break` — sekcja, której nie można przerwać, oraz wcześniejsze wyjście."
+      ]
+    },
+
+    { "type": "h2", "text": "Notatki" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` obejmuje dwóch uczestników i to właściwe miejsce na ograniczenie, które dotyczy samej interakcji, a nie żadnej ze stron."
+    },
+
+    { "type": "h2", "text": "Pełny przykład" },
+    {
+      "type": "code",
+      "caption": "Logowanie OAuth, od początku do końca.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Edytuj ten diagram",
+      "text": "Wklej go do zakładki kodu i zmień jedną linię — podgląd przerysuje się w locie.",
+      "buttonLabel": "Otwórz edytor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Najczęściej zadawane pytania",
+      "items": [
+        {
+          "q": "Jak ponumerować wiadomości?",
+          "a": "Umieść `autonumber` w linii zaraz po `sequenceDiagram`. Każda wiadomość dostaje wtedy kolejny numer, co znacznie ułatwia rozmowę o diagramie w komentarzach do code review."
+        },
+        {
+          "q": "Czy uczestnik może wysłać wiadomość do samego siebie?",
+          "a": "Tak — wpisz tę samą nazwę po obu stronach: `API->>API: retry`. Mermaid rysuje wtedy pętlę z powrotem do tej samej linii życia."
+        },
+        {
+          "q": "Jak pokazać, że uczestnik zostaje zniszczony?",
+          "a": "Użyj `destroy <name>` przed wiadomością, która go kończy, albo `create participant <name>`, aby pojawił się w środku diagramu zamiast na górze."
+        },
+        {
+          "q": "Czy mogę edytować diagram sekwencji na wizualnym płótnie?",
+          "a": "Wizualne płótno edytuje flowcharty. Diagramy sekwencji pisze się w zakładce kodu, gdzie renderują się na żywo w podglądzie — co zwykle i tak jest szybsze, bo diagram sekwencji to w gruncie rzeczy lista linii."
+        }
+      ]
+    }
+  ]
+}

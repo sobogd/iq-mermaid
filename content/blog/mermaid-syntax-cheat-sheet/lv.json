@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid sintakses uzziņa ar piemēriem",
+    "description": "Mermaid sintakse, ko tiešām lietosiet: mezglu formas, bultu veidi, apakšgrafi, stilošana un pa vienam strādājošam piemēram katram diagrammas veidam. Kopējiet, ielīmējiet, rediģējiet."
+  },
+  "card": {
+    "title": "Mermaid sintakses uzziņa",
+    "excerpt": "Mezglu formas, bultas, apakšgrafi un stilošana vienā lapā — plus strādājošs piemērs katram diagrammas veidam, ko atveido mermaid."
+  },
+  "h1": "Mermaid sintakses uzziņa",
+  "intro": "Mermaid ir apjomīga uzziņa, taču neliela tās daļa sedz gandrīz visu, ko cilvēki zīmē. Šī lapa ir tieši tā daļa: formas, bultas, grupēšana, krāsas un pa vienam kopējamam piemēram katram diagrammas veidam. Katrs zemāk redzamais fragments atveidojas tāds, kāds ir — ielīmējiet to [redaktorā](app:), lai to redzētu.",
+  "blocks": [
+    { "type": "h2", "text": "Īsākā diagramma, kas darbojas" },
+    {
+      "type": "p",
+      "text": "Plūsmas diagrammai nepieciešama viena deklarācijas rinda un viena bulta. `TD` nozīmē no augšas uz leju; izmantojiet `LR` no kreisās uz labo, kas labāk piemērots plašiem procesiem."
+    },
+    {
+      "type": "code",
+      "caption": "Trīs mezglu plūsmas diagramma, no augšas uz leju.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` un `C` ir mezglu id — iekšēji nosaukumi, kas nekad netiek zīmēti. Teksts iekavās ir etiķete, un iekavu **stils** nosaka formu."
+    },
+
+    { "type": "h2", "text": "Mezglu formas" },
+    {
+      "type": "p",
+      "text": "Forma tiek izvēlēta pēc norobežotāju pāra ap etiķeti. Šīs ir vērtas iegaumēt:"
+    },
+    {
+      "type": "table",
+      "headers": ["Sintakse", "Forma", "Parastā nozīme"],
+      "rows": [
+        ["`A[Text]`", "Taisnstūris", "Solis vai darbība"],
+        ["`A(Text)`", "Noapaļots", "Sākuma vai beigu punkts"],
+        ["`A([Text])`", "Tablete", "Terminators"],
+        ["`A[[Text]]`", "Apakšprogramma", "Izsaukums uz citu procesu"],
+        ["`A[(Text)]`", "Cilindrs", "Datubāze vai krātuve"],
+        ["`A((Text))`", "Aplis", "Krustpunkts"],
+        ["`A{Text}`", "Rombs", "Lēmums"],
+        ["`A{{Text}}`", "Sešstūris", "Sagatavošanas solis"],
+        ["`A[/Text/]`", "Paralelograms", "Ievade vai izvade"],
+        ["`A[/Text\\]`", "Trapece", "Manuāla darbība"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Ievietojiet etiķeti pēdiņās, ja tā satur iekavas, kolus vai pēdiņas: `A[\"Load (raw) data\"]`. Bez pēdiņām parsētājs uztver jūsu pieturzīmes kā sintaksi."
+    },
+
+    { "type": "h2", "text": "Bultas" },
+    {
+      "type": "table",
+      "headers": ["Sintakse", "Rezultāts"],
+      "rows": [
+        ["`A --> B`", "Bulta"],
+        ["`A --- B`", "Līnija bez bultas gala"],
+        ["`A -.-> B`", "Punktota bulta"],
+        ["`A ==> B`", "Bieza bulta"],
+        ["`A -->|label| B`", "Bulta ar etiķeti"],
+        ["`A --> B --> C`", "Ķēde, uzrakstīta vienā rindā"],
+        ["`A --> B & C`", "Viens avots, divi mērķi"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Bultas garums arī ir nozīmīgs: `-->` ir viena pakāpe, `--->` pabīda mērķi vienu pakāpi tālāk. Tā ir vienkāršākā izkārtojuma kontrole, ko dod mermaid."
+    },
+
+    { "type": "h2", "text": "Grupēšana ar apakšgrafiem" },
+    {
+      "type": "p",
+      "text": "`subgraph` uzzīmē marķētu rāmi ap mezgliem. Apakšgrafi var ligzdoties, un bultas var brīvi šķērsot to robežas."
+    },
+    {
+      "type": "code",
+      "caption": "Divi servisi, katrs ar savu krātuvi.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Krāsa un stilošana" },
+    {
+      "type": "p",
+      "text": "`style` iekrāso vienu mezglu. `classDef` kopā ar `class` iekrāso mezglu kopu, kas noder, kad mezglu ir vairāk par trīs vai četriem."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Krāsas ir daļa no diagrammas pirmkoda, tāpēc tās saglabājas eksportā un ceļo kopā ar failu. Nekas šeit nav atkarīgs no rīka, kas to atveido, tēmas iestatījuma."
+    },
+
+    { "type": "h2", "text": "Pa vienam piemēram katram diagrammas veidam" },
+    {
+      "type": "h3",
+      "text": "Secības diagramma"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Klašu diagramma" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Stāvokļu diagramma" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Entītiju attiecību diagramma" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantt diagramma" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Kur mermaid atveidojas pats no sevis" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — norobežots ```mermaid bloks atveidojas issues, pull requests, komentāros un README failos.",
+        "**GitLab** — tas pats norobežotais bloks, issues, merge requests un wiki.",
+        "**Notion** — koda bloks ar valodu iestatītu uz Mermaid atveidojas blakus pirmkodam.",
+        "**Obsidian** — norobežots mermaid bloks atveidojas priekšskatījuma režīmā.",
+        "**Dokumentācijas vietnes** — Docusaurus, MkDocs Material un VitePress visi atbalsta mermaid blokus."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Tas ir īstais iemesls glabāt diagrammas kā mermaid, nevis kā attēlus: diagramma dzīvo tajā pašā teksta failā, ko apraksta, un koda pārskatā var redzēt, kas tajā mainījies."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Izmēģiniet jebkuru šīs lapas fragmentu",
+      "text": "Ielīmējiet to koda cilnē, un tas atveidojas uzreiz — vai izveidojiet to pašu diagrammu audeklā un nolasiet sintaksi atpakaļ.",
+      "buttonLabel": "Atvērt redaktoru"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Biežāk uzdotie jautājumi",
+      "items": [
+        {
+          "q": "Kā pievienot rindas pārtraukumu mezgla etiķetē?",
+          "a": "Izmantojiet `<br>` pēdiņās liktā etiķetē: `A[\"First line<br>Second line\"]`. Mermaid atveido etiķeti kā HTML, tāpēc tags darbojas, lai gan pārējā sintakse nav HTML."
+        },
+        {
+          "q": "Kāpēc mana etiķete sabojā diagrammu?",
+          "a": "Gandrīz vienmēr tā ir bez pēdiņām atstāta iekava, kols vai pēdiņa etiķetes iekšienē. Ietveriet visu etiķeti dubultpēdiņās, un parsētājs vairs neuztvers jūsu pieturzīmes kā sintaksi."
+        },
+        {
+          "q": "Vai varu kontrolēt izkārtojumu?",
+          "a": "Tikai netieši. Izvēlieties virzienu (`TD`, `LR`, `BT`, `RL`), izmantojiet garākas bultas (`--->`), lai mezglus attālinātu, un grupējiet saistītos mezglus apakšgrafos. Pārējo aprēķina mermaid — koordinātu nav."
+        },
+        {
+          "q": "Kuru mermaid versiju izmanto šis redaktors?",
+          "a": "Mermaid 11, pašreizējo galveno versiju, tāpēc šeit atveidojas viss, kas dokumentēts v10 un v11 sintaksē."
+        }
+      ]
+    }
+  ]
+}

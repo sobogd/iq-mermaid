@@ -1,0 +1,91 @@
+{
+  "backToSite": "홈으로 돌아가기",
+  "tabs": {
+    "visual": "비주얼",
+    "text": "코드"
+  },
+  "toolbar": {
+    "addBlock": "블록 추가",
+    "addGroup": "영역 추가",
+    "copy": "복사 (블록 하나, 또는 안의 모든 것을 포함한 영역 전체)",
+    "paste": "붙여넣기 — 넣을 위치를 클릭하세요",
+    "delete": "선택 항목 삭제",
+    "clearAll": "전체 지우기",
+    "connect": "다른 블록으로 화살표 그리기",
+    "move": "영역 안으로, 또는 밖으로 이동",
+    "color": "색상",
+    "shape": "모양"
+  },
+  "zoom": {
+    "center": "가운데로"
+  },
+  "modals": {
+    "colorTitle": "색상",
+    "shapeTitle": "모양"
+  },
+  "shapes": {
+    "rect": "사각형",
+    "rounded": "둥근 사각형",
+    "pill": "알약형",
+    "circle": "원",
+    "diamond": "다이아몬드",
+    "subroutine": "서브루틴",
+    "cylinder": "데이터베이스",
+    "hexagon": "육각형",
+    "asymmetric": "깃발",
+    "parallelogram": "평행사변형",
+    "parallelogramAlt": "평행사변형 (반전)",
+    "trapezoid": "사다리꼴",
+    "trapezoidAlt": "사다리꼴 (반전)",
+    "doubleCircle": "이중 원"
+  },
+  "hints": {
+    "connect": "화살표가 향할 블록을 클릭하세요 · Esc로 취소",
+    "move": "이동해 넣을 영역을 클릭하거나, 빈 공간을 클릭해 밖으로 꺼내세요 · Esc로 취소",
+    "paste": "붙여넣을 영역이나 빈 공간을 클릭하세요 · Esc로 취소"
+  },
+  "prompts": {
+    "edgeLabel": "화살표 라벨:",
+    "clearAll": "전부 삭제할까요?"
+  },
+  "defaults": {
+    "block": "블록",
+    "group": "영역",
+    "start": "시작",
+    "action": "동작"
+  },
+  "text": {
+    "examplePlaceholder": "예시…",
+    "copyMermaid": "mermaid 복사",
+    "downloadMmd": ".mmd 다운로드",
+    "downloadMd": ".md 다운로드 (Notion)",
+    "copySvg": "SVG 복사",
+    "downloadSvg": "SVG 다운로드",
+    "downloadPng": "PNG 다운로드",
+    "statusOk": "완료",
+    "statusError": "오류",
+    "statusSvgCopied": "SVG 복사됨",
+    "statusMermaidCopied": "mermaid 복사됨"
+  },
+  "examples": {
+    "flowchart": "순서도",
+    "sequence": "시퀀스 다이어그램",
+    "class": "클래스 다이어그램",
+    "state": "상태 다이어그램",
+    "er": "ER 다이어그램",
+    "gantt": "간트 차트"
+  },
+  "sample": {
+    "start": "시작",
+    "condition": "준비됐나요?",
+    "yes": "예",
+    "no": "아니요",
+    "action1": "배포하기",
+    "action2": "수정하기",
+    "end": "완료",
+    "project": "프로젝트",
+    "phase": "1단계",
+    "task1": "작업 1",
+    "task2": "작업 2"
+  }
+}

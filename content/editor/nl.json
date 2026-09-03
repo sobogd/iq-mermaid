@@ -1,0 +1,83 @@
+{
+  "backToSite": "Terug naar de homepage",
+  "tabs": { "visual": "Visueel", "text": "Code" },
+  "toolbar": {
+    "addBlock": "Blok toevoegen",
+    "addGroup": "Gebied toevoegen",
+    "copy": "Kopiëren (een blok, of een heel gebied met alles erin)",
+    "paste": "Plakken — klik daarna waar het moet komen",
+    "delete": "Selectie verwijderen",
+    "clearAll": "Alles wissen",
+    "connect": "Teken een pijl naar een ander blok",
+    "move": "Verplaats naar een gebied, of eruit",
+    "color": "Kleur",
+    "shape": "Vorm"
+  },
+  "zoom": { "center": "Centreren" },
+  "modals": { "colorTitle": "Kleur", "shapeTitle": "Vorm" },
+  "shapes": {
+    "rect": "Rechthoek",
+    "rounded": "Afgerond",
+    "pill": "Pil",
+    "circle": "Cirkel",
+    "diamond": "Ruit",
+    "subroutine": "Subroutine",
+    "cylinder": "Database",
+    "hexagon": "Zeshoek",
+    "asymmetric": "Vlag",
+    "parallelogram": "Parallellogram",
+    "parallelogramAlt": "Parallellogram (gespiegeld)",
+    "trapezoid": "Trapezium",
+    "trapezoidAlt": "Trapezium (gespiegeld)",
+    "doubleCircle": "Dubbele cirkel"
+  },
+  "hints": {
+    "connect": "Klik op het blok waar de pijl naartoe moet wijzen · Esc om te annuleren",
+    "move": "Klik op een gebied om erin te verplaatsen, of op lege ruimte om eruit te verplaatsen · Esc om te annuleren",
+    "paste": "Klik op een gebied of lege ruimte om erin te plakken · Esc om te annuleren"
+  },
+  "prompts": {
+    "edgeLabel": "Pijllabel:",
+    "clearAll": "Alles verwijderen?"
+  },
+  "defaults": {
+    "block": "Blok",
+    "group": "Gebied",
+    "start": "Start",
+    "action": "Actie"
+  },
+  "text": {
+    "examplePlaceholder": "Voorbeeld…",
+    "copyMermaid": "Mermaid kopiëren",
+    "downloadMmd": "Download .mmd",
+    "downloadMd": "Download .md (Notion)",
+    "copySvg": "SVG kopiëren",
+    "downloadSvg": "Download SVG",
+    "downloadPng": "Download PNG",
+    "statusOk": "OK",
+    "statusError": "Fout",
+    "statusSvgCopied": "SVG gekopieerd",
+    "statusMermaidCopied": "Mermaid gekopieerd"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Sequence diagram",
+    "class": "Class diagram",
+    "state": "State diagram",
+    "er": "ER-diagram",
+    "gantt": "Gantt-diagram"
+  },
+  "sample": {
+    "start": "Start",
+    "condition": "Klaar?",
+    "yes": "Ja",
+    "no": "Nee",
+    "action1": "Verzenden",
+    "action2": "Herstellen",
+    "end": "Klaar",
+    "project": "Project",
+    "phase": "Fase 1",
+    "task1": "Taak 1",
+    "task2": "Taak 2"
+  }
+}

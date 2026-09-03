@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Eksportēt mermaid uz PNG, SVG vai Markdown",
+    "description": "Kā mermaid diagrammu pārvērst PNG vai SVG failā, kopēt SVG marķējumu vai saglabāt kā tekstu GitHub un Notion vajadzībām — un ko izvēlēties."
+  },
+  "card": {
+    "title": "Eksportēt mermaid uz PNG vai SVG",
+    "excerpt": "Četri veidi, kā iznest mermaid diagrammu — PNG, SVG, .mmd avots un Markdown bloks — un kurš no tiem ir pareizā atbilde katrā gadījumā."
+  },
+  "h1": "Eksportēt mermaid diagrammu uz PNG, SVG vai Markdown",
+  "intro": "Diagramma ir noderīga tikai tur, kur to var redzēt. Mermaid piedāvā četrus izejas ceļus — attēlu, vektoru, avotu vai Markdown bloku, kas atveidojas pats — un pareizā izvēle pilnībā ir atkarīga no tā, uz kurieni diagramma dodas. Šī ir īsā versija, plus tas, kas sabojājas ar katru no tiem.",
+  "blocks": [
+    { "type": "h2", "text": "Vispirms izvēlieties formātu" },
+    {
+      "type": "table",
+      "headers": ["Mērķis", "Lietojums", "Kāpēc"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Markdown bloks", "Tas atveidojas natīvi un paliek salīdzināms (diff) — nav faila, ko sinhronizēt."],
+        ["Prezentācijas, specifikācija, tērzēšanas ziņa", "PNG", "Ielīmējams jebkur, nav vajadzīgs atveidotājs, izskatās vienādi visur."],
+        ["Tīmekļa vietne, drukāts dokuments", "SVG", "Vektors — ass jebkurā izmērā, un teksts paliek iezīmējams."],
+        ["Cits redaktors, repozitorijs", "`.mmd` avots", "Vēlāk rediģējams. Attēls ir strupceļš."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Ja galamērķis atveido mermaid, neeksportējiet vispār. Diagrammu, kas iesniegta kā teksts, var pārskatīt rindiņu pa rindiņai; tā pati diagramma, iesniegta kā PNG, var tikai tikt aizstāta."
+    },
+
+    { "type": "h2", "text": "Eksportēšana no šī redaktora" },
+    {
+      "type": "p",
+      "text": "Atveriet koda cilni — eksportēšanas pogas atrodas rīkjoslā, un katra darbojas ar to, kas pašlaik ir atveidots."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**Kopēt SVG** — ievieto `<svg>` marķējumu starpliktuvē, gatavu ielīmēšanai tieši HTML failā vai dizaina rīkā.",
+        "**Lejupielādēt SVG** — saglabā `diagram.svg`.",
+        "**Lejupielādēt PNG** — saglabā `diagram.png`, atveidotu 2x izšķirtspējā ar baltu fonu, lai tas paliktu ass augstas izšķirtspējas ekrānā un nekad nenonāktu kā caurspīdīgs traips baltā slaidā.",
+        "**Lejupielādēt .mmd** — saglabā mermaid avotu kā vienkāršu teksta failu.",
+        "**Lejupielādēt .md (Notion)** — saglabā avotu ietvertu norobežotā ```mermaid blokā, ko Notion, GitHub un Obsidian atveido pēc ielīmēšanas."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Prezentācijai izmantojiet PNG. Visam, kas tiks mērogots — dokumenta virsraksts, plakāts, druka — izmantojiet SVG; PNG, palielināts virs sava eksporta izmēra, nekavējoties kļūst neass."
+    },
+
+    { "type": "h2", "text": "Tā vietā saglabājiet kā tekstu" },
+    {
+      "type": "p",
+      "text": "Norobežotais bloks ir vienīgais eksporta veids, kas paliek rediģējams uz vietas. Trīs pēdiņzīmes, vārds `mermaid`, jūsu diagramma, trīs pēdiņzīmes:"
+    },
+    {
+      "type": "code",
+      "caption": "Ielīmējiet šo GitHub README failā, un tas atveidosies.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — atveidojas README failos, issue, pull request un komentāros.",
+        "**GitLab** — atveidojas wiki, issue un merge request.",
+        "**Notion** — ielīmējiet koda blokā un iestatiet valodu uz Mermaid.",
+        "**Obsidian** — atveidojas priekšskatījumā un publicētajās piezīmēs.",
+        "**Docusaurus / MkDocs Material / VitePress** — mermaid bloki atveidojas izveidotajā dokumentācijā."
+      ]
+    },
+
+    { "type": "h2", "text": "Kas var noiet greizi" },
+    { "type": "h3", "text": "PNG ir izplūdis" },
+    {
+      "type": "p",
+      "text": "PNG ir fiksētas izšķirtspējas: tas tiek eksportēts noteiktā pikseļu izmērā, un mērogošana virs tā izmanto interpolāciju. Tieši tāpēc šis redaktors eksportē 2x izšķirtspējā. Ja ar to joprojām nepietiek, eksportējiet SVG un konvertējiet to jebkurā nepieciešamajā izmērā — vai vienkārši izmantojiet SVG."
+    },
+    { "type": "h3", "text": "SVG nav fona" },
+    {
+      "type": "p",
+      "text": "SVG eksports pēc noklusējuma ir caurspīdīgs, tāpēc tumšs mezgla teksts pazūd uz tumša slaida. Vai nu novietojiet SVG uz gaišas kartītes, vai izmantojiet PNG, kas tiek eksportēts uz balta fona."
+    },
+    { "type": "h3", "text": "Citur fonti izskatās savādāk" },
+    {
+      "type": "p",
+      "text": "SVG atsaucas uz fontu saimēm, nevis tās iegulda, tāpēc ierīce bez šī fonta aizstāj to ar citu, un etiķešu lauciņi vairs nesaskan. Izmantojiet PNG, ja nevarat kontrolēt skatītāja fontus."
+    },
+    { "type": "h3", "text": "Diagramma ir nogriezta" },
+    {
+      "type": "p",
+      "text": "Eksports nolasa to, kas pašlaik ir atveidots, tāpēc pirms lielas diagrammas eksportēšanas centrējiet skatu no jauna. Ja mezgla etiķete ir ļoti gara, pārtrauciet to ar `<br>` — mermaid pati etiķetes neaplauž."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Eksportējiet divos klikšķos",
+      "text": "Atveriet redaktoru, ielīmējiet vai uzzīmējiet savu diagrammu un lejupielādējiet SVG, PNG vai avotu. Nekas nav slēpts aiz konta.",
+      "buttonLabel": "Atvērt redaktoru"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Biežāk uzdotie jautājumi",
+      "items": [
+        {
+          "q": "Kā konvertēt mermaid uz PNG?",
+          "a": "Atveidojiet diagrammu un pēc tam izmantojiet Lejupielādēt PNG. Redaktors uzzīmē atveidoto SVG uz audekla 2x mērogā ar baltu fonu un saglabā rezultātu — bez saziņas ar serveri, tāpēc diagramma nekad neatstāj jūsu pārlūku."
+        },
+        {
+          "q": "Vai varu eksportēt caurspīdīgu PNG?",
+          "a": "Ne izmantojot PNG pogu — tā tīšām aizpilda ar baltu, jo tumšs diagrammas teksts uz caurspīdīga fona lielākajā daļā vietu, kur PNG tiek ielīmēts, ir nesalasāms. Tā vietā eksportējiet SVG — tas ir caurspīdīgs."
+        },
+        {
+          "q": "Vai pastāv izmēra ierobežojums?",
+          "a": "Nav fiksēta ierobežojuma. Eksports notiek jūsu pārlūkā, tāpēc praktiskais ierobežojums ir tas, ko jūsu pārlūks spēj atveidot — kas ir tālu pāri punktam, kurā diagramma cilvēkam vēl ir salasāma."
+        },
+        {
+          "q": "Kā saglabāt diagrammu rediģējamu pēc eksportēšanas?",
+          "a": "Saglabājiet avotu. Lejupielādējiet `.mmd` failu vai Markdown bloku līdzās attēlam; PNG vai SVG nevar pārvērst atpakaļ mermaid formātā, taču avots ielīmējams tieši atpakaļ redaktorā."
+        }
+      ]
+    }
+  ]
+}

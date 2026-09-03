@@ -1,0 +1,83 @@
+{
+  "backToSite": "返回首页",
+  "tabs": { "visual": "可视化", "text": "代码" },
+  "toolbar": {
+    "addBlock": "添加节点",
+    "addGroup": "添加区域",
+    "copy": "复制（单个节点，或包含全部内容的整个区域）",
+    "paste": "粘贴 — 然后点击目标位置",
+    "delete": "删除选中内容",
+    "clearAll": "清空全部",
+    "connect": "画箭头连接另一个节点",
+    "move": "移入或移出某个区域",
+    "color": "颜色",
+    "shape": "形状"
+  },
+  "zoom": { "center": "重新居中" },
+  "modals": { "colorTitle": "颜色", "shapeTitle": "形状" },
+  "shapes": {
+    "rect": "矩形",
+    "rounded": "圆角矩形",
+    "pill": "胶囊形",
+    "circle": "圆形",
+    "diamond": "菱形",
+    "subroutine": "子程序",
+    "cylinder": "数据库",
+    "hexagon": "六边形",
+    "asymmetric": "旗形",
+    "parallelogram": "平行四边形",
+    "parallelogramAlt": "平行四边形（镜像）",
+    "trapezoid": "梯形",
+    "trapezoidAlt": "梯形（镜像）",
+    "doubleCircle": "双圆形"
+  },
+  "hints": {
+    "connect": "点击箭头要指向的节点 · 按 Esc 取消",
+    "move": "点击某个区域可移入，点击空白处可移出 · 按 Esc 取消",
+    "paste": "点击区域或空白处进行粘贴 · 按 Esc 取消"
+  },
+  "prompts": {
+    "edgeLabel": "箭头标签：",
+    "clearAll": "确定删除全部内容吗？"
+  },
+  "defaults": {
+    "block": "节点",
+    "group": "区域",
+    "start": "开始",
+    "action": "操作"
+  },
+  "text": {
+    "examplePlaceholder": "示例…",
+    "copyMermaid": "复制 mermaid",
+    "downloadMmd": "下载 .mmd",
+    "downloadMd": "下载 .md（Notion）",
+    "copySvg": "复制 SVG",
+    "downloadSvg": "下载 SVG",
+    "downloadPng": "下载 PNG",
+    "statusOk": "成功",
+    "statusError": "错误",
+    "statusSvgCopied": "已复制 SVG",
+    "statusMermaidCopied": "已复制 mermaid 代码"
+  },
+  "examples": {
+    "flowchart": "流程图",
+    "sequence": "时序图",
+    "class": "类图",
+    "state": "状态图",
+    "er": "ER 图",
+    "gantt": "甘特图"
+  },
+  "sample": {
+    "start": "开始",
+    "condition": "准备好了吗？",
+    "yes": "是",
+    "no": "否",
+    "action1": "发布",
+    "action2": "修复",
+    "end": "完成",
+    "project": "项目",
+    "phase": "阶段一",
+    "task1": "任务一",
+    "task2": "任务二"
+  }
+}

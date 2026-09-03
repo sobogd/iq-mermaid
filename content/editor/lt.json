@@ -1,0 +1,83 @@
+{
+  "backToSite": "Grįžti į pradinį puslapį",
+  "tabs": { "visual": "Vizualus", "text": "Kodas" },
+  "toolbar": {
+    "addBlock": "Pridėti bloką",
+    "addGroup": "Pridėti sritį",
+    "copy": "Kopijuoti (bloką arba visą sritį su viskuo joje)",
+    "paste": "Įklijuoti — tada spustelėk, kur turi atsirasti",
+    "delete": "Ištrinti pažymėjimą",
+    "clearAll": "Išvalyti viską",
+    "connect": "Nubrėžti rodyklę į kitą bloką",
+    "move": "Perkelti į sritį arba iš jos",
+    "color": "Spalva",
+    "shape": "Forma"
+  },
+  "zoom": { "center": "Centruoti" },
+  "modals": { "colorTitle": "Spalva", "shapeTitle": "Forma" },
+  "shapes": {
+    "rect": "Stačiakampis",
+    "rounded": "Suapvalintas",
+    "pill": "Piliulė",
+    "circle": "Apskritimas",
+    "diamond": "Rombas",
+    "subroutine": "Subrutina",
+    "cylinder": "Duomenų bazė",
+    "hexagon": "Šešiakampis",
+    "asymmetric": "Vėliava",
+    "parallelogram": "Lygiagretainis",
+    "parallelogramAlt": "Lygiagretainis (atspindėtas)",
+    "trapezoid": "Trapecija",
+    "trapezoidAlt": "Trapecija (atspindėta)",
+    "doubleCircle": "Dvigubas apskritimas"
+  },
+  "hints": {
+    "connect": "Spustelėk bloką, į kurį turi rodyti rodyklė · Esc – atšaukti",
+    "move": "Spustelėk sritį, kad perkeltum į ją, arba tuščią vietą, kad iškeltum · Esc – atšaukti",
+    "paste": "Spustelėk sritį arba tuščią vietą, į kurią įklijuoti · Esc – atšaukti"
+  },
+  "prompts": {
+    "edgeLabel": "Rodyklės etiketė:",
+    "clearAll": "Ištrinti viską?"
+  },
+  "defaults": {
+    "block": "Blokas",
+    "group": "Sritis",
+    "start": "Pradžia",
+    "action": "Veiksmas"
+  },
+  "text": {
+    "examplePlaceholder": "Pavyzdys…",
+    "copyMermaid": "Kopijuoti mermaid",
+    "downloadMmd": "Atsisiųsti .mmd",
+    "downloadMd": "Atsisiųsti .md (Notion)",
+    "copySvg": "Kopijuoti SVG",
+    "downloadSvg": "Atsisiųsti SVG",
+    "downloadPng": "Atsisiųsti PNG",
+    "statusOk": "Gerai",
+    "statusError": "Klaida",
+    "statusSvgCopied": "SVG nukopijuotas",
+    "statusMermaidCopied": "Mermaid nukopijuotas"
+  },
+  "examples": {
+    "flowchart": "Blokinė schema",
+    "sequence": "Sekos diagrama",
+    "class": "Klasių diagrama",
+    "state": "Būsenų diagrama",
+    "er": "ER diagrama",
+    "gantt": "Ganto diagrama"
+  },
+  "sample": {
+    "start": "Pradžia",
+    "condition": "Paruošta?",
+    "yes": "Taip",
+    "no": "Ne",
+    "action1": "Išleisti",
+    "action2": "Taisyti",
+    "end": "Atlikta",
+    "project": "Projektas",
+    "phase": "1 fazė",
+    "task1": "1 užduotis",
+    "task2": "2 užduotis"
+  }
+}

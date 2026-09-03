@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Sequence Diagram: Syntax en Voorbeelden",
+    "description": "Hoe je een mermaid sequence diagram schrijft: participants, pijltypes, activatiebalken, loops, alt-blokken en notities — met kopieer-plak-voorbeelden."
+  },
+  "card": {
+    "title": "Mermaid sequence diagrams",
+    "excerpt": "Participants, pijltypes, activatiebalken, loops en alt-blokken — de hele sequence diagram-syntax met werkende voorbeelden."
+  },
+  "h1": "Hoe je een mermaid sequence diagram schrijft",
+  "intro": "Een sequence diagram laat zien wie met wie praat, en in welke volgorde. In mermaid duurt het schrijven ervan ongeveer net zo lang als het hardop beschrijven, wat is waarom dit het diagramtype is dat het langst standhoudt in een codebase. Alles hieronder is kopieer-plak-klaar voor de [editor](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Het minimum" },
+    {
+      "type": "p",
+      "text": "Declareer het diagramtype, schrijf dan één regel per bericht. Participants worden aangemaakt bij eerste vermelding, in de volgorde waarin ze verschijnen."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Declareer participants expliciet met `participant User` wanneer je een specifieke volgorde van links naar rechts wilt, in plaats van de volgorde van eerste vermelding."
+    },
+
+    { "type": "h2", "text": "Pijltypes" },
+    {
+      "type": "table",
+      "headers": ["Syntax", "Betekenis"],
+      "rows": [
+        ["`A->>B: text`", "Verzoek — doorgetrokken lijn, gevulde pijlpunt"],
+        ["`A-->>B: text`", "Antwoord — gestippelde lijn, gevulde pijlpunt"],
+        ["`A->B: text`", "Doorgetrokken lijn, open pijlpunt"],
+        ["`A-)B: text`", "Asynchroon bericht — open pijlpunt, geen antwoord verwacht"],
+        ["`A-xB: text`", "Bericht dat mislukt of wordt weggegooid"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "De conventie die het waard is om aan te houden: **doorgetrokken voor de aanroep, gestippeld voor het antwoord**. Een lezer kan dan een verzoek van een antwoord onderscheiden zonder ook maar één label te lezen."
+    },
+
+    { "type": "h2", "text": "Participants en aliassen" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Gebruik `actor U as Browser` in plaats van `participant` om een stokfiguur te tekenen — de moeite waard voor de mens aan de linkerrand van een authenticatieflow."
+    },
+
+    { "type": "h2", "text": "Activatiebalken" },
+    {
+      "type": "p",
+      "text": "Activatiebalken laten zien hoe lang een participant bezig is. Markeer ze expliciet met `activate`/`deactivate`, of voeg `+` en `-` toe aan de pijlen, wat korter is en minder snel uit balans raakt."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Loops, voorwaarden en parallel werk" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — herhaling.",
+        "`alt <label>` … `else <label>` … `end` — elkaar uitsluitende vertakkingen.",
+        "`opt <label>` … `end` — een vertakking die simpelweg niet hoeft te gebeuren.",
+        "`par <label>` … `and <label>` … `end` — dingen die tegelijk gebeuren.",
+        "`critical` / `break` — een sectie die niet onderbroken mag worden, en een vroegtijdige uitgang."
+      ]
+    },
+
+    { "type": "h2", "text": "Notities" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` overspant twee participants en is de juiste plek voor een beperking die bij de interactie hoort in plaats van bij een van beide kanten ervan."
+    },
+
+    { "type": "h2", "text": "Een volledig voorbeeld" },
+    {
+      "type": "code",
+      "caption": "OAuth-login, van begin tot eind.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Bewerk dit diagram",
+      "text": "Plak het in het codetabblad en verander een regel — de preview rendert opnieuw terwijl je typt.",
+      "buttonLabel": "Open de editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Veelgestelde vragen",
+      "items": [
+        {
+          "q": "Hoe nummer ik de berichten?",
+          "a": "Zet `autonumber` op de regel direct na `sequenceDiagram`. Elk bericht krijgt dan een volgnummer, wat een diagram veel makkelijker maakt om over te praten in reviewcommentaar."
+        },
+        {
+          "q": "Kan een participant een bericht naar zichzelf sturen?",
+          "a": "Ja — schrijf dezelfde naam aan beide kanten: `API->>API: retry`. Mermaid tekent de lus terug naar dezelfde lifeline."
+        },
+        {
+          "q": "Hoe laat ik zien dat een participant vernietigd wordt?",
+          "a": "Gebruik `destroy <name>` vóór het bericht dat hem beëindigt, of `create participant <name>` om hem halverwege het diagram te laten verschijnen in plaats van bovenaan."
+        },
+        {
+          "q": "Kan ik een sequence diagram bewerken op het visuele canvas?",
+          "a": "Het visuele canvas bewerkt flowcharts. Sequence diagrams worden geschreven op het codetabblad, waar ze live renderen in de preview — wat meestal sneller is, omdat een sequence diagram in essentie een lijst met regels is."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "backToSite": "Atpakaļ uz sākumlapu",
+  "tabs": { "visual": "Vizuālais", "text": "Kods" },
+  "toolbar": {
+    "addBlock": "Pievienot bloku",
+    "addGroup": "Pievienot apgabalu",
+    "copy": "Kopēt (bloku vai visu apgabalu ar tā saturu)",
+    "paste": "Ielīmēt — pēc tam noklikšķiniet, kur to novietot",
+    "delete": "Dzēst atlasīto",
+    "clearAll": "Notīrīt visu",
+    "connect": "Uzzīmēt bultu uz citu bloku",
+    "move": "Pārvietot apgabalā vai ārā no tā",
+    "color": "Krāsa",
+    "shape": "Forma"
+  },
+  "zoom": { "center": "Atcentrēt" },
+  "modals": { "colorTitle": "Krāsa", "shapeTitle": "Forma" },
+  "shapes": {
+    "rect": "Taisnstūris",
+    "rounded": "Noapaļots",
+    "pill": "Tablete",
+    "circle": "Aplis",
+    "diamond": "Rombs",
+    "subroutine": "Apakšprogramma",
+    "cylinder": "Datubāze",
+    "hexagon": "Sešstūris",
+    "asymmetric": "Karogs",
+    "parallelogram": "Paralelograms",
+    "parallelogramAlt": "Paralelograms (spoguļots)",
+    "trapezoid": "Trapece",
+    "trapezoidAlt": "Trapece (spoguļota)",
+    "doubleCircle": "Dubultaplis"
+  },
+  "hints": {
+    "connect": "Noklikšķiniet uz bloka, uz kuru jārāda bultai · Esc, lai atceltu",
+    "move": "Noklikšķiniet uz apgabala, lai pārvietotu iekšā, vai uz tukšas vietas, lai pārvietotu ārā · Esc, lai atceltu",
+    "paste": "Noklikšķiniet uz apgabala vai tukšas vietas, kur ielīmēt · Esc, lai atceltu"
+  },
+  "prompts": {
+    "edgeLabel": "Bultas etiķete:",
+    "clearAll": "Dzēst visu?"
+  },
+  "defaults": {
+    "block": "Bloks",
+    "group": "Apgabals",
+    "start": "Sākums",
+    "action": "Darbība"
+  },
+  "text": {
+    "examplePlaceholder": "Piemērs…",
+    "copyMermaid": "Kopēt mermaid",
+    "downloadMmd": "Lejupielādēt .mmd",
+    "downloadMd": "Lejupielādēt .md (Notion)",
+    "copySvg": "Kopēt SVG",
+    "downloadSvg": "Lejupielādēt SVG",
+    "downloadPng": "Lejupielādēt PNG",
+    "statusOk": "OK",
+    "statusError": "Kļūda",
+    "statusSvgCopied": "SVG nokopēts",
+    "statusMermaidCopied": "Mermaid nokopēts"
+  },
+  "examples": {
+    "flowchart": "Plūsmas diagramma",
+    "sequence": "Secības diagramma",
+    "class": "Klašu diagramma",
+    "state": "Stāvokļu diagramma",
+    "er": "ER diagramma",
+    "gantt": "Gantt diagramma"
+  },
+  "sample": {
+    "start": "Sākums",
+    "condition": "Gatavs?",
+    "yes": "Jā",
+    "no": "Nē",
+    "action1": "Publicēt",
+    "action2": "Labot",
+    "end": "Gatavs",
+    "project": "Projekts",
+    "phase": "1. fāze",
+    "task1": "1. uzdevums",
+    "task2": "2. uzdevums"
+  }
+}

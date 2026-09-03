@@ -1,0 +1,83 @@
+{
+  "backToSite": "Επιστροφή στην αρχική σελίδα",
+  "tabs": { "visual": "Οπτικό", "text": "Κώδικας" },
+  "toolbar": {
+    "addBlock": "Προσθήκη block",
+    "addGroup": "Προσθήκη περιοχής",
+    "copy": "Αντιγραφή (ένα block, ή ολόκληρη περιοχή με όλο το περιεχόμενό της)",
+    "paste": "Επικόλληση — μετά κάντε κλικ εκεί που θα πάει",
+    "delete": "Διαγραφή της επιλογής",
+    "clearAll": "Καθαρισμός όλων",
+    "connect": "Σχεδιάστε βέλος προς άλλο block",
+    "move": "Μετακίνηση μέσα σε περιοχή, ή έξω από αυτή",
+    "color": "Χρώμα",
+    "shape": "Σχήμα"
+  },
+  "zoom": { "center": "Επαναφορά κέντρου" },
+  "modals": { "colorTitle": "Χρώμα", "shapeTitle": "Σχήμα" },
+  "shapes": {
+    "rect": "Ορθογώνιο",
+    "rounded": "Στρογγυλεμένο",
+    "pill": "Χάπι",
+    "circle": "Κύκλος",
+    "diamond": "Ρόμβος",
+    "subroutine": "Υπορουτίνα",
+    "cylinder": "Βάση δεδομένων",
+    "hexagon": "Εξάγωνο",
+    "asymmetric": "Σημαία",
+    "parallelogram": "Παραλληλόγραμμο",
+    "parallelogramAlt": "Παραλληλόγραμμο (κατοπτρικό)",
+    "trapezoid": "Τραπέζιο",
+    "trapezoidAlt": "Τραπέζιο (κατοπτρικό)",
+    "doubleCircle": "Διπλός κύκλος"
+  },
+  "hints": {
+    "connect": "Κάντε κλικ στο block προς το οποίο θα δείχνει το βέλος · Esc για ακύρωση",
+    "move": "Κάντε κλικ σε μια περιοχή για μετακίνηση μέσα, ή σε κενό χώρο για μετακίνηση έξω · Esc για ακύρωση",
+    "paste": "Κάντε κλικ σε περιοχή ή κενό χώρο για επικόλληση · Esc για ακύρωση"
+  },
+  "prompts": {
+    "edgeLabel": "Ετικέτα βέλους:",
+    "clearAll": "Διαγραφή όλων;"
+  },
+  "defaults": {
+    "block": "Block",
+    "group": "Περιοχή",
+    "start": "Έναρξη",
+    "action": "Ενέργεια"
+  },
+  "text": {
+    "examplePlaceholder": "Παράδειγμα…",
+    "copyMermaid": "Αντιγραφή mermaid",
+    "downloadMmd": "Λήψη .mmd",
+    "downloadMd": "Λήψη .md (Notion)",
+    "copySvg": "Αντιγραφή SVG",
+    "downloadSvg": "Λήψη SVG",
+    "downloadPng": "Λήψη PNG",
+    "statusOk": "Εντάξει",
+    "statusError": "Σφάλμα",
+    "statusSvgCopied": "Το SVG αντιγράφηκε",
+    "statusMermaidCopied": "Το mermaid αντιγράφηκε"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Sequence diagram",
+    "class": "Class diagram",
+    "state": "State diagram",
+    "er": "ER diagram",
+    "gantt": "Gantt chart"
+  },
+  "sample": {
+    "start": "Έναρξη",
+    "condition": "Έτοιμο;",
+    "yes": "Ναι",
+    "no": "Όχι",
+    "action1": "Αποστολή",
+    "action2": "Διόρθωση",
+    "end": "Ολοκληρώθηκε",
+    "project": "Έργο",
+    "phase": "Φάση 1",
+    "task1": "Εργασία 1",
+    "task2": "Εργασία 2"
+  }
+}

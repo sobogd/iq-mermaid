@@ -1,0 +1,83 @@
+{
+  "backToSite": "Înapoi la pagina principală",
+  "tabs": { "visual": "Vizual", "text": "Cod" },
+  "toolbar": {
+    "addBlock": "Adaugă un bloc",
+    "addGroup": "Adaugă o zonă",
+    "copy": "Copiază (un bloc, sau o zonă întreagă cu tot ce conține)",
+    "paste": "Lipește — apoi dă click unde vrei să apară",
+    "delete": "Șterge selecția",
+    "clearAll": "Șterge tot",
+    "connect": "Trage o săgeată către alt bloc",
+    "move": "Mută într-o zonă, sau afară din una",
+    "color": "Culoare",
+    "shape": "Formă"
+  },
+  "zoom": { "center": "Recentrează" },
+  "modals": { "colorTitle": "Culoare", "shapeTitle": "Formă" },
+  "shapes": {
+    "rect": "Dreptunghi",
+    "rounded": "Rotunjit",
+    "pill": "Pilulă",
+    "circle": "Cerc",
+    "diamond": "Romb",
+    "subroutine": "Subrutină",
+    "cylinder": "Bază de date",
+    "hexagon": "Hexagon",
+    "asymmetric": "Steag",
+    "parallelogram": "Paralelogram",
+    "parallelogramAlt": "Paralelogram (oglindit)",
+    "trapezoid": "Trapez",
+    "trapezoidAlt": "Trapez (oglindit)",
+    "doubleCircle": "Cerc dublu"
+  },
+  "hints": {
+    "connect": "Dă click pe blocul spre care trebuie să indice săgeata · Esc pentru a anula",
+    "move": "Dă click pe o zonă pentru a muta în ea, sau pe spațiu gol pentru a muta afară · Esc pentru a anula",
+    "paste": "Dă click pe o zonă sau pe spațiu gol pentru a lipi acolo · Esc pentru a anula"
+  },
+  "prompts": {
+    "edgeLabel": "Eticheta săgeții:",
+    "clearAll": "Ștergi tot?"
+  },
+  "defaults": {
+    "block": "Bloc",
+    "group": "Zonă",
+    "start": "Start",
+    "action": "Acțiune"
+  },
+  "text": {
+    "examplePlaceholder": "Exemplu…",
+    "copyMermaid": "Copiază mermaid",
+    "downloadMmd": "Descarcă .mmd",
+    "downloadMd": "Descarcă .md (Notion)",
+    "copySvg": "Copiază SVG",
+    "downloadSvg": "Descarcă SVG",
+    "downloadPng": "Descarcă PNG",
+    "statusOk": "OK",
+    "statusError": "Eroare",
+    "statusSvgCopied": "SVG copiat",
+    "statusMermaidCopied": "Mermaid copiat"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Diagramă de secvență",
+    "class": "Diagramă de clase",
+    "state": "Diagramă de stare",
+    "er": "Diagramă ER",
+    "gantt": "Diagramă Gantt"
+  },
+  "sample": {
+    "start": "Start",
+    "condition": "Gata?",
+    "yes": "Da",
+    "no": "Nu",
+    "action1": "Lansează",
+    "action2": "Repară",
+    "end": "Gata",
+    "project": "Proiect",
+    "phase": "Faza 1",
+    "task1": "Sarcina 1",
+    "task2": "Sarcina 2"
+  }
+}

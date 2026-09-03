@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Sıralama Diyagramı: Sözdizimi ve Örnekler",
+    "description": "Bir mermaid sıralama diyagramı nasıl yazılır: katılımcılar, ok türleri, aktivasyon çubukları, döngüler, alt bloklar ve notlar — kopyala-yapıştır örneklerle."
+  },
+  "card": {
+    "title": "Mermaid sıralama diyagramları",
+    "excerpt": "Katılımcılar, ok türleri, aktivasyon çubukları, döngüler ve alt bloklar — çalıştırılabilir örneklerle tüm sıralama diyagramı sözdizimi."
+  },
+  "h1": "Bir mermaid sıralama diyagramı nasıl yazılır",
+  "intro": "Bir sıralama diyagramı kimin kime, hangi sırayla konuştuğunu gösterir. Mermaid'de yazması yaklaşık sesli anlatmak kadar sürer, bu yüzden bir kod tabanında en uzun süre hayatta kalan diyagram türüdür. Aşağıdakilerin hepsi [editöre](app:) kopyala-yapıştıra hazırdır.",
+  "blocks": [
+    { "type": "h2", "text": "Minimum gereklilik" },
+    {
+      "type": "p",
+      "text": "Önce diyagram türünü bildirin, sonra mesaj başına bir satır yazın. Katılımcılar ilk anıldıkları sırayla, ilk anılmalarında oluşturulur."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "İlk anılma sırası yerine belirli bir soldan sağa sıra istediğinizde katılımcıları `participant User` ile açıkça bildirin."
+    },
+
+    { "type": "h2", "text": "Ok türleri" },
+    {
+      "type": "table",
+      "headers": ["Sözdizimi", "Anlamı"],
+      "rows": [
+        ["`A->>B: text`", "İstek — düz çizgi, dolu ok ucu"],
+        ["`A-->>B: text`", "Yanıt — kesik çizgi, dolu ok ucu"],
+        ["`A->B: text`", "Düz çizgi, açık ok ucu"],
+        ["`A-)B: text`", "Asenkron mesaj — açık ok ucu, yanıt beklenmez"],
+        ["`A-xB: text`", "Başarısız olan veya düşen mesaj"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Korunmaya değer kural: **çağrı için düz çizgi, dönüş için kesik çizgi**. Böylece okuyucu tek bir etiket okumadan bir isteği bir yanıttan ayırt edebilir."
+    },
+
+    { "type": "h2", "text": "Katılımcılar ve takma adlar" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Bir çöp adam figürü çizmek için `participant` yerine `actor U as Browser` kullanın — bir kimlik doğrulama akışının sol kenarındaki insan için buna değer."
+    },
+
+    { "type": "h2", "text": "Aktivasyon çubukları" },
+    {
+      "type": "p",
+      "text": "Aktivasyon çubukları bir katılımcının ne kadar süre meşgul olduğunu gösterir. Ya `activate`/`deactivate` ile açıkça işaretleyin ya da oklara `+` ve `-` ekleyin, ki bu daha kısadır ve dengesi bozulması daha zordur."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Döngüler, koşullar ve paralel işler" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — tekrar.",
+        "`alt <label>` … `else <label>` … `end` — birbirini dışlayan dallar.",
+        "`opt <label>` … `end` — hiç gerçekleşmeyebilecek bir dal.",
+        "`par <label>` … `and <label>` … `end` — aynı anda gerçekleşen şeyler.",
+        "`critical` / `break` — kesintiye uğramaması gereken bir bölüm ve erken bir çıkış."
+      ]
+    },
+
+    { "type": "h2", "text": "Notlar" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` iki katılımcıyı kapsar ve etkileşimin taraflarından birine değil, etkileşimin kendisine ait bir kısıtlama için doğru yerdir."
+    },
+
+    { "type": "h2", "text": "Tam bir örnek" },
+    {
+      "type": "code",
+      "caption": "Uçtan uca OAuth girişi.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Bu diyagramı düzenleyin",
+      "text": "Kod sekmesine yapıştırın ve bir satırı değiştirin — yazarken önizleme yeniden çizilir.",
+      "buttonLabel": "Editörü aç"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Sıkça sorulanlar",
+      "items": [
+        {
+          "q": "Mesajları nasıl numaralandırırım?",
+          "a": "`sequenceDiagram`'dan hemen sonraki satıra `autonumber` yazın. Her mesaj daha sonra sıralı bir numara alır, bu da bir diyagramı inceleme yorumlarında tartışmayı çok daha kolay hale getirir."
+        },
+        {
+          "q": "Bir katılımcı kendine mesaj gönderebilir mi?",
+          "a": "Evet — her iki tarafa da aynı adı yazın: `API->>API: retry`. Mermaid döngüyü aynı yaşam çizgisine geri çizer."
+        },
+        {
+          "q": "Bir katılımcının yok edildiğini nasıl gösteririm?",
+          "a": "Onu sonlandıran mesajdan önce `destroy <name>` kullanın, ya da en üstte değil diyagramın ortasında görünmesi için `create participant <name>` kullanın."
+        },
+        {
+          "q": "Bir sıralama diyagramını görsel tuvalde düzenleyebilir miyim?",
+          "a": "Görsel tuval akış şemalarını düzenler. Sıralama diyagramları kod sekmesinde yazılır, önizlemede canlı olarak render edilirler — ki bir sıralama diyagramı esasen bir satır listesi olduğu için bu genellikle zaten daha hızlıdır."
+        }
+      ]
+    }
+  ]
+}

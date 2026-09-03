@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Eksportér Mermaid til PNG, SVG eller Markdown",
+    "description": "Sådan gør du et mermaid-diagram til en PNG- eller SVG-fil, kopierer SVG-markup, eller beholder det som tekst til GitHub og Notion — og hvilken du skal vælge."
+  },
+  "card": {
+    "title": "Eksportér mermaid til PNG eller SVG",
+    "excerpt": "Fire veje ud af et mermaid-diagram — PNG, SVG, .mmd-kilde og en Markdown-blok — og hvornår hver enkelt er det rette svar."
+  },
+  "h1": "Eksportér et mermaid-diagram til PNG, SVG eller Markdown",
+  "intro": "Et diagram er kun nyttigt der, hvor det kan ses. Mermaid giver dig fire veje ud — et billede, en vektor, kilden, eller en Markdown-blok, der gengiver sig selv — og den rette afhænger helt af, hvor diagrammet skal hen. Dette er den korte version, plus hvad der går galt med hver.",
+  "blocks": [
+    { "type": "h2", "text": "Vælg formatet først" },
+    {
+      "type": "table",
+      "headers": ["Destination", "Brug", "Hvorfor"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "En Markdown-blok", "Den gengives nativt og forbliver diffbar — ingen fil at holde synkroniseret."],
+        ["Slides, en spec, en chatbesked", "PNG", "Kan indsættes hvor som helst, kræver ingen renderer, ser ens ud alle steder."],
+        ["En hjemmeside, et trykt dokument", "SVG", "Vektor — skarp i enhver størrelse, og teksten forbliver markerbar."],
+        ["En anden editor, et repo", "`.mmd`-kilde", "Redigerbar senere. Et billede er en blindgyde."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Hvis destinationen gengiver mermaid, skal du slet ikke eksportere. Et diagram committet som tekst kan gennemgås linje for linje; samme diagram committet som en PNG kan kun udskiftes."
+    },
+
+    { "type": "h2", "text": "Eksportér fra denne editor" },
+    {
+      "type": "p",
+      "text": "Åbn kode-fanen — eksportknapperne sidder i værktøjslinjen, og hver enkelt virker på det, der aktuelt er gengivet."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**Kopiér SVG** — lægger `<svg>`-markuppen på udklipsholderen, klar til at indsætte direkte i en HTML-fil eller et designværktøj.",
+        "**Download SVG** — gemmer `diagram.svg`.",
+        "**Download PNG** — gemmer `diagram.png`, gengivet i 2x med hvid baggrund, så den forbliver skarp på en high-density-skærm og aldrig ender som en gennemsigtig plamage på et hvidt slide.",
+        "**Download .mmd** — gemmer mermaid-kilden som en almindelig tekstfil.",
+        "**Download .md (Notion)** — gemmer kilden pakket ind i en indrammet ```mermaid-blok, som Notion, GitHub og Obsidian gengiver ved indsætning."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Til et slideshow, tag PNG'en. Til alt, der skal skaleres — en dokumentoverskrift, en plakat, en udskrift — tag SVG'en; en PNG skaleret op over sin eksportstørrelse bliver uskarp med det samme."
+    },
+
+    { "type": "h2", "text": "Behold den som tekst i stedet" },
+    {
+      "type": "p",
+      "text": "Den indrammede blok er den eneste eksport, der forbliver redigerbar på stedet. Tre backticks, ordet `mermaid`, dit diagram, tre backticks:"
+    },
+    {
+      "type": "code",
+      "caption": "Indsæt dette i en GitHub README, og det gengives.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — gengives i README-filer, issues, pull requests og kommentarer.",
+        "**GitLab** — gengives i wikien, issues og merge requests.",
+        "**Notion** — indsæt i en kodeblok, og sæt sproget til Mermaid.",
+        "**Obsidian** — gengives i preview og i publicerede noter.",
+        "**Docusaurus / MkDocs Material / VitePress** — mermaid-blokke gengives i bygget dokumentation."
+      ]
+    },
+
+    { "type": "h2", "text": "Ting, der går galt" },
+    { "type": "h3", "text": "PNG'en er sløret" },
+    {
+      "type": "p",
+      "text": "En PNG har fast opløsning: den eksporteres i en bestemt pixelstørrelse, og skalering ud over det interpolerer. Denne editor eksporterer i 2x af den grund. Hvis det stadig ikke er nok, så eksportér SVG'en, og konvertér den til den størrelse, du har brug for — eller brug bare SVG'en."
+    },
+    { "type": "h3", "text": "SVG'en har ingen baggrund" },
+    {
+      "type": "p",
+      "text": "SVG-eksporter er gennemsigtige med vilje, så mørk node-tekst forsvinder på et mørkt slide. Enten sæt SVG'en på et lyst kort, eller tag PNG'en, som eksporteres på hvid baggrund."
+    },
+    { "type": "h3", "text": "Skrifttyper ser anderledes ud andre steder" },
+    {
+      "type": "p",
+      "text": "En SVG refererer til skrifttypefamilier i stedet for at indlejre dem, så en maskine uden den skrifttype erstatter den med en anden, og labelboksene holder op med at passe sammen. Brug PNG'en, når du ikke kan styre modtagerens skrifttyper."
+    },
+    { "type": "h3", "text": "Diagrammet er skåret af" },
+    {
+      "type": "p",
+      "text": "Eksport læser det, der aktuelt er gengivet, så centrér visningen på ny, før du eksporterer et stort diagram. Hvis en node-label er enorm, så del den med `<br>` — mermaid ombryder ikke labels af sig selv."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Eksportér på to klik",
+      "text": "Åbn editoren, indsæt eller tegn dit diagram, og tag SVG'en, PNG'en eller kilden. Intet er bag en konto.",
+      "buttonLabel": "Åbn editoren"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Ofte spurgt",
+      "items": [
+        {
+          "q": "Hvordan konverterer jeg mermaid til PNG?",
+          "a": "Gengiv diagrammet, og brug derefter Download PNG. Editoren tegner den gengivne SVG på et canvas i 2x skala med hvid baggrund og gemmer resultatet — ingen server-tur, så diagrammet forlader aldrig din browser."
+        },
+        {
+          "q": "Kan jeg eksportere en gennemsigtig PNG?",
+          "a": "Ikke fra PNG-knappen — den udfylder med hvidt med vilje, fordi mørk diagram-tekst på en gennemsigtig baggrund er ulæselig de fleste steder, en PNG bliver indsat. Eksportér SVG'en i stedet; den er gennemsigtig."
+        },
+        {
+          "q": "Er der en størrelsesgrænse?",
+          "a": "Ingen fast grænse. Eksport sker i din browser, så den praktiske grænse er, hvad din browser vil gengive — hvilket er langt forbi det punkt, hvor et diagram stadig er læsbart for et menneske."
+        },
+        {
+          "q": "Hvordan holder jeg diagrammet redigerbart efter eksport?",
+          "a": "Behold kilden. Download `.mmd`-filen eller Markdown-blokken sammen med billedet; en PNG eller SVG kan ikke laves tilbage til mermaid, men kilden kan indsættes direkte tilbage i editoren."
+        }
+      ]
+    }
+  ]
+}

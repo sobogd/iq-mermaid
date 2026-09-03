@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Exporta Mermaid a PNG, SVG o Markdown",
+    "description": "Com convertir un diagrama mermaid en un fitxer PNG o SVG, copiar el codi SVG, o mantenir-lo com a text per a GitHub i Notion — i quin triar."
+  },
+  "card": {
+    "title": "Exporta mermaid a PNG o SVG",
+    "excerpt": "Quatre maneres de treure un diagrama mermaid — PNG, SVG, codi font .mmd i un bloc Markdown — i quan cadascuna és la resposta correcta."
+  },
+  "h1": "Exporta un diagrama mermaid a PNG, SVG o Markdown",
+  "intro": "Un diagrama només és útil on es pot veure. Mermaid et dona quatre sortides — una imatge, un vector, el codi font, o un bloc Markdown que es renderitza sol — i la correcta depèn totalment d'on va el diagrama. Aquesta és la versió curta, més el que falla amb cadascuna.",
+  "blocks": [
+    { "type": "h2", "text": "Tria primer el format" },
+    {
+      "type": "table",
+      "headers": ["Destinació", "Fes servir", "Per què"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Un bloc Markdown", "Es renderitza de manera nativa i es manté comparable amb diff — cap fitxer per mantenir sincronitzat."],
+        ["Diapositives, una especificació, un missatge de xat", "PNG", "S'enganxa a qualsevol lloc, no necessita cap renderitzador, es veu igual a tot arreu."],
+        ["Un lloc web, un document imprès", "SVG", "Vectorial — nítid a qualsevol mida, i el text es manté seleccionable."],
+        ["Un altre editor, un repositori", "Codi font `.mmd`", "Editable més tard. Una imatge és un carreró sense sortida."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Si la destinació renderitza mermaid, no exportis res. Un diagrama desat com a text es pot revisar línia per línia; el mateix diagrama desat com a PNG només es pot substituir."
+    },
+
+    { "type": "h2", "text": "Exporta des d'aquest editor" },
+    {
+      "type": "p",
+      "text": "Obre la pestanya de codi — els botons d'exportació estan a la barra d'eines, i cadascun actua sobre el que hi ha renderitzat en aquell moment."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**Copia SVG** — posa el codi `<svg>` al porta-retalls, a punt per enganxar directament en un fitxer HTML o una eina de disseny.",
+        "**Descarrega SVG** — desa `diagram.svg`.",
+        "**Descarrega PNG** — desa `diagram.png`, renderitzat a 2x amb fons blanc perquè es mantingui nítid en una pantalla d'alta densitat i mai no acabi com una taca transparent en una diapositiva blanca.",
+        "**Descarrega .mmd** — desa el codi font mermaid com a fitxer de text pla.",
+        "**Descarrega .md (Notion)** — desa el codi font envoltat en un bloc ```mermaid amb tanca, que Notion, GitHub i Obsidian renderitzen en enganxar-lo."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Per a una presentació de diapositives, agafa el PNG. Per a qualsevol cosa que es redimensionarà — un títol de document, un pòster, una impressió — agafa el SVG; un PNG ampliat més enllà de la seva mida d'exportació es torna borrós de seguida."
+    },
+
+    { "type": "h2", "text": "Mantén-lo com a text en lloc d'això" },
+    {
+      "type": "p",
+      "text": "El bloc amb tanca és l'única exportació que es manté editable in situ. Tres cometes invertides, la paraula `mermaid`, el teu diagrama, tres cometes invertides:"
+    },
+    {
+      "type": "code",
+      "caption": "Enganxa això en un README de GitHub i es renderitza.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — es renderitza en fitxers README, issues, pull requests i comentaris.",
+        "**GitLab** — es renderitza a la wiki, els issues i els merge requests.",
+        "**Notion** — enganxa'l en un bloc de codi i configura el llenguatge a Mermaid.",
+        "**Obsidian** — es renderitza en la previsualització i en les notes publicades.",
+        "**Docusaurus / MkDocs Material / VitePress** — els blocs mermaid es renderitzen en la documentació generada."
+      ]
+    },
+
+    { "type": "h2", "text": "El que pot sortir malament" },
+    { "type": "h3", "text": "El PNG surt borrós" },
+    {
+      "type": "p",
+      "text": "Un PNG té resolució fixa: s'exporta a una mida de píxels determinada i ampliar-lo més enllà interpola. Aquest editor exporta a 2x precisament per això. Si encara no n'hi ha prou, exporta el SVG i converteix-lo a la mida que necessitis — o simplement fes servir el SVG."
+    },
+    { "type": "h3", "text": "El SVG no té fons" },
+    {
+      "type": "p",
+      "text": "Les exportacions SVG són transparents per disseny, així que el text fosc dels nodes desapareix en una diapositiva fosca. O bé posa el SVG sobre una targeta clara, o agafa el PNG, que s'exporta sobre blanc."
+    },
+    { "type": "h3", "text": "Les lletres es veuen diferents en un altre lloc" },
+    {
+      "type": "p",
+      "text": "Un SVG fa referència a famílies de lletra en lloc d'incrustar-les, així que una màquina sense aquesta lletra en substitueix una altra i les caixes de les etiquetes deixen d'alinear-se. Fes servir el PNG quan no puguis controlar les lletres del visor."
+    },
+    { "type": "h3", "text": "El diagrama queda tallat" },
+    {
+      "type": "p",
+      "text": "L'exportació llegeix el que hi ha renderitzat en aquell moment, així que torna a centrar la vista abans d'exportar un diagrama gran. Si l'etiqueta d'un node és enorme, trenca-la amb `<br>` — mermaid no ajusta les etiquetes tot sol."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Exporta en dos clics",
+      "text": "Obre l'editor, enganxa o dibuixa el teu diagrama, i agafa el SVG, el PNG o el codi font. Res no està darrere d'un compte.",
+      "buttonLabel": "Obre l'editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Preguntes freqüents",
+      "items": [
+        {
+          "q": "Com converteixo mermaid a PNG?",
+          "a": "Renderitza el diagrama, i després fes servir Descarrega PNG. L'editor dibuixa l'SVG renderitzat en un llenç a escala 2x amb fons blanc i desa el resultat — sense passar pel servidor, així que el diagrama mai no surt del teu navegador."
+        },
+        {
+          "q": "Puc exportar un PNG transparent?",
+          "a": "No des del botó de PNG — omple de blanc a propòsit, perquè el text fosc del diagrama sobre un fons transparent és il·legible a la majoria de llocs on s'enganxa un PNG. Exporta el SVG en lloc d'això; és transparent."
+        },
+        {
+          "q": "Hi ha un límit de mida?",
+          "a": "Cap de fix. L'exportació passa al teu navegador, així que el límit pràctic és el que el teu navegador pugui renderitzar — molt més enllà del punt on un diagrama encara és llegible per a un humà."
+        },
+        {
+          "q": "Com mantinc el diagrama editable després d'exportar-lo?",
+          "a": "Conserva el codi font. Descarrega el fitxer `.mmd` o el bloc Markdown juntament amb la imatge; un PNG o SVG no es pot tornar a convertir en mermaid, però el codi font s'enganxa directament de tornada a l'editor."
+        }
+      ]
+    }
+  ]
+}

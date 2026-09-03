@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid Syntaks Cheat Sheet med Eksempler",
+    "description": "Den mermaid-syntaks, du faktisk bruger: node-former, piletyper, subgrafer, styling og ét kørende eksempel pr. diagramtype. Kopiér, indsæt, redigér."
+  },
+  "card": {
+    "title": "Mermaid syntaks cheat sheet",
+    "excerpt": "Node-former, pile, subgrafer og styling på én side — plus et kørende eksempel på hver diagramtype, mermaid gengiver."
+  },
+  "h1": "Mermaid syntaks cheat sheet",
+  "intro": "Mermaid har en stor reference og en lille delmængde, der dækker næsten alt, folk tegner. Denne side er den delmængde: former, pile, gruppering, farver og ét copy-paste-eksempel pr. diagramtype. Hvert udsnit herunder gengives, som det er — indsæt det i [editoren](app:) for at se det.",
+  "blocks": [
+    { "type": "h2", "text": "Det korteste diagram, der virker" },
+    {
+      "type": "p",
+      "text": "Et flowchart kræver én deklarationslinje og én pil. `TD` betyder top-down; brug `LR` til venstre-til-højre, hvilket passer bedre til brede processer."
+    },
+    {
+      "type": "code",
+      "caption": "Et flowchart med tre noder, top til bund.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` og `C` er node-id'er — interne navne, der aldrig tegnes. Teksten i parenteserne er labelen, og parentes-**stilen** er det, der bestemmer formen."
+    },
+
+    { "type": "h2", "text": "Node-former" },
+    {
+      "type": "p",
+      "text": "Formen vælges af parret af afgrænsere omkring labelen. Her er dem, det er værd at huske:"
+    },
+    {
+      "type": "table",
+      "headers": ["Syntaks", "Form", "Typisk betydning"],
+      "rows": [
+        ["`A[Text]`", "Rektangel", "Et trin eller en handling"],
+        ["`A(Text)`", "Afrundet", "Et start- eller slutpunkt"],
+        ["`A([Text])`", "Pille", "En terminator"],
+        ["`A[[Text]]`", "Subrutine", "Et kald til en anden proces"],
+        ["`A[(Text)]`", "Cylinder", "En database eller et lager"],
+        ["`A((Text))`", "Cirkel", "Et knudepunkt"],
+        ["`A{Text}`", "Diamant", "En beslutning"],
+        ["`A{{Text}}`", "Sekskant", "Et forberedelsestrin"],
+        ["`A[/Text/]`", "Parallelogram", "Input eller output"],
+        ["`A[/Text\\]`", "Trapez", "En manuel handling"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Sæt labelen i citationstegn, når den indeholder parenteser, kolon eller citationstegn: `A[\"Load (raw) data\"]`. Uden citationstegn opfatter parseren din tegnsætning som syntaks."
+    },
+
+    { "type": "h2", "text": "Pile" },
+    {
+      "type": "table",
+      "headers": ["Syntaks", "Resultat"],
+      "rows": [
+        ["`A --> B`", "Pil"],
+        ["`A --- B`", "Streg, ingen pilespids"],
+        ["`A -.-> B`", "Stiplet pil"],
+        ["`A ==> B`", "Tyk pil"],
+        ["`A -->|label| B`", "Pil med en label på"],
+        ["`A --> B --> C`", "Kæde, skrevet på én linje"],
+        ["`A --> B & C`", "Én kilde, to mål"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Pilens længde betyder også noget: `-->` er ét niveau, `--->` skubber målet ét niveau længere ned. Det er den simpleste layoutkontrol, mermaid giver dig."
+    },
+
+    { "type": "h2", "text": "Gruppering med subgrafer" },
+    {
+      "type": "p",
+      "text": "En `subgraph` tegner en mærket boks omkring noder. Subgrafer kan indlejres, og pile kan frit krydse deres grænser."
+    },
+    {
+      "type": "code",
+      "caption": "To services, hver med sit eget lager.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Farve og styling" },
+    {
+      "type": "p",
+      "text": "`style` farver én node. `classDef` plus `class` farver et sæt af dem, hvilket er det, du vil have, når du kommer over tre-fire noder."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Farver er en del af diagramkilden, så de overlever eksport og følger med filen. Intet her afhænger af en temaindstilling i det værktøj, der gengiver det."
+    },
+
+    { "type": "h2", "text": "Ét eksempel pr. diagramtype" },
+    {
+      "type": "h3",
+      "text": "Sequence-diagram"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Class-diagram" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "State-diagram" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Entity relationship-diagram" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantt-diagram" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Hvor mermaid gengives af sig selv" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — en indrammet ```mermaid-blok gengives i issues, pull requests, kommentarer og README-filer.",
+        "**GitLab** — samme indrammede blok, i issues, merge requests og wikien.",
+        "**Notion** — en kodeblok med sproget sat til Mermaid gengives ved siden af kilden.",
+        "**Obsidian** — en indrammet mermaid-blok gengives i preview-tilstand.",
+        "**Dokumentationssider** — Docusaurus, MkDocs Material og VitePress understøtter alle mermaid-blokke."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Det er den egentlige grund til at holde diagrammer som mermaid frem for som billeder: diagrammet lever i samme tekstfil som det, det beskriver, og en kodegennemgang kan se, hvad der er ændret i det."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Prøv et hvilket som helst udsnit på denne side",
+      "text": "Indsæt det i kode-fanen, og det gengives med det samme — eller byg det samme diagram på lærredet og læs syntaksen bagefter.",
+      "buttonLabel": "Åbn editoren"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Ofte spurgt",
+      "items": [
+        {
+          "q": "Hvordan tilføjer jeg et linjeskift inde i en node-label?",
+          "a": "Brug `<br>` inde i en citeret label: `A[\"First line<br>Second line\"]`. Mermaid gengiver labelen som HTML, så tagget virker, selvom resten af syntaksen ikke er HTML."
+        },
+        {
+          "q": "Hvorfor ødelægger min label diagrammet?",
+          "a": "Næsten altid en ikke-citeret parentes, klamme, kolon eller citationstegn inde i labelen. Sæt hele labelen i dobbelte citationstegn, så holder parseren op med at behandle din tegnsætning som syntaks."
+        },
+        {
+          "q": "Kan jeg styre layoutet?",
+          "a": "Kun indirekte. Vælg retningen (`TD`, `LR`, `BT`, `RL`), brug længere pile (`--->`) til at skubbe noder længere fra hinanden, og gruppér relaterede noder i subgrafer. Mermaid beregner resten — der er ingen koordinater."
+        },
+        {
+          "q": "Hvilken mermaid-version bruger denne editor?",
+          "a": "Mermaid 11, den nuværende hovedversion, så alt, der er dokumenteret for v10- og v11-syntaks, gengives her."
+        }
+      ]
+    }
+  ]
+}

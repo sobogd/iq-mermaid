@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid jadadiagramm: süntaks ja näited",
+    "description": "Kuidas kirjutada mermaid jadadiagrammi: osalised, noolte tüübid, aktiveerimisribad, tsüklid, alt-plokid ja märkused — koos kopeeri-kleebi näidetega."
+  },
+  "card": {
+    "title": "Mermaid jadadiagrammid",
+    "excerpt": "Osalised, noolte tüübid, aktiveerimisribad, tsüklid ja alt-plokid — kogu jadadiagrammi süntaks koos käivitatavate näidetega."
+  },
+  "h1": "Kuidas kirjutada mermaid jadadiagrammi",
+  "intro": "Jadadiagramm näitab, kes kellega ja millises järjekorras räägib. Mermaidis võtab selle kirjutamine umbes sama kaua kui selle valjusti kirjeldamine, mistõttu see on diagrammitüüp, mis püsib koodibaasis kõige kauem. Kõik allolev on kopeeri-kleebi valmis [redaktori jaoks](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Miinimum" },
+    {
+      "type": "p",
+      "text": "Deklareeri diagrammi tüüp, seejärel kirjuta üks rida sõnumi kohta. Osalised luuakse esmakordsel mainimisel, ilmumise järjekorras."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Deklareeri osalised eksplitsiitselt käsuga `participant User`, kui soovid konkreetset vasakult-paremale järjekorda, mitte esmamainimise järjekorda."
+    },
+
+    { "type": "h2", "text": "Noolte tüübid" },
+    {
+      "type": "table",
+      "headers": ["Süntaks", "Tähendus"],
+      "rows": [
+        ["`A->>B: text`", "Päring — pidev joon, täidetud nooleots"],
+        ["`A-->>B: text`", "Vastus — katkendjoon, täidetud nooleots"],
+        ["`A->B: text`", "Pidev joon, avatud nooleots"],
+        ["`A-)B: text`", "Asünkroonne sõnum — avatud nooleots, vastust ei oodata"],
+        ["`A-xB: text`", "Sõnum, mis ebaõnnestub või jäetakse kõrvale"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Tava, mida tasub hoida: **pidev joon kutse jaoks, katkendjoon vastuse jaoks**. Nii saab lugeja eristada päringut vastusest ilma ühtki silti lugemata."
+    },
+
+    { "type": "h2", "text": "Osalised ja aliased" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Kasuta `actor U as Browser` tavalise `participant` asemel, et joonistada tikk-kujuke — tasub teha inimese jaoks autentimisvoo vasakus servas."
+    },
+
+    { "type": "h2", "text": "Aktiveerimisribad" },
+    {
+      "type": "p",
+      "text": "Aktiveerimisribad näitavad, kui kaua osaline hõivatud on. Märgista need kas eksplitsiitselt käskudega `activate`/`deactivate` või lisa nooltele `+` ja `-`, mis on lühem ja raskem tasakaalust välja viia."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Tsüklid, tingimused ja paralleelne töö" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — kordus.",
+        "`alt <label>` … `else <label>` … `end` — teineteist välistavad harud.",
+        "`opt <label>` … `end` — haru, mis võib lihtsalt mitte juhtuda.",
+        "`par <label>` … `and <label>` … `end` — asjad, mis toimuvad samal ajal.",
+        "`critical` / `break` — sektsioon, mida ei tohi katkestada, ja varajane väljumine."
+      ]
+    },
+
+    { "type": "h2", "text": "Märkused" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` hõlmab kahte osalist ja on õige koht piirangu jaoks, mis kuulub interaktsioonile endale, mitte kummalegi poolele sellest."
+    },
+
+    { "type": "h2", "text": "Täielik näide" },
+    {
+      "type": "code",
+      "caption": "OAuth sisselogimine, algusest lõpuni.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Muuda seda diagrammi",
+      "text": "Kleebi see koodisakile ja muuda rida — eelvaade joonistub sinu kirjutades uuesti.",
+      "buttonLabel": "Ava redaktor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Sageli küsitud",
+      "items": [
+        {
+          "q": "Kuidas nummerdada sõnumeid?",
+          "a": "Pane `autonumber` reale kohe pärast `sequenceDiagram`. Iga sõnum saab siis järjekorranumbri, mis muudab diagrammist ülevaatuskommentaarides rääkimise palju lihtsamaks."
+        },
+        {
+          "q": "Kas osaline saab saata sõnumi iseendale?",
+          "a": "Jah — kirjuta sama nimi mõlemale poole: `API->>API: retry`. Mermaid joonistab silmuse tagasi samale elulõngale."
+        },
+        {
+          "q": "Kuidas näidata, et osaline hävitatakse?",
+          "a": "Kasuta `destroy <name>` enne sõnumit, mis selle lõpetab, või `create participant <name>`, et see ilmuks diagrammi keskele, mitte algusesse."
+        },
+        {
+          "q": "Kas saan jadadiagrammi visuaalsel lõuendil muuta?",
+          "a": "Visuaalne lõuend muudab vookaarte. Jadadiagrammid kirjutatakse koodisakil, kus need renderduvad eelvaates reaalajas — mis on tavaliselt niikuinii kiirem, kuna jadadiagramm on sisuliselt ridade loend."
+        }
+      ]
+    }
+  ]
+}

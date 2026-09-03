@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Sekvenčni Diagram: Sintaksa in Primeri",
+    "description": "Kako napisati mermaid sekvenčni diagram: udeleženci, vrste puščic, aktivacijski stolpci, zanke, alt bloki in opombe — s primeri za kopiranje in lepljenje."
+  },
+  "card": {
+    "title": "Mermaid sekvenčni diagrami",
+    "excerpt": "Udeleženci, vrste puščic, aktivacijski stolpci, zanke in alt bloki — celotna sintaksa sekvenčnega diagrama z delujočimi primeri."
+  },
+  "h1": "Kako napisati mermaid sekvenčni diagram",
+  "intro": "Sekvenčni diagram prikaže, kdo s kom govori in v kakšnem vrstnem redu. V mermaidu ga napišeš skoraj tako hitro, kot bi ga opisal na glas, zato je to vrsta diagrama, ki v repozitoriju preživi najdlje. Vse spodaj je pripravljeno za kopiranje in lepljenje v [urejevalnik](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Minimum" },
+    {
+      "type": "p",
+      "text": "Deklariraj vrsto diagrama, nato napiši eno vrstico na sporočilo. Udeleženci se ustvarijo ob prvi omembi, v vrstnem redu, v katerem se pojavijo."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Udeležence deklariraj eksplicitno z `participant User`, kadar želiš določen vrstni red od leve proti desni namesto vrstnega reda prve omembe."
+    },
+
+    { "type": "h2", "text": "Vrste puščic" },
+    {
+      "type": "table",
+      "headers": ["Sintaksa", "Pomen"],
+      "rows": [
+        ["`A->>B: text`", "Zahteva — polna črta, polna puščična glava"],
+        ["`A-->>B: text`", "Odgovor — črtkana črta, polna puščična glava"],
+        ["`A->B: text`", "Polna črta, odprta puščična glava"],
+        ["`A-)B: text`", "Asinhrono sporočilo — odprta puščična glava, odgovor ni pričakovan"],
+        ["`A-xB: text`", "Sporočilo, ki spodleti ali je izgubljeno"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Konvencija, ki se jo splača ohraniti: **polna črta za klic, črtkana za vrnitev**. Bralec tako loči zahtevo od odgovora, ne da bi prebral eno samo oznako."
+    },
+
+    { "type": "h2", "text": "Udeleženci in vzdevki" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Namesto `participant` uporabi `actor U as Browser`, da narišeš paličasto figuro — vredno pri človeku na levem robu poteka avtentikacije."
+    },
+
+    { "type": "h2", "text": "Aktivacijski stolpci" },
+    {
+      "type": "p",
+      "text": "Aktivacijski stolpci prikažejo, kako dolgo je udeleženec zaposlen. Označi jih eksplicitno z `activate`/`deactivate`, ali pa puščicam dodaj `+` in `-`, kar je krajše in se težje razrahlja iz ravnovesja."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Zanke, pogoji in vzporedno delo" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — ponavljanje.",
+        "`alt <label>` … `else <label>` … `end` — medsebojno izključujoče veje.",
+        "`opt <label>` … `end` — veja, ki se morda preprosto ne zgodi.",
+        "`par <label>` … `and <label>` … `end` — stvari, ki se dogajajo hkrati.",
+        "`critical` / `break` — odsek, ki ga ni dovoljeno prekiniti, in zgodnji izhod."
+      ]
+    },
+
+    { "type": "h2", "text": "Opombe" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` obsega dva udeleženca in je pravo mesto za omejitev, ki pripada interakciji sami, ne eni od strani."
+    },
+
+    { "type": "h2", "text": "Celoten primer" },
+    {
+      "type": "code",
+      "caption": "Prijava OAuth, od začetka do konca.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Uredi ta diagram",
+      "text": "Prilepi ga v zavihek s kodo in spremeni eno vrstico — predogled se izriše sproti, medtem ko tipkaš.",
+      "buttonLabel": "Odpri urejevalnik"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Pogosta vprašanja",
+      "items": [
+        {
+          "q": "Kako oštevilčim sporočila?",
+          "a": "Postavi `autonumber` v vrstico takoj za `sequenceDiagram`. Vsako sporočilo nato dobi zaporedno številko, kar diagram naredi veliko lažje za obravnavo v komentarjih pregleda."
+        },
+        {
+          "q": "Lahko udeleženec pošlje sporočilo samemu sebi?",
+          "a": "Da — napiši isto ime na obeh straneh: `API->>API: retry`. Mermaid nariše zanko nazaj v isto življenjsko črto."
+        },
+        {
+          "q": "Kako prikažem, da je udeleženec uničen?",
+          "a": "Uporabi `destroy <name>` pred sporočilom, ki ga konča, ali `create participant <name>`, da se pojavi sredi diagrama namesto na vrhu."
+        },
+        {
+          "q": "Lahko sekvenčni diagram urejam na vizualnem platnu?",
+          "a": "Vizualno platno ureja flowcharte. Sekvenčni diagrami se pišejo na zavihku s kodo, kjer se izrišejo v živo v predogledu — kar je običajno tudi hitreje, saj je sekvenčni diagram v bistvu seznam vrstic."
+        }
+      ]
+    }
+  ]
+}

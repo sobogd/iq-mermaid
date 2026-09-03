@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid構文チートシート(サンプル付き)",
+    "description": "実際によく使うmermaid構文をまとめました。ノード形状、矢印の種類、サブグラフ、スタイル、図の種類ごとの実例。コピーして貼り付けるだけ。"
+  },
+  "card": {
+    "title": "Mermaid構文チートシート",
+    "excerpt": "ノード形状、矢印、サブグラフ、スタイルを1ページに。mermaidが描画できるすべての図の種類の実例付き。"
+  },
+  "h1": "Mermaid構文チートシート",
+  "intro": "mermaidのリファレンスは広大ですが、実際に描かれる図のほとんどは、その中のごく一部でカバーできます。このページはまさにその一部です ― 形状、矢印、グループ化、色、そして図の種類ごとのコピペ用サンプル。以下のスニペットはそのまま描画されます。[エディタ](app:)に貼り付けて確認してください。",
+  "blocks": [
+    { "type": "h2", "text": "最短で動くフローチャート" },
+    {
+      "type": "p",
+      "text": "フローチャートには宣言行1つと矢印1つがあれば十分です。`TD`は上から下(top-down)を意味し、横に広いプロセスには`LR`(左から右)が向いています。"
+    },
+    {
+      "type": "code",
+      "caption": "3つのノードからなる、上から下へのフローチャート。",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`、`B`、`C`はノードid ― 内部的な名前であり、画面には描かれません。角括弧内のテキストがラベルで、角括弧の**種類**が形状を決めます。"
+    },
+
+    { "type": "h2", "text": "ノードの形状" },
+    {
+      "type": "p",
+      "text": "形状は、ラベルを囲む区切り記号のペアによって決まります。覚えておく価値があるのは次のものです。"
+    },
+    {
+      "type": "table",
+      "headers": ["構文", "形状", "主な意味"],
+      "rows": [
+        ["`A[Text]`", "四角形", "処理・アクション"],
+        ["`A(Text)`", "角丸", "開始・終了地点"],
+        ["`A([Text])`", "ピル型", "終端"],
+        ["`A[[Text]]`", "サブルーチン", "別の処理の呼び出し"],
+        ["`A[(Text)]`", "円柱", "データベース・保存領域"],
+        ["`A((Text))`", "円", "分岐点"],
+        ["`A{Text}`", "ひし形", "判断"],
+        ["`A{{Text}}`", "六角形", "準備ステップ"],
+        ["`A[/Text/]`", "平行四辺形", "入力または出力"],
+        ["`A[/Text\\]`", "台形", "手動操作"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "ラベルに角括弧、コロン、引用符が含まれる場合は引用符で囲みます: `A[\"Load (raw) data\"]`。引用符がないと、パーサーは記号を構文として解釈してしまいます。"
+    },
+
+    { "type": "h2", "text": "矢印" },
+    {
+      "type": "table",
+      "headers": ["構文", "結果"],
+      "rows": [
+        ["`A --> B`", "矢印"],
+        ["`A --- B`", "矢じりのない線"],
+        ["`A -.-> B`", "点線の矢印"],
+        ["`A ==> B`", "太い矢印"],
+        ["`A -->|label| B`", "ラベル付きの矢印"],
+        ["`A --> B --> C`", "1行で書く連鎖"],
+        ["`A --> B & C`", "1つの起点から2つの対象へ"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "矢印の長さにも意味があります。`-->`は1ランク分、`--->`は対象をもう1ランク下に押し下げます。mermaidが提供する、最もシンプルなレイアウト制御です。"
+    },
+
+    { "type": "h2", "text": "サブグラフによるグループ化" },
+    {
+      "type": "p",
+      "text": "`subgraph`はノードの周りにラベル付きの枠を描きます。サブグラフは入れ子にでき、矢印は境界を自由に越えられます。"
+    },
+    {
+      "type": "code",
+      "caption": "それぞれが独自のストアを持つ、2つのサービス。",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "色とスタイル" },
+    {
+      "type": "p",
+      "text": "`style`は1つのノードを彩色します。`classDef`と`class`を組み合わせると複数のノードをまとめて彩色でき、ノードが3〜4個を超えたら使いたくなります。"
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "色は図のソースの一部なので、書き出し後も保持され、ファイルと一緒に移動します。これはレンダリングするツールのテーマ設定には一切依存しません。"
+    },
+
+    { "type": "h2", "text": "図の種類ごとの実例" },
+    {
+      "type": "h3",
+      "text": "シーケンス図"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "クラス図" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "状態遷移図" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "ER図(実体関連図)" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "ガントチャート" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "mermaidが単体でレンダリングされる場所" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** ― フェンス付きの```mermaidブロックが、issue、プルリクエスト、コメント、READMEファイルの中でレンダリングされます。",
+        "**GitLab** ― 同じフェンス付きブロックが、issue、マージリクエスト、Wikiの中でレンダリングされます。",
+        "**Notion** ― 言語をMermaidに設定したコードブロックが、ソースの隣にレンダリングされます。",
+        "**Obsidian** ― フェンス付きのmermaidブロックがプレビューモードでレンダリングされます。",
+        "**ドキュメントサイト** ― Docusaurus、MkDocs Material、VitePressはいずれもmermaidブロックに対応しています。"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "これこそが、図を画像ではなくmermaidのまま残しておくべき本当の理由です。図は、それが説明する対象と同じテキストファイルの中に存在し、コードレビューで何が変わったかを確認できます。"
+    },
+
+    {
+      "type": "cta",
+      "heading": "このページのどのスニペットも試せます",
+      "text": "コードタブに貼り付ければ即座に描画されます ― あるいはキャンバス上で同じ図を作って、構文を逆から読み取ることもできます。",
+      "buttonLabel": "エディタを開く"
+    },
+
+    {
+      "type": "faq",
+      "heading": "よくある質問",
+      "items": [
+        {
+          "q": "ノードラベルの中で改行するには?",
+          "a": "引用符で囲んだラベルの中で`<br>`を使います: `A[\"First line<br>Second line\"]`。mermaidはラベルをHTMLとしてレンダリングするため、構文自体はHTMLでなくてもこのタグは機能します。"
+        },
+        {
+          "q": "ラベルのせいで図が壊れるのはなぜ?",
+          "a": "ほとんどの場合、ラベル内の角括弧、丸括弧、コロン、引用符が引用符なしで使われていることが原因です。ラベル全体を二重引用符で囲めば、パーサーはその記号を構文として扱わなくなります。"
+        },
+        {
+          "q": "レイアウトを制御できますか?",
+          "a": "間接的にのみ可能です。方向(`TD`、`LR`、`BT`、`RL`)を選び、矢印を長くして(`--->`)ノード間を広げ、関連するノードをサブグラフにまとめます。残りはmermaidが自動で計算します ― 座標という概念はありません。"
+        },
+        {
+          "q": "このエディタはどのmermaidバージョンを使っていますか?",
+          "a": "現行のメジャーバージョンであるmermaid 11を使用しているため、v10とv11の構文として文書化されているものはすべてここで動作します。"
+        }
+      ]
+    }
+  ]
+}

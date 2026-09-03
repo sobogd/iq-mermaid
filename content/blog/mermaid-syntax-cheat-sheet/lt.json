@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid Sintaksės Trumpasis Vadovas su Pavyzdžiais",
+    "description": "Mermaid sintaksė, kurią tikrai naudosi: mazgų formos, rodyklių tipai, potipės (subgraph), stilius ir po veikiantį pavyzdį kiekvienam diagramos tipui. Kopijuok, įklijuok, redaguok."
+  },
+  "card": {
+    "title": "Mermaid sintaksės trumpasis vadovas",
+    "excerpt": "Mazgų formos, rodyklės, potipės ir stilius viename puslapyje — plius veikiantis kiekvieno diagramos tipo, kurį atvaizduoja mermaid, pavyzdys."
+  },
+  "h1": "Mermaid sintaksės trumpasis vadovas",
+  "intro": "Mermaid turi didelį žinyną ir nedidelį poaibį, kuris apima beveik viską, ką žmonės piešia. Šis puslapis ir yra tas poaibis: formos, rodyklės, grupavimas, spalvos ir po vieną nukopijuok-ir-įklijuok pavyzdį kiekvienam diagramos tipui. Kiekvienas žemiau esantis pavyzdys atvaizduojamas toks, koks yra — įklijuok jį į [redaktorių](app:), kad pamatytum.",
+  "blocks": [
+    { "type": "h2", "text": "Trumpiausia veikianti diagrama" },
+    {
+      "type": "p",
+      "text": "Blokinei schemai reikia vienos deklaracijos eilutės ir vienos rodyklės. `TD` reiškia iš viršaus į apačią; naudok `LR` procesams iš kairės į dešinę, kai jie platesni."
+    },
+    {
+      "type": "code",
+      "caption": "Trijų mazgų blokinė schema, iš viršaus į apačią.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` ir `C` yra mazgų id — vidiniai vardai, kurie niekada nepiešiami. Tekstas skliaustuose yra etiketė, o skliaustų **stilius** parenka formą."
+    },
+
+    { "type": "h2", "text": "Mazgų formos" },
+    {
+      "type": "p",
+      "text": "Forma parenkama pagal skliaustų porą aplink etiketę. Štai tos, kurias verta įsiminti:"
+    },
+    {
+      "type": "table",
+      "headers": ["Sintaksė", "Forma", "Įprasta reikšmė"],
+      "rows": [
+        ["`A[Text]`", "Stačiakampis", "Žingsnis arba veiksmas"],
+        ["`A(Text)`", "Suapvalintas", "Pradžios arba pabaigos taškas"],
+        ["`A([Text])`", "Piliulė", "Terminatorius"],
+        ["`A[[Text]]`", "Subrutina", "Iškvietimas į kitą procesą"],
+        ["`A[(Text)]`", "Cilindras", "Duomenų bazė arba saugykla"],
+        ["`A((Text))`", "Apskritimas", "Sankirta"],
+        ["`A{Text}`", "Rombas", "Sprendimas"],
+        ["`A{{Text}}`", "Šešiakampis", "Paruošiamasis žingsnis"],
+        ["`A[/Text/]`", "Lygiagretainis", "Įvestis arba išvestis"],
+        ["`A[/Text\\]`", "Trapecija", "Rankinė operacija"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Cituok etiketę, kai joje yra skliaustų, dvitaškių ar kabučių: `A[\"Load (raw) data\"]`. Be kabučių analizatorius supranta skyrybos ženklus kaip sintaksę."
+    },
+
+    { "type": "h2", "text": "Rodyklės" },
+    {
+      "type": "table",
+      "headers": ["Sintaksė", "Rezultatas"],
+      "rows": [
+        ["`A --> B`", "Rodyklė"],
+        ["`A --- B`", "Linija be antgalio"],
+        ["`A -.-> B`", "Punktyrinė rodyklė"],
+        ["`A ==> B`", "Stora rodyklė"],
+        ["`A -->|label| B`", "Rodyklė su etikete"],
+        ["`A --> B --> C`", "Grandinė, parašyta vienoje eilutėje"],
+        ["`A --> B & C`", "Vienas šaltinis, du taikiniai"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Rodyklės ilgis taip pat turi reikšmę: `-->` yra vienas lygis, `--->` nustumia taikinį dar vienu lygiu žemiau. Tai paprasčiausias išdėstymo valdymo būdas, kurį duoda mermaid."
+    },
+
+    { "type": "h2", "text": "Grupavimas su potipėmis (subgraph)" },
+    {
+      "type": "p",
+      "text": "`subgraph` nupiešia pažymėtą dėžę aplink mazgus. Potipės gali būti įdėtos viena į kitą, o rodyklės gali laisvai kirsti jų ribas."
+    },
+    {
+      "type": "code",
+      "caption": "Dvi paslaugos, kiekviena su savo saugykla.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Spalva ir stilius" },
+    {
+      "type": "p",
+      "text": "`style` nudažo vieną mazgą. `classDef` kartu su `class` nudažo jų rinkinį, o to ir reikia, kai mazgų daugiau nei trys ar keturi."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Spalvos yra diagramos kodo dalis, tad jos išlieka po eksporto ir keliauja kartu su failu. Čia niekas nepriklauso nuo temos nustatymo įrankyje, kuris ją atvaizduoja."
+    },
+
+    { "type": "h2", "text": "Po vieną pavyzdį kiekvienam diagramos tipui" },
+    {
+      "type": "h3",
+      "text": "Sekos diagrama"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Klasių diagrama" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Būsenų diagrama" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Esybių ryšių diagrama" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Ganto diagrama" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Kur mermaid atvaizduojamas savaime" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — apibrėžtas ```mermaid blokas atvaizduojamas issues, pull request'uose, komentaruose ir README failuose.",
+        "**GitLab** — tas pats apibrėžtas blokas, issues, merge request'uose ir wiki.",
+        "**Notion** — kodo blokas su kalba nustatyta į Mermaid atvaizduojamas šalia kodo.",
+        "**Obsidian** — apibrėžtas mermaid blokas atvaizduojamas peržiūros režime.",
+        "**Docs svetainės** — Docusaurus, MkDocs Material ir VitePress palaiko mermaid blokus."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Būtent dėl to verta laikyti diagramas kaip mermaid, o ne kaip paveikslėlius: diagrama gyvena tame pačiame tekstiniame faile kaip ir dalykas, kurį ji aprašo, o code review gali matyti, kas joje pasikeitė."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Išbandyk bet kurį šio puslapio pavyzdį",
+      "text": "Įklijuok jį į kodo skirtuką ir jis akimirksniu atvaizduojamas — arba sukurk tą pačią diagramą darbalaukyje ir perskaityk sintaksę atgal.",
+      "buttonLabel": "Atverti redaktorių"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Dažniausiai užduodami klausimai",
+      "items": [
+        {
+          "q": "Kaip pridėti eilutės lūžį mazgo etiketėje?",
+          "a": "Naudok `<br>` cituotoje etiketėje: `A[\"First line<br>Second line\"]`. Mermaid atvaizduoja etiketę kaip HTML, tad žymė veikia, nors likusi sintaksė nėra HTML."
+        },
+        {
+          "q": "Kodėl mano etiketė sugadina diagramą?",
+          "a": "Beveik visada dėl necituoto skliausto, lenktinio skliausto, dvitaškio ar kabutės etiketėje. Apgaubk visą etiketę dvigubomis kabutėmis, ir analizatorius nustos suprasti tavo skyrybos ženklus kaip sintaksę."
+        },
+        {
+          "q": "Ar galiu valdyti išdėstymą?",
+          "a": "Tik netiesiogiai. Pasirink kryptį (`TD`, `LR`, `BT`, `RL`), naudok ilgesnes rodykles (`--->`), kad išstumtum mazgus toliau vienas nuo kito, ir grupuok susijusius mazgus į potipes. Likusią dalį apskaičiuoja mermaid — jokių koordinačių nėra."
+        },
+        {
+          "q": "Kurią mermaid versiją naudoja šis redaktorius?",
+          "a": "Mermaid 11, dabartinę pagrindinę versiją, tad viskas, kas dokumentuota v10 ir v11 sintaksei, čia atvaizduojama."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "backToSite": "На главную страницу",
+  "tabs": { "visual": "Визуал", "text": "Код" },
+  "toolbar": {
+    "addBlock": "Добавить блок",
+    "addGroup": "Добавить область",
+    "copy": "Копировать (блок или всю область целиком)",
+    "paste": "Вставить — затем кликните, куда",
+    "delete": "Удалить выделенное",
+    "clearAll": "Очистить всё",
+    "connect": "Провести стрелку к другому блоку",
+    "move": "Переместить в область или из неё",
+    "color": "Цвет",
+    "shape": "Форма"
+  },
+  "zoom": { "center": "Центрировать" },
+  "modals": { "colorTitle": "Цвет", "shapeTitle": "Форма" },
+  "shapes": {
+    "rect": "Прямоугольник",
+    "rounded": "Скруглённый",
+    "pill": "Таблетка",
+    "circle": "Круг",
+    "diamond": "Ромб",
+    "subroutine": "Подпрограмма",
+    "cylinder": "База данных",
+    "hexagon": "Шестиугольник",
+    "asymmetric": "Флаг",
+    "parallelogram": "Параллелограмм",
+    "parallelogramAlt": "Параллелограмм (зеркальный)",
+    "trapezoid": "Трапеция",
+    "trapezoidAlt": "Трапеция (зеркальная)",
+    "doubleCircle": "Двойной круг"
+  },
+  "hints": {
+    "connect": "Кликните блок, на который должна указывать стрелка · Esc — отмена",
+    "move": "Кликните область, чтобы переместить внутрь, или пустое место — чтобы вынести наружу · Esc — отмена",
+    "paste": "Кликните область или пустое место, куда вставить · Esc — отмена"
+  },
+  "prompts": {
+    "edgeLabel": "Подпись стрелки:",
+    "clearAll": "Удалить всё?"
+  },
+  "defaults": {
+    "block": "Блок",
+    "group": "Область",
+    "start": "Старт",
+    "action": "Действие"
+  },
+  "text": {
+    "examplePlaceholder": "Пример…",
+    "copyMermaid": "Копировать mermaid",
+    "downloadMmd": "Скачать .mmd",
+    "downloadMd": "Скачать .md (Notion)",
+    "copySvg": "Копировать SVG",
+    "downloadSvg": "Скачать SVG",
+    "downloadPng": "Скачать PNG",
+    "statusOk": "Готово",
+    "statusError": "Ошибка",
+    "statusSvgCopied": "SVG скопирован",
+    "statusMermaidCopied": "Mermaid скопирован"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Sequence-диаграмма",
+    "class": "Диаграмма классов",
+    "state": "Диаграмма состояний",
+    "er": "ER-диаграмма",
+    "gantt": "Диаграмма Ганта"
+  },
+  "sample": {
+    "start": "Старт",
+    "condition": "Готово?",
+    "yes": "Да",
+    "no": "Нет",
+    "action1": "Отправить",
+    "action2": "Исправить",
+    "end": "Готово",
+    "project": "Проект",
+    "phase": "Этап 1",
+    "task1": "Задача 1",
+    "task2": "Задача 2"
+  }
+}

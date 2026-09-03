@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Diagramme de séquence Mermaid : syntaxe et exemples",
+    "description": "Comment écrire un diagramme de séquence mermaid : participants, flèches, barres d'activation, boucles, blocs alt et notes — avec exemples prêts à coller."
+  },
+  "card": {
+    "title": "Diagrammes de séquence mermaid",
+    "excerpt": "Participants, types de flèches, barres d'activation, boucles et blocs alt — toute la syntaxe du diagramme de séquence avec des exemples exécutables."
+  },
+  "h1": "Comment écrire un diagramme de séquence mermaid",
+  "intro": "Un diagramme de séquence montre qui parle à qui, et dans quel ordre. En mermaid, il prend à peu près le même temps à écrire qu'à décrire à voix haute, ce qui explique pourquoi c'est le type de diagramme qui survit le plus longtemps dans une base de code. Tout ce qui suit est prêt à coller dans l'[éditeur](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Le minimum" },
+    {
+      "type": "p",
+      "text": "Déclarez le type de diagramme, puis écrivez une ligne par message. Les participants sont créés à leur première mention, dans l'ordre où ils apparaissent."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Déclarez les participants explicitement avec `participant User` quand vous voulez un ordre gauche-droite précis plutôt que l'ordre de première mention."
+    },
+
+    { "type": "h2", "text": "Types de flèches" },
+    {
+      "type": "table",
+      "headers": ["Syntaxe", "Signification"],
+      "rows": [
+        ["`A->>B: text`", "Requête — ligne pleine, pointe pleine"],
+        ["`A-->>B: text`", "Réponse — ligne pointillée, pointe pleine"],
+        ["`A->B: text`", "Ligne pleine, pointe ouverte"],
+        ["`A-)B: text`", "Message asynchrone — pointe ouverte, aucune réponse attendue"],
+        ["`A-xB: text`", "Message qui échoue ou est perdu"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "La convention à retenir : **ligne pleine pour l'appel, pointillée pour le retour**. Un lecteur peut alors distinguer une requête d'une réponse sans lire un seul libellé."
+    },
+
+    { "type": "h2", "text": "Participants et alias" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Utilisez `actor U as Browser` au lieu de `participant` pour dessiner un bonhomme allumette — utile pour l'humain au bord gauche d'un flux d'authentification."
+    },
+
+    { "type": "h2", "text": "Barres d'activation" },
+    {
+      "type": "p",
+      "text": "Les barres d'activation montrent combien de temps un participant est occupé. Marquez-les explicitement avec `activate`/`deactivate`, ou ajoutez `+` et `-` aux flèches, ce qui est plus court et plus difficile à déséquilibrer."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Boucles, conditions et travail parallèle" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — répétition.",
+        "`alt <label>` … `else <label>` … `end` — branches mutuellement exclusives.",
+        "`opt <label>` … `end` — une branche qui peut simplement ne pas se produire.",
+        "`par <label>` … `and <label>` … `end` — des choses qui se produisent en même temps.",
+        "`critical` / `break` — une section qui ne doit pas être interrompue, et une sortie anticipée."
+      ]
+    },
+
+    { "type": "h2", "text": "Notes" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` s'étend sur deux participants et c'est le bon endroit pour une contrainte qui appartient à l'interaction plutôt qu'à l'un ou l'autre côté."
+    },
+
+    { "type": "h2", "text": "Un exemple complet" },
+    {
+      "type": "code",
+      "caption": "Connexion OAuth, de bout en bout.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Modifiez ce diagramme",
+      "text": "Collez-le dans l'onglet code et modifiez une ligne — l'aperçu se redessine au fil de la frappe.",
+      "buttonLabel": "Ouvrir l'éditeur"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Questions fréquentes",
+      "items": [
+        {
+          "q": "Comment numéroter les messages ?",
+          "a": "Placez `autonumber` sur la ligne juste après `sequenceDiagram`. Chaque message reçoit alors un numéro séquentiel, ce qui rend le diagramme bien plus facile à commenter en revue."
+        },
+        {
+          "q": "Un participant peut-il s'envoyer un message à lui-même ?",
+          "a": "Oui — écrivez le même nom des deux côtés : `API->>API: retry`. Mermaid dessine la boucle qui revient sur la même ligne de vie."
+        },
+        {
+          "q": "Comment montrer qu'un participant est détruit ?",
+          "a": "Utilisez `destroy <name>` avant le message qui le termine, ou `create participant <name>` pour le faire apparaître en cours de diagramme plutôt qu'en haut."
+        },
+        {
+          "q": "Puis-je modifier un diagramme de séquence sur le canevas visuel ?",
+          "a": "Le canevas visuel modifie les flowcharts. Les diagrammes de séquence s'écrivent dans l'onglet code, où ils s'affichent en direct dans l'aperçu — ce qui est généralement plus rapide de toute façon, puisqu'un diagramme de séquence est essentiellement une liste de lignes."
+        }
+      ]
+    }
+  ]
+}

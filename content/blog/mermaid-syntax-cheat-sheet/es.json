@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Hoja de Trucos de Sintaxis Mermaid con Ejemplos",
+    "description": "La sintaxis mermaid que realmente usarás: formas de nodo, tipos de flecha, subgrafos, estilos y un ejemplo funcional por cada tipo de diagrama. Copia, pega, edita."
+  },
+  "card": {
+    "title": "Hoja de trucos de sintaxis mermaid",
+    "excerpt": "Formas de nodo, flechas, subgrafos y estilos en una sola página — más un ejemplo funcional de cada tipo de diagrama que mermaid renderiza."
+  },
+  "h1": "Hoja de trucos de sintaxis mermaid",
+  "intro": "Mermaid tiene una referencia extensa y un pequeño subconjunto que cubre casi todo lo que la gente dibuja. Esta página es ese subconjunto: formas, flechas, agrupación, colores, y un ejemplo de copiar y pegar por cada tipo de diagrama. Cada fragmento de abajo se renderiza tal cual — pégalo en el [editor](app:) para verlo.",
+  "blocks": [
+    { "type": "h2", "text": "El diagrama más corto que funciona" },
+    {
+      "type": "p",
+      "text": "Un flowchart necesita una línea de declaración y una flecha. `TD` significa de arriba hacia abajo; usa `LR` para izquierda a derecha, que se adapta mejor a procesos anchos."
+    },
+    {
+      "type": "code",
+      "caption": "Un flowchart de tres nodos, de arriba hacia abajo.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` y `C` son ids de nodo — nombres internos que nunca se dibujan. El texto entre corchetes es la etiqueta, y el **estilo** de los corchetes es lo que elige la forma."
+    },
+
+    { "type": "h2", "text": "Formas de nodo" },
+    {
+      "type": "p",
+      "text": "La forma se elige según el par de delimitadores alrededor de la etiqueta. Estas son las que vale la pena recordar:"
+    },
+    {
+      "type": "table",
+      "headers": ["Sintaxis", "Forma", "Significado habitual"],
+      "rows": [
+        ["`A[Text]`", "Rectángulo", "Un paso o acción"],
+        ["`A(Text)`", "Redondeado", "Un punto de inicio o fin"],
+        ["`A([Text])`", "Píldora", "Un terminador"],
+        ["`A[[Text]]`", "Subrutina", "Una llamada a otro proceso"],
+        ["`A[(Text)]`", "Cilindro", "Una base de datos o almacén"],
+        ["`A((Text))`", "Círculo", "Un punto de unión"],
+        ["`A{Text}`", "Rombo", "Una decisión"],
+        ["`A{{Text}}`", "Hexágono", "Un paso de preparación"],
+        ["`A[/Text/]`", "Paralelogramo", "Entrada o salida"],
+        ["`A[/Text\\]`", "Trapecio", "Una operación manual"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Pon la etiqueta entre comillas cuando contenga corchetes, dos puntos o comillas: `A[\"Load (raw) data\"]`. Sin comillas, el analizador interpreta tu puntuación como sintaxis."
+    },
+
+    { "type": "h2", "text": "Flechas" },
+    {
+      "type": "table",
+      "headers": ["Sintaxis", "Resultado"],
+      "rows": [
+        ["`A --> B`", "Flecha"],
+        ["`A --- B`", "Línea, sin punta de flecha"],
+        ["`A -.-> B`", "Flecha punteada"],
+        ["`A ==> B`", "Flecha gruesa"],
+        ["`A -->|label| B`", "Flecha con una etiqueta"],
+        ["`A --> B --> C`", "Cadena, escrita en una línea"],
+        ["`A --> B & C`", "Un origen, dos destinos"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "La longitud de la flecha también tiene significado: `-->` es un rango, `--->` empuja el destino un rango más abajo. Es el control de diseño más simple que mermaid te da."
+    },
+
+    { "type": "h2", "text": "Agrupar con subgrafos" },
+    {
+      "type": "p",
+      "text": "Un `subgraph` dibuja una caja etiquetada alrededor de nodos. Los subgrafos se anidan, y las flechas pueden cruzar sus bordes libremente."
+    },
+    {
+      "type": "code",
+      "caption": "Dos servicios, cada uno con su propio almacén.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Color y estilos" },
+    {
+      "type": "p",
+      "text": "`style` pinta un nodo. `classDef` más `class` pinta un conjunto de ellos, que es lo que quieres a partir de tres o cuatro nodos."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Los colores forman parte del código fuente del diagrama, así que sobreviven a la exportación y viajan con el archivo. Nada aquí depende de un ajuste de tema en la herramienta que lo renderiza."
+    },
+
+    { "type": "h2", "text": "Un ejemplo por cada tipo de diagrama" },
+    {
+      "type": "h3",
+      "text": "Diagrama de secuencia"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Diagrama de clases" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Diagrama de estados" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Diagrama de relación de entidades" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Diagrama de Gantt" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Dónde se renderiza mermaid por sí solo" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — un bloque ```mermaid con delimitadores se renderiza en issues, pull requests, comentarios y archivos README.",
+        "**GitLab** — el mismo bloque con delimitadores, en issues, merge requests y la wiki.",
+        "**Notion** — un bloque de código con el lenguaje configurado en Mermaid se renderiza junto al código fuente.",
+        "**Obsidian** — un bloque mermaid con delimitadores se renderiza en modo de vista previa.",
+        "**Sitios de documentación** — Docusaurus, MkDocs Material y VitePress admiten todos los bloques mermaid."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Esa es la verdadera razón para mantener los diagramas como mermaid en lugar de como imágenes: el diagrama vive en el mismo archivo de texto que lo que describe, y una revisión de código puede ver qué cambió en él."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Prueba cualquier fragmento de esta página",
+      "text": "Pégalo en la pestaña de código y se renderiza al instante — o construye el mismo diagrama en el lienzo y lee la sintaxis de vuelta.",
+      "buttonLabel": "Abrir el editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Preguntas frecuentes",
+      "items": [
+        {
+          "q": "¿Cómo añado un salto de línea dentro de la etiqueta de un nodo?",
+          "a": "Usa `<br>` dentro de una etiqueta entre comillas: `A[\"First line<br>Second line\"]`. Mermaid renderiza la etiqueta como HTML, así que la etiqueta funciona aunque el resto de la sintaxis no sea HTML."
+        },
+        {
+          "q": "¿Por qué mi etiqueta rompe el diagrama?",
+          "a": "Casi siempre es un corchete, paréntesis, dos puntos o comilla sin comillas dentro de la etiqueta. Envuelve toda la etiqueta entre comillas dobles y el analizador dejará de interpretar tu puntuación como sintaxis."
+        },
+        {
+          "q": "¿Puedo controlar el diseño?",
+          "a": "Solo indirectamente. Elige la dirección (`TD`, `LR`, `BT`, `RL`), usa flechas más largas (`--->`) para separar más los nodos, y agrupa los nodos relacionados en subgrafos. Mermaid calcula el resto — no hay coordenadas."
+        },
+        {
+          "q": "¿Qué versión de mermaid usa este editor?",
+          "a": "Mermaid 11, la versión principal actual, así que todo lo documentado para la sintaxis de v10 y v11 se renderiza aquí."
+        }
+      ]
+    }
+  ]
+}

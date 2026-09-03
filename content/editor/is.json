@@ -1,0 +1,83 @@
+{
+  "backToSite": "Til baka á forsíðu",
+  "tabs": { "visual": "Sjónrænt", "text": "Kóði" },
+  "toolbar": {
+    "addBlock": "Bæta við kubbi",
+    "addGroup": "Bæta við svæði",
+    "copy": "Afrita (kubb, eða heilt svæði með öllu í því)",
+    "paste": "Líma — smelltu svo þar sem það á að fara",
+    "delete": "Eyða völdu",
+    "clearAll": "Hreinsa allt",
+    "connect": "Teikna ör á annan kubb",
+    "move": "Færa inn í svæði, eða út úr því",
+    "color": "Litur",
+    "shape": "Lögun"
+  },
+  "zoom": { "center": "Miðja aftur" },
+  "modals": { "colorTitle": "Litur", "shapeTitle": "Lögun" },
+  "shapes": {
+    "rect": "Rétthyrningur",
+    "rounded": "Ávalur",
+    "pill": "Pilla",
+    "circle": "Hringur",
+    "diamond": "Tígull",
+    "subroutine": "Undirferli",
+    "cylinder": "Gagnagrunnur",
+    "hexagon": "Sexhyrningur",
+    "asymmetric": "Fáni",
+    "parallelogram": "Samsíðungur",
+    "parallelogramAlt": "Samsíðungur (spegluð)",
+    "trapezoid": "Trapisa",
+    "trapezoidAlt": "Trapisa (spegluð)",
+    "doubleCircle": "Tvöfaldur hringur"
+  },
+  "hints": {
+    "connect": "Smelltu á kubbinn sem örin á að benda á · Esc til að hætta við",
+    "move": "Smelltu á svæði til að færa inn í það, eða autt rými til að færa út · Esc til að hætta við",
+    "paste": "Smelltu á svæði eða autt rými til að líma inn · Esc til að hætta við"
+  },
+  "prompts": {
+    "edgeLabel": "Merking örvar:",
+    "clearAll": "Eyða öllu?"
+  },
+  "defaults": {
+    "block": "Kubbur",
+    "group": "Svæði",
+    "start": "Byrjun",
+    "action": "Aðgerð"
+  },
+  "text": {
+    "examplePlaceholder": "Dæmi…",
+    "copyMermaid": "Afrita mermaid",
+    "downloadMmd": "Sækja .mmd",
+    "downloadMd": "Sækja .md (Notion)",
+    "copySvg": "Afrita SVG",
+    "downloadSvg": "Sækja SVG",
+    "downloadPng": "Sækja PNG",
+    "statusOk": "Í lagi",
+    "statusError": "Villa",
+    "statusSvgCopied": "SVG afritað",
+    "statusMermaidCopied": "Mermaid afritað"
+  },
+  "examples": {
+    "flowchart": "Flæðirit",
+    "sequence": "Runurit",
+    "class": "Klasarit",
+    "state": "Stöðurit",
+    "er": "ER rit",
+    "gantt": "Gantt rit"
+  },
+  "sample": {
+    "start": "Byrjun",
+    "condition": "Tilbúið?",
+    "yes": "Já",
+    "no": "Nei",
+    "action1": "Senda út",
+    "action2": "Laga",
+    "end": "Lokið",
+    "project": "Verkefni",
+    "phase": "Áfangi 1",
+    "task1": "Verkefni 1",
+    "task2": "Verkefni 2"
+  }
+}

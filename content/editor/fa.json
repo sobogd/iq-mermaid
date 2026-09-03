@@ -1,0 +1,83 @@
+{
+  "backToSite": "بازگشت به صفحه اصلی",
+  "tabs": { "visual": "بصری", "text": "کد" },
+  "toolbar": {
+    "addBlock": "افزودن بلوک",
+    "addGroup": "افزودن ناحیه",
+    "copy": "کپی (یک بلوک، یا کل یک ناحیه با همه محتوایش)",
+    "paste": "پیست — سپس روی جایی که باید برود کلیک کنید",
+    "delete": "حذف انتخاب‌شده",
+    "clearAll": "پاک کردن همه‌چیز",
+    "connect": "پیکانی به بلوک دیگر بکشید",
+    "move": "جابه‌جایی به داخل یک ناحیه، یا خارج از آن",
+    "color": "رنگ",
+    "shape": "شکل"
+  },
+  "zoom": { "center": "وسط‌چین دوباره" },
+  "modals": { "colorTitle": "رنگ", "shapeTitle": "شکل" },
+  "shapes": {
+    "rect": "مستطیل",
+    "rounded": "گرد",
+    "pill": "قرصی",
+    "circle": "دایره",
+    "diamond": "لوزی",
+    "subroutine": "زیرروال",
+    "cylinder": "پایگاه‌داده",
+    "hexagon": "شش‌ضلعی",
+    "asymmetric": "پرچم",
+    "parallelogram": "متوازی‌الاضلاع",
+    "parallelogramAlt": "متوازی‌الاضلاع (آینه‌ای)",
+    "trapezoid": "ذوزنقه",
+    "trapezoidAlt": "ذوزنقه (آینه‌ای)",
+    "doubleCircle": "دایره دوگانه"
+  },
+  "hints": {
+    "connect": "روی بلوکی که پیکان باید به آن اشاره کند کلیک کنید · Esc برای لغو",
+    "move": "روی یک ناحیه کلیک کنید تا به داخلش منتقل شود، یا روی فضای خالی تا خارج شود · Esc برای لغو",
+    "paste": "برای پیست کردن روی یک ناحیه یا فضای خالی کلیک کنید · Esc برای لغو"
+  },
+  "prompts": {
+    "edgeLabel": "برچسب پیکان:",
+    "clearAll": "همه‌چیز حذف شود؟"
+  },
+  "defaults": {
+    "block": "بلوک",
+    "group": "ناحیه",
+    "start": "شروع",
+    "action": "عملیات"
+  },
+  "text": {
+    "examplePlaceholder": "نمونه…",
+    "copyMermaid": "کپی mermaid",
+    "downloadMmd": "دانلود ‎.mmd",
+    "downloadMd": "دانلود ‎.md (Notion)",
+    "copySvg": "کپی SVG",
+    "downloadSvg": "دانلود SVG",
+    "downloadPng": "دانلود PNG",
+    "statusOk": "تأیید شد",
+    "statusError": "خطا",
+    "statusSvgCopied": "SVG کپی شد",
+    "statusMermaidCopied": "mermaid کپی شد"
+  },
+  "examples": {
+    "flowchart": "فلوچارت",
+    "sequence": "نمودار توالی",
+    "class": "نمودار کلاس",
+    "state": "نمودار حالت",
+    "er": "نمودار ER",
+    "gantt": "نمودار گانت"
+  },
+  "sample": {
+    "start": "شروع",
+    "condition": "آماده است؟",
+    "yes": "بله",
+    "no": "خیر",
+    "action1": "ارسالش کن",
+    "action2": "درستش کن",
+    "end": "پایان",
+    "project": "پروژه",
+    "phase": "فاز ۱",
+    "task1": "وظیفه ۱",
+    "task2": "وظیفه ۲"
+  }
+}

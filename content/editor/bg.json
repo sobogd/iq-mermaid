@@ -1,0 +1,83 @@
+{
+  "backToSite": "Обратно към началната страница",
+  "tabs": { "visual": "Визуално", "text": "Код" },
+  "toolbar": {
+    "addBlock": "Добави блок",
+    "addGroup": "Добави област",
+    "copy": "Копирай (блок или цяла област с всичко в нея)",
+    "paste": "Постави — после кликни къде да отиде",
+    "delete": "Изтрий избраното",
+    "clearAll": "Изчисти всичко",
+    "connect": "Начертай стрелка към друг блок",
+    "move": "Премести в област, или извън нея",
+    "color": "Цвят",
+    "shape": "Форма"
+  },
+  "zoom": { "center": "Центрирай наново" },
+  "modals": { "colorTitle": "Цвят", "shapeTitle": "Форма" },
+  "shapes": {
+    "rect": "Правоъгълник",
+    "rounded": "Заоблен",
+    "pill": "Хапче",
+    "circle": "Кръг",
+    "diamond": "Ромб",
+    "subroutine": "Подпроцедура",
+    "cylinder": "База данни",
+    "hexagon": "Шестоъгълник",
+    "asymmetric": "Флаг",
+    "parallelogram": "Успоредник",
+    "parallelogramAlt": "Успоредник (огледален)",
+    "trapezoid": "Трапец",
+    "trapezoidAlt": "Трапец (огледален)",
+    "doubleCircle": "Двоен кръг"
+  },
+  "hints": {
+    "connect": "Кликни върху блока, към който да сочи стрелката · Esc за отказ",
+    "move": "Кликни върху област, за да преместиш в нея, или върху празно пространство, за да преместиш извън нея · Esc за отказ",
+    "paste": "Кликни върху област или празно пространство, за да поставиш там · Esc за отказ"
+  },
+  "prompts": {
+    "edgeLabel": "Етикет на стрелката:",
+    "clearAll": "Да изтрия ли всичко?"
+  },
+  "defaults": {
+    "block": "Блок",
+    "group": "Област",
+    "start": "Старт",
+    "action": "Действие"
+  },
+  "text": {
+    "examplePlaceholder": "Пример…",
+    "copyMermaid": "Копирай mermaid",
+    "downloadMmd": "Изтегли .mmd",
+    "downloadMd": "Изтегли .md (Notion)",
+    "copySvg": "Копирай SVG",
+    "downloadSvg": "Изтегли SVG",
+    "downloadPng": "Изтегли PNG",
+    "statusOk": "Готово",
+    "statusError": "Грешка",
+    "statusSvgCopied": "SVG копиран",
+    "statusMermaidCopied": "Mermaid копиран"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Sequence диаграма",
+    "class": "Class диаграма",
+    "state": "State диаграма",
+    "er": "ER диаграма",
+    "gantt": "Gantt диаграма"
+  },
+  "sample": {
+    "start": "Старт",
+    "condition": "Готово?",
+    "yes": "Да",
+    "no": "Не",
+    "action1": "Пусни го",
+    "action2": "Оправи го",
+    "end": "Край",
+    "project": "Проект",
+    "phase": "Фаза 1",
+    "task1": "Задача 1",
+    "task2": "Задача 2"
+  }
+}

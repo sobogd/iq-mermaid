@@ -1,0 +1,83 @@
+{
+  "backToSite": "Powrót do strony głównej",
+  "tabs": { "visual": "Wizualny", "text": "Kod" },
+  "toolbar": {
+    "addBlock": "Dodaj blok",
+    "addGroup": "Dodaj obszar",
+    "copy": "Kopiuj (blok lub cały obszar wraz z zawartością)",
+    "paste": "Wklej — potem kliknij, gdzie ma trafić",
+    "delete": "Usuń zaznaczenie",
+    "clearAll": "Wyczyść wszystko",
+    "connect": "Narysuj strzałkę do innego bloku",
+    "move": "Przenieś do obszaru lub poza niego",
+    "color": "Kolor",
+    "shape": "Kształt"
+  },
+  "zoom": { "center": "Wyśrodkuj" },
+  "modals": { "colorTitle": "Kolor", "shapeTitle": "Kształt" },
+  "shapes": {
+    "rect": "Prostokąt",
+    "rounded": "Zaokrąglony",
+    "pill": "Pigułka",
+    "circle": "Koło",
+    "diamond": "Romb",
+    "subroutine": "Podproces",
+    "cylinder": "Baza danych",
+    "hexagon": "Sześciokąt",
+    "asymmetric": "Flaga",
+    "parallelogram": "Równoległobok",
+    "parallelogramAlt": "Równoległobok (lustrzany)",
+    "trapezoid": "Trapez",
+    "trapezoidAlt": "Trapez (lustrzany)",
+    "doubleCircle": "Podwójne koło"
+  },
+  "hints": {
+    "connect": "Kliknij blok, do którego ma wskazywać strzałka · Esc, aby anulować",
+    "move": "Kliknij obszar, by przenieść do niego, albo puste miejsce, by przenieść na zewnątrz · Esc, aby anulować",
+    "paste": "Kliknij obszar lub puste miejsce, aby wkleić · Esc, aby anulować"
+  },
+  "prompts": {
+    "edgeLabel": "Etykieta strzałki:",
+    "clearAll": "Usunąć wszystko?"
+  },
+  "defaults": {
+    "block": "Blok",
+    "group": "Obszar",
+    "start": "Start",
+    "action": "Akcja"
+  },
+  "text": {
+    "examplePlaceholder": "Przykład…",
+    "copyMermaid": "Kopiuj mermaid",
+    "downloadMmd": "Pobierz .mmd",
+    "downloadMd": "Pobierz .md (Notion)",
+    "copySvg": "Kopiuj SVG",
+    "downloadSvg": "Pobierz SVG",
+    "downloadPng": "Pobierz PNG",
+    "statusOk": "OK",
+    "statusError": "Błąd",
+    "statusSvgCopied": "SVG skopiowane",
+    "statusMermaidCopied": "Mermaid skopiowany"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Diagram sekwencji",
+    "class": "Diagram klas",
+    "state": "Diagram stanów",
+    "er": "Diagram ER",
+    "gantt": "Wykres Gantta"
+  },
+  "sample": {
+    "start": "Start",
+    "condition": "Gotowe?",
+    "yes": "Tak",
+    "no": "Nie",
+    "action1": "Wdróż",
+    "action2": "Napraw",
+    "end": "Koniec",
+    "project": "Projekt",
+    "phase": "Faza 1",
+    "task1": "Zadanie 1",
+    "task2": "Zadanie 2"
+  }
+}

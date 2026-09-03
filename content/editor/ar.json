@@ -1,0 +1,83 @@
+{
+  "backToSite": "العودة إلى الصفحة الرئيسية",
+  "tabs": { "visual": "بصري", "text": "الكود" },
+  "toolbar": {
+    "addBlock": "إضافة كتلة",
+    "addGroup": "إضافة منطقة",
+    "copy": "نسخ (كتلة، أو منطقة كاملة بكل ما فيها)",
+    "paste": "لصق — ثم انقر في المكان المطلوب",
+    "delete": "حذف التحديد",
+    "clearAll": "مسح كل شيء",
+    "connect": "ارسم سهمًا إلى كتلة أخرى",
+    "move": "نقل إلى منطقة، أو خارجها",
+    "color": "اللون",
+    "shape": "الشكل"
+  },
+  "zoom": { "center": "إعادة التوسيط" },
+  "modals": { "colorTitle": "اللون", "shapeTitle": "الشكل" },
+  "shapes": {
+    "rect": "مستطيل",
+    "rounded": "دائري الحواف",
+    "pill": "كبسولة",
+    "circle": "دائرة",
+    "diamond": "معين",
+    "subroutine": "روتين فرعي",
+    "cylinder": "قاعدة بيانات",
+    "hexagon": "سداسي",
+    "asymmetric": "علم",
+    "parallelogram": "متوازي أضلاع",
+    "parallelogramAlt": "متوازي أضلاع (معكوس)",
+    "trapezoid": "شبه منحرف",
+    "trapezoidAlt": "شبه منحرف (معكوس)",
+    "doubleCircle": "دائرة مزدوجة"
+  },
+  "hints": {
+    "connect": "انقر على الكتلة التي يجب أن يشير إليها السهم · Esc للإلغاء",
+    "move": "انقر على منطقة لنقلها إليها، أو على مساحة فارغة لإخراجها · Esc للإلغاء",
+    "paste": "انقر على منطقة أو مساحة فارغة للصق فيها · Esc للإلغاء"
+  },
+  "prompts": {
+    "edgeLabel": "تسمية السهم:",
+    "clearAll": "حذف كل شيء؟"
+  },
+  "defaults": {
+    "block": "كتلة",
+    "group": "منطقة",
+    "start": "بداية",
+    "action": "إجراء"
+  },
+  "text": {
+    "examplePlaceholder": "مثال…",
+    "copyMermaid": "نسخ mermaid",
+    "downloadMmd": "تنزيل .mmd",
+    "downloadMd": "تنزيل .md (Notion)",
+    "copySvg": "نسخ SVG",
+    "downloadSvg": "تنزيل SVG",
+    "downloadPng": "تنزيل PNG",
+    "statusOk": "تم",
+    "statusError": "خطأ",
+    "statusSvgCopied": "تم نسخ SVG",
+    "statusMermaidCopied": "تم نسخ mermaid"
+  },
+  "examples": {
+    "flowchart": "مخطط انسيابي",
+    "sequence": "مخطط تسلسلي",
+    "class": "مخطط فئات",
+    "state": "مخطط حالة",
+    "er": "مخطط ER",
+    "gantt": "مخطط جانت"
+  },
+  "sample": {
+    "start": "بداية",
+    "condition": "جاهز؟",
+    "yes": "نعم",
+    "no": "لا",
+    "action1": "أطلقه",
+    "action2": "أصلحه",
+    "end": "تم",
+    "project": "مشروع",
+    "phase": "المرحلة 1",
+    "task1": "المهمة 1",
+    "task2": "المهمة 2"
+  }
+}

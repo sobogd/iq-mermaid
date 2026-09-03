@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Örneklerle Mermaid Sözdizimi Kopya Kağıdı",
+    "description": "Gerçekten kullanacağınız mermaid sözdizimi: düğüm şekilleri, ok türleri, alt grafikler, stil ve her diyagram türünden bir örnek. Kopyala, yapıştır, düzenle."
+  },
+  "card": {
+    "title": "Mermaid sözdizimi kopya kağıdı",
+    "excerpt": "Düğüm şekilleri, oklar, alt grafikler ve stil tek sayfada — artı mermaid'in render ettiği her diyagram türünden çalışan bir örnek."
+  },
+  "h1": "Mermaid sözdizimi kopya kağıdı",
+  "intro": "Mermaid'in geniş bir referansı ve neredeyse her şeyi kapsayan küçük bir alt kümesi vardır. Bu sayfa o alt kümedir: şekiller, oklar, gruplama, renkler ve her diyagram türü için kopyala-yapıştır bir örnek. Aşağıdaki her kod parçası olduğu gibi render edilir — görmek için [editöre](app:) yapıştırın.",
+  "blocks": [
+    { "type": "h2", "text": "İşe yarayan en kısa diyagram" },
+    {
+      "type": "p",
+      "text": "Bir akış şeması bir tanım satırı ve bir ok gerektirir. `TD` yukarıdan aşağıya anlamına gelir; geniş süreçlere daha uygun olan soldan sağa için `LR` kullanın."
+    },
+    {
+      "type": "code",
+      "caption": "Üç düğümlü bir akış şeması, yukarıdan aşağıya.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` ve `C` düğüm kimlikleridir — dahili adlardır, asla çizilmezler. Köşeli parantez içindeki metin etikettir ve parantez **stili** şekli belirler."
+    },
+
+    { "type": "h2", "text": "Düğüm şekilleri" },
+    {
+      "type": "p",
+      "text": "Şekil, etiketin etrafındaki sınırlayıcı karakter çiftine göre seçilir. Akılda tutmaya değer olanlar şunlardır:"
+    },
+    {
+      "type": "table",
+      "headers": ["Sözdizimi", "Şekil", "Genel anlamı"],
+      "rows": [
+        ["`A[Text]`", "Dikdörtgen", "Bir adım veya eylem"],
+        ["`A(Text)`", "Yuvarlak köşeli", "Bir başlangıç veya bitiş noktası"],
+        ["`A([Text])`", "Hap", "Bir sonlandırıcı"],
+        ["`A[[Text]]`", "Alt yordam", "Başka bir sürece yapılan çağrı"],
+        ["`A[(Text)]`", "Silindir", "Bir veritabanı veya depo"],
+        ["`A((Text))`", "Daire", "Bir kavşak"],
+        ["`A{Text}`", "Eşkenar dörtgen", "Bir karar"],
+        ["`A{{Text}}`", "Altıgen", "Bir hazırlık adımı"],
+        ["`A[/Text/]`", "Paralelkenar", "Girdi veya çıktı"],
+        ["`A[/Text\\]`", "Yamuk", "Bir manuel işlem"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Etiket köşeli parantez, iki nokta üst üste veya tırnak içeriyorsa tırnak içine alın: `A[\"Load (raw) data\"]`. Tırnak olmadan ayrıştırıcı noktalama işaretlerinizi sözdizimi olarak algılar."
+    },
+
+    { "type": "h2", "text": "Oklar" },
+    {
+      "type": "table",
+      "headers": ["Sözdizimi", "Sonuç"],
+      "rows": [
+        ["`A --> B`", "Ok"],
+        ["`A --- B`", "Çizgi, ok ucu yok"],
+        ["`A -.-> B`", "Noktalı ok"],
+        ["`A ==> B`", "Kalın ok"],
+        ["`A -->|label| B`", "Üzerinde etiket olan ok"],
+        ["`A --> B --> C`", "Tek satırda yazılan zincir"],
+        ["`A --> B & C`", "Bir kaynak, iki hedef"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Ok uzunluğu da anlamlıdır: `-->` bir sıra, `--->` hedefi bir sıra daha aşağı iter. Bu, mermaid'in size verdiği en basit yerleşim kontrolüdür."
+    },
+
+    { "type": "h2", "text": "Alt grafiklerle gruplama" },
+    {
+      "type": "p",
+      "text": "Bir `subgraph`, düğümlerin etrafına etiketli bir kutu çizer. Alt grafikler iç içe geçebilir ve oklar sınırlarını serbestçe geçebilir."
+    },
+    {
+      "type": "code",
+      "caption": "İkisi de kendi deposuna sahip iki servis.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Renk ve stil" },
+    {
+      "type": "p",
+      "text": "`style` tek bir düğümü boyar. `classDef` ve `class` ise bir grup düğümü boyar, ki üç dört düğümden sonra istediğiniz şey de budur."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Renkler diyagram kaynağının bir parçasıdır, bu yüzden dışa aktarmadan sağ çıkar ve dosyayla birlikte taşınır. Burada hiçbir şey onu render eden aracın tema ayarına bağlı değildir."
+    },
+
+    { "type": "h2", "text": "Her diyagram türünden bir örnek" },
+    {
+      "type": "h3",
+      "text": "Sıralama diyagramı"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Sınıf diyagramı" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Durum diyagramı" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Varlık ilişki diyagramı" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantt şeması" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Mermaid'in kendi başına render edildiği yerler" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — çevrelenmiş bir ```mermaid bloğu issue'larda, pull request'lerde, yorumlarda ve README dosyalarında render edilir.",
+        "**GitLab** — aynı çevrelenmiş blok, issue'larda, merge request'lerde ve wiki'de.",
+        "**Notion** — dili Mermaid olarak ayarlanmış bir kod bloğu, kaynağın yanında render edilir.",
+        "**Obsidian** — önizleme modunda çevrelenmiş bir mermaid bloğu render edilir.",
+        "**Doküman siteleri** — Docusaurus, MkDocs Material ve VitePress'in hepsi mermaid bloklarını destekler."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Diyagramları görsel yerine mermaid olarak tutmanın gerçek nedeni budur: diyagram, tanımladığı şeyle aynı metin dosyasında yaşar ve bir kod incelemesi onda neyin değiştiğini görebilir."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Bu sayfadaki herhangi bir kod parçasını deneyin",
+      "text": "Kod sekmesine yapıştırın, anında render edilsin — ya da aynı diyagramı tuvalde oluşturup sözdizimini geri okuyun.",
+      "buttonLabel": "Editörü aç"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Sıkça sorulanlar",
+      "items": [
+        {
+          "q": "Bir düğüm etiketinin içine nasıl satır sonu eklerim?",
+          "a": "Tırnaklı bir etiketin içinde `<br>` kullanın: `A[\"First line<br>Second line\"]`. Mermaid etiketi HTML olarak render eder, bu yüzden sözdiziminin geri kalanı HTML olmasa da bu etiket çalışır."
+        },
+        {
+          "q": "Etiketim neden diyagramı bozuyor?",
+          "a": "Neredeyse her zaman etiketin içinde tırnaksız bir köşeli parantez, parantez, iki nokta üst üste veya tırnak vardır. Tüm etiketi çift tırnak içine alın, ayrıştırıcı noktalama işaretlerinizi sözdizimi olarak görmeyi bırakır."
+        },
+        {
+          "q": "Yerleşimi kontrol edebilir miyim?",
+          "a": "Yalnızca dolaylı olarak. Yönü seçin (`TD`, `LR`, `BT`, `RL`), düğümleri daha uzağa itmek için daha uzun oklar (`--->`) kullanın ve ilgili düğümleri alt grafiklerde gruplandırın. Mermaid gerisini hesaplar — koordinat yoktur."
+        },
+        {
+          "q": "Bu editör hangi mermaid sürümünü kullanıyor?",
+          "a": "Güncel ana sürüm olan Mermaid 11, bu yüzden v10 ve v11 sözdizimi için belgelenen her şey burada render edilir."
+        }
+      ]
+    }
+  ]
+}

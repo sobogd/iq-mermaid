@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Mermaid'i PNG, SVG veya Markdown'a Aktarma",
+    "description": "Bir mermaid diyagramını PNG veya SVG'ye dönüştürme, SVG kopyalama veya GitHub ve Notion için metin olarak saklama — ve hangisini seçmelisiniz."
+  },
+  "card": {
+    "title": "Mermaid'i PNG veya SVG olarak dışa aktarma",
+    "excerpt": "Bir mermaid diyagramından çıkmanın dört yolu — PNG, SVG, .mmd kaynağı ve bir Markdown bloğu — ve her birinin ne zaman doğru cevap olduğu."
+  },
+  "h1": "Bir mermaid diyagramını PNG, SVG veya Markdown'a aktarma",
+  "intro": "Bir diyagram yalnızca görülebildiği yerde işe yarar. Mermaid size dört çıkış yolu sunar — bir resim, bir vektör, kaynak veya kendini render eden bir Markdown bloğu — ve doğrusu tamamen diyagramın nereye gideceğine bağlıdır. Bu kısa versiyon, artı her birinde nelerin bozulduğu.",
+  "blocks": [
+    { "type": "h2", "text": "Önce formatı seçin" },
+    {
+      "type": "table",
+      "headers": ["Hedef", "Kullanım", "Neden"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Bir Markdown bloğu", "Doğal olarak render edilir ve fark alınabilir kalır — senkronize tutulacak bir dosya yoktur."],
+        ["Sunumlar, bir şartname, bir sohbet mesajı", "PNG", "Her yere yapıştırılır, bir render motoru gerektirmez, her yerde aynı görünür."],
+        ["Bir web sitesi, basılı bir belge", "SVG", "Vektör — her boyutta keskin kalır ve metin seçilebilir kalır."],
+        ["Başka bir editör, bir depo", "`.mmd` kaynağı", "Sonradan düzenlenebilir. Bir resim çıkmaz sokaktır."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Hedef mermaid'i render ediyorsa, hiç dışa aktarmayın. Metin olarak commit edilen bir diyagram satır satır incelenebilir; aynı diyagram bir PNG olarak commit edildiğinde yalnızca değiştirilebilir."
+    },
+
+    { "type": "h2", "text": "Bu editörden dışa aktarma" },
+    {
+      "type": "p",
+      "text": "Kod sekmesini açın — dışa aktarma düğmeleri araç çubuğunda yer alır ve her biri o anda render edilmiş olan şey üzerinde çalışır."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**SVG'yi kopyala** — `<svg>` işaretlemesini panoya koyar, doğrudan bir HTML dosyasına veya bir tasarım aracına yapıştırmaya hazır.",
+        "**SVG indir** — `diagram.svg` olarak kaydeder.",
+        "**PNG indir** — `diagram.png` olarak kaydeder, yüksek yoğunluklu bir ekranda keskin kalması ve beyaz bir slaytta asla saydam bir leke olarak bitmemesi için beyaz arka planla 2 kat çözünürlükte render edilir.",
+        "**.mmd indir** — mermaid kaynağını düz metin dosyası olarak kaydeder.",
+        "**.md indir (Notion)** — kaynağı çevrelenmiş bir ```mermaid bloğuna sararak kaydeder, ki Notion, GitHub ve Obsidian yapıştırmada bunu render eder."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Bir slayt sunumu için PNG'yi alın. Yeniden boyutlandırılacak herhangi bir şey için — bir belge başlığı, bir poster, baskı — SVG'yi alın; dışa aktarma boyutunun ötesine büyütülen bir PNG hemen bulanıklaşır."
+    },
+
+    { "type": "h2", "text": "Bunun yerine metin olarak tutun" },
+    {
+      "type": "p",
+      "text": "Çevrelenmiş blok, yerinde düzenlenebilir kalan tek dışa aktarmadır. Üç ters tırnak, `mermaid` kelimesi, diyagramınız, üç ters tırnak:"
+    },
+    {
+      "type": "code",
+      "caption": "Bunu bir GitHub README'sine yapıştırın ve render edilsin.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — README dosyalarında, issue'larda, pull request'lerde ve yorumlarda render edilir.",
+        "**GitLab** — wiki'de, issue'larda ve merge request'lerde render edilir.",
+        "**Notion** — bir kod bloğuna yapıştırın ve dili Mermaid olarak ayarlayın.",
+        "**Obsidian** — önizlemede ve yayınlanan notlarda render edilir.",
+        "**Docusaurus / MkDocs Material / VitePress** — mermaid blokları derlenmiş dokümanlarda render edilir."
+      ]
+    },
+
+    { "type": "h2", "text": "Ters giden şeyler" },
+    { "type": "h3", "text": "PNG bulanık" },
+    {
+      "type": "p",
+      "text": "Bir PNG sabit çözünürlüklüdür: belirli bir piksel boyutunda dışa aktarılır ve bunun ötesine ölçeklendirme aradeğerleme yapar. Bu editör bu yüzden 2 kat çözünürlükte dışa aktarır. Yine de yetmiyorsa, SVG'yi dışa aktarıp ihtiyacınız olan boyutta dönüştürün — ya da doğrudan SVG'yi kullanın."
+    },
+    { "type": "h3", "text": "SVG'nin arka planı yok" },
+    {
+      "type": "p",
+      "text": "SVG dışa aktarmaları tasarım gereği saydamdır, bu yüzden koyu düğüm metni koyu bir slaytta kaybolur. Ya SVG'yi açık renkli bir kart üzerine koyun ya da beyaz üzerine dışa aktarılan PNG'yi alın."
+    },
+    { "type": "h3", "text": "Yazı tipleri başka bir yerde farklı görünüyor" },
+    {
+      "type": "p",
+      "text": "Bir SVG, yazı tiplerini gömmek yerine yazı tipi ailelerine referans verir, bu yüzden o yazı tipine sahip olmayan bir makine başka bir yazı tipi kullanır ve etiket kutuları hizasını kaybeder. Görüntüleyenin yazı tiplerini kontrol edemediğinizde PNG'yi kullanın."
+    },
+    { "type": "h3", "text": "Diyagram kesiliyor" },
+    {
+      "type": "p",
+      "text": "Dışa aktarma o anda render edilmiş olanı okur, bu yüzden büyük bir diyagramı dışa aktarmadan önce görünümü yeniden ortalayın. Bir düğüm etiketi çok büyükse, `<br>` ile bölün — mermaid etiketleri kendiliğinden satır kaydırmaz."
+    },
+
+    {
+      "type": "cta",
+      "heading": "İki tıkla dışa aktarın",
+      "text": "Editörü açın, diyagramınızı yapıştırın veya çizin ve SVG'yi, PNG'yi veya kaynağı alın. Hiçbir şey bir hesabın arkasında değil.",
+      "buttonLabel": "Editörü aç"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Sıkça sorulanlar",
+      "items": [
+        {
+          "q": "Mermaid'i PNG'ye nasıl dönüştürürüm?",
+          "a": "Diyagramı render edin, sonra PNG İndir'i kullanın. Editör, render edilen SVG'yi 2 kat ölçekte beyaz arka planla bir tuval üzerine çizer ve sonucu kaydeder — sunucuya gidiş dönüş yoktur, bu yüzden diyagram tarayıcınızdan asla çıkmaz."
+        },
+        {
+          "q": "Saydam bir PNG dışa aktarabilir miyim?",
+          "a": "PNG düğmesinden değil — kasıtlı olarak beyaz doldurur, çünkü saydam bir arka plan üzerindeki koyu diyagram metni bir PNG'nin yapıştırıldığı çoğu yerde okunamaz. Bunun yerine SVG'yi dışa aktarın; o saydamdır."
+        },
+        {
+          "q": "Bir boyut sınırı var mı?",
+          "a": "Sabit bir sınır yok. Dışa aktarma tarayıcınızda gerçekleşir, bu yüzden pratik sınır tarayıcınızın render edebileceği şeydir — ki bu bir diyagramın bir insan için hâlâ okunabilir olduğu noktanın çok ötesindedir."
+        },
+        {
+          "q": "Dışa aktardıktan sonra diyagramı düzenlenebilir nasıl tutarım?",
+          "a": "Kaynağı saklayın. `.mmd` dosyasını veya Markdown bloğunu görselle birlikte indirin; bir PNG veya SVG mermaid'e geri dönüştürülemez, ama kaynak doğrudan editöre geri yapıştırılır."
+        }
+      ]
+    }
+  ]
+}

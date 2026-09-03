@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Sequence диаграма — синтаксис и примери",
+    "description": "Как да напишеш mermaid sequence диаграма: участници, видове стрелки, ленти за активност, цикли, alt блокове и бележки — с примери за копиране."
+  },
+  "card": {
+    "title": "Mermaid sequence диаграми",
+    "excerpt": "Участници, видове стрелки, ленти за активност, цикли и alt блокове — целият синтаксис на sequence диаграма с работещи примери."
+  },
+  "h1": "Как да напишеш mermaid sequence диаграма",
+  "intro": "Sequence диаграмата показва кой на кого говори и в какъв ред. В mermaid отнема почти толкова време за писане, колкото и за устно описание, затова е видът диаграма, който оцелява най-дълго в кодова база. Всичко по-долу е готово за поставяне в [редактора](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Минимумът" },
+    {
+      "type": "p",
+      "text": "Декларирай вида на диаграмата, после напиши по един ред на съобщение. Участниците се създават при първото им споменаване, в реда, в който се появяват."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Декларирай участниците изрично с `participant User`, когато искаш конкретен ред отляво надясно, вместо реда на първото им споменаване."
+    },
+
+    { "type": "h2", "text": "Видове стрелки" },
+    {
+      "type": "table",
+      "headers": ["Синтаксис", "Значение"],
+      "rows": [
+        ["`A->>B: text`", "Заявка — плътна линия, запълнена стрелка"],
+        ["`A-->>B: text`", "Отговор — пунктирана линия, запълнена стрелка"],
+        ["`A->B: text`", "Плътна линия, отворена стрелка"],
+        ["`A-)B: text`", "Асинхронно съобщение — отворена стрелка, без очакван отговор"],
+        ["`A-xB: text`", "Съобщение, което се проваля или отпада"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Конвенцията, която си струва да пазиш: **плътна линия за извикването, пунктирана за връщането**. Тогава читателят може да разпознае заявка от отговор, без да чете нито един етикет."
+    },
+
+    { "type": "h2", "text": "Участници и псевдоними" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Използвай `actor U as Browser` вместо `participant`, за да нарисуваш човече — струва си за човека в левия край на flow за автентикация."
+    },
+
+    { "type": "h2", "text": "Ленти за активност" },
+    {
+      "type": "p",
+      "text": "Лентите за активност показват колко дълго участникът е зает. Маркирай ги изрично с `activate`/`deactivate`, или добави `+` и `-` към стрелките, което е по-кратко и по-трудно да се разбалансира."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Цикли, условия и паралелна работа" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — повторение.",
+        "`alt <label>` … `else <label>` … `end` — взаимно изключващи се разклонения.",
+        "`opt <label>` … `end` — разклонение, което може просто да не се случи.",
+        "`par <label>` … `and <label>` … `end` — неща, случващи се едновременно.",
+        "`critical` / `break` — секция, която не бива да бъде прекъсвана, и ранен изход."
+      ]
+    },
+
+    { "type": "h2", "text": "Бележки" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` обхваща двама участници и е правилното място за ограничение, което принадлежи на взаимодействието, а не на едната или другата страна."
+    },
+
+    { "type": "h2", "text": "Пълен пример" },
+    {
+      "type": "code",
+      "caption": "OAuth вход, от началото до края.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Редактирай тази диаграма",
+      "text": "Постави я в раздела за код и промени един ред — прегледът се преизчертава докато пишеш.",
+      "buttonLabel": "Отвори редактора"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Често задавани въпроси",
+      "items": [
+        {
+          "q": "Как да номерирам съобщенията?",
+          "a": "Постави `autonumber` на реда веднага след `sequenceDiagram`. Тогава всяко съобщение получава пореден номер, което прави диаграмата много по-лесна за обсъждане в коментари при преглед."
+        },
+        {
+          "q": "Може ли участник да изпрати съобщение на себе си?",
+          "a": "Да — напиши същото име от двете страни: `API->>API: retry`. Mermaid чертае примката обратно към същия lifeline."
+        },
+        {
+          "q": "Как да покажа, че участник е унищожен?",
+          "a": "Използвай `destroy <name>` преди съобщението, което го приключва, или `create participant <name>`, за да се появи по средата на диаграмата, вместо в началото."
+        },
+        {
+          "q": "Мога ли да редактирам sequence диаграма на визуалното платно?",
+          "a": "Визуалното платно редактира flowchart диаграми. Sequence диаграмите се пишат в раздела за код, където се изобразяват на живо в прегледа — което обикновено е по-бързо така или иначе, защото sequence диаграмата по същество е списък от редове."
+        }
+      ]
+    }
+  ]
+}

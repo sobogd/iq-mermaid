@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid málskipun: yfirlitsblað með dæmum",
+    "description": "Mermaid málskipunin sem þú notar í raun: lögun hnúta, örvagerðir, undirgröf, litun og eitt virkt dæmi fyrir hverja tegund skýringarmyndar. Afritaðu, límdu, breyttu."
+  },
+  "card": {
+    "title": "Mermaid málskipun — yfirlitsblað",
+    "excerpt": "Lögun hnúta, örvar, undirgröf og litun á einni síðu — auk virks dæmis fyrir hverja tegund skýringarmyndar sem mermaid birtir."
+  },
+  "h1": "Mermaid málskipun — yfirlitsblað",
+  "intro": "Mermaid á sér stóra tilvísun og lítið undirsafn sem nær yfir næstum allt sem fólk teiknar. Þessi síða er það undirsafn: lögun, örvar, hópun, litir, og eitt afrita-líma dæmi fyrir hverja tegund skýringarmyndar. Hvert brot hér að neðan birtist eins og það er — límdu það inn í [ritilinn](app:) til að sjá það.",
+  "blocks": [
+    { "type": "h2", "text": "Stysta skýringarmyndin sem virkar" },
+    {
+      "type": "p",
+      "text": "Flæðirit þarf eina yfirlýsingarlínu og eina ör. `TD` þýðir ofan frá og niður; notaðu `LR` fyrir vinstri-til-hægri, sem hentar betur breiðum ferlum."
+    },
+    {
+      "type": "code",
+      "caption": "Flæðirit með þremur hnútum, ofan frá og niður.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` og `C` eru auðkenni hnúta — innri nöfn, aldrei birt. Textinn í hornklofunum er merkimiðinn, og **stíll** hornklofanna ákveður lögunina."
+    },
+
+    { "type": "h2", "text": "Lögun hnúta" },
+    {
+      "type": "p",
+      "text": "Lögun ræðst af afmörkunarpari umhverfis merkimiðann. Þetta eru þau sem borgar sig að muna:"
+    },
+    {
+      "type": "table",
+      "headers": ["Málskipan", "Lögun", "Venjuleg merking"],
+      "rows": [
+        ["`A[Text]`", "Rétthyrningur", "Skref eða aðgerð"],
+        ["`A(Text)`", "Ávalur", "Upphafs- eða endapunktur"],
+        ["`A([Text])`", "Pilla", "Lokapunktur"],
+        ["`A[[Text]]`", "Undirferli", "Kall í annað ferli"],
+        ["`A[(Text)]`", "Sívalningur", "Gagnagrunnur eða geymsla"],
+        ["`A((Text))`", "Hringur", "Tengipunktur"],
+        ["`A{Text}`", "Tígull", "Ákvörðun"],
+        ["`A{{Text}}`", "Sexhyrningur", "Undirbúningsskref"],
+        ["`A[/Text/]`", "Samsíðungur", "Inntak eða úttak"],
+        ["`A[/Text\\]`", "Trapisa", "Handvirk aðgerð"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Settu tilvitnunarmerki utan um merkimiða sem inniheldur sviga, tvípunkta eða gæsalappir: `A[\"Load (raw) data\"]`. Án tilvitnunarmerkja les þáttarinn greinarmerkin þín sem málskipan."
+    },
+
+    { "type": "h2", "text": "Örvar" },
+    {
+      "type": "table",
+      "headers": ["Málskipan", "Niðurstaða"],
+      "rows": [
+        ["`A --> B`", "Ör"],
+        ["`A --- B`", "Lína, engin örvaroddur"],
+        ["`A -.-> B`", "Punktalínuör"],
+        ["`A ==> B`", "Þykk ör"],
+        ["`A -->|label| B`", "Ör með merkingu á"],
+        ["`A --> B --> C`", "Keðja, skrifuð í einni línu"],
+        ["`A --> B & C`", "Ein uppspretta, tveir áfangastaðir"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Lengd örvar skiptir líka máli: `-->` er ein röð, `--->` ýtir áfangastaðnum einni röð neðar. Það er einfaldasta útlitsstjórnin sem mermaid gefur þér."
+    },
+
+    { "type": "h2", "text": "Hópun með undirgröfum" },
+    {
+      "type": "p",
+      "text": "`subgraph` teiknar merktan kassa utan um hnúta. Undirgröf hreiðra sig, og örvar mega fara þvert yfir mörk þeirra frjálslega."
+    },
+    {
+      "type": "code",
+      "caption": "Tvær þjónustur, hvor með sína eigin geymslu.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Litur og stílsetning" },
+    {
+      "type": "p",
+      "text": "`style` málar einn hnút. `classDef` ásamt `class` málar hóp af þeim, sem er það sem þú vilt eftir þrjá eða fjóra hnúta."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Litir eru hluti af frumkóða skýringarmyndarinnar, þannig að þeir lifa af útflutning og fylgja skránni. Ekkert hér er háð þemastillingu í verkfærinu sem birtir hana."
+    },
+
+    { "type": "h2", "text": "Eitt dæmi fyrir hverja tegund skýringarmyndar" },
+    {
+      "type": "h3",
+      "text": "Runurit"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Klasarit" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Stöðurit" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Tengslarit" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantt rit" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Hvar mermaid birtist á eigin spýtur" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — afgirt ```mermaid blokk birtist í issues, pull requests, athugasemdum og README skrám.",
+        "**GitLab** — sama afgirta blokkin, í issues, merge requests og wiki-num.",
+        "**Notion** — kóðablokk með tungumálið stillt á Mermaid birtist við hlið frumkóðans.",
+        "**Obsidian** — afgirt mermaid blokk birtist í forskoðunarham.",
+        "**Docs sites** — Docusaurus, MkDocs Material og VitePress styðja öll mermaid blokkir."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Það er hin raunverulega ástæða til að halda skýringarmyndum sem mermaid frekar en sem myndum: skýringarmyndin lifir í sama textaskjali og það sem hún lýsir, og kóðayfirferð getur séð hvað breyttist í henni."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Prófaðu hvaða brot sem er á þessari síðu",
+      "text": "Límdu það inn í kóðaflipann og það birtist samstundis — eða byggðu sömu skýringarmynd á striganum og lestu málskipunina til baka.",
+      "buttonLabel": "Opna ritilinn"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Algengar spurningar",
+      "items": [
+        {
+          "q": "Hvernig bæti ég við línuskiptingu innan í merkimiða hnúts?",
+          "a": "Notaðu `<br>` innan í merkimiða í tilvitnunarmerkjum: `A[\"First line<br>Second line\"]`. Mermaid birtir merkimiðann sem HTML, þannig að merkið virkar þótt restin af málskipuninni sé ekki HTML."
+        },
+        {
+          "q": "Af hverju brýtur merkimiðinn minn skýringarmyndina?",
+          "a": "Nánast alltaf ómerktur svigi, gæsalappir eða tvípunktur innan í merkimiðanum án tilvitnunarmerkja. Vefðu allan merkimiðann í tvöföld tilvitnunarmerki og þáttarinn hættir að meðhöndla greinarmerkin þín sem málskipan."
+        },
+        {
+          "q": "Get ég stjórnað útlitinu?",
+          "a": "Aðeins óbeint. Veldu stefnuna (`TD`, `LR`, `BT`, `RL`), notaðu lengri örvar (`--->`) til að ýta hnútum lengra í sundur, og hópaðu tengda hnúta í undirgröf. Mermaid reiknar restina — það eru engin hnitakerfi."
+        },
+        {
+          "q": "Hvaða mermaid útgáfu notar þessi ritill?",
+          "a": "Mermaid 11, núverandi aðalútgáfa, þannig að allt sem er skjalfest fyrir v10 og v11 málskipan birtist hér."
+        }
+      ]
+    }
+  ]
+}

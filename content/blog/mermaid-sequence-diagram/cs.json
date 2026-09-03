@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid sekvenční diagram: syntaxe a příklady",
+    "description": "Jak napsat mermaid sekvenční diagram: účastníci, typy šipek, aktivační pruhy, smyčky, alt bloky a poznámky — s příklady ke zkopírování."
+  },
+  "card": {
+    "title": "Mermaid sekvenční diagramy",
+    "excerpt": "Účastníci, typy šipek, aktivační pruhy, smyčky a alt bloky — celá syntaxe sekvenčního diagramu na funkčních příkladech."
+  },
+  "h1": "Jak napsat mermaid sekvenční diagram",
+  "intro": "Sekvenční diagram ukazuje, kdo s kým mluví a v jakém pořadí. V mermaid ho napíšete zhruba tak rychle, jak dlouho trvá ho popsat nahlas, a proto je to typ diagramu, který se v repozitáři udrží nejdéle. Vše níže je připravené ke zkopírování do [editoru](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Minimum, které stačí" },
+    {
+      "type": "p",
+      "text": "Deklarujte typ diagramu a pak pište jeden řádek na zprávu. Účastníci vznikají při první zmínce, v pořadí, v jakém se objeví."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Účastníky deklarujte explicitně pomocí `participant User`, chcete-li konkrétní pořadí zleva doprava místo pořadí první zmínky."
+    },
+
+    { "type": "h2", "text": "Typy šipek" },
+    {
+      "type": "table",
+      "headers": ["Syntaxe", "Význam"],
+      "rows": [
+        ["`A->>B: text`", "Požadavek — plná čára, plný hrot"],
+        ["`A-->>B: text`", "Odpověď — čárkovaná čára, plný hrot"],
+        ["`A->B: text`", "Plná čára, nevyplněný hrot"],
+        ["`A-)B: text`", "Asynchronní zpráva — nevyplněný hrot, odpověď se neočekává"],
+        ["`A-xB: text`", "Zpráva, která selže nebo se ztratí"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Konvence, kterou se vyplatí dodržovat: **plná čára pro volání, čárkovaná pro návrat**. Čtenář pak pozná požadavek od odpovědi, aniž by přečetl jediný popisek."
+    },
+
+    { "type": "h2", "text": "Účastníci a aliasy" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Místo `participant` použijte `actor U as Browser`, chcete-li nakreslit panáčka — hodí se to pro člověka na levém okraji přihlašovacího flow."
+    },
+
+    { "type": "h2", "text": "Aktivační pruhy" },
+    {
+      "type": "p",
+      "text": "Aktivační pruhy ukazují, jak dlouho je účastník zaneprázdněný. Buď je označte explicitně pomocí `activate`/`deactivate`, nebo přidejte `+` a `-` k šipkám, což je kratší a hůř se to rozejde."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Smyčky, podmínky a paralelní práce" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — opakování.",
+        "`alt <label>` … `else <label>` … `end` — vzájemně vylučující se větve.",
+        "`opt <label>` … `end` — větev, ke které nemusí vůbec dojít.",
+        "`par <label>` … `and <label>` … `end` — věci probíhající současně.",
+        "`critical` / `break` — sekce, kterou nelze přerušit, a předčasný výstup."
+      ]
+    },
+
+    { "type": "h2", "text": "Poznámky" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` se rozpíná přes dva účastníky a je správné místo pro omezení, které patří k interakci jako celku, ne jen k jedné straně."
+    },
+
+    { "type": "h2", "text": "Kompletní příklad" },
+    {
+      "type": "code",
+      "caption": "OAuth přihlášení, od začátku do konce.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Upravte si tento diagram",
+      "text": "Vložte ho do kódové karty a změňte řádek — náhled se překreslí za chodu.",
+      "buttonLabel": "Otevřít editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Časté dotazy",
+      "items": [
+        {
+          "q": "Jak zprávy očísluji?",
+          "a": "Na řádek hned za `sequenceDiagram` dejte `autonumber`. Každá zpráva pak dostane pořadové číslo, což výrazně usnadní o diagramu mluvit v komentářích u review."
+        },
+        {
+          "q": "Může účastník poslat zprávu sám sobě?",
+          "a": "Ano — napište stejné jméno na obě strany: `API->>API: retry`. Mermaid nakreslí smyčku zpátky do stejné lifeline."
+        },
+        {
+          "q": "Jak ukážu, že je účastník zničen?",
+          "a": "Před zprávou, která ho ukončuje, použijte `destroy <name>`, nebo `create participant <name>`, aby se objevil až uprostřed diagramu místo nahoře."
+        },
+        {
+          "q": "Můžu sekvenční diagram upravovat na vizuálním plátně?",
+          "a": "Vizuální plátno upravuje flowcharty. Sekvenční diagramy se píší na kódové kartě, kde se vykreslují za chodu v náhledu — což je obvykle stejně rychlejší, protože sekvenční diagram je v podstatě seznam řádků."
+        }
+      ]
+    }
+  ]
+}

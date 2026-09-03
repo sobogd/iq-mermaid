@@ -1,0 +1,83 @@
+{
+  "backToSite": "Tilbage til forsiden",
+  "tabs": { "visual": "Visuel", "text": "Kode" },
+  "toolbar": {
+    "addBlock": "Tilføj en blok",
+    "addGroup": "Tilføj et område",
+    "copy": "Kopiér (en blok, eller et helt område med alt indhold)",
+    "paste": "Indsæt — klik derefter, hvor det skal placeres",
+    "delete": "Slet markeringen",
+    "clearAll": "Ryd alt",
+    "connect": "Tegn en pil til en anden blok",
+    "move": "Flyt ind i et område, eller ud af et",
+    "color": "Farve",
+    "shape": "Form"
+  },
+  "zoom": { "center": "Centrér på ny" },
+  "modals": { "colorTitle": "Farve", "shapeTitle": "Form" },
+  "shapes": {
+    "rect": "Rektangel",
+    "rounded": "Afrundet",
+    "pill": "Pille",
+    "circle": "Cirkel",
+    "diamond": "Diamant",
+    "subroutine": "Subrutine",
+    "cylinder": "Database",
+    "hexagon": "Sekskant",
+    "asymmetric": "Flag",
+    "parallelogram": "Parallelogram",
+    "parallelogramAlt": "Parallelogram (spejlvendt)",
+    "trapezoid": "Trapez",
+    "trapezoidAlt": "Trapez (spejlvendt)",
+    "doubleCircle": "Dobbeltcirkel"
+  },
+  "hints": {
+    "connect": "Klik på den blok, pilen skal pege på · Esc for at annullere",
+    "move": "Klik på et område for at flytte ind, eller på tomt rum for at flytte ud · Esc for at annullere",
+    "paste": "Klik på et område eller tomt rum for at indsætte · Esc for at annullere"
+  },
+  "prompts": {
+    "edgeLabel": "Pil-label:",
+    "clearAll": "Slet alt?"
+  },
+  "defaults": {
+    "block": "Blok",
+    "group": "Område",
+    "start": "Start",
+    "action": "Handling"
+  },
+  "text": {
+    "examplePlaceholder": "Eksempel…",
+    "copyMermaid": "Kopiér mermaid",
+    "downloadMmd": "Download .mmd",
+    "downloadMd": "Download .md (Notion)",
+    "copySvg": "Kopiér SVG",
+    "downloadSvg": "Download SVG",
+    "downloadPng": "Download PNG",
+    "statusOk": "OK",
+    "statusError": "Fejl",
+    "statusSvgCopied": "SVG kopieret",
+    "statusMermaidCopied": "Mermaid kopieret"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Sequence-diagram",
+    "class": "Class-diagram",
+    "state": "State-diagram",
+    "er": "ER-diagram",
+    "gantt": "Gantt-diagram"
+  },
+  "sample": {
+    "start": "Start",
+    "condition": "Klar?",
+    "yes": "Ja",
+    "no": "Nej",
+    "action1": "Send den",
+    "action2": "Ret den",
+    "end": "Færdig",
+    "project": "Projekt",
+    "phase": "Fase 1",
+    "task1": "Opgave 1",
+    "task2": "Opgave 2"
+  }
+}

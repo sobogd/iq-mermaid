@@ -1,0 +1,83 @@
+{
+  "backToSite": "Tillbaka till startsidan",
+  "tabs": { "visual": "Visuell", "text": "Kod" },
+  "toolbar": {
+    "addBlock": "Lägg till ett block",
+    "addGroup": "Lägg till ett område",
+    "copy": "Kopiera (ett block, eller ett helt område med allt i det)",
+    "paste": "Klistra in — klicka sedan där det ska hamna",
+    "delete": "Ta bort markeringen",
+    "clearAll": "Rensa allt",
+    "connect": "Dra en pil till ett annat block",
+    "move": "Flytta in i ett område, eller ut ur ett",
+    "color": "Färg",
+    "shape": "Form"
+  },
+  "zoom": { "center": "Centrera om" },
+  "modals": { "colorTitle": "Färg", "shapeTitle": "Form" },
+  "shapes": {
+    "rect": "Rektangel",
+    "rounded": "Rundad",
+    "pill": "Piller",
+    "circle": "Cirkel",
+    "diamond": "Romb",
+    "subroutine": "Subrutin",
+    "cylinder": "Databas",
+    "hexagon": "Hexagon",
+    "asymmetric": "Flagga",
+    "parallelogram": "Parallellogram",
+    "parallelogramAlt": "Parallellogram (spegelvänd)",
+    "trapezoid": "Trapets",
+    "trapezoidAlt": "Trapets (spegelvänd)",
+    "doubleCircle": "Dubbel cirkel"
+  },
+  "hints": {
+    "connect": "Klicka på blocket pilen ska peka mot · Esc för att avbryta",
+    "move": "Klicka på ett område för att flytta in, eller på tom yta för att flytta ut · Esc för att avbryta",
+    "paste": "Klicka på ett område eller en tom yta att klistra in i · Esc för att avbryta"
+  },
+  "prompts": {
+    "edgeLabel": "Pilens etikett:",
+    "clearAll": "Ta bort allt?"
+  },
+  "defaults": {
+    "block": "Block",
+    "group": "Område",
+    "start": "Start",
+    "action": "Åtgärd"
+  },
+  "text": {
+    "examplePlaceholder": "Exempel…",
+    "copyMermaid": "Kopiera mermaid",
+    "downloadMmd": "Ladda ner .mmd",
+    "downloadMd": "Ladda ner .md (Notion)",
+    "copySvg": "Kopiera SVG",
+    "downloadSvg": "Ladda ner SVG",
+    "downloadPng": "Ladda ner PNG",
+    "statusOk": "OK",
+    "statusError": "Fel",
+    "statusSvgCopied": "SVG kopierad",
+    "statusMermaidCopied": "Mermaid kopierad"
+  },
+  "examples": {
+    "flowchart": "Flödesdiagram",
+    "sequence": "Sekvensdiagram",
+    "class": "Klassdiagram",
+    "state": "Tillståndsdiagram",
+    "er": "ER-diagram",
+    "gantt": "Gantt-schema"
+  },
+  "sample": {
+    "start": "Start",
+    "condition": "Klar?",
+    "yes": "Ja",
+    "no": "Nej",
+    "action1": "Släpp den",
+    "action2": "Fixa den",
+    "end": "Klart",
+    "project": "Projekt",
+    "phase": "Fas 1",
+    "task1": "Uppgift 1",
+    "task2": "Uppgift 2"
+  }
+}

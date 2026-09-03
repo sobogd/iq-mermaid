@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Mermaid Editor Online Gratis – Skapa Diagram",
+    "description": "Gratis mermaid-editor online: rita diagram visuellt eller skriv mermaid-kod, båda synkas. Flowchart, sequence, class, ER, gantt. Inget konto, exportera SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor – gratis, online, inget konto",
+    "ogDescription": "Rita diagram på en canvas eller skriv mermaid-kod. Båda vyerna hålls synkade. Exportera till SVG, PNG, .mmd eller Markdown.",
+    "twitterTitle": "Gratis mermaid-editor online",
+    "twitterDescription": "Visuell canvas och mermaid-kod, sida vid sida. Inget konto, ingen betalvägg."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Funktioner",
+    "blog": "Guider",
+    "faq": "FAQ",
+    "openEditor": "Öppna editorn",
+    "menu": "Meny"
+  },
+  "hero": {
+    "badgeFree": "Gratis för alltid",
+    "badgeNoSignup": "Inget konto",
+    "badgeDiagrams": "8 diagramtyper",
+    "title": "Mermaid editor online, gratis –",
+    "titleAccent": "skapa diagram visuellt eller med kod",
+    "description": "De flesta mermaid-editorer ger dig en textruta och en förhandsgranskning. Den här ger dig också en canvas: klicka för att lägga till ett block, dra en pil, gruppera saker i områden — och mermaid-koden skriver sig själv. Byt till kodfliken och redigera för hand; canvasen följer med.",
+    "ctaOpen": "Öppna editorn",
+    "ctaLearn": "Se vad den gör",
+    "mockCodeLabel": "Mermaid-kod",
+    "mockDiagramLabel": "Renderat diagram"
+  },
+  "statCards": [
+    { "title": "Renderas medan du skriver", "sub": "Den riktiga mermaid-motorn, omritad några hundra millisekunder efter ditt senaste tangenttryck." },
+    { "title": "Kod och canvas synkas", "sub": "Redigera valfri sida. Den andra hänger med — ingen kopiering mellan två verktyg." },
+    { "title": "14 nodformer", "sub": "Rektangel, rundad, piller, cirkel, romb, databas, hexagon och resten, ett klick var." },
+    { "title": "Gratis, inget konto", "sub": "Inget konto, ingen provperiod, inget vattenstämpel på exporten. Ditt diagram stannar i din webbläsare." }
+  ],
+  "spotlights": [
+    {
+      "heading": "En canvas, inte bara en textruta",
+      "sub": "Den visuella fliken är en riktig editor ovanpå det renderade diagrammet: klicka på en nod för att markera den, dubbelklicka för att döpa om den direkt, dra var som helst för att panorera.",
+      "bullets": [
+        { "title": "Klicka för att bygga", "sub": "Lägg till ett block, peka en pil mot ett annat, märk pilen. Ingen syntax att komma ihåg innan du börjar." },
+        { "title": "Välj en form", "sub": "Fjorton mermaid-flödesdiagramformer — beslutsromber, databascylindrar, subrutiner — från ett enda väljarverktyg." },
+        { "title": "Färglägg vad som helst", "sub": "Åtta färdiga färger plus en färgväljare, tillämpade på en enskild nod eller ett helt område." }
+      ]
+    },
+    {
+      "heading": "Mermaid-kod som förblir din",
+      "sub": "Textfliken är ren mermaid — samma syntax som GitHub, GitLab, Notion och Obsidian redan renderar. Inget här är ett proprietärt format.",
+      "bullets": [
+        { "title": "Skriv för hand", "sub": "Skriv mermaid direkt och se det renderas. Sex färdiga exempel att utgå från." },
+        { "title": "Tolkas tillbaka", "sub": "Flödesdiagram du klistrar in tolkas tillbaka till canvasen — noder, former, färger, undergrafer och allt." },
+        { "title": "Varje diagramtyp", "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — förhandsgranskningen renderar allt mermaid stödjer." }
+      ]
+    },
+    {
+      "heading": "Stora diagram förblir läsbara",
+      "sub": "Arkitekturdiagram växer snabbt ur en skärm. Panorering, zoom och gruppering är byggda för just det, inte något du behöver kämpa mot.",
+      "bullets": [
+        { "title": "Områden och nästling", "sub": "Gruppera block i undergrafer, nästla ett område inuti ett annat, flytta ett helt underträd med en gest." },
+        { "title": "Zooma från 2 % till 1600 %", "sub": "Scrolla för att panorera, ctrl-scrolla för att zooma, eller centrera om med en knapp." },
+        { "title": "Sparas medan du jobbar", "sub": "Ditt diagram skrivs till webbläsarens lokala lagring vid varje redigering — stäng fliken och kom tillbaka till det." }
+      ]
+    },
+    {
+      "heading": "Exportera och gå vidare",
+      "sub": "Inget är inlåst. Ta bilden, ta källkoden, eller ta ett Markdown-block redo att klistras in i ett dokument.",
+      "bullets": [
+        { "title": "Ingen betalvägg", "sub": "Alla funktioner, inklusive export, är gratis. Det finns ingen betald nivå att uppgradera till." },
+        { "title": "Inget lämnar din webbläsare", "sub": "Det finns inget konto och ingen serverlagring av diagram — rendering sker lokalt." },
+        { "title": "SVG, PNG, .mmd, .md", "sub": "Kopiera SVG-koden, ladda ner en 2x PNG, spara mermaid-källkoden, eller hämta ett Markdown-block med staket." }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Så jämför den sig med",
+    "titleAccent": "de vanliga alternativen",
+    "description": "Diagram-som-kod-verktyg får dig att skriva allt för hand. Dra-och-släpp-verktyg ger dig en bild du inte kan diffa. Den här vägrar välja sida.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Typiskt verktyg",
+    "rows": [
+      {
+        "title": "Att komma igång",
+        "us": "Dubbelklicka på canvasen och en nod dyker upp. Du kan lära dig syntaxen senare, eller aldrig.",
+        "them": "Läs syntaxreferensen först, eller nöj dig med ett ritverktyg utan någon textrepresentation alls."
+      },
+      {
+        "title": "Utdataformatet",
+        "us": "Ren mermaid — samma text som GitHub, GitLab och Notion renderar direkt.",
+        "them": "En proprietär fil som bara öppnas i verktyget som skapade den."
+      },
+      {
+        "title": "Redigera senare",
+        "us": "Ändra koden eller flytta blocken. Båda riktningarna fungerar på samma diagram.",
+        "them": "Bara en riktning: kodbaserade verktyg saknar canvas, canvasbaserade verktyg saknar källkod."
+      },
+      {
+        "title": "Pris",
+        "us": "Gratis, inget konto, inga exportgränser.",
+        "them": "Gratisnivå begränsad till några få diagram, med export eller samarbete bakom en prenumeration."
+      },
+      {
+        "title": "Var datan finns",
+        "us": "Din webbläsares lokala lagring. Ingen inloggning, inget uppladdat.",
+        "them": "Ett konto på någon annans server, med dina diagram kopplade till det."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Mermaid-editor",
+    "headingAccent": "frågor",
+    "sub": "Vad folk frågar innan de öppnar den. Inget konto behövs — editorn är ett klick bort.",
+    "items": [
+      {
+        "q": "Vad är mermaid?",
+        "a": "Mermaid är en textsyntax för diagram: du beskriver noder och pilar i några rader, och en renderare ritar bilden. GitHub, GitLab, Notion och Obsidian renderar den inuti Markdown, så ett mermaid-block förblir läsbart i en pull request eller på en wikisida."
+      },
+      {
+        "q": "Är den här mermaid-editorn verkligen gratis?",
+        "a": "Ja. Alla funktioner, inklusive export till SVG och PNG, är gratis, och det finns inget konto att skapa. Det finns ingen betald nivå — inget hålls tillbaka."
+      },
+      {
+        "q": "Behöver jag kunna mermaid-syntax?",
+        "a": "Nej. Börja på den visuella fliken: dubbelklicka på canvasen för att lägga till ett block, markera det och dra en pil till ett annat. Mermaid-koden genereras åt dig, och du kan läsa den när du vill lära dig syntaxen."
+      },
+      {
+        "q": "Vilka diagramtyper stöds?",
+        "a": "Kodfliken renderar allt mermaid stödjer — flowchart, sequence, class, state, entity relationship, gantt, git graph, pie och mer. Den visuella canvasen redigerar specifikt flödesdiagram, vilket är vad de flesta diagram är."
+      },
+      {
+        "q": "Kan jag exportera till PNG eller SVG?",
+        "a": "Ja. Kopiera SVG-koden till urklipp, ladda ner SVG-filen, eller ladda ner en PNG renderad i 2x för presentationer och dokument. Du kan också spara mermaid-källkoden som .mmd eller som ett Markdown-block med staket."
+      },
+      {
+        "q": "Var lagras mitt diagram?",
+        "a": "I din webbläsares lokala lagring, på din egen enhet. Det finns inget konto och ingen serverkopia, så om du rensar webbläsardata eller byter enhet börjar du om — exportera källkoden om du vill behålla den."
+      },
+      {
+        "q": "Kan jag klistra in ett befintligt mermaid-diagram?",
+        "a": "Ja. Klistra in det i kodfliken; ett flödesdiagram tolkas tillbaka till den visuella canvasen med noder, former, färger och undergrafer intakta. Andra diagramtyper renderas i förhandsgranskningen men förblir kodbaserade."
+      },
+      {
+        "q": "Fungerar det offline?",
+        "a": "Rendering sker helt i din webbläsare, så när sidan väl har laddats fortsätter editorn att fungera utan uppkoppling. Ditt diagram finns i lokal lagring, inte på en server."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Öppna editorn.",
+    "headingAccent": "Inget att registrera sig för.",
+    "sub": "En tom canvas, en kodflik och alla exportalternativ — gratis, i din webbläsare, just nu.",
+    "ctaLabel": "Öppna editorn"
+  },
+  "footer": {
+    "tagline": "Gratis mermaid-editor online",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Produkt",
+    "languagesHeading": "Språk"
+  },
+  "app": {
+    "metaTitle": "Mermaid Editor — rita och koda sida vid sida",
+    "metaDescription": "Den gratis mermaid-editorn: en visuell canvas och mermaid-källkoden, hållna synkade. Exportera till SVG, PNG, .mmd eller Markdown.",
+    "backToSite": "Tillbaka till startsidan"
+  },
+  "blog": {
+    "metaTitle": "Mermaid-guider — syntax, export och exempel",
+    "metaDescription": "Korta, praktiska guider om mermaid: syntax du faktiskt använder, hur du exporterar ett diagram till PNG eller SVG, och hur du skriver ett sekvensdiagram.",
+    "title": "Mermaid-guider",
+    "intro": "Korta, praktiska anteckningar om mermaid — syntaxen värd att lära sig utantill, exporterna folk efterfrågar, och diagramtyperna som dyker upp oftast. Varje exempel är en inklistring bort från editorn.",
+    "readMore": "Läs guiden",
+    "backToBlog": "Alla guider",
+    "relatedHeading": "Fler guider"
+  }
+}

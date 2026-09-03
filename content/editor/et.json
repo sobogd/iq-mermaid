@@ -1,0 +1,83 @@
+{
+  "backToSite": "Tagasi avalehele",
+  "tabs": { "visual": "Visuaal", "text": "Kood" },
+  "toolbar": {
+    "addBlock": "Lisa plokk",
+    "addGroup": "Lisa ala",
+    "copy": "Kopeeri (plokk või terve ala koos kõige sisuga)",
+    "paste": "Kleebi — seejärel klõpsa, kuhu see läheb",
+    "delete": "Kustuta valik",
+    "clearAll": "Kustuta kõik",
+    "connect": "Tõmba nool teise ploki juurde",
+    "move": "Liiguta alasse või sealt välja",
+    "color": "Värv",
+    "shape": "Kuju"
+  },
+  "zoom": { "center": "Tsentreeri uuesti" },
+  "modals": { "colorTitle": "Värv", "shapeTitle": "Kuju" },
+  "shapes": {
+    "rect": "Ristkülik",
+    "rounded": "Ümardatud",
+    "pill": "Pill",
+    "circle": "Ring",
+    "diamond": "Romb",
+    "subroutine": "Alamrutiin",
+    "cylinder": "Andmebaas",
+    "hexagon": "Kuusnurk",
+    "asymmetric": "Lipp",
+    "parallelogram": "Rööpkülik",
+    "parallelogramAlt": "Rööpkülik (peegeldatud)",
+    "trapezoid": "Trapets",
+    "trapezoidAlt": "Trapets (peegeldatud)",
+    "doubleCircle": "Topeltring"
+  },
+  "hints": {
+    "connect": "Klõpsa plokil, kuhu nool peaks osutama · Esc tühistamiseks",
+    "move": "Klõpsa alal, et sinna liikuda, või tühjale kohale, et sealt välja liikuda · Esc tühistamiseks",
+    "paste": "Klõpsa alal või tühjal kohal, kuhu kleepida · Esc tühistamiseks"
+  },
+  "prompts": {
+    "edgeLabel": "Noole silt:",
+    "clearAll": "Kustutada kõik?"
+  },
+  "defaults": {
+    "block": "Plokk",
+    "group": "Ala",
+    "start": "Algus",
+    "action": "Tegevus"
+  },
+  "text": {
+    "examplePlaceholder": "Näide…",
+    "copyMermaid": "Kopeeri mermaid",
+    "downloadMmd": "Laadi alla .mmd",
+    "downloadMd": "Laadi alla .md (Notion)",
+    "copySvg": "Kopeeri SVG",
+    "downloadSvg": "Laadi alla SVG",
+    "downloadPng": "Laadi alla PNG",
+    "statusOk": "OK",
+    "statusError": "Viga",
+    "statusSvgCopied": "SVG kopeeritud",
+    "statusMermaidCopied": "Mermaid kopeeritud"
+  },
+  "examples": {
+    "flowchart": "Vookaart",
+    "sequence": "Jadadiagramm",
+    "class": "Klassidiagramm",
+    "state": "Olekudiagramm",
+    "er": "ER-diagramm",
+    "gantt": "Gantti diagramm"
+  },
+  "sample": {
+    "start": "Algus",
+    "condition": "Valmis?",
+    "yes": "Jah",
+    "no": "Ei",
+    "action1": "Saada välja",
+    "action2": "Paranda",
+    "end": "Valmis",
+    "project": "Projekt",
+    "phase": "Faas 1",
+    "task1": "Ülesanne 1",
+    "task2": "Ülesanne 2"
+  }
+}

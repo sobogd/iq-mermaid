@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid 时序图：语法与示例",
+    "description": "如何编写 mermaid 时序图：参与者、箭头类型、激活条、循环、alt 分支与注释 —— 附带可复制粘贴的示例。"
+  },
+  "card": {
+    "title": "Mermaid 时序图",
+    "excerpt": "参与者、箭头类型、激活条、循环与 alt 分支 —— 完整的时序图语法，附可运行示例。"
+  },
+  "h1": "如何编写 mermaid 时序图",
+  "intro": "时序图展示的是谁在什么顺序下与谁通信。用 mermaid 编写时序图所花的时间，大致相当于把流程口述一遍所需的时间，这也是它在代码库中留存最久的图表类型的原因。下面所有内容都可以直接复制粘贴到[编辑器](app:)中使用。",
+  "blocks": [
+    { "type": "h2", "text": "最简写法" },
+    {
+      "type": "p",
+      "text": "先声明图表类型，然后每条消息写一行。参与者会在首次出现时按顺序自动创建。"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "如果想指定从左到右的具体顺序，而不是按首次出现的顺序排列，可以用 `participant User` 显式声明参与者。"
+    },
+
+    { "type": "h2", "text": "箭头类型" },
+    {
+      "type": "table",
+      "headers": ["语法", "含义"],
+      "rows": [
+        ["`A->>B: text`", "请求 — 实线，实心箭头"],
+        ["`A-->>B: text`", "响应 — 虚线，实心箭头"],
+        ["`A->B: text`", "实线，空心箭头"],
+        ["`A-)B: text`", "异步消息 — 空心箭头，无需等待回复"],
+        ["`A-xB: text`", "失败或被丢弃的消息"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "值得遵循的约定是：**实线表示调用，虚线表示返回**。这样读者不用看任何标签，也能分清请求和响应。"
+    },
+
+    { "type": "h2", "text": "参与者与别名" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "用 `actor U as Browser` 代替 `participant` 可以画出一个小人图标 —— 适合用在认证流程最左侧代表真人用户的位置。"
+    },
+
+    { "type": "h2", "text": "激活条" },
+    {
+      "type": "p",
+      "text": "激活条展示某个参与者忙碌的持续时间。可以用 `activate`/`deactivate` 显式标记，也可以在箭头后加上 `+` 和 `-`，写法更短，也更不容易失衡。"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "循环、条件分支与并行任务" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — 重复执行。",
+        "`alt <label>` … `else <label>` … `end` — 互斥分支。",
+        "`opt <label>` … `end` — 可能根本不会发生的分支。",
+        "`par <label>` … `and <label>` … `end` — 同时发生的事情。",
+        "`critical` / `break` — 不可中断的区块，以及提前退出。"
+      ]
+    },
+
+    { "type": "h2", "text": "注释" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` 会跨越两个参与者，适合用来标注属于交互本身、而不专属于任何一方的约束条件。"
+    },
+
+    { "type": "h2", "text": "完整示例" },
+    {
+      "type": "code",
+      "caption": "完整的 OAuth 登录流程。",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "编辑这张图表",
+      "text": "粘贴到代码标签页并修改一行 —— 预览区会随着输入实时重绘。",
+      "buttonLabel": "打开编辑器"
+    },
+
+    {
+      "type": "faq",
+      "heading": "常见问题",
+      "items": [
+        {
+          "q": "如何给消息编号？",
+          "a": "在 `sequenceDiagram` 之后紧跟一行 `autonumber`。这样每条消息都会自动编号，在评审评论中讨论图表也会方便得多。"
+        },
+        {
+          "q": "参与者可以给自己发消息吗？",
+          "a": "可以 —— 两侧写同一个名字即可：`API->>API: retry`。Mermaid 会绘制一个指回同一条生命线的循环箭头。"
+        },
+        {
+          "q": "如何表示某个参与者被销毁？",
+          "a": "在结束该参与者的消息之前使用 `destroy <name>`；如果想让参与者从图表中间而不是顶部出现，可以用 `create participant <name>`。"
+        },
+        {
+          "q": "可以在可视化画布上编辑时序图吗？",
+          "a": "可视化画布用于编辑流程图。时序图需要在代码标签页中编写，预览区会实时渲染 —— 而且这样通常更快，因为时序图本质上就是一行行文字。"
+        }
+      ]
+    }
+  ]
+}

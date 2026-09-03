@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Szekvenciadiagram: Szintaxis és Példák",
+    "description": "Hogyan írj mermaid szekvenciadiagramot: résztvevők, nyíltípusok, aktivációs sávok, ciklusok, alt blokkok és jegyzetek — másolható példákkal."
+  },
+  "card": {
+    "title": "Mermaid szekvenciadiagramok",
+    "excerpt": "Résztvevők, nyíltípusok, aktivációs sávok, ciklusok és alt blokkok — a teljes szekvenciadiagram szintaxis futtatható példákkal."
+  },
+  "h1": "Hogyan írj mermaid szekvenciadiagramot",
+  "intro": "Egy szekvenciadiagram megmutatja, ki kivel beszél, milyen sorrendben. Mermaidban körülbelül annyi idő megírni, mint kimondani, ezért ez a diagramtípus él legtovább egy kódbázisban. Az alábbiak mind másolásra készek a [szerkesztőhöz](app:).",
+  "blocks": [
+    { "type": "h2", "text": "A minimum" },
+    {
+      "type": "p",
+      "text": "Deklaráld a diagram típusát, majd írj egy sort minden üzenethez. A résztvevők az első említéskor jönnek létre, a megjelenésük sorrendjében."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Deklaráld a résztvevőket explicit módon `participant User` formában, ha egy konkrét balról-jobbra sorrendet szeretnél az első említés sorrendje helyett."
+    },
+
+    { "type": "h2", "text": "Nyíltípusok" },
+    {
+      "type": "table",
+      "headers": ["Szintaxis", "Jelentés"],
+      "rows": [
+        ["`A->>B: text`", "Kérés — folytonos vonal, kitöltött nyílhegy"],
+        ["`A-->>B: text`", "Válasz — szaggatott vonal, kitöltött nyílhegy"],
+        ["`A->B: text`", "Folytonos vonal, üres nyílhegy"],
+        ["`A-)B: text`", "Aszinkron üzenet — üres nyílhegy, nincs várt válasz"],
+        ["`A-xB: text`", "Üzenet, ami sikertelen vagy elveszik"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Az érdemes megtartani való konvenció: **folytonos a híváshoz, szaggatott a válaszhoz**. Így az olvasó egyetlen felirat elolvasása nélkül is meg tudja különböztetni a kérést a választól."
+    },
+
+    { "type": "h2", "text": "Résztvevők és aliasok" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Használj `actor U as Browser` formát `participant` helyett egy pálcikaember rajzolásához — megéri egy hitelesítési folyamat bal szélén álló embernél."
+    },
+
+    { "type": "h2", "text": "Aktivációs sávok" },
+    {
+      "type": "p",
+      "text": "Az aktivációs sávok megmutatják, meddig van elfoglalva egy résztvevő. Vagy jelöld őket explicit módon `activate`/`deactivate` formában, vagy fűzz `+`-t és `-`-t a nyilakhoz, ami rövidebb, és nehezebb elrontani vele az egyensúlyt."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Ciklusok, feltételek és párhuzamos munka" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — ismétlés.",
+        "`alt <label>` … `else <label>` … `end` — kölcsönösen kizáró ágak.",
+        "`opt <label>` … `end` — egy ág, ami egyszerűen nem is történhet meg.",
+        "`par <label>` … `and <label>` … `end` — egyszerre történő dolgok.",
+        "`critical` / `break` — egy szakasz, amit nem szabad megszakítani, és egy korai kilépés."
+      ]
+    },
+
+    { "type": "h2", "text": "Jegyzetek" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "A `Note over A,B` két résztvevőt fog át, és ez a helyes hely egy olyan megkötésnek, ami magához az interakcióhoz tartozik, nem az egyik oldalhoz."
+    },
+
+    { "type": "h2", "text": "Egy teljes példa" },
+    {
+      "type": "code",
+      "caption": "OAuth bejelentkezés, elejétől a végéig.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Szerkeszd ezt a diagramot",
+      "text": "Illeszd be a kód fülbe, és változtass meg egy sort — az előnézet gépelés közben újrarajzolódik.",
+      "buttonLabel": "Szerkesztő megnyitása"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Gyakran ismételt kérdések",
+      "items": [
+        {
+          "q": "Hogyan számozzam az üzeneteket?",
+          "a": "Tedd az `autonumber`-t a `sequenceDiagram` utáni sorba. Minden üzenet ezután sorszámot kap, ami sokkal könnyebbé teszi a diagramról beszélni review kommentekben."
+        },
+        {
+          "q": "Küldhet egy résztvevő üzenetet önmagának?",
+          "a": "Igen — írd ugyanazt a nevet mindkét oldalra: `API->>API: retry`. A mermaid visszarajzolja a hurkot ugyanabba az élettartam-vonalba."
+        },
+        {
+          "q": "Hogyan mutassam meg, hogy egy résztvevő megszűnik?",
+          "a": "Használj `destroy <name>`-t az üzenet előtt, ami lezárja, vagy `create participant <name>`-t, hogy a diagram közepén jelenjen meg a tetején lévő megjelenés helyett."
+        },
+        {
+          "q": "Szerkeszthetek egy szekvenciadiagramot a vizuális vásznon?",
+          "a": "A vizuális vászon folyamatábrákat szerkeszt. A szekvenciadiagramokat a kód fülön írod, ahol élőben renderelődnek az előnézetben — ami általában amúgy is gyorsabb, mivel egy szekvenciadiagram lényegében egy listányi sor."
+        }
+      ]
+    }
+  ]
+}

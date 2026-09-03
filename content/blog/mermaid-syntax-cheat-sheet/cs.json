@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid syntaxe: tahák s příklady",
+    "description": "Mermaid syntaxe, kterou skutečně použijete: tvary uzlů, typy šipek, podgrafy, styly a jeden funkční příklad pro každý typ diagramu. Zkopírujte, vložte, upravte."
+  },
+  "card": {
+    "title": "Mermaid syntaxe: tahák",
+    "excerpt": "Tvary uzlů, šipky, podgrafy a styly na jedné stránce — plus funkční příklad každého typu diagramu, který mermaid umí vykreslit."
+  },
+  "h1": "Mermaid syntaxe: tahák",
+  "intro": "Mermaid má rozsáhlou referenci a malou podmnožinu, která pokrývá téměř všechno, co lidé kreslí. Tahle stránka je právě ta podmnožina: tvary, šipky, seskupování, barvy a jeden příklad ke zkopírování pro každý typ diagramu. Každý úryvek níže se vykreslí přesně tak, jak je — vložte ho do [editoru](app:) a uvidíte.",
+  "blocks": [
+    { "type": "h2", "text": "Nejkratší diagram, který funguje" },
+    {
+      "type": "p",
+      "text": "Flowchart potřebuje jeden deklarační řádek a jednu šipku. `TD` znamená shora dolů; pro širší procesy se hodí `LR`, zleva doprava."
+    },
+    {
+      "type": "code",
+      "caption": "Tříuzlový flowchart, shora dolů.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` a `C` jsou id uzlů — interní jména, která se nikdy nevykreslí. Text v hranatých závorkách je popisek a **styl** závorek určuje tvar."
+    },
+
+    { "type": "h2", "text": "Tvary uzlů" },
+    {
+      "type": "p",
+      "text": "Tvar se volí podle páru oddělovačů kolem popisku. Tyhle stojí za zapamatování:"
+    },
+    {
+      "type": "table",
+      "headers": ["Syntaxe", "Tvar", "Obvyklý význam"],
+      "rows": [
+        ["`A[Text]`", "Obdélník", "Krok nebo akce"],
+        ["`A(Text)`", "Zaoblený", "Začátek nebo konec"],
+        ["`A([Text])`", "Pilulka", "Terminátor"],
+        ["`A[[Text]]`", "Podprogram", "Volání jiného procesu"],
+        ["`A[(Text)]`", "Válec", "Databáze nebo úložiště"],
+        ["`A((Text))`", "Kruh", "Spojovací bod"],
+        ["`A{Text}`", "Kosočtverec", "Rozhodnutí"],
+        ["`A{{Text}}`", "Šestiúhelník", "Přípravný krok"],
+        ["`A[/Text/]`", "Rovnoběžník", "Vstup nebo výstup"],
+        ["`A[/Text\\]`", "Lichoběžník", "Ruční operace"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Popisek uzavřete do uvozovek, obsahuje-li závorky, dvojtečky nebo uvozovky: `A[\"Load (raw) data\"]`. Bez uvozovek parser interpunkci vyhodnotí jako syntaxi."
+    },
+
+    { "type": "h2", "text": "Šipky" },
+    {
+      "type": "table",
+      "headers": ["Syntaxe", "Výsledek"],
+      "rows": [
+        ["`A --> B`", "Šipka"],
+        ["`A --- B`", "Čára bez hrotu"],
+        ["`A -.-> B`", "Tečkovaná šipka"],
+        ["`A ==> B`", "Tlustá šipka"],
+        ["`A -->|label| B`", "Šipka s popiskem"],
+        ["`A --> B --> C`", "Řetězec na jednom řádku"],
+        ["`A --> B & C`", "Jeden zdroj, dva cíle"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Délka šipky má také význam: `-->` je jedna úroveň, `--->` posune cíl o úroveň dál. Je to nejjednodušší způsob, jak mermaid ovlivnit rozvržení."
+    },
+
+    { "type": "h2", "text": "Seskupování přes subgraph" },
+    {
+      "type": "p",
+      "text": "`subgraph` nakreslí kolem uzlů popsaný rámeček. Podgrafy lze vnořovat a šipky mohou volně křížit jejich hranice."
+    },
+    {
+      "type": "code",
+      "caption": "Dvě služby, každá s vlastním úložištěm.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Barvy a styly" },
+    {
+      "type": "p",
+      "text": "`style` obarví jeden uzel. `classDef` spolu s `class` obarví celou skupinu, což se hodí nad tři čtyři uzly."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Barvy jsou součástí zdroje diagramu, takže přežijí export a putují se souborem. Nic tu nezávisí na nastavení motivu v nástroji, který diagram vykresluje."
+    },
+
+    { "type": "h2", "text": "Jeden příklad pro každý typ diagramu" },
+    {
+      "type": "h3",
+      "text": "Sekvenční diagram"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Class diagram" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "State diagram" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "ER diagram" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantt diagram" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Kde se mermaid vykresluje sám od sebe" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — blok ```mermaid v uvozovkách se vykreslí v issues, pull requestech, komentářích i README souborech.",
+        "**GitLab** — stejný blok, v issues, merge requestech i na wiki.",
+        "**Notion** — kódový blok s jazykem nastaveným na Mermaid se vykreslí vedle zdroje.",
+        "**Obsidian** — mermaid blok v uvozovkách se vykreslí v náhledu.",
+        "**Dokumentační weby** — Docusaurus, MkDocs Material i VitePress podporují mermaid bloky."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "To je ten skutečný důvod, proč diagramy uchovávat jako mermaid místo obrázků: diagram žije ve stejném textovém souboru jako věc, kterou popisuje, a code review v něm vidí, co se změnilo."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Vyzkoušejte kterýkoli úryvek na téhle stránce",
+      "text": "Vložte ho do kódové karty a hned se vykreslí — nebo si stejný diagram postavte na plátně a syntaxi si přečtěte zpětně.",
+      "buttonLabel": "Otevřít editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Časté dotazy",
+      "items": [
+        {
+          "q": "Jak vložím zalomení řádku uvnitř popisku uzlu?",
+          "a": "Použijte `<br>` uvnitř popisku v uvozovkách: `A[\"First line<br>Second line\"]`. Mermaid vykresluje popisek jako HTML, takže tag funguje, i když zbytek syntaxe HTML není."
+        },
+        {
+          "q": "Proč mi popisek rozbije diagram?",
+          "a": "Skoro vždy jde o neuvozorněnou závorku, kulatou závorku, dvojtečku nebo uvozovku uvnitř popisku. Celý popisek zabalte do dvojitých uvozovek a parser přestane vaši interpunkci vyhodnocovat jako syntaxi."
+        },
+        {
+          "q": "Můžu ovlivnit rozvržení?",
+          "a": "Jen nepřímo. Zvolte směr (`TD`, `LR`, `BT`, `RL`), delšími šipkami (`--->`) uzly rozestrčte, a příbuzné uzly seskupte do podgrafů. Zbytek dopočítá mermaid — souřadnice neexistují."
+        },
+        {
+          "q": "Kterou verzi mermaid tenhle editor používá?",
+          "a": "Mermaid 11, aktuální hlavní verzi, takže se vykreslí vše, co je zdokumentované pro syntaxi v10 i v11."
+        }
+      ]
+    }
+  ]
+}

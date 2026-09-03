@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid Sintaksa: Hitri Pregled s Primeri",
+    "description": "Mermaid sintaksa, ki jo dejansko uporabljaš: oblike vozlišč, puščice, podgrafi, oblikovanje in delujoč primer za vsako vrsto diagrama. Kopiraj, prilepi, uredi."
+  },
+  "card": {
+    "title": "Mermaid sintaksa: hitri pregled",
+    "excerpt": "Oblike vozlišč, puščice, podgrafi in oblikovanje na eni strani — plus delujoč primer vsake vrste diagrama, ki jo izriše mermaid."
+  },
+  "h1": "Mermaid sintaksa: hitri pregled",
+  "intro": "Mermaid ima obsežno referenco in majhno podmnožico, ki pokrije skoraj vse, kar ljudje rišejo. Ta stran je ta podmnožica: oblike, puščice, združevanje, barve in en primer za kopiranje in lepljenje za vsako vrsto diagrama. Vsak spodnji odlomek se izriše tak, kot je — prilepi ga v [urejevalnik](app:), da ga vidiš.",
+  "blocks": [
+    { "type": "h2", "text": "Najkrajši diagram, ki deluje" },
+    {
+      "type": "p",
+      "text": "Flowchart potrebuje eno vrstico deklaracije in eno puščico. `TD` pomeni od zgoraj navzdol; za širše procese uporabi `LR`, od leve proti desni."
+    },
+    {
+      "type": "code",
+      "caption": "Flowchart s tremi vozlišči, od zgoraj navzdol.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` in `C` so id-ji vozlišč — interna imena, ki se nikoli ne izrišejo. Besedilo v oklepajih je oznaka, **slog** oklepaja pa določa obliko."
+    },
+
+    { "type": "h2", "text": "Oblike vozlišč" },
+    {
+      "type": "p",
+      "text": "Obliko določa par ločil okoli oznake. To so tiste, ki si jih velja zapomniti:"
+    },
+    {
+      "type": "table",
+      "headers": ["Sintaksa", "Oblika", "Običajen pomen"],
+      "rows": [
+        ["`A[Text]`", "Pravokotnik", "Korak ali dejanje"],
+        ["`A(Text)`", "Zaobljen", "Začetna ali končna točka"],
+        ["`A([Text])`", "Tabletka", "Terminator"],
+        ["`A[[Text]]`", "Podproces", "Klic v drug proces"],
+        ["`A[(Text)]`", "Valj", "Baza podatkov ali shramba"],
+        ["`A((Text))`", "Krog", "Stičišče"],
+        ["`A{Text}`", "Romb", "Odločitev"],
+        ["`A{{Text}}`", "Šesterokotnik", "Korak priprave"],
+        ["`A[/Text/]`", "Paralelogram", "Vhod ali izhod"],
+        ["`A[/Text\\]`", "Trapez", "Ročna operacija"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Oznako postavi v narekovaje, kadar vsebuje oklepaje, dvopičja ali narekovaje: `A[\"Load (raw) data\"]`. Brez narekovajev parser tvoja ločila razume kot sintakso."
+    },
+
+    { "type": "h2", "text": "Puščice" },
+    {
+      "type": "table",
+      "headers": ["Sintaksa", "Rezultat"],
+      "rows": [
+        ["`A --> B`", "Puščica"],
+        ["`A --- B`", "Črta, brez puščične glave"],
+        ["`A -.-> B`", "Pikčasta puščica"],
+        ["`A ==> B`", "Debela puščica"],
+        ["`A -->|label| B`", "Puščica z oznako"],
+        ["`A --> B --> C`", "Veriga, napisana v eni vrstici"],
+        ["`A --> B & C`", "En vir, dva cilja"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Tudi dolžina puščice je pomembna: `-->` je en rang, `--->` potisne cilj še en rang nižje. To je najpreprostejši nadzor postavitve, ki ga mermaid ponuja."
+    },
+
+    { "type": "h2", "text": "Združevanje s podgrafi" },
+    {
+      "type": "p",
+      "text": "`subgraph` nariše označeno škatlo okoli vozlišč. Podgrafi se lahko gnezdijo, puščice pa lahko prosto prečkajo njihove meje."
+    },
+    {
+      "type": "code",
+      "caption": "Dve storitvi, vsaka s svojo shrambo.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Barva in oblikovanje" },
+    {
+      "type": "p",
+      "text": "`style` pobarva eno vozlišče. `classDef` skupaj z `class` pobarva celo skupino, kar je tisto, kar želiš po treh ali štirih vozliščih."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Barve so del izvorne kode diagrama, zato preživijo izvoz in potujejo skupaj z datoteko. Nič od tega ni odvisno od nastavitve teme v orodju, ki ga izrisuje."
+    },
+
+    { "type": "h2", "text": "En primer za vsako vrsto diagrama" },
+    {
+      "type": "h3",
+      "text": "Sekvenčni diagram"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Razredni diagram" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Stanjski diagram" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Entitetno-razmerjski diagram" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantogram" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Kje se mermaid izriše sam od sebe" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — ograjen ```mermaid blok se izriše v issues, pull requestih, komentarjih in datotekah README.",
+        "**GitLab** — enak ograjen blok, v issues, merge requestih in wikiju.",
+        "**Notion** — blok kode z jezikom, nastavljenim na Mermaid, se izriše poleg izvorne kode.",
+        "**Obsidian** — ograjen mermaid blok se izriše v načinu predogleda.",
+        "**Spletišča z dokumentacijo** — Docusaurus, MkDocs Material in VitePress vsi podpirajo mermaid bloke."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "To je pravi razlog, da diagrame ohranjaš kot mermaid namesto kot slike: diagram živi v isti besedilni datoteki kot stvar, ki jo opisuje, pregled kode pa lahko vidi, kaj se je v njem spremenilo."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Preizkusi kateri koli odlomek s te strani",
+      "text": "Prilepi ga v zavihek s kodo in se takoj izriše — ali zgradi enak diagram na platnu in preberi sintakso nazaj.",
+      "buttonLabel": "Odpri urejevalnik"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Pogosta vprašanja",
+      "items": [
+        {
+          "q": "Kako dodam prelom vrstice znotraj oznake vozlišča?",
+          "a": "Uporabi `<br>` znotraj oznake v narekovajih: `A[\"First line<br>Second line\"]`. Mermaid oznako izriše kot HTML, zato oznaka deluje, čeprav preostala sintaksa ni HTML."
+        },
+        {
+          "q": "Zakaj moja oznaka pokvari diagram?",
+          "a": "Skoraj vedno gre za oklepaj, dvopičje ali narekovaj v oznaki, ki ni v narekovajih. Celotno oznako zavij v dvojne narekovaje in parser preneha tvoja ločila razumeti kot sintakso."
+        },
+        {
+          "q": "Lahko nadzorujem postavitev?",
+          "a": "Le posredno. Izberi smer (`TD`, `LR`, `BT`, `RL`), uporabi daljše puščice (`--->`), da potisneš vozlišča bolj narazen, in združi povezana vozlišča v podgrafe. Mermaid izračuna preostalo — koordinat ni."
+        },
+        {
+          "q": "Katero različico mermaida uporablja ta urejevalnik?",
+          "a": "Mermaid 11, trenutno glavno različico, zato se tu izriše vse, kar je dokumentirano za sintakso v10 in v11."
+        }
+      ]
+    }
+  ]
+}

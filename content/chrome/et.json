@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "title": "Mermaid veebiredaktor — tasuta diagrammi koostamine",
+    "description": "Tasuta mermaid redaktor veebis: joonista diagramm visuaalselt või kirjuta mermaid koodi — mõlemad püsivad sünkroonis. Registreerimiseta, ekspordi SVG/PNG.",
+    "ogTitle": "Mermaid veebiredaktor — tasuta, registreerimiseta",
+    "ogDescription": "Joonista diagramme lõuendil või kirjuta mermaid koodi. Mõlemad vaated püsivad sünkroonis. Ekspordi SVG, PNG, .mmd või Markdown formaati.",
+    "twitterTitle": "Tasuta mermaid veebiredaktor",
+    "twitterDescription": "Visuaalne lõuend ja mermaid kood kõrvuti. Registreerimiseta, ilma tasulise piiranguta."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Funktsioonid",
+    "blog": "Juhendid",
+    "faq": "KKK",
+    "openEditor": "Ava redaktor",
+    "menu": "Menüü"
+  },
+  "hero": {
+    "badgeFree": "Igavesti tasuta",
+    "badgeNoSignup": "Registreerimiseta",
+    "badgeDiagrams": "8 diagrammitüüpi",
+    "title": "Tasuta mermaid redaktor veebis,",
+    "titleAccent": "visuaal ja kood ühes kohas",
+    "description": "Enamik mermaid redaktoreid annab sulle tekstivälja ja eelvaate. See annab ka lõuendi: klõpsa, et lisada plokk, lohista nool, rühmita asjad aladeks — ja mermaid kood kirjutab end ise. Lülitu koodisakile ja muuda seda käsitsi; lõuend järgib.",
+    "ctaOpen": "Ava redaktor",
+    "ctaLearn": "Vaata, mida see teeb",
+    "mockCodeLabel": "Mermaid kood",
+    "mockDiagramLabel": "Renderdatud diagramm"
+  },
+  "statCards": [
+    {
+      "title": "Renderdub sinu kirjutades",
+      "sub": "Päris mermaid mootor, joonistatakse uuesti mõnisada millisekundit pärast viimast klahvivajutust."
+    },
+    {
+      "title": "Kood ja lõuend sünkroonis",
+      "sub": "Muuda kumbagi poolt. Teine jõuab järele — kahe tööriista vahel copy-paste'i pole vaja."
+    },
+    {
+      "title": "14 sõlme kuju",
+      "sub": "Ristkülik, ümardatud, pill, ring, romb, andmebaas, kuusnurk ja teised, igaüks ühe klõpsuga."
+    },
+    {
+      "title": "Tasuta, kontot pole vaja",
+      "sub": "Registreerimist, prooviperioodi ega ekspordi veetempleid pole. Sinu diagramm jääb sinu brauserisse."
+    }
+  ],
+  "spotlights": [
+    {
+      "heading": "Lõuend, mitte lihtsalt tekstiväli",
+      "sub": "Visuaalne sakk on päris redaktor renderdatud diagrammi peal: klõpsa sõlmel, et see valida, topeltklõpsa, et see kohapeal ümber nimetada, lohista kuhu tahes, et panoraamida.",
+      "bullets": [
+        {
+          "title": "Klõpsa ja ehita",
+          "sub": "Lisa plokk, suuna nool teisele, märgista nool. Enne alustamist pole vaja süntaksit teada."
+        },
+        {
+          "title": "Vali kuju",
+          "sub": "Neliteist mermaid vookaardi kuju — otsustusrombid, andmebaasisilindrid, alamrutiinid — ühest valijast."
+        },
+        {
+          "title": "Värvi ükskõik mida",
+          "sub": "Kaheksa eelseadistust pluss värvivalija, rakendatuna ühele sõlmele või tervele alale."
+        }
+      ]
+    },
+    {
+      "heading": "Mermaid kood, mis jääb sinu omaks",
+      "sub": "Tekstisakk on tavaline mermaid — sama süntaks, mida GitHub, GitLab, Notion ja Obsidian juba renderdavad. Siin pole midagi omanduslikku formaati.",
+      "bullets": [
+        {
+          "title": "Kirjuta käsitsi",
+          "sub": "Kirjuta mermaid otse ja vaata, kuidas see renderdub. Kuus valmis näidet, millest alustada."
+        },
+        {
+          "title": "Kahesuunaline teisendus",
+          "sub": "Vookaardid, mille kleebid sisse, parsitakse tagasi lõuendile — sõlmed, kujud, värvid, alamgraafikud ja kõik muu."
+        },
+        {
+          "title": "Iga diagrammitüüp",
+          "sub": "Vookaart, jada, klass, olek, ER, gantt, git graaf, sektordiagramm — eelvaade renderdab kõike, mida mermaid toetab."
+        }
+      ]
+    },
+    {
+      "heading": "Suured diagrammid püsivad loetavad",
+      "sub": "Arhitektuuridiagrammid kasvavad kiiresti ühest ekraanist suuremaks. Panoraamimine, suumimine ja rühmitamine on selleks loodud, mitte selle vastu võitlemiseks.",
+      "bullets": [
+        {
+          "title": "Alad ja pesastamine",
+          "sub": "Rühmita plokid alamgraafikuteks, pesasta ala teise sisse, liiguta terve alampuu ühe liigutusega."
+        },
+        {
+          "title": "Suum 2%-st 1600%-ni",
+          "sub": "Keri, et panoraamida, ctrl+keri, et suumida, või tsentreeri uuesti ühe nupuga."
+        },
+        {
+          "title": "Salvestub jooksvalt",
+          "sub": "Sinu diagramm kirjutatakse brauseri kohalikku salvestusruumi iga muudatuse järel — sulge sakk ja tule hiljem tagasi."
+        }
+      ]
+    },
+    {
+      "heading": "Ekspordi ja tegele oma asjadega",
+      "sub": "Miski pole lukustatud. Võta pilt, võta lähtekood või võta Markdown-plokk, mis on valmis dokumenti kleepimiseks.",
+      "bullets": [
+        {
+          "title": "Ilma tasulise piiranguta",
+          "sub": "Iga funktsioon, sealhulgas eksport, on tasuta. Ülemineku jaoks pole tasulist taset."
+        },
+        {
+          "title": "Miski ei lahku sinu brauserist",
+          "sub": "Kontot ega serveripoolset diagrammide salvestamist pole — renderdamine toimub kohapeal."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Kopeeri SVG-märgistus, laadi alla 2x PNG, salvesta mermaid lähtekood või võta valmis Markdown-plokk."
+        }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Kuidas see võrdub",
+    "titleAccent": "tavaliste valikutega",
+    "description": "Diagram-as-code tööriistad panevad kõike käsitsi kirjutama. Lohista-ja-aseta tööriistad annavad pildi, mida ei saa võrrelda (diff). See tööriist ei vali kumbagi poolt.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Tüüpiline tööriist",
+    "rows": [
+      {
+        "title": "Alustamine",
+        "us": "Topeltklõpsa lõuendil ja sõlm ilmub. Süntaksit saad õppida hiljem — või mitte kunagi.",
+        "them": "Loe kõigepealt süntaksijuhendit või leppi joonistustööriistaga, millel pole üldse tekstiesitust."
+      },
+      {
+        "title": "Väljundformaat",
+        "us": "Tavaline mermaid — sama tekst, mida GitHub, GitLab ja Notion loomupäraselt renderdavad.",
+        "them": "Omanduslik fail, mis avaneb ainult tööriistas, mis selle lõi."
+      },
+      {
+        "title": "Hilisem muutmine",
+        "us": "Muuda koodi või liiguta plokke. Mõlemad suunad töötavad sama diagrammiga.",
+        "them": "Ainult üks suund: koodipõhistel tööriistadel pole lõuendit, lõuendipõhistel pole lähtekoodi."
+      },
+      {
+        "title": "Hind",
+        "us": "Tasuta, kontot pole vaja, ekspordipiiranguid pole.",
+        "them": "Tasuta tase piiratud paari diagrammiga, eksport või koostöö tellimuse taga."
+      },
+      {
+        "title": "Kus andmed asuvad",
+        "us": "Sinu brauseri kohalikus salvestusruumis. Sisselogimist pole, midagi ei laadita üles.",
+        "them": "Konto kellegi serveris, mille külge on sinu diagrammid kinnitatud."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Mermaid redaktori",
+    "headingAccent": "küsimused",
+    "sub": "Mida küsitakse enne selle avamist. Registreerimist pole vaja — redaktor on ühe klõpsu kaugusel.",
+    "items": [
+      {
+        "q": "Mis on mermaid?",
+        "a": "Mermaid on diagrammide tekstisüntaks: kirjeldad sõlmi ja nooli mõne reaga ning renderdaja joonistab pildi. GitHub, GitLab, Notion ja Obsidian renderdavad seda Markdowni sees, nii et mermaid plokk jääb loetavaks pull request'is või wiki-lehel."
+      },
+      {
+        "q": "Kas see mermaid redaktor on tõesti tasuta?",
+        "a": "Jah. Iga funktsioon, sealhulgas SVG- ja PNG-eksport, on tasuta ja kontot pole vaja luua. Tasulist taset pole — midagi ei jäeta piiranguks."
+      },
+      {
+        "q": "Kas pean mermaid süntaksit oskama?",
+        "a": "Ei. Alusta visuaalsest sakist: topeltklõpsa lõuendil, et lisada plokk, vali see ja tõmba nool teise juurde. Mermaid kood genereeritakse sinu eest ja saad seda igal ajal lugeda, et süntaksit õppida."
+      },
+      {
+        "q": "Milliseid diagrammitüüpe toetatakse?",
+        "a": "Koodisakk renderdab kõike, mida mermaid toetab — vookaart, jada, klass, olek, olemi-seose diagramm, gantt, git graaf, sektordiagramm ja rohkem. Visuaalne lõuend muudab spetsiifiliselt vookaarte, mis on enamiku diagrammide puhul just see, mida vaja."
+      },
+      {
+        "q": "Kas saan eksportida PNG- või SVG-formaati?",
+        "a": "Jah. Kopeeri SVG-märgistus lõikelauale, laadi alla SVG-fail või laadi alla PNG, mis on renderdatud 2x suuruses slaidide ja dokumentide jaoks. Samuti saad salvestada mermaid lähtekoodi .mmd-failina või valmis Markdown-plokina."
+      },
+      {
+        "q": "Kus mu diagramm hoiul on?",
+        "a": "Sinu brauseri kohalikus salvestusruumis, sinu enda seadmes. Kontot ega serveripoolset koopiat pole, seega brauseriandmete kustutamine või seadme vahetamine tähendab algusest peale alustamist — ekspordi lähtekood, kui soovid seda alles hoida."
+      },
+      {
+        "q": "Kas saan olemasoleva mermaid diagrammi sisse kleepida?",
+        "a": "Jah. Kleebi see koodisakile; vookaart parsitakse tagasi visuaalsele lõuendile koos sõlmede, kujude, värvide ja alamgraafikutega. Teised diagrammitüübid renderduvad eelvaates, kuid jäävad ainult koodikujul."
+      },
+      {
+        "q": "Kas see töötab võrguühenduseta?",
+        "a": "Renderdamine toimub täielikult sinu brauseris, nii et pärast lehe laadimist töötab redaktor edasi ka ilma ühenduseta. Sinu diagramm on kohalikus salvestusruumis, mitte serveris."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Ava redaktor.",
+    "headingAccent": "Registreerimist pole vaja.",
+    "sub": "Tühi lõuend, koodisakk ja kõik ekspordivõimalused — tasuta, sinu brauseris, kohe praegu.",
+    "ctaLabel": "Ava redaktor"
+  },
+  "footer": {
+    "tagline": "Tasuta mermaid veebiredaktor",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Toode",
+    "languagesHeading": "Keeled"
+  },
+  "app": {
+    "metaTitle": "Mermaid redaktor — joonista ja kirjuta kõrvuti",
+    "metaDescription": "Tasuta mermaid redaktor: visuaalne lõuend ja mermaid lähtekood, hoitud sünkroonis. Ekspordi SVG, PNG, .mmd või Markdown formaati.",
+    "backToSite": "Tagasi avalehele"
+  },
+  "blog": {
+    "metaTitle": "Mermaid juhendid — süntaks, eksport ja näited",
+    "metaDescription": "Lühikesed, praktilised mermaid juhendid: süntaks, mida päriselt kasutad, kuidas eksportida diagramm PNG- või SVG-failiks ja kuidas kirjutada jadadiagrammi.",
+    "title": "Mermaid juhendid",
+    "intro": "Lühikesed, praktilised märkmed mermaid kohta — süntaks, mis tasub pähe õppida, eksport, mida inimesed küsivad, ja diagrammitüübid, mis kõige sagedamini ette tulevad. Iga näide on redaktorist vaid ühe kleepimise kaugusel.",
+    "readMore": "Loe juhendit",
+    "backToBlog": "Kõik juhendid",
+    "relatedHeading": "Rohkem juhendeid"
+  }
+}

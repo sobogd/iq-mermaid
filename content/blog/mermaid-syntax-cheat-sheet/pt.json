@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Guia Rápido de Sintaxe Mermaid, com Exemplos",
+    "description": "A sintaxe mermaid que realmente se usa: formas de nó, tipos de seta, subgráficos, estilos e um exemplo funcional por tipo de diagrama. Copie, cole, edite."
+  },
+  "card": {
+    "title": "Guia rápido de sintaxe mermaid",
+    "excerpt": "Formas de nó, setas, subgráficos e estilos numa página — mais um exemplo funcional de cada tipo de diagrama que o mermaid renderiza."
+  },
+  "h1": "Guia rápido de sintaxe mermaid",
+  "intro": "O mermaid tem uma referência extensa e um pequeno subconjunto que cobre quase tudo o que as pessoas desenham. Esta página é esse subconjunto: formas, setas, agrupamento, cores, e um exemplo de copiar-e-colar por tipo de diagrama. Cada trecho abaixo renderiza tal como está — cole-o no [editor](app:) para o ver.",
+  "blocks": [
+    { "type": "h2", "text": "O diagrama mais curto que funciona" },
+    {
+      "type": "p",
+      "text": "Um fluxograma precisa de uma linha de declaração e uma seta. `TD` significa de cima para baixo; use `LR` para da esquerda para a direita, que se adapta melhor a processos largos."
+    },
+    {
+      "type": "code",
+      "caption": "Um fluxograma de três nós, de cima para baixo.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` e `C` são identificadores de nó — nomes internos, nunca desenhados. O texto entre colchetes é o rótulo, e o **estilo** dos colchetes é o que escolhe a forma."
+    },
+
+    { "type": "h2", "text": "Formas de nó" },
+    {
+      "type": "p",
+      "text": "A forma é escolhida pelo par de delimitadores à volta do rótulo. Estas são as que vale a pena memorizar:"
+    },
+    {
+      "type": "table",
+      "headers": ["Sintaxe", "Forma", "Significado habitual"],
+      "rows": [
+        ["`A[Text]`", "Retângulo", "Um passo ou ação"],
+        ["`A(Text)`", "Arredondado", "Um ponto de início ou fim"],
+        ["`A([Text])`", "Pílula", "Um terminador"],
+        ["`A[[Text]]`", "Subrotina", "Uma chamada para outro processo"],
+        ["`A[(Text)]`", "Cilindro", "Uma base de dados ou um repositório"],
+        ["`A((Text))`", "Círculo", "Uma junção"],
+        ["`A{Text}`", "Losango", "Uma decisão"],
+        ["`A{{Text}}`", "Hexágono", "Um passo de preparação"],
+        ["`A[/Text/]`", "Paralelogramo", "Entrada ou saída"],
+        ["`A[/Text\\]`", "Trapézio", "Uma operação manual"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Coloque o rótulo entre aspas quando contiver colchetes, dois pontos ou aspas: `A[\"Load (raw) data\"]`. Sem aspas, o interpretador lê a sua pontuação como sintaxe."
+    },
+
+    { "type": "h2", "text": "Setas" },
+    {
+      "type": "table",
+      "headers": ["Sintaxe", "Resultado"],
+      "rows": [
+        ["`A --> B`", "Seta"],
+        ["`A --- B`", "Linha, sem ponta de seta"],
+        ["`A -.-> B`", "Seta pontilhada"],
+        ["`A ==> B`", "Seta grossa"],
+        ["`A -->|label| B`", "Seta com um texto"],
+        ["`A --> B --> C`", "Cadeia, escrita numa só linha"],
+        ["`A --> B & C`", "Uma origem, dois destinos"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "O comprimento da seta também é significativo: `-->` é um nível, `--->` empurra o destino mais um nível para baixo. É o controlo de esquema mais simples que o mermaid oferece."
+    },
+
+    { "type": "h2", "text": "Agrupar com subgráficos" },
+    {
+      "type": "p",
+      "text": "Um `subgraph` desenha uma caixa com um rótulo à volta de nós. Os subgráficos podem aninhar-se, e as setas podem atravessar as suas fronteiras livremente."
+    },
+    {
+      "type": "code",
+      "caption": "Dois serviços, cada um com o seu próprio repositório.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Cor e estilo" },
+    {
+      "type": "p",
+      "text": "`style` pinta um nó. `classDef` mais `class` pintam um conjunto deles, o que é o que se quer a partir de três ou quatro nós."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "As cores fazem parte da fonte do diagrama, por isso sobrevivem à exportação e viajam com o ficheiro. Nada aqui depende de uma definição de tema na ferramenta que o renderiza."
+    },
+
+    { "type": "h2", "text": "Um exemplo por tipo de diagrama" },
+    {
+      "type": "h3",
+      "text": "Diagrama de sequência"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Diagrama de classes" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Diagrama de estados" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Diagrama de entidade-relacionamento" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gráfico de Gantt" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Onde o mermaid renderiza por conta própria" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — um bloco ```mermaid delimitado renderiza em issues, pull requests, comentários e ficheiros README.",
+        "**GitLab** — o mesmo bloco delimitado, em issues, merge requests e na wiki.",
+        "**Notion** — um bloco de código com a linguagem definida como Mermaid renderiza junto da fonte.",
+        "**Obsidian** — um bloco mermaid delimitado renderiza no modo de pré-visualização.",
+        "**Sites de documentação** — Docusaurus, MkDocs Material e VitePress suportam todos blocos mermaid."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Essa é a verdadeira razão para manter os diagramas como mermaid em vez de como imagens: o diagrama vive no mesmo ficheiro de texto que a coisa que descreve, e uma revisão de código consegue ver o que mudou nele."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Experimente qualquer trecho desta página",
+      "text": "Cole-o no separador de código e ele renderiza instantaneamente — ou construa o mesmo diagrama na tela e leia a sintaxe depois.",
+      "buttonLabel": "Abrir o editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Perguntas frequentes",
+      "items": [
+        {
+          "q": "Como adiciono uma quebra de linha dentro do rótulo de um nó?",
+          "a": "Use `<br>` dentro de um rótulo entre aspas: `A[\"First line<br>Second line\"]`. O mermaid renderiza o rótulo como HTML, por isso a tag funciona mesmo que o resto da sintaxe não seja HTML."
+        },
+        {
+          "q": "Porque é que o meu rótulo estraga o diagrama?",
+          "a": "Quase sempre é um colchete, parêntese, dois pontos ou aspas sem aspas à volta dentro do rótulo. Envolva o rótulo inteiro em aspas duplas e o interpretador deixa de tratar a sua pontuação como sintaxe."
+        },
+        {
+          "q": "Posso controlar o esquema?",
+          "a": "Só indiretamente. Escolha a direção (`TD`, `LR`, `BT`, `RL`), use setas mais longas (`--->`) para afastar mais os nós, e agrupe nós relacionados em subgráficos. O mermaid calcula o resto — não há coordenadas."
+        },
+        {
+          "q": "Que versão do mermaid é que este editor usa?",
+          "a": "Mermaid 11, a versão principal atual, por isso tudo o que está documentado para a sintaxe v10 e v11 renderiza aqui."
+        }
+      ]
+    }
+  ]
+}

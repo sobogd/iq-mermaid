@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Sequence Diagram: Σύνταξη και Παραδείγματα",
+    "description": "Πώς να γράψετε ένα mermaid sequence diagram: participants, τύποι βελών, activation bars, loops, alt blocks και σημειώσεις — με παραδείγματα προς αντιγραφή."
+  },
+  "card": {
+    "title": "Mermaid sequence diagrams",
+    "excerpt": "Participants, τύποι βελών, activation bars, loops και alt blocks — ολόκληρη η σύνταξη sequence diagram με λειτουργικά παραδείγματα."
+  },
+  "h1": "Πώς να γράψετε ένα mermaid sequence diagram",
+  "intro": "Ένα sequence diagram δείχνει ποιος μιλάει σε ποιον, με ποια σειρά. Στο mermaid γράφεται περίπου στον ίδιο χρόνο που παίρνει να το περιγράψετε φωναχτά, γι' αυτό είναι ο τύπος διαγράμματος που επιβιώνει περισσότερο σε μια βάση κώδικα. Όλα τα παρακάτω είναι έτοιμα για αντιγραφή-επικόλληση στον [editor](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Το ελάχιστο" },
+    {
+      "type": "p",
+      "text": "Δηλώστε τον τύπο του διαγράμματος, μετά γράψτε μία γραμμή ανά μήνυμα. Οι participants δημιουργούνται με την πρώτη αναφορά τους, με τη σειρά που εμφανίζονται."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Δηλώστε τους participants ρητά με `participant User` όταν θέλετε συγκεκριμένη σειρά από αριστερά προς τα δεξιά αντί για τη σειρά πρώτης αναφοράς."
+    },
+
+    { "type": "h2", "text": "Τύποι βελών" },
+    {
+      "type": "table",
+      "headers": ["Σύνταξη", "Σημασία"],
+      "rows": [
+        ["`A->>B: text`", "Αίτημα — συνεχής γραμμή, γεμάτη αιχμή"],
+        ["`A-->>B: text`", "Απόκριση — διακεκομμένη γραμμή, γεμάτη αιχμή"],
+        ["`A->B: text`", "Συνεχής γραμμή, ανοιχτή αιχμή"],
+        ["`A-)B: text`", "Ασύγχρονο μήνυμα — ανοιχτή αιχμή, χωρίς αναμενόμενη απάντηση"],
+        ["`A-xB: text`", "Μήνυμα που αποτυγχάνει ή απορρίπτεται"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Η σύμβαση που αξίζει να κρατήσετε: **συνεχής γραμμή για την κλήση, διακεκομμένη για την επιστροφή**. Έτσι ένας αναγνώστης ξεχωρίζει ένα αίτημα από μια απόκριση χωρίς να διαβάσει ούτε μία ετικέτα."
+    },
+
+    { "type": "h2", "text": "Participants και ψευδώνυμα" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Χρησιμοποιήστε `actor U as Browser` αντί για `participant` για να σχεδιάσετε μια φιγούρα ανθρωπάκι — αξίζει τον κόπο για τον χρήστη στην αριστερή άκρη μιας ροής αυθεντικοποίησης."
+    },
+
+    { "type": "h2", "text": "Activation bars" },
+    {
+      "type": "p",
+      "text": "Οι activation bars δείχνουν πόσο καιρό είναι απασχολημένος ένας participant. Είτε σημειώστε τις ρητά με `activate`/`deactivate`, είτε προσθέστε `+` και `-` στα βέλη, που είναι πιο σύντομο και πιο δύσκολο να ξεφύγει από την ισορροπία."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Βρόχοι, συνθήκες και παράλληλη εργασία" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — επανάληψη.",
+        "`alt <label>` … `else <label>` … `end` — αμοιβαία αποκλειόμενοι κλάδοι.",
+        "`opt <label>` … `end` — ένας κλάδος που μπορεί απλώς να μη συμβεί.",
+        "`par <label>` … `and <label>` … `end` — πράγματα που συμβαίνουν ταυτόχρονα.",
+        "`critical` / `break` — μια ενότητα που δεν πρέπει να διακοπεί, και μια πρόωρη έξοδος."
+      ]
+    },
+
+    { "type": "h2", "text": "Σημειώσεις" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "Το `Note over A,B` εκτείνεται πάνω από δύο participants και είναι το σωστό σημείο για έναν περιορισμό που ανήκει στην αλληλεπίδραση και όχι σε μία από τις δύο πλευρές της."
+    },
+
+    { "type": "h2", "text": "Ένα πλήρες παράδειγμα" },
+    {
+      "type": "code",
+      "caption": "Σύνδεση μέσω OAuth, από την αρχή ως το τέλος.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Επεξεργαστείτε αυτό το διάγραμμα",
+      "text": "Επικολλήστε το στην καρτέλα κώδικα και αλλάξτε μία γραμμή — η προεπισκόπηση ξανασχεδιάζεται καθώς πληκτρολογείτε.",
+      "buttonLabel": "Άνοιγμα του editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Συχνές ερωτήσεις",
+      "items": [
+        {
+          "q": "Πώς αριθμώ τα μηνύματα;",
+          "a": "Βάλτε `autonumber` στη γραμμή αμέσως μετά το `sequenceDiagram`. Κάθε μήνυμα παίρνει τότε έναν διαδοχικό αριθμό, που κάνει το διάγραμμα πολύ πιο εύκολο να συζητηθεί σε σχόλια αναθεώρησης."
+        },
+        {
+          "q": "Μπορεί ένας participant να στείλει μήνυμα στον εαυτό του;",
+          "a": "Ναι — γράψτε το ίδιο όνομα και στις δύο πλευρές: `API->>API: retry`. Το mermaid σχεδιάζει τον βρόχο πίσω στην ίδια γραμμή ζωής."
+        },
+        {
+          "q": "Πώς δείχνω ότι ένας participant καταστρέφεται;",
+          "a": "Χρησιμοποιήστε `destroy <name>` πριν το μήνυμα που τον τερματίζει, ή `create participant <name>` για να εμφανιστεί στη μέση του διαγράμματος αντί στην κορυφή."
+        },
+        {
+          "q": "Μπορώ να επεξεργαστώ ένα sequence diagram στον οπτικό καμβά;",
+          "a": "Ο οπτικός καμβάς επεξεργάζεται flowcharts. Τα sequence diagrams γράφονται στην καρτέλα κώδικα, όπου σχεδιάζονται ζωντανά στην προεπισκόπηση — κάτι που συνήθως είναι έτσι κι αλλιώς πιο γρήγορο, αφού ένα sequence diagram είναι ουσιαστικά μια λίστα γραμμών."
+        }
+      ]
+    }
+  ]
+}

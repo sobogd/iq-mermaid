@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "title": "Mermaid 시퀀스 다이어그램: 문법과 예제",
+    "description": "mermaid 시퀀스 다이어그램 작성법: 참가자, 화살표 종류, 활성화 바, 반복문, alt 블록, 노트까지 — 복사해 쓸 수 있는 예제와 함께."
+  },
+  "card": {
+    "title": "Mermaid 시퀀스 다이어그램",
+    "excerpt": "참가자, 화살표 종류, 활성화 바, 반복문, alt 블록까지 — 바로 실행해볼 수 있는 예제로 배우는 시퀀스 다이어그램 문법 전체."
+  },
+  "h1": "Mermaid 시퀀스 다이어그램 작성법",
+  "intro": "시퀀스 다이어그램은 누가 누구에게, 어떤 순서로 말을 거는지 보여줍니다. mermaid로 작성하면 말로 설명하는 것과 비슷한 시간이 걸리는데, 그래서 코드베이스에서 가장 오래 살아남는 다이어그램 유형이기도 합니다. 아래 내용은 모두 [에디터](app:)에 바로 붙여넣을 수 있습니다.",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "최소한의 형태"
+    },
+    {
+      "type": "p",
+      "text": "다이어그램 유형을 선언한 뒤, 메시지 한 줄씩 작성하세요. 참가자는 처음 언급되는 순서대로, 처음 등장할 때 자동으로 생성됩니다."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "처음 언급되는 순서가 아니라 원하는 좌우 순서를 지정하고 싶다면 `participant User`로 참가자를 명시적으로 선언하세요."
+    },
+    {
+      "type": "h2",
+      "text": "화살표 종류"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "문법",
+        "의미"
+      ],
+      "rows": [
+        [
+          "`A->>B: text`",
+          "요청 — 실선, 채워진 화살표머리"
+        ],
+        [
+          "`A-->>B: text`",
+          "응답 — 점선, 채워진 화살표머리"
+        ],
+        [
+          "`A->B: text`",
+          "실선, 비어 있는 화살표머리"
+        ],
+        [
+          "`A-)B: text`",
+          "비동기 메시지 — 비어 있는 화살표머리, 응답을 기대하지 않음"
+        ],
+        [
+          "`A-xB: text`",
+          "실패하거나 유실되는 메시지"
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "지켜둘 만한 관례 하나: **호출은 실선, 응답은 점선**입니다. 그러면 읽는 사람이 라벨을 읽지 않고도 요청과 응답을 구분할 수 있습니다."
+    },
+    {
+      "type": "h2",
+      "text": "참가자와 별칭"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "스틱맨을 그리려면 `participant` 대신 `actor U as Browser`를 쓰세요 — 인증 흐름의 왼쪽 끝에 있는 사람을 표현할 때 유용합니다."
+    },
+    {
+      "type": "h2",
+      "text": "활성화 바"
+    },
+    {
+      "type": "p",
+      "text": "활성화 바는 참가자가 얼마나 오래 바쁜 상태인지 보여줍니다. `activate`/`deactivate`로 명시적으로 표시하거나, 화살표에 `+`와 `-`를 붙이면 더 짧고 균형이 깨지기도 어렵습니다."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+    {
+      "type": "h2",
+      "text": "반복문, 조건문, 병렬 작업"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — 반복.",
+        "`alt <label>` … `else <label>` … `end` — 서로 배타적인 분기.",
+        "`opt <label>` … `end` — 일어나지 않을 수도 있는 분기.",
+        "`par <label>` … `and <label>` … `end` — 동시에 일어나는 일들.",
+        "`critical` / `break` — 중단되면 안 되는 구간과 조기 종료."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "노트"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B`는 두 참가자에 걸쳐 표시되며, 어느 한쪽이 아니라 상호작용 자체에 속하는 제약 조건을 적기에 적합한 자리입니다."
+    },
+    {
+      "type": "h2",
+      "text": "전체 예제"
+    },
+    {
+      "type": "code",
+      "caption": "처음부터 끝까지, OAuth 로그인.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+    {
+      "type": "cta",
+      "heading": "이 다이어그램을 수정해보세요",
+      "text": "코드 탭에 붙여넣고 한 줄만 바꿔보세요 — 입력하는 대로 미리보기가 다시 그려집니다.",
+      "buttonLabel": "에디터 열기"
+    },
+    {
+      "type": "faq",
+      "heading": "자주 묻는 질문",
+      "items": [
+        {
+          "q": "메시지에 번호를 매기려면 어떻게 하나요?",
+          "a": "`sequenceDiagram` 바로 다음 줄에 `autonumber`를 넣으세요. 그러면 모든 메시지에 순서대로 번호가 붙어서, 리뷰 코멘트에서 다이어그램을 훨씬 이야기하기 쉬워집니다."
+        },
+        {
+          "q": "참가자가 자기 자신에게 메시지를 보낼 수 있나요?",
+          "a": "네 — 양쪽에 같은 이름을 쓰면 됩니다: `API->>API: retry`. mermaid는 같은 생명선(lifeline)으로 돌아가는 루프를 그려줍니다."
+        },
+        {
+          "q": "참가자가 사라지는 것을 어떻게 표현하나요?",
+          "a": "참가자를 끝내는 메시지 앞에 `destroy <name>`을 쓰거나, 다이어그램 중간에 등장시키고 싶다면 맨 위가 아니라 `create participant <name>`을 쓰세요."
+        },
+        {
+          "q": "시퀀스 다이어그램도 비주얼 캔버스에서 편집할 수 있나요?",
+          "a": "비주얼 캔버스는 순서도를 편집합니다. 시퀀스 다이어그램은 코드 탭에서 작성하며 미리보기에 실시간으로 렌더링됩니다 — 사실 시퀀스 다이어그램은 본질적으로 줄로 이루어진 목록이라 이 방식이 대체로 더 빠릅니다."
+        }
+      ]
+    }
+  ]
+}

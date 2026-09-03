@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Eksportuoti Mermaid į PNG, SVG ar Markdown",
+    "description": "Kaip paversti mermaid diagramą PNG ar SVG failu, nukopijuoti SVG kodą arba palikti ją kaip tekstą GitHub ir Notion — ir kurį variantą rinktis."
+  },
+  "card": {
+    "title": "Eksportuoti mermaid į PNG ar SVG",
+    "excerpt": "Keturi būdai išvesti mermaid diagramą — PNG, SVG, .mmd kodas ir Markdown blokas — ir kada kiekvienas iš jų tinkamas."
+  },
+  "h1": "Eksportuoti mermaid diagramą į PNG, SVG ar Markdown",
+  "intro": "Diagrama naudinga tik ten, kur ją galima pamatyti. Mermaid duoda keturis būdus ją išvesti — paveikslėlį, vektorių, kodą arba Markdown bloką, kuris atvaizduoja save pats — ir tinkamas variantas visiškai priklauso nuo to, kur diagrama keliaus. Tai trumpoji versija, plius kas sugenda su kiekvienu variantu.",
+  "blocks": [
+    { "type": "h2", "text": "Pirmiausia pasirink formatą" },
+    {
+      "type": "table",
+      "headers": ["Paskirtis", "Naudok", "Kodėl"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Markdown bloką", "Atvaizduojamas natūraliai ir lieka palyginamas (diff) — nereikia failo sinchronizuoti."],
+        ["Skaidrėms, specifikacijai, pokalbio žinutei", "PNG", "Įklijuojamas bet kur, nereikalauja atvaizdavimo variklio, atrodo taip pat visur."],
+        ["Svetainei, spausdintam dokumentui", "SVG", "Vektorinis — ryškus bet kokiu dydžiu, o tekstas lieka pažymimas."],
+        ["Kitam redaktoriui, saugyklai", "`.mmd` kodas", "Redaguojamas vėliau. Paveikslėlis — aklavietė."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Jei paskirties vieta atvaizduoja mermaid, iš viso neeksportuok. Diagrama, įkelta kaip tekstas, gali būti peržiūrėta eilutė po eilutės; ta pati diagrama, įkelta kaip PNG, gali būti tik pakeista."
+    },
+
+    { "type": "h2", "text": "Eksportuok iš šio redaktoriaus" },
+    {
+      "type": "p",
+      "text": "Atverk kodo skirtuką — eksporto mygtukai yra įrankių juostoje, ir kiekvienas veikia su tuo, kas šiuo metu atvaizduota."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**Kopijuoti SVG** — įdeda `<svg>` kodą į iškarpinę, paruoštą įklijuoti tiesiai į HTML failą arba dizaino įrankį.",
+        "**Atsisiųsti SVG** — išsaugo `diagram.svg`.",
+        "**Atsisiųsti PNG** — išsaugo `diagram.png`, atvaizduotą dvigubos raiškos su baltu fonu, kad liktų ryškus didelio tankio ekrane ir niekada nevirstų permatoma dėme baltoje skaidrėje.",
+        "**Atsisiųsti .mmd** — išsaugo mermaid kodą kaip paprastą tekstinį failą.",
+        "**Atsisiųsti .md (Notion)** — išsaugo kodą, apgaubtą apibrėžtu ```mermaid bloku, kurį Notion, GitHub ir Obsidian atvaizduoja įklijavus."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Skaidrių rinkiniui imk PNG. Viskam, kas bus keičiamo dydžio — dokumento antraštei, plakatui, spaudai — imk SVG; PNG, padidintas virš eksporto dydžio, iškart tampa neryškus."
+    },
+
+    { "type": "h2", "text": "Verčiau palik kaip tekstą" },
+    {
+      "type": "p",
+      "text": "Apibrėžtas blokas yra vienintelis eksporto būdas, kuris lieka redaguojamas vietoje. Trys atgalinės kabutės, žodis `mermaid`, tavo diagrama, trys atgalinės kabutės:"
+    },
+    {
+      "type": "code",
+      "caption": "Įklijuok tai į GitHub README ir jis atvaizduojamas.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — atvaizduojamas README failuose, issues, pull request'uose ir komentaruose.",
+        "**GitLab** — atvaizduojamas wiki, issues ir merge request'uose.",
+        "**Notion** — įklijuok į kodo bloką ir nustatyk kalbą į Mermaid.",
+        "**Obsidian** — atvaizduojamas peržiūroje ir publikuotuose užrašuose.",
+        "**Docusaurus / MkDocs Material / VitePress** — mermaid blokai atvaizduojami sukurtoje dokumentacijoje."
+      ]
+    },
+
+    { "type": "h2", "text": "Kas gali suklysti" },
+    { "type": "h3", "text": "PNG neryškus" },
+    {
+      "type": "p",
+      "text": "PNG yra fiksuotos raiškos: jis eksportuojamas nustatyto pikselių dydžio, o didinant virš to vyksta interpoliacija. Šis redaktorius dėl to eksportuoja dvigubos raiškos. Jei ir to neužtenka, eksportuok SVG ir konvertuok jį reikiamu dydžiu — arba tiesiog naudok SVG."
+    },
+    { "type": "h3", "text": "SVG be fono" },
+    {
+      "type": "p",
+      "text": "SVG eksportai yra permatomi iš principo, todėl tamsus mazgo tekstas dingsta tamsioje skaidrėje. Arba dėk SVG ant šviesios kortelės, arba imk PNG, kuris eksportuojamas baltame fone."
+    },
+    { "type": "h3", "text": "Šriftai kitur atrodo kitaip" },
+    {
+      "type": "p",
+      "text": "SVG nurodo šriftų šeimas, o ne jas įterpia, tad mašina be to šrifto pakeičia jį kitu, ir etikečių dėžutės nustoja sutapti. Naudok PNG, kai negali kontroliuoti žiūrovo šriftų."
+    },
+    { "type": "h3", "text": "Diagrama nukirsta" },
+    {
+      "type": "p",
+      "text": "Eksportas nuskaito tai, kas šiuo metu atvaizduota, tad prieš eksportuodamas didelę diagramą centruok vaizdą iš naujo. Jei mazgo etiketė milžiniška, pertrauk ją su `<br>` — mermaid pati etikečių nelaužo."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Eksportuok per du paspaudimus",
+      "text": "Atverk redaktorių, įklijuok arba nupiešk savo diagramą, ir pasiimk SVG, PNG arba kodą. Niekas nėra už paskyros.",
+      "buttonLabel": "Atverti redaktorių"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Dažniausiai užduodami klausimai",
+      "items": [
+        {
+          "q": "Kaip konvertuoti mermaid į PNG?",
+          "a": "Atvaizduok diagramą, tada naudok Atsisiųsti PNG. Redaktorius nupiešia atvaizduotą SVG ant drobės (canvas) dvigubu masteliu su baltu fonu ir išsaugo rezultatą — jokio kelio per serverį, tad diagrama niekada nepalieka tavo naršyklės."
+        },
+        {
+          "q": "Ar galiu eksportuoti permatomą PNG?",
+          "a": "Ne per PNG mygtuką — jis sąmoningai užpildo baltą foną, nes tamsus diagramos tekstas permatomame fone neįskaitomas daugumoje vietų, kur PNG įklijuojamas. Eksportuok SVG vietoj to; jis permatomas."
+        },
+        {
+          "q": "Ar yra dydžio riba?",
+          "a": "Nėra fiksuotos. Eksportas vyksta tavo naršyklėje, tad praktinė riba yra tai, ką atvaizduos tavo naršyklė — o tai gerokai toliau taško, kuriame diagrama žmogui dar būtų skaitoma."
+        },
+        {
+          "q": "Kaip išlaikyti diagramą redaguojamą po eksporto?",
+          "a": "Išsaugok kodą. Atsisiųsk `.mmd` failą arba Markdown bloką kartu su paveikslėliu; PNG ar SVG negalima paversti atgal į mermaid, bet kodas įklijuojamas tiesiai atgal į redaktorių."
+        }
+      ]
+    }
+  ]
+}

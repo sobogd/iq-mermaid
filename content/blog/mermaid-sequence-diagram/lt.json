@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Sekos Diagrama: Sintaksė ir Pavyzdžiai",
+    "description": "Kaip parašyti mermaid sekos diagramą: dalyviai, rodyklių tipai, aktyvavimo juostos, ciklai, alt blokai ir pastabos — su nukopijuok-įklijuok pavyzdžiais."
+  },
+  "card": {
+    "title": "Mermaid sekos diagramos",
+    "excerpt": "Dalyviai, rodyklių tipai, aktyvavimo juostos, ciklai ir alt blokai — visa sekos diagramos sintaksė su veikiančiais pavyzdžiais."
+  },
+  "h1": "Kaip parašyti mermaid sekos diagramą",
+  "intro": "Sekos diagrama parodo, kas su kuo kalbasi ir kokia tvarka. Mermaid ją parašyti užtrunka maždaug tiek pat, kiek užtrunka papasakoti garsiai, todėl tai diagramos tipas, kuris ilgiausiai išgyvena kodo bazėje. Viskas žemiau paruošta nukopijuoti ir įklijuoti į [redaktorių](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Minimalus variantas" },
+    {
+      "type": "p",
+      "text": "Deklaruok diagramos tipą, tada rašyk po vieną eilutę kiekvienai žinutei. Dalyviai sukuriami pirmą kartą juos paminėjus, ta tvarka, kuria jie pasirodo."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Deklaruok dalyvius aiškiai su `participant User`, kai nori konkrečios tvarkos iš kairės į dešinę, o ne pagal pirmo paminėjimo tvarką."
+    },
+
+    { "type": "h2", "text": "Rodyklių tipai" },
+    {
+      "type": "table",
+      "headers": ["Sintaksė", "Reikšmė"],
+      "rows": [
+        ["`A->>B: text`", "Užklausa — vientisa linija, pilnas antgalis"],
+        ["`A-->>B: text`", "Atsakymas — punktyrinė linija, pilnas antgalis"],
+        ["`A->B: text`", "Vientisa linija, tuščias antgalis"],
+        ["`A-)B: text`", "Asinchroninė žinutė — tuščias antgalis, atsakymo nesitikima"],
+        ["`A-xB: text`", "Žinutė, kuri nepavyksta arba prarandama"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Konvenciją verta laikytis: **vientisa linija skambučiui, punktyrinė — grąžinimui**. Tada skaitytojas gali atskirti užklausą nuo atsakymo neperskaitęs nė vienos etiketės."
+    },
+
+    { "type": "h2", "text": "Dalyviai ir slapyvardžiai" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Naudok `actor U as Browser` vietoj `participant`, kad nupieštum stick figure — verta to dėl žmogaus autentifikacijos srauto kairiajame krašte."
+    },
+
+    { "type": "h2", "text": "Aktyvavimo juostos" },
+    {
+      "type": "p",
+      "text": "Aktyvavimo juostos rodo, kiek laiko dalyvis yra užimtas. Pažymėk jas aiškiai su `activate`/`deactivate`, arba pridėk `+` ir `-` prie rodyklių, kas trumpiau ir sunkiau išbalansuoti."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Ciklai, sąlygos ir lygiagretus darbas" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — pasikartojimas.",
+        "`alt <label>` … `else <label>` … `end` — vienas kitą pašalinančios šakos.",
+        "`opt <label>` … `end` — šaka, kuri gali tiesiog neįvykti.",
+        "`par <label>` … `and <label>` … `end` — dalykai, vykstantys tuo pačiu metu.",
+        "`critical` / `break` — skyrius, kurio negalima pertraukti, ir ankstyvas išėjimas."
+      ]
+    },
+
+    { "type": "h2", "text": "Pastabos" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` apima du dalyvius ir yra tinkama vieta apribojimui, kuris priklauso pačiai sąveikai, o ne vienai iš pusių."
+    },
+
+    { "type": "h2", "text": "Pilnas pavyzdys" },
+    {
+      "type": "code",
+      "caption": "OAuth prisijungimas, nuo pradžios iki pabaigos.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Redaguok šią diagramą",
+      "text": "Įklijuok ją į kodo skirtuką ir pakeisk eilutę — peržiūra perpiešiama, kol rašai.",
+      "buttonLabel": "Atverti redaktorių"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Dažniausiai užduodami klausimai",
+      "items": [
+        {
+          "q": "Kaip sunumeruoti žinutes?",
+          "a": "Įrašyk `autonumber` eilutėje iškart po `sequenceDiagram`. Tada kiekviena žinutė gauna eilės numerį, todėl diagramą kur kas lengviau aptarti peržiūros komentaruose."
+        },
+        {
+          "q": "Ar dalyvis gali siųsti žinutę pats sau?",
+          "a": "Taip — parašyk tą patį vardą abiejose pusėse: `API->>API: retry`. Mermaid nupiešia kilpą atgal į tą pačią gyvavimo liniją."
+        },
+        {
+          "q": "Kaip parodyti, kad dalyvis sunaikinamas?",
+          "a": "Naudok `destroy <name>` prieš žinutę, kuri jį užbaigia, arba `create participant <name>`, kad jis atsirastų diagramos viduryje, o ne viršuje."
+        },
+        {
+          "q": "Ar galiu redaguoti sekos diagramą vizualiame darbalaukyje?",
+          "a": "Vizualus darbalaukis redaguoja blokines schemas (flowchart). Sekos diagramos rašomos kodo skirtuke, kur jos atvaizduojamos gyvai peržiūroje — tai paprastai net greičiau, nes sekos diagrama iš esmės yra eilučių sąrašas."
+        }
+      ]
+    }
+  ]
+}

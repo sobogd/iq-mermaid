@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Sequence-діаграма Mermaid: синтаксис і приклади",
+    "description": "Як написати sequence-діаграму mermaid: учасники, типи стрілок, смуги активації, цикли, alt-блоки та нотатки — з прикладами для копіювання."
+  },
+  "card": {
+    "title": "Sequence-діаграми Mermaid",
+    "excerpt": "Учасники, типи стрілок, смуги активації, цикли та alt-блоки — весь синтаксис sequence-діаграм із робочими прикладами."
+  },
+  "h1": "Як написати sequence-діаграму mermaid",
+  "intro": "Sequence-діаграма показує, хто з ким спілкується і в якому порядку. У mermaid її написання займає приблизно стільки ж часу, скільки й проговорити вголос, тому саме цей тип діаграм найдовше живе в кодовій базі. Усе нижче готове для копіювання в [редактор](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Мінімум" },
+    {
+      "type": "p",
+      "text": "Оголосіть тип діаграми, а потім пишіть по одному рядку на кожне повідомлення. Учасники створюються при першій згадці, у порядку появи."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Оголошуйте учасників явно за допомогою `participant User`, якщо потрібен конкретний порядок зліва направо, а не порядок першої згадки."
+    },
+
+    { "type": "h2", "text": "Типи стрілок" },
+    {
+      "type": "table",
+      "headers": ["Синтаксис", "Значення"],
+      "rows": [
+        ["`A->>B: text`", "Запит — суцільна лінія, заповнений наконечник"],
+        ["`A-->>B: text`", "Відповідь — пунктирна лінія, заповнений наконечник"],
+        ["`A->B: text`", "Суцільна лінія, відкритий наконечник"],
+        ["`A-)B: text`", "Асинхронне повідомлення — відкритий наконечник, відповідь не очікується"],
+        ["`A-xB: text`", "Повідомлення, яке провалюється або відкидається"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Конвенцію варто дотримуватись: **суцільна лінія для виклику, пунктирна для повернення**. Тоді читач відрізнить запит від відповіді, не читаючи жодного підпису."
+    },
+
+    { "type": "h2", "text": "Учасники та псевдоніми" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Використайте `actor U as Browser` замість `participant`, щоб намалювати фігурку людини — варто для людини на лівому краю потоку автентифікації."
+    },
+
+    { "type": "h2", "text": "Смуги активації" },
+    {
+      "type": "p",
+      "text": "Смуги активації показують, скільки часу учасник зайнятий. Позначайте їх явно через `activate`/`deactivate`, або додавайте `+` і `-` до стрілок — це коротше, і важче порушити баланс."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Цикли, умови та паралельна робота" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — повторення.",
+        "`alt <label>` … `else <label>` … `end` — взаємовиключні гілки.",
+        "`opt <label>` … `end` — гілка, яка може просто не відбутися.",
+        "`par <label>` … `and <label>` … `end` — речі, що відбуваються одночасно.",
+        "`critical` / `break` — розділ, який не можна переривати, та достроковий вихід."
+      ]
+    },
+
+    { "type": "h2", "text": "Нотатки" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` охоплює двох учасників і є правильним місцем для обмеження, яке стосується самої взаємодії, а не якоїсь із сторін."
+    },
+
+    { "type": "h2", "text": "Повний приклад" },
+    {
+      "type": "code",
+      "caption": "OAuth-логін, від початку до кінця.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Редагуйте цю діаграму",
+      "text": "Вставте її на вкладку коду й змініть рядок — попередній перегляд перемальовується під час набору.",
+      "buttonLabel": "Відкрити редактор"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Часті запитання",
+      "items": [
+        {
+          "q": "Як пронумерувати повідомлення?",
+          "a": "Додайте `autonumber` рядком одразу після `sequenceDiagram`. Тоді кожне повідомлення отримає послідовний номер, і про діаграму стане набагато простіше говорити в коментарях рев'ю."
+        },
+        {
+          "q": "Чи може учасник надіслати повідомлення сам собі?",
+          "a": "Так — напишіть однакове ім'я з обох боків: `API->>API: retry`. Mermaid намалює петлю назад до тієї самої лінії життя."
+        },
+        {
+          "q": "Як показати, що учасника знищено?",
+          "a": "Використайте `destroy <name>` перед повідомленням, яке його завершує, або `create participant <name>`, щоб він з'явився посеред діаграми, а не зверху."
+        },
+        {
+          "q": "Чи можу я редагувати sequence-діаграму на візуальному полотні?",
+          "a": "Візуальне полотно редагує flowchart. Sequence-діаграми пишуться на вкладці коду, де вони відображаються наживо в попередньому перегляді — що зазвичай і швидше, адже sequence-діаграма — це, по суті, список рядків."
+        }
+      ]
+    }
+  ]
+}

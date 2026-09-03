@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Ekspordi mermaid PNG, SVG või Markdown formaati",
+    "description": "Kuidas muuta mermaid diagramm PNG- või SVG-failiks, kopeerida SVG-märgistus või hoida see tekstina GitHubi ja Notioni jaoks — ja kumba valida."
+  },
+  "card": {
+    "title": "Ekspordi mermaid PNG- või SVG-failiks",
+    "excerpt": "Neli väljapääsu mermaid diagrammist — PNG, SVG, .mmd lähtekood ja Markdown-plokk — ja millal kumbki on õige vastus."
+  },
+  "h1": "Ekspordi mermaid diagramm PNG-, SVG- või Markdown-formaati",
+  "intro": "Diagramm on kasulik ainult seal, kus seda näha saab. Mermaid annab neli väljapääsu — pildi, vektori, lähtekoodi või Markdown-ploki, mis renderdub iseenesest — ja õige valik sõltub täielikult sellest, kuhu diagramm läheb. See on lühiversioon, pluss see, mis igaühe puhul katki läheb.",
+  "blocks": [
+    { "type": "h2", "text": "Vali kõigepealt formaat" },
+    {
+      "type": "table",
+      "headers": ["Sihtkoht", "Kasuta", "Miks"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Markdown-plokki", "See renderdub loomupäraselt ja jääb võrreldavaks — pole faili, mida sünkroonis hoida."],
+        ["Slaidid, spetsifikatsioon, vestlussõnum", "PNG-d", "Kleebitav kõikjale, ei vaja renderdajat, näeb kõikjal ühesugune välja."],
+        ["Veebisait, prinditud dokument", "SVG-d", "Vektor — terav igas suuruses ja tekst jääb valitavaks."],
+        ["Teine redaktor, hoidla", "`.mmd` lähtekoodi", "Hiljem muudetav. Pilt on ummiktee."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Kui sihtkoht renderdab mermaidi, ära üldse ekspordi. Tekstina committitud diagrammi saab rida-realt üle vaadata; sama diagrammi, mis on committitud PNG-na, saab ainult asendada."
+    },
+
+    { "type": "h2", "text": "Ekspordi sellest redaktorist" },
+    {
+      "type": "p",
+      "text": "Ava koodisakk — ekspordinupud asuvad tööriistaribal ja igaüks toimib sellel, mis parasjagu renderdatud on."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**Kopeeri SVG** — paneb `<svg>` märgistuse lõikelauale, valmis kleepimiseks otse HTML-faili või disainitööriista.",
+        "**Laadi alla SVG** — salvestab faili `diagram.svg`.",
+        "**Laadi alla PNG** — salvestab faili `diagram.png`, renderdatud 2x suuruses valge taustaga, nii et see püsib teravana kõrge pikslitihedusega ekraanil ega maandu läbipaistva plekina valgel slaidil.",
+        "**Laadi alla .mmd** — salvestab mermaid lähtekoodi tavalise tekstifailina.",
+        "**Laadi alla .md (Notion)** — salvestab lähtekoodi, mis on ümbritsetud ```mermaid plokiga, mida Notion, GitHub ja Obsidian kleepimisel renderdavad."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Slaidiesitluse jaoks võta PNG. Kõige jaoks, mille suurust hiljem muudetakse — dokumendi pealkiri, plakat, trükis — võta SVG; üle ekspordisuuruse skaleeritud PNG muutub kohe uduseks."
+    },
+
+    { "type": "h2", "text": "Hoia see hoopis tekstina" },
+    {
+      "type": "p",
+      "text": "Sildistatud plokk on ainus eksport, mis jääb kohapeal muudetavaks. Kolm ülakoma, sõna `mermaid`, sinu diagramm, kolm ülakoma:"
+    },
+    {
+      "type": "code",
+      "caption": "Kleebi see GitHubi README-faili ja see renderdub.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — renderdub README-failides, probleemides, pull request'ides ja kommentaarides.",
+        "**GitLab** — renderdub wikis, probleemides ja merge request'ides.",
+        "**Notion** — kleebi koodiplokki ja määra keeleks Mermaid.",
+        "**Obsidian** — renderdub eelvaates ja avaldatud märkmetes.",
+        "**Docusaurus / MkDocs Material / VitePress** — mermaid plokid renderduvad valminud dokumentatsioonis."
+      ]
+    },
+
+    { "type": "h2", "text": "Mis läheb valesti" },
+    { "type": "h3", "text": "PNG on hägune" },
+    {
+      "type": "p",
+      "text": "PNG on fikseeritud eraldusvõimega: see eksporditakse kindlas piksliformaadis ja suurendamine üle selle interpoleerib. See redaktor ekspordib seetõttu 2x suuruses. Kui sellest ikka ei piisa, ekspordi SVG ja teisenda see vajaliku suurusega — või kasuta lihtsalt SVG-d."
+    },
+    { "type": "h3", "text": "SVG-l pole tausta" },
+    {
+      "type": "p",
+      "text": "SVG eksport on disaini poolest läbipaistev, nii et tume sõlmetekst kaob tumedal slaidil. Pane SVG kas heledale kaardile või võta PNG, mis eksporditakse valgel taustal."
+    },
+    { "type": "h3", "text": "Fondid näevad mujal erinevad välja" },
+    {
+      "type": "p",
+      "text": "SVG viitab fondiperekondadele, selle asemel et neid manustada, nii et masin, kus seda fonti pole, asendab selle mõne teisega ja sildikastid lähevad joondusest välja. Kasuta PNG-d, kui sa ei saa vaataja fonte kontrollida."
+    },
+    { "type": "h3", "text": "Diagramm on ära lõigatud" },
+    {
+      "type": "p",
+      "text": "Eksport loeb seda, mis parasjagu renderdatud on, seega tsentreeri vaade enne suure diagrammi eksportimist uuesti. Kui sõlme silt on tohutu, katkesta see märgiga `<br>` — mermaid ise silte reale ei murra."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Ekspordi kahe klõpsuga",
+      "text": "Ava redaktor, kleebi või joonista oma diagramm ja võta SVG, PNG või lähtekood. Miski pole konto taga.",
+      "buttonLabel": "Ava redaktor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Sageli küsitud",
+      "items": [
+        {
+          "q": "Kuidas teisendada mermaid PNG-ks?",
+          "a": "Renderda diagramm, seejärel kasuta nuppu Laadi alla PNG. Redaktor joonistab renderdatud SVG lõuendile 2x mõõtkavas valge taustaga ja salvestab tulemuse — serveripoolset käiku pole, seega diagramm ei lahku kunagi sinu brauserist."
+        },
+        {
+          "q": "Kas saan eksportida läbipaistva PNG?",
+          "a": "Mitte PNG-nupu kaudu — see täidab tausta valgega meelega, sest tume diagrammi tekst läbipaistval taustal on enamikus kohtades, kuhu PNG kleebitakse, loetamatu. Ekspordi selle asemel SVG; see on läbipaistev."
+        },
+        {
+          "q": "Kas suurusele on piirang?",
+          "a": "Fikseeritud piirangut pole. Eksport toimub sinu brauseris, seega on praktiline piir see, mida sinu brauser suudab renderdada — mis jääb kaugelt selle punktist taha, kus diagramm on inimesele veel loetav."
+        },
+        {
+          "q": "Kuidas hoida diagramm pärast eksportimist muudetavana?",
+          "a": "Hoia lähtekood alles. Laadi alla `.mmd`-fail või Markdown-plokk pildi kõrval; PNG-d või SVG-d ei saa tagasi mermaidiks muuta, kuid lähtekood kleebib end otse tagasi redaktorisse."
+        }
+      ]
+    }
+  ]
+}

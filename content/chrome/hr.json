@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Mermaid Editor Uživo — Besplatni Online Editor Dijagrama",
+    "description": "Besplatni mermaid editor: crtajte vizualno ili pišite kod, oboje u sinkronu. Flowchart, sequence, class, ER, state, gantt. Bez registracije, izvoz SVG/PNG.",
+    "ogTitle": "Mermaid Editor Uživo — besplatan, online, bez registracije",
+    "ogDescription": "Crtajte dijagrame na platnu ili pišite mermaid kod. Oba prikaza ostaju sinkronizirana. Izvezite u SVG, PNG, .mmd ili Markdown.",
+    "twitterTitle": "Besplatni mermaid editor uživo",
+    "twitterDescription": "Vizualno platno i mermaid kod, jedno pored drugog. Bez registracije, bez naplate."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Značajke",
+    "blog": "Vodiči",
+    "faq": "Česta pitanja",
+    "openEditor": "Otvori editor",
+    "menu": "Izbornik"
+  },
+  "hero": {
+    "badgeFree": "Zauvijek besplatno",
+    "badgeNoSignup": "Bez registracije",
+    "badgeDiagrams": "8 vrsta dijagrama",
+    "title": "Mermaid editor uživo,",
+    "titleAccent": "vizualno i kod na jednom mjestu",
+    "description": "Većina mermaid editora daje vam tekstualni okvir i pregled. Ovaj vam daje i platno: kliknite za dodavanje bloka, povucite strelicu, grupirajte stvari u područja — a mermaid kod se sam piše. Prebacite se na karticu koda i uredite ga ručno; platno prati promjene.",
+    "ctaOpen": "Otvori editor",
+    "ctaLearn": "Pogledajte što nudi",
+    "mockCodeLabel": "Mermaid kod",
+    "mockDiagramLabel": "Prikazani dijagram"
+  },
+  "statCards": [
+    { "title": "Prikazuje se dok tipkate", "sub": "Pravi mermaid engine, ponovno iscrtan nekoliko stotina milisekundi nakon vaše zadnje tipke." },
+    { "title": "Kod i platno sinkronizirani", "sub": "Uredite bilo koju stranu. Druga se sama ažurira — bez kopiranja i lijepljenja između dva alata." },
+    { "title": "14 oblika čvorova", "sub": "Pravokutnik, zaobljeni, pilula, krug, romb, baza podataka, šesterokut i ostalo, jednim klikom." },
+    { "title": "Besplatno, bez računa", "sub": "Bez registracije, bez probnog razdoblja, bez vodenog žiga na izvozu. Vaš dijagram ostaje u vašem pregledniku." }
+  ],
+  "spotlights": [
+    {
+      "heading": "Platno, ne samo tekstualni okvir",
+      "sub": "Vizualna kartica pravi je editor iznad prikazanog dijagrama: kliknite čvor da ga odaberete, dvaput kliknite da ga preimenujete na mjestu, povucite bilo gdje za pomicanje.",
+      "bullets": [
+        { "title": "Kliknite za izradu", "sub": "Dodajte blok, usmjerite strelicu prema drugom, označite strelicu. Nema sintakse za pamćenje prije nego počnete." },
+        { "title": "Odaberite oblik", "sub": "Četrnaest oblika mermaid flowcharta — rombovi odluke, cilindri baze podataka, potprogrami — iz jednog birača." },
+        { "title": "Obojite bilo što", "sub": "Osam gotovih paleta plus birač boja, primijenjeno na jedan čvor ili na cijelo područje." }
+      ]
+    },
+    {
+      "heading": "Mermaid kod koji ostaje vaš",
+      "sub": "Tekstualna kartica čisti je mermaid — ista sintaksa koju GitHub, GitLab, Notion i Obsidian već prikazuju. Ništa ovdje nije vlasnički format.",
+      "bullets": [
+        { "title": "Pišite ručno", "sub": "Upišite mermaid izravno i gledajte kako se prikazuje. Šest gotovih primjera za početak." },
+        { "title": "Dvosmjerno", "sub": "Flowcharti koje zalijepite raščlanjuju se natrag na platno — čvorovi, oblici, boje, podgrafovi, sve." },
+        { "title": "Svaka vrsta dijagrama", "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — pregled prikazuje sve što mermaid podržava." }
+      ]
+    },
+    {
+      "heading": "Veliki dijagrami ostaju čitljivi",
+      "sub": "Arhitekturni dijagrami brzo prerastu jedan ekran. Pomicanje, zumiranje i grupiranje napravljeni su za to, umjesto da se s tim bore.",
+      "bullets": [
+        { "title": "Područja i ugniježđivanje", "sub": "Grupirajte blokove u podgrafove, ugnijezdite područje unutar drugog, pomaknite cijelo podstablo jednim potezom." },
+        { "title": "Zum od 2% do 1600%", "sub": "Skrolajte za pomicanje, ctrl-skrol za zumiranje, ili se ponovno centrirajte jednim gumbom." },
+        { "title": "Spremljeno u hodu", "sub": "Vaš dijagram zapisuje se u lokalnu pohranu preglednika pri svakoj izmjeni — zatvorite karticu i vratite se kasnije." }
+      ]
+    },
+    {
+      "heading": "Izvezite i nastavite dalje",
+      "sub": "Ništa nije zaključano. Uzmite sliku, uzmite izvorni kod, ili uzmite Markdown blok spreman za lijepljenje u dokument.",
+      "bullets": [
+        { "title": "Bez plaćanja", "sub": "Svaka značajka, uključujući izvoz, besplatna je. Ne postoji plaćeni plan za nadogradnju." },
+        { "title": "Ništa ne napušta vaš preglednik", "sub": "Nema računa i nema pohrane dijagrama na poslužitelju — prikazivanje se odvija lokalno." },
+        { "title": "SVG, PNG, .mmd, .md", "sub": "Kopirajte SVG oznake, preuzmite PNG u 2x, spremite mermaid izvor, ili uzmite Markdown blok u ogradi." }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Kako se uspoređuje s",
+    "titleAccent": "uobičajenim opcijama",
+    "description": "Alati tipa dijagram-kao-kod tjeraju vas da sve pišete ručno. Alati za povlačenje i ispuštanje daju vam sliku koju ne možete usporediti liniju po liniju. Ovaj odbija odabrati stranu.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Tipičan alat",
+    "rows": [
+      {
+        "title": "Početak rada",
+        "us": "Dvaput kliknite platno i pojavi se čvor. Sintaksu možete naučiti kasnije, ili nikad.",
+        "them": "Prvo pročitajte referencu sintakse, ili prihvatite alat za crtanje bez ikakvog tekstualnog prikaza."
+      },
+      {
+        "title": "Format izlaza",
+        "us": "Čisti mermaid — isti tekst koji GitHub, GitLab i Notion prikazuju izvorno.",
+        "them": "Vlasnička datoteka koja se otvara samo u alatu koji ju je napravio."
+      },
+      {
+        "title": "Uređivanje kasnije",
+        "us": "Mijenjajte kod ili pomičite blokove. Oba smjera rade na istom dijagramu.",
+        "them": "Samo jedan smjer: alati usmjereni na kod nemaju platno, alati usmjereni na platno nemaju izvorni kod."
+      },
+      {
+        "title": "Cijena",
+        "us": "Besplatno, bez računa, bez ograničenja izvoza.",
+        "them": "Besplatni plan ograničen na nekoliko dijagrama, s izvozom ili suradnjom iza pretplate."
+      },
+      {
+        "title": "Gdje se podaci nalaze",
+        "us": "Lokalna pohrana vašeg preglednika. Bez prijave, ništa se ne učitava.",
+        "them": "Račun na tuđem poslužitelju, s vašim dijagramima vezanim uz njega."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Mermaid editor",
+    "headingAccent": "pitanja",
+    "sub": "Ono što ljudi pitaju prije nego ga otvore. Registracija nije potrebna — editor je udaljen jedan klik.",
+    "items": [
+      {
+        "q": "Što je mermaid?",
+        "a": "Mermaid je tekstualna sintaksa za dijagrame: opisujete čvorove i strelice u nekoliko redaka, a renderer crta sliku. GitHub, GitLab, Notion i Obsidian prikazuju ga unutar Markdowna, pa mermaid blok ostaje čitljiv u pull requestu ili na wiki stranici."
+      },
+      {
+        "q": "Je li ovaj mermaid editor zaista besplatan?",
+        "a": "Da. Svaka značajka, uključujući izvoz u SVG i PNG, besplatna je, a računa nije potrebno stvoriti. Ne postoji plaćeni plan — ništa se ne zadržava."
+      },
+      {
+        "q": "Moram li znati mermaid sintaksu?",
+        "a": "Ne. Počnite na vizualnoj kartici: dvaput kliknite platno za dodavanje bloka, odaberite ga i nacrtajte strelicu prema drugom. Mermaid kod generira se umjesto vas, a možete ga pročitati kad god poželite naučiti sintaksu."
+      },
+      {
+        "q": "Koje su vrste dijagrama podržane?",
+        "a": "Kartica koda prikazuje sve što mermaid podržava — flowchart, sequence, class, state, entity relationship, gantt, git graph, pie i više. Vizualno platno uređuje konkretno flowcharte, što su najčešći dijagrami."
+      },
+      {
+        "q": "Mogu li izvesti u PNG ili SVG?",
+        "a": "Da. Kopirajte SVG oznake u međuspremnik, preuzmite SVG datoteku, ili preuzmite PNG prikazan u 2x za prezentacije i dokumente. Također možete spremiti mermaid izvor kao .mmd ili kao Markdown blok u ogradi."
+      },
+      {
+        "q": "Gdje se pohranjuje moj dijagram?",
+        "a": "U lokalnoj pohrani vašeg preglednika, na vašem uređaju. Nema računa i nema kopije na poslužitelju, pa brisanje podataka preglednika ili promjena uređaja znači početak iznova — izvezite izvor ako ga želite zadržati."
+      },
+      {
+        "q": "Mogu li zalijepiti postojeći mermaid dijagram?",
+        "a": "Da. Zalijepite ga u karticu koda; flowchart se raščlanjuje natrag na vizualno platno s netaknutim čvorovima, oblicima, bojama i podgrafovima. Ostale vrste dijagrama prikazuju se u pregledu, ali ostaju samo kao kod."
+      },
+      {
+        "q": "Radi li offline?",
+        "a": "Prikazivanje se u potpunosti odvija u vašem pregledniku, pa nakon što se stranica učita, editor nastavlja raditi bez veze. Vaš dijagram je u lokalnoj pohrani, ne na poslužitelju."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Otvorite editor.",
+    "headingAccent": "Nema se za što registrirati.",
+    "sub": "Prazno platno, kartica koda i sve opcije izvoza — besplatno, u vašem pregledniku, odmah.",
+    "ctaLabel": "Otvori editor"
+  },
+  "footer": {
+    "tagline": "Besplatni online mermaid editor",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Proizvod",
+    "languagesHeading": "Jezici"
+  },
+  "app": {
+    "metaTitle": "Mermaid Editor — crtajte i kodirajte jedno pored drugog",
+    "metaDescription": "Besplatni mermaid editor: vizualno platno i mermaid izvor, sinkronizirani. Izvezite u SVG, PNG, .mmd ili Markdown.",
+    "backToSite": "Natrag na početnu stranicu"
+  },
+  "blog": {
+    "metaTitle": "Mermaid Vodiči — sintaksa, izvoz i primjeri",
+    "metaDescription": "Kratki, praktični vodiči za mermaid: sintaksa koju stvarno koristite, kako izvesti dijagram u PNG ili SVG, i kako napisati sequence dijagram.",
+    "title": "Mermaid vodiči",
+    "intro": "Kratke, praktične bilješke o mermaidu — sintaksa vrijedna pamćenja, izvozi koje ljudi traže, i vrste dijagrama koje se najčešće pojavljuju. Svaki primjer udaljen je jedno lijepljenje od editora.",
+    "readMore": "Pročitaj vodič",
+    "backToBlog": "Svi vodiči",
+    "relatedHeading": "Više vodiča"
+  }
+}

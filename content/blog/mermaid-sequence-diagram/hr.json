@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Dijagram Slijeda: Sintaksa i Primjeri",
+    "description": "Kako napisati mermaid dijagram slijeda: sudionici, vrste strelica, trake aktivacije, petlje, alt blokovi i bilješke — s primjerima za kopiranje i lijepljenje."
+  },
+  "card": {
+    "title": "Mermaid dijagrami slijeda",
+    "excerpt": "Sudionici, vrste strelica, trake aktivacije, petlje i alt blokovi — cijela sintaksa dijagrama slijeda s primjerima koje možete pokrenuti."
+  },
+  "h1": "Kako napisati mermaid dijagram slijeda",
+  "intro": "Dijagram slijeda prikazuje tko s kim razgovara, kojim redoslijedom. U mermaidu je za pisanje potrebno otprilike jednako vremena koliko i za usmeni opis, zbog čega je to vrsta dijagrama koja najduže preživi u kodnoj bazi. Sve ispod spremno je za kopiranje i lijepljenje u [editor](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Minimum" },
+    {
+      "type": "p",
+      "text": "Deklarirajte vrstu dijagrama, zatim napišite jedan redak po poruci. Sudionici se stvaraju pri prvom spomenu, redoslijedom kojim se pojavljuju."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Deklarirajte sudionike izričito s `participant User` kad želite određeni redoslijed slijeva nadesno umjesto redoslijeda prvog spomena."
+    },
+
+    { "type": "h2", "text": "Vrste strelica" },
+    {
+      "type": "table",
+      "headers": ["Sintaksa", "Značenje"],
+      "rows": [
+        ["`A->>B: text`", "Zahtjev — puna linija, ispunjeni vrh strelice"],
+        ["`A-->>B: text`", "Odgovor — isprekidana linija, ispunjeni vrh strelice"],
+        ["`A->B: text`", "Puna linija, otvoreni vrh strelice"],
+        ["`A-)B: text`", "Asinkrona poruka — otvoreni vrh strelice, odgovor se ne očekuje"],
+        ["`A-xB: text`", "Poruka koja ne uspije ili se izgubi"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Konvencija koju vrijedi zadržati: **puna linija za poziv, isprekidana za povratak**. Čitatelj tada može razlikovati zahtjev od odgovora bez čitanja ijedne oznake."
+    },
+
+    { "type": "h2", "text": "Sudionici i aliasi" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Koristite `actor U as Browser` umjesto `participant` da nacrtate figuru štapića — vrijedi za osobu na lijevom rubu tijeka autentikacije."
+    },
+
+    { "type": "h2", "text": "Trake aktivacije" },
+    {
+      "type": "p",
+      "text": "Trake aktivacije prikazuju koliko dugo je sudionik zauzet. Označite ih izričito s `activate`/`deactivate`, ili dodajte `+` i `-` strelicama, što je kraće i teže je izgubiti ravnotežu."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Petlje, uvjeti i paralelni rad" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — ponavljanje.",
+        "`alt <label>` … `else <label>` … `end` — međusobno isključive grane.",
+        "`opt <label>` … `end` — grana koja se možda jednostavno neće dogoditi.",
+        "`par <label>` … `and <label>` … `end` — stvari koje se događaju istovremeno.",
+        "`critical` / `break` — dio koji se ne smije prekinuti, i rani izlaz."
+      ]
+    },
+
+    { "type": "h2", "text": "Bilješke" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` obuhvaća dva sudionika i pravo je mjesto za ograničenje koje pripada interakciji, a ne jednoj ili drugoj strani."
+    },
+
+    { "type": "h2", "text": "Potpuni primjer" },
+    {
+      "type": "code",
+      "caption": "OAuth prijava, od početka do kraja.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Uredite ovaj dijagram",
+      "text": "Zalijepite ga u karticu koda i promijenite redak — pregled se ponovno crta dok tipkate.",
+      "buttonLabel": "Otvori editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Često postavljana pitanja",
+      "items": [
+        {
+          "q": "Kako numerirati poruke?",
+          "a": "Stavite `autonumber` u redak odmah nakon `sequenceDiagram`. Svaka poruka tada dobiva redni broj, što uvelike olakšava razgovor o dijagramu u komentarima recenzije."
+        },
+        {
+          "q": "Može li sudionik poslati poruku samom sebi?",
+          "a": "Da — napišite isto ime na obje strane: `API->>API: retry`. Mermaid crta petlju natrag na istu lifeline."
+        },
+        {
+          "q": "Kako prikazati da je sudionik uništen?",
+          "a": "Koristite `destroy <name>` prije poruke koja ga završava, ili `create participant <name>` da se pojavi usred dijagrama umjesto na vrhu."
+        },
+        {
+          "q": "Mogu li urediti dijagram slijeda na vizualnom platnu?",
+          "a": "Vizualno platno uređuje flowcharte. Dijagrami slijeda pišu se na kartici koda, gdje se prikazuju uživo u pregledu — što je obično ionako brže, budući da je dijagram slijeda u biti popis redaka."
+        }
+      ]
+    }
+  ]
+}

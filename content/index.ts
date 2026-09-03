@@ -5,30 +5,360 @@
 import type { SiteTexts } from "@/app/_landing/types";
 import type { BlogArticleContent } from "@/app/_landing/blog/types";
 import type { EditorTexts } from "@/app/_editor/texts";
+import chrome_ar from "./chrome/ar.json";
+import chrome_bg from "./chrome/bg.json";
+import chrome_ca from "./chrome/ca.json";
+import chrome_cs from "./chrome/cs.json";
+import chrome_da from "./chrome/da.json";
+import chrome_de from "./chrome/de.json";
+import chrome_el from "./chrome/el.json";
 import chrome_en from "./chrome/en.json";
+import chrome_es from "./chrome/es.json";
+import chrome_et from "./chrome/et.json";
+import chrome_fa from "./chrome/fa.json";
+import chrome_fi from "./chrome/fi.json";
+import chrome_fr from "./chrome/fr.json";
+import chrome_hr from "./chrome/hr.json";
+import chrome_hu from "./chrome/hu.json";
+import chrome_is from "./chrome/is.json";
+import chrome_it from "./chrome/it.json";
+import chrome_ja from "./chrome/ja.json";
+import chrome_ko from "./chrome/ko.json";
+import chrome_lt from "./chrome/lt.json";
+import chrome_lv from "./chrome/lv.json";
+import chrome_nl from "./chrome/nl.json";
+import chrome_no from "./chrome/no.json";
+import chrome_pl from "./chrome/pl.json";
+import chrome_pt from "./chrome/pt.json";
+import chrome_ro from "./chrome/ro.json";
+import chrome_ru from "./chrome/ru.json";
+import chrome_sk from "./chrome/sk.json";
+import chrome_sl from "./chrome/sl.json";
+import chrome_sr from "./chrome/sr.json";
+import chrome_sv from "./chrome/sv.json";
+import chrome_tr from "./chrome/tr.json";
+import chrome_uk from "./chrome/uk.json";
+import chrome_zh from "./chrome/zh.json";
+import editor_ar from "./editor/ar.json";
+import editor_bg from "./editor/bg.json";
+import editor_ca from "./editor/ca.json";
+import editor_cs from "./editor/cs.json";
+import editor_da from "./editor/da.json";
+import editor_de from "./editor/de.json";
+import editor_el from "./editor/el.json";
 import editor_en from "./editor/en.json";
+import editor_es from "./editor/es.json";
+import editor_et from "./editor/et.json";
+import editor_fa from "./editor/fa.json";
+import editor_fi from "./editor/fi.json";
+import editor_fr from "./editor/fr.json";
+import editor_hr from "./editor/hr.json";
+import editor_hu from "./editor/hu.json";
+import editor_is from "./editor/is.json";
+import editor_it from "./editor/it.json";
+import editor_ja from "./editor/ja.json";
+import editor_ko from "./editor/ko.json";
+import editor_lt from "./editor/lt.json";
+import editor_lv from "./editor/lv.json";
+import editor_nl from "./editor/nl.json";
+import editor_no from "./editor/no.json";
+import editor_pl from "./editor/pl.json";
+import editor_pt from "./editor/pt.json";
+import editor_ro from "./editor/ro.json";
+import editor_ru from "./editor/ru.json";
+import editor_sk from "./editor/sk.json";
+import editor_sl from "./editor/sl.json";
+import editor_sr from "./editor/sr.json";
+import editor_sv from "./editor/sv.json";
+import editor_tr from "./editor/tr.json";
+import editor_uk from "./editor/uk.json";
+import editor_zh from "./editor/zh.json";
+import blog_ar_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/ar.json";
+import blog_bg_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/bg.json";
+import blog_ca_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/ca.json";
+import blog_cs_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/cs.json";
+import blog_da_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/da.json";
+import blog_de_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/de.json";
+import blog_el_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/el.json";
 import blog_en_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/en.json";
+import blog_es_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/es.json";
+import blog_et_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/et.json";
+import blog_fa_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/fa.json";
+import blog_fi_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/fi.json";
+import blog_fr_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/fr.json";
+import blog_hr_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/hr.json";
+import blog_hu_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/hu.json";
+import blog_is_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/is.json";
+import blog_it_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/it.json";
+import blog_ja_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/ja.json";
+import blog_ko_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/ko.json";
+import blog_lt_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/lt.json";
+import blog_lv_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/lv.json";
+import blog_nl_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/nl.json";
+import blog_no_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/no.json";
+import blog_pl_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/pl.json";
+import blog_pt_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/pt.json";
+import blog_ro_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/ro.json";
+import blog_ru_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/ru.json";
+import blog_sk_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/sk.json";
+import blog_sl_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/sl.json";
+import blog_sr_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/sr.json";
+import blog_sv_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/sv.json";
+import blog_tr_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/tr.json";
+import blog_uk_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/uk.json";
+import blog_zh_exportMermaidToPngSvg from "./blog/export-mermaid-to-png-svg/zh.json";
+import blog_ar_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/ar.json";
+import blog_bg_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/bg.json";
+import blog_ca_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/ca.json";
+import blog_cs_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/cs.json";
+import blog_da_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/da.json";
+import blog_de_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/de.json";
+import blog_el_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/el.json";
 import blog_en_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/en.json";
+import blog_es_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/es.json";
+import blog_et_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/et.json";
+import blog_fa_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/fa.json";
+import blog_fi_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/fi.json";
+import blog_fr_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/fr.json";
+import blog_hr_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/hr.json";
+import blog_hu_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/hu.json";
+import blog_is_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/is.json";
+import blog_it_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/it.json";
+import blog_ja_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/ja.json";
+import blog_ko_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/ko.json";
+import blog_lt_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/lt.json";
+import blog_lv_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/lv.json";
+import blog_nl_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/nl.json";
+import blog_no_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/no.json";
+import blog_pl_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/pl.json";
+import blog_pt_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/pt.json";
+import blog_ro_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/ro.json";
+import blog_ru_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/ru.json";
+import blog_sk_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/sk.json";
+import blog_sl_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/sl.json";
+import blog_sr_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/sr.json";
+import blog_sv_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/sv.json";
+import blog_tr_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/tr.json";
+import blog_uk_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/uk.json";
+import blog_zh_mermaidSequenceDiagram from "./blog/mermaid-sequence-diagram/zh.json";
+import blog_ar_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/ar.json";
+import blog_bg_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/bg.json";
+import blog_ca_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/ca.json";
+import blog_cs_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/cs.json";
+import blog_da_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/da.json";
+import blog_de_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/de.json";
+import blog_el_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/el.json";
 import blog_en_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/en.json";
+import blog_es_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/es.json";
+import blog_et_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/et.json";
+import blog_fa_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/fa.json";
+import blog_fi_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/fi.json";
+import blog_fr_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/fr.json";
+import blog_hr_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/hr.json";
+import blog_hu_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/hu.json";
+import blog_is_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/is.json";
+import blog_it_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/it.json";
+import blog_ja_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/ja.json";
+import blog_ko_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/ko.json";
+import blog_lt_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/lt.json";
+import blog_lv_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/lv.json";
+import blog_nl_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/nl.json";
+import blog_no_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/no.json";
+import blog_pl_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/pl.json";
+import blog_pt_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/pt.json";
+import blog_ro_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/ro.json";
+import blog_ru_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/ru.json";
+import blog_sk_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/sk.json";
+import blog_sl_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/sl.json";
+import blog_sr_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/sr.json";
+import blog_sv_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/sv.json";
+import blog_tr_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/tr.json";
+import blog_uk_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/uk.json";
+import blog_zh_mermaidSyntaxCheatSheet from "./blog/mermaid-syntax-cheat-sheet/zh.json";
 
 // Marketing copy + UI chrome, per locale.
 export const CHROME: Record<string, SiteTexts> = {
+  "ar": chrome_ar as unknown as SiteTexts,
+  "bg": chrome_bg as unknown as SiteTexts,
+  "ca": chrome_ca as unknown as SiteTexts,
+  "cs": chrome_cs as unknown as SiteTexts,
+  "da": chrome_da as unknown as SiteTexts,
+  "de": chrome_de as unknown as SiteTexts,
+  "el": chrome_el as unknown as SiteTexts,
   "en": chrome_en as unknown as SiteTexts,
+  "es": chrome_es as unknown as SiteTexts,
+  "et": chrome_et as unknown as SiteTexts,
+  "fa": chrome_fa as unknown as SiteTexts,
+  "fi": chrome_fi as unknown as SiteTexts,
+  "fr": chrome_fr as unknown as SiteTexts,
+  "hr": chrome_hr as unknown as SiteTexts,
+  "hu": chrome_hu as unknown as SiteTexts,
+  "is": chrome_is as unknown as SiteTexts,
+  "it": chrome_it as unknown as SiteTexts,
+  "ja": chrome_ja as unknown as SiteTexts,
+  "ko": chrome_ko as unknown as SiteTexts,
+  "lt": chrome_lt as unknown as SiteTexts,
+  "lv": chrome_lv as unknown as SiteTexts,
+  "nl": chrome_nl as unknown as SiteTexts,
+  "no": chrome_no as unknown as SiteTexts,
+  "pl": chrome_pl as unknown as SiteTexts,
+  "pt": chrome_pt as unknown as SiteTexts,
+  "ro": chrome_ro as unknown as SiteTexts,
+  "ru": chrome_ru as unknown as SiteTexts,
+  "sk": chrome_sk as unknown as SiteTexts,
+  "sl": chrome_sl as unknown as SiteTexts,
+  "sr": chrome_sr as unknown as SiteTexts,
+  "sv": chrome_sv as unknown as SiteTexts,
+  "tr": chrome_tr as unknown as SiteTexts,
+  "uk": chrome_uk as unknown as SiteTexts,
+  "zh": chrome_zh as unknown as SiteTexts,
 };
 
 // Editor workspace strings, per locale.
 export const EDITOR: Record<string, EditorTexts> = {
+  "ar": editor_ar as unknown as EditorTexts,
+  "bg": editor_bg as unknown as EditorTexts,
+  "ca": editor_ca as unknown as EditorTexts,
+  "cs": editor_cs as unknown as EditorTexts,
+  "da": editor_da as unknown as EditorTexts,
+  "de": editor_de as unknown as EditorTexts,
+  "el": editor_el as unknown as EditorTexts,
   "en": editor_en as unknown as EditorTexts,
+  "es": editor_es as unknown as EditorTexts,
+  "et": editor_et as unknown as EditorTexts,
+  "fa": editor_fa as unknown as EditorTexts,
+  "fi": editor_fi as unknown as EditorTexts,
+  "fr": editor_fr as unknown as EditorTexts,
+  "hr": editor_hr as unknown as EditorTexts,
+  "hu": editor_hu as unknown as EditorTexts,
+  "is": editor_is as unknown as EditorTexts,
+  "it": editor_it as unknown as EditorTexts,
+  "ja": editor_ja as unknown as EditorTexts,
+  "ko": editor_ko as unknown as EditorTexts,
+  "lt": editor_lt as unknown as EditorTexts,
+  "lv": editor_lv as unknown as EditorTexts,
+  "nl": editor_nl as unknown as EditorTexts,
+  "no": editor_no as unknown as EditorTexts,
+  "pl": editor_pl as unknown as EditorTexts,
+  "pt": editor_pt as unknown as EditorTexts,
+  "ro": editor_ro as unknown as EditorTexts,
+  "ru": editor_ru as unknown as EditorTexts,
+  "sk": editor_sk as unknown as EditorTexts,
+  "sl": editor_sl as unknown as EditorTexts,
+  "sr": editor_sr as unknown as EditorTexts,
+  "sv": editor_sv as unknown as EditorTexts,
+  "tr": editor_tr as unknown as EditorTexts,
+  "uk": editor_uk as unknown as EditorTexts,
+  "zh": editor_zh as unknown as EditorTexts,
 };
 
 // Blog articles keyed by `${locale}/${articleId}`.
 export const BLOG_CONTENT: Record<string, BlogArticleContent> = {
+  "ar/export-mermaid-to-png-svg": blog_ar_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "bg/export-mermaid-to-png-svg": blog_bg_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "ca/export-mermaid-to-png-svg": blog_ca_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "cs/export-mermaid-to-png-svg": blog_cs_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "da/export-mermaid-to-png-svg": blog_da_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "de/export-mermaid-to-png-svg": blog_de_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "el/export-mermaid-to-png-svg": blog_el_exportMermaidToPngSvg as unknown as BlogArticleContent,
   "en/export-mermaid-to-png-svg": blog_en_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "es/export-mermaid-to-png-svg": blog_es_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "et/export-mermaid-to-png-svg": blog_et_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "fa/export-mermaid-to-png-svg": blog_fa_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "fi/export-mermaid-to-png-svg": blog_fi_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "fr/export-mermaid-to-png-svg": blog_fr_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "hr/export-mermaid-to-png-svg": blog_hr_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "hu/export-mermaid-to-png-svg": blog_hu_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "is/export-mermaid-to-png-svg": blog_is_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "it/export-mermaid-to-png-svg": blog_it_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "ja/export-mermaid-to-png-svg": blog_ja_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "ko/export-mermaid-to-png-svg": blog_ko_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "lt/export-mermaid-to-png-svg": blog_lt_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "lv/export-mermaid-to-png-svg": blog_lv_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "nl/export-mermaid-to-png-svg": blog_nl_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "no/export-mermaid-to-png-svg": blog_no_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "pl/export-mermaid-to-png-svg": blog_pl_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "pt/export-mermaid-to-png-svg": blog_pt_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "ro/export-mermaid-to-png-svg": blog_ro_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "ru/export-mermaid-to-png-svg": blog_ru_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "sk/export-mermaid-to-png-svg": blog_sk_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "sl/export-mermaid-to-png-svg": blog_sl_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "sr/export-mermaid-to-png-svg": blog_sr_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "sv/export-mermaid-to-png-svg": blog_sv_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "tr/export-mermaid-to-png-svg": blog_tr_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "uk/export-mermaid-to-png-svg": blog_uk_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "zh/export-mermaid-to-png-svg": blog_zh_exportMermaidToPngSvg as unknown as BlogArticleContent,
+  "ar/mermaid-sequence-diagram": blog_ar_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "bg/mermaid-sequence-diagram": blog_bg_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "ca/mermaid-sequence-diagram": blog_ca_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "cs/mermaid-sequence-diagram": blog_cs_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "da/mermaid-sequence-diagram": blog_da_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "de/mermaid-sequence-diagram": blog_de_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "el/mermaid-sequence-diagram": blog_el_mermaidSequenceDiagram as unknown as BlogArticleContent,
   "en/mermaid-sequence-diagram": blog_en_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "es/mermaid-sequence-diagram": blog_es_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "et/mermaid-sequence-diagram": blog_et_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "fa/mermaid-sequence-diagram": blog_fa_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "fi/mermaid-sequence-diagram": blog_fi_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "fr/mermaid-sequence-diagram": blog_fr_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "hr/mermaid-sequence-diagram": blog_hr_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "hu/mermaid-sequence-diagram": blog_hu_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "is/mermaid-sequence-diagram": blog_is_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "it/mermaid-sequence-diagram": blog_it_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "ja/mermaid-sequence-diagram": blog_ja_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "ko/mermaid-sequence-diagram": blog_ko_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "lt/mermaid-sequence-diagram": blog_lt_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "lv/mermaid-sequence-diagram": blog_lv_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "nl/mermaid-sequence-diagram": blog_nl_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "no/mermaid-sequence-diagram": blog_no_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "pl/mermaid-sequence-diagram": blog_pl_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "pt/mermaid-sequence-diagram": blog_pt_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "ro/mermaid-sequence-diagram": blog_ro_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "ru/mermaid-sequence-diagram": blog_ru_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "sk/mermaid-sequence-diagram": blog_sk_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "sl/mermaid-sequence-diagram": blog_sl_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "sr/mermaid-sequence-diagram": blog_sr_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "sv/mermaid-sequence-diagram": blog_sv_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "tr/mermaid-sequence-diagram": blog_tr_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "uk/mermaid-sequence-diagram": blog_uk_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "zh/mermaid-sequence-diagram": blog_zh_mermaidSequenceDiagram as unknown as BlogArticleContent,
+  "ar/mermaid-syntax-cheat-sheet": blog_ar_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "bg/mermaid-syntax-cheat-sheet": blog_bg_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "ca/mermaid-syntax-cheat-sheet": blog_ca_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "cs/mermaid-syntax-cheat-sheet": blog_cs_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "da/mermaid-syntax-cheat-sheet": blog_da_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "de/mermaid-syntax-cheat-sheet": blog_de_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "el/mermaid-syntax-cheat-sheet": blog_el_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
   "en/mermaid-syntax-cheat-sheet": blog_en_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "es/mermaid-syntax-cheat-sheet": blog_es_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "et/mermaid-syntax-cheat-sheet": blog_et_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "fa/mermaid-syntax-cheat-sheet": blog_fa_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "fi/mermaid-syntax-cheat-sheet": blog_fi_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "fr/mermaid-syntax-cheat-sheet": blog_fr_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "hr/mermaid-syntax-cheat-sheet": blog_hr_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "hu/mermaid-syntax-cheat-sheet": blog_hu_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "is/mermaid-syntax-cheat-sheet": blog_is_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "it/mermaid-syntax-cheat-sheet": blog_it_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "ja/mermaid-syntax-cheat-sheet": blog_ja_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "ko/mermaid-syntax-cheat-sheet": blog_ko_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "lt/mermaid-syntax-cheat-sheet": blog_lt_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "lv/mermaid-syntax-cheat-sheet": blog_lv_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "nl/mermaid-syntax-cheat-sheet": blog_nl_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "no/mermaid-syntax-cheat-sheet": blog_no_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "pl/mermaid-syntax-cheat-sheet": blog_pl_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "pt/mermaid-syntax-cheat-sheet": blog_pt_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "ro/mermaid-syntax-cheat-sheet": blog_ro_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "ru/mermaid-syntax-cheat-sheet": blog_ru_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "sk/mermaid-syntax-cheat-sheet": blog_sk_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "sl/mermaid-syntax-cheat-sheet": blog_sl_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "sr/mermaid-syntax-cheat-sheet": blog_sr_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "sv/mermaid-syntax-cheat-sheet": blog_sv_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "tr/mermaid-syntax-cheat-sheet": blog_tr_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "uk/mermaid-syntax-cheat-sheet": blog_uk_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
+  "zh/mermaid-syntax-cheat-sheet": blog_zh_mermaidSyntaxCheatSheet as unknown as BlogArticleContent,
 };
 
 // Locales whose chrome AND editor strings both exist — the rollout gate for
 // static params, sitemap, hreflang and the footer's language switcher. A
 // locale with only half its files would render a half-English page.
-export const READY_LOCALES: string[] = ["en"];
+export const READY_LOCALES: string[] = ["ar","bg","ca","cs","da","de","el","en","es","et","fa","fi","fr","hr","hu","is","it","ja","ko","lt","lv","nl","no","pl","pt","ro","ru","sk","sl","sr","sv","tr","uk","zh"];

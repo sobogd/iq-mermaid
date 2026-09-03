@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Flytja mermaid út sem PNG, SVG eða Markdown",
+    "description": "Hvernig á að breyta mermaid skýringarmynd í PNG- eða SVG-skrá, afrita SVG-kóðann, eða halda henni sem texta fyrir GitHub og Notion — og hvað hentar hvenær."
+  },
+  "card": {
+    "title": "Flytja mermaid út sem PNG eða SVG",
+    "excerpt": "Fjórar leiðir út úr mermaid skýringarmynd — PNG, SVG, .mmd frumkóði og Markdown-blokk — og hvenær hver þeirra er rétta svarið."
+  },
+  "h1": "Flytja mermaid skýringarmynd út sem PNG, SVG eða Markdown",
+  "intro": "Skýringarmynd nýtist aðeins þar sem hún sést. Mermaid gefur þér fjórar leiðir út — mynd, vektor, frumkóða, eða Markdown-blokk sem birtir sig sjálf — og rétta leiðin ræðst algjörlega af því hvert skýringarmyndin er að fara. Þetta er stutta útgáfan, ásamt því sem getur klikkað með hverri þeirra.",
+  "blocks": [
+    { "type": "h2", "text": "Veldu sniðið fyrst" },
+    {
+      "type": "table",
+      "headers": ["Áfangastaður", "Notaðu", "Af hverju"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Markdown-blokk", "Birtist beint og helst samanburðarhæf — engin skrá að halda í samræmi."],
+        ["Glærur, forskrift, spjallskilaboð", "PNG", "Límist hvar sem er, þarfnast engrar birtingarvélar, lítur eins út alls staðar."],
+        ["Vefsíða, prentað skjal", "SVG", "Vektor — skörp í hvaða stærð sem er, og textinn helst valanlegur."],
+        ["Annar ritill, geymsla (repo)", "`.mmd` frumkóði", "Breytanlegt síðar. Mynd er blindgata."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Ef áfangastaðurinn birtir mermaid sjálfur, skaltu alls ekki flytja út. Skýringarmynd sem er vistuð sem texti er hægt að fara yfir línu fyrir línu; sama skýringarmynd vistuð sem PNG er aðeins hægt að skipta út."
+    },
+
+    { "type": "h2", "text": "Flytja út úr þessum ritli" },
+    {
+      "type": "p",
+      "text": "Opnaðu kóðaflipann — útflutningshnapparnir eru í verkfærastikunni, og hver þeirra vinnur með það sem er birt hverju sinni."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**Afrita SVG** — setur `<svg>` kóðann á klippiborðið, tilbúinn til að líma beint inn í HTML-skrá eða hönnunartól.",
+        "**Sækja SVG** — vistar `diagram.svg`.",
+        "**Sækja PNG** — vistar `diagram.png`, birt í 2x upplausn með hvítum bakgrunni svo hún haldist skörp á háupplausnarskjá og lendi aldrei sem gagnsæ klessa á hvítri glæru.",
+        "**Sækja .mmd** — vistar mermaid frumkóðann sem hreina textaskrá.",
+        "**Sækja .md (Notion)** — vistar frumkóðann innan í afmarkaðri ```mermaid blokk, sem Notion, GitHub og Obsidian birta um leið og henni er límt inn."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Fyrir glærusýningu, taktu PNG. Fyrir allt sem verður stækkað eða minnkað — fyrirsögn í skjali, plakat, prentun — taktu SVG; PNG sem er stækkuð umfram útflutningsstærðina verður óskörp samstundis."
+    },
+
+    { "type": "h2", "text": "Haltu henni sem texta í staðinn" },
+    {
+      "type": "p",
+      "text": "Afmarkaða blokkin er eini útflutningurinn sem helst breytanlegur á staðnum. Þrjú bakhögg, orðið `mermaid`, skýringarmyndin þín, þrjú bakhögg:"
+    },
+    {
+      "type": "code",
+      "caption": "Límdu þetta inn í GitHub README og það birtist.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — birtist í README-skrám, issues, pull requests og athugasemdum.",
+        "**GitLab** — birtist í wiki, issues og merge requests.",
+        "**Notion** — límdu inn í kóðablokk og stilltu tungumálið á Mermaid.",
+        "**Obsidian** — birtist í forskoðun og í birtum minnisblöðum.",
+        "**Docusaurus / MkDocs Material / VitePress** — mermaid blokkir birtast í byggðum skjölum."
+      ]
+    },
+
+    { "type": "h2", "text": "Það sem getur klikkað" },
+    { "type": "h3", "text": "PNG-myndin er óskýr" },
+    {
+      "type": "p",
+      "text": "PNG hefur fasta upplausn: hún er flutt út í tiltekinni pixlastærð og stækkun umfram það notar brúun. Þess vegna flytur þessi ritill út í 2x upplausn. Ef það dugar samt ekki, flyttu þá út SVG og umbreyttu því í þá stærð sem þú þarft — eða notaðu bara SVG-ið."
+    },
+    { "type": "h3", "text": "SVG-myndin hefur engan bakgrunn" },
+    {
+      "type": "p",
+      "text": "SVG-útflutningur er gagnsær eðli málsins samkvæmt, þannig að dökkur hnútatexti hverfur á dökkri glæru. Settu SVG-ið annaðhvort á ljóst spjald, eða taktu PNG-ið, sem er flutt út á hvítum bakgrunni."
+    },
+    { "type": "h3", "text": "Leturgerðin lítur öðruvísi út annars staðar" },
+    {
+      "type": "p",
+      "text": "SVG vísar í leturfjölskyldur frekar en að fela þær innbyggðar, svo tölva sem hefur ekki það letur setur annað í staðinn og merkimiðakassarnir hætta að raðast rétt. Notaðu PNG þegar þú ræður ekki við leturgerðirnar hjá þeim sem skoðar."
+    },
+    { "type": "h3", "text": "Skýringarmyndin er skorin af" },
+    {
+      "type": "p",
+      "text": "Útflutningur les það sem er birt hverju sinni, svo miðjaðu sýnina aftur áður en þú flytur út stóra skýringarmynd. Ef merkimiði hnúts er risastór, skiptu honum með `<br>` — mermaid brýtur ekki merkimiða sjálfkrafa."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Flyttu út í tveimur smellum",
+      "text": "Opnaðu ritilinn, límdu inn eða teiknaðu skýringarmyndina þína, og taktu SVG-ið, PNG-ið eða frumkóðann. Ekkert er læst á bak við aðgang.",
+      "buttonLabel": "Opna ritilinn"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Algengar spurningar",
+      "items": [
+        {
+          "q": "Hvernig breyti ég mermaid í PNG?",
+          "a": "Birtu skýringarmyndina og notaðu svo Sækja PNG. Ritillinn teiknar birta SVG-ið á striga í 2x kvarða með hvítum bakgrunni og vistar niðurstöðuna — engin ferð til netþjóns, svo skýringarmyndin fer aldrei út úr vafranum þínum."
+        },
+        {
+          "q": "Get ég flutt út gagnsæja PNG-mynd?",
+          "a": "Ekki með PNG-hnappnum — hann fyllir viljandi með hvítu, því dökkur texti á skýringarmynd á gagnsæjum bakgrunni er ólæsilegur á flestum stöðum þar sem PNG er límt inn. Flyttu SVG-ið út í staðinn; það er gagnsætt."
+        },
+        {
+          "q": "Er einhver stærðartakmörkun?",
+          "a": "Engin föst takmörkun. Útflutningur fer fram í vafranum þínum, svo raunverulega takmörkunin er það sem vafrinn þinn getur birt — sem er langt umfram þann punkt þar sem skýringarmynd er enn læsileg manneskju."
+        },
+        {
+          "q": "Hvernig held ég skýringarmyndinni breytanlegri eftir útflutning?",
+          "a": "Haltu frumkóðanum. Sæktu `.mmd` skrána eða Markdown-blokkina samhliða myndinni; ekki er hægt að breyta PNG eða SVG aftur í mermaid, en frumkóðanum er hægt að líma beint aftur inn í ritilinn."
+        }
+      ]
+    }
+  ]
+}

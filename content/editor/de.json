@@ -1,0 +1,83 @@
+{
+  "backToSite": "Zurück zur Startseite",
+  "tabs": { "visual": "Visuell", "text": "Code" },
+  "toolbar": {
+    "addBlock": "Block hinzufügen",
+    "addGroup": "Bereich hinzufügen",
+    "copy": "Kopieren (ein Block oder ein ganzer Bereich mit allem darin)",
+    "paste": "Einfügen — dann klicken, wohin es soll",
+    "delete": "Auswahl löschen",
+    "clearAll": "Alles löschen",
+    "connect": "Pfeil zu einem anderen Block ziehen",
+    "move": "In einen Bereich verschieben, oder heraus",
+    "color": "Farbe",
+    "shape": "Form"
+  },
+  "zoom": { "center": "Neu zentrieren" },
+  "modals": { "colorTitle": "Farbe", "shapeTitle": "Form" },
+  "shapes": {
+    "rect": "Rechteck",
+    "rounded": "Abgerundet",
+    "pill": "Pille",
+    "circle": "Kreis",
+    "diamond": "Raute",
+    "subroutine": "Subroutine",
+    "cylinder": "Datenbank",
+    "hexagon": "Sechseck",
+    "asymmetric": "Fahne",
+    "parallelogram": "Parallelogramm",
+    "parallelogramAlt": "Parallelogramm (gespiegelt)",
+    "trapezoid": "Trapez",
+    "trapezoidAlt": "Trapez (gespiegelt)",
+    "doubleCircle": "Doppelkreis"
+  },
+  "hints": {
+    "connect": "Klicke auf den Block, auf den der Pfeil zeigen soll · Esc zum Abbrechen",
+    "move": "Klicke auf einen Bereich, um hineinzuverschieben, oder auf freien Platz, um herauszuverschieben · Esc zum Abbrechen",
+    "paste": "Klicke auf einen Bereich oder freien Platz zum Einfügen · Esc zum Abbrechen"
+  },
+  "prompts": {
+    "edgeLabel": "Pfeilbeschriftung:",
+    "clearAll": "Alles löschen?"
+  },
+  "defaults": {
+    "block": "Block",
+    "group": "Bereich",
+    "start": "Start",
+    "action": "Aktion"
+  },
+  "text": {
+    "examplePlaceholder": "Beispiel…",
+    "copyMermaid": "Mermaid kopieren",
+    "downloadMmd": ".mmd herunterladen",
+    "downloadMd": ".md herunterladen (Notion)",
+    "copySvg": "SVG kopieren",
+    "downloadSvg": "SVG herunterladen",
+    "downloadPng": "PNG herunterladen",
+    "statusOk": "OK",
+    "statusError": "Fehler",
+    "statusSvgCopied": "SVG kopiert",
+    "statusMermaidCopied": "Mermaid kopiert"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Sequenzdiagramm",
+    "class": "Klassendiagramm",
+    "state": "Zustandsdiagramm",
+    "er": "ER-Diagramm",
+    "gantt": "Gantt-Diagramm"
+  },
+  "sample": {
+    "start": "Start",
+    "condition": "Bereit?",
+    "yes": "Ja",
+    "no": "Nein",
+    "action1": "Ausliefern",
+    "action2": "Beheben",
+    "end": "Fertig",
+    "project": "Projekt",
+    "phase": "Phase 1",
+    "task1": "Aufgabe 1",
+    "task2": "Aufgabe 2"
+  }
+}

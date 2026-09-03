@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Aide-mémoire de la syntaxe Mermaid, avec exemples",
+    "description": "La syntaxe mermaid utile au quotidien : formes de nœuds, flèches, sous-graphes, styles et un exemple par type de diagramme. Copiez, collez, modifiez."
+  },
+  "card": {
+    "title": "Aide-mémoire de la syntaxe mermaid",
+    "excerpt": "Formes de nœuds, flèches, sous-graphes et styles sur une seule page — plus un exemple fonctionnel de chaque type de diagramme que mermaid sait afficher."
+  },
+  "h1": "Aide-mémoire de la syntaxe mermaid",
+  "intro": "Mermaid a une référence volumineuse et un petit sous-ensemble qui couvre presque tout ce que les gens dessinent. Cette page, c'est ce sous-ensemble : formes, flèches, regroupement, couleurs, et un exemple prêt à coller par type de diagramme. Chaque extrait ci-dessous s'affiche tel quel — collez-le dans l'[éditeur](app:) pour le voir.",
+  "blocks": [
+    { "type": "h2", "text": "Le plus petit diagramme qui fonctionne" },
+    {
+      "type": "p",
+      "text": "Un flowchart nécessite une ligne de déclaration et une flèche. `TD` signifie de haut en bas ; utilisez `LR` pour un sens gauche-droite, mieux adapté aux processus larges."
+    },
+    {
+      "type": "code",
+      "caption": "Un flowchart à trois nœuds, de haut en bas.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` et `C` sont des identifiants de nœuds — des noms internes, jamais affichés. Le texte entre crochets est le libellé, et le **style** des crochets détermine la forme."
+    },
+
+    { "type": "h2", "text": "Formes de nœuds" },
+    {
+      "type": "p",
+      "text": "La forme est choisie par la paire de délimiteurs autour du libellé. Voici celles à retenir :"
+    },
+    {
+      "type": "table",
+      "headers": ["Syntaxe", "Forme", "Signification habituelle"],
+      "rows": [
+        ["`A[Text]`", "Rectangle", "Une étape ou une action"],
+        ["`A(Text)`", "Arrondi", "Un point de départ ou d'arrivée"],
+        ["`A([Text])`", "Pilule", "Un terminateur"],
+        ["`A[[Text]]`", "Sous-routine", "Un appel vers un autre processus"],
+        ["`A[(Text)]`", "Cylindre", "Une base de données ou un stockage"],
+        ["`A((Text))`", "Cercle", "Une jonction"],
+        ["`A{Text}`", "Losange", "Une décision"],
+        ["`A{{Text}}`", "Hexagone", "Une étape de préparation"],
+        ["`A[/Text/]`", "Parallélogramme", "Entrée ou sortie"],
+        ["`A[/Text\\]`", "Trapèze", "Une opération manuelle"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Mettez le libellé entre guillemets s'il contient des crochets, deux-points ou guillemets : `A[\"Load (raw) data\"]`. Sans guillemets, l'analyseur interprète votre ponctuation comme de la syntaxe."
+    },
+
+    { "type": "h2", "text": "Flèches" },
+    {
+      "type": "table",
+      "headers": ["Syntaxe", "Résultat"],
+      "rows": [
+        ["`A --> B`", "Flèche"],
+        ["`A --- B`", "Ligne, sans pointe"],
+        ["`A -.-> B`", "Flèche pointillée"],
+        ["`A ==> B`", "Flèche épaisse"],
+        ["`A -->|label| B`", "Flèche avec un libellé"],
+        ["`A --> B --> C`", "Chaîne, écrite sur une ligne"],
+        ["`A --> B & C`", "Une source, deux cibles"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "La longueur de la flèche a aussi un sens : `-->` correspond à un rang, `--->` pousse la cible un rang plus loin. C'est le contrôle de mise en page le plus simple que mermaid vous offre."
+    },
+
+    { "type": "h2", "text": "Regrouper avec des sous-graphes" },
+    {
+      "type": "p",
+      "text": "Un `subgraph` dessine un cadre étiqueté autour de nœuds. Les sous-graphes s'imbriquent, et les flèches peuvent librement traverser leurs bordures."
+    },
+    {
+      "type": "code",
+      "caption": "Deux services, chacun avec son propre stockage.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Couleur et style" },
+    {
+      "type": "p",
+      "text": "`style` colore un seul nœud. `classDef` associé à `class` en colore un ensemble, ce qu'il vous faut au-delà de trois ou quatre nœuds."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Les couleurs font partie de la source du diagramme, elles survivent donc à l'export et voyagent avec le fichier. Rien ici ne dépend d'un paramètre de thème de l'outil qui l'affiche."
+    },
+
+    { "type": "h2", "text": "Un exemple par type de diagramme" },
+    {
+      "type": "h3",
+      "text": "Diagramme de séquence"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Diagramme de classes" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Diagramme d'état" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Diagramme entité-relation" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Diagramme de Gantt" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Où mermaid s'affiche tout seul" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — un bloc ```mermaid s'affiche dans les issues, les pull requests, les commentaires et les fichiers README.",
+        "**GitLab** — le même bloc, dans les issues, les merge requests et le wiki.",
+        "**Notion** — un bloc de code avec le langage réglé sur Mermaid s'affiche à côté de la source.",
+        "**Obsidian** — un bloc mermaid s'affiche en mode aperçu.",
+        "**Sites de documentation** — Docusaurus, MkDocs Material et VitePress prennent tous en charge les blocs mermaid."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "C'est la vraie raison de garder les diagrammes en mermaid plutôt qu'en images : le diagramme vit dans le même fichier texte que ce qu'il décrit, et une revue de code peut voir ce qui y a changé."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Essayez n'importe quel extrait de cette page",
+      "text": "Collez-le dans l'onglet code et il s'affiche instantanément — ou construisez le même diagramme sur le canevas et relisez la syntaxe générée.",
+      "buttonLabel": "Ouvrir l'éditeur"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Questions fréquentes",
+      "items": [
+        {
+          "q": "Comment ajouter un saut de ligne dans un libellé de nœud ?",
+          "a": "Utilisez `<br>` dans un libellé entre guillemets : `A[\"First line<br>Second line\"]`. Mermaid affiche le libellé comme du HTML, donc la balise fonctionne même si le reste de la syntaxe n'est pas du HTML."
+        },
+        {
+          "q": "Pourquoi mon libellé casse-t-il le diagramme ?",
+          "a": "Presque toujours un crochet, une parenthèse, un deux-points ou un guillemet non entouré de guillemets dans le libellé. Entourez tout le libellé de guillemets doubles et l'analyseur cessera de traiter votre ponctuation comme de la syntaxe."
+        },
+        {
+          "q": "Puis-je contrôler la mise en page ?",
+          "a": "Seulement indirectement. Choisissez la direction (`TD`, `LR`, `BT`, `RL`), utilisez des flèches plus longues (`--->`) pour espacer davantage les nœuds, et regroupez les nœuds liés dans des sous-graphes. Mermaid calcule le reste — il n'y a pas de coordonnées."
+        },
+        {
+          "q": "Quelle version de mermaid utilise cet éditeur ?",
+          "a": "Mermaid 11, la version majeure actuelle, donc tout ce qui est documenté pour la syntaxe v10 et v11 s'affiche ici."
+        }
+      ]
+    }
+  ]
+}

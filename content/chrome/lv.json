@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Mermaid tiešsaistes redaktors — bezmaksas diagrammu veidošana",
+    "description": "Bezmaksas mermaid tiešsaistes redaktors: zīmējiet diagrammu vizuāli vai rakstiet mermaid kodu — abi paliek sinhronizēti. Bez reģistrācijas, eksports SVG/PNG.",
+    "ogTitle": "Mermaid tiešsaistes redaktors — bezmaksas, bez reģistrācijas",
+    "ogDescription": "Zīmējiet diagrammas uz audekla vai rakstiet mermaid kodu. Abi skati paliek sinhronizēti. Eksportējiet SVG, PNG, .mmd vai Markdown formātā.",
+    "twitterTitle": "Bezmaksas mermaid tiešsaistes redaktors",
+    "twitterDescription": "Vizuāls audekls un mermaid kods līdzās. Bez reģistrācijas, bez maksas sienas."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Iespējas",
+    "blog": "Rokasgrāmatas",
+    "faq": "BUJ",
+    "openEditor": "Atvērt redaktoru",
+    "menu": "Izvēlne"
+  },
+  "hero": {
+    "badgeFree": "Vienmēr bezmaksas",
+    "badgeNoSignup": "Bez reģistrācijas",
+    "badgeDiagrams": "8 diagrammu veidi",
+    "title": "Mermaid tiešsaistes redaktors,",
+    "titleAccent": "vizuāli un kods vienuviet",
+    "description": "Lielākā daļa mermaid redaktoru piedāvā tikai teksta lauku un priekšskatījumu. Šis dod arī audeklu: uzklikšķiniet, lai pievienotu bloku, velciet bultu, grupējiet elementus apgabalos — un mermaid kods uzrakstās pats. Pārslēdzieties uz koda cilni un rediģējiet ar roku — audekls seko līdzi.",
+    "ctaOpen": "Atvērt redaktoru",
+    "ctaLearn": "Uzzināt vairāk",
+    "mockCodeLabel": "Mermaid kods",
+    "mockDiagramLabel": "Atveidotā diagramma"
+  },
+  "statCards": [
+    { "title": "Atveido rakstīšanas laikā", "sub": "Īstais mermaid dzinējs, kas pārzīmē dažus simtus milisekunžu pēc jūsu pēdējā taustiņsitiena." },
+    { "title": "Kods un audekls sinhronizējas", "sub": "Rediģējiet jebkuru pusi — otra pievienojas automātiski, bez kopēšanas starp diviem rīkiem." },
+    { "title": "14 mezglu formas", "sub": "Taisnstūris, noapaļots, tablete, aplis, rombs, datubāze, sešstūris un pārējie — katrs vienā klikšķī." },
+    { "title": "Bezmaksas, bez konta", "sub": "Bez reģistrācijas, bez izmēģinājuma, bez ūdenszīmes eksportā. Jūsu diagramma paliek pārlūkā." }
+  ],
+  "spotlights": [
+    {
+      "heading": "Audekls, ne tikai teksta lauks",
+      "sub": "Vizuālā cilne ir īsts redaktors tieši virs atveidotās diagrammas: uzklikšķiniet uz mezgla, lai to atlasītu, veiciet dubultklikšķi, lai pārdēvētu uz vietas, velciet jebkur, lai pārvietotu skatu.",
+      "bullets": [
+        { "title": "Būvējiet ar klikšķi", "sub": "Pievienojiet bloku, norādiet bultu uz citu, pievienojiet bultai etiķeti. Nav sintakses, kas jāatceras pirms sākuma." },
+        { "title": "Izvēlieties formu", "sub": "Četrpadsmit mermaid plūsmas diagrammas formas — lēmumu rombi, datubāzu cilindri, apakšprogrammas — vienā izvēlnē." },
+        { "title": "Iekrāsojiet jebko", "sub": "Astoņi sagatavotie varianti plus krāsu izvēle, ko var pielietot vienam mezglam vai visam apgabalam." }
+      ]
+    },
+    {
+      "heading": "Mermaid kods, kas paliek jūsu",
+      "sub": "Teksta cilne ir tīrs mermaid — tā pati sintakse, ko jau atveido GitHub, GitLab, Notion un Obsidian. Šeit nav neviena patentēta formāta.",
+      "bullets": [
+        { "title": "Rakstiet ar roku", "sub": "Rakstiet mermaid tieši un vērojiet, kā tas atveidojas. Seši gatavi piemēri, no kuriem sākt." },
+        { "title": "Divvirzienu process", "sub": "Ielīmētas plūsmas diagrammas tiek atkal atpazītas audeklā — mezgli, formas, krāsas, apakšgrafi un viss pārējais." },
+        { "title": "Visi diagrammu veidi", "sub": "Flowchart, secības, klašu, stāvokļu, ER, gantt, git grafa, apļa diagrammas — priekšskatījums atveido visu, ko atbalsta mermaid." }
+      ]
+    },
+    {
+      "heading": "Lielas diagrammas paliek lasāmas",
+      "sub": "Arhitektūras diagrammas ātri pārsniedz viena ekrāna izmēru. Pārvietošana, tuvināšana un grupēšana ir izveidotas tieši šim, nevis pret to.",
+      "bullets": [
+        { "title": "Apgabali un ligzdošana", "sub": "Grupējiet blokus apakšgrafos, ievietojiet vienu apgabalu citā, pārvietojiet visu apakškoku vienā kustībā." },
+        { "title": "Tuvināšana no 2% līdz 1600%", "sub": "Ritiniet, lai pārvietotos, ctrl+ritināšana, lai tuvinātu, vai atcentrējiet ar vienu pogu." },
+        { "title": "Saglabājas automātiski", "sub": "Jūsu diagramma tiek ierakstīta pārlūka lokālajā krātuvē pēc katras izmaiņas — aizveriet cilni un atgriezieties pie tās vēlāk." }
+      ]
+    },
+    {
+      "heading": "Eksportējiet un turpiniet darbu",
+      "sub": "Nekas nav ieslēgts būrī. Ņemiet attēlu, ņemiet pirmkodu vai ņemiet Markdown bloku, kas gatavs ielīmēšanai dokumentā.",
+      "bullets": [
+        { "title": "Bez maksas sienas", "sub": "Visas funkcijas, tostarp eksports, ir bezmaksas. Nav maksas plāna, uz kuru pāriet." },
+        { "title": "Nekas nepamet jūsu pārlūku", "sub": "Nav konta un nav diagrammu glabāšanas serverī — atveidošana notiek lokāli." },
+        { "title": "SVG, PNG, .mmd, .md", "sub": "Kopējiet SVG kodu, lejupielādējiet 2x PNG, saglabājiet mermaid pirmkodu vai paņemiet Markdown bloku." }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Kā tas salīdzinās ar",
+    "titleAccent": "ierastajām alternatīvām",
+    "description": "Diagram-as-code rīki liek visu rakstīt ar roku. Vilkšanas-nomešanas rīki dod attēlu, kuru nevar salīdzināt pa versijām. Šis atsakās izvēlēties pusi.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Tipisks rīks",
+    "rows": [
+      {
+        "title": "Sākot darbu",
+        "us": "Veiciet dubultklikšķi uz audekla, un parādās mezgls. Sintaksi var apgūt vēlāk — vai nekad.",
+        "them": "Vispirms jālasa sintakses uzziņa, vai jāsamierinās ar zīmēšanas rīku bez teksta atveida vispār."
+      },
+      {
+        "title": "Izvades formāts",
+        "us": "Tīrs mermaid — tas pats teksts, ko GitHub, GitLab un Notion atveido nativi.",
+        "them": "Patentēts fails, kas atveras tikai rīkā, kurā tas izveidots."
+      },
+      {
+        "title": "Rediģēšana vēlāk",
+        "us": "Mainiet kodu vai pārvietojiet blokus. Abi virzieni darbojas ar vienu un to pašu diagrammu.",
+        "them": "Tikai viens virziens: uz kodu balstītiem rīkiem nav audekla, uz audeklu balstītiem rīkiem nav pirmkoda."
+      },
+      {
+        "title": "Cena",
+        "us": "Bezmaksas, bez konta, bez eksporta ierobežojumiem.",
+        "them": "Bezmaksas plāns ierobežots līdz pāris diagrammām, eksports vai sadarbība pieejama tikai ar abonementu."
+      },
+      {
+        "title": "Kur atrodas dati",
+        "us": "Jūsu pārlūka lokālajā krātuvē. Bez pieteikšanās, bez augšupielādes.",
+        "them": "Konts kāda serverī, kuram piesaistītas jūsu diagrammas."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Mermaid redaktora",
+    "headingAccent": "jautājumi",
+    "sub": "To, ko cilvēki jautā, pirms to atver. Reģistrācija nav vajadzīga — redaktors ir viena klikšķa attālumā.",
+    "items": [
+      {
+        "q": "Kas ir mermaid?",
+        "a": "Mermaid ir teksta sintakse diagrammām: mezglus un bultas apraksta dažās rindiņās, un atveidotājs uzzīmē attēlu. GitHub, GitLab, Notion un Obsidian to atveido tieši Markdown iekšienē, tāpēc mermaid bloks paliek lasāms pull request vai wiki lapā."
+      },
+      {
+        "q": "Vai šis mermaid redaktors tiešām ir bezmaksas?",
+        "a": "Jā. Visas funkcijas, tostarp SVG un PNG eksports, ir bezmaksas, un konts nav jāveido. Nav maksas plāna — nekas netiek paturēts."
+      },
+      {
+        "q": "Vai man jāzina mermaid sintakse?",
+        "a": "Nē. Sāciet vizuālajā cilnē: veiciet dubultklikšķi uz audekla, lai pievienotu bloku, atlasiet to un uzzīmējiet bultu uz citu. Mermaid kods tiek ģenerēts automātiski, un varat to lasīt jebkurā brīdī, kad vēlaties apgūt sintaksi."
+      },
+      {
+        "q": "Kādi diagrammu veidi tiek atbalstīti?",
+        "a": "Koda cilne atveido visu, ko atbalsta mermaid — flowchart, secības, klašu, stāvokļu, entītiju attiecību, gantt, git grafa, apļa diagrammas un citas. Vizuālais audekls rediģē tieši plūsmas diagrammas, kas veido lielāko daļu diagrammu."
+      },
+      {
+        "q": "Vai varu eksportēt uz PNG vai SVG?",
+        "a": "Jā. Kopējiet SVG kodu starpliktuvē, lejupielādējiet SVG failu vai lejupielādējiet PNG, kas atveidots 2x izšķirtspējā prezentācijām un dokumentiem. Varat arī saglabāt mermaid pirmkodu kā .mmd vai kā Markdown bloku."
+      },
+      {
+        "q": "Kur tiek glabāta mana diagramma?",
+        "a": "Jūsu pārlūka lokālajā krātuvē, jūsu pašu ierīcē. Nav konta un nav kopijas serverī, tāpēc pārlūka datu dzēšana vai ierīces maiņa nozīmē sākt no jauna — eksportējiet pirmkodu, ja vēlaties to saglabāt."
+      },
+      {
+        "q": "Vai varu ielīmēt jau esošu mermaid diagrammu?",
+        "a": "Jā. Ielīmējiet to koda cilnē — plūsmas diagramma tiek atpazīta un pārnesta uz vizuālo audeklu ar visiem mezgliem, formām, krāsām un apakšgrafiem neskartiem. Citi diagrammu veidi tiek atveidoti priekšskatījumā, bet paliek tikai kodā."
+      },
+      {
+        "q": "Vai tas darbojas bezsaistē?",
+        "a": "Atveidošana notiek pilnībā jūsu pārlūkā, tāpēc pēc lapas ielādes redaktors turpina darboties bez interneta savienojuma. Jūsu diagramma atrodas lokālajā krātuvē, nevis serverī."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Atveriet redaktoru.",
+    "headingAccent": "Nav nekur jāreģistrējas.",
+    "sub": "Tukšs audekls, koda cilne un visas eksporta iespējas — bez maksas, jūsu pārlūkā, tieši tagad.",
+    "ctaLabel": "Atvērt redaktoru"
+  },
+  "footer": {
+    "tagline": "Bezmaksas mermaid redaktors tiešsaistē",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Produkts",
+    "languagesHeading": "Valodas"
+  },
+  "app": {
+    "metaTitle": "Mermaid redaktors — zīmējiet un kodējiet līdzās",
+    "metaDescription": "Bezmaksas mermaid redaktors: vizuāls audekls un mermaid pirmkods, kas vienmēr sinhronizēti. Eksportējiet SVG, PNG, .mmd vai Markdown formātā.",
+    "backToSite": "Atpakaļ uz sākumlapu"
+  },
+  "blog": {
+    "metaTitle": "Mermaid rokasgrāmatas — sintakse, eksports un piemēri",
+    "metaDescription": "Īsas, praktiskas mermaid rokasgrāmatas: sintakse, ko tiešām lietosiet, kā eksportēt diagrammu uz PNG vai SVG un kā uzrakstīt secības diagrammu.",
+    "title": "Mermaid rokasgrāmatas",
+    "intro": "Īsas, praktiskas piezīmes par mermaid — sintakse, ko vērts iegaumēt, eksporta veidi, ko cilvēki visbiežāk meklē, un diagrammu veidi, kas parādās visbiežāk. Katrs piemērs no redaktora šķir tikai viena ielīmēšana.",
+    "readMore": "Lasīt rokasgrāmatu",
+    "backToBlog": "Visas rokasgrāmatas",
+    "relatedHeading": "Vairāk rokasgrāmatu"
+  }
+}

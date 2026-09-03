@@ -1,0 +1,83 @@
+{
+  "backToSite": "Takaisin etusivulle",
+  "tabs": { "visual": "Visuaalinen", "text": "Koodi" },
+  "toolbar": {
+    "addBlock": "Lisää lohko",
+    "addGroup": "Lisää alue",
+    "copy": "Kopioi (lohko tai kokonainen alue kaikkineen)",
+    "paste": "Liitä — klikkaa sitten mihin se menee",
+    "delete": "Poista valinta",
+    "clearAll": "Tyhjennä kaikki",
+    "connect": "Piirrä nuoli toiseen lohkoon",
+    "move": "Siirrä alueeseen tai pois siitä",
+    "color": "Väri",
+    "shape": "Muoto"
+  },
+  "zoom": { "center": "Keskitä uudelleen" },
+  "modals": { "colorTitle": "Väri", "shapeTitle": "Muoto" },
+  "shapes": {
+    "rect": "Suorakulmio",
+    "rounded": "Pyöristetty",
+    "pill": "Pilleri",
+    "circle": "Ympyrä",
+    "diamond": "Vinoneliö",
+    "subroutine": "Aliohjelma",
+    "cylinder": "Tietokanta",
+    "hexagon": "Kuusikulmio",
+    "asymmetric": "Lippu",
+    "parallelogram": "Suunnikas",
+    "parallelogramAlt": "Suunnikas (peilattu)",
+    "trapezoid": "Puolisuunnikas",
+    "trapezoidAlt": "Puolisuunnikas (peilattu)",
+    "doubleCircle": "Kaksoisympyrä"
+  },
+  "hints": {
+    "connect": "Klikkaa lohkoa johon nuolen tulee osoittaa · Esc peruuttaa",
+    "move": "Klikkaa aluetta siirtääksesi sen sisään, tai tyhjää tilaa siirtääksesi sen pois · Esc peruuttaa",
+    "paste": "Klikkaa aluetta tai tyhjää tilaa liittääksesi siihen · Esc peruuttaa"
+  },
+  "prompts": {
+    "edgeLabel": "Nuolen selite:",
+    "clearAll": "Poistetaanko kaikki?"
+  },
+  "defaults": {
+    "block": "Lohko",
+    "group": "Alue",
+    "start": "Alku",
+    "action": "Toiminto"
+  },
+  "text": {
+    "examplePlaceholder": "Esimerkki…",
+    "copyMermaid": "Kopioi mermaid",
+    "downloadMmd": "Lataa .mmd",
+    "downloadMd": "Lataa .md (Notion)",
+    "copySvg": "Kopioi SVG",
+    "downloadSvg": "Lataa SVG",
+    "downloadPng": "Lataa PNG",
+    "statusOk": "OK",
+    "statusError": "Virhe",
+    "statusSvgCopied": "SVG kopioitu",
+    "statusMermaidCopied": "Mermaid kopioitu"
+  },
+  "examples": {
+    "flowchart": "Vuokaavio",
+    "sequence": "Sekvenssikaavio",
+    "class": "Luokkakaavio",
+    "state": "Tilakaavio",
+    "er": "ER-kaavio",
+    "gantt": "Gantt-kaavio"
+  },
+  "sample": {
+    "start": "Alku",
+    "condition": "Valmis?",
+    "yes": "Kyllä",
+    "no": "Ei",
+    "action1": "Julkaise",
+    "action2": "Korjaa",
+    "end": "Valmis",
+    "project": "Projekti",
+    "phase": "Vaihe 1",
+    "task1": "Tehtävä 1",
+    "task2": "Tehtävä 2"
+  }
+}

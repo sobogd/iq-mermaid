@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Izvoz Mermaida u PNG, SVG ili Markdown",
+    "description": "Kako pretvoriti mermaid dijagram u PNG ili SVG datoteku, kopirati SVG oznake, ili ga zadržati kao tekst za GitHub i Notion — i koji odabrati."
+  },
+  "card": {
+    "title": "Izvoz mermaida u PNG ili SVG",
+    "excerpt": "Četiri načina izvoza mermaid dijagrama — PNG, SVG, .mmd izvor i Markdown blok — i kada je koji pravi odgovor."
+  },
+  "h1": "Izvezite mermaid dijagram u PNG, SVG ili Markdown",
+  "intro": "Dijagram je koristan samo tamo gdje se može vidjeti. Mermaid vam daje četiri načina izlaza — sliku, vektor, izvorni kod, ili Markdown blok koji se sam prikazuje — a pravi izbor u potpunosti ovisi o tome kamo dijagram ide. Ovo je kratka verzija, plus ono što ne uspijeva sa svakim od njih.",
+  "blocks": [
+    { "type": "h2", "text": "Prvo odaberite format" },
+    {
+      "type": "table",
+      "headers": ["Odredište", "Upotreba", "Zašto"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Markdown blok", "Prikazuje se izvorno i ostaje diffable — nema datoteke koju treba održavati sinkroniziranom."],
+        ["Prezentacije, specifikacija, poruka u chatu", "PNG", "Lijepi se bilo gdje, ne treba renderer, izgleda jednako svugdje."],
+        ["Web stranica, tiskani dokument", "SVG", "Vektor — oštar u bilo kojoj veličini, a tekst ostaje selektabilan."],
+        ["Drugi editor, repozitorij", "`.mmd` izvor", "Kasnije uredivo. Slika je slijepa ulica."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Ako odredište prikazuje mermaid, uopće ne izvozite. Dijagram predan kao tekst može se pregledati redak po redak; isti dijagram predan kao PNG može se samo zamijeniti."
+    },
+
+    { "type": "h2", "text": "Izvoz iz ovog editora" },
+    {
+      "type": "p",
+      "text": "Otvorite karticu koda — gumbi za izvoz nalaze se u alatnoj traci, a svaki djeluje na ono što je trenutno prikazano."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**Kopiraj SVG** — stavlja `<svg>` oznake u međuspremnik, spremne za izravno lijepljenje u HTML datoteku ili alat za dizajn.",
+        "**Preuzmi SVG** — sprema `diagram.svg`.",
+        "**Preuzmi PNG** — sprema `diagram.png`, prikazan u 2x s bijelom pozadinom kako bi ostao oštar na ekranu visoke gustoće i nikad ne završi kao prozirna mrlja na bijeloj prezentaciji.",
+        "**Preuzmi .mmd** — sprema mermaid izvor kao obični tekstualni fajl.",
+        "**Preuzmi .md (Notion)** — sprema izvor omotan u ograđeni ```mermaid blok, koji Notion, GitHub i Obsidian prikazuju pri lijepljenju."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Za prezentaciju uzmite PNG. Za sve što će mijenjati veličinu — naslov dokumenta, poster, tisak — uzmite SVG; PNG povećan iznad veličine izvoza odmah postaje mutan."
+    },
+
+    { "type": "h2", "text": "Umjesto toga zadržite kao tekst" },
+    {
+      "type": "p",
+      "text": "Ograđeni blok jedini je izvoz koji ostaje uredivo na mjestu. Tri obrnuta navodnika, riječ `mermaid`, vaš dijagram, tri obrnuta navodnika:"
+    },
+    {
+      "type": "code",
+      "caption": "Zalijepite ovo u GitHub README i prikazat će se.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — prikazuje se u README datotekama, issues, pull requestovima i komentarima.",
+        "**GitLab** — prikazuje se u wikiju, issues i merge requestovima.",
+        "**Notion** — zalijepite u blok koda i postavite jezik na Mermaid.",
+        "**Obsidian** — prikazuje se u pregledu i u objavljenim bilješkama.",
+        "**Docusaurus / MkDocs Material / VitePress** — mermaid blokovi prikazuju se u izgrađenoj dokumentaciji."
+      ]
+    },
+
+    { "type": "h2", "text": "Stvari koje pođu po zlu" },
+    { "type": "h3", "text": "PNG je mutan" },
+    {
+      "type": "p",
+      "text": "PNG je fiksne rezolucije: izvozi se u određenoj veličini piksela, a povećanje iznad toga interpolira. Ovaj editor zbog toga izvozi u 2x. Ako to i dalje nije dovoljno, izvezite SVG i pretvorite ga u bilo koju veličinu koja vam treba — ili jednostavno koristite SVG."
+    },
+    { "type": "h3", "text": "SVG nema pozadinu" },
+    {
+      "type": "p",
+      "text": "SVG izvozi su prozirni po dizajnu, pa tamni tekst čvora nestaje na tamnoj prezentaciji. Ili stavite SVG na svijetlu podlogu, ili uzmite PNG, koji se izvozi na bijeloj pozadini."
+    },
+    { "type": "h3", "text": "Fontovi izgledaju drugačije negdje drugdje" },
+    {
+      "type": "p",
+      "text": "SVG referencira obitelji fontova umjesto da ih ugrađuje, pa računalo bez tog fonta zamjenjuje drugi i okviri oznaka prestaju biti poravnati. Koristite PNG kad ne možete kontrolirati fontove na strani gledatelja."
+    },
+    { "type": "h3", "text": "Dijagram je odrezan" },
+    {
+      "type": "p",
+      "text": "Izvoz čita ono što je trenutno prikazano, pa ponovno centrirajte prikaz prije izvoza velikog dijagrama. Ako je oznaka čvora ogromna, prelomite je s `<br>` — mermaid sam ne prelama oznake."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Izvezite u dva klika",
+      "text": "Otvorite editor, zalijepite ili nacrtajte svoj dijagram, i uzmite SVG, PNG ili izvor. Ništa nije iza računa.",
+      "buttonLabel": "Otvori editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Često postavljana pitanja",
+      "items": [
+        {
+          "q": "Kako pretvoriti mermaid u PNG?",
+          "a": "Prikažite dijagram, zatim koristite Preuzmi PNG. Editor crta prikazani SVG na canvas u 2x mjerilu s bijelom pozadinom i sprema rezultat — bez odlaska na poslužitelj, pa dijagram nikad ne napušta vaš preglednik."
+        },
+        {
+          "q": "Mogu li izvesti prozirni PNG?",
+          "a": "Ne iz PNG gumba — namjerno se puni bijelom bojom, jer tamni tekst dijagrama na prozirnoj pozadini nečitljiv je u većini mjesta gdje se PNG lijepi. Umjesto toga izvezite SVG; on je proziran."
+        },
+        {
+          "q": "Postoji li ograničenje veličine?",
+          "a": "Nema fiksnog. Izvoz se odvija u vašem pregledniku, pa je praktično ograničenje ono što će vaš preglednik prikazati — što je daleko iznad točke u kojoj je dijagram još uvijek čitljiv čovjeku."
+        },
+        {
+          "q": "Kako zadržati dijagram uredivim nakon izvoza?",
+          "a": "Zadržite izvor. Preuzmite `.mmd` datoteku ili Markdown blok uz sliku; PNG ili SVG ne mogu se pretvoriti natrag u mermaid, ali izvor se lijepi izravno natrag u editor."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Mermaid Editor Online Gratis — Diagram Maken Online",
+    "description": "Gratis mermaid live editor: teken een diagram visueel of schrijf mermaid-code, altijd synchroon. Flowchart, sequence, class, ER, gantt. Geen account, SVG/PNG-export.",
+    "ogTitle": "Mermaid Live Editor — gratis, online, zonder account",
+    "ogDescription": "Teken diagrammen op een canvas of schrijf mermaid-code. Beide weergaven blijven synchroon. Exporteer naar SVG, PNG, .mmd of Markdown.",
+    "twitterTitle": "Gratis mermaid editor online",
+    "twitterDescription": "Visueel canvas en mermaid-code, naast elkaar. Geen account, geen betaalmuur."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Functies",
+    "blog": "Gidsen",
+    "faq": "FAQ",
+    "openEditor": "Open de editor",
+    "menu": "Menu"
+  },
+  "hero": {
+    "badgeFree": "Voor altijd gratis",
+    "badgeNoSignup": "Geen account nodig",
+    "badgeDiagrams": "8 diagramtypes",
+    "title": "Mermaid editor online gratis,",
+    "titleAccent": "visueel en code op één plek",
+    "description": "De meeste mermaid-editors geven je een tekstvak en een voorbeeld. Deze geeft je ook een canvas: klik om een blok toe te voegen, sleep een pijl, groepeer dingen in gebieden — en de mermaid-code schrijft zichzelf. Wissel naar het codetabblad en pas het handmatig aan; het canvas volgt.",
+    "ctaOpen": "Open de editor",
+    "ctaLearn": "Bekijk wat het doet",
+    "mockCodeLabel": "Mermaid-code",
+    "mockDiagramLabel": "Gerenderd diagram"
+  },
+  "statCards": [
+    { "title": "Rendert terwijl je typt", "sub": "De echte mermaid-engine, opnieuw getekend een paar honderd milliseconden na je laatste toetsaanslag." },
+    { "title": "Code en canvas synchroon", "sub": "Bewerk beide kanten. De andere volgt automatisch — geen kopiëren en plakken tussen twee tools." },
+    { "title": "14 knoopvormen", "sub": "Rechthoek, afgerond, pil, cirkel, ruit, database, zeshoek en de rest, met één klik." },
+    { "title": "Gratis, geen account", "sub": "Geen registratie, geen proefperiode, geen watermerk bij export. Je diagram blijft in je browser." }
+  ],
+  "spotlights": [
+    {
+      "heading": "Een canvas, geen tekstvak",
+      "sub": "Het visuele tabblad is een echte editor bovenop het gerenderde diagram: klik op een knoop om te selecteren, dubbelklik om ter plekke te hernoemen, sleep overal om te pannen.",
+      "bullets": [
+        { "title": "Bouw met klikken", "sub": "Voeg een blok toe, wijs een pijl naar een ander blok, label de pijl. Geen syntax om te onthouden voordat je begint." },
+        { "title": "Kies een vorm", "sub": "Veertien mermaid-flowchartvormen — beslissingsruiten, databasecilinders, subroutines — uit één kiezer." },
+        { "title": "Kleur alles", "sub": "Acht voorinstellingen plus een kleurkiezer, toegepast op één knoop of op een heel gebied." }
+      ]
+    },
+    {
+      "heading": "Mermaid-code die van jou blijft",
+      "sub": "Het codetabblad is gewoon mermaid — dezelfde syntax die GitHub, GitLab, Notion en Obsidian al renderen. Niets hier is een eigen formaat.",
+      "bullets": [
+        { "title": "Schrijf het handmatig", "sub": "Typ mermaid rechtstreeks en kijk hoe het rendert. Zes kant-en-klare voorbeelden om mee te beginnen." },
+        { "title": "Gaat beide kanten op", "sub": "Flowcharts die je plakt worden teruggelezen op het canvas — knopen, vormen, kleuren, subgraphs en al." },
+        { "title": "Elk diagramtype", "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — de preview rendert alles wat mermaid ondersteunt." }
+      ]
+    },
+    {
+      "heading": "Grote diagrammen blijven leesbaar",
+      "sub": "Architectuurdiagrammen groeien snel voorbij één scherm. Pannen, zoomen en groeperen zijn daarvoor gebouwd, in plaats van ertegen te vechten.",
+      "bullets": [
+        { "title": "Gebieden en nesten", "sub": "Groepeer blokken in subgraphs, nest een gebied binnen een ander, verplaats een hele deelboom met één gebaar." },
+        { "title": "Zoom van 2% tot 1600%", "sub": "Scroll om te pannen, ctrl-scroll om te zoomen, of centreer opnieuw met één knop." },
+        { "title": "Automatisch opgeslagen", "sub": "Je diagram wordt bij elke bewerking naar de lokale opslag van de browser geschreven — sluit het tabblad en kom later terug." }
+      ]
+    },
+    {
+      "heading": "Exporteer en ga verder",
+      "sub": "Niets zit vast. Neem de afbeelding, neem de broncode, of neem een Markdown-blok klaar om in een document te plakken.",
+      "bullets": [
+        { "title": "Geen betaalmuur", "sub": "Elke functie, inclusief export, is gratis. Er is geen betaald abonnement om naar te upgraden." },
+        { "title": "Niets verlaat je browser", "sub": "Er is geen account en geen opslag van diagrammen op een server — renderen gebeurt lokaal." },
+        { "title": "SVG, PNG, .mmd, .md", "sub": "Kopieer de SVG-markup, download een 2x PNG, sla de mermaid-broncode op, of pak een Markdown-blok met code." }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Hoe het zich verhoudt tot",
+    "titleAccent": "de gebruikelijke opties",
+    "description": "Diagram-als-code-tools laten je alles handmatig schrijven. Drag-and-drop-tools geven je een afbeelding die je niet kunt diffen. Deze weigert een kant te kiezen.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Gebruikelijke tool",
+    "rows": [
+      {
+        "title": "Aan de slag gaan",
+        "us": "Dubbelklik op het canvas en er verschijnt een knoop. De syntax leer je later, of nooit.",
+        "them": "Lees eerst de syntaxreferentie, of accepteer een tekentool zonder tekstrepresentatie."
+      },
+      {
+        "title": "Het exportformaat",
+        "us": "Gewone mermaid — dezelfde tekst die GitHub, GitLab en Notion native renderen.",
+        "them": "Een eigen bestand dat alleen opent in de tool die het gemaakt heeft."
+      },
+      {
+        "title": "Later bewerken",
+        "us": "Wijzig de code of verplaats de blokken. Beide richtingen werken op hetzelfde diagram.",
+        "them": "Slechts één richting: code-first tools hebben geen canvas, canvas-first tools hebben geen broncode."
+      },
+      {
+        "title": "Prijs",
+        "us": "Gratis, geen account, geen exportlimiet.",
+        "them": "Gratis laag beperkt tot een paar diagrammen, met export of samenwerking achter een abonnement."
+      },
+      {
+        "title": "Waar de data staat",
+        "us": "In de lokale opslag van je browser. Geen inloggen, niets geüpload.",
+        "them": "Een account op iemands server, met je diagrammen eraan gekoppeld."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Vragen over de",
+    "headingAccent": "mermaid editor",
+    "sub": "Wat mensen vragen voordat ze hem openen. Geen account nodig — de editor is één klik verwijderd.",
+    "items": [
+      {
+        "q": "Wat is mermaid?",
+        "a": "Mermaid is een tekstsyntax voor diagrammen: je beschrijft knopen en pijlen in een paar regels, en een renderer tekent de afbeelding. GitHub, GitLab, Notion en Obsidian renderen het binnen Markdown, zodat een mermaid-blok leesbaar blijft in een pull request of een wikipagina."
+      },
+      {
+        "q": "Is deze mermaid editor echt gratis?",
+        "a": "Ja. Elke functie, inclusief SVG- en PNG-export, is gratis, en er is geen account nodig. Er is geen betaald abonnement — niets wordt achtergehouden."
+      },
+      {
+        "q": "Moet ik mermaid-syntax kennen?",
+        "a": "Nee. Begin op het visuele tabblad: dubbelklik op het canvas om een blok toe te voegen, selecteer het en teken een pijl naar een ander blok. De mermaid-code wordt voor je gegenereerd en je kunt hem lezen wanneer je de syntax wilt leren."
+      },
+      {
+        "q": "Welke diagramtypes worden ondersteund?",
+        "a": "Het codetabblad rendert alles wat mermaid ondersteunt — flowchart, sequence, class, state, entity relationship, gantt, git graph, pie en meer. Het visuele canvas bewerkt specifiek flowcharts, wat de meeste diagrammen zijn."
+      },
+      {
+        "q": "Kan ik exporteren naar PNG of SVG?",
+        "a": "Ja. Kopieer de SVG-markup naar het klembord, download het SVG-bestand, of download een PNG gerenderd op 2x voor presentaties en documenten. Je kunt ook de mermaid-broncode opslaan als .mmd of als een Markdown-blok met code."
+      },
+      {
+        "q": "Waar wordt mijn diagram opgeslagen?",
+        "a": "In de lokale opslag van je browser, op je eigen apparaat. Er is geen account en geen kopie op een server, dus je browsergegevens wissen of van apparaat wisselen betekent opnieuw beginnen — exporteer de broncode als je hem wilt bewaren."
+      },
+      {
+        "q": "Kan ik een bestaand mermaid-diagram plakken?",
+        "a": "Ja. Plak het in het codetabblad; een flowchart wordt teruggelezen op het visuele canvas met knopen, vormen, kleuren en subgraphs intact. Andere diagramtypes renderen in de preview maar blijven alleen-code."
+      },
+      {
+        "q": "Werkt het offline?",
+        "a": "Renderen gebeurt volledig in je browser, dus zodra de pagina geladen is blijft de editor werken zonder verbinding. Je diagram staat in de lokale opslag, niet op een server."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Open de editor.",
+    "headingAccent": "Nergens voor aanmelden.",
+    "sub": "Een leeg canvas, een codetabblad en elke exportoptie — gratis, in je browser, nu meteen.",
+    "ctaLabel": "Open de editor"
+  },
+  "footer": {
+    "tagline": "Gratis mermaid editor online",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Product",
+    "languagesHeading": "Talen"
+  },
+  "app": {
+    "metaTitle": "Mermaid Editor — teken en codeer naast elkaar",
+    "metaDescription": "De gratis mermaid editor: een visueel canvas en de mermaid-broncode, synchroon gehouden. Exporteer naar SVG, PNG, .mmd of Markdown.",
+    "backToSite": "Terug naar de homepage"
+  },
+  "blog": {
+    "metaTitle": "Mermaid Gidsen — syntax, exports en voorbeelden",
+    "metaDescription": "Korte, praktische gidsen over mermaid: syntax die je echt gebruikt, hoe je een diagram exporteert naar PNG of SVG, en hoe je een sequence diagram schrijft.",
+    "title": "Mermaid gidsen",
+    "intro": "Korte, praktische notities over mermaid — de syntax die het onthouden waard is, de exports waar mensen om vragen, en de diagramtypes die het vaakst voorkomen. Elk voorbeeld is één plak-actie verwijderd van de editor.",
+    "readMore": "Lees de gids",
+    "backToBlog": "Alle gidsen",
+    "relatedHeading": "Meer gidsen"
+  }
+}

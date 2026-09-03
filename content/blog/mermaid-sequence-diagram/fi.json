@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid-sekvenssikaavio: syntaksi ja esimerkit",
+    "description": "Miten kirjoitat mermaid-sekvenssikaavion: osallistujat, nuolityypit, aktivointipalkit, silmukat, alt-lohkot ja huomautukset — kopioi-liitä-esimerkein."
+  },
+  "card": {
+    "title": "Mermaid-sekvenssikaaviot",
+    "excerpt": "Osallistujat, nuolityypit, aktivointipalkit, silmukat ja alt-lohkot — koko sekvenssikaavion syntaksi ajettavin esimerkein."
+  },
+  "h1": "Miten kirjoitat mermaid-sekvenssikaavion",
+  "intro": "Sekvenssikaavio näyttää kuka puhuu kenelle, missä järjestyksessä. Mermaidilla sen kirjoittaminen kestää suunnilleen yhtä kauan kuin sen kuvaileminen ääneen, minkä vuoksi se on kaaviotyyppi joka säilyy pisimpään koodikannassa. Kaikki alla on valmiina kopioitavaksi [editoriin](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Vähimmäismäärä" },
+    {
+      "type": "p",
+      "text": "Määrittele kaaviotyyppi ja kirjoita sitten yksi rivi per viesti. Osallistujat luodaan ensimmäisellä maininnalla, siinä järjestyksessä kuin he esiintyvät."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Määrittele osallistujat eksplisiittisesti `participant User`-rivillä, kun haluat tietyn vasemmalta-oikealle-järjestyksen sen sijaan että käytettäisiin ensimmäisen maininnan järjestystä."
+    },
+
+    { "type": "h2", "text": "Nuolityypit" },
+    {
+      "type": "table",
+      "headers": ["Syntaksi", "Merkitys"],
+      "rows": [
+        ["`A->>B: text`", "Pyyntö — yhtenäinen viiva, täytetty nuolenpää"],
+        ["`A-->>B: text`", "Vastaus — katkoviiva, täytetty nuolenpää"],
+        ["`A->B: text`", "Yhtenäinen viiva, avoin nuolenpää"],
+        ["`A-)B: text`", "Asynkroninen viesti — avoin nuolenpää, ei odoteta vastausta"],
+        ["`A-xB: text`", "Viesti joka epäonnistuu tai häviää"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Tämä käytäntö kannattaa säilyttää: **yhtenäinen viiva kutsulle, katkoviiva paluulle**. Lukija näkee tällöin pyynnön vastauksesta lukematta yhtäkään selitettä."
+    },
+
+    { "type": "h2", "text": "Osallistujat ja aliakset" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Käytä `actor U as Browser`-merkintää `participant`-merkinnän sijaan piirtääksesi tikku-ukon — kannattaa autentikointivuon vasemmassa reunassa olevalle ihmiselle."
+    },
+
+    { "type": "h2", "text": "Aktivointipalkit" },
+    {
+      "type": "p",
+      "text": "Aktivointipalkit näyttävät miten kauan osallistuja on varattu. Merkitse ne joko eksplisiittisesti `activate`/`deactivate`-komennoilla, tai lisää nuoliin `+` ja `-` — se on lyhyempi ja vaikeampi saada epätasapainoon."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Silmukat, ehdot ja rinnakkainen työ" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — toisto.",
+        "`alt <label>` … `else <label>` … `end` — toisensa poissulkevat haarat.",
+        "`opt <label>` … `end` — haara joka ei ehkä yksinkertaisesti tapahdu.",
+        "`par <label>` … `and <label>` … `end` — asioita jotka tapahtuvat samaan aikaan.",
+        "`critical` / `break` — osio jota ei saa keskeyttää, ja varhainen poistuminen."
+      ]
+    },
+
+    { "type": "h2", "text": "Huomautukset" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` kattaa kaksi osallistujaa ja on oikea paikka rajoitukselle joka kuuluu itse vuorovaikutukselle eikä kummallekaan osapuolelle erikseen."
+    },
+
+    { "type": "h2", "text": "Täysi esimerkki" },
+    {
+      "type": "code",
+      "caption": "OAuth-kirjautuminen, alusta loppuun.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Muokkaa tätä kaaviota",
+      "text": "Liitä se koodivälilehteen ja muuta yhtä riviä — esikatselu piirtyy uudelleen kirjoittaessasi.",
+      "buttonLabel": "Avaa editori"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Usein kysyttyä",
+      "items": [
+        {
+          "q": "Miten numeroin viestit?",
+          "a": "Laita `autonumber` riville heti `sequenceDiagram`-rivin jälkeen. Jokainen viesti saa tällöin juoksevan numeron, mikä helpottaa huomattavasti kaaviosta puhumista katselmointikommenteissa."
+        },
+        {
+          "q": "Voiko osallistuja lähettää viestin itselleen?",
+          "a": "Kyllä — kirjoita sama nimi molemmille puolille: `API->>API: retry`. Mermaid piirtää silmukan takaisin samalle elinviivalle."
+        },
+        {
+          "q": "Miten näytän, että osallistuja tuhoutuu?",
+          "a": "Käytä `destroy <name>` ennen viestiä joka lopettaa sen, tai `create participant <name>` saadaksesi sen ilmestymään kesken kaavion sen sijaan että se olisi ylälaidassa."
+        },
+        {
+          "q": "Voinko muokata sekvenssikaaviota visuaalisella kanvaksella?",
+          "a": "Visuaalinen kanvas muokkaa vuokaavioita. Sekvenssikaaviot kirjoitetaan koodivälilehdellä, jossa ne piirtyvät reaaliajassa esikatseluun — mikä on yleensä nopeampaakin, koska sekvenssikaavio on pohjimmiltaan luettelo riveistä."
+        }
+      ]
+    }
+  ]
+}

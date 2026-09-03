@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "title": "Mermaid-Sequenzdiagramm: Syntax und Beispiele",
+    "description": "Ein Mermaid-Sequenzdiagramm schreiben: Teilnehmer, Pfeiltypen, Aktivierungsbalken, Loops, Alt-Blöcke und Notizen — mit Copy-paste-Beispielen."
+  },
+  "card": {
+    "title": "Mermaid-Sequenzdiagramme",
+    "excerpt": "Teilnehmer, Pfeiltypen, Aktivierungsbalken, Loops und Alt-Blöcke — die ganze Sequenzdiagramm-Syntax mit lauffähigen Beispielen."
+  },
+  "h1": "Wie man ein Mermaid-Sequenzdiagramm schreibt",
+  "intro": "Ein Sequenzdiagramm zeigt, wer mit wem spricht, und in welcher Reihenfolge. In Mermaid dauert es etwa so lange, es zu schreiben, wie es laut zu beschreiben — deshalb ist es der Diagrammtyp, der am längsten in einer Codebasis überlebt. Alles unten ist copy-paste-bereit für den [Editor](app:).",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "Das Minimum"
+    },
+    {
+      "type": "p",
+      "text": "Deklariere den Diagrammtyp, dann schreibe eine Zeile pro Nachricht. Teilnehmer werden bei der ersten Erwähnung angelegt, in der Reihenfolge, in der sie auftauchen."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Deklariere Teilnehmer explizit mit `participant User`, wenn du eine bestimmte Links-nach-rechts-Reihenfolge willst statt der Reihenfolge der ersten Erwähnung."
+    },
+    {
+      "type": "h2",
+      "text": "Pfeiltypen"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Syntax",
+        "Bedeutung"
+      ],
+      "rows": [
+        [
+          "`A->>B: text`",
+          "Anfrage — durchgezogene Linie, gefüllte Pfeilspitze"
+        ],
+        [
+          "`A-->>B: text`",
+          "Antwort — gestrichelte Linie, gefüllte Pfeilspitze"
+        ],
+        [
+          "`A->B: text`",
+          "Durchgezogene Linie, offene Pfeilspitze"
+        ],
+        [
+          "`A-)B: text`",
+          "Asynchrone Nachricht — offene Pfeilspitze, keine Antwort erwartet"
+        ],
+        [
+          "`A-xB: text`",
+          "Nachricht, die fehlschlägt oder verworfen wird"
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Die Konvention, an die man sich halten sollte: **durchgezogen für den Aufruf, gestrichelt für die Rückgabe**. Ein Leser erkennt dann eine Anfrage von einer Antwort, ohne eine einzige Beschriftung zu lesen."
+    },
+    {
+      "type": "h2",
+      "text": "Teilnehmer und Aliase"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Benutze `actor U as Browser` statt `participant`, um eine Strichfigur zu zeichnen — lohnt sich für den Menschen am linken Rand eines Authentifizierungsflusses."
+    },
+    {
+      "type": "h2",
+      "text": "Aktivierungsbalken"
+    },
+    {
+      "type": "p",
+      "text": "Aktivierungsbalken zeigen, wie lange ein Teilnehmer beschäftigt ist. Markiere sie entweder explizit mit `activate`/`deactivate`, oder hänge `+` und `-` an die Pfeile — das ist kürzer und schwerer aus dem Gleichgewicht zu bringen."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+    {
+      "type": "h2",
+      "text": "Loops, Bedingungen und parallele Abläufe"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — Wiederholung.",
+        "`alt <label>` … `else <label>` … `end` — sich gegenseitig ausschließende Zweige.",
+        "`opt <label>` … `end` — ein Zweig, der einfach nicht eintreten kann.",
+        "`par <label>` … `and <label>` … `end` — Dinge, die gleichzeitig passieren.",
+        "`critical` / `break` — ein Abschnitt, der nicht unterbrochen werden darf, und ein früher Ausstieg."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Notizen"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` erstreckt sich über zwei Teilnehmer und ist der richtige Ort für eine Einschränkung, die zur Interaktion gehört statt zu einer der beiden Seiten."
+    },
+    {
+      "type": "h2",
+      "text": "Ein vollständiges Beispiel"
+    },
+    {
+      "type": "code",
+      "caption": "OAuth-Login, von Anfang bis Ende.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+    {
+      "type": "cta",
+      "heading": "Dieses Diagramm bearbeiten",
+      "text": "Füge es in den Code-Tab ein und ändere eine Zeile — die Vorschau zeichnet sich beim Tippen neu.",
+      "buttonLabel": "Editor öffnen"
+    },
+    {
+      "type": "faq",
+      "heading": "Häufig gefragt",
+      "items": [
+        {
+          "q": "Wie nummeriere ich die Nachrichten?",
+          "a": "Setze `autonumber` in die Zeile direkt nach `sequenceDiagram`. Jede Nachricht bekommt dann eine fortlaufende Nummer, was es viel einfacher macht, über ein Diagramm in Review-Kommentaren zu sprechen."
+        },
+        {
+          "q": "Kann ein Teilnehmer sich selbst eine Nachricht schicken?",
+          "a": "Ja — schreibe denselben Namen auf beiden Seiten: `API->>API: retry`. Mermaid zeichnet die Schleife zurück in dieselbe Lifeline."
+        },
+        {
+          "q": "Wie zeige ich, dass ein Teilnehmer zerstört wird?",
+          "a": "Benutze `destroy <name>` vor der Nachricht, die ihn beendet, oder `create participant <name>`, damit er mitten im Diagramm erscheint statt oben."
+        },
+        {
+          "q": "Kann ich ein Sequenzdiagramm auf der visuellen Zeichenfläche bearbeiten?",
+          "a": "Die visuelle Zeichenfläche bearbeitet Flowcharts. Sequenzdiagramme werden im Code-Tab geschrieben, wo sie live in der Vorschau rendern — was ohnehin meist schneller geht, da ein Sequenzdiagramm im Grunde eine Liste von Zeilen ist."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "meta": {
+    "title": "Mermaid-Syntax-Spickzettel mit Beispielen",
+    "description": "Die Mermaid-Syntax, die du wirklich brauchst: Knotenformen, Pfeiltypen, Subgraphen, Styling und ein Beispiel pro Diagrammtyp. Kopieren, einfügen, anpassen."
+  },
+  "card": {
+    "title": "Mermaid-Syntax-Spickzettel",
+    "excerpt": "Knotenformen, Pfeile, Subgraphen und Styling auf einer Seite — plus ein funktionierendes Beispiel für jeden Diagrammtyp, den Mermaid rendert."
+  },
+  "h1": "Mermaid-Syntax-Spickzettel",
+  "intro": "Mermaid hat eine große Referenz und eine kleine Teilmenge, die fast alles abdeckt, was Leute zeichnen. Diese Seite ist genau diese Teilmenge: Formen, Pfeile, Gruppierung, Farben und ein Copy-paste-Beispiel pro Diagrammtyp. Jeder Schnipsel unten rendert so, wie er ist — füge ihn in den [Editor](app:) ein, um es zu sehen.",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "Das kürzeste Diagramm, das funktioniert"
+    },
+    {
+      "type": "p",
+      "text": "Ein Flowchart braucht eine Deklarationszeile und einen Pfeil. `TD` steht für top-down (von oben nach unten); für links-nach-rechts nimm `LR`, was sich für breite Prozesse besser eignet."
+    },
+    {
+      "type": "code",
+      "caption": "Ein Flowchart mit drei Knoten, von oben nach unten.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` und `C` sind Knoten-IDs — interne Namen, die nie angezeigt werden. Der Text in den Klammern ist die Beschriftung, und der Klammer-**Stil** bestimmt die Form."
+    },
+    {
+      "type": "h2",
+      "text": "Knotenformen"
+    },
+    {
+      "type": "p",
+      "text": "Die Form wird durch das Klammernpaar um die Beschriftung bestimmt. Diese hier lohnt es sich zu merken:"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Syntax",
+        "Form",
+        "Übliche Bedeutung"
+      ],
+      "rows": [
+        [
+          "`A[Text]`",
+          "Rechteck",
+          "Ein Schritt oder eine Aktion"
+        ],
+        [
+          "`A(Text)`",
+          "Abgerundet",
+          "Ein Start- oder Endpunkt"
+        ],
+        [
+          "`A([Text])`",
+          "Pille",
+          "Ein Terminator"
+        ],
+        [
+          "`A[[Text]]`",
+          "Subroutine",
+          "Ein Aufruf in einen anderen Prozess"
+        ],
+        [
+          "`A[(Text)]`",
+          "Zylinder",
+          "Eine Datenbank oder ein Speicher"
+        ],
+        [
+          "`A((Text))`",
+          "Kreis",
+          "Ein Knotenpunkt"
+        ],
+        [
+          "`A{Text}`",
+          "Raute",
+          "Eine Entscheidung"
+        ],
+        [
+          "`A{{Text}}`",
+          "Sechseck",
+          "Ein Vorbereitungsschritt"
+        ],
+        [
+          "`A[/Text/]`",
+          "Parallelogramm",
+          "Ein- oder Ausgabe"
+        ],
+        [
+          "`A[/Text\\]`",
+          "Trapez",
+          "Eine manuelle Operation"
+        ]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Setze die Beschriftung in Anführungszeichen, wenn sie Klammern, Doppelpunkte oder Anführungszeichen enthält: `A[\"Load (raw) data\"]`. Ohne Anführungszeichen interpretiert der Parser deine Satzzeichen als Syntax."
+    },
+    {
+      "type": "h2",
+      "text": "Pfeile"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "Syntax",
+        "Ergebnis"
+      ],
+      "rows": [
+        [
+          "`A --> B`",
+          "Pfeil"
+        ],
+        [
+          "`A --- B`",
+          "Linie, ohne Pfeilspitze"
+        ],
+        [
+          "`A -.-> B`",
+          "Gepunkteter Pfeil"
+        ],
+        [
+          "`A ==> B`",
+          "Dicker Pfeil"
+        ],
+        [
+          "`A -->|label| B`",
+          "Pfeil mit Beschriftung"
+        ],
+        [
+          "`A --> B --> C`",
+          "Kette, in einer Zeile geschrieben"
+        ],
+        [
+          "`A --> B & C`",
+          "Eine Quelle, zwei Ziele"
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Auch die Pfeillänge hat Bedeutung: `-->` ist ein Rang, `--->` schiebt das Ziel einen Rang weiter nach unten. Das ist die einfachste Layout-Kontrolle, die Mermaid bietet."
+    },
+    {
+      "type": "h2",
+      "text": "Gruppierung mit Subgraphen"
+    },
+    {
+      "type": "p",
+      "text": "Ein `subgraph` zeichnet eine beschriftete Box um Knoten. Subgraphen können verschachtelt werden, und Pfeile dürfen ihre Grenzen frei überqueren."
+    },
+    {
+      "type": "code",
+      "caption": "Zwei Services, jeder mit eigenem Speicher.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+    {
+      "type": "h2",
+      "text": "Farbe und Styling"
+    },
+    {
+      "type": "p",
+      "text": "`style` färbt einen einzelnen Knoten. `classDef` plus `class` färbt eine ganze Gruppe davon — das ist ab drei oder vier Knoten die bessere Wahl."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Farben sind Teil des Diagramm-Quelltexts, überstehen also den Export und wandern mit der Datei mit. Nichts hier hängt von einer Theme-Einstellung im Tool ab, das es rendert."
+    },
+    {
+      "type": "h2",
+      "text": "Ein Beispiel pro Diagrammtyp"
+    },
+    {
+      "type": "h3",
+      "text": "Sequenzdiagramm"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    {
+      "type": "h3",
+      "text": "Klassendiagramm"
+    },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    {
+      "type": "h3",
+      "text": "Zustandsdiagramm"
+    },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    {
+      "type": "h3",
+      "text": "Entity-Relationship-Diagramm"
+    },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    {
+      "type": "h3",
+      "text": "Gantt-Diagramm"
+    },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+    {
+      "type": "h2",
+      "text": "Wo Mermaid von sich aus rendert"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — ein umschlossener ```mermaid-Block rendert in Issues, Pull Requests, Kommentaren und README-Dateien.",
+        "**GitLab** — derselbe umschlossene Block, in Issues, Merge Requests und im Wiki.",
+        "**Notion** — ein Code-Block mit der Sprache Mermaid rendert neben der Quelle.",
+        "**Obsidian** — ein umschlossener Mermaid-Block rendert im Vorschaumodus.",
+        "**Docs-Seiten** — Docusaurus, MkDocs Material und VitePress unterstützen alle Mermaid-Blöcke."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Das ist der eigentliche Grund, Diagramme als Mermaid statt als Bild zu pflegen: Das Diagramm lebt in derselben Textdatei wie das, was es beschreibt, und ein Code-Review sieht, was sich darin geändert hat."
+    },
+    {
+      "type": "cta",
+      "heading": "Probier jeden Schnipsel auf dieser Seite aus",
+      "text": "Füge ihn in den Code-Tab ein — er rendert sofort. Oder baue dasselbe Diagramm auf der Zeichenfläche und lies die Syntax anschließend ab.",
+      "buttonLabel": "Editor öffnen"
+    },
+    {
+      "type": "faq",
+      "heading": "Häufig gefragt",
+      "items": [
+        {
+          "q": "Wie füge ich einen Zeilenumbruch in eine Knotenbeschriftung ein?",
+          "a": "Benutze `<br>` innerhalb einer Beschriftung in Anführungszeichen: `A[\"First line<br>Second line\"]`. Mermaid rendert die Beschriftung als HTML, daher funktioniert das Tag, obwohl der Rest der Syntax kein HTML ist."
+        },
+        {
+          "q": "Warum zerstört meine Beschriftung das Diagramm?",
+          "a": "Fast immer eine nicht in Anführungszeichen gesetzte Klammer, runde Klammer, Doppelpunkt oder Anführungszeichen innerhalb der Beschriftung. Setze die ganze Beschriftung in doppelte Anführungszeichen, dann behandelt der Parser deine Satzzeichen nicht mehr als Syntax."
+        },
+        {
+          "q": "Kann ich das Layout steuern?",
+          "a": "Nur indirekt. Wähle die Richtung (`TD`, `LR`, `BT`, `RL`), benutze längere Pfeile (`--->`), um Knoten weiter auseinanderzuschieben, und gruppiere zusammengehörige Knoten in Subgraphen. Den Rest berechnet Mermaid — es gibt keine Koordinaten."
+        },
+        {
+          "q": "Welche Mermaid-Version verwendet dieser Editor?",
+          "a": "Mermaid 11, die aktuelle Hauptversion, sodass alles, was für die v10- und v11-Syntax dokumentiert ist, hier rendert."
+        }
+      ]
+    }
+  ]
+}

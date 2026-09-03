@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid-syntaks: jukselapp med eksempler",
+    "description": "Mermaid-syntaksen du faktisk bruker: nodeformer, piltyper, undergrafer, styling og ett fungerende eksempel per diagramtype. Kopier, lim inn, rediger."
+  },
+  "card": {
+    "title": "Mermaid-syntaks jukselapp",
+    "excerpt": "Nodeformer, piler, undergrafer og styling på én side – pluss et fungerende eksempel på hver diagramtype mermaid gjengir."
+  },
+  "h1": "Mermaid-syntaks jukselapp",
+  "intro": "Mermaid har en stor referanse og en liten delmengde som dekker nesten alt folk tegner. Denne siden er den delmengden: former, piler, gruppering, farger, og ett kopier-lim-inn-eksempel per diagramtype. Hvert kodeeksempel under gjengis som det er – lim det inn i [editoren](app:) for å se det.",
+  "blocks": [
+    { "type": "h2", "text": "Det korteste diagrammet som virker" },
+    {
+      "type": "p",
+      "text": "Et flytskjema trenger én deklarasjonslinje og én pil. `TD` betyr ovenfra og ned; bruk `LR` for venstre-til-høyre, som passer bedre for brede prosesser."
+    },
+    {
+      "type": "code",
+      "caption": "Et flytskjema med tre noder, ovenfra og ned.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` og `C` er node-IDer – interne navn, aldri tegnet. Teksten i klammer er etiketten, og klamme-**stilen** er det som velger formen."
+    },
+
+    { "type": "h2", "text": "Nodeformer" },
+    {
+      "type": "p",
+      "text": "Formen velges av avgrensningsparet rundt etiketten. Dette er de verdt å huske:"
+    },
+    {
+      "type": "table",
+      "headers": ["Syntaks", "Form", "Vanlig betydning"],
+      "rows": [
+        ["`A[Text]`", "Rektangel", "Et steg eller en handling"],
+        ["`A(Text)`", "Avrundet", "Et start- eller sluttpunkt"],
+        ["`A([Text])`", "Pille", "En terminator"],
+        ["`A[[Text]]`", "Subrutine", "Et kall til en annen prosess"],
+        ["`A[(Text)]`", "Sylinder", "En database eller lager"],
+        ["`A((Text))`", "Sirkel", "Et knutepunkt"],
+        ["`A{Text}`", "Diamant", "En beslutning"],
+        ["`A{{Text}}`", "Sekskant", "Et forberedelsessteg"],
+        ["`A[/Text/]`", "Parallellogram", "Inndata eller utdata"],
+        ["`A[/Text\\]`", "Trapes", "En manuell operasjon"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Sett etiketten i anførselstegn når den inneholder klammer, kolon eller anførselstegn: `A[\"Load (raw) data\"]`. Uten anførselstegn tolker parseren tegnsettingen din som syntaks."
+    },
+
+    { "type": "h2", "text": "Piler" },
+    {
+      "type": "table",
+      "headers": ["Syntaks", "Resultat"],
+      "rows": [
+        ["`A --> B`", "Pil"],
+        ["`A --- B`", "Linje, ingen pilspiss"],
+        ["`A -.-> B`", "Stiplet pil"],
+        ["`A ==> B`", "Tykk pil"],
+        ["`A -->|label| B`", "Pil med etikett på"],
+        ["`A --> B --> C`", "Kjede, skrevet på én linje"],
+        ["`A --> B & C`", "Én kilde, to mål"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Pillengde har også betydning: `-->` er ett nivå, `--->` skyver målet ett nivå lenger ned. Det er den enkleste layoutkontrollen mermaid gir deg."
+    },
+
+    { "type": "h2", "text": "Gruppering med undergrafer" },
+    {
+      "type": "p",
+      "text": "En `subgraph` tegner en merket boks rundt noder. Undergrafer kan nestes, og piler kan krysse grensene deres fritt."
+    },
+    {
+      "type": "code",
+      "caption": "To tjenester, hver med sitt eget lager.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Farge og styling" },
+    {
+      "type": "p",
+      "text": "`style` fargelegger én node. `classDef` pluss `class` fargelegger et sett med dem, som er det du vil ha etter tre eller fire noder."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Farger er en del av diagramkilden, så de overlever eksport og følger med filen. Ingenting her avhenger av en temainnstilling i verktøyet som gjengir det."
+    },
+
+    { "type": "h2", "text": "Ett eksempel per diagramtype" },
+    {
+      "type": "h3",
+      "text": "Sekvensdiagram"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Klassediagram" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Tilstandsdiagram" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Entitetsrelasjonsdiagram" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantt-diagram" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Hvor mermaid gjengis av seg selv" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — en avgrenset ```mermaid-blokk gjengis i issues, pull requests, kommentarer og README-filer.",
+        "**GitLab** — samme avgrensede blokk, i issues, merge requests og wikien.",
+        "**Notion** — en kodeblokk med språket satt til Mermaid gjengis ved siden av kilden.",
+        "**Obsidian** — en avgrenset mermaid-blokk gjengis i forhåndsvisningsmodus.",
+        "**Dokumentasjonssider** — Docusaurus, MkDocs Material og VitePress støtter alle mermaid-blokker."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Det er den egentlige grunnen til å holde diagrammer som mermaid i stedet for som bilder: diagrammet lever i samme tekstfil som det det beskriver, og en kodegjennomgang kan se hva som ble endret i det."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Prøv et hvilket som helst eksempel på denne siden",
+      "text": "Lim det inn i kode-fanen, og det gjengis umiddelbart – eller bygg det samme diagrammet på lerretet og les syntaksen tilbake.",
+      "buttonLabel": "Åpne editoren"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Ofte stilt",
+      "items": [
+        {
+          "q": "Hvordan legger jeg til et linjeskift inne i en node-etikett?",
+          "a": "Bruk `<br>` inne i en etikett med anførselstegn: `A[\"First line<br>Second line\"]`. Mermaid gjengir etiketten som HTML, så taggen fungerer selv om resten av syntaksen ikke er HTML."
+        },
+        {
+          "q": "Hvorfor ødelegger etiketten min diagrammet?",
+          "a": "Nesten alltid en klamme, parentes, kolon eller anførselstegn uten anførselstegn rundt i etiketten. Pakk inn hele etiketten i doble anførselstegn, så slutter parseren å behandle tegnsettingen din som syntaks."
+        },
+        {
+          "q": "Kan jeg styre layouten?",
+          "a": "Bare indirekte. Velg retning (`TD`, `LR`, `BT`, `RL`), bruk lengre piler (`--->`) for å skyve noder lenger fra hverandre, og grupper relaterte noder i undergrafer. Mermaid beregner resten – det finnes ingen koordinater."
+        },
+        {
+          "q": "Hvilken mermaid-versjon bruker denne editoren?",
+          "a": "Mermaid 11, den nåværende hovedversjonen, så alt som er dokumentert for v10- og v11-syntaks gjengis her."
+        }
+      ]
+    }
+  ]
+}

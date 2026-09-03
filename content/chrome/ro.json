@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Editor Mermaid Online Gratuit — Creare Diagrame",
+    "description": "Editor mermaid live gratuit: desenezi vizual sau scrii cod, sincronizate în timp real. Flowchart, secvență, clase, ER, stare, gantt. Fără cont, export SVG/PNG.",
+    "ogTitle": "Editor Mermaid Live — gratuit, online, fără cont",
+    "ogDescription": "Desenezi diagrame pe o pânză sau scrii cod mermaid. Ambele vederi rămân sincronizate. Export în SVG, PNG, .mmd sau Markdown.",
+    "twitterTitle": "Editor mermaid live gratuit",
+    "twitterDescription": "Pânză vizuală și cod mermaid, unul lângă altul. Fără cont, fără plată."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Funcții",
+    "blog": "Ghiduri",
+    "faq": "Întrebări",
+    "openEditor": "Deschide editorul",
+    "menu": "Meniu"
+  },
+  "hero": {
+    "badgeFree": "Gratuit pentru totdeauna",
+    "badgeNoSignup": "Fără cont",
+    "badgeDiagrams": "8 tipuri de diagrame",
+    "title": "Editor mermaid online,",
+    "titleAccent": "vizual și cod în același loc",
+    "description": "Majoritatea editoarelor mermaid îți dau doar o casetă de text și o previzualizare. Acesta îți dă și o pânză: dai click pentru a adăuga un bloc, tragi o săgeată, grupezi elemente în zone — iar codul mermaid se scrie singur. Treci la fila de cod și editează-l manual; pânza urmează.",
+    "ctaOpen": "Deschide editorul",
+    "ctaLearn": "Vezi ce poate face",
+    "mockCodeLabel": "Cod mermaid",
+    "mockDiagramLabel": "Diagramă randată"
+  },
+  "statCards": [
+    { "title": "Se randează pe măsură ce scrii", "sub": "Motorul mermaid real, redesenat la câteva sute de milisecunde după ultima apăsare de tastă." },
+    { "title": "Cod și pânză sincronizate", "sub": "Editezi oricare parte. Cealaltă se actualizează — fără copy-paste între două unelte." },
+    { "title": "14 forme de noduri", "sub": "Dreptunghi, rotunjit, pilulă, cerc, romb, bază de date, hexagon și restul, la un click distanță." },
+    { "title": "Gratuit, fără cont", "sub": "Fără înregistrare, fără perioadă de probă, fără filigran la export. Diagrama ta rămâne în browser." }
+  ],
+  "spotlights": [
+    {
+      "heading": "O pânză, nu doar o casetă de text",
+      "sub": "Fila vizuală este un editor real peste diagrama randată: dai click pe un nod pentru a-l selecta, dublu-click pentru a-l redenumi pe loc, tragi oriunde pentru a naviga.",
+      "bullets": [
+        { "title": "Construiești cu click-uri", "sub": "Adaugi un bloc, îndrepți o săgeată spre altul, o etichetezi. Fără sintaxă de memorat înainte să începi." },
+        { "title": "Alegi o formă", "sub": "Paisprezece forme de flowchart mermaid — romburi de decizie, cilindri de bază de date, subrutine — dintr-un singur selector." },
+        { "title": "Colorezi orice", "sub": "Opt presetări plus un selector de culoare, aplicabile unui singur nod sau unei zone întregi." }
+      ]
+    },
+    {
+      "heading": "Cod mermaid care rămâne al tău",
+      "sub": "Fila de text este mermaid simplu — aceeași sintaxă pe care GitHub, GitLab, Notion și Obsidian o randează deja. Nimic aici nu e un format proprietar.",
+      "bullets": [
+        { "title": "Îl scrii manual", "sub": "Tastezi mermaid direct și urmărești cum se randează. Șase exemple gata făcute de la care poți porni." },
+        { "title": "Se convertesc înapoi", "sub": "Flowchart-urile lipite sunt reinterpretate pe pânză — noduri, forme, culori, subgrafuri, totul." },
+        { "title": "Orice tip de diagramă", "sub": "Flowchart, secvență, clase, stare, ER, gantt, git graph, plăcintă — previzualizarea randează orice suportă mermaid." }
+      ]
+    },
+    {
+      "heading": "Diagramele mari rămân lizibile",
+      "sub": "Diagramele de arhitectură depășesc rapid un ecran. Navigarea, zoom-ul și gruparea sunt construite pentru asta, nu ca să lupți cu ea.",
+      "bullets": [
+        { "title": "Zone și imbricare", "sub": "Grupezi blocuri în subgrafuri, imbrichezi o zonă în alta, muți un subarbore întreg dintr-un singur gest." },
+        { "title": "Zoom de la 2% la 1600%", "sub": "Derulezi pentru a naviga, ctrl-derulezi pentru zoom, sau recentrezi cu un buton." },
+        { "title": "Salvat pe măsură ce lucrezi", "sub": "Diagrama ta e scrisă în stocarea locală a browserului la fiecare editare — închizi fila și revii la ea." }
+      ]
+    },
+    {
+      "heading": "Exporți și mergi mai departe",
+      "sub": "Nimic nu te leagă. Iei imaginea, iei sursa, sau iei un bloc Markdown gata de lipit într-un document.",
+      "bullets": [
+        { "title": "Fără plată", "sub": "Fiecare funcție, inclusiv exportul, e gratuită. Nu există un nivel plătit la care să treci." },
+        { "title": "Nimic nu iese din browser", "sub": "Nu există cont și nici stocare de diagrame pe server — randarea se face local." },
+        { "title": "SVG, PNG, .mmd, .md", "sub": "Copiezi codul SVG, descarci un PNG 2x, salvezi sursa mermaid sau iei un bloc Markdown." }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Cum se compară cu",
+    "titleAccent": "opțiunile obișnuite",
+    "description": "Uneltele diagram-as-code te obligă să scrii totul manual. Uneltele drag-and-drop îți dau o imagine pe care nu o poți compara. Acesta refuză să aleagă o tabără.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Unealtă tipică",
+    "rows": [
+      {
+        "title": "Primii pași",
+        "us": "Dai dublu-click pe pânză și apare un nod. Poți învăța sintaxa mai târziu, sau niciodată.",
+        "them": "Citești mai întâi referința de sintaxă, sau accepți o unealtă de desen fără nicio reprezentare text."
+      },
+      {
+        "title": "Formatul de ieșire",
+        "us": "Mermaid simplu — același text pe care GitHub, GitLab și Notion îl randează nativ.",
+        "them": "Un fișier proprietar care se deschide doar în unealta care l-a creat."
+      },
+      {
+        "title": "Editare ulterioară",
+        "us": "Schimbi codul sau muți blocurile. Ambele direcții funcționează pe aceeași diagramă.",
+        "them": "O singură direcție: uneltele code-first nu au pânză, cele canvas-first nu au sursă."
+      },
+      {
+        "title": "Preț",
+        "us": "Gratuit, fără cont, fără limite de export.",
+        "them": "Nivel gratuit limitat la câteva diagrame, cu export sau colaborare în spatele unui abonament."
+      },
+      {
+        "title": "Unde locuiesc datele",
+        "us": "Stocarea locală a browserului tău. Fără autentificare, nimic încărcat.",
+        "them": "Un cont pe serverul cuiva, cu diagramele tale atașate de el."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Întrebări despre editorul",
+    "headingAccent": "mermaid",
+    "sub": "Ce întreabă oamenii înainte să îl deschidă. Fără cont necesar — editorul e la un click distanță.",
+    "items": [
+      {
+        "q": "Ce este mermaid?",
+        "a": "Mermaid este o sintaxă text pentru diagrame: descrii noduri și săgeți în câteva linii, iar un motor de randare desenează imaginea. GitHub, GitLab, Notion și Obsidian îl randează în interiorul Markdown, așa că un bloc mermaid rămâne lizibil într-un pull request sau într-o pagină de wiki."
+      },
+      {
+        "q": "Este acest editor mermaid online chiar gratuit?",
+        "a": "Da. Fiecare funcție, inclusiv exportul SVG și PNG, este gratuită, iar crearea unui cont nu este necesară. Nu există nivel plătit — nimic nu e reținut."
+      },
+      {
+        "q": "Trebuie să cunosc sintaxa mermaid?",
+        "a": "Nu. Începi în fila vizuală: dai dublu-click pe pânză pentru a adăuga un bloc, îl selectezi și tragi o săgeată către altul. Codul mermaid este generat automat și îl poți citi oricând vrei să înveți sintaxa."
+      },
+      {
+        "q": "Ce tipuri de diagrame sunt suportate?",
+        "a": "Fila de cod randează orice suportă mermaid — flowchart, secvență, clase, stare, entitate-relație, gantt, git graph, plăcintă și altele. Pânza vizuală editează în mod specific flowchart-uri, care reprezintă majoritatea diagramelor."
+      },
+      {
+        "q": "Pot exporta în PNG sau SVG?",
+        "a": "Da. Copiezi codul SVG în clipboard, descarci fișierul SVG, sau descarci un PNG randat la 2x pentru prezentări și documente. Poți salva și sursa mermaid ca .mmd sau ca bloc Markdown."
+      },
+      {
+        "q": "Unde este stocată diagrama mea?",
+        "a": "În stocarea locală a browserului tău, pe propriul dispozitiv. Nu există cont și nicio copie pe server, deci ștergerea datelor browserului sau schimbarea dispozitivului înseamnă un nou început — exportă sursa dacă vrei să o păstrezi."
+      },
+      {
+        "q": "Pot lipi o diagramă mermaid existentă?",
+        "a": "Da. O lipești în fila de cod; un flowchart este reinterpretat pe pânza vizuală cu nodurile, formele, culorile și subgrafurile intacte. Alte tipuri de diagrame se randează în previzualizare, dar rămân doar cod."
+      },
+      {
+        "q": "Funcționează offline?",
+        "a": "Randarea se face în întregime în browserul tău, așa că, odată ce pagina s-a încărcat, editorul continuă să funcționeze fără conexiune. Diagrama ta este în stocarea locală, nu pe un server."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Deschide editorul.",
+    "headingAccent": "Nimic la care să te înregistrezi.",
+    "sub": "O pânză goală, o filă de cod și toate opțiunile de export — gratuit, în browser, chiar acum.",
+    "ctaLabel": "Deschide editorul"
+  },
+  "footer": {
+    "tagline": "Editor mermaid online gratuit",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Produs",
+    "languagesHeading": "Limbi"
+  },
+  "app": {
+    "metaTitle": "Editor Mermaid — desenezi și codezi în paralel",
+    "metaDescription": "Editorul mermaid gratuit: o pânză vizuală și sursa mermaid, sincronizate. Export în SVG, PNG, .mmd sau Markdown.",
+    "backToSite": "Înapoi la pagina principală"
+  },
+  "blog": {
+    "metaTitle": "Ghiduri Mermaid — sintaxă, exporturi și exemple",
+    "metaDescription": "Ghiduri scurte și practice despre mermaid: sintaxa pe care chiar o folosești, cum exporți o diagramă în PNG sau SVG și cum scrii o diagramă de secvență.",
+    "title": "Ghiduri mermaid",
+    "intro": "Notițe scurte și practice despre mermaid — sintaxa care merită memorată, exporturile pe care le cere lumea și tipurile de diagrame care apar cel mai des. Fiecare exemplu este la o lipire distanță de editor.",
+    "readMore": "Citește ghidul",
+    "backToBlog": "Toate ghidurile",
+    "relatedHeading": "Alte ghiduri"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaidシーケンス図の構文と実例",
+    "description": "mermaidでシーケンス図を書く方法。参加者、矢印の種類、アクティベーションバー、ループ、altブロック、ノートをコピペ用の実例付きで解説。"
+  },
+  "card": {
+    "title": "Mermaidシーケンス図",
+    "excerpt": "参加者、矢印の種類、アクティベーションバー、ループ、altブロック ― シーケンス図の構文全体を、実行できる実例とともに。"
+  },
+  "h1": "Mermaidでシーケンス図を書く方法",
+  "intro": "シーケンス図は、誰が誰に、どの順番で話しかけるかを示します。mermaidでは、口で説明するのとほぼ同じ時間で書けるため、コードベースの中で最も長く生き残る図の種類です。以下はすべて[エディタ](app:)にそのまま貼り付けられます。",
+  "blocks": [
+    { "type": "h2", "text": "最小構成" },
+    {
+      "type": "p",
+      "text": "図の種類を宣言し、1メッセージにつき1行を書きます。参加者は初めて登場した順に、その場で作成されます。"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "初出順ではなく特定の左右順にしたい場合は、`participant User`で参加者を明示的に宣言します。"
+    },
+
+    { "type": "h2", "text": "矢印の種類" },
+    {
+      "type": "table",
+      "headers": ["構文", "意味"],
+      "rows": [
+        ["`A->>B: text`", "リクエスト ― 実線、塗りつぶし矢じり"],
+        ["`A-->>B: text`", "レスポンス ― 破線、塗りつぶし矢じり"],
+        ["`A->B: text`", "実線、白抜き矢じり"],
+        ["`A-)B: text`", "非同期メッセージ ― 白抜き矢じり、返信を期待しない"],
+        ["`A-xB: text`", "失敗または破棄されたメッセージ"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "覚えておく価値がある慣習: **呼び出しは実線、戻りは破線**。これだけで、ラベルを1つも読まずにリクエストとレスポンスを区別できます。"
+    },
+
+    { "type": "h2", "text": "参加者とエイリアス" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "`participant`の代わりに`actor U as Browser`を使うと棒人間が描かれます ― 認証フローの左端に立つ人間を表すのに向いています。"
+    },
+
+    { "type": "h2", "text": "アクティベーションバー" },
+    {
+      "type": "p",
+      "text": "アクティベーションバーは、参加者がどれだけの間ビジー状態かを示します。`activate`/`deactivate`で明示的にマークするか、矢印に`+`と`-`を付ける方法があります。後者の方が短く、バランスも崩れにくいです。"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "ループ、条件分岐、並行処理" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` ― 繰り返し。",
+        "`alt <label>` … `else <label>` … `end` ― 互いに排他的な分岐。",
+        "`opt <label>` … `end` ― 単に起こらないこともある分岐。",
+        "`par <label>` … `and <label>` … `end` ― 同時に起こること。",
+        "`critical` / `break` ― 中断してはならない区間と、早期終了。"
+      ]
+    },
+
+    { "type": "h2", "text": "ノート" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B`は2つの参加者にまたがり、どちらか一方ではなく相互作用そのものに属する制約を書くのに適した場所です。"
+    },
+
+    { "type": "h2", "text": "完全な実例" },
+    {
+      "type": "code",
+      "caption": "OAuthログイン、最初から最後まで。",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "この図を編集する",
+      "text": "コードタブに貼り付けて1行変更してみてください ― 入力するたびにプレビューが再描画されます。",
+      "buttonLabel": "エディタを開く"
+    },
+
+    {
+      "type": "faq",
+      "heading": "よくある質問",
+      "items": [
+        {
+          "q": "メッセージに番号を振るには?",
+          "a": "`sequenceDiagram`の直後の行に`autonumber`を置きます。すべてのメッセージに連番が振られ、レビューコメントで図について話すのがずっと楽になります。"
+        },
+        {
+          "q": "参加者は自分自身にメッセージを送れますか?",
+          "a": "はい ― 両側に同じ名前を書きます: `API->>API: retry`。mermaidは同じライフラインに戻るループを描画します。"
+        },
+        {
+          "q": "参加者が破棄されたことを示すには?",
+          "a": "終了させるメッセージの前に`destroy <name>`を使うか、図の途中で登場させたい場合は`create participant <name>`を使います。"
+        },
+        {
+          "q": "シーケンス図はビジュアルキャンバスで編集できますか?",
+          "a": "ビジュアルキャンバスが編集するのはフローチャートです。シーケンス図はコードタブで書き、プレビューにリアルタイムで描画されます ― シーケンス図は本質的に行のリストなので、通常こちらの方が速いです。"
+        }
+      ]
+    }
+  ]
+}

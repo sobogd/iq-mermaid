@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid runurit: málskipan og dæmi",
+    "description": "Hvernig á að skrifa mermaid runurit: þátttakendur, örvagerðir, virknistikur, lykkjur, alt-blokkir og athugasemdir — með afrita-líma dæmum."
+  },
+  "card": {
+    "title": "Mermaid runurit",
+    "excerpt": "Þátttakendur, örvagerðir, virknistikur, lykkjur og alt-blokkir — öll málskipan runurita með keyranlegum dæmum."
+  },
+  "h1": "Hvernig á að skrifa mermaid runurit",
+  "intro": "Runurit sýnir hver talar við hvern, í hvaða röð. Í mermaid tekur það um það bil jafn langan tíma að skrifa það og að lýsa því upphátt, sem er ástæðan fyrir því að þetta er sú tegund skýringarmyndar sem endist lengst í kóðagrunni. Allt hér að neðan er tilbúið til að afrita og líma inn í [ritilinn](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Lágmarkið" },
+    {
+      "type": "p",
+      "text": "Tilgreindu tegund skýringarmyndarinnar og skrifaðu síðan eina línu fyrir hver skilaboð. Þátttakendur verða til við fyrstu tilvísun, í þeirri röð sem þeir birtast."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Tilgreindu þátttakendur beinlínis með `participant User` þegar þú vilt ákveðna röð frá vinstri til hægri frekar en röð fyrstu tilvísunar."
+    },
+
+    { "type": "h2", "text": "Örvagerðir" },
+    {
+      "type": "table",
+      "headers": ["Málskipan", "Merking"],
+      "rows": [
+        ["`A->>B: text`", "Beiðni — heil lína, fylltur örvaroddur"],
+        ["`A-->>B: text`", "Svar — punktalína, fylltur örvaroddur"],
+        ["`A->B: text`", "Heil lína, opinn örvaroddur"],
+        ["`A-)B: text`", "Ósamstillt skilaboð — opinn örvaroddur, ekkert svars vænst"],
+        ["`A-xB: text`", "Skilaboð sem mistakast eða falla niður"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Sú venja sem borgar sig að halda: **heil lína fyrir kallið, punktalína fyrir svarið**. Þá getur lesandinn greint beiðni frá svari án þess að lesa einn einasta merkimiða."
+    },
+
+    { "type": "h2", "text": "Þátttakendur og dulnefni" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Notaðu `actor U as Browser` í stað `participant` til að teikna prik-mannveru — þess virði fyrir manneskjuna við vinstri jaðar auðkenningarflæðis."
+    },
+
+    { "type": "h2", "text": "Virknistikur" },
+    {
+      "type": "p",
+      "text": "Virknistikur sýna hversu lengi þátttakandi er upptekinn. Merktu þær annaðhvort beinlínis með `activate`/`deactivate`, eða bættu `+` og `-` við örvarnar, sem er styttra og erfiðara að láta fara úr jafnvægi."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Lykkjur, skilyrði og samhliða vinna" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — endurtekning.",
+        "`alt <label>` … `else <label>` … `end` — greinar sem útiloka hver aðra.",
+        "`opt <label>` … `end` — grein sem gerist kannski einfaldlega ekki.",
+        "`par <label>` … `and <label>` … `end` — hlutir sem gerast á sama tíma.",
+        "`critical` / `break` — hluti sem má ekki trufla, og snemma útganga."
+      ]
+    },
+
+    { "type": "h2", "text": "Athugasemdir" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` nær yfir tvo þátttakendur og er rétti staðurinn fyrir skilyrði sem tilheyrir samskiptunum sjálfum frekar en annarri hliðinni."
+    },
+
+    { "type": "h2", "text": "Heilt dæmi" },
+    {
+      "type": "code",
+      "caption": "OAuth innskráning, frá byrjun til enda.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Breyttu þessari skýringarmynd",
+      "text": "Límdu hana inn í kóðaflipann og breyttu einni línu — forskoðunin endurteiknast um leið og þú skrifar.",
+      "buttonLabel": "Opna ritilinn"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Algengar spurningar",
+      "items": [
+        {
+          "q": "Hvernig númera ég skilaboðin?",
+          "a": "Settu `autonumber` á línuna beint á eftir `sequenceDiagram`. Þá fá öll skilaboð raðnúmer, sem gerir mun auðveldara að vísa í skýringarmyndina í yfirferðarathugasemdum."
+        },
+        {
+          "q": "Getur þátttakandi sent sjálfum sér skilaboð?",
+          "a": "Já — skrifaðu sama nafnið báðum megin: `API->>API: retry`. Mermaid teiknar lykkjuna til baka inn á sömu lífslínuna."
+        },
+        {
+          "q": "Hvernig sýni ég að þátttakandi sé eyddur?",
+          "a": "Notaðu `destroy <name>` fyrir framan skilaboðin sem enda hann, eða `create participant <name>` til að láta hann birtast í miðri skýringarmyndinni frekar en efst."
+        },
+        {
+          "q": "Get ég breytt runuriti á sjónræna striganum?",
+          "a": "Sjónræni striginn breytir flæðiritum. Runurit eru skrifuð á kóðaflipanum, þar sem þau birtast lifandi í forskoðuninni — sem er yfirleitt hraðara hvort sem er, því runurit er í grunninn bara listi af línum."
+        }
+      ]
+    }
+  ]
+}

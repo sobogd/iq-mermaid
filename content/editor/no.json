@@ -1,0 +1,83 @@
+{
+  "backToSite": "Tilbake til forsiden",
+  "tabs": { "visual": "Visuelt", "text": "Kode" },
+  "toolbar": {
+    "addBlock": "Legg til boks",
+    "addGroup": "Legg til område",
+    "copy": "Kopier (en boks, eller et helt område med alt i det)",
+    "paste": "Lim inn – klikk deretter hvor det skal plasseres",
+    "delete": "Slett valget",
+    "clearAll": "Fjern alt",
+    "connect": "Tegn en pil til en annen boks",
+    "move": "Flytt inn i et område, eller ut av et",
+    "color": "Farge",
+    "shape": "Form"
+  },
+  "zoom": { "center": "Sentrer på nytt" },
+  "modals": { "colorTitle": "Farge", "shapeTitle": "Form" },
+  "shapes": {
+    "rect": "Rektangel",
+    "rounded": "Avrundet",
+    "pill": "Pille",
+    "circle": "Sirkel",
+    "diamond": "Diamant",
+    "subroutine": "Subrutine",
+    "cylinder": "Database",
+    "hexagon": "Sekskant",
+    "asymmetric": "Flagg",
+    "parallelogram": "Parallellogram",
+    "parallelogramAlt": "Parallellogram (speilvendt)",
+    "trapezoid": "Trapes",
+    "trapezoidAlt": "Trapes (speilvendt)",
+    "doubleCircle": "Dobbel sirkel"
+  },
+  "hints": {
+    "connect": "Klikk boksen pilen skal peke på · Esc for å avbryte",
+    "move": "Klikk et område for å flytte inn i det, eller tomt rom for å flytte ut · Esc for å avbryte",
+    "paste": "Klikk et område eller tomt rom for å lime inn · Esc for å avbryte"
+  },
+  "prompts": {
+    "edgeLabel": "Piletekst:",
+    "clearAll": "Slette alt?"
+  },
+  "defaults": {
+    "block": "Boks",
+    "group": "Område",
+    "start": "Start",
+    "action": "Handling"
+  },
+  "text": {
+    "examplePlaceholder": "Eksempel…",
+    "copyMermaid": "Kopier mermaid",
+    "downloadMmd": "Last ned .mmd",
+    "downloadMd": "Last ned .md (Notion)",
+    "copySvg": "Kopier SVG",
+    "downloadSvg": "Last ned SVG",
+    "downloadPng": "Last ned PNG",
+    "statusOk": "OK",
+    "statusError": "Feil",
+    "statusSvgCopied": "SVG kopiert",
+    "statusMermaidCopied": "Mermaid kopiert"
+  },
+  "examples": {
+    "flowchart": "Flytskjema",
+    "sequence": "Sekvensdiagram",
+    "class": "Klassediagram",
+    "state": "Tilstandsdiagram",
+    "er": "ER-diagram",
+    "gantt": "Gantt-diagram"
+  },
+  "sample": {
+    "start": "Start",
+    "condition": "Klar?",
+    "yes": "Ja",
+    "no": "Nei",
+    "action1": "Send den",
+    "action2": "Fiks den",
+    "end": "Ferdig",
+    "project": "Prosjekt",
+    "phase": "Fase 1",
+    "task1": "Oppgave 1",
+    "task2": "Oppgave 2"
+  }
+}

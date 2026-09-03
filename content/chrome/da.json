@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Mermaid Live Editor — Gratis Online Diagrameditor",
+    "description": "Gratis mermaid editor: tegn diagrammer visuelt eller skriv mermaid-kode, synkroniseret. Flowchart, sequence, class, ER, state, gantt. Ingen tilmelding, SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — gratis, online, ingen tilmelding",
+    "ogDescription": "Tegn diagrammer på et lærred, eller skriv mermaid-kode. Begge visninger holdes synkroniseret. Eksportér til SVG, PNG, .mmd eller Markdown.",
+    "twitterTitle": "Gratis mermaid live editor",
+    "twitterDescription": "Visuelt lærred og mermaid-kode side om side. Ingen tilmelding, ingen betalingsmur."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Funktioner",
+    "blog": "Guides",
+    "faq": "FAQ",
+    "openEditor": "Åbn editor",
+    "menu": "Menu"
+  },
+  "hero": {
+    "badgeFree": "Gratis for altid",
+    "badgeNoSignup": "Ingen tilmelding",
+    "badgeDiagrams": "8 diagramtyper",
+    "title": "Lav mermaid-diagrammer online,",
+    "titleAccent": "gratis editor med visuel tegning og kode",
+    "description": "De fleste mermaid-editorer giver dig en tekstboks og en forhåndsvisning. Denne giver dig også et lærred: klik for at tilføje en blok, træk en pil, gruppér ting i områder — og mermaid-koden skriver sig selv. Skift til kode-fanen og redigér den i hånden; lærredet følger med.",
+    "ctaOpen": "Åbn editoren",
+    "ctaLearn": "Se hvad den kan",
+    "mockCodeLabel": "Mermaid-kode",
+    "mockDiagramLabel": "Genereret diagram"
+  },
+  "statCards": [
+    { "title": "Genereres mens du skriver", "sub": "Den rigtige mermaid-motor, gentegnet et par hundrede millisekunder efter dit sidste tastetryk." },
+    { "title": "Kode og lærred i sync", "sub": "Redigér den ene side. Den anden følger med — ingen copy-paste mellem to værktøjer." },
+    { "title": "14 node-former", "sub": "Rektangel, afrundet, pille, cirkel, diamant, database, sekskant og resten, ét klik hver." },
+    { "title": "Gratis, ingen konto", "sub": "Ingen tilmelding, ingen prøveperiode, intet vandmærke ved eksport. Dit diagram bliver i din browser." }
+  ],
+  "spotlights": [
+    {
+      "heading": "Et lærred, ikke bare en tekstboks",
+      "sub": "Den visuelle fane er en rigtig editor oven på det genererede diagram: klik på en node for at vælge den, dobbeltklik for at omdøbe den direkte, træk hvor som helst for at panorere.",
+      "bullets": [
+        { "title": "Klik for at bygge", "sub": "Tilføj en blok, peg en pil på en anden, sæt en label på pilen. Ingen syntaks at huske, før du går i gang." },
+        { "title": "Vælg en form", "sub": "Fjorten mermaid-flowchart-former — beslutningsdiamanter, database-cylindre, subrutiner — fra én vælger." },
+        { "title": "Farvelæg alt", "sub": "Otte forudindstillinger plus en farvevælger, anvendt på én node eller på et helt område." }
+      ]
+    },
+    {
+      "heading": "Mermaid-kode, der forbliver din",
+      "sub": "Kode-fanen er ren mermaid — samme syntaks som GitHub, GitLab, Notion og Obsidian allerede gengiver. Intet her er et proprietært format.",
+      "bullets": [
+        { "title": "Skriv den i hånden", "sub": "Skriv mermaid direkte og se den blive tegnet. Seks færdige eksempler at starte fra." },
+        { "title": "Går begge veje", "sub": "Flowcharts, du indsætter, bliver parset tilbage på lærredet — noder, former, farver, subgrafer og det hele." },
+        { "title": "Alle diagramtyper", "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — forhåndsvisningen gengiver alt, mermaid understøtter." }
+      ]
+    },
+    {
+      "heading": "Store diagrammer forbliver læsbare",
+      "sub": "Arkitekturdiagrammer vokser hurtigt ud over én skærm. Panorering, zoom og gruppering er bygget til det i stedet for at bekæmpe det.",
+      "bullets": [
+        { "title": "Områder og indlejring", "sub": "Gruppér blokke i subgrafer, indlejr et område i et andet, flyt et helt undertræ med én bevægelse." },
+        { "title": "Zoom fra 2% til 1600%", "sub": "Scroll for at panorere, ctrl-scroll for at zoome, eller centrér på ny med ét klik." },
+        { "title": "Gemmes undervejs", "sub": "Dit diagram skrives til browserens lokale lager ved hver redigering — luk fanen og vend tilbage til det." }
+      ]
+    },
+    {
+      "heading": "Eksportér og kom videre",
+      "sub": "Intet binder dig. Tag billedet, tag kilden, eller tag en Markdown-blok klar til at indsætte i et dokument.",
+      "bullets": [
+        { "title": "Ingen betalingsmur", "sub": "Alle funktioner, inklusive eksport, er gratis. Der er intet betalt niveau at opgradere til." },
+        { "title": "Intet forlader din browser", "sub": "Der er ingen konto og ingen serverlagring af diagrammer — generering sker lokalt." },
+        { "title": "SVG, PNG, .mmd, .md", "sub": "Kopiér SVG-markup, download en 2x PNG, gem mermaid-kilden, eller hent en Markdown-blok." }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Sådan sammenlignes den med",
+    "titleAccent": "de sædvanlige muligheder",
+    "description": "Diagram-som-kode-værktøjer får dig til at skrive alt i hånden. Træk-og-slip-værktøjer giver dig et billede, du ikke kan diffe. Denne her nægter at vælge side.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Typisk værktøj",
+    "rows": [
+      {
+        "title": "Kom i gang",
+        "us": "Dobbeltklik på lærredet, og en node dukker op. Du kan lære syntaksen senere — eller aldrig.",
+        "them": "Læs syntaksreferencen først, eller accepter et tegneværktøj helt uden tekstrepræsentation."
+      },
+      {
+        "title": "Outputformatet",
+        "us": "Ren mermaid — samme tekst, som GitHub, GitLab og Notion gengiver nativt.",
+        "them": "En proprietær fil, der kun åbner i det værktøj, der lavede den."
+      },
+      {
+        "title": "Redigering senere",
+        "us": "Ret koden eller flyt blokkene. Begge retninger virker på samme diagram.",
+        "them": "Kun én retning: kode-først-værktøjer har intet lærred, lærred-først-værktøjer har ingen kilde."
+      },
+      {
+        "title": "Pris",
+        "us": "Gratis, ingen konto, ingen eksportgrænser.",
+        "them": "Gratis niveau begrænset til få diagrammer, med eksport eller samarbejde bag et abonnement."
+      },
+      {
+        "title": "Hvor dataene bor",
+        "us": "I din browsers lokale lager. Ingen login, intet uploadet.",
+        "them": "En konto på en andens server, med dine diagrammer hæftet til den."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Spørgsmål om",
+    "headingAccent": "mermaid-editoren",
+    "sub": "Det folk spørger om, før de åbner den. Ingen tilmelding nødvendig — editoren er ét klik væk.",
+    "items": [
+      {
+        "q": "Hvad er mermaid?",
+        "a": "Mermaid er en tekstsyntaks til diagrammer: du beskriver noder og pile i nogle få linjer, og en renderer tegner billedet. GitHub, GitLab, Notion og Obsidian gengiver den inde i Markdown, så en mermaid-blok forbliver læsbar i en pull request eller en wiki-side."
+      },
+      {
+        "q": "Er denne mermaid-editor virkelig gratis?",
+        "a": "Ja. Alle funktioner, inklusive SVG- og PNG-eksport, er gratis, og der er ingen konto at oprette. Der er intet betalt niveau — intet holdes tilbage."
+      },
+      {
+        "q": "Skal jeg kende mermaid-syntaks?",
+        "a": "Nej. Start på den visuelle fane: dobbeltklik på lærredet for at tilføje en blok, vælg den, og tegn en pil til en anden. Mermaid-koden genereres for dig, og du kan læse den, når du vil lære syntaksen."
+      },
+      {
+        "q": "Hvilke diagramtyper understøttes?",
+        "a": "Kode-fanen gengiver alt, mermaid understøtter — flowchart, sequence, class, state, entity relationship, gantt, git graph, pie og mere. Det visuelle lærred redigerer specifikt flowcharts, hvilket er, hvad de fleste diagrammer er."
+      },
+      {
+        "q": "Kan jeg eksportere til PNG eller SVG?",
+        "a": "Ja. Kopiér SVG-markup til udklipsholderen, download SVG-filen, eller download en PNG gengivet i 2x til slides og dokumenter. Du kan også gemme mermaid-kilden som .mmd eller som en Markdown-blok."
+      },
+      {
+        "q": "Hvor gemmes mit diagram?",
+        "a": "I din browsers lokale lager, på din egen enhed. Der er ingen konto og ingen serverkopi, så hvis du rydder browserdata eller skifter enhed, starter du forfra — eksportér kilden, hvis du vil beholde den."
+      },
+      {
+        "q": "Kan jeg indsætte et eksisterende mermaid-diagram?",
+        "a": "Ja. Indsæt det i kode-fanen; et flowchart bliver parset tilbage på det visuelle lærred med noder, former, farver og subgrafer intakte. Andre diagramtyper bliver gengivet i forhåndsvisningen, men forbliver kun kode."
+      },
+      {
+        "q": "Virker den offline?",
+        "a": "Generering sker udelukkende i din browser, så når siden er indlæst, fortsætter editoren med at virke uden forbindelse. Dit diagram er i det lokale lager, ikke på en server."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Åbn editoren.",
+    "headingAccent": "Intet at tilmelde sig.",
+    "sub": "Et tomt lærred, en kode-fane og alle eksportmuligheder — gratis, i din browser, lige nu.",
+    "ctaLabel": "Åbn editoren"
+  },
+  "footer": {
+    "tagline": "Gratis online mermaid-editor",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Produkt",
+    "languagesHeading": "Sprog"
+  },
+  "app": {
+    "metaTitle": "Mermaid Editor — tegn og kod side om side",
+    "metaDescription": "Den gratis mermaid-editor: et visuelt lærred og mermaid-kilden, holdt synkroniseret. Eksportér til SVG, PNG, .mmd eller Markdown.",
+    "backToSite": "Tilbage til forsiden"
+  },
+  "blog": {
+    "metaTitle": "Mermaid-guides — syntaks, eksport og eksempler",
+    "metaDescription": "Korte, praktiske guides til mermaid: syntaks du faktisk bruger, hvordan du eksporterer et diagram til PNG eller SVG, og hvordan du skriver et sequence-diagram.",
+    "title": "Mermaid-guides",
+    "intro": "Korte, praktiske noter om mermaid — syntaksen, det er værd at huske, de eksporter, folk spørger om, og de diagramtyper, der går igen mest. Hvert eksempel er kun ét indsæt væk fra editoren.",
+    "readMore": "Læs guiden",
+    "backToBlog": "Alle guides",
+    "relatedHeading": "Flere guides"
+  }
+}

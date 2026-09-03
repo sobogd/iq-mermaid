@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "Mermaid-syntaksin pikaopas esimerkein",
+    "description": "Mermaid-syntaksi jota oikeasti tarvitset: solmujen muodot, nuolityypit, alikaaviot, tyylittely ja esimerkki jokaisesta kaaviotyypistä. Kopioi, liitä, muokkaa."
+  },
+  "card": {
+    "title": "Mermaid-syntaksin pikaopas",
+    "excerpt": "Solmujen muodot, nuolet, alikaaviot ja tyylittely yhdellä sivulla — sekä toimiva esimerkki jokaisesta kaaviotyypistä jonka mermaid piirtää."
+  },
+  "h1": "Mermaid-syntaksin pikaopas",
+  "intro": "Mermaidilla on laaja viitedokumentaatio ja pieni osajoukko, joka kattaa lähes kaiken mitä ihmiset piirtävät. Tämä sivu on se osajoukko: muodot, nuolet, ryhmittely, värit ja yksi kopioi-liitä-esimerkki jokaisesta kaaviotyypistä. Jokainen alla oleva pätkä piirtyy sellaisenaan — liitä se [editoriin](app:) nähdäksesi sen.",
+  "blocks": [
+    { "type": "h2", "text": "Lyhin toimiva kaavio" },
+    {
+      "type": "p",
+      "text": "Vuokaavio tarvitsee yhden määrittelyrivin ja yhden nuolen. `TD` tarkoittaa ylhäältä alas; käytä `LR`-suuntaa vasemmalta oikealle, joka sopii paremmin leveille prosesseille."
+    },
+    {
+      "type": "code",
+      "caption": "Kolmen solmun vuokaavio, ylhäältä alas.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` ja `C` ovat solmujen tunnisteita – sisäisiä nimiä, joita ei koskaan piirretä. Hakasulkeissa oleva teksti on selite, ja hakasulkeiden **tyyli** määrää muodon."
+    },
+
+    { "type": "h2", "text": "Solmujen muodot" },
+    {
+      "type": "p",
+      "text": "Muoto valitaan selitteen ympärillä olevan erotinparin perusteella. Nämä kannattaa muistaa:"
+    },
+    {
+      "type": "table",
+      "headers": ["Syntaksi", "Muoto", "Tavallinen merkitys"],
+      "rows": [
+        ["`A[Text]`", "Suorakulmio", "Vaihe tai toimenpide"],
+        ["`A(Text)`", "Pyöristetty", "Aloitus- tai lopetuspiste"],
+        ["`A([Text])`", "Pilleri", "Päätepiste"],
+        ["`A[[Text]]`", "Aliohjelma", "Kutsu toiseen prosessiin"],
+        ["`A[(Text)]`", "Sylinteri", "Tietokanta tai varasto"],
+        ["`A((Text))`", "Ympyrä", "Liittymäkohta"],
+        ["`A{Text}`", "Vinoneliö", "Päätös"],
+        ["`A{{Text}}`", "Kuusikulmio", "Valmisteluvaihe"],
+        ["`A[/Text/]`", "Suunnikas", "Syöte tai tuloste"],
+        ["`A[/Text\\]`", "Puolisuunnikas", "Manuaalinen toimenpide"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Laita selite lainausmerkkeihin, kun se sisältää sulkeita, kaksoispisteitä tai lainausmerkkejä: `A[\"Load (raw) data\"]`. Ilman lainausmerkkejä jäsentäjä tulkitsee välimerkkisi syntaksiksi."
+    },
+
+    { "type": "h2", "text": "Nuolet" },
+    {
+      "type": "table",
+      "headers": ["Syntaksi", "Tulos"],
+      "rows": [
+        ["`A --> B`", "Nuoli"],
+        ["`A --- B`", "Viiva, ei nuolenpäätä"],
+        ["`A -.-> B`", "Katkoviivanuoli"],
+        ["`A ==> B`", "Paksu nuoli"],
+        ["`A -->|label| B`", "Nuoli, jossa on selite"],
+        ["`A --> B --> C`", "Ketju yhdellä rivillä"],
+        ["`A --> B & C`", "Yksi lähde, kaksi kohdetta"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Nuolen pituudella on myös merkitys: `-->` on yksi taso, `--->` työntää kohteen yhden tason alemmas. Se on yksinkertaisin asettelun hallintakeino, jonka mermaid tarjoaa."
+    },
+
+    { "type": "h2", "text": "Ryhmittely alikaavioilla" },
+    {
+      "type": "p",
+      "text": "`subgraph` piirtää nimetyn laatikon solmujen ympärille. Alikaaviot voivat sisäkkäistyä, ja nuolet voivat ylittää niiden rajat vapaasti."
+    },
+    {
+      "type": "code",
+      "caption": "Kaksi palvelua, kummallakin oma varasto.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Väri ja tyylittely" },
+    {
+      "type": "p",
+      "text": "`style` värittää yhden solmun. `classDef` yhdessä `class`-määrityksen kanssa värittää joukon niitä, mikä kannattaa kolmen tai neljän solmun jälkeen."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Värit ovat osa kaavion lähdekoodia, joten ne säilyvät viennissä ja kulkevat tiedoston mukana. Mikään täällä ei riipu piirtävän työkalun teema-asetuksesta."
+    },
+
+    { "type": "h2", "text": "Yksi esimerkki jokaisesta kaaviotyypistä" },
+    { "type": "h3", "text": "Sekvenssikaavio" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Luokkakaavio" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Tilakaavio" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Entiteettisuhdekaavio" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantt-kaavio" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Missä mermaid piirtyy itsestään" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — aidattu ```mermaid-lohko piirtyy issueissa, pull requesteissa, kommenteissa ja README-tiedostoissa.",
+        "**GitLab** — sama aidattu lohko, issueissa, merge requesteissa ja wikissä.",
+        "**Notion** — koodilohko, jonka kieleksi on asetettu Mermaid, piirtyy lähdekoodin viereen.",
+        "**Obsidian** — aidattu mermaid-lohko piirtyy esikatselutilassa.",
+        "**Dokumentaatiosivustot** — Docusaurus, MkDocs Material ja VitePress tukevat kaikki mermaid-lohkoja."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Se on todellinen syy pitää kaaviot mermaidina eikä kuvina: kaavio elää samassa tekstitiedostossa kuin asia, jota se kuvaa, ja koodikatselmuksessa näkee mitä siinä muuttui."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Kokeile mitä tahansa tämän sivun esimerkkiä",
+      "text": "Liitä se koodivälilehteen ja se piirtyy heti – tai rakenna sama kaavio kanvakselle ja lue syntaksi takaisin.",
+      "buttonLabel": "Avaa editori"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Usein kysyttyä",
+      "items": [
+        {
+          "q": "Miten lisään rivinvaihdon solmun selitteen sisään?",
+          "a": "Käytä `<br>`-merkintää lainausmerkeissä olevan selitteen sisällä: `A[\"First line<br>Second line\"]`. Mermaid piirtää selitteen HTML:nä, joten tagi toimii, vaikka loppu syntaksista ei ole HTML:ää."
+        },
+        {
+          "q": "Miksi seliteeni rikkoo kaavion?",
+          "a": "Lähes aina syynä on lainaamaton hakasulje, sulje, kaksoispiste tai lainausmerkki selitteen sisällä. Kääri koko selite kaksinkertaisiin lainausmerkkeihin, niin jäsentäjä lakkaa tulkitsemasta välimerkkejäsi syntaksiksi."
+        },
+        {
+          "q": "Voinko hallita asettelua?",
+          "a": "Vain epäsuorasti. Valitse suunta (`TD`, `LR`, `BT`, `RL`), käytä pidempiä nuolia (`--->`) työntääksesi solmuja kauemmas toisistaan, ja ryhmittele toisiinsa liittyvät solmut alikaavioiksi. Mermaid laskee lopun – koordinaatteja ei ole."
+        },
+        {
+          "q": "Mitä mermaid-versiota tämä editori käyttää?",
+          "a": "Mermaid 11:tä, nykyistä pääversiota, joten kaikki v10- ja v11-syntaksille dokumentoitu piirtyy täällä."
+        }
+      ]
+    }
+  ]
+}

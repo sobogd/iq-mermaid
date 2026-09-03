@@ -1,0 +1,83 @@
+{
+  "backToSite": "Ana sayfaya dön",
+  "tabs": { "visual": "Görsel", "text": "Kod" },
+  "toolbar": {
+    "addBlock": "Blok ekle",
+    "addGroup": "Alan ekle",
+    "copy": "Kopyala (bir blok veya içindeki her şeyle birlikte tüm bir alan)",
+    "paste": "Yapıştır — sonra nereye gideceğine tıklayın",
+    "delete": "Seçimi sil",
+    "clearAll": "Her şeyi temizle",
+    "connect": "Başka bir bloğa ok çiz",
+    "move": "Bir alana taşı veya dışına çıkar",
+    "color": "Renk",
+    "shape": "Şekil"
+  },
+  "zoom": { "center": "Yeniden ortala" },
+  "modals": { "colorTitle": "Renk", "shapeTitle": "Şekil" },
+  "shapes": {
+    "rect": "Dikdörtgen",
+    "rounded": "Yuvarlak köşeli",
+    "pill": "Hap",
+    "circle": "Daire",
+    "diamond": "Eşkenar dörtgen",
+    "subroutine": "Alt yordam",
+    "cylinder": "Veritabanı",
+    "hexagon": "Altıgen",
+    "asymmetric": "Bayrak",
+    "parallelogram": "Paralelkenar",
+    "parallelogramAlt": "Paralelkenar (aynalı)",
+    "trapezoid": "Yamuk",
+    "trapezoidAlt": "Yamuk (aynalı)",
+    "doubleCircle": "Çift daire"
+  },
+  "hints": {
+    "connect": "Okun işaret edeceği bloğa tıklayın · İptal için Esc",
+    "move": "İçine taşımak için bir alana, dışına taşımak için boş bir yere tıklayın · İptal için Esc",
+    "paste": "Yapıştırmak için bir alana veya boş bir yere tıklayın · İptal için Esc"
+  },
+  "prompts": {
+    "edgeLabel": "Ok etiketi:",
+    "clearAll": "Her şey silinsin mi?"
+  },
+  "defaults": {
+    "block": "Blok",
+    "group": "Alan",
+    "start": "Başlangıç",
+    "action": "Eylem"
+  },
+  "text": {
+    "examplePlaceholder": "Örnek…",
+    "copyMermaid": "Mermaid'i kopyala",
+    "downloadMmd": ".mmd indir",
+    "downloadMd": ".md indir (Notion)",
+    "copySvg": "SVG'yi kopyala",
+    "downloadSvg": "SVG indir",
+    "downloadPng": "PNG indir",
+    "statusOk": "Tamam",
+    "statusError": "Hata",
+    "statusSvgCopied": "SVG kopyalandı",
+    "statusMermaidCopied": "Mermaid kopyalandı"
+  },
+  "examples": {
+    "flowchart": "Akış şeması",
+    "sequence": "Sıralama diyagramı",
+    "class": "Sınıf diyagramı",
+    "state": "Durum diyagramı",
+    "er": "ER diyagramı",
+    "gantt": "Gantt şeması"
+  },
+  "sample": {
+    "start": "Başlangıç",
+    "condition": "Hazır mı?",
+    "yes": "Evet",
+    "no": "Hayır",
+    "action1": "Yayınla",
+    "action2": "Düzelt",
+    "end": "Tamamlandı",
+    "project": "Proje",
+    "phase": "Aşama 1",
+    "task1": "Görev 1",
+    "task2": "Görev 2"
+  }
+}

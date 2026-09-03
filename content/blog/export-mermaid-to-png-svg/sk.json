@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Export mermaid do PNG, SVG alebo Markdownu",
+    "description": "Ako premeniť diagram mermaid na súbor PNG alebo SVG, skopírovať SVG kód, alebo ho ponechať ako text pre GitHub a Notion — a ktorý spôsob vybrať."
+  },
+  "card": {
+    "title": "Export mermaid do PNG alebo SVG",
+    "excerpt": "Štyri spôsoby, ako dostať diagram mermaid von — PNG, SVG, zdroj .mmd a Markdown blok — a kedy je ktorý z nich správna odpoveď."
+  },
+  "h1": "Export diagramu mermaid do PNG, SVG alebo Markdownu",
+  "intro": "Diagram je užitočný len tam, kde ho niekto vidí. Mermaid ponúka štyri cesty von — obrázok, vektor, zdroj alebo Markdown blok, ktorý sa vykreslí sám — a tá správna závisí úplne od toho, kam diagram smeruje. Toto je stručná verzia, plus to, čo sa pri každej z nich pokazí.",
+  "blocks": [
+    { "type": "h2", "text": "Najprv vyberte formát" },
+    {
+      "type": "table",
+      "headers": ["Cieľ", "Použite", "Prečo"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Markdown blok", "Vykreslí sa natívne a zostáva diffovateľný — žiadny súbor, ktorý treba udržiavať synchronizovaný."],
+        ["Prezentácie, špecifikácia, chatová správa", "PNG", "Vloží sa kamkoľvek, nepotrebuje renderer, vyzerá rovnako všade."],
+        ["Web, tlačený dokument", "SVG", "Vektor — ostrý pri akejkoľvek veľkosti a text zostáva vybrateľný."],
+        ["Iný editor, repozitár", "zdroj `.mmd`", "Neskôr editovateľné. Obrázok je slepá ulička."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Ak cieľ vykresľuje mermaid, neexportujte vôbec. Diagram commitnutý ako text sa dá reviewovať riadok po riadku; ten istý diagram commitnutý ako PNG sa dá len nahradiť."
+    },
+
+    { "type": "h2", "text": "Export z tohto editora" },
+    {
+      "type": "p",
+      "text": "Otvorte kódovú kartu — exportné tlačidlá sú v paneli nástrojov a každé pracuje s tým, čo je práve vykreslené."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**Kopírovať SVG** — dá kód `<svg>` do schránky, pripravený na vloženie priamo do HTML súboru alebo dizajnérskeho nástroja.",
+        "**Stiahnuť SVG** — uloží `diagram.svg`.",
+        "**Stiahnuť PNG** — uloží `diagram.png`, vykreslený v 2x rozlíšení s bielym pozadím, takže zostáva ostrý na obrazovke s vysokou hustotou pixelov a nikdy neskončí ako priesvitná škvrna na bielej snímke.",
+        "**Stiahnuť .mmd** — uloží mermaid zdroj ako obyčajný textový súbor.",
+        "**Stiahnuť .md (Notion)** — uloží zdroj obalený v ohradenom ```mermaid bloku, ktorý Notion, GitHub a Obsidian vykreslia po vložení."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Pre prezentáciu použite PNG. Pre čokoľvek, čo sa bude meniť veľkosťou — nadpis dokumentu, plagát, tlač — použite SVG; PNG zväčšené nad rámec exportnej veľkosti hneď stratí ostrosť."
+    },
+
+    { "type": "h2", "text": "Namiesto toho ho nechajte ako text" },
+    {
+      "type": "p",
+      "text": "Ohradený blok je jediný export, ktorý zostáva editovateľný na mieste. Tri spätné apostrofy, slovo `mermaid`, váš diagram, tri spätné apostrofy:"
+    },
+    {
+      "type": "code",
+      "caption": "Vložte toto do GitHub README a vykreslí sa.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — vykreslí sa v súboroch README, issues, pull requestoch a komentároch.",
+        "**GitLab** — vykreslí sa na wiki, v issues a merge requestoch.",
+        "**Notion** — vložte do bloku kódu a nastavte jazyk na Mermaid.",
+        "**Obsidian** — vykreslí sa v náhľade aj v publikovaných poznámkach.",
+        "**Docusaurus / MkDocs Material / VitePress** — mermaid bloky sa vykreslia vo vybudovanej dokumentácii."
+      ]
+    },
+
+    { "type": "h2", "text": "Čo sa dokáže pokaziť" },
+    { "type": "h3", "text": "PNG je rozmazané" },
+    {
+      "type": "p",
+      "text": "PNG má pevné rozlíšenie: exportuje sa v danej veľkosti v pixeloch a zväčšenie nad rámec toho interpoluje. Tento editor preto exportuje v 2x. Ak to stále nestačí, exportujte SVG a skonvertujte ho na akúkoľvek veľkosť, ktorú potrebujete — alebo použite rovno SVG."
+    },
+    { "type": "h3", "text": "SVG nemá pozadie" },
+    {
+      "type": "p",
+      "text": "Exporty SVG sú zámerne priesvitné, takže tmavý text uzlov zmizne na tmavej snímke. Buď dajte SVG na svetlú kartu, alebo použite PNG, ktoré sa exportuje na bielom."
+    },
+    { "type": "h3", "text": "Písmo vyzerá inde inak" },
+    {
+      "type": "p",
+      "text": "SVG odkazuje na rodiny písiem namiesto toho, aby ich vkladalo, takže stroj bez daného písma ho nahradí iným a rámčeky popiskov sa prestanú zarovnávať. Ak nemôžete ovládať písma u diváka, použite PNG."
+    },
+    { "type": "h3", "text": "Diagram je orezaný" },
+    {
+      "type": "p",
+      "text": "Export číta to, čo je práve vykreslené, takže pred exportom veľkého diagramu vycentrujte pohľad. Ak je popisok uzla obrovský, zalomte ho pomocou `<br>` — mermaid popisky sám od seba nezalamuje."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Exportujte na dva kliky",
+      "text": "Otvorte editor, vložte alebo nakreslite svoj diagram a vezmite si SVG, PNG alebo zdroj. Nič nie je za účtom.",
+      "buttonLabel": "Otvoriť editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Časté otázky",
+      "items": [
+        {
+          "q": "Ako skonvertujem mermaid do PNG?",
+          "a": "Vykreslite diagram a potom použite Stiahnuť PNG. Editor nakreslí vykreslené SVG na canvas v 2x mierke s bielym pozadím a uloží výsledok — bez odosielania na server, takže diagram nikdy neopustí váš prehliadač."
+        },
+        {
+          "q": "Môžem exportovať priesvitné PNG?",
+          "a": "Nie z tlačidla PNG — zámerne vypĺňa biele pozadie, pretože tmavý text diagramu na priesvitnom pozadí je na väčšine miest, kam sa PNG vkladá, nečitateľný. Namiesto toho exportujte SVG; to priesvitné je."
+        },
+        {
+          "q": "Existuje limit veľkosti?",
+          "a": "Žiadny pevný. Export prebieha vo vašom prehliadači, takže praktický limit je to, čo váš prehliadač dokáže vykresliť — čo je ďaleko za bodom, kedy je diagram pre človeka ešte čitateľný."
+        },
+        {
+          "q": "Ako zostane diagram editovateľný po exporte?",
+          "a": "Ponechajte si zdroj. Stiahnite súbor `.mmd` alebo Markdown blok popri obrázku; PNG alebo SVG sa naspäť na mermaid premeniť nedá, ale zdroj sa vloží priamo späť do editora."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Editor Mermaid Online Grátis — Editor de Diagramas",
+    "description": "Editor mermaid online grátis: desenhe visualmente ou escreva código mermaid, sincronizados. Fluxograma, sequência, classes, ER, gantt. Sem registo, exporta SVG/PNG.",
+    "ogTitle": "Editor Mermaid Online — grátis, sem registo",
+    "ogDescription": "Desenhe diagramas numa tela ou escreva código mermaid. As duas vistas ficam sincronizadas. Exporte para SVG, PNG, .mmd ou Markdown.",
+    "twitterTitle": "Editor mermaid online grátis",
+    "twitterDescription": "Tela visual e código mermaid, lado a lado. Sem registo, sem paywall."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Recursos",
+    "blog": "Guias",
+    "faq": "FAQ",
+    "openEditor": "Abrir editor",
+    "menu": "Menu"
+  },
+  "hero": {
+    "badgeFree": "Grátis para sempre",
+    "badgeNoSignup": "Sem registo",
+    "badgeDiagrams": "8 tipos de diagrama",
+    "title": "Editor mermaid online grátis,",
+    "titleAccent": "visual e código no mesmo lugar",
+    "description": "A maioria dos editores mermaid dá uma caixa de texto e uma pré-visualização. Este também dá uma tela: clique para adicionar um bloco, arraste uma seta, agrupe elementos em áreas — e o código mermaid escreve-se sozinho. Mude para o separador de código e edite-o à mão; a tela acompanha.",
+    "ctaOpen": "Abrir o editor",
+    "ctaLearn": "Ver o que faz",
+    "mockCodeLabel": "Código mermaid",
+    "mockDiagramLabel": "Diagrama renderizado"
+  },
+  "statCards": [
+    { "title": "Renderiza à medida que escreve", "sub": "O motor mermaid real, redesenhado poucas centenas de milissegundos depois da última tecla." },
+    { "title": "Código e tela sincronizados", "sub": "Edite qualquer um dos lados. O outro acompanha — sem copiar e colar entre duas ferramentas." },
+    { "title": "14 formas de nó", "sub": "Retângulo, arredondado, pílula, círculo, losango, base de dados, hexágono e as restantes, um clique cada." },
+    { "title": "Grátis, sem conta", "sub": "Sem registo, sem período de teste, sem marca de água na exportação. O seu diagrama fica no seu navegador." }
+  ],
+  "spotlights": [
+    {
+      "heading": "Uma tela, não só uma caixa de texto",
+      "sub": "O separador visual é um editor real sobre o diagrama renderizado: clique num nó para o selecionar, clique duas vezes para o renomear no local, arraste em qualquer ponto para deslocar a vista.",
+      "bullets": [
+        { "title": "Clique para construir", "sub": "Adicione um bloco, aponte uma seta para outro, coloque um texto na seta. Sem sintaxe para memorizar antes de começar." },
+        { "title": "Escolha uma forma", "sub": "Catorze formas de fluxograma mermaid — losangos de decisão, cilindros de base de dados, subrotinas — num único seletor." },
+        { "title": "Colora o que quiser", "sub": "Oito predefinições mais um seletor de cor, aplicadas a um único nó ou a uma área inteira." }
+      ]
+    },
+    {
+      "heading": "Código mermaid que continua seu",
+      "sub": "O separador de texto é mermaid puro — a mesma sintaxe que o GitHub, o GitLab, o Notion e o Obsidian já renderizam. Nada aqui é um formato proprietário.",
+      "bullets": [
+        { "title": "Escreva à mão", "sub": "Escreva mermaid diretamente e veja-o renderizar. Seis exemplos prontos para começar." },
+        { "title": "Vai e volta", "sub": "Os fluxogramas que cola são interpretados de volta para a tela — nós, formas, cores, subgráficos e tudo o resto." },
+        { "title": "Todos os tipos de diagrama", "sub": "Fluxograma, sequência, classes, estados, ER, gantt, git graph, circular — a pré-visualização renderiza tudo o que o mermaid suporta." }
+      ]
+    },
+    {
+      "heading": "Diagramas grandes continuam legíveis",
+      "sub": "Diagramas de arquitetura rapidamente ultrapassam um ecrã. Deslocar, ampliar e agrupar foram pensados para isso, em vez de lutar contra isso.",
+      "bullets": [
+        { "title": "Áreas e aninhamento", "sub": "Agrupe blocos em subgráficos, aninhe uma área dentro de outra, mova uma subárvore inteira num só gesto." },
+        { "title": "Zoom de 2% a 1600%", "sub": "Deslize para mover a vista, ctrl+deslize para ampliar, ou recentre com um botão." },
+        { "title": "Guardado automaticamente", "sub": "O seu diagrama é escrito no armazenamento local do navegador a cada edição — feche o separador e volte a encontrá-lo." }
+      ]
+    },
+    {
+      "heading": "Exporte e siga em frente",
+      "sub": "Nada fica preso. Leve a imagem, leve a fonte, ou leve um bloco Markdown pronto para colar num documento.",
+      "bullets": [
+        { "title": "Sem paywall", "sub": "Todas as funcionalidades, incluindo a exportação, são grátis. Não há nenhum plano pago para o qual atualizar." },
+        { "title": "Nada sai do seu navegador", "sub": "Não há conta nem armazenamento de diagramas no servidor — a renderização acontece localmente." },
+        { "title": "SVG, PNG, .mmd, .md", "sub": "Copie o código SVG, transfira um PNG a 2x, guarde a fonte mermaid, ou obtenha um bloco Markdown delimitado." }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Como se compara",
+    "titleAccent": "às opções habituais",
+    "description": "As ferramentas de diagrama-como-código obrigam a escrever tudo à mão. As ferramentas de arrastar e largar dão uma imagem que não se pode comparar por diferenças. Este recusa-se a escolher um lado.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Ferramenta típica",
+    "rows": [
+      {
+        "title": "Começar",
+        "us": "Clique duas vezes na tela e aparece um nó. Pode aprender a sintaxe mais tarde, ou nunca.",
+        "them": "Leia primeiro a referência de sintaxe, ou aceite uma ferramenta de desenho sem qualquer representação em texto."
+      },
+      {
+        "title": "O formato de saída",
+        "us": "Mermaid puro — o mesmo texto que o GitHub, o GitLab e o Notion renderizam nativamente.",
+        "them": "Um ficheiro proprietário que só abre na ferramenta que o criou."
+      },
+      {
+        "title": "Editar mais tarde",
+        "us": "Altere o código ou mova os blocos. As duas direções funcionam no mesmo diagrama.",
+        "them": "Só numa direção: as ferramentas centradas em código não têm tela, as centradas em tela não têm fonte."
+      },
+      {
+        "title": "Preço",
+        "us": "Grátis, sem conta, sem limites de exportação.",
+        "them": "Plano gratuito limitado a alguns diagramas, com exportação ou colaboração atrás de uma subscrição."
+      },
+      {
+        "title": "Onde ficam os dados",
+        "us": "No armazenamento local do seu navegador. Sem início de sessão, nada é enviado.",
+        "them": "Uma conta no servidor de outra pessoa, com os seus diagramas associados a ela."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Perguntas sobre o editor",
+    "headingAccent": "mermaid",
+    "sub": "O que as pessoas perguntam antes de o abrir. Sem necessidade de registo — o editor está a um clique de distância.",
+    "items": [
+      {
+        "q": "O que é o mermaid?",
+        "a": "Mermaid é uma sintaxe de texto para diagramas: descreve nós e setas em poucas linhas, e um motor de renderização desenha a imagem. O GitHub, o GitLab, o Notion e o Obsidian renderizam-no dentro do Markdown, por isso um bloco mermaid continua legível num pull request ou numa página de wiki."
+      },
+      {
+        "q": "Este editor mermaid é mesmo grátis?",
+        "a": "Sim. Todas as funcionalidades, incluindo a exportação para SVG e PNG, são grátis, e não é preciso criar nenhuma conta. Não há plano pago — nada fica reservado."
+      },
+      {
+        "q": "Preciso de saber a sintaxe mermaid?",
+        "a": "Não. Comece no separador visual: clique duas vezes na tela para adicionar um bloco, selecione-o e desenhe uma seta até outro. O código mermaid é gerado automaticamente e pode lê-lo sempre que quiser aprender a sintaxe."
+      },
+      {
+        "q": "Que tipos de diagrama são suportados?",
+        "a": "O separador de código renderiza tudo o que o mermaid suporta — fluxograma, sequência, classes, estados, entidade-relacionamento, gantt, git graph, circular e mais. A tela visual edita fluxogramas especificamente, que é o que a maioria dos diagramas são."
+      },
+      {
+        "q": "Posso exportar para PNG ou SVG?",
+        "a": "Sim. Copie o código SVG para a área de transferência, transfira o ficheiro SVG, ou transfira um PNG renderizado a 2x para apresentações e documentos. Também pode guardar a fonte mermaid como .mmd ou como um bloco Markdown delimitado."
+      },
+      {
+        "q": "Onde fica guardado o meu diagrama?",
+        "a": "No armazenamento local do seu navegador, no seu próprio dispositivo. Não há conta nem cópia no servidor, por isso limpar os dados do navegador ou mudar de dispositivo significa começar de novo — exporte a fonte se quiser guardá-la."
+      },
+      {
+        "q": "Posso colar um diagrama mermaid já existente?",
+        "a": "Sim. Cole-o no separador de código; um fluxograma é interpretado de volta para a tela visual com os seus nós, formas, cores e subgráficos intactos. Outros tipos de diagrama renderizam na pré-visualização mas continuam apenas em código."
+      },
+      {
+        "q": "Funciona offline?",
+        "a": "A renderização acontece inteiramente no seu navegador, por isso, depois de a página carregar, o editor continua a funcionar sem ligação. O seu diagrama está no armazenamento local, não num servidor."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Abra o editor.",
+    "headingAccent": "Não há nada para se registar.",
+    "sub": "Uma tela em branco, um separador de código e todas as opções de exportação — grátis, no seu navegador, agora mesmo.",
+    "ctaLabel": "Abrir o editor"
+  },
+  "footer": {
+    "tagline": "Editor mermaid online grátis",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Produto",
+    "languagesHeading": "Idiomas"
+  },
+  "app": {
+    "metaTitle": "Editor Mermaid — desenhe e programe lado a lado",
+    "metaDescription": "O editor mermaid grátis: uma tela visual e a fonte mermaid, sempre sincronizadas. Exporte para SVG, PNG, .mmd ou Markdown.",
+    "backToSite": "Voltar à página inicial"
+  },
+  "blog": {
+    "metaTitle": "Guias Mermaid — sintaxe, exportações e exemplos",
+    "metaDescription": "Guias curtos e práticos sobre mermaid: a sintaxe que realmente se usa, como exportar um diagrama para PNG ou SVG, e como escrever um diagrama de sequência.",
+    "title": "Guias mermaid",
+    "intro": "Notas curtas e práticas sobre mermaid — a sintaxe que vale a pena memorizar, as exportações mais pedidas, e os tipos de diagrama mais comuns. Cada exemplo está a um clique de distância do editor.",
+    "readMore": "Ler o guia",
+    "backToBlog": "Todos os guias",
+    "relatedHeading": "Mais guias"
+  }
+}

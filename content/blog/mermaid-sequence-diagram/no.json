@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid sekvensdiagram: syntaks og eksempler",
+    "description": "Hvordan skrive et mermaid-sekvensdiagram: deltakere, piltyper, aktiveringslinjer, løkker, alt-blokker og notater – med kopier-lim-inn-eksempler."
+  },
+  "card": {
+    "title": "Mermaid sekvensdiagrammer",
+    "excerpt": "Deltakere, piltyper, aktiveringslinjer, løkker og alt-blokker – hele sekvensdiagram-syntaksen med kjørbare eksempler."
+  },
+  "h1": "Hvordan skrive et mermaid-sekvensdiagram",
+  "intro": "Et sekvensdiagram viser hvem som snakker med hvem, i hvilken rekkefølge. I mermaid tar det omtrent like lang tid å skrive som å beskrive høyt, som er grunnen til at det er diagramtypen som overlever lengst i en kodebase. Alt under er klart til å limes inn i [editoren](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Minimumet" },
+    {
+      "type": "p",
+      "text": "Deklarer diagramtypen, skriv deretter én linje per melding. Deltakere opprettes ved første omtale, i rekkefølgen de vises."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Deklarer deltakere eksplisitt med `participant User` når du vil ha en bestemt venstre-til-høyre-rekkefølge i stedet for rekkefølgen de først nevnes i."
+    },
+
+    { "type": "h2", "text": "Piltyper" },
+    {
+      "type": "table",
+      "headers": ["Syntaks", "Betydning"],
+      "rows": [
+        ["`A->>B: text`", "Forespørsel – heltrukken linje, fylt pilspiss"],
+        ["`A-->>B: text`", "Svar – stiplet linje, fylt pilspiss"],
+        ["`A->B: text`", "Heltrukken linje, åpen pilspiss"],
+        ["`A-)B: text`", "Asynkron melding – åpen pilspiss, ingen svar forventet"],
+        ["`A-xB: text`", "Melding som feiler eller mistes"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Konvensjonen verdt å holde på: **heltrukken for kallet, stiplet for returen**. En leser kan da skille en forespørsel fra et svar uten å lese en eneste etikett."
+    },
+
+    { "type": "h2", "text": "Deltakere og aliaser" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Bruk `actor U as Browser` i stedet for `participant` for å tegne en pinnefigur – verdt det for mennesket i venstre kant av en autentiseringsflyt."
+    },
+
+    { "type": "h2", "text": "Aktiveringslinjer" },
+    {
+      "type": "p",
+      "text": "Aktiveringslinjer viser hvor lenge en deltaker er opptatt. Enten merk dem eksplisitt med `activate`/`deactivate`, eller legg til `+` og `-` på pilene, som er kortere og vanskeligere å få i ubalanse."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Løkker, betingelser og parallelt arbeid" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — repetisjon.",
+        "`alt <label>` … `else <label>` … `end` — gjensidig utelukkende grener.",
+        "`opt <label>` … `end` — en gren som kanskje rett og slett ikke skjer.",
+        "`par <label>` … `and <label>` … `end` — ting som skjer samtidig.",
+        "`critical` / `break` — en seksjon som ikke må avbrytes, og en tidlig utgang."
+      ]
+    },
+
+    { "type": "h2", "text": "Notater" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` spenner over to deltakere og er det riktige stedet for en begrensning som hører til interaksjonen fremfor til noen av sidene i den."
+    },
+
+    { "type": "h2", "text": "Et fullstendig eksempel" },
+    {
+      "type": "code",
+      "caption": "OAuth-innlogging, fra start til slutt.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Rediger dette diagrammet",
+      "text": "Lim det inn i kode-fanen og endre en linje – forhåndsvisningen tegnes på nytt mens du skriver.",
+      "buttonLabel": "Åpne editoren"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Ofte stilt",
+      "items": [
+        {
+          "q": "Hvordan nummererer jeg meldingene?",
+          "a": "Sett `autonumber` på linjen rett etter `sequenceDiagram`. Hver melding får da et sekvensielt nummer, som gjør et diagram mye lettere å snakke om i gjennomgangskommentarer."
+        },
+        {
+          "q": "Kan en deltaker sende en melding til seg selv?",
+          "a": "Ja – skriv samme navn på begge sider: `API->>API: retry`. Mermaid tegner løkken tilbake til samme livslinje."
+        },
+        {
+          "q": "Hvordan viser jeg at en deltaker blir avsluttet?",
+          "a": "Bruk `destroy <name>` før meldingen som avslutter den, eller `create participant <name>` for å la den dukke opp midt i diagrammet i stedet for øverst."
+        },
+        {
+          "q": "Kan jeg redigere et sekvensdiagram på det visuelle lerretet?",
+          "a": "Det visuelle lerretet redigerer flytskjemaer. Sekvensdiagrammer skrives på kode-fanen, der de gjengis direkte i forhåndsvisningen – noe som vanligvis er raskere uansett, siden et sekvensdiagram i bunn og grunn er en liste med linjer."
+        }
+      ]
+    }
+  ]
+}

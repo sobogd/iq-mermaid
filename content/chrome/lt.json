@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "title": "Mermaid Redaktorius Internetu — Nemokamas Diagramų Kūrimas",
+    "description": "Nemokamas mermaid redaktorius internete: piešk diagramą vizualiai arba rašyk mermaid kodą – abu sinchronizuoti. Be registracijos, eksportas į SVG/PNG.",
+    "ogTitle": "Mermaid Redaktorius Internetu — nemokamas, be registracijos",
+    "ogDescription": "Piešk diagramas ekrane arba rašyk mermaid kodą. Abu vaizdai sinchronizuoti. Eksportuok į SVG, PNG, .mmd arba Markdown.",
+    "twitterTitle": "Nemokamas mermaid redaktorius internetu",
+    "twitterDescription": "Vizualus darbalaukis ir mermaid kodas greta. Be registracijos, be mokamos versijos."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Galimybės",
+    "blog": "Vadovai",
+    "faq": "DUK",
+    "openEditor": "Atverti redaktorių",
+    "menu": "Meniu"
+  },
+  "hero": {
+    "badgeFree": "Amžinai nemokama",
+    "badgeNoSignup": "Be registracijos",
+    "badgeDiagrams": "8 diagramų tipai",
+    "title": "Nemokamas mermaid redaktorius internete,",
+    "titleAccent": "vizualus diagramų kūrimas ir kodas kartu",
+    "description": "Dauguma mermaid redaktorių duoda tik teksto langelį ir peržiūrą. Šis papildomai duoda ir darbalaukį (canvas): spustelėk, kad pridėtum bloką, tempk rodyklę, grupuok elementus į sritis — o mermaid kodas parašomas pats. Perjunk į kodo skirtuką ir redaguok ranka; darbalaukis seka paskui.",
+    "ctaOpen": "Atverti redaktorių",
+    "ctaLearn": "Pažiūrėk, ką jis daro",
+    "mockCodeLabel": "Mermaid kodas",
+    "mockDiagramLabel": "Atvaizduota diagrama"
+  },
+  "statCards": [
+    {
+      "title": "Piešia rašant",
+      "sub": "Tikras mermaid variklis, perpiešiantis diagramą per kelis šimtus milisekundžių po paskutinio klavišo paspaudimo."
+    },
+    {
+      "title": "Kodas ir darbalaukis sinchronizuoti",
+      "sub": "Redaguok bet kurią pusę. Kita pati pasiveja — jokio kopijavimo tarp dviejų įrankių."
+    },
+    {
+      "title": "14 mazgų formų",
+      "sub": "Stačiakampis, suapvalintas, piliulė, apskritimas, rombas, duomenų bazė, šešiakampis ir kitos — po vieną spustelėjimą."
+    },
+    {
+      "title": "Nemokama, be paskyros",
+      "sub": "Jokios registracijos, jokio bandomojo laikotarpio, jokio vandenženklio eksporte. Tavo diagrama lieka naršyklėje."
+    }
+  ],
+  "spotlights": [
+    {
+      "heading": "Darbalaukis, o ne vien teksto langelis",
+      "sub": "Vizualus skirtukas — tikras redaktorius virš atvaizduotos diagramos: spustelėk mazgą, kad jį pažymėtum, dukart spustelėk, kad pervadintum vietoje, tempk bet kur, kad slinktum vaizdą.",
+      "bullets": [
+        {
+          "title": "Statyk spustelėdamas",
+          "sub": "Pridėk bloką, nukreipk rodyklę į kitą, užrašyk rodyklės etiketę. Jokio sintaksės mokymosi prieš pradedant."
+        },
+        {
+          "title": "Pasirink formą",
+          "sub": "Keturiolika mermaid flowchart formų — sprendimų rombai, duomenų bazių cilindrai, subrutinos — viename pasirinkiklyje."
+        },
+        {
+          "title": "Nuspalvink bet ką",
+          "sub": "Aštuoni šablonai plius spalvų pasirinkiklis, taikomi vienam mazgui arba visai sričiai."
+        }
+      ]
+    },
+    {
+      "heading": "Mermaid kodas, kuris lieka tavo",
+      "sub": "Teksto skirtukas — tai grynas mermaid, ta pati sintaksė, kurią jau atvaizduoja GitHub, GitLab, Notion ir Obsidian. Čia nėra nieko patentuoto.",
+      "bullets": [
+        {
+          "title": "Rašyk ranka",
+          "sub": "Rašyk mermaid tiesiai ir stebėk, kaip jis atvaizduojamas. Šeši paruošti pavyzdžiai, nuo kurių gali pradėti."
+        },
+        {
+          "title": "Veikia abipusiai",
+          "sub": "Įklijuoti flowchart'ai perskaitomi atgal į darbalaukį — mazgai, formos, spalvos, sritys ir visa kita."
+        },
+        {
+          "title": "Kiekvienas diagramos tipas",
+          "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — peržiūra atvaizduoja viską, ką palaiko mermaid."
+        }
+      ]
+    },
+    {
+      "heading": "Didelės diagramos lieka aiškios",
+      "sub": "Architektūros diagramos greitai peraugą vieną ekraną. Slinkimas, mastelio keitimas ir grupavimas sukurti būtent tam, o ne kovai su tuo.",
+      "bullets": [
+        {
+          "title": "Sritys ir įdėjimas",
+          "sub": "Grupuok blokus į potipes (subgraph), įdėk sritį į sritį, perkelk visą pošakį vienu judesiu."
+        },
+        {
+          "title": "Mastelis nuo 2% iki 1600%",
+          "sub": "Slink ratuku, kad judėtum vaizdą, ctrl+ratukas — mastelio keitimui, arba centruok vienu mygtuku."
+        },
+        {
+          "title": "Išsaugoma savaime",
+          "sub": "Tavo diagrama įrašoma į naršyklės vietinę saugyklą po kiekvieno pakeitimo — uždaryk skirtuką ir grįžk vėliau."
+        }
+      ]
+    },
+    {
+      "heading": "Eksportuok ir dirbk toliau",
+      "sub": "Nieko neprivalai laikyti čia. Pasiimk paveikslėlį, pasiimk kodą arba Markdown bloką, paruoštą įklijuoti į dokumentą.",
+      "bullets": [
+        {
+          "title": "Jokio mokamo plano",
+          "sub": "Kiekviena funkcija, įskaitant eksportą, yra nemokama. Nėra jokio mokamo lygio, į kurį reikėtų kilti."
+        },
+        {
+          "title": "Niekas nepalieka naršyklės",
+          "sub": "Nėra paskyros ir nėra diagramos saugojimo serveryje — atvaizdavimas vyksta vietoje."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Kopijuok SVG kodą, atsisiųsk PNG dvigubos raiškos, išsaugok mermaid kodą arba pasiimk Markdown bloką."
+        }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Kaip tai lyginasi su",
+    "titleAccent": "įprastais įrankiais",
+    "description": "Diagram-as-code įrankiai verčia rašyti viską ranka. Vilkimo įrankiai duoda paveikslėlį, kurio negali palyginti (diff). Šis atsisako rinktis pusę.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Įprastas įrankis",
+    "rows": [
+      {
+        "title": "Pradžia",
+        "us": "Dukart spustelėk darbalaukį ir atsiranda mazgas. Sintaksės gali išmokti vėliau — arba niekada.",
+        "them": "Pirmiausia skaityk sintaksės aprašą, arba susitaikyk su piešimo įrankiu be jokio teksto atvaizdavimo."
+      },
+      {
+        "title": "Išvesties formatas",
+        "us": "Grynas mermaid — tas pats tekstas, kurį natūraliai atvaizduoja GitHub, GitLab ir Notion.",
+        "them": "Patentuotas failas, kuris atsidaro tik tame įrankyje, kuriame buvo sukurtas."
+      },
+      {
+        "title": "Redagavimas vėliau",
+        "us": "Keisk kodą arba kilnok blokus. Abi kryptys veikia toje pačioje diagramoje.",
+        "them": "Tik viena kryptis: kodu paremti įrankiai neturi darbalaukio, darbalaukiu paremti — neturi kodo."
+      },
+      {
+        "title": "Kaina",
+        "us": "Nemokama, be paskyros, be eksporto apribojimų.",
+        "them": "Nemokamas planas ribotas iki kelių diagramų, o eksportas ar bendradarbiavimas — už prenumeratos."
+      },
+      {
+        "title": "Kur saugomi duomenys",
+        "us": "Tavo naršyklės vietinėje saugykloje. Jokio prisijungimo, nieko neįkeliama.",
+        "them": "Paskyra kažkieno serveryje, prie kurios prisegtos tavo diagramos."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Mermaid redaktoriaus",
+    "headingAccent": "klausimai",
+    "sub": "Ką žmonės klausia prieš atverdami jį. Registracijos nereikia — redaktorius per vieną paspaudimą.",
+    "items": [
+      {
+        "q": "Kas yra mermaid?",
+        "a": "Mermaid — tai teksto sintaksė diagramoms: keliomis eilutėmis aprašai mazgus ir rodykles, o atvaizdavimo variklis nupiešia paveikslėlį. GitHub, GitLab, Notion ir Obsidian atvaizduoja jį Markdown viduje, tad mermaid blokas lieka skaitomas pull request'e ar wiki puslapyje."
+      },
+      {
+        "q": "Ar šis mermaid redaktorius tikrai nemokamas?",
+        "a": "Taip. Kiekviena funkcija, įskaitant SVG ir PNG eksportą, yra nemokama, ir paskyros kurti nereikia. Nėra mokamo lygio — niekas nėra sulaikyta."
+      },
+      {
+        "q": "Ar reikia mokėti mermaid sintaksę?",
+        "a": "Ne. Pradėk nuo vizualaus skirtuko: dukart spustelėk darbalaukį, kad pridėtum bloką, pažymėk jį ir nubrėžk rodyklę į kitą. Mermaid kodas sugeneruojamas už tave, ir gali jį perskaityti bet kada, jei nori išmokti sintaksę."
+      },
+      {
+        "q": "Kokie diagramų tipai palaikomi?",
+        "a": "Kodo skirtukas atvaizduoja viską, ką palaiko mermaid — flowchart, sequence, class, state, entity relationship, gantt, git graph, pie ir daugiau. Vizualus darbalaukis redaguoja būtent flowchart'us, o tai yra dauguma diagramų."
+      },
+      {
+        "q": "Ar galiu eksportuoti į PNG ar SVG?",
+        "a": "Taip. Nukopijuok SVG kodą į iškarpinę, atsisiųsk SVG failą arba atsisiųsk PNG, atvaizduotą dvigubos raiškos skaidrėms ir dokumentams. Taip pat gali išsaugoti mermaid kodą kaip .mmd arba kaip Markdown bloką."
+      },
+      {
+        "q": "Kur saugoma mano diagrama?",
+        "a": "Tavo naršyklės vietinėje saugykloje, tavo pačio įrenginyje. Nėra paskyros ir nėra kopijos serveryje, tad išvalius naršyklės duomenis ar pakeitus įrenginį reikės pradėti iš naujo — eksportuok kodą, jei nori jį išsaugoti."
+      },
+      {
+        "q": "Ar galiu įklijuoti jau turimą mermaid diagramą?",
+        "a": "Taip. Įklijuok ją į kodo skirtuką; flowchart perskaitomas atgal į vizualų darbalaukį su nepakitusiais mazgais, formomis, spalvomis ir sritimis. Kiti diagramų tipai atvaizduojami peržiūroje, bet lieka tik kodo pavidalu."
+      },
+      {
+        "q": "Ar veikia neprisijungus prie interneto?",
+        "a": "Atvaizdavimas vyksta visiškai naršyklėje, tad puslapiui įsikėlus redaktorius toliau veikia be ryšio. Tavo diagrama saugoma vietinėje saugykloje, ne serveryje."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Atverk redaktorių.",
+    "headingAccent": "Nieko registruotis nereikia.",
+    "sub": "Tuščias darbalaukis, kodo skirtukas ir visos eksporto galimybės — nemokamai, naršyklėje, dabar.",
+    "ctaLabel": "Atverti redaktorių"
+  },
+  "footer": {
+    "tagline": "Nemokamas mermaid redaktorius internetu",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Produktas",
+    "languagesHeading": "Kalbos"
+  },
+  "app": {
+    "metaTitle": "Mermaid Redaktorius — piešk ir rašyk kodą greta",
+    "metaDescription": "Nemokamas mermaid redaktorius: vizualus darbalaukis ir mermaid kodas, sinchronizuoti. Eksportuok į SVG, PNG, .mmd arba Markdown.",
+    "backToSite": "Grįžti į pradinį puslapį"
+  },
+  "blog": {
+    "metaTitle": "Mermaid Vadovai — sintaksė, eksportas ir pavyzdžiai",
+    "metaDescription": "Trumpi, praktiški mermaid vadovai: sintaksė, kurią tikrai naudosi, kaip eksportuoti diagramą į PNG ar SVG ir kaip parašyti sequence diagramą.",
+    "title": "Mermaid vadovai",
+    "intro": "Trumpos, praktiškos pastabos apie mermaid — sintaksė, verta įsiminti, eksportai, kurių žmonės prašo, ir diagramų tipai, kurie pasitaiko dažniausiai. Kiekvienas pavyzdys — vienas įklijavimas iki redaktoriaus.",
+    "readMore": "Skaityti vadovą",
+    "backToBlog": "Visi vadovai",
+    "relatedHeading": "Daugiau vadovų"
+  }
+}

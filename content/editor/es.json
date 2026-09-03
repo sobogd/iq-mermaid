@@ -1,0 +1,83 @@
+{
+  "backToSite": "Volver a la página principal",
+  "tabs": { "visual": "Visual", "text": "Código" },
+  "toolbar": {
+    "addBlock": "Añadir un bloque",
+    "addGroup": "Añadir un área",
+    "copy": "Copiar (un bloque, o un área completa con todo su contenido)",
+    "paste": "Pegar — luego haz clic en el destino",
+    "delete": "Eliminar la selección",
+    "clearAll": "Borrar todo",
+    "connect": "Dibujar una flecha hacia otro bloque",
+    "move": "Mover a un área, o sacar de una",
+    "color": "Color",
+    "shape": "Forma"
+  },
+  "zoom": { "center": "Recentrar" },
+  "modals": { "colorTitle": "Color", "shapeTitle": "Forma" },
+  "shapes": {
+    "rect": "Rectángulo",
+    "rounded": "Redondeado",
+    "pill": "Píldora",
+    "circle": "Círculo",
+    "diamond": "Rombo",
+    "subroutine": "Subrutina",
+    "cylinder": "Base de datos",
+    "hexagon": "Hexágono",
+    "asymmetric": "Bandera",
+    "parallelogram": "Paralelogramo",
+    "parallelogramAlt": "Paralelogramo (invertido)",
+    "trapezoid": "Trapecio",
+    "trapezoidAlt": "Trapecio (invertido)",
+    "doubleCircle": "Círculo doble"
+  },
+  "hints": {
+    "connect": "Haz clic en el bloque al que debe apuntar la flecha · Esc para cancelar",
+    "move": "Haz clic en un área para mover dentro, o en espacio vacío para mover fuera · Esc para cancelar",
+    "paste": "Haz clic en un área o espacio vacío para pegar ahí · Esc para cancelar"
+  },
+  "prompts": {
+    "edgeLabel": "Etiqueta de la flecha:",
+    "clearAll": "¿Eliminar todo?"
+  },
+  "defaults": {
+    "block": "Bloque",
+    "group": "Área",
+    "start": "Inicio",
+    "action": "Acción"
+  },
+  "text": {
+    "examplePlaceholder": "Ejemplo…",
+    "copyMermaid": "Copiar mermaid",
+    "downloadMmd": "Descargar .mmd",
+    "downloadMd": "Descargar .md (Notion)",
+    "copySvg": "Copiar SVG",
+    "downloadSvg": "Descargar SVG",
+    "downloadPng": "Descargar PNG",
+    "statusOk": "OK",
+    "statusError": "Error",
+    "statusSvgCopied": "SVG copiado",
+    "statusMermaidCopied": "Mermaid copiado"
+  },
+  "examples": {
+    "flowchart": "Diagrama de flujo",
+    "sequence": "Diagrama de secuencia",
+    "class": "Diagrama de clases",
+    "state": "Diagrama de estados",
+    "er": "Diagrama ER",
+    "gantt": "Diagrama de Gantt"
+  },
+  "sample": {
+    "start": "Inicio",
+    "condition": "¿Listo?",
+    "yes": "Sí",
+    "no": "No",
+    "action1": "Publicarlo",
+    "action2": "Arreglarlo",
+    "end": "Hecho",
+    "project": "Proyecto",
+    "phase": "Fase 1",
+    "task1": "Tarea 1",
+    "task2": "Tarea 2"
+  }
+}

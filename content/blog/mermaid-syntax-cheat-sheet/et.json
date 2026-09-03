@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Mermaid süntaksi spikker koos näidetega",
+    "description": "Mermaid süntaks, mida päriselt kasutad: sõlmede kujud, noolte tüübid, alamgraafikud, stiilid ja üks töötav näide iga diagrammitüübi kohta. Kopeeri, kleebi, muuda."
+  },
+  "card": {
+    "title": "Mermaid süntaksi spikker",
+    "excerpt": "Sõlmede kujud, nooled, alamgraafikud ja stiilid ühel lehel — pluss töötav näide igast diagrammitüübist, mida mermaid renderdab."
+  },
+  "h1": "Mermaid süntaksi spikker",
+  "intro": "Mermaidil on suur juhend ja väike alamhulk, mis katab peaaegu kõike, mida inimesed joonistavad. See leht ongi see alamhulk: kujud, nooled, rühmitamine, värvid ja üks kopeeri-kleebi näide iga diagrammitüübi kohta. Iga allolev näide renderdub täpselt sellisena, nagu on — kleebi see [redaktorisse](app:), et näha.",
+  "blocks": [
+    { "type": "h2", "text": "Lühim diagramm, mis töötab" },
+    {
+      "type": "p",
+      "text": "Vookaart vajab üht deklaratsioonirida ja üht noolt. `TD` tähendab ülevalt alla; laiemate protsesside jaoks, mis sobivad paremini vasakult paremale, kasuta `LR`."
+    },
+    {
+      "type": "code",
+      "caption": "Kolme sõlmega vookaart, ülevalt alla.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` ja `C` on sõlme id-d — sisemised nimed, mida kunagi ei kuvata. Nurksulgudes olev tekst on silt ja sulu **stiil** valib kuju."
+    },
+
+    { "type": "h2", "text": "Sõlmede kujud" },
+    {
+      "type": "p",
+      "text": "Kuju valitakse sildi ümber oleva eraldajapaari järgi. Need tasub meeles pidada:"
+    },
+    {
+      "type": "table",
+      "headers": ["Süntaks", "Kuju", "Tavaline tähendus"],
+      "rows": [
+        ["`A[Text]`", "Ristkülik", "Samm või tegevus"],
+        ["`A(Text)`", "Ümardatud", "Algus- või lõpp-punkt"],
+        ["`A([Text])`", "Pill", "Terminaator"],
+        ["`A[[Text]]`", "Alamrutiin", "Kutse teise protsessi"],
+        ["`A[(Text)]`", "Silinder", "Andmebaas või hoidla"],
+        ["`A((Text))`", "Ring", "Ristmik"],
+        ["`A{Text}`", "Romb", "Otsustuspunkt"],
+        ["`A{{Text}}`", "Kuusnurk", "Ettevalmistussamm"],
+        ["`A[/Text/]`", "Rööpkülik", "Sisend või väljund"],
+        ["`A[/Text\\]`", "Trapets", "Käsitsi tehtav toiming"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Pane silt jutumärkidesse, kui see sisaldab sulge, koolonit või jutumärke: `A[\"Load (raw) data\"]`. Ilma jutumärkideta tõlgendab parser su kirjavahemärgid süntaksina."
+    },
+
+    { "type": "h2", "text": "Nooled" },
+    {
+      "type": "table",
+      "headers": ["Süntaks", "Tulemus"],
+      "rows": [
+        ["`A --> B`", "Nool"],
+        ["`A --- B`", "Joon, ilma nooleotsata"],
+        ["`A -.-> B`", "Punktiirnool"],
+        ["`A ==> B`", "Paks nool"],
+        ["`A -->|label| B`", "Nool koos sildiga"],
+        ["`A --> B --> C`", "Ahel, kirjutatud ühele reale"],
+        ["`A --> B & C`", "Üks allikas, kaks sihtmärki"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Ka noole pikkus on tähenduslik: `-->` on üks aste, `--->` lükkab sihtmärgi ühe astme võrra allapoole. See on lihtsaim paigutuse juhtimise viis, mida mermaid pakub."
+    },
+
+    { "type": "h2", "text": "Rühmitamine alamgraafikutega" },
+    {
+      "type": "p",
+      "text": "`subgraph` joonistab sildistatud kasti ümber sõlmede. Alamgraafikud pesastuvad ja nooled võivad nende piire vabalt ületada."
+    },
+    {
+      "type": "code",
+      "caption": "Kaks teenust, kummalgi oma hoidla.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Värv ja stiil" },
+    {
+      "type": "p",
+      "text": "`style` värvib ühe sõlme. `classDef` koos `class`-iga värvib terve komplekti, mida tasub teha alates kolmandast-neljandast sõlmest."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Värvid on osa diagrammi lähtekoodist, seega säilivad need ekspordil ja liiguvad failiga kaasas. Miski siin ei sõltu renderdava tööriista teemaseadest."
+    },
+
+    { "type": "h2", "text": "Üks näide iga diagrammitüübi kohta" },
+    {
+      "type": "h3",
+      "text": "Jadadiagramm"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Klassidiagramm" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Olekudiagramm" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Olemi-seose diagramm" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Gantti diagramm" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Kus mermaid renderdub iseenesest" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — sildistatud ```mermaid plokk renderdub probleemides, pull request'ides, kommentaarides ja README-failides.",
+        "**GitLab** — sama sildistatud plokk, probleemides, merge request'ides ja wikis.",
+        "**Notion** — koodiplokk, mille keeleks on määratud Mermaid, renderdub lähtekoodi kõrval.",
+        "**Obsidian** — sildistatud mermaid plokk renderdub eelvaaterežiimis.",
+        "**Dokusaidid** — Docusaurus, MkDocs Material ja VitePress toetavad kõik mermaid plokke."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "See ongi tegelik põhjus, miks hoida diagramme mermaidina, mitte piltidena: diagramm elab samas tekstifailis nagu asi, mida ta kirjeldab, ja koodiülevaatus näeb, mis selles muutus."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Proovi mõnda selle lehe näidet",
+      "text": "Kleebi see koodisakile ja see renderdub kohe — või ehita sama diagramm lõuendile ja loe süntaks sealt tagasi.",
+      "buttonLabel": "Ava redaktor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Sageli küsitud",
+      "items": [
+        {
+          "q": "Kuidas lisada sõlme sildi sisse reavahetus?",
+          "a": "Kasuta `<br>` jutumärkides sildi sees: `A[\"First line<br>Second line\"]`. Mermaid renderdab sildi HTML-ina, nii et silt töötab, kuigi ülejäänud süntaks pole HTML."
+        },
+        {
+          "q": "Miks mu silt diagrammi katki teeb?",
+          "a": "Peaaegu alati on põhjuseks jutumärkideta sulg, ümarsulg, koolon või jutumärk sildi sees. Pane terve silt topeltjutumärkidesse ja parser lõpetab su kirjavahemärkide süntaksina käsitlemise."
+        },
+        {
+          "q": "Kas saan paigutust juhtida?",
+          "a": "Ainult kaudselt. Vali suund (`TD`, `LR`, `BT`, `RL`), kasuta pikemaid nooli (`--->`), et lükata sõlmed kaugemale, ja rühmita seotud sõlmed alamgraafikutesse. Ülejäänu arvutab mermaid — koordinaate pole."
+        },
+        {
+          "q": "Millist mermaid versiooni see redaktor kasutab?",
+          "a": "Mermaid 11, praegune põhiversioon, nii et kõik, mis on dokumenteeritud v10 ja v11 süntaksi jaoks, renderdub siin."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Ściągawka ze Składni Mermaid z Przykładami",
+    "description": "Składnia mermaid, której naprawdę używasz: kształty węzłów, typy strzałek, podgrafy, stylowanie i jeden działający przykład na każdy typ diagramu. Kopiuj, wklejaj, edytuj."
+  },
+  "card": {
+    "title": "Ściągawka ze składni mermaid",
+    "excerpt": "Kształty węzłów, strzałki, podgrafy i stylowanie na jednej stronie — plus działający przykład każdego typu diagramu, jaki renderuje mermaid."
+  },
+  "h1": "Ściągawka ze składni mermaid",
+  "intro": "Mermaid ma obszerną dokumentację i niewielki podzbiór, który pokrywa niemal wszystko, co ludzie rysują. Ta strona to właśnie ten podzbiór: kształty, strzałki, grupowanie, kolory i po jednym przykładzie do skopiowania dla każdego typu diagramu. Każdy fragment poniżej renderuje się bez zmian — wklej go do [edytora](app:), aby zobaczyć.",
+  "blocks": [
+    { "type": "h2", "text": "Najkrótszy diagram, który działa" },
+    {
+      "type": "p",
+      "text": "Flowchart potrzebuje jednej linii deklaracji i jednej strzałki. `TD` oznacza od góry do dołu; użyj `LR` dla układu od lewej do prawej, który lepiej sprawdza się przy szerokich procesach."
+    },
+    {
+      "type": "code",
+      "caption": "Trzywęzłowy flowchart, od góry do dołu.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` i `C` to identyfikatory węzłów — nazwy wewnętrzne, nigdy nierysowane. Tekst w nawiasach to etykieta, a **styl** nawiasu decyduje o kształcie."
+    },
+
+    { "type": "h2", "text": "Kształty węzłów" },
+    {
+      "type": "p",
+      "text": "Kształt jest wybierany przez parę ograniczników wokół etykiety. Oto te warte zapamiętania:"
+    },
+    {
+      "type": "table",
+      "headers": ["Składnia", "Kształt", "Zwykłe znaczenie"],
+      "rows": [
+        ["`A[Text]`", "Prostokąt", "Krok lub akcja"],
+        ["`A(Text)`", "Zaokrąglony", "Punkt startu lub końca"],
+        ["`A([Text])`", "Pigułka", "Terminator"],
+        ["`A[[Text]]`", "Podproces", "Wywołanie innego procesu"],
+        ["`A[(Text)]`", "Cylinder", "Baza danych lub magazyn"],
+        ["`A((Text))`", "Koło", "Punkt węzłowy"],
+        ["`A{Text}`", "Romb", "Decyzja"],
+        ["`A{{Text}}`", "Sześciokąt", "Krok przygotowawczy"],
+        ["`A[/Text/]`", "Równoległobok", "Wejście lub wyjście"],
+        ["`A[/Text\\]`", "Trapez", "Operacja ręczna"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Ujmij etykietę w cudzysłów, gdy zawiera nawiasy, dwukropki lub cudzysłowy: `A[\"Load (raw) data\"]`. Bez cudzysłowu parser odczyta twoją interpunkcję jako składnię."
+    },
+
+    { "type": "h2", "text": "Strzałki" },
+    {
+      "type": "table",
+      "headers": ["Składnia", "Wynik"],
+      "rows": [
+        ["`A --> B`", "Strzałka"],
+        ["`A --- B`", "Linia bez grotu"],
+        ["`A -.-> B`", "Strzałka kropkowana"],
+        ["`A ==> B`", "Gruba strzałka"],
+        ["`A -->|label| B`", "Strzałka z etykietą"],
+        ["`A --> B --> C`", "Łańcuch zapisany w jednej linii"],
+        ["`A --> B & C`", "Jedno źródło, dwa cele"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Długość strzałki też ma znaczenie: `-->` to jeden poziom, `--->` przesuwa cel o jeden poziom dalej w dół. To najprostsza kontrola układu, jaką daje mermaid."
+    },
+
+    { "type": "h2", "text": "Grupowanie za pomocą podgrafów" },
+    {
+      "type": "p",
+      "text": "`subgraph` rysuje opisany prostokąt wokół węzłów. Podgrafy mogą się zagnieżdżać, a strzałki mogą swobodnie przekraczać ich granice."
+    },
+    {
+      "type": "code",
+      "caption": "Dwie usługi, każda z własnym magazynem.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Kolor i stylowanie" },
+    {
+      "type": "p",
+      "text": "`style` maluje jeden węzeł. `classDef` razem z `class` maluje cały ich zestaw, co przydaje się już powyżej trzech, czterech węzłów."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Kolory są częścią źródła diagramu, więc przetrwają eksport i wędrują razem z plikiem. Nic tutaj nie zależy od ustawień motywu w narzędziu, które go renderuje."
+    },
+
+    { "type": "h2", "text": "Po jednym przykładzie na każdy typ diagramu" },
+    {
+      "type": "h3",
+      "text": "Diagram sekwencji"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Diagram klas" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Diagram stanów" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Diagram relacji encji" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Wykres Gantta" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Gdzie mermaid renderuje się samodzielnie" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — otoczony znacznikami blok ```mermaid renderuje się w issues, pull requestach, komentarzach i plikach README.",
+        "**GitLab** — ten sam blok w znacznikach, w issues, merge requestach i wiki.",
+        "**Notion** — blok kodu z językiem ustawionym na Mermaid renderuje się obok źródła.",
+        "**Obsidian** — blok mermaid w znacznikach renderuje się w trybie podglądu.",
+        "**Strony dokumentacji** — Docusaurus, MkDocs Material i VitePress obsługują bloki mermaid."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "To prawdziwy powód, by trzymać diagramy jako mermaid, a nie jako obrazy: diagram żyje w tym samym pliku tekstowym co opisywana przez niego rzecz, a code review widzi, co się w nim zmieniło."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Wypróbuj dowolny fragment z tej strony",
+      "text": "Wklej go do zakładki kodu, a wyrenderuje się od razu — albo zbuduj ten sam diagram na płótnie i odczytaj składnię z powrotem.",
+      "buttonLabel": "Otwórz edytor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Najczęściej zadawane pytania",
+      "items": [
+        {
+          "q": "Jak dodać złamanie linii wewnątrz etykiety węzła?",
+          "a": "Użyj `<br>` wewnątrz etykiety w cudzysłowie: `A[\"First line<br>Second line\"]`. Mermaid renderuje etykietę jako HTML, więc ten znacznik działa, mimo że reszta składni nie jest HTML-em."
+        },
+        {
+          "q": "Dlaczego moja etykieta psuje diagram?",
+          "a": "Niemal zawsze chodzi o niecytowany nawias, nawias okrągły, dwukropek lub cudzysłów wewnątrz etykiety. Ujmij całą etykietę w cudzysłów, a parser przestanie traktować twoją interpunkcję jako składnię."
+        },
+        {
+          "q": "Czy mogę kontrolować układ?",
+          "a": "Tylko pośrednio. Wybierz kierunek (`TD`, `LR`, `BT`, `RL`), użyj dłuższych strzałek (`--->`), by rozsunąć węzły dalej od siebie, i grupuj powiązane węzły w podgrafy. Resztę oblicza mermaid — nie ma tu współrzędnych."
+        },
+        {
+          "q": "Której wersji mermaid używa ten edytor?",
+          "a": "Mermaid 11, obecnej głównej wersji, więc renderuje się tu wszystko udokumentowane dla składni v10 i v11."
+        }
+      ]
+    }
+  ]
+}

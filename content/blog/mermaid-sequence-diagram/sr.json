@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid sequence дијаграм: синтакса и примери",
+    "description": "Како написати mermaid sequence дијаграм: учесници, типови стрелица, траке активације, петље, alt блокови и напомене — са примерима за копирање."
+  },
+  "card": {
+    "title": "Mermaid sequence дијаграми",
+    "excerpt": "Учесници, типови стрелица, траке активације, петље и alt блокови — цела синтакса sequence дијаграма са примерима спремним за покретање."
+  },
+  "h1": "Како написати mermaid sequence дијаграм",
+  "intro": "Sequence дијаграм показује ко коме говори, којим редоследом. У mermaid-у пишете га отприлике исто онолико дуго колико траје да га испричате наглас, зато и опстаје најдуже у кодној бази. Све испод је спремно за копирање у [едитор](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Минимум" },
+    {
+      "type": "p",
+      "text": "Прво декларишите тип дијаграма, па напишите по једну линију за сваку поруку. Учесници се стварају при првом помену, редоследом којим се појављују."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Декларишите учеснике изричито помоћу `participant User` кад желите тачно одређен редослед слева удесно, а не редослед по првом помену."
+    },
+
+    { "type": "h2", "text": "Типови стрелица" },
+    {
+      "type": "table",
+      "headers": ["Синтакса", "Значење"],
+      "rows": [
+        ["`A->>B: text`", "Захтев — пуна линија, испуњен врх"],
+        ["`A-->>B: text`", "Одговор — испрекидана линија, испуњен врх"],
+        ["`A->B: text`", "Пуна линија, отворен врх"],
+        ["`A-)B: text`", "Асинхрона порука — отворен врх, одговор се не очекује"],
+        ["`A-xB: text`", "Порука која не успе или се изгуби"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Конвенција коју вреди чувати: **пуна линија за позив, испрекидана за повратак**. Читалац онда препознаје захтев од одговора без читања иједне ознаке."
+    },
+
+    { "type": "h2", "text": "Учесници и алијаси" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Користите `actor U as Browser` уместо `participant` да нацртате фигуру човека — исплати се за особу на левом крају тока аутентификације."
+    },
+
+    { "type": "h2", "text": "Траке активације" },
+    {
+      "type": "p",
+      "text": "Траке активације показују колико дуго је учесник заузет. Означите их изричито помоћу `activate`/`deactivate`, или додајте `+` и `-` на стрелице, што је краће и теже излази из равнотеже."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Петље, услови и паралелан рад" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — понављање.",
+        "`alt <label>` … `else <label>` … `end` — гране које се међусобно искључују.",
+        "`opt <label>` … `end` — грана која се можда уопште не деси.",
+        "`par <label>` … `and <label>` … `end` — ствари које се дешавају истовремено.",
+        "`critical` / `break` — одсек који се не сме прекинути, и рани излаз."
+      ]
+    },
+
+    { "type": "h2", "text": "Напомене" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` обухвата два учесника и право је место за ограничење које припада интеракцији, а не једној или другој страни."
+    },
+
+    { "type": "h2", "text": "Пун пример" },
+    {
+      "type": "code",
+      "caption": "OAuth пријава, од почетка до краја.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Уредите овај дијаграм",
+      "text": "Налепите га у картицу кода и промените једну линију — преглед се поново исцртава док куцате.",
+      "buttonLabel": "Отвори едитор"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Честа питања",
+      "items": [
+        {
+          "q": "Како да нумеришем поруке?",
+          "a": "Ставите `autonumber` у линију одмах после `sequenceDiagram`. Свака порука тада добија редни број, што много олакшава причу о дијаграму у коментарима на ревју."
+        },
+        {
+          "q": "Може ли учесник да пошаље поруку самом себи?",
+          "a": "Да — напишите исто име на обе стране: `API->>API: retry`. Mermaid црта петљу назад на исту животну линију."
+        },
+        {
+          "q": "Како да прикажем да је учесник уништен?",
+          "a": "Користите `destroy <name>` пре поруке која га завршава, или `create participant <name>` да се појави усред дијаграма, а не на врху."
+        },
+        {
+          "q": "Могу ли да уређујем sequence дијаграм на визуелном платну?",
+          "a": "Визуелно платно уређује flowchart-ове. Sequence дијаграми се пишу на картици кода, где се уживо рендерују у прегледу — што је обично и брже, јер је sequence дијаграм у суштини списак линија."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "مخطط mermaid التسلسلي: الصياغة والأمثلة",
+    "description": "كيفية كتابة مخطط mermaid تسلسلي: المشاركون، أنواع الأسهم، أشرطة التفعيل، الحلقات، كتل alt والملاحظات — مع أمثلة جاهزة للنسخ."
+  },
+  "card": {
+    "title": "مخططات mermaid التسلسلية",
+    "excerpt": "المشاركون، أنواع الأسهم، أشرطة التفعيل، الحلقات وكتل alt — صياغة المخطط التسلسلي كاملة مع أمثلة قابلة للتشغيل."
+  },
+  "h1": "كيفية كتابة مخطط mermaid تسلسلي",
+  "intro": "يوضح المخطط التسلسلي من يتحدث إلى من، وبأي ترتيب. في mermaid يستغرق كتابته وقتًا يقارب وصفه بصوت عالٍ، ولهذا يبقى هذا النوع من المخططات الأطول عمرًا في قاعدة الكود. كل ما يلي جاهز للنسخ واللصق في [المحرر](app:).",
+  "blocks": [
+    { "type": "h2", "text": "الحد الأدنى" },
+    {
+      "type": "p",
+      "text": "أعلن نوع المخطط، ثم اكتب سطرًا واحدًا لكل رسالة. يُنشأ المشاركون عند أول ذكر لهم، بحسب ترتيب ظهورهم."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "أعلن المشاركين صراحةً باستخدام `participant User` عندما تريد ترتيبًا محددًا من اليسار إلى اليمين بدلًا من ترتيب أول ذكر."
+    },
+
+    { "type": "h2", "text": "أنواع الأسهم" },
+    {
+      "type": "table",
+      "headers": ["الصياغة", "المعنى"],
+      "rows": [
+        ["`A->>B: text`", "طلب — خط متصل، رأس سهم مملوء"],
+        ["`A-->>B: text`", "استجابة — خط متقطع، رأس سهم مملوء"],
+        ["`A->B: text`", "خط متصل، رأس سهم مفتوح"],
+        ["`A-)B: text`", "رسالة غير متزامنة — رأس سهم مفتوح، بلا رد متوقع"],
+        ["`A-xB: text`", "رسالة تفشل أو تُفقد"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "العرف الذي يستحق الحفاظ عليه: **خط متصل للاستدعاء، وخط متقطع للعودة**. عندها يمكن للقارئ تمييز الطلب من الاستجابة دون قراءة أي تسمية."
+    },
+
+    { "type": "h2", "text": "المشاركون والأسماء المستعارة" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "استخدم `actor U as Browser` بدلًا من `participant` لرسم شخصية بشرية بسيطة — مفيد للطرف البشري عند حافة تدفق المصادقة."
+    },
+
+    { "type": "h2", "text": "أشرطة التفعيل" },
+    {
+      "type": "p",
+      "text": "توضح أشرطة التفعيل مدة انشغال المشارك. إما أن تحددها صراحةً باستخدام `activate`/`deactivate`، أو تضيف `+` و`-` إلى الأسهم، وهو أقصر وأصعب أن يفقد توازنه."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "الحلقات والشروط والعمل المتوازي" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — تكرار.",
+        "`alt <label>` … `else <label>` … `end` — فروع متنافية.",
+        "`opt <label>` … `end` — فرع قد لا يحدث ببساطة.",
+        "`par <label>` … `and <label>` … `end` — أشياء تحدث في الوقت نفسه.",
+        "`critical` / `break` — قسم يجب ألا يُقاطَع، ومخرج مبكر."
+      ]
+    },
+
+    { "type": "h2", "text": "الملاحظات" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` تمتد عبر مشاركين اثنين، وهي المكان المناسب لقيد ينتمي إلى التفاعل نفسه لا إلى أحد طرفيه."
+    },
+
+    { "type": "h2", "text": "مثال كامل" },
+    {
+      "type": "code",
+      "caption": "تسجيل دخول OAuth، من البداية إلى النهاية.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "عدّل هذا المخطط",
+      "text": "الصقه في تبويب الكود وغيّر سطرًا — تُعاد المعاينة رسمها أثناء الكتابة.",
+      "buttonLabel": "افتح المحرر"
+    },
+
+    {
+      "type": "faq",
+      "heading": "أسئلة متكررة",
+      "items": [
+        {
+          "q": "كيف أرقّم الرسائل؟",
+          "a": "ضع `autonumber` في السطر الذي يلي `sequenceDiagram` مباشرة. عندها تحصل كل رسالة على رقم تسلسلي، مما يسهّل الحديث عن المخطط في تعليقات المراجعة."
+        },
+        {
+          "q": "هل يمكن لمشارك إرسال رسالة إلى نفسه؟",
+          "a": "نعم — اكتب الاسم نفسه على الطرفين: `API->>API: retry`. يرسم mermaid الحلقة عائدة إلى خط الحياة نفسه."
+        },
+        {
+          "q": "كيف أوضح أن مشاركًا قد أُنهي؟",
+          "a": "استخدم `destroy <name>` قبل الرسالة التي تنهيه، أو `create participant <name>` لجعله يظهر في منتصف المخطط بدلًا من الأعلى."
+        },
+        {
+          "q": "هل يمكنني تعديل مخطط تسلسلي على اللوحة البصرية؟",
+          "a": "اللوحة البصرية تعدّل المخططات الانسيابية فقط. تُكتب المخططات التسلسلية في تبويب الكود، حيث تُعرض مباشرة في المعاينة — وهذا عادةً أسرع على أي حال، لأن المخطط التسلسلي هو أساسًا قائمة أسطر."
+        }
+      ]
+    }
+  ]
+}

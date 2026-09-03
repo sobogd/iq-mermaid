@@ -1,0 +1,83 @@
+{
+  "backToSite": "Späť na hlavnú stránku",
+  "tabs": { "visual": "Vizuál", "text": "Kód" },
+  "toolbar": {
+    "addBlock": "Pridať blok",
+    "addGroup": "Pridať oblasť",
+    "copy": "Kopírovať (blok, alebo celú oblasť so všetkým vnútri)",
+    "paste": "Vložiť — potom kliknite kam",
+    "delete": "Vymazať výber",
+    "clearAll": "Vymazať všetko",
+    "connect": "Nakresliť šípku k inému bloku",
+    "move": "Presunúť do oblasti, alebo von z nej",
+    "color": "Farba",
+    "shape": "Tvar"
+  },
+  "zoom": { "center": "Vycentrovať" },
+  "modals": { "colorTitle": "Farba", "shapeTitle": "Tvar" },
+  "shapes": {
+    "rect": "Obdĺžnik",
+    "rounded": "Zaoblený",
+    "pill": "Pilulka",
+    "circle": "Kruh",
+    "diamond": "Kosoštvorec",
+    "subroutine": "Podprogram",
+    "cylinder": "Databáza",
+    "hexagon": "Šesťuholník",
+    "asymmetric": "Vlajka",
+    "parallelogram": "Rovnobežník",
+    "parallelogramAlt": "Rovnobežník (zrkadlený)",
+    "trapezoid": "Lichobežník",
+    "trapezoidAlt": "Lichobežník (zrkadlený)",
+    "doubleCircle": "Dvojitý kruh"
+  },
+  "hints": {
+    "connect": "Kliknite na blok, na ktorý má šípka mieriť · Esc pre zrušenie",
+    "move": "Kliknite na oblasť pre presun dovnútra, alebo na prázdne miesto pre presun von · Esc pre zrušenie",
+    "paste": "Kliknite na oblasť alebo prázdne miesto, kam vložiť · Esc pre zrušenie"
+  },
+  "prompts": {
+    "edgeLabel": "Popisok šípky:",
+    "clearAll": "Vymazať všetko?"
+  },
+  "defaults": {
+    "block": "Blok",
+    "group": "Oblasť",
+    "start": "Štart",
+    "action": "Akcia"
+  },
+  "text": {
+    "examplePlaceholder": "Príklad…",
+    "copyMermaid": "Kopírovať mermaid",
+    "downloadMmd": "Stiahnuť .mmd",
+    "downloadMd": "Stiahnuť .md (Notion)",
+    "copySvg": "Kopírovať SVG",
+    "downloadSvg": "Stiahnuť SVG",
+    "downloadPng": "Stiahnuť PNG",
+    "statusOk": "OK",
+    "statusError": "Chyba",
+    "statusSvgCopied": "SVG skopírované",
+    "statusMermaidCopied": "Mermaid skopírovaný"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Sekvenčný diagram",
+    "class": "Class diagram",
+    "state": "State diagram",
+    "er": "ER diagram",
+    "gantt": "Gantt diagram"
+  },
+  "sample": {
+    "start": "Štart",
+    "condition": "Pripravené?",
+    "yes": "Áno",
+    "no": "Nie",
+    "action1": "Odoslať",
+    "action2": "Opraviť",
+    "end": "Hotovo",
+    "project": "Projekt",
+    "phase": "Fáza 1",
+    "task1": "Úloha 1",
+    "task2": "Úloha 2"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Sekvensdiagram: Syntax och Exempel",
+    "description": "Så skriver du ett mermaid-sekvensdiagram: deltagare, piltyper, aktiveringsstaplar, loopar, alt-block och anteckningar — med kopiera-klistra-exempel."
+  },
+  "card": {
+    "title": "Mermaid-sekvensdiagram",
+    "excerpt": "Deltagare, piltyper, aktiveringsstaplar, loopar och alt-block — hela sekvensdiagramsyntaxen med körbara exempel."
+  },
+  "h1": "Så skriver du ett mermaid-sekvensdiagram",
+  "intro": "Ett sekvensdiagram visar vem som pratar med vem, i vilken ordning. I mermaid tar det ungefär lika lång tid att skriva som att beskriva högt, vilket är varför det är diagramtypen som överlever längst i en kodbas. Allt nedan är redo att kopieras rakt in i [editorn](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Det minsta som behövs" },
+    {
+      "type": "p",
+      "text": "Deklarera diagramtypen, skriv sedan en rad per meddelande. Deltagare skapas vid första omnämnandet, i den ordning de dyker upp."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Deklarera deltagare explicit med `participant User` när du vill ha en specifik vänster-till-höger-ordning istället för ordningen de först nämns i."
+    },
+
+    { "type": "h2", "text": "Piltyper" },
+    {
+      "type": "table",
+      "headers": ["Syntax", "Betydelse"],
+      "rows": [
+        ["`A->>B: text`", "Förfrågan — heldragen linje, fylld pilspets"],
+        ["`A-->>B: text`", "Svar — streckad linje, fylld pilspets"],
+        ["`A->B: text`", "Heldragen linje, öppen pilspets"],
+        ["`A-)B: text`", "Asynkront meddelande — öppen pilspets, inget svar förväntas"],
+        ["`A-xB: text`", "Meddelande som misslyckas eller tappas"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Konventionen värd att behålla: **heldragen för anropet, streckad för returen**. En läsare kan då avgöra en förfrågan från ett svar utan att läsa en enda etikett."
+    },
+
+    { "type": "h2", "text": "Deltagare och alias" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Använd `actor U as Browser` istället för `participant` för att rita en streckgubbe — värt det för personen i vänsterkanten av ett autentiseringsflöde."
+    },
+
+    { "type": "h2", "text": "Aktiveringsstaplar" },
+    {
+      "type": "p",
+      "text": "Aktiveringsstaplar visar hur länge en deltagare är upptagen. Markera dem antingen explicit med `activate`/`deactivate`, eller lägg till `+` och `-` på pilarna, vilket är kortare och svårare att få i obalans."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Loopar, villkor och parallellt arbete" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — upprepning.",
+        "`alt <label>` … `else <label>` … `end` — ömsesidigt uteslutande grenar.",
+        "`opt <label>` … `end` — en gren som kanske helt enkelt inte inträffar.",
+        "`par <label>` … `and <label>` … `end` — saker som händer samtidigt.",
+        "`critical` / `break` — ett avsnitt som inte får avbrytas, och en tidig utgång."
+      ]
+    },
+
+    { "type": "h2", "text": "Anteckningar" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` spänner över två deltagare och är rätt plats för ett villkor som hör till interaktionen snarare än till någon av sidorna."
+    },
+
+    { "type": "h2", "text": "Ett fullständigt exempel" },
+    {
+      "type": "code",
+      "caption": "OAuth-inloggning, från början till slut.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Redigera det här diagrammet",
+      "text": "Klistra in det i kodfliken och ändra en rad — förhandsgranskningen ritas om medan du skriver.",
+      "buttonLabel": "Öppna editorn"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Vanliga frågor",
+      "items": [
+        {
+          "q": "Hur numrerar jag meddelandena?",
+          "a": "Sätt `autonumber` på raden direkt efter `sequenceDiagram`. Varje meddelande får då ett löpnummer, vilket gör ett diagram mycket lättare att prata om i granskningskommentarer."
+        },
+        {
+          "q": "Kan en deltagare skicka ett meddelande till sig själv?",
+          "a": "Ja — skriv samma namn på båda sidor: `API->>API: retry`. Mermaid ritar loopen tillbaka in i samma livslinje."
+        },
+        {
+          "q": "Hur visar jag att en deltagare förstörs?",
+          "a": "Använd `destroy <name>` före meddelandet som avslutar den, eller `create participant <name>` för att låta den dyka upp mitt i diagrammet istället för högst upp."
+        },
+        {
+          "q": "Kan jag redigera ett sekvensdiagram på den visuella canvasen?",
+          "a": "Den visuella canvasen redigerar flödesdiagram. Sekvensdiagram skrivs på kodfliken, där de renderas direkt i förhandsgranskningen — vilket oftast är snabbare ändå, eftersom ett sekvensdiagram i grunden är en lista med rader."
+        }
+      ]
+    }
+  ]
+}

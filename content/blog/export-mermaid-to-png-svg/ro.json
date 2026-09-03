@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Export Mermaid în PNG, SVG sau Markdown",
+    "description": "Cum transformi o diagramă mermaid într-un fișier PNG sau SVG, copiezi codul SVG, sau o păstrezi ca text pentru GitHub și Notion — și pe care să-l alegi."
+  },
+  "card": {
+    "title": "Export mermaid în PNG sau SVG",
+    "excerpt": "Patru moduri de a scoate o diagramă mermaid — PNG, SVG, sursă .mmd și un bloc Markdown — și când fiecare e răspunsul potrivit."
+  },
+  "h1": "Exportă o diagramă mermaid în PNG, SVG sau Markdown",
+  "intro": "O diagramă este utilă doar acolo unde poate fi văzută. Mermaid îți dă patru căi de ieșire — o imagine, un vector, sursa, sau un bloc Markdown care se randează singur — iar cea potrivită depinde în întregime de unde ajunge diagrama. Aceasta e varianta scurtă, plus ce se strică la fiecare.",
+  "blocks": [
+    { "type": "h2", "text": "Alege mai întâi formatul" },
+    {
+      "type": "table",
+      "headers": ["Destinație", "Folosește", "De ce"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Un bloc Markdown", "Se randează nativ și rămâne comparabil (diff) — fără fișier de ținut sincronizat."],
+        ["Prezentări, o specificație, un mesaj de chat", "PNG", "Se lipește oriunde, nu are nevoie de motor de randare, arată la fel peste tot."],
+        ["Un site web, un document tipărit", "SVG", "Vector — clar la orice dimensiune, iar textul rămâne selectabil."],
+        ["Alt editor, un repo", "Sursă `.mmd`", "Editabil mai târziu. O imagine e o fundătură."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Dacă destinația randează mermaid, nu exporta deloc. O diagramă comisă ca text poate fi revizuită linie cu linie; aceeași diagramă comisă ca PNG poate fi doar înlocuită."
+    },
+
+    { "type": "h2", "text": "Export din acest editor" },
+    {
+      "type": "p",
+      "text": "Deschizi fila de cod — butoanele de export stau în bara de unelte, iar fiecare acționează asupra a ceea ce este randat în acel moment."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**Copiază SVG** — pune codul `<svg>` în clipboard, gata de lipit direct într-un fișier HTML sau o unealtă de design.",
+        "**Descarcă SVG** — salvează `diagram.svg`.",
+        "**Descarcă PNG** — salvează `diagram.png`, randat la 2x cu fundal alb, ca să rămână clar pe un ecran de înaltă densitate și să nu ajungă niciodată o pată transparentă pe o prezentare albă.",
+        "**Descarcă .mmd** — salvează sursa mermaid ca fișier text simplu.",
+        "**Descarcă .md (Notion)** — salvează sursa învelită într-un bloc ```mermaid, pe care Notion, GitHub și Obsidian îl randează la lipire."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Pentru o prezentare, ia PNG-ul. Pentru orice va fi redimensionat — un titlu de document, un poster, un tipar — ia SVG-ul; un PNG mărit peste dimensiunea de export devine imediat neclar."
+    },
+
+    { "type": "h2", "text": "Păstrează-l ca text în schimb" },
+    {
+      "type": "p",
+      "text": "Blocul cu trei backtick-uri este singurul export care rămâne editabil pe loc. Trei backtick-uri, cuvântul `mermaid`, diagrama ta, trei backtick-uri:"
+    },
+    {
+      "type": "code",
+      "caption": "Lipește asta într-un README de GitHub și se randează.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — se randează în fișiere README, issues, pull request-uri și comentarii.",
+        "**GitLab** — se randează în wiki, issues și merge request-uri.",
+        "**Notion** — lipești într-un bloc de cod și setezi limbajul pe Mermaid.",
+        "**Obsidian** — se randează în previzualizare și în notele publicate.",
+        "**Docusaurus / MkDocs Material / VitePress** — blocurile mermaid se randează în documentația compilată."
+      ]
+    },
+
+    { "type": "h2", "text": "Ce poate merge prost" },
+    { "type": "h3", "text": "PNG-ul este neclar" },
+    {
+      "type": "p",
+      "text": "Un PNG are rezoluție fixă: este exportat la o dimensiune de pixeli stabilită, iar redimensionarea peste asta interpolează. Acest editor exportă la 2x din acest motiv. Dacă tot nu e suficient, exportă SVG-ul și convertește-l la dimensiunea de care ai nevoie — sau folosește direct SVG-ul."
+    },
+    { "type": "h3", "text": "SVG-ul nu are fundal" },
+    {
+      "type": "p",
+      "text": "Exporturile SVG sunt transparente prin design, deci textul întunecat al nodurilor dispare pe o prezentare întunecată. Fie pui SVG-ul pe un card deschis la culoare, fie iei PNG-ul, care este exportat pe fundal alb."
+    },
+    { "type": "h3", "text": "Fonturile arată diferit în altă parte" },
+    {
+      "type": "p",
+      "text": "Un SVG face referire la familii de fonturi în loc să le includă, deci un dispozitiv fără acel font îl înlocuiește cu altul, iar casetele etichetelor nu se mai aliniază. Folosește PNG-ul când nu poți controla fonturile celui care vizualizează."
+    },
+    { "type": "h3", "text": "Diagrama este tăiată" },
+    {
+      "type": "p",
+      "text": "Exportul citește ce este randat în acel moment, deci recentrează vederea înainte de a exporta o diagramă mare. Dacă eticheta unui nod este uriașă, întrerupe-o cu `<br>` — mermaid nu împarte etichetele automat."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Exportă din două click-uri",
+      "text": "Deschide editorul, lipește sau desenează diagrama ta și ia SVG-ul, PNG-ul sau sursa. Nimic nu e în spatele unui cont.",
+      "buttonLabel": "Deschide editorul"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Întrebări frecvente",
+      "items": [
+        {
+          "q": "Cum convertesc mermaid în PNG?",
+          "a": "Randezi diagrama, apoi folosești Descarcă PNG. Editorul desenează SVG-ul randat pe o pânză la scară 2x cu fundal alb și salvează rezultatul — fără trecere pe server, deci diagrama nu iese niciodată din browser."
+        },
+        {
+          "q": "Pot exporta un PNG transparent?",
+          "a": "Nu din butonul PNG — acesta umple cu alb intenționat, pentru că textul întunecat al diagramei pe fundal transparent e ilizibil în majoritatea locurilor unde se lipește un PNG. Exportă SVG-ul în schimb; acela e transparent."
+        },
+        {
+          "q": "Există o limită de dimensiune?",
+          "a": "Nu una fixă. Exportul se întâmplă în browserul tău, deci limita practică este ce va randa browserul — mult peste punctul în care o diagramă mai e lizibilă pentru un om."
+        },
+        {
+          "q": "Cum păstrez diagrama editabilă după export?",
+          "a": "Păstrezi sursa. Descarci fișierul `.mmd` sau blocul Markdown alături de imagine; un PNG sau SVG nu poate fi transformat înapoi în mermaid, dar sursa se lipește direct înapoi în editor."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Mermaid Exporteren naar PNG, SVG of Markdown",
+    "description": "Hoe je een mermaid-diagram omzet in een PNG- of SVG-bestand, de SVG-markup kopieert, of het als tekst bewaart voor GitHub en Notion — en welke je moet kiezen."
+  },
+  "card": {
+    "title": "Mermaid exporteren naar PNG of SVG",
+    "excerpt": "Vier manieren uit een mermaid-diagram — PNG, SVG, .mmd-broncode en een Markdown-blok — en wanneer elke het juiste antwoord is."
+  },
+  "h1": "Een mermaid-diagram exporteren naar PNG, SVG of Markdown",
+  "intro": "Een diagram is alleen nuttig waar het gezien kan worden. Mermaid geeft je vier uitwegen — een afbeelding, een vector, de broncode, of een Markdown-blok dat zichzelf rendert — en de juiste keuze hangt volledig af van waar het diagram naartoe gaat. Dit is de korte versie, plus wat er misgaat bij elke optie.",
+  "blocks": [
+    { "type": "h2", "text": "Kies eerst het formaat" },
+    {
+      "type": "table",
+      "headers": ["Bestemming", "Gebruik", "Waarom"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Een Markdown-blok", "Het rendert native en blijft diffbaar — geen bestand om synchroon te houden."],
+        ["Presentaties, een spec, een chatbericht", "PNG", "Plakbaar overal, heeft geen renderer nodig, ziet er overal hetzelfde uit."],
+        ["Een website, een gedrukt document", "SVG", "Vector — scherp op elke grootte, en de tekst blijft selecteerbaar."],
+        ["Een andere editor, een repo", "`.mmd`-broncode", "Later bewerkbaar. Een afbeelding is een doodlopende weg."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Als de bestemming mermaid rendert, exporteer dan helemaal niet. Een diagram dat als tekst is vastgelegd, kan regel voor regel worden bekeken; hetzelfde diagram vastgelegd als PNG kan alleen worden vervangen."
+    },
+
+    { "type": "h2", "text": "Exporteren vanuit deze editor" },
+    {
+      "type": "p",
+      "text": "Open het codetabblad — de exportknoppen staan in de werkbalk, en elk werkt op wat er op dat moment gerenderd is."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**SVG kopiëren** — zet de `<svg>`-markup op het klembord, klaar om direct te plakken in een HTML-bestand of een ontwerptool.",
+        "**SVG downloaden** — slaat `diagram.svg` op.",
+        "**PNG downloaden** — slaat `diagram.png` op, gerenderd op 2x met een witte achtergrond zodat het scherp blijft op een scherm met hoge dichtheid en nooit als een transparante vlek op een witte dia terechtkomt.",
+        "**.mmd downloaden** — slaat de mermaid-broncode op als platte tekst.",
+        "**.md downloaden (Notion)** — slaat de broncode op verpakt in een fenced ```mermaid-blok, wat Notion, GitHub en Obsidian renderen bij het plakken."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Voor een presentatie neem je de PNG. Voor alles wat later van formaat verandert — een documentkop, een poster, een print — neem je de SVG; een PNG die groter wordt gemaakt dan zijn exportgrootte wordt meteen wazig."
+    },
+
+    { "type": "h2", "text": "Bewaar het liever als tekst" },
+    {
+      "type": "p",
+      "text": "Het fenced blok is de enige export die ter plekke bewerkbaar blijft. Drie backticks, het woord `mermaid`, je diagram, drie backticks:"
+    },
+    {
+      "type": "code",
+      "caption": "Plak dit in een GitHub README en het rendert.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — rendert in README-bestanden, issues, pull requests en reacties.",
+        "**GitLab** — rendert in de wiki, issues en merge requests.",
+        "**Notion** — plak in een codeblok en zet de taal op Mermaid.",
+        "**Obsidian** — rendert in de preview en in gepubliceerde notities.",
+        "**Docusaurus / MkDocs Material / VitePress** — mermaid-blokken renderen in gebouwde documentatie."
+      ]
+    },
+
+    { "type": "h2", "text": "Wat er mis kan gaan" },
+    { "type": "h3", "text": "De PNG is wazig" },
+    {
+      "type": "p",
+      "text": "Een PNG heeft een vaste resolutie: het wordt geëxporteerd op een vaste pixelgrootte en verder opschalen interpoleert. Deze editor exporteert daarom op 2x. Als dat nog niet genoeg is, exporteer dan de SVG en converteer die naar de gewenste grootte — of gebruik gewoon de SVG."
+    },
+    { "type": "h3", "text": "De SVG heeft geen achtergrond" },
+    {
+      "type": "p",
+      "text": "SVG-exports zijn met opzet transparant, dus donkere knooptekst verdwijnt op een donkere dia. Zet de SVG op een lichte kaart, of neem de PNG, die op wit wordt geëxporteerd."
+    },
+    { "type": "h3", "text": "Lettertypen zien er elders anders uit" },
+    {
+      "type": "p",
+      "text": "Een SVG verwijst naar lettertypefamilies in plaats van ze in te sluiten, dus een machine zonder dat lettertype vervangt het door een ander en de labelkaders komen niet meer overeen. Gebruik de PNG wanneer je geen controle hebt over de lettertypen van de kijker."
+    },
+    { "type": "h3", "text": "Het diagram is afgesneden" },
+    {
+      "type": "p",
+      "text": "Export leest wat er op dat moment gerenderd is, dus centreer de weergave opnieuw voordat je een groot diagram exporteert. Als een knooplabel enorm is, breek het dan met `<br>` — mermaid wikkelt labels niet vanzelf af."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Exporteer in twee klikken",
+      "text": "Open de editor, plak of teken je diagram, en neem de SVG, de PNG of de broncode. Niets zit achter een account.",
+      "buttonLabel": "Open de editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Veelgestelde vragen",
+      "items": [
+        {
+          "q": "Hoe converteer ik mermaid naar PNG?",
+          "a": "Render het diagram en gebruik dan PNG downloaden. De editor tekent de gerenderde SVG op een canvas op 2x schaal met een witte achtergrond en slaat het resultaat op — geen serverrondgang, dus het diagram verlaat je browser nooit."
+        },
+        {
+          "q": "Kan ik een transparante PNG exporteren?",
+          "a": "Niet via de PNG-knop — die vult met opzet wit, omdat donkere diagramtekst op een transparante achtergrond onleesbaar is op de meeste plekken waar een PNG geplakt wordt. Exporteer in plaats daarvan de SVG; die is transparant."
+        },
+        {
+          "q": "Is er een groottelimiet?",
+          "a": "Geen vaste. Export gebeurt in je browser, dus de praktische limiet is wat je browser kan renderen — wat ver voorbij het punt ligt waarop een diagram nog leesbaar is voor een mens."
+        },
+        {
+          "q": "Hoe houd ik het diagram bewerkbaar na het exporteren?",
+          "a": "Bewaar de broncode. Download het `.mmd`-bestand of het Markdown-blok naast de afbeelding; een PNG of SVG kan niet worden teruggezet naar mermaid, maar de broncode plakt direct terug in de editor."
+        }
+      ]
+    }
+  ]
+}

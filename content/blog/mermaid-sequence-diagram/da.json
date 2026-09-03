@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Mermaid Sequence-diagram: Syntaks og Eksempler",
+    "description": "Sådan skriver du et mermaid sequence-diagram: deltagere, piletyper, aktiveringsbjælker, loops, alt-blokke og noter — med copy-paste-eksempler."
+  },
+  "card": {
+    "title": "Mermaid sequence-diagrammer",
+    "excerpt": "Deltagere, piletyper, aktiveringsbjælker, loops og alt-blokke — hele sequence-diagram-syntaksen med kørbare eksempler."
+  },
+  "h1": "Sådan skriver du et mermaid sequence-diagram",
+  "intro": "Et sequence-diagram viser, hvem der taler med hvem, og i hvilken rækkefølge. I mermaid tager det cirka lige så lang tid at skrive, som det tager at beskrive højt, hvilket er grunden til, at det er den diagramtype, der overlever længst i en kodebase. Alt herunder er klar til copy-paste i [editoren](app:).",
+  "blocks": [
+    { "type": "h2", "text": "Det simpleste eksempel" },
+    {
+      "type": "p",
+      "text": "Deklarér diagramtypen, og skriv derefter én linje pr. besked. Deltagere oprettes ved første omtale, i den rækkefølge de optræder."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Deklarér deltagere eksplicit med `participant User`, når du vil have en bestemt venstre-til-højre-rækkefølge frem for rækkefølgen af første omtale."
+    },
+
+    { "type": "h2", "text": "Piletyper" },
+    {
+      "type": "table",
+      "headers": ["Syntaks", "Betydning"],
+      "rows": [
+        ["`A->>B: text`", "Forespørgsel — heltrukket linje, udfyldt pilespids"],
+        ["`A-->>B: text`", "Svar — stiplet linje, udfyldt pilespids"],
+        ["`A->B: text`", "Heltrukket linje, åben pilespids"],
+        ["`A-)B: text`", "Asynkron besked — åben pilespids, intet svar forventet"],
+        ["`A-xB: text`", "Besked, der fejler eller droppes"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Konventionen, det er værd at holde fast i: **heltrukket til kaldet, stiplet til svaret**. En læser kan så kende forskel på en forespørgsel og et svar uden at læse en eneste label."
+    },
+
+    { "type": "h2", "text": "Deltagere og aliaser" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Brug `actor U as Browser` i stedet for `participant` for at tegne en pindefigur — det er det værd for mennesket i venstre kant af et autentificeringsflow."
+    },
+
+    { "type": "h2", "text": "Aktiveringsbjælker" },
+    {
+      "type": "p",
+      "text": "Aktiveringsbjælker viser, hvor længe en deltager er optaget. Markér dem enten eksplicit med `activate`/`deactivate`, eller tilføj `+` og `-` til pilene, hvilket er kortere og sværere at bringe ud af balance."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Loops, betingelser og parallelt arbejde" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — gentagelse.",
+        "`alt <label>` … `else <label>` … `end` — gensidigt udelukkende grene.",
+        "`opt <label>` … `end` — en gren, der måske slet ikke sker.",
+        "`par <label>` … `and <label>` … `end` — ting, der sker samtidig.",
+        "`critical` / `break` — et afsnit, der ikke må afbrydes, og en tidlig exit."
+      ]
+    },
+
+    { "type": "h2", "text": "Noter" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` spænder over to deltagere og er det rette sted for en betingelse, der hører til interaktionen snarere end til den ene eller anden side af den."
+    },
+
+    { "type": "h2", "text": "Et fuldt eksempel" },
+    {
+      "type": "code",
+      "caption": "OAuth-login, fra ende til anden.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Redigér dette diagram",
+      "text": "Indsæt det i kode-fanen, og ret en linje — forhåndsvisningen gentegnes, mens du skriver.",
+      "buttonLabel": "Åbn editoren"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Ofte spurgt",
+      "items": [
+        {
+          "q": "Hvordan nummererer jeg beskederne?",
+          "a": "Sæt `autonumber` på linjen lige efter `sequenceDiagram`. Hver besked får så et fortløbende nummer, hvilket gør et diagram meget nemmere at tale om i review-kommentarer."
+        },
+        {
+          "q": "Kan en deltager sende en besked til sig selv?",
+          "a": "Ja — skriv samme navn på begge sider: `API->>API: retry`. Mermaid tegner løkken tilbage ind i samme lifeline."
+        },
+        {
+          "q": "Hvordan viser jeg, at en deltager ophører?",
+          "a": "Brug `destroy <name>` før den besked, der afslutter den, eller `create participant <name>` for at få den til at dukke op midt i diagrammet frem for øverst."
+        },
+        {
+          "q": "Kan jeg redigere et sequence-diagram på det visuelle lærred?",
+          "a": "Det visuelle lærred redigerer flowcharts. Sequence-diagrammer skrives på kode-fanen, hvor de gengives live i forhåndsvisningen — hvilket som regel er hurtigere alligevel, siden et sequence-diagram grundlæggende er en liste af linjer."
+        }
+      ]
+    }
+  ]
+}

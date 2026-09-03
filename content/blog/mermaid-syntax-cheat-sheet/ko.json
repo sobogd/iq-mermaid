@@ -1,0 +1,267 @@
+{
+  "meta": {
+    "title": "예제로 보는 Mermaid 문법 치트시트",
+    "description": "실제로 자주 쓰는 mermaid 문법: 노드 모양, 화살표 종류, 서브그래프, 스타일링, 그리고 다이어그램 유형별 예제 하나씩. 복사, 붙여넣기, 수정하세요."
+  },
+  "card": {
+    "title": "Mermaid 문법 치트시트",
+    "excerpt": "노드 모양, 화살표, 서브그래프, 스타일링을 한 페이지에 — 그리고 mermaid가 렌더링하는 모든 다이어그램 유형의 예제까지."
+  },
+  "h1": "Mermaid 문법 치트시트",
+  "intro": "mermaid에는 방대한 레퍼런스와, 사람들이 그리는 거의 모든 것을 커버하는 작은 부분집합이 있습니다. 이 페이지가 바로 그 부분집합입니다. 모양, 화살표, 그룹화, 색상, 그리고 다이어그램 유형별로 복사해 붙여넣을 수 있는 예제 하나씩. 아래 모든 스니펫은 그대로 렌더링됩니다 — [에디터](app:)에 붙여넣어 확인해보세요.",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "가장 짧게 작동하는 다이어그램"
+    },
+    {
+      "type": "p",
+      "text": "순서도는 선언 한 줄과 화살표 한 개만 있으면 됩니다. `TD`는 위에서 아래를 뜻하고, 폭이 넓은 프로세스에 더 어울리는 좌우 방향은 `LR`을 씁니다."
+    },
+    {
+      "type": "code",
+      "caption": "위에서 아래로 이어지는 세 개짜리 노드 순서도입니다.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B`, `C`는 노드 id — 내부용 이름일 뿐 화면에는 그려지지 않습니다. 대괄호 안 텍스트가 라벨이며, 대괄호 **스타일**이 모양을 결정합니다."
+    },
+    {
+      "type": "h2",
+      "text": "노드 모양"
+    },
+    {
+      "type": "p",
+      "text": "모양은 라벨을 감싸는 구분 기호 쌍으로 정해집니다. 기억해둘 만한 것들은 다음과 같습니다:"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "문법",
+        "모양",
+        "일반적인 용도"
+      ],
+      "rows": [
+        [
+          "`A[Text]`",
+          "사각형",
+          "단계 또는 동작"
+        ],
+        [
+          "`A(Text)`",
+          "둥근 사각형",
+          "시작 또는 끝 지점"
+        ],
+        [
+          "`A([Text])`",
+          "알약형",
+          "시작/종료 표시"
+        ],
+        [
+          "`A[[Text]]`",
+          "서브루틴",
+          "다른 프로세스 호출"
+        ],
+        [
+          "`A[(Text)]`",
+          "실린더",
+          "데이터베이스 또는 저장소"
+        ],
+        [
+          "`A((Text))`",
+          "원",
+          "분기점"
+        ],
+        [
+          "`A{Text}`",
+          "다이아몬드",
+          "결정"
+        ],
+        [
+          "`A{{Text}}`",
+          "육각형",
+          "준비 단계"
+        ],
+        [
+          "`A[/Text/]`",
+          "평행사변형",
+          "입력 또는 출력"
+        ],
+        [
+          "`A[/Text\\]`",
+          "사다리꼴",
+          "수동 작업"
+        ]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "라벨에 대괄호, 콜론, 따옴표가 들어가면 따옴표로 감싸세요: `A[\"Load (raw) data\"]`. 따옴표가 없으면 파서가 문장부호를 문법으로 해석합니다."
+    },
+    {
+      "type": "h2",
+      "text": "화살표"
+    },
+    {
+      "type": "table",
+      "headers": [
+        "문법",
+        "결과"
+      ],
+      "rows": [
+        [
+          "`A --> B`",
+          "화살표"
+        ],
+        [
+          "`A --- B`",
+          "화살표 머리 없는 선"
+        ],
+        [
+          "`A -.-> B`",
+          "점선 화살표"
+        ],
+        [
+          "`A ==> B`",
+          "굵은 화살표"
+        ],
+        [
+          "`A -->|label| B`",
+          "라벨이 붙은 화살표"
+        ],
+        [
+          "`A --> B --> C`",
+          "한 줄로 쓰는 체인"
+        ],
+        [
+          "`A --> B & C`",
+          "하나의 출발점, 두 개의 도착점"
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "화살표 길이도 의미가 있습니다. `-->`는 한 단계(rank)를 나타내고, `--->`는 대상을 한 단계 더 아래로 밀어냅니다. mermaid가 제공하는 레이아웃 제어 중 가장 단순한 방법입니다."
+    },
+    {
+      "type": "h2",
+      "text": "서브그래프로 그룹화하기"
+    },
+    {
+      "type": "p",
+      "text": "`subgraph`는 노드들 주위에 라벨이 붙은 상자를 그립니다. 서브그래프는 중첩할 수 있고, 화살표는 그 경계를 자유롭게 넘나들 수 있습니다."
+    },
+    {
+      "type": "code",
+      "caption": "각자 저장소를 가진 두 개의 서비스.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+    {
+      "type": "h2",
+      "text": "색상과 스타일링"
+    },
+    {
+      "type": "p",
+      "text": "`style`은 노드 하나를 칠합니다. `classDef`와 `class`를 함께 쓰면 여러 노드를 한 번에 칠할 수 있는데, 노드가 서너 개를 넘어가면 이 방법이 필요해집니다."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "색상은 다이어그램 소스의 일부이므로 내보내기 후에도 유지되고 파일과 함께 이동합니다. 여기서는 렌더링 도구의 테마 설정에 의존하는 부분이 전혀 없습니다."
+    },
+    {
+      "type": "h2",
+      "text": "다이어그램 유형별 예제 하나씩"
+    },
+    {
+      "type": "h3",
+      "text": "시퀀스 다이어그램"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    {
+      "type": "h3",
+      "text": "클래스 다이어그램"
+    },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    {
+      "type": "h3",
+      "text": "상태 다이어그램"
+    },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    {
+      "type": "h3",
+      "text": "개체-관계 다이어그램"
+    },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    {
+      "type": "h3",
+      "text": "간트 차트"
+    },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+    {
+      "type": "h2",
+      "text": "mermaid가 자체적으로 렌더링되는 곳"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — 이슈, 풀 리퀘스트, 댓글, README 파일에서 펜스 처리된 ```mermaid 블록이 렌더링됩니다.",
+        "**GitLab** — 같은 방식의 펜스 블록이 이슈, 머지 리퀘스트, 위키에서 렌더링됩니다.",
+        "**Notion** — 언어를 Mermaid로 설정한 코드 블록이 소스 옆에 렌더링됩니다.",
+        "**Obsidian** — 미리보기 모드에서 펜스 처리된 mermaid 블록이 렌더링됩니다.",
+        "**문서 사이트** — Docusaurus, MkDocs Material, VitePress 모두 mermaid 블록을 지원합니다."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "다이어그램을 이미지가 아니라 mermaid로 유지하는 진짜 이유가 여기 있습니다. 다이어그램이 그것을 설명하는 대상과 같은 텍스트 파일 안에 살아있으므로, 코드 리뷰에서 무엇이 바뀌었는지 그대로 볼 수 있습니다."
+    },
+    {
+      "type": "cta",
+      "heading": "이 페이지의 어떤 스니펫이든 시도해보세요",
+      "text": "코드 탭에 붙여넣으면 즉시 렌더링됩니다 — 아니면 캔버스에서 같은 다이어그램을 직접 만들고 문법을 거꾸로 읽어보세요.",
+      "buttonLabel": "에디터 열기"
+    },
+    {
+      "type": "faq",
+      "heading": "자주 묻는 질문",
+      "items": [
+        {
+          "q": "노드 라벨 안에 줄바꿈을 넣으려면 어떻게 하나요?",
+          "a": "따옴표로 감싼 라벨 안에서 `<br>`을 쓰세요: `A[\"First line<br>Second line\"]`. mermaid는 라벨을 HTML로 렌더링하므로, 나머지 문법이 HTML이 아니어도 이 태그는 작동합니다."
+        },
+        {
+          "q": "라벨 때문에 다이어그램이 깨지는 이유는 뭔가요?",
+          "a": "거의 항상 라벨 안에 따옴표로 감싸지 않은 대괄호, 괄호, 콜론, 따옴표가 있기 때문입니다. 라벨 전체를 큰따옴표로 감싸면 파서가 문장부호를 문법으로 해석하지 않게 됩니다."
+        },
+        {
+          "q": "레이아웃을 제어할 수 있나요?",
+          "a": "간접적으로만 가능합니다. 방향(`TD`, `LR`, `BT`, `RL`)을 고르고, 더 긴 화살표(`--->`)로 노드 사이를 더 벌리고, 관련 노드를 서브그래프로 묶으세요. 나머지는 mermaid가 계산합니다 — 좌표는 없습니다."
+        },
+        {
+          "q": "이 에디터는 어떤 mermaid 버전을 쓰나요?",
+          "a": "현재 메이저 버전인 Mermaid 11을 사용하므로, v10과 v11 문법으로 문서화된 모든 것이 여기서 렌더링됩니다."
+        }
+      ]
+    }
+  ]
+}

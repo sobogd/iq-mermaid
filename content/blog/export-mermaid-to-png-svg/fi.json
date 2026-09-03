@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Vie mermaid PNG-, SVG- tai Markdown-muotoon",
+    "description": "Miten muutat mermaid-kaavion PNG- tai SVG-tiedostoksi, kopioit SVG-merkkauksen, tai säilytät sen tekstinä GitHubia ja Notionia varten — ja kumman valita."
+  },
+  "card": {
+    "title": "Vie mermaid PNG- tai SVG-muotoon",
+    "excerpt": "Neljä tapaa viedä mermaid-kaavio ulos — PNG, SVG, .mmd-lähdekoodi ja Markdown-lohko — ja milloin kukin on oikea valinta."
+  },
+  "h1": "Vie mermaid-kaavio PNG-, SVG- tai Markdown-muotoon",
+  "intro": "Kaavio on hyödyllinen vain siellä missä sen näkee. Mermaid tarjoaa neljä tapaa viedä sen ulos — kuvan, vektorin, lähdekoodin, tai Markdown-lohkon joka piirtää itsensä — ja oikea valinta riippuu täysin siitä minne kaavio on menossa. Tämä on lyhyt versio, sekä se mikä kunkin kanssa menee rikki.",
+  "blocks": [
+    { "type": "h2", "text": "Valitse formaatti ensin" },
+    {
+      "type": "table",
+      "headers": ["Kohde", "Käytä", "Miksi"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Markdown-lohko", "Piirtyy natiivisti ja pysyy diffattavana — ei tiedostoa pidettäväksi synkassa."],
+        ["Diat, spesifikaatio, chat-viesti", "PNG", "Liitettävissä minne tahansa, ei tarvitse piirtomoottoria, näyttää samalta kaikkialla."],
+        ["Verkkosivu, painettu dokumentti", "SVG", "Vektori — terävä missä tahansa koossa, ja teksti pysyy valittavana."],
+        ["Toinen editori, repo", "`.mmd`-lähdekoodi", "Muokattavissa myöhemmin. Kuva on umpikuja."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Jos kohde piirtää mermaidia, älä vie sitä lainkaan. Tekstinä committoitu kaavio voidaan katselmoida rivi riviltä; sama kaavio PNG:nä committoituna voidaan vain korvata."
+    },
+
+    { "type": "h2", "text": "Vie tästä editorista" },
+    {
+      "type": "p",
+      "text": "Avaa koodivälilehti — vientipainikkeet ovat työkalurivillä, ja kukin toimii sen mukaan mitä on juuri nyt piirretty."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**Kopioi SVG** — laittaa `<svg>`-merkkauksen leikepöydälle, valmiina liitettäväksi suoraan HTML-tiedostoon tai suunnittelutyökaluun.",
+        "**Lataa SVG** — tallentaa tiedoston `diagram.svg`.",
+        "**Lataa PNG** — tallentaa tiedoston `diagram.png`, piirrettynä 2x-koossa valkoisella taustalla, jotta se pysyy terävänä korkearesoluutioisella näytöllä eikä koskaan päädy läpinäkyvänä tahrana valkoiselle dialle.",
+        "**Lataa .mmd** — tallentaa mermaid-lähdekoodin tavallisena tekstitiedostona.",
+        "**Lataa .md (Notion)** — tallentaa lähdekoodin aidatun ```mermaid-lohkon sisään, jonka Notion, GitHub ja Obsidian piirtävät liittämisen yhteydessä."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Diaesitykseen ota PNG. Kaikkeen mitä tullaan skaalaamaan — dokumentin otsikkoon, julisteeseen, painatukseen — ota SVG; vientikokoaan suuremmaksi skaalattu PNG sumenee heti."
+    },
+
+    { "type": "h2", "text": "Pidä se tekstinä sen sijaan" },
+    {
+      "type": "p",
+      "text": "Aidattu lohko on ainoa vientimuoto joka pysyy muokattavana paikan päällä. Kolme takaheittomerkkiä, sana `mermaid`, kaaviosi, kolme takaheittomerkkiä:"
+    },
+    {
+      "type": "code",
+      "caption": "Liitä tämä GitHub-README-tiedostoon ja se piirtyy.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — piirtyy README-tiedostoissa, issueissa, pull requesteissa ja kommenteissa.",
+        "**GitLab** — piirtyy wikissä, issueissa ja merge requesteissa.",
+        "**Notion** — liitä koodilohkoon ja aseta kieleksi Mermaid.",
+        "**Obsidian** — piirtyy esikatselussa ja julkaistuissa muistiinpanoissa.",
+        "**Docusaurus / MkDocs Material / VitePress** — mermaid-lohkot piirtyvät käännetyssä dokumentaatiossa."
+      ]
+    },
+
+    { "type": "h2", "text": "Mikä menee pieleen" },
+    { "type": "h3", "text": "PNG on sumea" },
+    {
+      "type": "p",
+      "text": "PNG on kiinteäresoluutioinen: se viedään tietyssä pikselikoossa, ja sitä suurempi skaalaus interpoloi. Tämä editori vie 2x-koossa juuri tästä syystä. Jos se ei silti riitä, vie SVG ja muunna se haluamaasi kokoon — tai käytä suoraan SVG:tä."
+    },
+    { "type": "h3", "text": "SVG:ssä ei ole taustaa" },
+    {
+      "type": "p",
+      "text": "SVG-viennit ovat läpinäkyviä tarkoituksella, joten tumma solmuteksti katoaa tummalla dialla. Aseta SVG joko vaalealle kortille, tai ota PNG, joka viedään valkoisella taustalla."
+    },
+    { "type": "h3", "text": "Fontit näyttävät erilaisilta muualla" },
+    {
+      "type": "p",
+      "text": "SVG viittaa fonttiperheisiin sen sijaan että upottaisi ne, joten kone jolla kyseistä fonttia ei ole korvaa sen toisella, ja selitelaatikot lakkaavat kohdistumasta. Käytä PNG:tä kun et voi hallita katsojan fontteja."
+    },
+    { "type": "h3", "text": "Kaavio on rajautunut pois" },
+    {
+      "type": "p",
+      "text": "Vienti lukee sen mikä on juuri nyt piirretty, joten keskitä näkymä uudelleen ennen suuren kaavion viemistä. Jos solmun selite on valtava, katkaise se `<br>`-merkinnällä — mermaid ei rivitä selitteitä itsestään."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Vie kahdella klikkauksella",
+      "text": "Avaa editori, liitä tai piirrä kaaviosi, ja ota SVG, PNG tai lähdekoodi. Mikään ei ole tilin takana.",
+      "buttonLabel": "Avaa editori"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Usein kysyttyä",
+      "items": [
+        {
+          "q": "Miten muunnan mermaidin PNG:ksi?",
+          "a": "Piirrä kaavio, ja käytä sitten Lataa PNG -painiketta. Editori piirtää piirretyn SVG:n kankaalle 2x-mittakaavassa valkoisella taustalla ja tallentaa tuloksen — ei palvelinkäyntiä, joten kaavio ei koskaan poistu selaimestasi."
+        },
+        {
+          "q": "Voinko viedä läpinäkyvän PNG:n?",
+          "a": "Ei PNG-painikkeesta — se täyttää valkoisella tarkoituksella, koska tumma kaavioteksti läpinäkyvällä taustalla ei ole luettavissa useimmissa paikoissa joihin PNG liitetään. Vie sen sijaan SVG; se on läpinäkyvä."
+        },
+        {
+          "q": "Onko kokorajaa?",
+          "a": "Ei kiinteää. Vienti tapahtuu selaimessasi, joten käytännön raja on se mitä selaimesi pystyy piirtämään — mikä on kaukana pisteestä jossa kaavio olisi vielä ihmiselle luettavissa."
+        },
+        {
+          "q": "Miten pidän kaavion muokattavana viennin jälkeen?",
+          "a": "Säilytä lähdekoodi. Lataa `.mmd`-tiedosto tai Markdown-lohko kuvan rinnalla; PNG:tä tai SVG:tä ei voi muuttaa takaisin mermaidiksi, mutta lähdekoodi liittyy suoraan takaisin editoriin."
+        }
+      ]
+    }
+  ]
+}

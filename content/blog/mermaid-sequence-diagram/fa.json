@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "نمودار توالی mermaid: نحو و مثال‌ها",
+    "description": "چطور نمودار توالی mermaid بنویسیم: participant ها، انواع پیکان، نوارهای فعال‌سازی، حلقه‌ها، بلوک‌های alt و یادداشت‌ها — با مثال‌های کپی-پیست."
+  },
+  "card": {
+    "title": "نمودارهای توالی mermaid",
+    "excerpt": "participant ها، انواع پیکان، نوارهای فعال‌سازی، حلقه‌ها و بلوک‌های alt — کل نحو نمودار توالی با مثال‌های اجراشدنی."
+  },
+  "h1": "چطور یک نمودار توالی mermaid بنویسیم",
+  "intro": "یک نمودار توالی نشان می‌دهد چه کسی با چه کسی، به چه ترتیبی صحبت می‌کند. در mermaid نوشتنش تقریباً به‌اندازه توصیف کردنش با صدای بلند طول می‌کشد، به همین دلیل است که طولانی‌ترین عمر را در یک کدبیس دارد. همه چیز زیر آماده کپی-پیست در [ویرایشگر](app:) است.",
+  "blocks": [
+    { "type": "h2", "text": "حداقل لازم" },
+    {
+      "type": "p",
+      "text": "نوع نمودار را اعلام کنید، سپس یک خط برای هر پیام بنویسید. participant ها در اولین اشاره‌ای که به آن‌ها می‌شود، به همان ترتیب، ساخته می‌شوند."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "وقتی ترتیب مشخصی از چپ به راست می‌خواهید، به‌جای ترتیب اولین اشاره، participant ها را با `participant User` صریحاً اعلام کنید."
+    },
+
+    { "type": "h2", "text": "انواع پیکان" },
+    {
+      "type": "table",
+      "headers": ["نحو", "معنا"],
+      "rows": [
+        ["`A->>B: text`", "درخواست — خط توپر، سر پیکان پر"],
+        ["`A-->>B: text`", "پاسخ — خط نقطه‌چین، سر پیکان پر"],
+        ["`A->B: text`", "خط توپر، سر پیکان توخالی"],
+        ["`A-)B: text`", "پیام ناهمگام — سر پیکان توخالی، بدون انتظار پاسخ"],
+        ["`A-xB: text`", "پیامی که شکست می‌خورد یا از بین می‌رود"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "قراردادی که ارزش نگه‌داشتن دارد: **توپر برای فراخوانی، نقطه‌چین برای بازگشت**. این‌طوری خواننده می‌تواند بدون خواندن حتی یک برچسب، درخواست را از پاسخ تشخیص دهد."
+    },
+
+    { "type": "h2", "text": "participant ها و نام‌های مستعار" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "به‌جای `participant`، از `actor U as Browser` استفاده کنید تا یک آدمک کبریتی کشیده شود — برای انسانی که در لبه چپ یک فرایند احراز هویت قرار دارد ارزشش را دارد."
+    },
+
+    { "type": "h2", "text": "نوارهای فعال‌سازی" },
+    {
+      "type": "p",
+      "text": "نوارهای فعال‌سازی نشان می‌دهند یک participant چقدر مشغول است. یا آن‌ها را صریحاً با `activate`/`deactivate` مشخص کنید، یا `+` و `-` را به پیکان‌ها اضافه کنید که کوتاه‌تر است و به‌هم‌ریختنش سخت‌تر."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "حلقه‌ها، شرط‌ها و کار موازی" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — تکرار.",
+        "`alt <label>` … `else <label>` … `end` — شاخه‌های متقابلاً منحصر به‌فرد.",
+        "`opt <label>` … `end` — شاخه‌ای که ممکن است اصلاً اتفاق نیفتد.",
+        "`par <label>` … `and <label>` … `end` — چیزهایی که همزمان اتفاق می‌افتند.",
+        "`critical` / `break` — بخشی که نباید قطع شود، و یک خروج زودهنگام."
+      ]
+    },
+
+    { "type": "h2", "text": "یادداشت‌ها" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` روی دو participant پخش می‌شود و جای درستی برای محدودیتی است که به تعامل تعلق دارد نه به یکی از دو طرف آن."
+    },
+
+    { "type": "h2", "text": "یک مثال کامل" },
+    {
+      "type": "code",
+      "caption": "ورود OAuth، سر تا ته.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "این نمودار را ویرایش کنید",
+      "text": "آن را در تب کد پیست کنید و یک خط را تغییر دهید — پیش‌نمایش همان‌طور که تایپ می‌کنید دوباره رسم می‌شود.",
+      "buttonLabel": "باز کردن ویرایشگر"
+    },
+
+    {
+      "type": "faq",
+      "heading": "پرسش‌های متداول",
+      "items": [
+        {
+          "q": "چطور پیام‌ها را شماره‌گذاری کنم؟",
+          "a": "`autonumber` را در خط بلافاصله بعد از `sequenceDiagram` بگذارید. آن‌وقت هر پیام یک شماره ترتیبی می‌گیرد، که صحبت کردن درباره یک نمودار در کامنت‌های بازبینی را خیلی راحت‌تر می‌کند."
+        },
+        {
+          "q": "می‌شود یک participant به خودش پیام بفرستد؟",
+          "a": "بله — همان نام را در هر دو طرف بنویسید: `API->>API: retry`. mermaid حلقه را به همان خط زندگی برمی‌گرداند."
+        },
+        {
+          "q": "چطور نشان بدهم یک participant از بین رفته؟",
+          "a": "قبل از پیامی که به آن پایان می‌دهد از `destroy <name>` استفاده کنید، یا از `create participant <name>` تا وسط نمودار ظاهر شود نه در بالای آن."
+        },
+        {
+          "q": "می‌توانم یک نمودار توالی را روی بوم بصری ویرایش کنم؟",
+          "a": "بوم بصری فلوچارت‌ها را ویرایش می‌کند. نمودارهای توالی در تب کد نوشته می‌شوند، جایی که به‌صورت زنده در پیش‌نمایش رندر می‌شوند — که معمولاً سریع‌تر هم هست، چون یک نمودار توالی اساساً یک فهرست از خط‌هاست."
+        }
+      ]
+    }
+  ]
+}

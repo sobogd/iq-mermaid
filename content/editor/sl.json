@@ -1,0 +1,83 @@
+{
+  "backToSite": "Nazaj na domačo stran",
+  "tabs": { "visual": "Vizualno", "text": "Koda" },
+  "toolbar": {
+    "addBlock": "Dodaj blok",
+    "addGroup": "Dodaj področje",
+    "copy": "Kopiraj (blok ali celo področje z vsem, kar je v njem)",
+    "paste": "Prilepi — nato klikni, kam gre",
+    "delete": "Izbriši izbrano",
+    "clearAll": "Počisti vse",
+    "connect": "Nariši puščico do drugega bloka",
+    "move": "Premakni v področje ali iz njega",
+    "color": "Barva",
+    "shape": "Oblika"
+  },
+  "zoom": { "center": "Ponovno centriraj" },
+  "modals": { "colorTitle": "Barva", "shapeTitle": "Oblika" },
+  "shapes": {
+    "rect": "Pravokotnik",
+    "rounded": "Zaobljen",
+    "pill": "Tabletka",
+    "circle": "Krog",
+    "diamond": "Romb",
+    "subroutine": "Podproces",
+    "cylinder": "Baza podatkov",
+    "hexagon": "Šesterokotnik",
+    "asymmetric": "Zastavica",
+    "parallelogram": "Paralelogram",
+    "parallelogramAlt": "Paralelogram (zrcaljen)",
+    "trapezoid": "Trapez",
+    "trapezoidAlt": "Trapez (zrcaljen)",
+    "doubleCircle": "Dvojni krog"
+  },
+  "hints": {
+    "connect": "Klikni blok, na katerega naj kaže puščica · Esc za preklic",
+    "move": "Klikni področje za premik vanj, ali prazen prostor za premik ven · Esc za preklic",
+    "paste": "Klikni področje ali prazen prostor za lepljenje · Esc za preklic"
+  },
+  "prompts": {
+    "edgeLabel": "Oznaka puščice:",
+    "clearAll": "Izbrišem vse?"
+  },
+  "defaults": {
+    "block": "Blok",
+    "group": "Področje",
+    "start": "Začetek",
+    "action": "Dejanje"
+  },
+  "text": {
+    "examplePlaceholder": "Primer …",
+    "copyMermaid": "Kopiraj mermaid",
+    "downloadMmd": "Prenesi .mmd",
+    "downloadMd": "Prenesi .md (Notion)",
+    "copySvg": "Kopiraj SVG",
+    "downloadSvg": "Prenesi SVG",
+    "downloadPng": "Prenesi PNG",
+    "statusOk": "V redu",
+    "statusError": "Napaka",
+    "statusSvgCopied": "SVG kopiran",
+    "statusMermaidCopied": "Mermaid kopiran"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Sekvenčni diagram",
+    "class": "Razredni diagram",
+    "state": "Stanjski diagram",
+    "er": "ER diagram",
+    "gantt": "Gantogram"
+  },
+  "sample": {
+    "start": "Začetek",
+    "condition": "Pripravljen?",
+    "yes": "Da",
+    "no": "Ne",
+    "action1": "Objavi",
+    "action2": "Popravi",
+    "end": "Konec",
+    "project": "Projekt",
+    "phase": "Faza 1",
+    "task1": "Naloga 1",
+    "task2": "Naloga 2"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Mermaid Exportálása PNG-be, SVG-be vagy Markdownba",
+    "description": "Hogyan alakíts egy mermaid diagramot PNG vagy SVG fájllá, hogyan másold ki az SVG kódot, vagy tartsd meg szövegként a GitHubhoz és a Notionhoz — és melyiket válaszd."
+  },
+  "card": {
+    "title": "Mermaid exportálása PNG-be vagy SVG-be",
+    "excerpt": "Négy kiút egy mermaid diagramból — PNG, SVG, .mmd forrás és egy Markdown blokk — és mikor melyik a helyes válasz."
+  },
+  "h1": "Mermaid diagram exportálása PNG-be, SVG-be vagy Markdownba",
+  "intro": "Egy diagram csak ott hasznos, ahol látható. A mermaid négy kiutat ad — egy képet, egy vektort, a forrást, vagy egy Markdown blokkot, ami magától renderelődik — és a helyes választás teljesen attól függ, hova kerül a diagram. Ez a rövid verzió, plusz ami mindegyiknél elromolhat.",
+  "blocks": [
+    { "type": "h2", "text": "Válaszd ki előbb a formátumot" },
+    {
+      "type": "table",
+      "headers": ["Cél", "Használat", "Miért"],
+      "rows": [
+        ["GitHub, GitLab, Notion, Obsidian", "Egy Markdown blokk", "Natívan renderelődik, és diffelhető marad — nincs fájl, amit szinkronban kell tartani."],
+        ["Diák, egy specifikáció, egy chatüzenet", "PNG", "Bárhova beilleszthető, nem igényel renderelőt, mindenhol ugyanúgy néz ki."],
+        ["Egy weboldal, egy nyomtatott dokumentum", "SVG", "Vektor — bármilyen méretben éles, és a szöveg kijelölhető marad."],
+        ["Egy másik szerkesztő, egy repó", "`.mmd` forrás", "Később szerkeszthető. Egy kép egy zsákutca."]
+      ]
+    },
+    {
+      "type": "note",
+      "text": "Ha a célhely renderel mermaidot, ne exportálj egyáltalán. Egy szövegként commitolt diagram soronként átnézhető code review-ban; ugyanaz a diagram PNG-ként commitolva csak lecserélhető."
+    },
+
+    { "type": "h2", "text": "Exportálás ebből a szerkesztőből" },
+    {
+      "type": "p",
+      "text": "Nyisd meg a kód fület — az exportgombok az eszköztárban vannak, és mindegyik azon dolgozik, ami éppen renderelve van."
+    },
+    {
+      "type": "steps",
+      "items": [
+        "**SVG másolása** — a `<svg>` kódot a vágólapra teszi, készen arra, hogy közvetlenül beilleszd egy HTML fájlba vagy egy tervezőeszközbe.",
+        "**SVG letöltése** — elmenti a `diagram.svg` fájlt.",
+        "**PNG letöltése** — elmenti a `diagram.png` fájlt, 2x felbontásban renderelve, fehér háttérrel, hogy éles maradjon nagy felbontású képernyőn, és sose landoljon átlátszó foltként egy fehér diasoron.",
+        "**.mmd letöltése** — elmenti a mermaid forrást egyszerű szövegfájlként.",
+        "**.md letöltése (Notion)** — elmenti a forrást egy körbekerített ```mermaid blokkba csomagolva, amit a Notion, a GitHub és az Obsidian beillesztéskor renderel."
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Egy diasorhoz vidd a PNG-t. Bármihez, amit át fognak méretezni — egy dokumentum-fejléc, egy poszter, egy nyomtatás — vidd az SVG-t; egy az exportméret fölé nagyított PNG azonnal elmosódik."
+    },
+
+    { "type": "h2", "text": "Tartsd meg inkább szövegként" },
+    {
+      "type": "p",
+      "text": "A körbekerített blokk az egyetlen export, ami a helyén szerkeszthető marad. Három backtick, a `mermaid` szó, a diagramod, három backtick:"
+    },
+    {
+      "type": "code",
+      "caption": "Illeszd ezt egy GitHub README-be, és renderelődik.",
+      "code": "```mermaid\nflowchart LR\n  A[Write] --> B[Review]\n  B --> C[Merge]\n```"
+    },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — renderelődik README fájlokban, issue-kban, pull requestekben és kommentekben.",
+        "**GitLab** — renderelődik a wikiben, issue-kban és merge requestekben.",
+        "**Notion** — illeszd be egy kódblokkba, és állítsd a nyelvet Mermaidra.",
+        "**Obsidian** — renderelődik előnézetben és publikált jegyzetekben.",
+        "**Docusaurus / MkDocs Material / VitePress** — a mermaid blokkok renderelődnek a lefordított dokumentációban."
+      ]
+    },
+
+    { "type": "h2", "text": "Amik elromolhatnak" },
+    { "type": "h3", "text": "A PNG homályos" },
+    {
+      "type": "p",
+      "text": "Egy PNG fix felbontású: egy adott pixelméretben exportálódik, és az azon túli nagyítás interpolál. Ez a szerkesztő ezért exportál 2x méretben. Ha ez sem elég, exportáld az SVG-t, és alakítsd át bármilyen méretre, amire szükséged van — vagy egyszerűen használd az SVG-t."
+    },
+    { "type": "h3", "text": "Az SVG-nek nincs háttere" },
+    {
+      "type": "p",
+      "text": "Az SVG exportok szándékosan átlátszóak, így a sötét csomópontszöveg eltűnik egy sötét diasoron. Vagy tedd az SVG-t egy világos kártyára, vagy vidd a PNG-t, ami fehér háttérrel exportálódik."
+    },
+    { "type": "h3", "text": "A betűtípusok máshol másképp néznek ki" },
+    {
+      "type": "p",
+      "text": "Egy SVG betűtípus-családokra hivatkozik ahelyett, hogy beágyazná őket, így egy gép, amelyiken nincs meg az a betűtípus, egy másikat helyettesít be, és a feliratdobozok elcsúsznak. Használd a PNG-t, ha nem tudod kontrollálni a néző betűtípusait."
+    },
+    { "type": "h3", "text": "A diagram le van vágva" },
+    {
+      "type": "p",
+      "text": "Az exportálás azt olvassa be, ami éppen renderelve van, így központosítsd újra a nézetet, mielőtt egy nagy diagramot exportálnál. Ha egy csomópont felirata hatalmas, törd meg `<br>`-vel — a mermaid magától nem tördeli a feliratokat."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Exportálás két kattintással",
+      "text": "Nyisd meg a szerkesztőt, illeszd be vagy rajzold meg a diagramodat, és vidd az SVG-t, a PNG-t vagy a forrást. Semmi nincs fiók mögé zárva.",
+      "buttonLabel": "Szerkesztő megnyitása"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Gyakran ismételt kérdések",
+      "items": [
+        {
+          "q": "Hogyan alakítsak mermaidot PNG-vé?",
+          "a": "Rendereld a diagramot, majd használd a PNG letöltése gombot. A szerkesztő a renderelt SVG-t egy vászonra rajzolja 2x méretarányban, fehér háttérrel, és elmenti az eredményt — nincs szerveroldali kör, így a diagram sosem hagyja el a böngésződet."
+        },
+        {
+          "q": "Exportálhatok átlátszó PNG-t?",
+          "a": "Nem a PNG gombból — az szándékosan tölt ki fehérrel, mert a sötét diagramszöveg átlátszó háttéren olvashatatlan a legtöbb helyen, ahova egy PNG kerül. Exportáld inkább az SVG-t; az átlátszó."
+        },
+        {
+          "q": "Van méretkorlát?",
+          "a": "Nincs rögzített. Az exportálás a böngésződben történik, így a gyakorlati korlát az, amit a böngésződ hajlandó renderelni — ami messze túl van azon a ponton, ahol a diagram még olvasható egy ember számára."
+        },
+        {
+          "q": "Hogyan tartsam szerkeszthetőnek a diagramot exportálás után?",
+          "a": "Tartsd meg a forrást. Töltsd le a `.mmd` fájlt vagy a Markdown blokkot a kép mellett; egy PNG vagy SVG nem alakítható vissza mermaiddá, de a forrás egyenesen visszamásolható a szerkesztőbe."
+        }
+      ]
+    }
+  ]
+}

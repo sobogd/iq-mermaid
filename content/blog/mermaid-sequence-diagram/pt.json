@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Diagrama de Sequência Mermaid: Sintaxe e Exemplos",
+    "description": "Como escrever um diagrama de sequência mermaid: participantes, tipos de seta, barras de ativação, loops, blocos alt e notas — com exemplos prontos a copiar."
+  },
+  "card": {
+    "title": "Diagramas de sequência mermaid",
+    "excerpt": "Participantes, tipos de seta, barras de ativação, loops e blocos alt — toda a sintaxe do diagrama de sequência com exemplos executáveis."
+  },
+  "h1": "Como escrever um diagrama de sequência mermaid",
+  "intro": "Um diagrama de sequência mostra quem fala com quem, e por que ordem. Em mermaid, demora tanto tempo a escrever como a descrever em voz alta, e é por isso que é o tipo de diagrama que sobrevive mais tempo numa base de código. Tudo abaixo está pronto a copiar e colar no [editor](app:).",
+  "blocks": [
+    { "type": "h2", "text": "O mínimo" },
+    {
+      "type": "p",
+      "text": "Declare o tipo de diagrama e depois escreva uma linha por mensagem. Os participantes são criados na primeira menção, pela ordem em que aparecem."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Declare os participantes explicitamente com `participant User` quando quiser uma ordem específica da esquerda para a direita, em vez da ordem da primeira menção."
+    },
+
+    { "type": "h2", "text": "Tipos de seta" },
+    {
+      "type": "table",
+      "headers": ["Sintaxe", "Significado"],
+      "rows": [
+        ["`A->>B: text`", "Pedido — linha sólida, ponta de seta preenchida"],
+        ["`A-->>B: text`", "Resposta — linha tracejada, ponta de seta preenchida"],
+        ["`A->B: text`", "Linha sólida, ponta de seta aberta"],
+        ["`A-)B: text`", "Mensagem assíncrona — ponta de seta aberta, sem resposta esperada"],
+        ["`A-xB: text`", "Mensagem que falha ou é descartada"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "A convenção que vale a pena manter: **sólida para a chamada, tracejada para o retorno**. Um leitor consegue então distinguir um pedido de uma resposta sem ler um único texto."
+    },
+
+    { "type": "h2", "text": "Participantes e apelidos" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Use `actor U as Browser` em vez de `participant` para desenhar um boneco — vale a pena para a pessoa na extremidade esquerda de um fluxo de autenticação."
+    },
+
+    { "type": "h2", "text": "Barras de ativação" },
+    {
+      "type": "p",
+      "text": "As barras de ativação mostram durante quanto tempo um participante está ocupado. Marque-as explicitamente com `activate`/`deactivate`, ou acrescente `+` e `-` às setas, o que é mais curto e mais difícil de desequilibrar."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Loops, condicionais e trabalho em paralelo" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — repetição.",
+        "`alt <label>` … `else <label>` … `end` — ramos mutuamente exclusivos.",
+        "`opt <label>` … `end` — um ramo que pode simplesmente não acontecer.",
+        "`par <label>` … `and <label>` … `end` — coisas a acontecer ao mesmo tempo.",
+        "`critical` / `break` — uma secção que não pode ser interrompida, e uma saída antecipada."
+      ]
+    },
+
+    { "type": "h2", "text": "Notas" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` abrange dois participantes e é o lugar certo para uma restrição que pertence à interação, e não a um dos lados dela."
+    },
+
+    { "type": "h2", "text": "Um exemplo completo" },
+    {
+      "type": "code",
+      "caption": "Início de sessão OAuth, do princípio ao fim.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Edite este diagrama",
+      "text": "Cole-o no separador de código e mude uma linha — a pré-visualização redesenha-se à medida que escreve.",
+      "buttonLabel": "Abrir o editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Perguntas frequentes",
+      "items": [
+        {
+          "q": "Como numero as mensagens?",
+          "a": "Coloque `autonumber` na linha logo a seguir a `sequenceDiagram`. Cada mensagem recebe então um número sequencial, o que torna um diagrama muito mais fácil de discutir em comentários de revisão."
+        },
+        {
+          "q": "Um participante pode enviar uma mensagem a si próprio?",
+          "a": "Sim — escreva o mesmo nome dos dois lados: `API->>API: retry`. O mermaid desenha o ciclo de volta para a mesma linha de vida."
+        },
+        {
+          "q": "Como mostro que um participante foi destruído?",
+          "a": "Use `destroy <name>` antes da mensagem que o termina, ou `create participant <name>` para o fazer aparecer a meio do diagrama em vez de no topo."
+        },
+        {
+          "q": "Posso editar um diagrama de sequência na tela visual?",
+          "a": "A tela visual edita fluxogramas. Os diagramas de sequência são escritos no separador de código, onde renderizam ao vivo na pré-visualização — o que normalmente é mais rápido de qualquer forma, já que um diagrama de sequência é essencialmente uma lista de linhas."
+        }
+      ]
+    }
+  ]
+}

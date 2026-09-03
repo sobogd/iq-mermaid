@@ -1,0 +1,83 @@
+{
+  "backToSite": "Назад на почетну страницу",
+  "tabs": { "visual": "Визуел", "text": "Код" },
+  "toolbar": {
+    "addBlock": "Додај блок",
+    "addGroup": "Додај област",
+    "copy": "Копирај (блок или целу област са свим унутра)",
+    "paste": "Налепи — затим кликните где иде",
+    "delete": "Обриши избор",
+    "clearAll": "Обриши све",
+    "connect": "Повуци стрелицу до другог блока",
+    "move": "Помери у област, или из ње",
+    "color": "Боја",
+    "shape": "Облик"
+  },
+  "zoom": { "center": "Поново центрирај" },
+  "modals": { "colorTitle": "Боја", "shapeTitle": "Облик" },
+  "shapes": {
+    "rect": "Правоугаоник",
+    "rounded": "Заобљени",
+    "pill": "Пилула",
+    "circle": "Круг",
+    "diamond": "Ромб",
+    "subroutine": "Потпрограм",
+    "cylinder": "База података",
+    "hexagon": "Шестоугао",
+    "asymmetric": "Застава",
+    "parallelogram": "Паралелограм",
+    "parallelogramAlt": "Паралелограм (огледало)",
+    "trapezoid": "Трапез",
+    "trapezoidAlt": "Трапез (огледало)",
+    "doubleCircle": "Двоструки круг"
+  },
+  "hints": {
+    "connect": "Кликните на блок ка коме стрелица треба да показује · Esc за отказ",
+    "move": "Кликните на област да преместите унутра, или на празан простор да изместите напоље · Esc за отказ",
+    "paste": "Кликните на област или празан простор за лепљење · Esc за отказ"
+  },
+  "prompts": {
+    "edgeLabel": "Ознака стрелице:",
+    "clearAll": "Обрисати све?"
+  },
+  "defaults": {
+    "block": "Блок",
+    "group": "Област",
+    "start": "Старт",
+    "action": "Радња"
+  },
+  "text": {
+    "examplePlaceholder": "Пример…",
+    "copyMermaid": "Копирај mermaid",
+    "downloadMmd": "Преузми .mmd",
+    "downloadMd": "Преузми .md (Notion)",
+    "copySvg": "Копирај SVG",
+    "downloadSvg": "Преузми SVG",
+    "downloadPng": "Преузми PNG",
+    "statusOk": "Готово",
+    "statusError": "Грешка",
+    "statusSvgCopied": "SVG копиран",
+    "statusMermaidCopied": "Mermaid копиран"
+  },
+  "examples": {
+    "flowchart": "Flowchart",
+    "sequence": "Sequence дијаграм",
+    "class": "Дијаграм класа",
+    "state": "Дијаграм стања",
+    "er": "ER дијаграм",
+    "gantt": "Gantt дијаграм"
+  },
+  "sample": {
+    "start": "Старт",
+    "condition": "Спремно?",
+    "yes": "Да",
+    "no": "Не",
+    "action1": "Пошаљи",
+    "action2": "Исправи",
+    "end": "Готово",
+    "project": "Пројекат",
+    "phase": "Фаза 1",
+    "task1": "Задатак 1",
+    "task2": "Задатак 2"
+  }
+}

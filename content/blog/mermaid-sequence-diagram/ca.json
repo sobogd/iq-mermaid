@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Diagrama de Seqüència Mermaid: Sintaxi i Exemples",
+    "description": "Com escriure un diagrama de seqüència mermaid: participants, tipus de fletxa, barres d'activació, bucles, blocs alt i notes — amb exemples de còpia i enganxa."
+  },
+  "card": {
+    "title": "Diagrames de seqüència mermaid",
+    "excerpt": "Participants, tipus de fletxa, barres d'activació, bucles i blocs alt — tota la sintaxi del diagrama de seqüència amb exemples que funcionen."
+  },
+  "h1": "Com escriure un diagrama de seqüència mermaid",
+  "intro": "Un diagrama de seqüència mostra qui parla amb qui, i en quin ordre. En mermaid triga més o menys el mateix a escriure's que a descriure's en veu alta, per això és el tipus de diagrama que sobreviu més temps en un codi base. Tot el que hi ha a sota està a punt per copiar i enganxar a l'[editor](app:).",
+  "blocks": [
+    { "type": "h2", "text": "El mínim" },
+    {
+      "type": "p",
+      "text": "Declara el tipus de diagrama i després escriu una línia per missatge. Els participants es creen a la primera menció, en l'ordre en què apareixen."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /orders\n  API->>DB: INSERT order\n  DB-->>API: order id\n  API-->>User: 201 Created"
+    },
+    {
+      "type": "tip",
+      "text": "Declara els participants explícitament amb `participant User` quan vulguis un ordre concret d'esquerra a dreta en lloc de l'ordre de primera menció."
+    },
+
+    { "type": "h2", "text": "Tipus de fletxa" },
+    {
+      "type": "table",
+      "headers": ["Sintaxi", "Significat"],
+      "rows": [
+        ["`A->>B: text`", "Petició — línia contínua, punta de fletxa plena"],
+        ["`A-->>B: text`", "Resposta — línia discontínua, punta de fletxa plena"],
+        ["`A->B: text`", "Línia contínua, punta de fletxa oberta"],
+        ["`A-)B: text`", "Missatge asíncron — punta de fletxa oberta, no s'espera resposta"],
+        ["`A-xB: text`", "Missatge que falla o es descarta"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "La convenció que val la pena mantenir: **contínua per a la crida, discontínua per a la resposta**. Un lector pot llavors distingir una petició d'una resposta sense llegir ni una sola etiqueta."
+    },
+
+    { "type": "h2", "text": "Participants i àlies" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant U as Browser\n  participant A as API gateway\n  participant S as Order service\n  U->>A: GET /orders\n  A->>S: list(userId)\n  S-->>A: orders\n  A-->>U: 200 OK"
+    },
+    {
+      "type": "p",
+      "text": "Fes servir `actor U as Browser` en lloc de `participant` per dibuixar un ninot de pal — val la pena per a la persona a l'extrem esquerre d'un flux d'autenticació."
+    },
+
+    { "type": "h2", "text": "Barres d'activació" },
+    {
+      "type": "p",
+      "text": "Les barres d'activació mostren durant quant de temps un participant està ocupat. Marca-les explícitament amb `activate`/`deactivate`, o afegeix `+` i `-` a les fletxes, que és més curt i més difícil de descompensar."
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>+API: POST /pay\n  API->>+Bank: charge\n  Bank-->>-API: authorised\n  API-->>-User: receipt"
+    },
+
+    { "type": "h2", "text": "Bucles, condicionals i treball en paral·lel" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /import\n  loop every row\n    API->>DB: upsert row\n  end\n  alt all rows valid\n    API-->>User: 200 OK\n  else some failed\n    API-->>User: 422 with errors\n  end\n  par notify\n    API->>Email: send summary\n  and audit\n    API->>Log: write entry\n  end"
+    },
+    {
+      "type": "list",
+      "items": [
+        "`loop <label>` … `end` — repetició.",
+        "`alt <label>` … `else <label>` … `end` — branques mútuament excloents.",
+        "`opt <label>` … `end` — una branca que potser simplement no passa.",
+        "`par <label>` … `and <label>` … `end` — coses que passen al mateix temps.",
+        "`critical` / `break` — una secció que no s'ha d'interrompre, i una sortida anticipada."
+      ]
+    },
+
+    { "type": "h2", "text": "Notes" },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  User->>API: POST /login\n  Note right of API: Rate limited<br>5 per minute\n  API-->>User: token\n  Note over User,API: Token is valid for 30 days"
+    },
+    {
+      "type": "p",
+      "text": "`Note over A,B` abasta dos participants i és el lloc adequat per a una restricció que pertany a la interacció més que a un dels dos costats."
+    },
+
+    { "type": "h2", "text": "Un exemple complet" },
+    {
+      "type": "code",
+      "caption": "Inici de sessió OAuth, de principi a fi.",
+      "code": "sequenceDiagram\n  actor U as User\n  participant A as App\n  participant P as Provider\n  U->>+A: Click \"Sign in\"\n  A-->>-U: Redirect to provider\n  U->>+P: Authorise\n  P-->>-U: Redirect back with code\n  U->>+A: GET /callback?code=…\n  A->>+P: Exchange code for token\n  P-->>-A: access token\n  Note right of A: Session cookie set here\n  A-->>-U: Signed in"
+    },
+
+    {
+      "type": "cta",
+      "heading": "Edita aquest diagrama",
+      "text": "Enganxa'l a la pestanya de codi i canvia una línia — la previsualització es redibuixa mentre escrius.",
+      "buttonLabel": "Obre l'editor"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Preguntes freqüents",
+      "items": [
+        {
+          "q": "Com numero els missatges?",
+          "a": "Posa `autonumber` a la línia just després de `sequenceDiagram`. Cada missatge rep llavors un número seqüencial, cosa que fa molt més fàcil parlar d'un diagrama en comentaris de revisió."
+        },
+        {
+          "q": "Un participant pot enviar-se un missatge a si mateix?",
+          "a": "Sí — escriu el mateix nom als dos costats: `API->>API: retry`. Mermaid dibuixa el bucle de tornada a la mateixa línia de vida."
+        },
+        {
+          "q": "Com mostro que un participant es destrueix?",
+          "a": "Fes servir `destroy <name>` abans del missatge que l'acaba, o `create participant <name>` perquè aparegui a mig diagrama en lloc de a dalt de tot."
+        },
+        {
+          "q": "Puc editar un diagrama de seqüència al llenç visual?",
+          "a": "El llenç visual edita flowcharts. Els diagrames de seqüència s'escriuen a la pestanya de codi, on es renderitzen en directe a la previsualització — cosa que normalment és més ràpida de totes maneres, ja que un diagrama de seqüència és essencialment una llista de línies."
+        }
+      ]
+    }
+  ]
+}

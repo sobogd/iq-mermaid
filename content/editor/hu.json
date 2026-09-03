@@ -1,0 +1,83 @@
+{
+  "backToSite": "Vissza a főoldalra",
+  "tabs": { "visual": "Vizuális", "text": "Kód" },
+  "toolbar": {
+    "addBlock": "Blokk hozzáadása",
+    "addGroup": "Terület hozzáadása",
+    "copy": "Másolás (egy blokk, vagy egy egész terület mindennel együtt)",
+    "paste": "Beillesztés — majd kattints, hova kerüljön",
+    "delete": "Kijelölés törlése",
+    "clearAll": "Minden törlése",
+    "connect": "Nyíl húzása egy másik blokkhoz",
+    "move": "Mozgatás egy területbe, vagy ki belőle",
+    "color": "Szín",
+    "shape": "Alak"
+  },
+  "zoom": { "center": "Újraközpontosítás" },
+  "modals": { "colorTitle": "Szín", "shapeTitle": "Alak" },
+  "shapes": {
+    "rect": "Téglalap",
+    "rounded": "Lekerekített",
+    "pill": "Pirula",
+    "circle": "Kör",
+    "diamond": "Rombusz",
+    "subroutine": "Alfolyamat",
+    "cylinder": "Adatbázis",
+    "hexagon": "Hatszög",
+    "asymmetric": "Zászló",
+    "parallelogram": "Paralelogramma",
+    "parallelogramAlt": "Paralelogramma (tükrözött)",
+    "trapezoid": "Trapéz",
+    "trapezoidAlt": "Trapéz (tükrözött)",
+    "doubleCircle": "Dupla kör"
+  },
+  "hints": {
+    "connect": "Kattints arra a blokkra, amelyre a nyílnak mutatnia kell · Esc a megszakításhoz",
+    "move": "Kattints egy területre a beköltöztetéshez, vagy üres helyre a kiköltöztetéshez · Esc a megszakításhoz",
+    "paste": "Kattints egy területre vagy üres helyre a beillesztéshez · Esc a megszakításhoz"
+  },
+  "prompts": {
+    "edgeLabel": "Nyíl felirata:",
+    "clearAll": "Törlöd az egészet?"
+  },
+  "defaults": {
+    "block": "Blokk",
+    "group": "Terület",
+    "start": "Start",
+    "action": "Művelet"
+  },
+  "text": {
+    "examplePlaceholder": "Példa…",
+    "copyMermaid": "Mermaid másolása",
+    "downloadMmd": "Letöltés .mmd",
+    "downloadMd": "Letöltés .md (Notion)",
+    "copySvg": "SVG másolása",
+    "downloadSvg": "SVG letöltése",
+    "downloadPng": "PNG letöltése",
+    "statusOk": "OK",
+    "statusError": "Hiba",
+    "statusSvgCopied": "SVG másolva",
+    "statusMermaidCopied": "Mermaid másolva"
+  },
+  "examples": {
+    "flowchart": "Folyamatábra",
+    "sequence": "Szekvenciadiagram",
+    "class": "Osztálydiagram",
+    "state": "Állapotdiagram",
+    "er": "ER diagram",
+    "gantt": "Gantt diagram"
+  },
+  "sample": {
+    "start": "Start",
+    "condition": "Kész?",
+    "yes": "Igen",
+    "no": "Nem",
+    "action1": "Küldd el",
+    "action2": "Javítsd ki",
+    "end": "Kész",
+    "project": "Projekt",
+    "phase": "1. fázis",
+    "task1": "1. feladat",
+    "task2": "2. feladat"
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Fișă cu sintaxa Mermaid și exemple",
+    "description": "Sintaxa mermaid pe care chiar o folosești: forme, săgeți, subgrafuri, stilizare și un exemplu pentru fiecare tip de diagramă. Copiezi, lipești, editezi."
+  },
+  "card": {
+    "title": "Fișă cu sintaxa mermaid",
+    "excerpt": "Forme de noduri, săgeți, subgrafuri și stilizare pe o singură pagină — plus un exemplu funcțional pentru fiecare tip de diagramă randat de mermaid."
+  },
+  "h1": "Fișă cu sintaxa mermaid",
+  "intro": "Mermaid are o referință vastă și un subset restrâns care acoperă aproape tot ce desenează oamenii. Această pagină este acel subset: forme, săgeți, grupare, culori și câte un exemplu de copiat-lipit pentru fiecare tip de diagramă. Fiecare fragment de mai jos se randează exact așa cum e — lipește-l în [editor](app:) ca să vezi.",
+  "blocks": [
+    { "type": "h2", "text": "Cea mai scurtă diagramă funcțională" },
+    {
+      "type": "p",
+      "text": "Un flowchart are nevoie de o linie de declarare și o săgeată. `TD` înseamnă de sus în jos; folosește `LR` pentru de la stânga la dreapta, care se potrivește mai bine proceselor late."
+    },
+    {
+      "type": "code",
+      "caption": "Un flowchart cu trei noduri, de sus în jos.",
+      "code": "flowchart TD\n  A[Start] --> B{Ready?}\n  B -->|Yes| C[Ship it]\n  B -->|No| A"
+    },
+    {
+      "type": "p",
+      "text": "`A`, `B` și `C` sunt id-uri de noduri — nume interne, niciodată desenate. Textul din paranteze este eticheta, iar **stilul** parantezei alege forma."
+    },
+
+    { "type": "h2", "text": "Forme de noduri" },
+    {
+      "type": "p",
+      "text": "Forma este aleasă de perechea de delimitatori din jurul etichetei. Acestea merită reținute:"
+    },
+    {
+      "type": "table",
+      "headers": ["Sintaxă", "Formă", "Sens uzual"],
+      "rows": [
+        ["`A[Text]`", "Dreptunghi", "Un pas sau o acțiune"],
+        ["`A(Text)`", "Rotunjit", "Un punct de start sau final"],
+        ["`A([Text])`", "Pilulă", "Un terminator"],
+        ["`A[[Text]]`", "Subrutină", "Un apel către alt proces"],
+        ["`A[(Text)]`", "Cilindru", "O bază de date sau un depozit"],
+        ["`A((Text))`", "Cerc", "Un punct de joncțiune"],
+        ["`A{Text}`", "Romb", "O decizie"],
+        ["`A{{Text}}`", "Hexagon", "Un pas de pregătire"],
+        ["`A[/Text/]`", "Paralelogram", "Intrare sau ieșire"],
+        ["`A[/Text\\]`", "Trapez", "O operațiune manuală"]
+      ]
+    },
+    {
+      "type": "tip",
+      "text": "Pune eticheta între ghilimele când conține paranteze, două puncte sau ghilimele: `A[\"Load (raw) data\"]`. Fără ghilimele, parserul interpretează punctuația ta ca sintaxă."
+    },
+
+    { "type": "h2", "text": "Săgeți" },
+    {
+      "type": "table",
+      "headers": ["Sintaxă", "Rezultat"],
+      "rows": [
+        ["`A --> B`", "Săgeată"],
+        ["`A --- B`", "Linie, fără vârf de săgeată"],
+        ["`A -.-> B`", "Săgeată punctată"],
+        ["`A ==> B`", "Săgeată groasă"],
+        ["`A -->|label| B`", "Săgeată cu etichetă pe ea"],
+        ["`A --> B --> C`", "Lanț, scris pe o singură linie"],
+        ["`A --> B & C`", "O sursă, două ținte"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Lungimea săgeții contează și ea: `-->` este un rang, `--->` împinge ținta cu încă un rang mai jos. Este cel mai simplu control de layout pe care ți-l oferă mermaid."
+    },
+
+    { "type": "h2", "text": "Gruparea cu subgrafuri" },
+    {
+      "type": "p",
+      "text": "Un `subgraph` desenează o casetă etichetată în jurul nodurilor. Subgrafurile se pot imbrica, iar săgețile pot trece liber peste marginile lor."
+    },
+    {
+      "type": "code",
+      "caption": "Două servicii, fiecare cu propriul depozit.",
+      "code": "flowchart LR\n  subgraph api[\"API\"]\n    H[Handler] --> S[(Postgres)]\n  end\n  subgraph worker[\"Worker\"]\n    Q[Queue] --> W[Job]\n  end\n  H --> Q"
+    },
+
+    { "type": "h2", "text": "Culoare și stilizare" },
+    {
+      "type": "p",
+      "text": "`style` colorează un singur nod. `classDef` plus `class` colorează un set de noduri, ceea ce e util peste trei sau patru noduri."
+    },
+    {
+      "type": "code",
+      "code": "flowchart TD\n  A[OK] --> B[Failed]\n  style A fill:#16a34a,stroke:#333,color:#fff\n  classDef bad fill:#dc2626,stroke:#333,color:#fff\n  class B bad"
+    },
+    {
+      "type": "note",
+      "text": "Culorile fac parte din sursa diagramei, deci supraviețuiesc exportului și călătoresc odată cu fișierul. Nimic aici nu depinde de o setare de temă în unealta care o randează."
+    },
+
+    { "type": "h2", "text": "Câte un exemplu pentru fiecare tip de diagramă" },
+    {
+      "type": "h3",
+      "text": "Diagramă de secvență"
+    },
+    {
+      "type": "code",
+      "code": "sequenceDiagram\n  participant User\n  participant API\n  participant DB\n  User->>API: request\n  API->>DB: query\n  DB-->>API: rows\n  API-->>User: response"
+    },
+    { "type": "h3", "text": "Diagramă de clase" },
+    {
+      "type": "code",
+      "code": "classDiagram\n  class Animal {\n    +String name\n    +move()\n  }\n  class Dog {\n    +bark()\n  }\n  Animal <|-- Dog"
+    },
+    { "type": "h3", "text": "Diagramă de stare" },
+    {
+      "type": "code",
+      "code": "stateDiagram-v2\n  [*] --> Idle\n  Idle --> Running: start\n  Running --> Idle: stop\n  Running --> [*]: finish"
+    },
+    { "type": "h3", "text": "Diagramă entitate-relație" },
+    {
+      "type": "code",
+      "code": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  CUSTOMER {\n    string name\n    string email\n  }"
+    },
+    { "type": "h3", "text": "Diagramă Gantt" },
+    {
+      "type": "code",
+      "code": "gantt\n  title Project\n  dateFormat YYYY-MM-DD\n  section Phase 1\n  Task 1 :a1, 2026-01-01, 5d\n  Task 2 :after a1, 5d"
+    },
+
+    { "type": "h2", "text": "Unde se randează mermaid din start" },
+    {
+      "type": "list",
+      "items": [
+        "**GitHub** — un bloc ```mermaid se randează în issues, pull request-uri, comentarii și fișiere README.",
+        "**GitLab** — același bloc, în issues, merge request-uri și wiki.",
+        "**Notion** — un bloc de cod cu limbajul setat pe Mermaid se randează lângă sursă.",
+        "**Obsidian** — un bloc mermaid se randează în modul de previzualizare.",
+        "**Site-uri de documentație** — Docusaurus, MkDocs Material și VitePress suportă toate blocuri mermaid."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Acesta este motivul real pentru a păstra diagramele ca mermaid și nu ca imagini: diagrama trăiește în același fișier text ca lucrul pe care îl descrie, iar un code review poate vedea ce s-a schimbat în ea."
+    },
+
+    {
+      "type": "cta",
+      "heading": "Încearcă orice fragment de pe această pagină",
+      "text": "Lipește-l în fila de cod și se randează instant — sau construiește aceeași diagramă pe pânză și citește sintaxa înapoi.",
+      "buttonLabel": "Deschide editorul"
+    },
+
+    {
+      "type": "faq",
+      "heading": "Întrebări frecvente",
+      "items": [
+        {
+          "q": "Cum adaug o întrerupere de linie în eticheta unui nod?",
+          "a": "Folosește `<br>` în interiorul unei etichete între ghilimele: `A[\"First line<br>Second line\"]`. Mermaid randează eticheta ca HTML, deci tag-ul funcționează chiar dacă restul sintaxei nu e HTML."
+        },
+        {
+          "q": "De ce îmi strică eticheta diagrama?",
+          "a": "Aproape mereu e o paranteză, un semn de punctuație sau ghilimea nepusă între ghilimele în interiorul etichetei. Pune întreaga etichetă între ghilimele duble și parserul nu mai tratează punctuația ta ca sintaxă."
+        },
+        {
+          "q": "Pot controla layout-ul?",
+          "a": "Doar indirect. Alegi direcția (`TD`, `LR`, `BT`, `RL`), folosești săgeți mai lungi (`--->`) pentru a împinge nodurile mai departe unele de altele și grupezi nodurile înrudite în subgrafuri. Mermaid calculează restul — nu există coordonate."
+        },
+        {
+          "q": "Ce versiune de mermaid folosește acest editor?",
+          "a": "Mermaid 11, versiunea majoră actuală, deci tot ce e documentat pentru sintaxa v10 și v11 se randează aici."
+        }
+      ]
+    }
+  ]
+}

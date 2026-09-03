@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Editor Mermaid en Línia Gratuït — Diagrames en Viu",
+    "description": "Editor mermaid en línia gratuït: dibuixa el diagrama o escriu el codi, sincronitzats. Flowchart, seqüència, classe, ER, gantt. Sense registre, exporta a SVG/PNG.",
+    "ogTitle": "Editor Mermaid en Viu — gratuït, en línia, sense registre",
+    "ogDescription": "Dibuixa diagrames en un llenç o escriu codi mermaid. Totes dues vistes es sincronitzen. Exporta a SVG, PNG, .mmd o Markdown.",
+    "twitterTitle": "Editor mermaid en viu gratuït",
+    "twitterDescription": "Llenç visual i codi mermaid, un al costat de l'altre. Sense registre, sense mur de pagament."
+  },
+  "header": {
+    "logo": "Mermaid",
+    "features": "Funcions",
+    "blog": "Guies",
+    "faq": "FAQ",
+    "openEditor": "Obre l'editor",
+    "menu": "Menú"
+  },
+  "hero": {
+    "badgeFree": "Gratuït per sempre",
+    "badgeNoSignup": "Sense registre",
+    "badgeDiagrams": "8 tipus de diagrames",
+    "title": "Editor mermaid en línia,",
+    "titleAccent": "visual i codi en un sol lloc",
+    "description": "La majoria d'editors mermaid et donen un quadre de text i una previsualització. Aquest també et dona un llenç: fes clic per afegir un bloc, arrossega una fletxa, agrupa elements en àrees — i el codi mermaid s'escriu sol. Canvia a la pestanya de codi i edita'l a mà; el llenç ho segueix.",
+    "ctaOpen": "Obre l'editor",
+    "ctaLearn": "Mira què fa",
+    "mockCodeLabel": "Codi mermaid",
+    "mockDiagramLabel": "Diagrama renderitzat"
+  },
+  "statCards": [
+    { "title": "Es renderitza mentre escrius", "sub": "El motor mermaid real, redibuixat uns centenars de mil·lisegons després de la teva última tecla." },
+    { "title": "Codi i llenç sincronitzats", "sub": "Edita qualsevol dels dos costats. L'altre s'actualitza — sense copiar i enganxar entre dues eines." },
+    { "title": "14 formes de node", "sub": "Rectangle, arrodonit, píndola, cercle, rombe, base de dades, hexàgon i la resta, amb un clic cadascuna." },
+    { "title": "Gratuït, sense compte", "sub": "Sense registre, sense prova, sense marca d'aigua a l'exportació. El teu diagrama es queda al teu navegador." }
+  ],
+  "spotlights": [
+    {
+      "heading": "Un llenç, no només un quadre de text",
+      "sub": "La pestanya visual és un editor real sobre el diagrama renderitzat: fes clic a un node per seleccionar-lo, doble clic per reanomenar-lo in situ, arrossega on sigui per desplaçar la vista.",
+      "bullets": [
+        { "title": "Fes clic per construir", "sub": "Afegeix un bloc, apunta una fletxa cap a un altre, etiqueta la fletxa. Cap sintaxi per memoritzar abans de començar." },
+        { "title": "Tria una forma", "sub": "Catorze formes de flowchart mermaid — rombes de decisió, cilindres de base de dades, subrutines — des d'un sol selector." },
+        { "title": "Acoloreix el que vulguis", "sub": "Vuit predefinits més un selector de color, aplicats a un sol node o a una àrea sencera." }
+      ]
+    },
+    {
+      "heading": "Codi mermaid que continua sent teu",
+      "sub": "La pestanya de text és mermaid pur — la mateixa sintaxi que GitHub, GitLab, Notion i Obsidian ja renderitzen. Res aquí és un format propietari.",
+      "bullets": [
+        { "title": "Escriu-lo a mà", "sub": "Escriu mermaid directament i mira com es renderitza. Sis exemples ja fets per començar." },
+        { "title": "Va i torna", "sub": "Els flowcharts que enganxes es tornen a analitzar al llenç — nodes, formes, colors, subgrafs i tot." },
+        { "title": "Tots els tipus de diagrama", "sub": "Flowchart, seqüència, classe, estat, ER, gantt, git graph, pie — la previsualització renderitza tot el que mermaid admet." }
+      ]
+    },
+    {
+      "heading": "Els diagrames grans es mantenen llegibles",
+      "sub": "Els diagrames d'arquitectura superen una pantalla de seguida. El desplaçament, el zoom i l'agrupació estan fets per a això en lloc de lluitar-hi en contra.",
+      "bullets": [
+        { "title": "Àrees i imbricació", "sub": "Agrupa blocs en subgrafs, imbrica una àrea dins d'una altra, mou un subarbre sencer amb un sol gest." },
+        { "title": "Zoom del 2% al 1600%", "sub": "Desplaça't fent scroll, ctrl+scroll per fer zoom, o torna a centrar amb un botó." },
+        { "title": "Desat sobre la marxa", "sub": "El teu diagrama s'escriu a l'emmagatzematge local del navegador amb cada edició — tanca la pestanya i torna-hi quan vulguis." }
+      ]
+    },
+    {
+      "heading": "Exporta i continua",
+      "sub": "Res queda tancat. Emporta't la imatge, el codi font, o un bloc Markdown a punt per enganxar en un document.",
+      "bullets": [
+        { "title": "Sense mur de pagament", "sub": "Totes les funcions, inclosa l'exportació, són gratuïtes. No hi ha cap pla de pagament al qual actualitzar." },
+        { "title": "Res surt del teu navegador", "sub": "No hi ha compte ni emmagatzematge de diagrames al servidor — el renderitzat passa localment." },
+        { "title": "SVG, PNG, .mmd, .md", "sub": "Copia el codi SVG, descarrega un PNG a 2x, desa el codi font mermaid, o agafa un bloc Markdown amb delimitadors." }
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "Com es compara amb",
+    "titleAccent": "les opcions habituals",
+    "description": "Les eines de diagrama-com-a-codi et fan escriure-ho tot a mà. Les eines d'arrossegar i deixar anar et donen una imatge que no pots comparar amb diff. Aquesta es nega a triar bàndol.",
+    "usLabel": "IQ Mermaid",
+    "themLabel": "Eina típica",
+    "rows": [
+      {
+        "title": "Començar",
+        "us": "Fes doble clic al llenç i apareix un node. Pots aprendre la sintaxi més tard, o mai.",
+        "them": "Llegeix primer la referència de sintaxi, o accepta una eina de dibuix sense cap representació en text."
+      },
+      {
+        "title": "El format de sortida",
+        "us": "Mermaid pur — el mateix text que GitHub, GitLab i Notion renderitzen de manera nativa.",
+        "them": "Un fitxer propietari que només s'obre a l'eina que el va crear."
+      },
+      {
+        "title": "Editar més tard",
+        "us": "Canvia el codi o mou els blocs. Totes dues direccions funcionen sobre el mateix diagrama.",
+        "them": "Només una direcció: les eines basades en codi no tenen llenç, les basades en llenç no tenen codi font."
+      },
+      {
+        "title": "Preu",
+        "us": "Gratuït, sense compte, sense límits d'exportació.",
+        "them": "Pla gratuït limitat a uns pocs diagrames, amb l'exportació o la col·laboració darrere d'una subscripció."
+      },
+      {
+        "title": "On viuen les dades",
+        "us": "A l'emmagatzematge local del teu navegador. Sense inici de sessió, res es puja.",
+        "them": "Un compte al servidor d'algú, amb els teus diagrames enganxats a ell."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Preguntes sobre l'editor",
+    "headingAccent": "mermaid",
+    "sub": "El que la gent pregunta abans d'obrir-lo. No cal registre — l'editor és a un clic de distància.",
+    "items": [
+      {
+        "q": "Què és mermaid?",
+        "a": "Mermaid és una sintaxi de text per a diagrames: descrius nodes i fletxes en unes poques línies, i un renderitzador dibuixa la imatge. GitHub, GitLab, Notion i Obsidian el renderitzen dins de Markdown, així que un bloc mermaid es manté llegible en un pull request o una pàgina de wiki."
+      },
+      {
+        "q": "Aquest editor mermaid és realment gratuït?",
+        "a": "Sí. Totes les funcions, inclosa l'exportació a SVG i PNG, són gratuïtes, i no cal crear cap compte. No hi ha cap pla de pagament — res es guarda per després."
+      },
+      {
+        "q": "Necessito saber la sintaxi de mermaid?",
+        "a": "No. Comença a la pestanya visual: fes doble clic al llenç per afegir un bloc, selecciona'l i dibuixa una fletxa cap a un altre. El codi mermaid es genera per tu i el pots llegir quan vulguis aprendre la sintaxi."
+      },
+      {
+        "q": "Quins tipus de diagrama són compatibles?",
+        "a": "La pestanya de codi renderitza tot el que mermaid admet — flowchart, seqüència, classe, estat, relació d'entitats, gantt, git graph, pie i més. El llenç visual edita flowcharts específicament, que és el que és la majoria dels diagrames."
+      },
+      {
+        "q": "Puc exportar a PNG o SVG?",
+        "a": "Sí. Copia el codi SVG al porta-retalls, descarrega el fitxer SVG, o descarrega un PNG renderitzat a 2x per a presentacions i documents. També pots desar el codi font mermaid com a .mmd o com a bloc Markdown."
+      },
+      {
+        "q": "On es desa el meu diagrama?",
+        "a": "A l'emmagatzematge local del teu navegador, al teu propi dispositiu. No hi ha compte ni còpia al servidor, així que esborrar les dades del navegador o canviar de dispositiu significa començar de nou — exporta el codi font si el vols conservar."
+      },
+      {
+        "q": "Puc enganxar un diagrama mermaid existent?",
+        "a": "Sí. Enganxa'l a la pestanya de codi; un flowchart es torna a analitzar al llenç visual amb els seus nodes, formes, colors i subgrafs intactes. Altres tipus de diagrama es renderitzen a la previsualització però queden només en codi."
+      },
+      {
+        "q": "Funciona sense connexió?",
+        "a": "El renderitzat passa totalment al teu navegador, així que un cop la pàgina s'ha carregat, l'editor continua funcionant sense connexió. El teu diagrama és a l'emmagatzematge local, no en un servidor."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Obre l'editor.",
+    "headingAccent": "Res per registrar-te.",
+    "sub": "Un llenç en blanc, una pestanya de codi i totes les opcions d'exportació — gratuïtes, al teu navegador, ara mateix.",
+    "ctaLabel": "Obre l'editor"
+  },
+  "footer": {
+    "tagline": "Editor mermaid en línia gratuït",
+    "brand": "IQ Mermaid",
+    "linksHeading": "Producte",
+    "languagesHeading": "Idiomes"
+  },
+  "app": {
+    "metaTitle": "Editor Mermaid — dibuixa i programa un al costat de l'altre",
+    "metaDescription": "L'editor mermaid gratuït: un llenç visual i el codi font mermaid, sincronitzats. Exporta a SVG, PNG, .mmd o Markdown.",
+    "backToSite": "Torna a la pàgina principal"
+  },
+  "blog": {
+    "metaTitle": "Guies Mermaid — sintaxi, exportacions i exemples",
+    "metaDescription": "Guies curtes i pràctiques sobre mermaid: la sintaxi que fas servir de debò, com exportar un diagrama a PNG o SVG, i com escriure un diagrama de seqüència.",
+    "title": "Guies mermaid",
+    "intro": "Notes curtes i pràctiques sobre mermaid — la sintaxi que val la pena memoritzar, les exportacions que la gent demana, i els tipus de diagrama més freqüents. Cada exemple és a un sol clic de l'editor.",
+    "readMore": "Llegeix la guia",
+    "backToBlog": "Totes les guies",
+    "relatedHeading": "Més guies"
+  }
+}

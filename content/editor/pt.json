@@ -1,0 +1,83 @@
+{
+  "backToSite": "Voltar à página inicial",
+  "tabs": { "visual": "Visual", "text": "Código" },
+  "toolbar": {
+    "addBlock": "Adicionar um bloco",
+    "addGroup": "Adicionar uma área",
+    "copy": "Copiar (um bloco, ou uma área inteira com tudo o que contém)",
+    "paste": "Colar — depois clique onde deve ficar",
+    "delete": "Eliminar a seleção",
+    "clearAll": "Limpar tudo",
+    "connect": "Desenhar uma seta para outro bloco",
+    "move": "Mover para dentro de uma área, ou para fora dela",
+    "color": "Cor",
+    "shape": "Forma"
+  },
+  "zoom": { "center": "Recentrar" },
+  "modals": { "colorTitle": "Cor", "shapeTitle": "Forma" },
+  "shapes": {
+    "rect": "Retângulo",
+    "rounded": "Arredondado",
+    "pill": "Pílula",
+    "circle": "Círculo",
+    "diamond": "Losango",
+    "subroutine": "Subrotina",
+    "cylinder": "Base de dados",
+    "hexagon": "Hexágono",
+    "asymmetric": "Bandeira",
+    "parallelogram": "Paralelogramo",
+    "parallelogramAlt": "Paralelogramo (espelhado)",
+    "trapezoid": "Trapézio",
+    "trapezoidAlt": "Trapézio (espelhado)",
+    "doubleCircle": "Círculo duplo"
+  },
+  "hints": {
+    "connect": "Clique no bloco para onde a seta deve apontar · Esc para cancelar",
+    "move": "Clique numa área para mover para dentro, ou num espaço vazio para mover para fora · Esc para cancelar",
+    "paste": "Clique numa área ou num espaço vazio para colar · Esc para cancelar"
+  },
+  "prompts": {
+    "edgeLabel": "Texto da seta:",
+    "clearAll": "Eliminar tudo?"
+  },
+  "defaults": {
+    "block": "Bloco",
+    "group": "Área",
+    "start": "Início",
+    "action": "Ação"
+  },
+  "text": {
+    "examplePlaceholder": "Exemplo…",
+    "copyMermaid": "Copiar mermaid",
+    "downloadMmd": "Transferir .mmd",
+    "downloadMd": "Transferir .md (Notion)",
+    "copySvg": "Copiar SVG",
+    "downloadSvg": "Transferir SVG",
+    "downloadPng": "Transferir PNG",
+    "statusOk": "OK",
+    "statusError": "Erro",
+    "statusSvgCopied": "SVG copiado",
+    "statusMermaidCopied": "Mermaid copiado"
+  },
+  "examples": {
+    "flowchart": "Fluxograma",
+    "sequence": "Diagrama de sequência",
+    "class": "Diagrama de classes",
+    "state": "Diagrama de estados",
+    "er": "Diagrama ER",
+    "gantt": "Gráfico de Gantt"
+  },
+  "sample": {
+    "start": "Início",
+    "condition": "Pronto?",
+    "yes": "Sim",
+    "no": "Não",
+    "action1": "Lançar",
+    "action2": "Corrigir",
+    "end": "Concluído",
+    "project": "Projeto",
+    "phase": "Fase 1",
+    "task1": "Tarefa 1",
+    "task2": "Tarefa 2"
+  }
+}
