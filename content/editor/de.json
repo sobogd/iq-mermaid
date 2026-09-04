@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Dokument löschen",
     "deleteConfirm": "Dieses Dokument löschen?",
-    "untitled": "Unbenannt"
+    "untitled": "Unbenannt",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Mermaid kopieren",

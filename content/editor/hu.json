@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Dokumentum törlése",
     "deleteConfirm": "Törlöd ezt a dokumentumot?",
-    "untitled": "Névtelen"
+    "untitled": "Névtelen",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Mermaid másolása",

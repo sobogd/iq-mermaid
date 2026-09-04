@@ -193,7 +193,8 @@
   flex: 1;
   min-width: 0;
 }
-.iqm-root .modal-list-delete {
+.iqm-root .modal-list-delete,
+.iqm-root .modal-list-rename {
   flex-shrink: 0;
   width: 30px;
   height: 30px;
@@ -520,9 +521,4 @@
   line-height: 1;
   padding: 5px 8px;
   border-radius: 7px;
-}
-
-.editor-loading {
-  height: 100dvh;
-  background: var(--bg);
 }

@@ -1,18 +1,18 @@
-// The auth cookie pair. `iqm_session` is the httpOnly token; `iqm_email` is a
-// non-httpOnly mirror so the UI can show who's signed in without a round trip.
+// The auth cookie. `iqm_session` is the httpOnly token; the signed-in email is
+// read back from the DB by /api/auth/check rather than mirrored in a readable
+// cookie, so there is no second cookie to keep in sync or leak to page scripts.
 // Host-only (no domain attr): the app lives on one origin, iq-mermaid.com.
 import type { NextResponse } from "next/server";
 
 export const SESSION_COOKIE = "iqm_session";
-export const EMAIL_COOKIE = "iqm_email";
 
 // Longest max-age browsers honour (Chrome clamps higher values), so a session
 // effectively lives until an explicit logout.
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 400;
 
-function options(httpOnly: boolean) {
+function options() {
   return {
-    httpOnly,
+    httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax" as const,
     path: "/",
@@ -20,12 +20,10 @@ function options(httpOnly: boolean) {
   };
 }
 
-export function setSessionCookies(res: NextResponse, token: string, email: string): void {
-  res.cookies.set(SESSION_COOKIE, token, options(true));
-  res.cookies.set(EMAIL_COOKIE, email, options(false));
+export function setSessionCookies(res: NextResponse, token: string): void {
+  res.cookies.set(SESSION_COOKIE, token, options());
 }
 
 export function clearSessionCookies(res: NextResponse): void {
-  res.cookies.set(SESSION_COOKIE, "", { ...options(true), maxAge: 0 });
-  res.cookies.set(EMAIL_COOKIE, "", { ...options(false), maxAge: 0 });
+  res.cookies.set(SESSION_COOKIE, "", { ...options(), maxAge: 0 });
 }

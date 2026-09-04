@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Odstrániť dokument",
     "deleteConfirm": "Odstrániť tento dokument?",
-    "untitled": "Bez názvu"
+    "untitled": "Bez názvu",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Kopírovať mermaid",

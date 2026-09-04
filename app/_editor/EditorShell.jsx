@@ -12,6 +12,7 @@ import {
   deleteDocument,
   loadDocuments,
   newDocumentId,
+  renameDocument,
   saveCurrentDocumentId,
   saveDocument,
 } from "./documents";
@@ -55,6 +56,10 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
   const docSaveDebounceRef = useRef(null);
   const statusTimerRef = useRef(null);
   const currentDocIdRef = useRef(null);
+  // The code as last loaded from storage. Autosave only fires when `code`
+  // differs from this, so merely opening/switching a document never re-saves it
+  // (which used to bump its "edited" timestamp for no reason).
+  const loadedCodeRef = useRef("");
 
   // Mermaid's own light/dark themes, following the OS setting the rest of the
   // site follows. Bumping themeSeq is what makes the canvas redraw.
@@ -103,6 +108,7 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
       setDocs(list);
       currentDocIdRef.current = doc.id;
       setCurrentDocId(doc.id);
+      loadedCodeRef.current = doc.code;
       setCode(doc.code);
       lastVisualCodeRef.current = doc.code;
       setImportText(doc.code);
@@ -124,9 +130,13 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
   useEffect(() => {
     if (!ready || !currentDocIdRef.current) return;
     clearTimeout(docSaveDebounceRef.current);
+    if (code === loadedCodeRef.current) return;
     docSaveDebounceRef.current = setTimeout(() => {
       saveDocument(currentDocIdRef.current, code, t.documents.untitled)
-        .then(setDocs)
+        .then((list) => {
+          loadedCodeRef.current = code;
+          setDocs(list);
+        })
         .catch(() => {});
     }, DOC_SAVE_DEBOUNCE);
     return () => clearTimeout(docSaveDebounceRef.current);
@@ -183,7 +193,7 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
   // currentDocIdRef.current, which at that point is still the deleted id.
   async function switchTo(id, sourceCode, { flush = true } = {}) {
     clearTimeout(docSaveDebounceRef.current);
-    if (flush && currentDocIdRef.current) {
+    if (flush && currentDocIdRef.current && code !== loadedCodeRef.current) {
       try {
         setDocs(await saveDocument(currentDocIdRef.current, code, t.documents.untitled));
       } catch {
@@ -193,6 +203,7 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
     currentDocIdRef.current = id;
     setCurrentDocId(id);
     saveCurrentDocumentId(id).catch(() => {});
+    loadedCodeRef.current = sourceCode;
     setCode(sourceCode);
     lastVisualCodeRef.current = sourceCode;
     setImportText(sourceCode);
@@ -242,6 +253,22 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
         // never flush, or the deleted document comes right back.
         if (next.length) await switchTo(next[0].id, next[0].code, { flush: false });
         else await startNewDocument({ flush: false });
+      },
+    });
+  }
+
+  function confirmRenameDocument(doc) {
+    setDocAsk({
+      kind: "text",
+      title: t.documents.rename,
+      value: doc.customTitle || doc.title,
+      onDone: async (value) => {
+        if (value == null) return;
+        try {
+          setDocs(await renameDocument(doc.id, value.trim()));
+        } catch {
+          // Non-fatal: the title simply stays as it was.
+        }
       },
     });
   }
@@ -376,8 +403,16 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
                     className={"modal-list-btn" + (d.id === currentDocId ? " active" : "")}
                     onClick={() => openDocument(d)}
                   >
-                    <span className="modal-list-title">{d.title}</span>
+                    <span className="modal-list-title">{d.customTitle || d.title}</span>
                     <span className="modal-list-date">{formatDate(d.updatedAt)}</span>
+                  </button>
+                  <button
+                    className="modal-list-rename"
+                    title={t.documents.rename}
+                    aria-label={t.documents.rename}
+                    onClick={() => confirmRenameDocument(d)}
+                  >
+                    ✏️
                   </button>
                   <button
                     className="modal-list-delete danger"

@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Ta bort dokument",
     "deleteConfirm": "Ta bort det här dokumentet?",
-    "untitled": "Namnlös"
+    "untitled": "Namnlös",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Kopiera mermaid",

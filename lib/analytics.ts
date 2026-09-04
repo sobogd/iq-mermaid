@@ -1,11 +1,10 @@
 // Cookieless analytics client. Every event is a page/action/name triple
 // ("Home" / "Click" / "Header sign in") POSTed directly to iq-metrix under
 // the e.iq-mermaid.com alias — ported from translator's lib/analytics.ts,
-// same reasoning. This app has no accounts at all, so unlike translator
-// there is no own-domain session cookie to even worry about not riding
-// along — every event here is anonymous by construction. Nothing is stored
-// on the visitor's device either way, so the site still needs no cookie
-// banner.
+// same reasoning. The editor now has accounts (email OTP), but this pipeline
+// stays cookieless and anonymous by construction: events never ride the
+// iqm_session cookie, and nothing is stored on the visitor's device, so the
+// site still needs no cookie banner.
 //
 // Two wire details are load-bearing:
 //   • `/e` — a readable "track"-style path is on every ad-blocker list.

@@ -3,12 +3,6 @@ import { createPortal } from "react-dom";
 import { renderDiagram } from "./mermaid-client";
 import AskModal from "./AskModal.jsx";
 
-const STORAGE_KEY = "mermaid-visual-editor-data";
-// Bumped whenever the shape of the saved state changes. `migrate` below turns
-// anything older into the current shape instead of letting a stale object
-// reach the reducer and render `undefined` all over the diagram.
-const STORAGE_VERSION = 2;
-
 const DEFAULT_COLOR = "#ECECFF"; // mermaid default-theme node fill (mainBkg)
 const DEFAULT_SHAPE = "rect";
 
@@ -72,41 +66,6 @@ export const defaultState = (t) => ({
   nextEdge: 2,
   nextGroup: 1,
 });
-
-// Fills in everything a state saved by an older build cannot have. Kept
-// permissive on purpose: a diagram someone drew months ago is worth more than
-// a clean reducer.
-function migrate(raw) {
-  const state = raw && raw.version === STORAGE_VERSION ? raw.state : raw;
-  if (!state || !Array.isArray(state.blocks)) return null;
-  return {
-    direction: DIRECTIONS.includes(state.direction) ? state.direction : DEFAULT_DIRECTION,
-    blocks: state.blocks.map((b) => ({ groupId: null, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, ...b })),
-    edges: (state.edges || []).map((e) => ({ label: "", link: DEFAULT_LINK, ...e })),
-    groups: (state.groups || []).map((g) => ({ color: null, parentId: null, ...g })),
-    nextBlock: state.nextBlock || state.blocks.length + 1,
-    nextEdge: state.nextEdge || (state.edges || []).length + 1,
-    nextGroup: state.nextGroup || (state.groups || []).length + 1,
-  };
-}
-
-function loadState(t) {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return (raw && migrate(JSON.parse(raw))) || defaultState(t);
-  } catch {
-    return defaultState(t);
-  }
-}
-
-function saveState(state) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: STORAGE_VERSION, state }));
-  } catch {
-    // Private mode, or the quota is full. Losing the autosave is survivable;
-    // taking the editor down with an exception is not.
-  }
-}
 
 // True if `parentId` is `id` itself or a descendant of `id` in the group tree
 // — assigning it as a parent would create a cycle.
@@ -466,9 +425,11 @@ export default function VisualEditor({
   codeOnly,
   t,
 }) {
-  // Lazy initializer, so the starter diagram is built once with this locale's
-  // labels rather than on every render.
-  const [state, setState] = useState(() => loadState(t));
+  // Lazy initializer: parse the incoming document once on mount, so the canvas
+  // starts on the real diagram with no placeholder flash. Non-flowchart sources
+  // (sequence, class, …) parse to null and fall back to the starter diagram,
+  // which the code-only notice overlays anyway.
+  const [state, setState] = useState(() => parseFlowchart(importText, defaultState(t)) || defaultState(t));
   const [selected, setSelected] = useState(null); // { type, id }
   const [view, setView] = useState({ x: 0, y: 0, zoom: 1 }); // pan (screen px) + zoom
   const [isPanning, setIsPanning] = useState(false);
@@ -489,8 +450,14 @@ export default function VisualEditor({
   const panRef = useRef(null); // { startX, startY, startViewX, startViewY, moved, target }
   const pendingTargetRef = useRef(null); // resolved target from the last mousedown, read once at pan-arm time
   const [clipboard, setClipboard] = useState(null); // { type, rootId, blocks, groups, edges }
-  const lastImportSeqRef = useRef(0);
-  const importAppliedRef = useRef(false);
+  // Starts at the current importSeq so the initializer above (which already
+  // parsed `importText`) is not parsed a second time by the import effect.
+  const lastImportSeqRef = useRef(importSeq);
+  // Starts true: the state the initializer produced already reflects the
+  // incoming document, so the very first `state` effect must not echo it back
+  // up as a code change (that echo is what used to overwrite the opened
+  // document with stale localStorage content).
+  const importAppliedRef = useRef(true);
   const renderSeqRef = useRef(0);
   const hasCenteredRef = useRef(false);
   const stageRef = useRef(null);
@@ -507,10 +474,6 @@ export default function VisualEditor({
   const [ask, setAsk] = useState(null); // { kind: "text"|"confirm", title, value?, onDone }
   const [history, setHistory] = useState({ past: [], future: [] });
   const interactionModeRef = useRef(null);
-
-  useEffect(() => {
-    saveState(state);
-  }, [state]);
 
   useEffect(() => {
     viewRef.current = view;

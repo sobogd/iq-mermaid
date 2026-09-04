@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Изтриване на документ",
     "deleteConfirm": "Да се изтрие ли този документ?",
-    "untitled": "Без заглавие"
+    "untitled": "Без заглавие",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Копирай mermaid",

@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Видалити документ",
     "deleteConfirm": "Видалити цей документ?",
-    "untitled": "Без назви"
+    "untitled": "Без назви",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Копіювати mermaid",

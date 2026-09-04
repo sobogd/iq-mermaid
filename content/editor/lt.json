@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Ištrinti dokumentą",
     "deleteConfirm": "Ištrinti šį dokumentą?",
-    "untitled": "Be pavadinimo"
+    "untitled": "Be pavadinimo",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Kopijuoti mermaid",

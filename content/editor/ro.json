@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Șterge documentul",
     "deleteConfirm": "Ștergi acest document?",
-    "untitled": "Fără titlu"
+    "untitled": "Fără titlu",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Copiază mermaid",

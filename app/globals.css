@@ -82,3 +82,11 @@ button:not(:disabled),
 [role="button"]:not(:disabled) {
   cursor: pointer;
 }
+
+/* Loading state shared by the editor's auth-check and its dynamic() fallback.
+ * Lives here (always loaded) rather than editor.css (loaded with the mermaid
+ * chunk) so the screen isn't a blank flash before the editor arrives. */
+.editor-loading {
+  height: 100dvh;
+  background: var(--bg);
+}

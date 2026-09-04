@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Poista asiakirja",
     "deleteConfirm": "Poistetaanko tämä asiakirja?",
-    "untitled": "Nimetön"
+    "untitled": "Nimetön",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Kopioi mermaid",

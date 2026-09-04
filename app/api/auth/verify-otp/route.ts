@@ -3,12 +3,14 @@ import { ensureSchema, pool } from "@/lib/db";
 import { generateToken, hashOTP, hashToken, MAX_OTP_ATTEMPTS, safeCompare } from "@/lib/otp";
 import { normalizeEmail } from "@/lib/email";
 import { rateLimit } from "@/lib/rate-limit";
+import { clientIp } from "@/lib/ip";
 import { setSessionCookies } from "@/lib/session-cookies";
 
 export const dynamic = "force-dynamic";
 
 const VERIFY_LIMIT_WINDOW = 15 * 60 * 1000;
 const VERIFY_LIMIT_MAX = 10;
+const VERIFY_IP_MAX = 60;
 
 export async function POST(req: Request) {
   let body: { email?: unknown; code?: unknown } = {};
@@ -25,6 +27,9 @@ export async function POST(req: Request) {
   }
 
   if (rateLimit(`verify:${email}`, VERIFY_LIMIT_MAX, VERIFY_LIMIT_WINDOW)) {
+    return NextResponse.json({ ok: false, error: "TOO_MANY_ATTEMPTS" }, { status: 429 });
+  }
+  if (rateLimit(`verify:ip:${clientIp(req.headers)}`, VERIFY_IP_MAX, VERIFY_LIMIT_WINDOW)) {
     return NextResponse.json({ ok: false, error: "TOO_MANY_ATTEMPTS" }, { status: 429 });
   }
 
@@ -69,6 +74,6 @@ export async function POST(req: Request) {
   );
 
   const res = NextResponse.json({ ok: true, email: user.email });
-  setSessionCookies(res, token, user.email);
+  setSessionCookies(res, token);
   return res;
 }

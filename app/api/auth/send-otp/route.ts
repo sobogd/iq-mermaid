@@ -4,12 +4,17 @@ import { ensureSchema, pool } from "@/lib/db";
 import { generateOTP, hashOTP, OTP_EXPIRY_MS } from "@/lib/otp";
 import { normalizeEmail } from "@/lib/email";
 import { rateLimit } from "@/lib/rate-limit";
+import { clientIp } from "@/lib/ip";
 import { sendOtpEmail } from "@/lib/mail";
 
 export const dynamic = "force-dynamic";
 
 const SEND_LIMIT_WINDOW = 15 * 60 * 1000;
 const SEND_LIMIT_MAX = 5;
+// Wider per-IP cap: several people can share an IP (NAT/mobile), but a single
+// client spraying many DIFFERENT addresses must not be able to dodge the
+// per-email limit and abuse SMTP.
+const SEND_IP_MAX = 20;
 
 export async function POST(req: Request) {
   let body: { email?: unknown } = {};
@@ -25,6 +30,9 @@ export async function POST(req: Request) {
   }
 
   if (rateLimit(`send:${email}`, SEND_LIMIT_MAX, SEND_LIMIT_WINDOW)) {
+    return NextResponse.json({ ok: false, error: "TOO_MANY_REQUESTS" }, { status: 429 });
+  }
+  if (rateLimit(`send:ip:${clientIp(req.headers)}`, SEND_IP_MAX, SEND_LIMIT_WINDOW)) {
     return NextResponse.json({ ok: false, error: "TOO_MANY_REQUESTS" }, { status: 429 });
   }
 

@@ -67,15 +67,25 @@ export async function saveCurrentDocumentId(id) {
  *  re-sorted list so the caller can put it straight into state. */
 export async function saveDocument(id, code, untitledFallback) {
   const title = deriveTitle(code, untitledFallback);
-  const updatedAt = Date.now();
+  // `updatedAt` is not sent: the server stamps `updated_at = now()` so the
+  // "recently edited" order is authoritative and device-clock-independent.
   const { docs } = await api("/api/documents", {
     method: "POST",
-    body: JSON.stringify({ id, code, title, updatedAt }),
+    body: JSON.stringify({ id, code, title }),
   });
   return sortList(docs);
 }
 
 export async function deleteDocument(id) {
   const { docs } = await api(`/api/documents/${encodeURIComponent(id)}`, { method: "DELETE" });
+  return sortList(docs);
+}
+
+/** Set (or clear, with an empty string) the user-chosen title override. */
+export async function renameDocument(id, customTitle) {
+  const { docs } = await api(`/api/documents/${encodeURIComponent(id)}`, {
+    method: "PATCH",
+    body: JSON.stringify({ customTitle }),
+  });
   return sortList(docs);
 }

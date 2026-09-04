@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Διαγραφή εγγράφου",
     "deleteConfirm": "Διαγραφή αυτού του εγγράφου;",
-    "untitled": "Χωρίς τίτλο"
+    "untitled": "Χωρίς τίτλο",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Αντιγραφή mermaid",

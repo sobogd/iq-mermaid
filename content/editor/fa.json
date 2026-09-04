@@ -74,7 +74,8 @@
   "documents": {
     "delete": "حذف سند",
     "deleteConfirm": "این سند حذف شود؟",
-    "untitled": "بدون عنوان"
+    "untitled": "بدون عنوان",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "کپی mermaid",

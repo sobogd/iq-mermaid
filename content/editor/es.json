@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Eliminar documento",
     "deleteConfirm": "¿Eliminar este documento?",
-    "untitled": "Sin título"
+    "untitled": "Sin título",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Copiar mermaid",

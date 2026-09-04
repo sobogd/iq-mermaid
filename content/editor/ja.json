@@ -74,7 +74,8 @@
   "documents": {
     "delete": "ドキュメントを削除",
     "deleteConfirm": "このドキュメントを削除しますか？",
-    "untitled": "無題"
+    "untitled": "無題",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Mermaidをコピー",

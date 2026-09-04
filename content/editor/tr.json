@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Belgeyi sil",
     "deleteConfirm": "Bu belge silinsin mi?",
-    "untitled": "Adsız"
+    "untitled": "Adsız",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Mermaid'i kopyala",

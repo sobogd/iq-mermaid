@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Dzēst dokumentu",
     "deleteConfirm": "Dzēst šo dokumentu?",
-    "untitled": "Bez nosaukuma"
+    "untitled": "Bez nosaukuma",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Kopēt mermaid",

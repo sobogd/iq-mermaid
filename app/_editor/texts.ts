@@ -96,6 +96,8 @@ export interface EditorTexts {
   documents: {
     /** Tooltip on a row's own trash icon in the Open list. */
     delete: string;
+    /** Tooltip + modal title for giving a document a custom name. */
+    rename: string;
     /** Confirm-modal title before removing a saved document. */
     deleteConfirm: string;
     /** Fallback title for a document with nothing recognisable drawn yet. */

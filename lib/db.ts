@@ -28,10 +28,16 @@ CREATE TABLE IF NOT EXISTS documents (
   id uuid PRIMARY KEY,
   user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   title text NOT NULL,
+  custom_title text,
   code text NOT NULL,
   updated_at timestamptz NOT NULL,
   created_at timestamptz NOT NULL DEFAULT now()
 );
+
+-- The custom-title column shipped after the table existed; CREATE TABLE IF NOT
+-- EXISTS won't alter an existing table, so column additions live here and stay
+-- idempotent.
+ALTER TABLE documents ADD COLUMN IF NOT EXISTS custom_title text;
 
 CREATE INDEX IF NOT EXISTS documents_user_updated
   ON documents (user_id, updated_at DESC);

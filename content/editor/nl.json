@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Document verwijderen",
     "deleteConfirm": "Dit document verwijderen?",
-    "untitled": "Naamloos"
+    "untitled": "Naamloos",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Mermaid kopiëren",

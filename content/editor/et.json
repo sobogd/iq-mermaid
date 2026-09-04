@@ -74,7 +74,8 @@
   "documents": {
     "delete": "Kustuta dokument",
     "deleteConfirm": "Kas kustutada see dokument?",
-    "untitled": "Nimetu"
+    "untitled": "Nimetu",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "Kopeeri mermaid",

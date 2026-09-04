@@ -74,7 +74,8 @@
   "documents": {
     "delete": "문서 삭제",
     "deleteConfirm": "이 문서를 삭제할까요?",
-    "untitled": "제목 없음"
+    "untitled": "제목 없음",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "mermaid 복사",

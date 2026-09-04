@@ -74,7 +74,8 @@
   "documents": {
     "delete": "删除文档",
     "deleteConfirm": "删除此文档？",
-    "untitled": "无标题"
+    "untitled": "无标题",
+    "rename": "Rename document"
   },
   "text": {
     "copyMermaid": "复制 mermaid",
