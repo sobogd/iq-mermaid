@@ -18,7 +18,6 @@ import {
 } from "./documents";
 import "./editor.css";
 
-const SYNC_DEBOUNCE = 400;
 const DOC_SAVE_DEBOUNCE = 600;
 
 // The visual canvas only understands flowcharts. Everything else — sequence,
@@ -51,8 +50,10 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
   const [zoomSlot, setZoomSlot] = useState(null);
   const [status, setStatus] = useState("");
   const [themeSeq, setThemeSeq] = useState(0);
+  // Bumped after a manual code edit so VisualEditor re-fits (centres) the
+  // diagram once it has rendered the new source.
+  const [recenterSeq, setRecenterSeq] = useState(0);
   const lastVisualCodeRef = useRef("");
-  const debounceRef = useRef(null);
   const docSaveDebounceRef = useRef(null);
   const statusTimerRef = useRef(null);
   const currentDocIdRef = useRef(null);
@@ -144,7 +145,6 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
   }, [code, ready]);
 
   useEffect(() => () => {
-    clearTimeout(debounceRef.current);
     clearTimeout(docSaveDebounceRef.current);
     clearTimeout(statusTimerRef.current);
   }, []);
@@ -174,12 +174,12 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
 
   function handleTextChange(text) {
     setCode(text);
-    clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      if (text === lastVisualCodeRef.current) return;
-      setImportText(text);
-      setImportSeq((n) => n + 1);
-    }, SYNC_DEBOUNCE);
+    // Synchronous, not debounced: every keystroke in the code sheet re-imports
+    // immediately, and the diagram recentres on the result.
+    if (text === lastVisualCodeRef.current) return;
+    setImportText(text);
+    setImportSeq((n) => n + 1);
+    setRecenterSeq((n) => n + 1);
   }
 
   // Switches the open document: flushes any pending autosave of the one being
@@ -363,6 +363,7 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
             importText={importText}
             importSeq={importSeq}
             themeSeq={themeSeq}
+            recenterSeq={recenterSeq}
             codeOnly={codeOnly}
             t={t}
           />

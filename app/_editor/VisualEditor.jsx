@@ -422,6 +422,7 @@ export default function VisualEditor({
   importText,
   importSeq,
   themeSeq,
+  recenterSeq,
   codeOnly,
   t,
 }) {
@@ -460,6 +461,8 @@ export default function VisualEditor({
   const importAppliedRef = useRef(true);
   const renderSeqRef = useRef(0);
   const hasCenteredRef = useRef(false);
+  const recenterSeqRef = useRef(recenterSeq);
+  const fitPendingRef = useRef(false);
   const stageRef = useRef(null);
   const [interactionMode, setInteractionMode] = useState(null); // { type: 'connect'|'move', id, kind }
   const [colorModalOpen, setColorModalOpen] = useState(false);
@@ -715,16 +718,29 @@ export default function VisualEditor({
     if (Number.isFinite(size) && size > 0) setBaseFont(size);
   }, [rendered.html]);
 
+  // The shell bumps `recenterSeq` after a manual code edit (typing in the code
+  // sheet). This only SETS a flag; the actual fit happens in the effect below
+  // once the freshly rendered SVG is on screen.
   useEffect(() => {
-    // Fit once, on the first diagram — the reader should open the editor
-    // looking at the whole thing. Only once: re-fitting on every edit would
-    // yank the view out from under them.
+    if (recenterSeq === recenterSeqRef.current) return;
+    recenterSeqRef.current = recenterSeq;
+    fitPendingRef.current = true;
+  }, [recenterSeq]);
+
+  useEffect(() => {
+    // Fit on the first diagram — the reader should open the editor looking at
+    // the whole thing — and again whenever a manual code edit asked for a
+    // recentre. Canvas edits never refit: that would yank the view out from
+    // under a reader mid-drag.
     //
-    // The flag is set from inside the callback rather than before it. The first
-    // diagram renders twice in a row at start-up (the shell picks mermaid's
-    // light or dark theme right after mount), and marking the fit as done up
-    // front meant the cancelled first attempt was the only one there ever was.
-    if (hasCenteredRef.current || !rendered.html) return;
+    // The first-fit flag is set from inside the callback rather than before it:
+    // the first diagram renders twice in a row at start-up (the shell picks
+    // mermaid's light or dark theme right after mount), and marking the fit as
+    // done up front meant the cancelled first attempt was the only one there
+    // ever was.
+    if (!rendered.html) return;
+    if (!hasCenteredRef.current && !fitPendingRef.current) return;
+    fitPendingRef.current = false;
     const raf = requestAnimationFrame(() => {
       if (fitView()) hasCenteredRef.current = true;
     });
