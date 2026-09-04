@@ -462,7 +462,10 @@ export default function VisualEditor({
   const renderSeqRef = useRef(0);
   const hasCenteredRef = useRef(false);
   const recenterSeqRef = useRef(recenterSeq);
-  const fitPendingRef = useRef(false);
+  // Pending view fit: null = none, "all" = whole diagram, or an array of node
+  // ids to centre/fit on. Set by an operation (connect/move/add) or by the
+  // shell's recenterSeq; consumed once the freshly rendered SVG is on screen.
+  const fitTargetRef = useRef(null);
   const stageRef = useRef(null);
   const [interactionMode, setInteractionMode] = useState(null); // { type: 'connect'|'move', id, kind }
   const [colorModalOpen, setColorModalOpen] = useState(false);
@@ -598,7 +601,9 @@ export default function VisualEditor({
     }
     svgEl.style.maxWidth = "none";
 
-    if (previous) {
+    // A pending fit (fitTargetRef) replaces the pin: the fit below will place
+    // the view deliberately, so nudging it first would read as a twitch.
+    if (previous && fitTargetRef.current == null) {
       const next = contentRect(svgEl);
       if (next) {
         const dx = previous.left - next.left;
@@ -681,31 +686,66 @@ export default function VisualEditor({
     }
   }
 
-  /** Whole diagram inside the visible area, centred. Never magnifies past
-   *  100%: a two-node diagram would otherwise open at 600% with text the size
-   *  of a headline. Fitting means "nothing is cut off", not "fill every
-   *  pixel". */
-  function fitView() {
+  /** Fit the viewport to a screen-space rectangle, centred with padding. Never
+   *  magnifies past 100%: a single node would otherwise fill the screen with
+   *  text the size of a headline. `rect` is { left, top, width, height } in
+   *  viewport pixels. */
+  function fitRect(rect) {
     const wrap = wrapRef.current;
-    const svgEl = hostRef.current && hostRef.current.querySelector("svg");
-    if (!wrap || !svgEl) return false;
-    const content = contentRect(svgEl);
-    const wr = wrap.getBoundingClientRect();
-    if (!content || !wr.width || !wr.height) return false;
+    const wr = wrap ? wrap.getBoundingClientRect() : null;
+    if (!wr || !rect || !wr.width || !wr.height || !(rect.width > 0) || !(rect.height > 0)) return false;
 
     const pad = 48;
     const v = viewRef.current;
     // Everything is measured at the CURRENT zoom, so the fit is a relative
     // correction to it rather than an absolute scale we have to derive.
-    const k = Math.min((wr.width - pad) / content.width, (wr.height - pad) / content.height);
+    const k = Math.min((wr.width - pad) / rect.width, (wr.height - pad) / rect.height);
     const zoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, Math.min(v.zoom * k, zoom100)));
 
-    // Centre of the content expressed in the untransformed host coordinates,
-    // so it can be re-placed at the middle of the viewport at the new zoom.
-    const localCx = (content.left + content.width / 2 - wr.left - v.x) / v.zoom;
-    const localCy = (content.top + content.height / 2 - wr.top - v.y) / v.zoom;
+    // Centre of the rect expressed in the untransformed host coordinates, so it
+    // can be re-placed at the middle of the viewport at the new zoom.
+    const localCx = (rect.left + rect.width / 2 - wr.left - v.x) / v.zoom;
+    const localCy = (rect.top + rect.height / 2 - wr.top - v.y) / v.zoom;
     setView({ zoom, x: wr.width / 2 - localCx * zoom, y: wr.height / 2 - localCy * zoom });
     return true;
+  }
+
+  /** Whole diagram inside the visible area, centred. Fitting means "nothing is
+   *  cut off", not "fill every pixel". */
+  function fitView() {
+    const svgEl = hostRef.current && hostRef.current.querySelector("svg");
+    if (!svgEl) return false;
+    const content = contentRect(svgEl);
+    return content ? fitRect(content) : false;
+  }
+
+  /** Fit the viewport to the union bounding box of the given node/group ids.
+   *  Used after connect/move/add to bring the objects involved into view. */
+  function fitToElements(ids) {
+    const svgEl = hostRef.current && hostRef.current.querySelector("svg");
+    if (!svgEl) return false;
+    let rect = null;
+    for (const id of ids) {
+      const el = findDiagramElement(svgEl, rendered.diagramId, id);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      if (r.width <= 0 && r.height <= 0) continue;
+      rect = rect
+        ? {
+            left: Math.min(rect.left, r.left),
+            top: Math.min(rect.top, r.top),
+            right: Math.max(rect.right, r.right),
+            bottom: Math.max(rect.bottom, r.bottom),
+          }
+        : { left: r.left, top: r.top, right: r.right, bottom: r.bottom };
+    }
+    if (!rect) return false;
+    return fitRect({ left: rect.left, top: rect.top, width: rect.right - rect.left, height: rect.bottom - rect.top });
+  }
+
+  /** Remember which element(s) the next fit should centre on. */
+  function focusOn(ids) {
+    fitTargetRef.current = Array.isArray(ids) ? ids : [ids];
   }
 
   // Measure the label font of whatever mermaid just drew, so "100%" means the
@@ -724,14 +764,14 @@ export default function VisualEditor({
   useEffect(() => {
     if (recenterSeq === recenterSeqRef.current) return;
     recenterSeqRef.current = recenterSeq;
-    fitPendingRef.current = true;
+    fitTargetRef.current = "all";
   }, [recenterSeq]);
 
   useEffect(() => {
     // Fit on the first diagram — the reader should open the editor looking at
-    // the whole thing — and again whenever a manual code edit asked for a
-    // recentre. Canvas edits never refit: that would yank the view out from
-    // under a reader mid-drag.
+    // the whole thing — and again whenever a pending fit was requested: a
+    // manual code edit (whole diagram) or a connect/move/add (the 1-2 elements
+    // involved). Everything else keeps the reader's pan/zoom untouched.
     //
     // The first-fit flag is set from inside the callback rather than before it:
     // the first diagram renders twice in a row at start-up (the shell picks
@@ -739,10 +779,12 @@ export default function VisualEditor({
     // done up front meant the cancelled first attempt was the only one there
     // ever was.
     if (!rendered.html) return;
-    if (!hasCenteredRef.current && !fitPendingRef.current) return;
-    fitPendingRef.current = false;
+    const target = fitTargetRef.current;
+    if (target == null && hasCenteredRef.current) return;
+    fitTargetRef.current = null;
     const raf = requestAnimationFrame(() => {
-      if (fitView()) hasCenteredRef.current = true;
+      const done = Array.isArray(target) ? fitToElements(target) : fitView();
+      if (done) hasCenteredRef.current = true;
     });
     return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -797,6 +839,7 @@ export default function VisualEditor({
           edges: [...s.edges, { id: "e" + s.nextEdge, from: mode.id, to: target.id, label: "" }],
           nextEdge: s.nextEdge + 1,
         }));
+        focusOn([mode.id, target.id]);
       }
       setInteractionMode(null);
       setSelected(null);
@@ -817,26 +860,34 @@ export default function VisualEditor({
     if (target && target.kind === "group") {
       const groupId = target.id;
       if (mode.kind === "block") {
-        updateState((s) => {
-          const b = s.blocks.find((bb) => bb.id === mode.id);
-          if (!b || (b.groupId || null) === groupId) return s;
-          return { ...s, blocks: s.blocks.map((bb) => (bb.id === mode.id ? { ...bb, groupId } : bb)) };
-        });
+        const b = stateRef.current.blocks.find((bb) => bb.id === mode.id);
+        if (b && (b.groupId || null) !== groupId) {
+          updateState((s) => ({ ...s, blocks: s.blocks.map((bb) => (bb.id === mode.id ? { ...bb, groupId } : bb)) }));
+          focusOn([mode.id, groupId]);
+        }
       } else if (
         mode.kind === "group" && groupId !== mode.id &&
         !isSelfOrDescendant(stateRef.current.groups, mode.id, groupId)
       ) {
-        updateState((s) => {
-          const grp = s.groups.find((gg) => gg.id === mode.id);
-          if (!grp || (grp.parentId || null) === groupId) return s;
-          return { ...s, groups: s.groups.map((gg) => (gg.id === mode.id ? { ...gg, parentId: groupId } : gg)) };
-        });
+        const grp = stateRef.current.groups.find((gg) => gg.id === mode.id);
+        if (grp && (grp.parentId || null) !== groupId) {
+          updateState((s) => ({ ...s, groups: s.groups.map((gg) => (gg.id === mode.id ? { ...gg, parentId: groupId } : gg)) }));
+          focusOn([mode.id, groupId]);
+        }
       }
     } else if (!target) {
       if (mode.kind === "block") {
-        updateState((s) => ({ ...s, blocks: s.blocks.map((bb) => (bb.id === mode.id ? { ...bb, groupId: null } : bb)) }));
+        const b = stateRef.current.blocks.find((bb) => bb.id === mode.id);
+        if (b && (b.groupId || null) !== null) {
+          updateState((s) => ({ ...s, blocks: s.blocks.map((bb) => (bb.id === mode.id ? { ...bb, groupId: null } : bb)) }));
+          focusOn([mode.id]);
+        }
       } else {
-        updateState((s) => ({ ...s, groups: s.groups.map((gg) => (gg.id === mode.id ? { ...gg, parentId: null } : gg)) }));
+        const grp = stateRef.current.groups.find((gg) => gg.id === mode.id);
+        if (grp && (grp.parentId || null) !== null) {
+          updateState((s) => ({ ...s, groups: s.groups.map((gg) => (gg.id === mode.id ? { ...gg, parentId: null } : gg)) }));
+          focusOn([mode.id]);
+        }
       }
     }
     // Clicking a block target while moving anything does nothing (blocks aren't containers).
@@ -970,11 +1021,13 @@ export default function VisualEditor({
 
   function onCanvasDoubleClick(e) {
     if (!isEmptyTarget(e)) return;
+    const newId = "b" + stateRef.current.nextBlock;
     updateState((s) => ({
       ...s,
-      blocks: [...s.blocks, { id: "b" + s.nextBlock, label: t.defaults.block, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, groupId: null }],
+      blocks: [...s.blocks, { id: newId, label: t.defaults.block, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, groupId: null }],
       nextBlock: s.nextBlock + 1,
     }));
+    focusOn([newId]);
   }
 
   function onCanvasPointerDown(e) {
@@ -1171,27 +1224,33 @@ export default function VisualEditor({
   }, [selected, state, interactionMode, colorModalOpen, shapeModalOpen, clipboard, ask, history, addAt]);
 
   function addBlock() {
+    const newId = "b" + stateRef.current.nextBlock;
     updateState((s) => ({
       ...s,
-      blocks: [...s.blocks, { id: "b" + s.nextBlock, label: t.defaults.block, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, groupId: null }],
+      blocks: [...s.blocks, { id: newId, label: t.defaults.block, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, groupId: null }],
       nextBlock: s.nextBlock + 1,
     }));
+    focusOn([newId]);
   }
 
   function addBlockToGroup(groupId) {
+    const newId = "b" + stateRef.current.nextBlock;
     updateState((s) => ({
       ...s,
-      blocks: [...s.blocks, { id: "b" + s.nextBlock, label: t.defaults.block, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, groupId }],
+      blocks: [...s.blocks, { id: newId, label: t.defaults.block, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, groupId }],
       nextBlock: s.nextBlock + 1,
     }));
+    focusOn([newId, groupId]);
   }
 
   function addGroupToGroup(parentId) {
+    const newId = "g" + stateRef.current.nextGroup;
     updateState((s) => ({
       ...s,
-      groups: [...s.groups, { id: "g" + s.nextGroup, label: t.defaults.group, color: null, parentId }],
+      groups: [...s.groups, { id: newId, label: t.defaults.group, color: null, parentId }],
       nextGroup: s.nextGroup + 1,
     }));
+    focusOn([newId, parentId]);
   }
 
   // A block copies just itself. An area copies its whole subtree — nested
@@ -1298,11 +1357,13 @@ export default function VisualEditor({
   }
 
   function addGroup() {
+    const newId = "g" + stateRef.current.nextGroup;
     updateState((s) => ({
       ...s,
-      groups: [...s.groups, { id: "g" + s.nextGroup, label: t.defaults.group, color: null, parentId: null }],
+      groups: [...s.groups, { id: newId, label: t.defaults.group, color: null, parentId: null }],
       nextGroup: s.nextGroup + 1,
     }));
+    focusOn([newId]);
   }
 
   function setGroupColor(color) {
