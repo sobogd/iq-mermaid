@@ -20,7 +20,8 @@
     "connect": "Nubrėžti rodyklę į kitą bloką",
     "move": "Perkelti į sritį arba iš jos",
     "color": "Spalva",
-    "shape": "Forma"
+    "shape": "Forma",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Priartinti",

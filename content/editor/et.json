@@ -20,7 +20,8 @@
     "connect": "Tõmba nool teise ploki juurde",
     "move": "Liiguta alasse või sealt välja",
     "color": "Värv",
-    "shape": "Kuju"
+    "shape": "Kuju",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Suumi sisse",

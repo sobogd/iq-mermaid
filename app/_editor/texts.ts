@@ -52,6 +52,8 @@ export interface EditorTexts {
     paste: string;
     delete: string;
     connect: string;
+    /** Adds a new block wired to the selected block. */
+    addConnected: string;
     move: string;
     color: string;
     shape: string;

@@ -20,7 +20,8 @@
     "connect": "Nyíl húzása egy másik blokkhoz",
     "move": "Mozgatás egy területbe, vagy ki belőle",
     "color": "Szín",
-    "shape": "Alak"
+    "shape": "Alak",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Nagyítás",

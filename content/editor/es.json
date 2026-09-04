@@ -20,7 +20,8 @@
     "connect": "Dibujar una flecha hacia otro bloque",
     "move": "Mover a un área, o sacar de una",
     "color": "Color",
-    "shape": "Forma"
+    "shape": "Forma",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Acercar",

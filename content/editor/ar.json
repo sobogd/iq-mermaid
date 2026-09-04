@@ -20,7 +20,8 @@
     "connect": "ارسم سهمًا إلى كتلة أخرى",
     "move": "نقل إلى منطقة، أو خارجها",
     "color": "اللون",
-    "shape": "الشكل"
+    "shape": "الشكل",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "تكبير",

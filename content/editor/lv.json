@@ -20,7 +20,8 @@
     "connect": "Uzzīmēt bultu uz citu bloku",
     "move": "Pārvietot apgabalā vai ārā no tā",
     "color": "Krāsa",
-    "shape": "Forma"
+    "shape": "Forma",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Tuvināt",

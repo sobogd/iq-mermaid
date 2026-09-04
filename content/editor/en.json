@@ -20,7 +20,8 @@
     "connect": "Draw an arrow to another block",
     "move": "Move into an area, or out of one",
     "color": "Colour",
-    "shape": "Shape"
+    "shape": "Shape",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Zoom in",

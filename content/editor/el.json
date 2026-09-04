@@ -20,7 +20,8 @@
     "connect": "Σχεδιάστε βέλος προς άλλο block",
     "move": "Μετακίνηση μέσα σε περιοχή, ή έξω από αυτή",
     "color": "Χρώμα",
-    "shape": "Σχήμα"
+    "shape": "Σχήμα",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Μεγέθυνση",

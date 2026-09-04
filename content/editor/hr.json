@@ -20,7 +20,8 @@
     "connect": "Nacrtaj strelicu prema drugom bloku",
     "move": "Pomakni u područje, ili izvan njega",
     "color": "Boja",
-    "shape": "Oblik"
+    "shape": "Oblik",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Približi",

@@ -20,7 +20,8 @@
     "connect": "Nakresliť šípku k inému bloku",
     "move": "Presunúť do oblasti, alebo von z nej",
     "color": "Farba",
-    "shape": "Tvar"
+    "shape": "Tvar",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Priblížiť",

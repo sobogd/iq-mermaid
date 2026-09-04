@@ -20,7 +20,8 @@
     "connect": "Teken een pijl naar een ander blok",
     "move": "Verplaats naar een gebied, of eruit",
     "color": "Kleur",
-    "shape": "Vorm"
+    "shape": "Vorm",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Inzoomen",

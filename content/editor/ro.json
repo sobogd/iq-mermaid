@@ -20,7 +20,8 @@
     "connect": "Trage o săgeată către alt bloc",
     "move": "Mută într-o zonă, sau afară din una",
     "color": "Culoare",
-    "shape": "Formă"
+    "shape": "Formă",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Mărește",

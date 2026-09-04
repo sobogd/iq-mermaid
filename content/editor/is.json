@@ -20,7 +20,8 @@
     "connect": "Teikna ör á annan kubb",
     "move": "Færa inn í svæði, eða út úr því",
     "color": "Litur",
-    "shape": "Lögun"
+    "shape": "Lögun",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Þysja inn",

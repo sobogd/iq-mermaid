@@ -80,7 +80,16 @@ jobs:
             FROM_EMAIL="$FROM_EMAIL"
             ENV
 
-            npm ci --omit=dev
+            # `npm ci --omit=dev` reinstalls ~735MB of node_modules and is the
+            # long pole of the deploy — only run it when the lockfile actually
+            # changed or node_modules is missing. Code-only pushes skip it.
+            LOCK_HASH=$(sha256sum package-lock.json | cut -d' ' -f1)
+            LAST_HASH=$(cat .node_modules.lock 2>/dev/null || echo "")
+            if [ "$LOCK_HASH" != "$LAST_HASH" ] || [ ! -d node_modules ]; then
+              npm ci --omit=dev
+              echo "$LOCK_HASH" > .node_modules.lock
+            fi
+
             # PORT must be a real env var — next start ignores PORT from .env
             PORT=8204 pm2 restart iq-mermaid --update-env || PORT=8204 pm2 start npm --name "iq-mermaid" -- start
             pm2 save

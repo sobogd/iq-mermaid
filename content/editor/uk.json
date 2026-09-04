@@ -20,7 +20,8 @@
     "connect": "Намалювати стрілку до іншого блока",
     "move": "Перемістити в область або з неї",
     "color": "Колір",
-    "shape": "Форма"
+    "shape": "Форма",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Наблизити",

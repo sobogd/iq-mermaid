@@ -20,7 +20,8 @@
     "connect": "別のブロックへ矢印を描く",
     "move": "エリアの中へ、または外へ移動",
     "color": "色",
-    "shape": "形状"
+    "shape": "形状",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "拡大",

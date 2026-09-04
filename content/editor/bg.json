@@ -20,7 +20,8 @@
     "connect": "Начертай стрелка към друг блок",
     "move": "Премести в област, или извън нея",
     "color": "Цвят",
-    "shape": "Форма"
+    "shape": "Форма",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Приближи",

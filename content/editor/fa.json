@@ -20,7 +20,8 @@
     "connect": "پیکانی به بلوک دیگر بکشید",
     "move": "جابه‌جایی به داخل یک ناحیه، یا خارج از آن",
     "color": "رنگ",
-    "shape": "شکل"
+    "shape": "شکل",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "بزرگ‌نمایی",

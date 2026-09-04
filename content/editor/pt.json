@@ -20,7 +20,8 @@
     "connect": "Desenhar uma seta para outro bloco",
     "move": "Mover para dentro de uma área, ou para fora dela",
     "color": "Cor",
-    "shape": "Forma"
+    "shape": "Forma",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Aproximar",

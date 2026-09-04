@@ -20,7 +20,8 @@
     "connect": "Tracer une flèche vers un autre bloc",
     "move": "Déplacer dans une zone, ou en dehors",
     "color": "Couleur",
-    "shape": "Forme"
+    "shape": "Forme",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Zoom avant",

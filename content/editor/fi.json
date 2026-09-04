@@ -20,7 +20,8 @@
     "connect": "Piirrä nuoli toiseen lohkoon",
     "move": "Siirrä alueeseen tai pois siitä",
     "color": "Väri",
-    "shape": "Muoto"
+    "shape": "Muoto",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Lähennä",

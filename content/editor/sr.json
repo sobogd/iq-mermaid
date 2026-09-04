@@ -20,7 +20,8 @@
     "connect": "Повуци стрелицу до другог блока",
     "move": "Помери у област, или из ње",
     "color": "Боја",
-    "shape": "Облик"
+    "shape": "Облик",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Увећај",

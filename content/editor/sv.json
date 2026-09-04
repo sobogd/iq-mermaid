@@ -20,7 +20,8 @@
     "connect": "Dra en pil till ett annat block",
     "move": "Flytta in i ett område, eller ut ur ett",
     "color": "Färg",
-    "shape": "Form"
+    "shape": "Form",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Zooma in",

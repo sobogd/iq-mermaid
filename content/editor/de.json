@@ -20,7 +20,8 @@
     "connect": "Pfeil zu einem anderen Block ziehen",
     "move": "In einen Bereich verschieben, oder heraus",
     "color": "Farbe",
-    "shape": "Form"
+    "shape": "Form",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Vergrößern",

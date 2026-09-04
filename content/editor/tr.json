@@ -20,7 +20,8 @@
     "connect": "Başka bir bloğa ok çiz",
     "move": "Bir alana taşı veya dışına çıkar",
     "color": "Renk",
-    "shape": "Şekil"
+    "shape": "Şekil",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Yakınlaştır",

@@ -20,7 +20,8 @@
     "connect": "Dibuixa una fletxa cap a un altre bloc",
     "move": "Mou dins d'una àrea, o fora d'una",
     "color": "Color",
-    "shape": "Forma"
+    "shape": "Forma",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Apropa",

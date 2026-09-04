@@ -376,6 +376,11 @@
   left: 0;
   transform-origin: 0 0;
 }
+/* Only an automatic fit animates the pan/zoom; the reader's own drag/zoom is
+   applied without the class, so it stays 1:1 with the pointer. */
+.iqm-root .mermaid-host.animating {
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
 .iqm-root .mermaid-host svg {
   display: block;
   max-width: none;

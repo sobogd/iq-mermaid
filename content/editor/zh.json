@@ -20,7 +20,8 @@
     "connect": "画箭头连接另一个节点",
     "move": "移入或移出某个区域",
     "color": "颜色",
-    "shape": "形状"
+    "shape": "形状",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "放大",

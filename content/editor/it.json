@@ -20,7 +20,8 @@
     "connect": "Disegna una freccia verso un altro blocco",
     "move": "Sposta dentro un'area, o fuori da una",
     "color": "Colore",
-    "shape": "Forma"
+    "shape": "Forma",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Ingrandisci",

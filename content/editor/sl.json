@@ -20,7 +20,8 @@
     "connect": "Nariši puščico do drugega bloka",
     "move": "Premakni v področje ali iz njega",
     "color": "Barva",
-    "shape": "Oblika"
+    "shape": "Oblika",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Približaj",

@@ -434,6 +434,10 @@ export default function VisualEditor({
   const [selected, setSelected] = useState(null); // { type, id }
   const [view, setView] = useState({ x: 0, y: 0, zoom: 1 }); // pan (screen px) + zoom
   const [isPanning, setIsPanning] = useState(false);
+  // True while an automatic fit is animating the pan/zoom. The host gets a CSS
+  // transition only in this window, so the reader's own pan/zoom stays instant.
+  const [animating, setAnimating] = useState(false);
+  const animTimerRef = useRef(null);
   const [rendered, setRendered] = useState({ html: "", diagramId: "" });
   // Screen position of the floating toolbar that hangs over the selection.
   const [toolbar, setToolbar] = useState(null); // { x, y, below }
@@ -686,6 +690,19 @@ export default function VisualEditor({
     }
   }
 
+  /** Apply a view change with a short CSS transition (fits use this; the
+   *  reader's own pan/zoom does not). The transition class is committed with
+   *  the OLD transform first, then the transform changes a frame later so the
+   *  browser actually interpolates. */
+  function animateView(next) {
+    clearTimeout(animTimerRef.current);
+    setAnimating(true);
+    requestAnimationFrame(() => {
+      setView(next);
+      animTimerRef.current = setTimeout(() => setAnimating(false), 280);
+    });
+  }
+
   /** Fit the viewport to a screen-space rectangle, centred with padding. Never
    *  magnifies past 100%: a single node would otherwise fill the screen with
    *  text the size of a headline. `rect` is { left, top, width, height } in
@@ -706,7 +723,7 @@ export default function VisualEditor({
     // can be re-placed at the middle of the viewport at the new zoom.
     const localCx = (rect.left + rect.width / 2 - wr.left - v.x) / v.zoom;
     const localCy = (rect.top + rect.height / 2 - wr.top - v.y) / v.zoom;
-    setView({ zoom, x: wr.width / 2 - localCx * zoom, y: wr.height / 2 - localCy * zoom });
+    animateView({ zoom, x: wr.width / 2 - localCx * zoom, y: wr.height / 2 - localCy * zoom });
     return true;
   }
 
@@ -798,6 +815,7 @@ export default function VisualEditor({
     if (!el) return;
     function onWheel(e) {
       e.preventDefault();
+      setAnimating(false);
       const rect = el.getBoundingClientRect();
       const sx = e.clientX - rect.left, sy = e.clientY - rect.top;
       if (e.ctrlKey || e.metaKey) {
@@ -816,6 +834,7 @@ export default function VisualEditor({
   }, []);
 
   function zoomBy(factor) {
+    setAnimating(false);
     const wrap = wrapRef.current;
     const w = wrap ? wrap.clientWidth : 0, h = wrap ? wrap.clientHeight : 0;
     setView((v) => {
@@ -1037,6 +1056,7 @@ export default function VisualEditor({
     // was already open: then this click is the one that dismisses it.
     const hadAdd = addAtRef.current != null;
     setAddAt(null);
+    setAnimating(false);
     const mode = interactionModeRef.current;
     const target = pendingTargetRef.current;
     pendingTargetRef.current = null;
@@ -1233,6 +1253,24 @@ export default function VisualEditor({
     focusOn([newId]);
   }
 
+  // Adds a new block wired to the selected one — a "+" action in the block
+  // toolbar. The new block inherits the selected block's group, so it lands
+  // next to it inside the same area.
+  function addConnectedBlock() {
+    if (!selected || selected.type !== "block") return;
+    const src = stateRef.current.blocks.find((b) => b.id === selected.id);
+    if (!src) return;
+    const newId = "b" + stateRef.current.nextBlock;
+    updateState((s) => ({
+      ...s,
+      blocks: [...s.blocks, { id: newId, label: t.defaults.action, color: DEFAULT_COLOR, shape: DEFAULT_SHAPE, groupId: src.groupId || null }],
+      edges: [...s.edges, { id: "e" + s.nextEdge, from: selected.id, to: newId, label: "" }],
+      nextBlock: s.nextBlock + 1,
+      nextEdge: s.nextEdge + 1,
+    }));
+    focusOn([selected.id, newId]);
+  }
+
   function addBlockToGroup(groupId) {
     const newId = "b" + stateRef.current.nextBlock;
     updateState((s) => ({
@@ -1277,39 +1315,44 @@ export default function VisualEditor({
   // Everything nested inside a copied area keeps its relative structure —
   // only the root item is reparented to the paste target.
   function pasteClipboard(clip, targetGroupId) {
-    updateState((s) => {
-      const idMap = new Map();
-      let nextBlock = s.nextBlock, nextGroup = s.nextGroup, nextEdge = s.nextEdge;
+    const s = stateRef.current;
+    const idMap = new Map();
+    let nextBlock = s.nextBlock, nextGroup = s.nextGroup, nextEdge = s.nextEdge;
 
-      for (const g of clip.groups) { idMap.set(g.id, "g" + nextGroup); nextGroup++; }
-      for (const b of clip.blocks) { idMap.set(b.id, "b" + nextBlock); nextBlock++; }
+    for (const g of clip.groups) { idMap.set(g.id, "g" + nextGroup); nextGroup++; }
+    for (const b of clip.blocks) { idMap.set(b.id, "b" + nextBlock); nextBlock++; }
 
-      const newGroups = clip.groups.map((g) => ({
-        ...g,
-        id: idMap.get(g.id),
-        parentId: g.id === clip.rootId ? (targetGroupId || null) : (g.parentId ? idMap.get(g.parentId) : null),
-      }));
-      const newBlocks = clip.blocks.map((b) => ({
-        ...b,
-        id: idMap.get(b.id),
-        groupId: clip.type === "block" && b.id === clip.rootId
-          ? (targetGroupId || null)
-          : (b.groupId ? idMap.get(b.groupId) : null),
-      }));
-      const newEdges = clip.edges.map((e) => {
-        const ne = { id: "e" + nextEdge, from: idMap.get(e.from), to: idMap.get(e.to), label: e.label };
-        nextEdge++;
-        return ne;
-      });
+    const newGroups = clip.groups.map((g) => ({
+      ...g,
+      id: idMap.get(g.id),
+      parentId: g.id === clip.rootId ? (targetGroupId || null) : (g.parentId ? idMap.get(g.parentId) : null),
+    }));
+    const newBlocks = clip.blocks.map((b) => ({
+      ...b,
+      id: idMap.get(b.id),
+      groupId: clip.type === "block" && b.id === clip.rootId
+        ? (targetGroupId || null)
+        : (b.groupId ? idMap.get(b.groupId) : null),
+    }));
+    const newEdges = clip.edges.map((e, i) => ({
+      id: "e" + (nextEdge + i),
+      from: idMap.get(e.from),
+      to: idMap.get(e.to),
+      label: e.label,
+    }));
 
-      return {
-        ...s,
-        blocks: [...s.blocks, ...newBlocks],
-        groups: [...s.groups, ...newGroups],
-        edges: [...s.edges, ...newEdges],
-        nextBlock, nextGroup, nextEdge,
-      };
-    });
+    updateState((cur) => ({
+      ...cur,
+      blocks: [...cur.blocks, ...newBlocks],
+      groups: [...cur.groups, ...newGroups],
+      edges: [...cur.edges, ...newEdges],
+      nextBlock,
+      nextGroup,
+      nextEdge: nextEdge + newEdges.length,
+    }));
+
+    const newRootId = idMap.get(clip.rootId);
+    focusOn(targetGroupId ? [newRootId, targetGroupId] : [newRootId]);
   }
 
   function startPaste() {
@@ -1519,6 +1562,13 @@ export default function VisualEditor({
               aria-label={t.toolbar.rename}
               onClick={() => askRename(selected.type, selected.id)}
             >✏️</button>
+            {selected.type === "block" && (
+              <button
+                title={t.toolbar.addConnected}
+                aria-label={t.toolbar.addConnected}
+                onClick={addConnectedBlock}
+              >➕</button>
+            )}
             {selected.type === "block" && (
               <button
                 title={t.toolbar.connect}

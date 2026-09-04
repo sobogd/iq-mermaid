@@ -20,7 +20,8 @@
     "connect": "Narysuj strzałkę do innego bloku",
     "move": "Przenieś do obszaru lub poza niego",
     "color": "Kolor",
-    "shape": "Kształt"
+    "shape": "Kształt",
+    "addConnected": "Add a connected block"
   },
   "zoom": {
     "in": "Powiększ",
