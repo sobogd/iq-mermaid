@@ -465,6 +465,18 @@ export default function VisualEditor({
   const selectedRef = useRef(null);
   const addAtRef = useRef(null);
   const panRef = useRef(null); // { startX, startY, startViewX, startViewY, moved, target }
+  // All pointers currently down on the canvas (id -> { x, y } client px). One
+  // finger pans; two fingers zoom about their midpoint — the pinch the browser
+  // would have done natively is disabled by touch-action: none, so it is our
+  // job here. The map, not panRef, is the source of truth for multitouch.
+  const pointersRef = useRef(new Map());
+  // An active pinch, anchored the moment the second finger lands:
+  // { dist0, mx0, my0, vx0, vy0, z0 } — all in canvas-wrap coordinates.
+  const pinchRef = useRef(null);
+  // Pointer ids captured on the wrap during a pinch (the pan path captures via
+  // panRef.captured instead), so a finger that slides off the canvas still gets
+  // its move/up delivered.
+  const capturedRef = useRef(new Set());
   const pendingTargetRef = useRef(null); // resolved target from the last mousedown, read once at pan-arm time
   const [clipboard, setClipboard] = useState(null); // { type, rootId, blocks, groups, edges }
   // Starts at the current importSeq so the initializer above (which already
@@ -1091,30 +1103,116 @@ export default function VisualEditor({
       resolveModeClick(mode, null);
       return;
     }
+    const pts = pointersRef.current;
+    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pts.size === 1) {
+      // First finger (or the mouse): arm a plain pan, exactly as before. The
+      // pan only ever tracks this one pointer; a second finger supersedes it.
+      const v = viewRef.current;
+      panRef.current = {
+        startX: e.clientX,
+        startY: e.clientY,
+        startViewX: v.x,
+        startViewY: v.y,
+        moved: false,
+        target,
+        hadAdd,
+        pointerId: e.pointerId,
+        captured: false,
+      };
+      setIsPanning(true);
+    } else if (pts.size === 2) {
+      // The second finger lands: this is now a pinch. The one-finger pan is
+      // cancelled — a two-finger gesture must never select a node or open the
+      // add-menu, so its ups go through the pinch path, not the click path.
+      panRef.current = null;
+      startPinch();
+      setIsPanning(true);
+    }
+    // A third finger changes nothing: the pinch keeps tracking the first two.
+  }
+
+  // Anchor a pinch on the two fingers currently down. Everything is measured
+  // relative to the canvas-wrap's top-left corner, the same space the view's
+  // x/y live in (the wheel handler subtracts getBoundingClientRect for the
+  // same reason — a zoom about a point has to be anchored in one space, and
+  // client coordinates alone would drift the anchor by the wrap's offset).
+  function startPinch() {
+    const entries = [...pointersRef.current.entries()];
+    if (entries.length < 2) return;
+    const [, a] = entries[0];
+    const [, b] = entries[1];
+    const wrap = wrapRef.current;
+    const rect = wrap ? wrap.getBoundingClientRect() : { left: 0, top: 0 };
     const v = viewRef.current;
-    panRef.current = {
-      startX: e.clientX,
-      startY: e.clientY,
-      startViewX: v.x,
-      startViewY: v.y,
-      moved: false,
-      target,
-      hadAdd,
-      pointerId: e.pointerId,
+    pinchRef.current = {
+      dist0: Math.max(Math.hypot(b.x - a.x, b.y - a.y), 1),
+      mx0: (a.x + b.x) / 2 - rect.left,
+      my0: (a.y + b.y) / 2 - rect.top,
+      vx0: v.x,
+      vy0: v.y,
+      z0: v.zoom,
+      // The fingers are not captured at pointerdown (that would retarget the
+      // click/dblclick the browser builds from a tap); the first real pinch
+      // move below marks them as captured.
       captured: false,
     };
-    setIsPanning(true);
   }
 
   // Panning and selecting share one gesture: mousedown always arms a
   // potential pan (even when it started on a block/area/edge — that's the
   // whole point, dragging from there must still scroll the canvas). Only if
-  // the mouse never moves past a small threshold does mouseup treat it as a
-  // click and select whatever was under the cursor at mousedown time.
+  // the pointer never moves past a small threshold does pointerup treat it as
+  // a click and select whatever was under the cursor at mousedown time.
+  //
+  // A second finger switches the gesture to a pinch: zooming about the
+  // midpoint between the two fingers while the midpoint's own drift pans. The
+  // same pinches that browsers turn into ctrl-wheel on a trackpad arrive here
+  // as raw touch pointers, because .canvas-wrap sets touch-action: none.
   useEffect(() => {
-    function onMouseMove(e) {
-      if (panRef.current) {
-        const p = panRef.current;
+    function onPointerMove(e) {
+      const pts = pointersRef.current;
+      const me = pts.get(e.pointerId);
+      if (me) { me.x = e.clientX; me.y = e.clientY; }
+
+      const pinch = pinchRef.current;
+      if (pinch && pts.size >= 2) {
+        const [a, b] = [...pts.values()];
+        // Any movement at all during an active pinch is a real drag, so this
+        // is the moment the fingers get captured on the wrap — both moves and
+        // the final up keep arriving even if a finger slides off the canvas.
+        // (Not at pointerdown: a two-finger tap must stay a tap.)
+        if (!pinch.captured) {
+          for (const [id] of [...pts.entries()].slice(0, 2)) {
+            if (capturedRef.current.has(id) || !wrapRef.current?.setPointerCapture) continue;
+            try {
+              wrapRef.current.setPointerCapture(id);
+              capturedRef.current.add(id);
+            } catch { /* not capturable (e.g. a mouse with no button down) */ }
+          }
+          pinch.captured = true;
+        }
+        const dist = Math.max(Math.hypot(b.x - a.x, b.y - a.y), 1);
+        const wrap = wrapRef.current;
+        const rect = wrap ? wrap.getBoundingClientRect() : { left: 0, top: 0 };
+        const mx = (a.x + b.x) / 2 - rect.left;
+        const my = (a.y + b.y) / 2 - rect.top;
+        setView(() => {
+          const zoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, pinch.z0 * (dist / pinch.dist0)));
+          // The canvas point that sat under the starting midpoint is re-placed
+          // under the current midpoint at the new zoom: the finger spread
+          // zooms, and the midpoint's movement pans — in one correction.
+          const hx = (pinch.mx0 - pinch.vx0) / pinch.z0;
+          const hy = (pinch.my0 - pinch.vy0) / pinch.z0;
+          return { zoom, x: mx - hx * zoom, y: my - hy * zoom };
+        });
+        return;
+      }
+
+      const p = panRef.current;
+      // A hovering mouse moves while a finger drag is armed, and that mouse
+      // must not steer the pan — only the pointer that armed it may.
+      if (p && pts.size === 1 && e.pointerId === p.pointerId) {
         const dx = e.clientX - p.startX, dy = e.clientY - p.startY;
         if (!p.moved && (Math.abs(dx) >= 3 || Math.abs(dy) >= 3)) {
           p.moved = true;
@@ -1134,45 +1232,89 @@ export default function VisualEditor({
         }
       }
     }
-    function onMouseUp() {
-      if (panRef.current) {
-        const p = panRef.current;
-        if (!p.moved) {
-          if (p.target) {
-            setSelected({ type: p.target.kind, id: p.target.id });
-            setAddAt(null);
-          } else if (selectedRef.current) {
-            // The first click on bare canvas is how you let go of the current
-            // selection. Offering "add something here" in the same gesture
-            // would put a menu under the pointer every time someone deselects.
-            setSelected(null);
-            setAddAt(null);
-          } else if (p.hadAdd) {
-            // It was already open: this click closes it (done above) and
-            // nothing else. Clicking elsewhere should be a way out of the
-            // menu, not a way to drag it around the canvas.
-          } else {
-            const stage = stageRef.current;
-            const r = stage ? stage.getBoundingClientRect() : null;
-            setAddAt(r ? { x: p.startX - r.left, y: p.startY - r.top } : null);
-          }
+    function onPointerEnd(e) {
+      const pts = pointersRef.current;
+      const wasTracked = pts.delete(e.pointerId);
+      // Release whatever capture this pointer held, whether it came from the
+      // pan path (panRef.captured) or the pinch path (capturedRef).
+      if (capturedRef.current.has(e.pointerId)) {
+        capturedRef.current.delete(e.pointerId);
+        if (wrapRef.current?.releasePointerCapture) {
+          try { wrapRef.current.releasePointerCapture(e.pointerId); } catch { /* already gone */ }
         }
-        if (p.captured && wrapRef.current?.releasePointerCapture) {
-          try { wrapRef.current.releasePointerCapture(p.pointerId); } catch { /* already gone */ }
-        }
-        panRef.current = null;
-        setIsPanning(false);
       }
+      if (!wasTracked) return;
+
+      const pinch = pinchRef.current;
+      if (pinch) {
+        if (pts.size >= 2) {
+          // One finger lifted but two remain: re-anchor the pinch to the pair
+          // still down, so the view stays continuous instead of jumping.
+          startPinch();
+        } else if (pts.size === 1) {
+          // Pinch over, one finger still down: hand over to a plain pan so the
+          // remaining finger keeps moving the canvas. It is marked as already
+          // moved — a leftover finger is a drag, never a click, so lifting it
+          // must not select anything or open the add-menu.
+          pinchRef.current = null;
+          const [id, pos] = [...pts.entries()][0];
+          const v = viewRef.current;
+          panRef.current = {
+            startX: pos.x,
+            startY: pos.y,
+            startViewX: v.x,
+            startViewY: v.y,
+            moved: true,
+            target: null,
+            hadAdd: false,
+            pointerId: id,
+            captured: false, // capturedRef already covers this pointer's release
+          };
+        } else {
+          pinchRef.current = null;
+          panRef.current = null;
+          setIsPanning(false);
+        }
+        return;
+      }
+
+      const p = panRef.current;
+      if (!p) return;
+      if (!p.moved) {
+        if (p.target) {
+          setSelected({ type: p.target.kind, id: p.target.id });
+          setAddAt(null);
+        } else if (selectedRef.current) {
+          // The first click on bare canvas is how you let go of the current
+          // selection. Offering "add something here" in the same gesture
+          // would put a menu under the pointer every time someone deselects.
+          setSelected(null);
+          setAddAt(null);
+        } else if (p.hadAdd) {
+          // It was already open: this click closes it (done above) and
+          // nothing else. Clicking elsewhere should be a way out of the
+          // menu, not a way to drag it around the canvas.
+        } else {
+          const stage = stageRef.current;
+          const r = stage ? stage.getBoundingClientRect() : null;
+          setAddAt(r ? { x: p.startX - r.left, y: p.startY - r.top } : null);
+        }
+      }
+      if (p.captured && wrapRef.current?.releasePointerCapture) {
+        try { wrapRef.current.releasePointerCapture(p.pointerId); } catch { /* already gone */ }
+      }
+      panRef.current = null;
+      setIsPanning(false);
     }
     // Pointer events, not mouse events: this is the whole difference between
     // an editor that works on a tablet and one that does nothing there.
-    window.addEventListener("pointermove", onMouseMove);
-    window.addEventListener("pointerup", onMouseUp);
-    window.addEventListener("pointercancel", onMouseUp);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerEnd);
+    window.addEventListener("pointercancel", onPointerEnd);
     return () => {
-      window.removeEventListener("pointermove", onMouseMove);
-      window.removeEventListener("pointerup", onMouseUp);
-      window.removeEventListener("pointercancel", onMouseUp);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerEnd);
+      window.removeEventListener("pointercancel", onPointerEnd);
     };
   }, []);
 
