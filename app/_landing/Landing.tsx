@@ -1,5 +1,4 @@
-import { Header } from "./Header";
-import { Footer, productLinksFor } from "./Footer";
+import { DesktopShell } from "./desktop/DesktopShell";
 import { PageTracker } from "./PageTracker";
 import { Hero } from "./Hero";
 import { StatCards } from "./StatCards";
@@ -7,15 +6,14 @@ import { Spotlights } from "./Spotlights";
 import { Comparison } from "./Comparison";
 import { Faq } from "./Faq";
 import { FinalCta } from "./FinalCta";
-import { Container, Band, PAGE } from "./shell";
-import { localeHome, localePath } from "@/lib/locale-paths";
+import { Band } from "./shell";
+import { localeHome } from "@/lib/locale-paths";
 import type { Locale } from "@/lib/locales";
 import { faqPageLd, graphLd, organizationLd, softwareApplicationLd, webSiteLd } from "@/lib/structured-data";
 import type { SiteTexts } from "./types";
 
 export function Landing({ locale, texts }: { locale: Locale; texts: SiteTexts }) {
   const homeHref = localeHome(locale);
-  const appHref = localePath(locale, "app");
   const jsonLd = graphLd([
     organizationLd(),
     webSiteLd(locale),
@@ -24,26 +22,37 @@ export function Landing({ locale, texts }: { locale: Locale; texts: SiteTexts })
   ]);
 
   return (
-    <main className={PAGE}>
+    <main className="pointer-events-none relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Header homeHref={homeHref} locale={locale} texts={texts.header} />
-      <Container>
-        <Band section="hero">
-          <Hero texts={texts.hero} appHref={appHref} />
+      <DesktopShell
+        locale={locale}
+        homeHref={homeHref}
+        headerTexts={texts.header}
+        showBrand
+      >
+        {/* The page is one running column of type: each section is a plain
+            <section> that shares the brand row's side padding and spaces itself
+            with vertical padding only — no extra wrappers, no cards. */}
+        <Band section="hero" className="px-6 pb-12 pt-8 sm:px-8 sm:pb-16 sm:pt-10">
+          <Hero texts={texts.hero} />
         </Band>
-        <Band section="stats">
+
+        <Band section="stats" className="px-6 pb-12 sm:px-8 sm:pb-16">
           <StatCards items={texts.statCards} />
         </Band>
-        <Band id="features" section="features">
+
+        <Band id="features" section="features" className="px-6 pb-12 sm:px-8 sm:pb-16">
           <Spotlights items={texts.spotlights} />
         </Band>
-        <Band id="comparison" section="comparison">
+
+        <Band id="comparison" section="comparison" className="px-6 pb-12 sm:px-8 sm:pb-16">
           <Comparison texts={texts.comparison} />
         </Band>
-        <Band id="faq" section="faq">
+
+        <Band id="faq" section="faq" className="px-6 pb-12 sm:px-8 sm:pb-16">
           <Faq
             heading={texts.faq.heading}
             headingAccent={texts.faq.headingAccent}
@@ -51,22 +60,11 @@ export function Landing({ locale, texts }: { locale: Locale; texts: SiteTexts })
             items={texts.faq.items}
           />
         </Band>
-        <Band section="final_cta">
-          <FinalCta
-            heading={texts.finalCta.heading}
-            headingAccent={texts.finalCta.headingAccent}
-            sub={texts.finalCta.sub}
-            ctaLabel={texts.finalCta.ctaLabel}
-            ctaHref={appHref}
-          />
+
+        <Band section="final_cta" className="px-6 pb-16 sm:px-8 sm:pb-24">
+          <FinalCta heading={texts.finalCta.heading} headingAccent={texts.finalCta.headingAccent} sub={texts.finalCta.sub} />
         </Band>
-      </Container>
-      <Footer
-        locale={locale}
-        pathname={homeHref}
-        texts={texts.footer}
-        productLinks={productLinksFor(locale, { editor: texts.header.openEditor, blog: texts.header.blog })}
-      />
+      </DesktopShell>
       <PageTracker page="Home" />
     </main>
   );

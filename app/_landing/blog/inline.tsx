@@ -14,7 +14,7 @@ export function blogHref(locale: string, slug?: string): string {
 }
 
 function resolveHref(target: string, locale: string): string {
-  if (target === "app:" || target.startsWith("app:")) return localePath(locale, "app");
+  if (target === "app:" || target.startsWith("app:")) return "#";
   if (target.startsWith("blog:")) return blogHref(locale, target.slice(5));
   return target;
 }
@@ -33,7 +33,7 @@ function renderTokens(text: string, keyBase: string): React.ReactNode[] {
       return (
         <code
           key={`${keyBase}-c${i}`}
-          className="rounded bg-card px-1.5 py-0.5 font-mono text-[0.9em] text-text"
+          className="font-mono text-[0.9em] text-text"
         >
           {part.slice(1, -1)}
         </code>
@@ -51,14 +51,25 @@ export function renderInline(text: string, locale: string): React.ReactNode[] {
   const re = new RegExp(LINK_RE);
   while ((m = re.exec(text)) !== null) {
     if (m.index > last) nodes.push(...renderTokens(text.slice(last, m.index), `t${last}`));
-    const href = resolveHref(m[2], locale);
+    const raw = m[2];
+    const href = resolveHref(raw, locale);
     const external = href.startsWith("http");
+    const isOpenEditor = raw === "app:" || raw.startsWith("app:");
     nodes.push(
       external ? (
         <a
           key={`l${m.index}`}
           href={href}
           rel="noopener noreferrer"
+          className="underline underline-offset-2 hover:text-text"
+        >
+          {m[1]}
+        </a>
+      ) : isOpenEditor ? (
+        <a
+          key={`l${m.index}`}
+          href="#"
+          data-iqm-open-editor="true"
           className="underline underline-offset-2 hover:text-text"
         >
           {m[1]}

@@ -28,6 +28,18 @@
     "out": "축소",
     "fit": "맞춤"
   },
+  "dock": {
+    "addBlock": "블록 추가",
+    "addGroup": "영역 추가",
+    "copy": "복사",
+    "paste": "붙여넣기",
+    "undo": "실행 취소",
+    "redo": "다시 실행",
+    "zoomIn": "확대",
+    "zoomOut": "축소",
+    "fit": "맞추기",
+    "editCode": "코드 편집"
+  },
   "modals": {
     "colorTitle": "색상",
     "shapeTitle": "모양",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "완전 무료 — 유료 플랜도 카드도 필요 없어요. 이메일만으로 다이어그램을 저장·동기화·내보낼 수 있습니다.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "뒤로"
   }
 }

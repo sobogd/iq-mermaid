@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { locales, defaultLocale, type Locale } from "@/lib/locales";
+import { localeHome } from "@/lib/locale-paths";
 
 // Next.js 16 renamed the `middleware` file convention to `proxy`. Only one
 // per project, so the whole edge-side routing lives in this function.
@@ -21,15 +22,12 @@ function detectLocale(req: NextRequest): Locale {
   return (locales as readonly string[]).includes(preferred ?? "") ? (preferred as Locale) : defaultLocale;
 }
 
-// Paths that only ever exist in English. Without this list the language
-// redirect below would send a German visitor from /privacy to /de/privacy,
-// which is a 302 into a 404.
-const EN_ONLY_PATHS = ["/privacy", "/terms"];
-
-// Only these two roots are language-routed. Everything else unprefixed is
-// either English-only or simply not a page — redirecting those would turn one
-// 404 into a 302 + 404 chain.
-const ROUTED = ["/", "/app"];
+// These roots are language-routed. /privacy and /terms exist in every locale
+// (under /<locale>/privacy & /<locale>/terms with the English version at the
+// root), so a non-English visitor is sent to their prefix; anything else
+// unprefixed is simply not a page — redirecting those would turn one 404 into
+// a 302 + 404 chain.
+const ROUTED = ["/", "/privacy", "/terms"];
 
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -44,7 +42,16 @@ export function proxy(req: NextRequest) {
     return NextResponse.redirect(redirectUrl, 301);
   }
 
-  if (ROUTED.includes(pathname) && !EN_ONLY_PATHS.includes(pathname)) {
+  // /app no longer exists as a page: the editor is the shared background under
+  // the window on every page, so the old dedicated route rolls back to the
+  // locale home. Preserve the deep-link query (e.g. ?demo=) for safety.
+  if (!isAssetPath(pathname) && (pathname === "/app" || pathname.startsWith("/app/"))) {
+    const redirectUrl = new URL(localeHome(detectLocale(req)), req.url);
+    redirectUrl.search = req.nextUrl.search;
+    return NextResponse.redirect(redirectUrl, 302);
+  }
+
+  if (ROUTED.includes(pathname)) {
     const target = detectLocale(req);
     if (target !== defaultLocale) {
       const redirectUrl = new URL(`/${target}${pathname === "/" ? "" : pathname}`, req.url);

@@ -35,6 +35,30 @@ export interface SiteTexts {
     faq: string;
     openEditor: string;
     menu: string;
+    /** Labels of the two site menus in the header: legal + languages. */
+    legal: string;
+    languages: string;
+    /** Tool menus in the taskbar (Documents / Export / Edit Code) + rows. */
+    documents: string;
+    export: string;
+    editCode: string;
+    openDocuments: string;
+    createNew: string;
+    /** Export dropdown rows. */
+    exportCopyMermaid: string;
+    exportMermaidMmd: string;
+    exportMd: string;
+    exportSvg: string;
+    exportPng: string;
+    /** Settings → Theme picker. */
+    settings: string;
+    theme: string;
+    themeSystem: string;
+    themeLight: string;
+    themeDark: string;
+    /** Legal document links (localized chrome routes, English body). */
+    legalPrivacy: string;
+    legalTerms: string;
   };
   hero: {
     badgeFree: string;

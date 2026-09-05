@@ -31,9 +31,7 @@ export default function NotFound() {
             <p className="text-sm font-semibold uppercase tracking-wide text-hint">404</p>
             <h1 className="text-4xl font-medium leading-[1.1] tracking-tight sm:text-[2.5rem]">
               This page doesn&apos;t exist{" "}
-              <span className="bg-gradient-to-br from-[hsl(9,100%,58%)] to-[hsl(35,95%,55%)] bg-clip-text text-transparent">
-                — the editor does
-              </span>
+              <span className="text-button">— the editor does</span>
             </h1>
             <p className="max-w-[60ch] text-sm leading-relaxed text-hint/80 sm:text-base">
               The address you followed isn&apos;t a page here. Open the editor and start a

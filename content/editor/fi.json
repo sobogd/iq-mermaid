@@ -28,6 +28,18 @@
     "out": "Loitonna",
     "fit": "Sovita"
   },
+  "dock": {
+    "addBlock": "Lisää lohko",
+    "addGroup": "Lisää alue",
+    "copy": "Kopioi",
+    "paste": "Liitä",
+    "undo": "Peruuta",
+    "redo": "Toista",
+    "zoomIn": "Lähennä",
+    "zoomOut": "Loitonna",
+    "fit": "Sovita",
+    "editCode": "Muokkaa koodia"
+  },
   "modals": {
     "colorTitle": "Väri",
     "shapeTitle": "Muoto",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Täysin ilmainen — ei maksullisia tasoja eikä kortteja. Pelkkä sähköposti kaavioiden tallentamiseen, synkronointiin ja vientiin.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Takaisin"
   }
 }

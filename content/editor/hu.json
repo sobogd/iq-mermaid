@@ -28,6 +28,18 @@
     "out": "Kicsinyítés",
     "fit": "Igazítás"
   },
+  "dock": {
+    "addBlock": "Blokk hozzáadása",
+    "addGroup": "Terület hozzáadása",
+    "copy": "Másolás",
+    "paste": "Beillesztés",
+    "undo": "Visszavonás",
+    "redo": "Mégis",
+    "zoomIn": "Nagyítás",
+    "zoomOut": "Kicsinyítés",
+    "fit": "Beillesztés",
+    "editCode": "Kód szerkesztése"
+  },
   "modals": {
     "colorTitle": "Szín",
     "shapeTitle": "Alak",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Teljesen ingyenes — fizetős csomagok és kártyák nélkül. Csak egy e-mail az ábrák mentéséhez, szinkronizálásához és exportálásához.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Vissza"
   }
 }

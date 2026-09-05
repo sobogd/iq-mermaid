@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { LogoIcon } from "../_landing/LogoIcon";
 import "./auth.css";
 
 // Maps the error codes the /api/auth endpoints return to the `t.auth.*` string
@@ -27,11 +26,12 @@ async function postJson(path, body) {
   return { ok: res.ok && data?.ok !== false, error: data?.error ?? null, status: res.status };
 }
 
-// The sign-in gate. Shown instead of the editor until the visitor proves they
-// own an email address: enter email → receive a 6-digit code → enter it. On
-// success `onAuthed(email)` hands control back to EditorClient, which mounts
-// the (mermaid-heavy) editor only then.
-export default function AuthGate({ t, homeHref, brand, onAuthed }) {
+// Sign-in gate as a blocking modal over the editor: a dimmed backdrop and one
+// small card — email → 6-digit code. There is deliberately no way to dismiss
+// it into the editor: using the editor requires signing in. `onBack` (optional)
+// goes back to the content window instead. On success `onAuthed(email)` hands
+// control back to the caller.
+export default function AuthGate({ t, onAuthed, onBack }) {
   const [step, setStep] = useState("email"); // "email" | "code"
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -100,77 +100,77 @@ export default function AuthGate({ t, homeHref, brand, onAuthed }) {
   }
 
   return (
-    <div className="iqm-auth">
-      <header className="iqm-auth-top">
-        <a href={homeHref} className="iqm-auth-brand" title={t.backToSite}>
-          <LogoIcon className="iqm-auth-logo" />
-          <span>{brand}</span>
-        </a>
-      </header>
-      <main className="iqm-auth-main">
-        <form
-          className="iqm-auth-card"
-          onSubmit={step === "email" ? handleEmailSubmit : handleCodeSubmit}
-        >
-          <h1 className="iqm-auth-title">{t.auth.title}</h1>
-          <p className="iqm-auth-subtitle">{t.auth.subtitle}</p>
+    <div className="iqm-auth" role="dialog" aria-modal="true" aria-label={t.auth.title}>
+      <div className="iqm-auth-backdrop" aria-hidden="true" />
+      <form
+        className="iqm-auth-panel"
+        role="group"
+        aria-label={t.auth.title}
+        onSubmit={step === "email" ? handleEmailSubmit : handleCodeSubmit}
+      >
+        <h1 className="iqm-auth-title">{t.auth.title}</h1>
+        <p className="iqm-auth-subtitle">{t.auth.subtitle}</p>
 
-          {step === "email" ? (
+        {step === "email" ? (
+          <label className="iqm-auth-field">
+            <span className="iqm-auth-label">{t.auth.emailLabel}</span>
+            <input
+              type="email"
+              autoComplete="email"
+              className="iqm-auth-input"
+              placeholder={t.auth.emailPlaceholder}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={busy}
+            />
+          </label>
+        ) : (
+          <>
+            {notice && <p className="iqm-auth-notice">{notice}</p>}
             <label className="iqm-auth-field">
-              <span className="iqm-auth-label">{t.auth.emailLabel}</span>
+              <span className="iqm-auth-label">{t.auth.codeLabel}</span>
               <input
-                type="email"
                 autoFocus
-                autoComplete="email"
-                className="iqm-auth-input"
-                placeholder={t.auth.emailPlaceholder}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                maxLength={6}
+                className="iqm-auth-input iqm-auth-code"
+                placeholder={t.auth.codePlaceholder}
+                value={code}
+                onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
                 disabled={busy}
               />
             </label>
-          ) : (
-            <>
-              {notice && <p className="iqm-auth-notice">{notice}</p>}
-              <label className="iqm-auth-field">
-                <span className="iqm-auth-label">{t.auth.codeLabel}</span>
-                <input
-                  autoFocus
-                  inputMode="numeric"
-                  autoComplete="one-time-code"
-                  maxLength={6}
-                  className="iqm-auth-input iqm-auth-code"
-                  placeholder={t.auth.codePlaceholder}
-                  value={code}
-                  onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
-                  disabled={busy}
-                />
-              </label>
-              <button type="button" className="iqm-auth-resend" onClick={handleResend} disabled={busy}>
-                {t.auth.resend}
-              </button>
-            </>
-          )}
-
-          {error && <p className="iqm-auth-error">{error}</p>}
-
-          <button type="submit" className="iqm-auth-submit" disabled={busy}>
-            {busy
-              ? step === "email"
-                ? t.auth.sending
-                : t.auth.verifying
-              : step === "email"
-                ? t.auth.sendCode
-                : t.auth.verify}
-          </button>
-
-          {step === "code" && (
-            <button type="button" className="iqm-auth-back" onClick={backToEmail} disabled={busy}>
-              {t.auth.back}
+            <button type="button" className="iqm-auth-resend" onClick={handleResend} disabled={busy}>
+              {t.auth.resend}
             </button>
-          )}
-        </form>
-      </main>
+          </>
+        )}
+
+        {error && <p className="iqm-auth-error">{error}</p>}
+
+        <button type="submit" className="iqm-auth-submit" disabled={busy}>
+          {busy
+            ? step === "email"
+              ? t.auth.sending
+              : t.auth.verifying
+            : step === "email"
+              ? t.auth.sendCode
+              : t.auth.verify}
+        </button>
+
+        {step === "code" && (
+          <button type="button" className="iqm-auth-back" onClick={backToEmail} disabled={busy}>
+            {t.auth.back}
+          </button>
+        )}
+
+        {onBack && (
+          <button type="button" className="iqm-auth-back-to-site" onClick={onBack} disabled={busy}>
+            {t.auth.goBack}
+          </button>
+        )}
+      </form>
     </div>
   );
 }

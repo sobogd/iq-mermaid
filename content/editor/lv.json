@@ -28,6 +28,18 @@
     "out": "Tālināt",
     "fit": "Ietilpināt"
   },
+  "dock": {
+    "addBlock": "Pievienot bloku",
+    "addGroup": "Pievienot apgabalu",
+    "copy": "Kopēt",
+    "paste": "Ielīmēt",
+    "undo": "Atcelt",
+    "redo": "Atkārtot",
+    "zoomIn": "Tuvināt",
+    "zoomOut": "Tālināt",
+    "fit": "Ievietot",
+    "editCode": "Rediģēt kodu"
+  },
   "modals": {
     "colorTitle": "Krāsa",
     "shapeTitle": "Forma",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Pilnīgi bez maksas — bez maksas plāniem un kartēm. Pietiek e-pasta, lai saglabātu, sinhronizētu un eksportētu diagrammas.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Atpakaļ"
   }
 }

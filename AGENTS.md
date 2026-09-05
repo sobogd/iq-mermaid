@@ -1,15 +1,22 @@
 # IQ Mermaid — notes for agents
 
-Free mermaid diagram editor on **iq-mermaid.com**. Next.js 16, fully static,
-no database, no API routes, no auth, no payments. Usage is tracked by a
-cookieless, first-party pipeline (`lib/analytics.ts` posts straight to
-iq-metrix under the e.iq-mermaid.com alias — same pattern as translator, see
-its `docs/analytics.md`); nothing is stored on the visitor's device, so the
-site still needs no cookie banner. Read `README.md` first for the layout;
-this file only covers the things that are easy to get wrong.
+Free mermaid diagram editor on **iq-mermaid.com**. Next.js 16, mostly static,
+with an email-OTP auth flow and per-account documents stored in Postgres
+(`app/api/auth/*`, `app/api/documents/*`); there are no payments and no paid
+tier. Usage is tracked by a cookieless, first-party pipeline (`lib/analytics.ts`
+posts straight to iq-metrix under the e.iq-mermaid.com alias — same pattern as
+translator, see its `docs/analytics.md`); nothing is stored on the visitor's
+device, so the site still needs no cookie banner. Read `README.md` first for
+the layout; this file only covers the things that are easy to get wrong.
 
 ## Rules
 
+- **All user-facing copy ships in all 34 locales — always.** Any new string,
+  rename, wording tweak, removed label or rewritten claim has to land in every
+  locale file (`content/chrome/*.json` for the site, `content/editor/*.json`
+  for the editor UI), English master first, then run `npm run content`. Do not
+  hardcode new English text in components and do not ship copy in fewer than
+  34 locales.
 - **Content is data, code is layout.** Copy lives in `content/**.json`, never
   inline in a component. `content/index.ts` is GENERATED — run
   `node scripts/gen-content-index.mjs` after touching the content tree, and
@@ -35,14 +42,17 @@ this file only covers the things that are easy to get wrong.
   `document` at import time, so it is only ever reached through
   `EditorClient.tsx`'s `dynamic(..., { ssr: false })`. The hero's diagram is a
   hand-drawn SVG (`DiagramPreview.tsx`) for exactly this reason.
-- **Legal pages are English-only** and live in TypeScript
-  (`app/_landing/legal-content.ts`), not in the locale JSONs.
+- **The legal text is English-only** and lives in TypeScript
+  (`app/_landing/legal-content.ts`); the legal *pages* exist in every locale
+  (`/privacy`, `/terms` and `/<locale>/privacy`, `/<locale>/terms`) with
+  localized chrome around the English body.
 - Gate before handing work over: `npm run typecheck && npm run content && npm run build`.
 
 ## Gotchas
 
-- Adding a new unprefixed English path? Add it to `EN_ONLY_PATHS` in
-  `proxy.ts`, or a non-English visitor gets a 302 into a 404.
+- Adding a page? If it should be localized, create it under `app/[seg]/`
+  (like `/blog`, `/privacy`, `/terms`) so every locale gets it; `proxy.ts`
+  language-routes only the roots listed in `ROUTED`.
 - Next merges metadata one level deep only: a page declaring its own
   `openGraph` replaces the root layout's object wholesale. Spread `OG_IMAGE`
   and `TWITTER_CARD` from `lib/site.ts` in every page.

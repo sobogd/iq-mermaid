@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Mermaid Live Editor — Free Online Diagram Editor",
-    "description": "Free mermaid live editor: draw a diagram visually or write mermaid code, both stay in sync. Flowchart, sequence, class, ER, state, gantt. No sign-up, export SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — free, online, no sign-up",
+    "description": "Free mermaid live editor: draw a diagram visually or write mermaid code, kept in sync. Sign in with just an email. Export SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — free, online, just an email",
     "ogDescription": "Draw diagrams on a canvas or write mermaid code. Both views stay in sync. Export to SVG, PNG, .mmd or Markdown.",
     "twitterTitle": "Free mermaid live editor",
-    "twitterDescription": "Visual canvas and mermaid code, side by side. No sign-up, no paywall."
+    "twitterDescription": "Visual canvas and mermaid code, side by side. Free, no paywall — sign in with just an email."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Features",
     "blog": "Guides",
     "faq": "FAQ",
     "openEditor": "Open editor",
-    "menu": "Menu"
+    "menu": "Menu",
+    "legal": "Legal",
+    "languages": "Languages",
+    "documents": "Schema",
+    "export": "Export",
+    "editCode": "Edit Code",
+    "openDocuments": "Recently opened",
+    "createNew": "Add new",
+    "exportCopyMermaid": "Copy Mermaid",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Settings",
+    "theme": "Theme",
+    "themeSystem": "System",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "legalPrivacy": "Privacy",
+    "legalTerms": "Terms"
   },
   "hero": {
     "badgeFree": "Free forever",
-    "badgeNoSignup": "No sign-up",
+    "badgeNoSignup": "Free — just an email",
     "badgeDiagrams": "8 diagram types",
     "title": "Mermaid live editor,",
     "titleAccent": "visual and code in one place",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Rendered diagram"
   },
   "statCards": [
-    { "title": "Renders as you type", "sub": "The real mermaid engine, redrawn a few hundred milliseconds after your last keystroke." },
-    { "title": "Code and canvas sync", "sub": "Edit either side. The other one catches up — no copy-paste between two tools." },
-    { "title": "14 node shapes", "sub": "Rectangle, rounded, pill, circle, diamond, database, hexagon and the rest, one click each." },
-    { "title": "Free, no account", "sub": "No sign-up, no trial, no export watermark. Your diagram stays in your browser." }
+    {
+      "title": "Renders as you type",
+      "sub": "The real mermaid engine, redrawn a few hundred milliseconds after your last keystroke."
+    },
+    {
+      "title": "Code and canvas sync",
+      "sub": "Edit either side. The other one catches up — no copy-paste between two tools."
+    },
+    {
+      "title": "14 node shapes",
+      "sub": "Rectangle, rounded, pill, circle, diamond, database, hexagon and the rest, one click each."
+    },
+    {
+      "title": "Free, email only",
+      "sub": "No trial, no export watermark — your email is all you need to save your diagrams."
+    }
   ],
   "spotlights": [
     {
       "heading": "A canvas, not just a text box",
       "sub": "The visual tab is a real editor on top of the rendered diagram: click a node to select it, double-click to rename it in place, drag anywhere to pan.",
       "bullets": [
-        { "title": "Click to build", "sub": "Add a block, point an arrow at another one, label the arrow. No syntax to remember before you start." },
-        { "title": "Pick a shape", "sub": "Fourteen mermaid flowchart shapes — decision diamonds, database cylinders, subroutines — from one picker." },
-        { "title": "Colour anything", "sub": "Eight presets plus a colour picker, applied to a single node or to a whole area." }
+        {
+          "title": "Click to build",
+          "sub": "Add a block, point an arrow at another one, label the arrow. No syntax to remember before you start."
+        },
+        {
+          "title": "Pick a shape",
+          "sub": "Fourteen mermaid flowchart shapes — decision diamonds, database cylinders, subroutines — from one picker."
+        },
+        {
+          "title": "Colour anything",
+          "sub": "Eight presets plus a colour picker, applied to a single node or to a whole area."
+        }
       ]
     },
     {
       "heading": "Mermaid code that stays yours",
       "sub": "The text tab is plain mermaid — the same syntax GitHub, GitLab, Notion and Obsidian already render. Nothing here is a proprietary format.",
       "bullets": [
-        { "title": "Write it by hand", "sub": "Type mermaid directly and watch it render. Six ready-made examples to start from." },
-        { "title": "Round-trips", "sub": "Flowcharts you paste in are parsed back onto the canvas — nodes, shapes, colours, subgraphs and all." },
-        { "title": "Every diagram type", "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — the preview renders whatever mermaid supports." }
+        {
+          "title": "Write it by hand",
+          "sub": "Type mermaid directly and watch it render. Six ready-made examples to start from."
+        },
+        {
+          "title": "Round-trips",
+          "sub": "Flowcharts you paste in are parsed back onto the canvas — nodes, shapes, colours, subgraphs and all."
+        },
+        {
+          "title": "Every diagram type",
+          "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — the preview renders whatever mermaid supports."
+        }
       ]
     },
     {
       "heading": "Big diagrams stay readable",
       "sub": "Architecture diagrams outgrow one screen fast. Pan, zoom and grouping are built for that instead of fighting it.",
       "bullets": [
-        { "title": "Areas and nesting", "sub": "Group blocks into subgraphs, nest an area inside another, move a whole subtree in one gesture." },
-        { "title": "Zoom from 2% to 1600%", "sub": "Scroll to pan, ctrl-scroll to zoom, or re-centre with one button." },
-        { "title": "Saved as you go", "sub": "Your diagram is written to the browser's local storage on every edit — close the tab and come back to it." }
+        {
+          "title": "Areas and nesting",
+          "sub": "Group blocks into subgraphs, nest an area inside another, move a whole subtree in one gesture."
+        },
+        {
+          "title": "Zoom from 2% to 1600%",
+          "sub": "Scroll to pan, ctrl-scroll to zoom, or re-centre with one button."
+        },
+        {
+          "title": "Saved as you go",
+          "sub": "Your diagram is written to the browser's local storage on every edit — close the tab and come back to it."
+        }
       ]
     },
     {
       "heading": "Export and get on with it",
       "sub": "Nothing is locked in. Take the picture, take the source, or take a Markdown block ready to paste into a document.",
       "bullets": [
-        { "title": "No paywall", "sub": "Every feature, including export, is free. There is no paid tier to upgrade to." },
-        { "title": "Nothing leaves your browser", "sub": "There is no account and no server-side diagram storage — rendering happens locally." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Copy the SVG markup, download a 2x PNG, save the mermaid source, or grab a fenced Markdown block." }
+        {
+          "title": "No paywall",
+          "sub": "Every feature, including export, is free. There is no paid tier to upgrade to."
+        },
+        {
+          "title": "Nothing leaves your browser",
+          "sub": "Rendering happens in your browser; saved diagrams live in your account, so they're there on any device."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Copy the SVG markup, download a 2x PNG, save the mermaid source, or grab a fenced Markdown block."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Price",
-        "us": "Free, no account, no export limits.",
+        "us": "Free — just an email.",
         "them": "Free tier capped at a few diagrams, with export or collaboration behind a subscription."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Mermaid editor",
     "headingAccent": "questions",
-    "sub": "What people ask before opening it. No sign-up needed — the editor is one click away.",
+    "sub": "All you need to start is an email.",
     "items": [
       {
         "q": "What is mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Is this mermaid editor really free?",
-        "a": "Yes. Every feature, including SVG and PNG export, is free, and there is no account to create. There is no paid tier — nothing is held back."
+        "a": "Yes. Every feature, including SVG and PNG export, is free. All you need is an email to sign in — there is no paid tier and nothing is held back."
       },
       {
         "q": "Do I need to know mermaid syntax?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Where is my diagram stored?",
-        "a": "In your browser's local storage, on your own device. There is no account and no server-side copy, so clearing your browser data or switching devices means starting fresh — export the source if you want to keep it."
+        "a": "Your diagrams are saved to your account, so they are there whenever you come back — on any device. Export the source if you ever want a local copy."
       },
       {
         "q": "Can I paste in an existing mermaid diagram?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Does it work offline?",
-        "a": "Rendering happens entirely in your browser, so once the page has loaded the editor keeps working without a connection. Your diagram is in local storage, not on a server."
+        "a": "Rendering happens entirely in your browser, so once the page has loaded the editor keeps working without a connection."
       }
     ]
   },
   "finalCta": {
     "heading": "Open the editor.",
-    "headingAccent": "Nothing to sign up for.",
+    "headingAccent": "Free — just an email.",
     "sub": "A blank canvas, a code tab and every export option — free, in your browser, right now.",
     "ctaLabel": "Open the editor"
   },

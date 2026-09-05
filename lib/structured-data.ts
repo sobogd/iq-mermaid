@@ -41,7 +41,9 @@ export function softwareApplicationLd(description: string) {
     applicationSubCategory: "Diagramming",
     operatingSystem: "Web",
     browserRequirements: "Requires JavaScript",
-    url: `${SITE_URL}/app`,
+    // The /app route no longer exists — the editor is the shared background of
+    // every page, so the home page is where the software actually lives.
+    url: SITE_URL,
     description,
     publisher: { "@id": ORG_ID },
     offers: {

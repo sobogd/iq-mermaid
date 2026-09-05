@@ -28,6 +28,18 @@
     "out": "Þysja út",
     "fit": "Laga að glugga"
   },
+  "dock": {
+    "addBlock": "Bæta við blokk",
+    "addGroup": "Bæta við svæði",
+    "copy": "Afrita",
+    "paste": "Líma",
+    "undo": "Taka aftur",
+    "redo": "Endurtaka",
+    "zoomIn": "Stækka",
+    "zoomOut": "Minnka",
+    "fit": "Fella",
+    "editCode": "Breyta kóða"
+  },
   "modals": {
     "colorTitle": "Litur",
     "shapeTitle": "Lögun",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Algjörlega ókeypis — án greiddra áætlana og korta. Bara netfang til að vista, samstilla og flytja út skýringarmyndir.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Til baka"
   }
 }

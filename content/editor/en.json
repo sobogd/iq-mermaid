@@ -28,6 +28,18 @@
     "out": "Zoom out",
     "fit": "Fit"
   },
+  "dock": {
+    "addBlock": "Add block",
+    "addGroup": "Add area",
+    "copy": "Copy",
+    "paste": "Paste",
+    "undo": "Undo",
+    "redo": "Redo",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "fit": "Fit",
+    "editCode": "Edit Code"
+  },
   "modals": {
     "colorTitle": "Colour",
     "shapeTitle": "Shape",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Absolutely free — no paid plan, no credit card. Just an email to save, sync and export your diagrams.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Back"
   }
 }

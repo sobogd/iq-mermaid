@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Mermaid Editor Online – Kostenloser Diagramm-Editor",
-    "description": "Kostenloser Mermaid Live Editor: visuell zeichnen oder Code schreiben, beides synchron. Flowchart, Sequenz, Klasse, ER, State, Gantt. Ohne Anmeldung, Export SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — kostenlos, online, ohne Anmeldung",
+    "description": "Kostenloser Mermaid-Editor online: zeichnen oder Mermaid-Code schreiben — synchron. Anmeldung nur mit einer E-Mail. Export als SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — kostenlos, online, nur eine E-Mail",
     "ogDescription": "Diagramme auf einer Zeichenfläche erstellen oder Mermaid-Code schreiben. Beide Ansichten bleiben synchron. Export als SVG, PNG, .mmd oder Markdown.",
     "twitterTitle": "Kostenloser Mermaid Live Editor",
-    "twitterDescription": "Visuelle Zeichenfläche und Mermaid-Code, nebeneinander. Ohne Anmeldung, ohne Paywall."
+    "twitterDescription": "Visuelle Leinwand und Mermaid-Code nebeneinander. Kostenlos, ohne Bezahlung — anmelden nur mit einer E-Mail."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Funktionen",
     "blog": "Guides",
     "faq": "FAQ",
     "openEditor": "Editor öffnen",
-    "menu": "Menü"
+    "menu": "Menü",
+    "legal": "Rechtliches",
+    "languages": "Sprachen",
+    "documents": "Diagramm",
+    "export": "Export",
+    "editCode": "Code bearbeiten",
+    "openDocuments": "Zuletzt geöffnet",
+    "createNew": "Neu hinzufügen",
+    "exportCopyMermaid": "Mermaid kopieren",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Einstellungen",
+    "theme": "Design",
+    "themeSystem": "System",
+    "themeLight": "Hell",
+    "themeDark": "Dunkel",
+    "legalPrivacy": "Datenschutz",
+    "legalTerms": "Nutzungsbedingungen"
   },
   "hero": {
     "badgeFree": "Für immer kostenlos",
-    "badgeNoSignup": "Keine Anmeldung",
+    "badgeNoSignup": "Kostenlos — nur eine E-Mail",
     "badgeDiagrams": "8 Diagrammtypen",
     "title": "Mermaid Live Editor,",
     "titleAccent": "visuell und Code an einem Ort",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Gerendertes Diagramm"
   },
   "statCards": [
-    { "title": "Rendert beim Tippen", "sub": "Die echte Mermaid-Engine, neu gezeichnet wenige hundert Millisekunden nach dem letzten Tastendruck." },
-    { "title": "Code und Zeichenfläche synchron", "sub": "Beide Seiten bearbeitbar. Die andere zieht nach — kein Kopieren zwischen zwei Tools." },
-    { "title": "14 Knotenformen", "sub": "Rechteck, abgerundet, Pille, Kreis, Raute, Datenbank, Sechseck und mehr, jede mit einem Klick." },
-    { "title": "Kostenlos, kein Konto", "sub": "Keine Anmeldung, keine Testphase, kein Wasserzeichen beim Export. Dein Diagramm bleibt in deinem Browser." }
+    {
+      "title": "Rendert beim Tippen",
+      "sub": "Die echte Mermaid-Engine, neu gezeichnet wenige hundert Millisekunden nach dem letzten Tastendruck."
+    },
+    {
+      "title": "Code und Zeichenfläche synchron",
+      "sub": "Beide Seiten bearbeitbar. Die andere zieht nach — kein Kopieren zwischen zwei Tools."
+    },
+    {
+      "title": "14 Knotenformen",
+      "sub": "Rechteck, abgerundet, Pille, Kreis, Raute, Datenbank, Sechseck und mehr, jede mit einem Klick."
+    },
+    {
+      "title": "Kostenlos, nur E-Mail",
+      "sub": "Keine Testversion, kein Wasserzeichen beim Export – zum Speichern Ihrer Diagramme reicht eine E-Mail."
+    }
   ],
   "spotlights": [
     {
       "heading": "Eine Zeichenfläche, nicht nur ein Textfeld",
       "sub": "Der visuelle Tab ist ein echter Editor über dem gerenderten Diagramm: Klick auf einen Knoten wählt ihn aus, Doppelklick benennt ihn direkt um, Ziehen an beliebiger Stelle verschiebt die Ansicht.",
       "bullets": [
-        { "title": "Klicken zum Aufbauen", "sub": "Block hinzufügen, einen Pfeil auf einen anderen richten, den Pfeil beschriften. Keine Syntax, die man vorher lernen muss." },
-        { "title": "Form wählen", "sub": "Vierzehn Mermaid-Flowchart-Formen — Entscheidungsrauten, Datenbankzylinder, Subroutinen — aus einer Auswahl." },
-        { "title": "Alles einfärben", "sub": "Acht Voreinstellungen plus Farbwähler, anwendbar auf einen einzelnen Knoten oder einen ganzen Bereich." }
+        {
+          "title": "Klicken zum Aufbauen",
+          "sub": "Block hinzufügen, einen Pfeil auf einen anderen richten, den Pfeil beschriften. Keine Syntax, die man vorher lernen muss."
+        },
+        {
+          "title": "Form wählen",
+          "sub": "Vierzehn Mermaid-Flowchart-Formen — Entscheidungsrauten, Datenbankzylinder, Subroutinen — aus einer Auswahl."
+        },
+        {
+          "title": "Alles einfärben",
+          "sub": "Acht Voreinstellungen plus Farbwähler, anwendbar auf einen einzelnen Knoten oder einen ganzen Bereich."
+        }
       ]
     },
     {
       "heading": "Mermaid-Code, der dir gehört",
       "sub": "Der Text-Tab ist reines Mermaid — dieselbe Syntax, die GitHub, GitLab, Notion und Obsidian bereits rendern. Nichts davon ist ein proprietäres Format.",
       "bullets": [
-        { "title": "Von Hand schreiben", "sub": "Mermaid direkt eintippen und beim Rendern zusehen. Sechs fertige Beispiele als Startpunkt." },
-        { "title": "Bidirektional", "sub": "Eingefügte Flowcharts werden zurück auf die Zeichenfläche geparst — Knoten, Formen, Farben, Subgraphen, alles." },
-        { "title": "Jeder Diagrammtyp", "sub": "Flowchart, Sequenz, Klasse, State, ER, Gantt, Git-Graph, Pie — die Vorschau rendert alles, was Mermaid unterstützt." }
+        {
+          "title": "Von Hand schreiben",
+          "sub": "Mermaid direkt eintippen und beim Rendern zusehen. Sechs fertige Beispiele als Startpunkt."
+        },
+        {
+          "title": "Bidirektional",
+          "sub": "Eingefügte Flowcharts werden zurück auf die Zeichenfläche geparst — Knoten, Formen, Farben, Subgraphen, alles."
+        },
+        {
+          "title": "Jeder Diagrammtyp",
+          "sub": "Flowchart, Sequenz, Klasse, State, ER, Gantt, Git-Graph, Pie — die Vorschau rendert alles, was Mermaid unterstützt."
+        }
       ]
     },
     {
       "heading": "Große Diagramme bleiben lesbar",
       "sub": "Architekturdiagramme sprengen schnell einen Bildschirm. Pan, Zoom und Gruppierung sind genau dafür gebaut, statt dagegen anzukämpfen.",
       "bullets": [
-        { "title": "Bereiche und Verschachtelung", "sub": "Blöcke zu Subgraphen gruppieren, einen Bereich in einen anderen verschachteln, einen ganzen Teilbaum mit einer Geste verschieben." },
-        { "title": "Zoom von 2 % bis 1600 %", "sub": "Scrollen zum Verschieben, Strg-Scrollen zum Zoomen, oder mit einem Klick neu zentrieren." },
-        { "title": "Läuft automatisch mit", "sub": "Dein Diagramm wird bei jeder Änderung im lokalen Speicher des Browsers gespeichert — Tab schließen und später weitermachen." }
+        {
+          "title": "Bereiche und Verschachtelung",
+          "sub": "Blöcke zu Subgraphen gruppieren, einen Bereich in einen anderen verschachteln, einen ganzen Teilbaum mit einer Geste verschieben."
+        },
+        {
+          "title": "Zoom von 2 % bis 1600 %",
+          "sub": "Scrollen zum Verschieben, Strg-Scrollen zum Zoomen, oder mit einem Klick neu zentrieren."
+        },
+        {
+          "title": "Läuft automatisch mit",
+          "sub": "Dein Diagramm wird bei jeder Änderung im lokalen Speicher des Browsers gespeichert — Tab schließen und später weitermachen."
+        }
       ]
     },
     {
       "heading": "Exportieren und weitermachen",
       "sub": "Nichts ist eingesperrt. Nimm das Bild, nimm die Quelle, oder nimm einen Markdown-Block, fertig zum Einfügen in ein Dokument.",
       "bullets": [
-        { "title": "Keine Paywall", "sub": "Jede Funktion, auch der Export, ist kostenlos. Es gibt keine kostenpflichtige Stufe, auf die man upgraden müsste." },
-        { "title": "Nichts verlässt deinen Browser", "sub": "Es gibt kein Konto und keine serverseitige Diagrammspeicherung — das Rendern passiert lokal." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "SVG-Markup kopieren, ein 2x-PNG herunterladen, die Mermaid-Quelle speichern oder einen eingebetteten Markdown-Block holen." }
+        {
+          "title": "Keine Paywall",
+          "sub": "Jede Funktion, auch der Export, ist kostenlos. Es gibt keine kostenpflichtige Stufe, auf die man upgraden müsste."
+        },
+        {
+          "title": "Nichts verlässt deinen Browser",
+          "sub": "Das Rendern passiert im Browser; gespeicherte Diagramme liegen in Ihrem Konto und sind von jedem Gerät aus da."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "SVG-Markup kopieren, ein 2x-PNG herunterladen, die Mermaid-Quelle speichern oder einen eingebetteten Markdown-Block holen."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Preis",
-        "us": "Kostenlos, kein Konto, keine Exportlimits.",
+        "us": "Kostenlos — nur eine E-Mail",
         "them": "Kostenlose Stufe auf wenige Diagramme begrenzt, Export oder Zusammenarbeit hinter einem Abo."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Mermaid-Editor",
     "headingAccent": "Fragen",
-    "sub": "Was Leute fragen, bevor sie ihn öffnen. Keine Anmeldung nötig — der Editor ist einen Klick entfernt.",
+    "sub": "Zum Loslegen reicht nur eine E-Mail.",
     "items": [
       {
         "q": "Was ist Mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Ist dieser Mermaid-Editor wirklich kostenlos?",
-        "a": "Ja. Jede Funktion, einschließlich SVG- und PNG-Export, ist kostenlos, und es gibt kein Konto zu erstellen. Es gibt keine kostenpflichtige Stufe — nichts wird zurückgehalten."
+        "a": "Ja. Alle Funktionen, einschließlich SVG- und PNG-Export, sind kostenlos. Sie brauchen nur eine E-Mail zur Anmeldung — es gibt keinen Bezahltarif und nichts ist versteckt."
       },
       {
         "q": "Muss ich die Mermaid-Syntax kennen?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Wo wird mein Diagramm gespeichert?",
-        "a": "Im lokalen Speicher deines Browsers, auf deinem eigenen Gerät. Es gibt kein Konto und keine serverseitige Kopie — Browserdaten löschen oder das Gerät wechseln bedeutet also neu anfangen. Exportiere die Quelle, wenn du sie behalten willst."
+        "a": "Ihre Diagramme werden in Ihrem Konto gespeichert und sind da, wann immer Sie zurückkommen — auf jedem Gerät. Exportieren Sie den Quelltext, wenn Sie eine lokale Kopie möchten."
       },
       {
         "q": "Kann ich ein bestehendes Mermaid-Diagramm einfügen?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Funktioniert es offline?",
-        "a": "Das Rendern passiert vollständig in deinem Browser, sodass der Editor nach dem Laden der Seite auch ohne Verbindung weiterläuft. Dein Diagramm liegt im lokalen Speicher, nicht auf einem Server."
+        "a": "Das Rendern erfolgt vollständig im Browser, sodass der Editor nach dem Laden der Seite auch ohne Verbindung funktioniert."
       }
     ]
   },
   "finalCta": {
     "heading": "Editor öffnen.",
-    "headingAccent": "Keine Anmeldung nötig.",
+    "headingAccent": "Kostenlos — nur eine E-Mail",
     "sub": "Eine leere Zeichenfläche, ein Code-Tab und jede Exportoption — kostenlos, in deinem Browser, sofort.",
     "ctaLabel": "Editor öffnen"
   },

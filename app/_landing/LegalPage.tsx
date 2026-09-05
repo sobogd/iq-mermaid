@@ -1,28 +1,31 @@
-import { Header } from "./Header";
-import { Footer, productLinksFor } from "./Footer";
-import { Container, Band, PAGE } from "./shell";
+import { DesktopShell } from "./desktop/DesktopShell";
+import { Band } from "./shell";
 import { PageTracker } from "./PageTracker";
 import type { LegalSection } from "./legal-content";
 import { CHROME } from "@/content";
+import { defaultLocale, type Locale } from "@/lib/locales";
+import type { SiteTexts } from "./types";
 
-// Single legal document (Privacy / Terms) in the standard chrome. Same big
-// card as the FAQ block and as iq-rest's LegalDocument: tinted sticky 40%
-// column on the left (title + revision date), plain 60% column on the right.
-//
-// English-only on purpose — the body is the binding version, and translating
-// legal text needs lawyer review — hence the explicit lang/dir on the card,
-// since the surrounding <html> is English here anyway but the footer's
-// language switcher can take a visitor to a localized page next.
+// A legal document (Privacy / Terms) as plain, semantic type — one column of
+// <h1> / <section> / <h2> / <p> with no card, no border, no dividers. The page
+// chrome is localized; the document itself is the English binding text, so the
+// whole block keeps lang="en" / dir="ltr" whatever locale the page runs under.
 export function LegalPage({
   title,
   sections,
-  pathname,
+  texts,
+  locale = defaultLocale,
+  homeHref,
 }: {
   title: string;
   sections: LegalSection[];
-  pathname: string;
+  /** Locale chrome texts for the surrounding UI. Defaults to English. */
+  texts?: SiteTexts;
+  locale?: Locale;
+  homeHref?: string;
 }) {
-  const chrome = CHROME.en;
+  const chrome = texts ?? CHROME.en;
+  const resolvedHome = homeHref ?? (locale === "en" ? "/" : `/${locale}`);
   const lastUpdated = sections
     .flatMap((s) => s.paragraphs)
     .find((p) => p.startsWith("Last updated:"));
@@ -31,48 +34,36 @@ export function LegalPage({
     .filter((s) => s.heading || s.paragraphs.length > 0);
 
   return (
-    <main className={PAGE}>
-      <Header homeHref="/" locale="en" texts={chrome.header} />
-      <Container>
-        <Band section="legal">
-          <article
-            lang="en"
-            dir="ltr"
-            className="grid grid-cols-1 rounded-2xl border border-border lg:grid-cols-[2fr_3fr]"
-          >
-            <div className="rounded-t-2xl bg-[hsl(28_48%_93%)] dark:bg-[hsl(28_15%_13%)] lg:rounded-t-none lg:rounded-l-2xl">
-              <div className="flex flex-col items-start gap-3 p-5 text-start sm:p-6 lg:sticky lg:top-16">
-                <h1 className="text-3xl font-medium leading-[1.15] tracking-tight sm:text-4xl">{title}</h1>
-                {lastUpdated && <p className="text-sm text-hint/80">{lastUpdated}</p>}
-              </div>
-            </div>
+    <main className="pointer-events-none relative">
+      <DesktopShell
+        locale={locale}
+        homeHref={resolvedHome}
+        headerTexts={chrome.header}
+      >
+        <Band section="legal" className="px-6 pb-16 pt-8 sm:px-8 sm:pb-24 sm:pt-10">
+          <div lang="en" dir="ltr" className="flex flex-col gap-y-10">
+            <header className="flex flex-col items-start gap-3">
+              <h1 className="text-balance text-3xl font-semibold leading-[1.15] tracking-tight sm:text-4xl">
+                {title}
+              </h1>
+              {lastUpdated && <p className="text-sm text-hint">{lastUpdated}</p>}
+            </header>
 
-            <div className="flex flex-col gap-8 p-5 sm:p-6">
-              {body.map((section, i) => (
-                <section key={section.heading ?? `intro-${i}`} className="flex flex-col gap-2">
-                  {section.heading && (
-                    <h2 className="text-base font-medium tracking-tight sm:text-lg">{section.heading}</h2>
-                  )}
-                  {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph} className="text-sm leading-relaxed text-hint">
-                      {paragraph}
-                    </p>
-                  ))}
-                </section>
-              ))}
-            </div>
-          </article>
+            {body.map((section, i) => (
+              <section key={section.heading ?? `intro-${i}`} className="flex flex-col gap-3">
+                {section.heading && (
+                  <h2 className="text-xl font-semibold leading-snug tracking-tight">{section.heading}</h2>
+                )}
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className="text-[15px] leading-relaxed text-text/80">
+                    {paragraph}
+                  </p>
+                ))}
+              </section>
+            ))}
+          </div>
         </Band>
-      </Container>
-      <Footer
-        locale="en"
-        pathname={pathname}
-        texts={chrome.footer}
-        productLinks={productLinksFor("en", {
-          editor: chrome.header.openEditor,
-          blog: chrome.header.blog,
-        })}
-      />
+      </DesktopShell>
       <PageTracker page="Legal" />
     </main>
   );

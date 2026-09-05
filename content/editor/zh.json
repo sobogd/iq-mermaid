@@ -28,6 +28,18 @@
     "out": "缩小",
     "fit": "适应窗口"
   },
+  "dock": {
+    "addBlock": "添加模块",
+    "addGroup": "添加区域",
+    "copy": "复制",
+    "paste": "粘贴",
+    "undo": "撤销",
+    "redo": "重做",
+    "zoomIn": "放大",
+    "zoomOut": "缩小",
+    "fit": "适应",
+    "editCode": "编辑代码"
+  },
   "modals": {
     "colorTitle": "颜色",
     "shapeTitle": "形状",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "完全免费 — 没有付费套餐，也不需要信用卡。只需一个邮箱即可保存、同步和导出图表。",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "返回"
   }
 }

@@ -1,74 +1,140 @@
 {
   "meta": {
     "title": "Mermaid Élő Szerkesztő — Ingyenes Online Diagram Készítő",
-    "description": "Ingyenes mermaid szerkesztő: rajzolj vizuálisan vagy írj kódot, szinkronban maradnak. Folyamatábra, szekvencia, ER, gantt. Regisztráció nélkül, SVG/PNG exporttal.",
-    "ogTitle": "Mermaid Élő Szerkesztő — ingyenes, online, regisztráció nélkül",
+    "description": "Ingyenes mermaid szerkesztő online: rajzoljon vagy írjon mermaid kódot — szinkronban. Belépés csak e-maillel. Export SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — ingyenes, online, csak e-mail",
     "ogDescription": "Rajzolj diagramot egy vásznon, vagy írj mermaid kódot. Mindkét nézet szinkronban marad. Exportálás SVG, PNG, .mmd vagy Markdown formátumba.",
     "twitterTitle": "Ingyenes mermaid élő szerkesztő",
-    "twitterDescription": "Vizuális vászon és mermaid kód egymás mellett. Regisztráció és fizetőfal nélkül."
+    "twitterDescription": "Vizuális vászon és mermaid kód egymás mellett. Ingyenes, fizetős csomag nélkül — belépés csak e-maillel."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Funkciók",
     "blog": "Útmutatók",
     "faq": "GYIK",
     "openEditor": "Szerkesztő megnyitása",
-    "menu": "Menü"
+    "menu": "Menü",
+    "legal": "Jogi nyilatkozatok",
+    "languages": "Nyelvek",
+    "documents": "Ábra",
+    "export": "Exportálás",
+    "editCode": "Kód szerkesztése",
+    "openDocuments": "Nemrég megnyitott",
+    "createNew": "Új hozzáadása",
+    "exportCopyMermaid": "Mermaid másolása",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Beállítások",
+    "theme": "Téma",
+    "themeSystem": "Rendszer",
+    "themeLight": "Világos",
+    "themeDark": "Sötét",
+    "legalPrivacy": "Adatvédelem",
+    "legalTerms": "Felhasználási feltételek"
   },
   "hero": {
     "badgeFree": "Örökre ingyenes",
-    "badgeNoSignup": "Regisztráció nélkül",
+    "badgeNoSignup": "Ingyenes — csak e-mail",
     "badgeDiagrams": "8 diagramtípus",
     "title": "Mermaid élő szerkesztő,",
     "titleAccent": "vizuális és kód egy helyen",
-    "description": "A legtöbb mermaid szerkesztő csak egy szövegdobozt és egy előnézetet ad. Ez emellett egy vásznat is: kattints egy blokk hozzáadásához, húzz egy nyilat, csoportosíts elemeket területekbe — a mermaid kód pedig magától megíródik. Válts a kód fülre, és szerkeszd kézzel; a vászon követi."
-    ,
+    "description": "A legtöbb mermaid szerkesztő csak egy szövegdobozt és egy előnézetet ad. Ez emellett egy vásznat is: kattints egy blokk hozzáadásához, húzz egy nyilat, csoportosíts elemeket területekbe — a mermaid kód pedig magától megíródik. Válts a kód fülre, és szerkeszd kézzel; a vászon követi.",
     "ctaOpen": "Szerkesztő megnyitása",
     "ctaLearn": "Nézd meg, mit tud",
     "mockCodeLabel": "Mermaid kód",
     "mockDiagramLabel": "Renderelt diagram"
   },
   "statCards": [
-    { "title": "Gépelés közben renderel", "sub": "A valódi mermaid motor, néhány száz milliszekundummal az utolsó billentyűleütés után újrarajzolva." },
-    { "title": "Kód és vászon szinkronban", "sub": "Szerkeszd bármelyik oldalt. A másik felzárkózik — nincs másolás-beillesztés két eszköz között." },
-    { "title": "14 csomópont-alak", "sub": "Téglalap, lekerekített, pirula, kör, rombusz, adatbázis, hatszög és a többi, egy kattintással." },
-    { "title": "Ingyenes, fiók nélkül", "sub": "Nincs regisztráció, nincs próbaidőszak, nincs vízjel az exportokon. A diagramod a böngésződben marad." }
+    {
+      "title": "Gépelés közben renderel",
+      "sub": "A valódi mermaid motor, néhány száz milliszekundummal az utolsó billentyűleütés után újrarajzolva."
+    },
+    {
+      "title": "Kód és vászon szinkronban",
+      "sub": "Szerkeszd bármelyik oldalt. A másik felzárkózik — nincs másolás-beillesztés két eszköz között."
+    },
+    {
+      "title": "14 csomópont-alak",
+      "sub": "Téglalap, lekerekített, pirula, kör, rombusz, adatbázis, hatszög és a többi, egy kattintással."
+    },
+    {
+      "title": "Ingyenes, csak e-mail",
+      "sub": "Próbaidő és exportvízjel nélkül — az ábrák mentéséhez elég egy e-mail."
+    }
   ],
   "spotlights": [
     {
       "heading": "Vászon, nem csak szövegdoboz",
       "sub": "A vizuális fül egy valódi szerkesztő a renderelt diagram tetején: kattints egy csomópontra a kijelöléshez, dupla kattintás az átnevezéshez helyben, húzd bárhová a pásztázáshoz.",
       "bullets": [
-        { "title": "Kattints és építs", "sub": "Adj hozzá egy blokkot, mutass egy nyíllal egy másikra, címkézd fel a nyilat. Nincs szintaxis, amit meg kell jegyezni indulás előtt." },
-        { "title": "Válassz alakot", "sub": "Tizennégy mermaid folyamatábra-alak — döntési rombuszok, adatbázis-hengerek, alfolyamatok — egyetlen választóból." },
-        { "title": "Színezz bármit", "sub": "Nyolc előre beállított szín plusz egy színválasztó, alkalmazható egyetlen csomópontra vagy egy egész területre." }
+        {
+          "title": "Kattints és építs",
+          "sub": "Adj hozzá egy blokkot, mutass egy nyíllal egy másikra, címkézd fel a nyilat. Nincs szintaxis, amit meg kell jegyezni indulás előtt."
+        },
+        {
+          "title": "Válassz alakot",
+          "sub": "Tizennégy mermaid folyamatábra-alak — döntési rombuszok, adatbázis-hengerek, alfolyamatok — egyetlen választóból."
+        },
+        {
+          "title": "Színezz bármit",
+          "sub": "Nyolc előre beállított szín plusz egy színválasztó, alkalmazható egyetlen csomópontra vagy egy egész területre."
+        }
       ]
     },
     {
       "heading": "Mermaid kód, ami a tiéd marad",
       "sub": "A szöveg fül egyszerű mermaid — ugyanaz a szintaxis, amit a GitHub, a GitLab, a Notion és az Obsidian már most is renderel. Semmi itt nincs zárt formátumban.",
       "bullets": [
-        { "title": "Írd kézzel", "sub": "Gépelj mermaid kódot közvetlenül, és nézd, ahogy renderelődik. Hat kész példa, amiből indulhatsz." },
-        { "title": "Oda-vissza konvertál", "sub": "A beillesztett folyamatábrák visszakerülnek a vászonra elemezve — csomópontok, alakok, színek, alcsoportok, minden." },
-        { "title": "Minden diagramtípus", "sub": "Folyamatábra, szekvencia, osztály, állapot, ER, gantt, git gráf, kördiagram — az előnézet mindent renderel, amit a mermaid támogat." }
+        {
+          "title": "Írd kézzel",
+          "sub": "Gépelj mermaid kódot közvetlenül, és nézd, ahogy renderelődik. Hat kész példa, amiből indulhatsz."
+        },
+        {
+          "title": "Oda-vissza konvertál",
+          "sub": "A beillesztett folyamatábrák visszakerülnek a vászonra elemezve — csomópontok, alakok, színek, alcsoportok, minden."
+        },
+        {
+          "title": "Minden diagramtípus",
+          "sub": "Folyamatábra, szekvencia, osztály, állapot, ER, gantt, git gráf, kördiagram — az előnézet mindent renderel, amit a mermaid támogat."
+        }
       ]
     },
     {
       "heading": "A nagy diagramok is olvashatók maradnak",
       "sub": "Az architektúra-diagramok gyorsan kinőnek egy képernyőt. A pásztázás, nagyítás és csoportosítás pontosan erre készült, ahelyett hogy küzdenél vele.",
       "bullets": [
-        { "title": "Területek és beágyazás", "sub": "Csoportosíts blokkokat alcsoportokba, ágyazz be egy területet egy másikba, mozgass egy teljes részfát egyetlen mozdulattal." },
-        { "title": "Nagyítás 2%-tól 1600%-ig", "sub": "Görgess a pásztázáshoz, ctrl+görgetés a nagyításhoz, vagy központosíts újra egy gombbal." },
-        { "title": "Menet közben mentve", "sub": "A diagramod minden szerkesztésnél a böngésző helyi tárolójába íródik — zárd be a lapot, és folytasd, ahol abbahagytad." }
+        {
+          "title": "Területek és beágyazás",
+          "sub": "Csoportosíts blokkokat alcsoportokba, ágyazz be egy területet egy másikba, mozgass egy teljes részfát egyetlen mozdulattal."
+        },
+        {
+          "title": "Nagyítás 2%-tól 1600%-ig",
+          "sub": "Görgess a pásztázáshoz, ctrl+görgetés a nagyításhoz, vagy központosíts újra egy gombbal."
+        },
+        {
+          "title": "Menet közben mentve",
+          "sub": "A diagramod minden szerkesztésnél a böngésző helyi tárolójába íródik — zárd be a lapot, és folytasd, ahol abbahagytad."
+        }
       ]
     },
     {
       "heading": "Exportálj, és menj tovább",
       "sub": "Semmi nincs bezárva. Vidd a képet, vidd a forrást, vagy vidd egy Markdown blokkot, ami készen áll egy dokumentumba illesztésre.",
       "bullets": [
-        { "title": "Nincs fizetőfal", "sub": "Minden funkció, beleértve az exportálást is, ingyenes. Nincs fizetős csomag, amire válthatnál." },
-        { "title": "Semmi nem hagyja el a böngésződet", "sub": "Nincs fiók és nincs szerveroldali diagramtárolás — a renderelés helyben történik." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Másold ki az SVG kódot, tölts le egy 2x-es PNG-t, mentsd el a mermaid forrást, vagy szerezz egy körbekerített Markdown blokkot." }
+        {
+          "title": "Nincs fizetőfal",
+          "sub": "Minden funkció, beleértve az exportálást is, ingyenes. Nincs fizetős csomag, amire válthatnál."
+        },
+        {
+          "title": "Semmi nem hagyja el a böngésződet",
+          "sub": "A renderelés a böngésződben történik; a mentett ábrák a fiókodban élnek, bármely eszközről elérhetők."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Másold ki az SVG kódot, tölts le egy 2x-es PNG-t, mentsd el a mermaid forrást, vagy szerezz egy körbekerített Markdown blokkot."
+        }
       ]
     }
   ],
@@ -96,7 +162,7 @@
       },
       {
         "title": "Ár",
-        "us": "Ingyenes, fiók nélkül, exportlimit nélkül.",
+        "us": "Ingyenes — csak e-mail",
         "them": "Ingyenes csomag néhány diagramra korlátozva, az exportálás vagy az együttműködés előfizetés mögött."
       },
       {
@@ -109,7 +175,7 @@
   "faq": {
     "heading": "Mermaid szerkesztő",
     "headingAccent": "kérdések",
-    "sub": "Amit az emberek megkérdeznek, mielőtt megnyitnák. Nincs szükség regisztrációra — a szerkesztő egy kattintásra van.",
+    "sub": "Az induláshoz elég egy e-mail.",
     "items": [
       {
         "q": "Mi az a mermaid?",
@@ -117,7 +183,7 @@
       },
       {
         "q": "Tényleg ingyenes ez a mermaid szerkesztő?",
-        "a": "Igen. Minden funkció, beleértve az SVG és PNG exportot is, ingyenes, és nincs fiók, amit létre kellene hozni. Nincs fizetős csomag — semmi nincs visszatartva."
+        "a": "Igen. Minden funkció, beleértve az SVG és PNG exportot is, ingyenes. Elég egy e-mail a belépéshez — nincs fizetős csomag és semmi rejtett."
       },
       {
         "q": "Ismernem kell a mermaid szintaxist?",
@@ -133,7 +199,7 @@
       },
       {
         "q": "Hol tárolódik a diagramom?",
-        "a": "A böngésződ helyi tárolójában, a saját eszközödön. Nincs fiók és nincs szerveroldali másolat, így a böngészőadatok törlése vagy az eszközváltás azt jelenti, hogy elölről kezdesz — exportáld a forrást, ha meg akarod tartani."
+        "a": "Az ábráid a fiókodba mentődnek, így ott vannak, amikor visszatérsz — bármely eszközről. Exportáld a forrást, ha helyi másolatot szeretnél."
       },
       {
         "q": "Beilleszthetek egy meglévő mermaid diagramot?",
@@ -141,13 +207,13 @@
       },
       {
         "q": "Működik offline?",
-        "a": "A renderelés teljesen a böngésződben történik, így az oldal betöltése után a szerkesztő kapcsolat nélkül is tovább működik. A diagramod a helyi tárolóban van, nem egy szerveren."
+        "a": "A renderelés teljesen a böngészőben történik, így betöltés után a szerkesztő kapcsolat nélkül is működik."
       }
     ]
   },
   "finalCta": {
     "heading": "Nyisd meg a szerkesztőt.",
-    "headingAccent": "Nincs mire regisztrálni.",
+    "headingAccent": "Ingyenes — csak e-mail",
     "sub": "Egy üres vászon, egy kód fül és minden exportlehetőség — ingyen, a böngésződben, most azonnal.",
     "ctaLabel": "Szerkesztő megnyitása"
   },

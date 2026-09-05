@@ -28,6 +28,18 @@
     "out": "Zoom ud",
     "fit": "Tilpas"
   },
+  "dock": {
+    "addBlock": "Tilføj blok",
+    "addGroup": "Tilføj område",
+    "copy": "Kopier",
+    "paste": "Indsæt",
+    "undo": "Fortryd",
+    "redo": "Gentag",
+    "zoomIn": "Zoom ind",
+    "zoomOut": "Zoom ud",
+    "fit": "Tilpas",
+    "editCode": "Rediger kode"
+  },
   "modals": {
     "colorTitle": "Farve",
     "shapeTitle": "Form",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Helt gratis — uden betalte planer eller kort. Kun en e-mail til at gemme, synkronisere og eksportere diagrammer.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Tilbage"
   }
 }

@@ -28,6 +28,18 @@
     "out": "Умањи",
     "fit": "Уклопи"
   },
+  "dock": {
+    "addBlock": "Додај блок",
+    "addGroup": "Додај област",
+    "copy": "Копирај",
+    "paste": "Налепи",
+    "undo": "Опозови",
+    "redo": "Понови",
+    "zoomIn": "Увеличај",
+    "zoomOut": "Умањи",
+    "fit": "Прилагоди",
+    "editCode": "Уреди код"
+  },
   "modals": {
     "colorTitle": "Боја",
     "shapeTitle": "Облик",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Потпуно бесплатно — без плаћених планова и картица. Само имејл за чување, синхронизацију и извоз дијаграма.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Назад"
   }
 }

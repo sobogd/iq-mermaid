@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Editor Mermaid Online Gratuit — Creare Diagrame",
-    "description": "Editor mermaid live gratuit: desenezi vizual sau scrii cod, sincronizate în timp real. Flowchart, secvență, clase, ER, stare, gantt. Fără cont, export SVG/PNG.",
-    "ogTitle": "Editor Mermaid Live — gratuit, online, fără cont",
+    "description": "Editor mermaid online gratuit: desenați sau scrieți cod mermaid — sincronizat. Autentificare doar cu un e-mail. Export SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — gratuit, online, doar un e-mail",
     "ogDescription": "Desenezi diagrame pe o pânză sau scrii cod mermaid. Ambele vederi rămân sincronizate. Export în SVG, PNG, .mmd sau Markdown.",
     "twitterTitle": "Editor mermaid live gratuit",
-    "twitterDescription": "Pânză vizuală și cod mermaid, unul lângă altul. Fără cont, fără plată."
+    "twitterDescription": "Canvas vizual și cod mermaid unul lângă altul. Gratuit, fără plan cu plată — autentificare doar cu e-mail."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Funcții",
     "blog": "Ghiduri",
     "faq": "Întrebări",
     "openEditor": "Deschide editorul",
-    "menu": "Meniu"
+    "menu": "Meniu",
+    "legal": "Legal",
+    "languages": "Limbi",
+    "documents": "Schemă",
+    "export": "Export",
+    "editCode": "Editare cod",
+    "openDocuments": "Deschise recent",
+    "createNew": "Adaugă nou",
+    "exportCopyMermaid": "Copiază Mermaid",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Setări",
+    "theme": "Temă",
+    "themeSystem": "Sistem",
+    "themeLight": "Luminos",
+    "themeDark": "Întunecat",
+    "legalPrivacy": "Confidențialitate",
+    "legalTerms": "Termeni"
   },
   "hero": {
     "badgeFree": "Gratuit pentru totdeauna",
-    "badgeNoSignup": "Fără cont",
+    "badgeNoSignup": "Gratuit — doar un e-mail",
     "badgeDiagrams": "8 tipuri de diagrame",
     "title": "Editor mermaid online,",
     "titleAccent": "vizual și cod în același loc",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Diagramă randată"
   },
   "statCards": [
-    { "title": "Se randează pe măsură ce scrii", "sub": "Motorul mermaid real, redesenat la câteva sute de milisecunde după ultima apăsare de tastă." },
-    { "title": "Cod și pânză sincronizate", "sub": "Editezi oricare parte. Cealaltă se actualizează — fără copy-paste între două unelte." },
-    { "title": "14 forme de noduri", "sub": "Dreptunghi, rotunjit, pilulă, cerc, romb, bază de date, hexagon și restul, la un click distanță." },
-    { "title": "Gratuit, fără cont", "sub": "Fără înregistrare, fără perioadă de probă, fără filigran la export. Diagrama ta rămâne în browser." }
+    {
+      "title": "Se randează pe măsură ce scrii",
+      "sub": "Motorul mermaid real, redesenat la câteva sute de milisecunde după ultima apăsare de tastă."
+    },
+    {
+      "title": "Cod și pânză sincronizate",
+      "sub": "Editezi oricare parte. Cealaltă se actualizează — fără copy-paste între două unelte."
+    },
+    {
+      "title": "14 forme de noduri",
+      "sub": "Dreptunghi, rotunjit, pilulă, cerc, romb, bază de date, hexagon și restul, la un click distanță."
+    },
+    {
+      "title": "Gratuit, doar e-mail",
+      "sub": "Fără perioadă de probă sau filigran la export — un simplu e-mail este suficient pentru a salva schemele."
+    }
   ],
   "spotlights": [
     {
       "heading": "O pânză, nu doar o casetă de text",
       "sub": "Fila vizuală este un editor real peste diagrama randată: dai click pe un nod pentru a-l selecta, dublu-click pentru a-l redenumi pe loc, tragi oriunde pentru a naviga.",
       "bullets": [
-        { "title": "Construiești cu click-uri", "sub": "Adaugi un bloc, îndrepți o săgeată spre altul, o etichetezi. Fără sintaxă de memorat înainte să începi." },
-        { "title": "Alegi o formă", "sub": "Paisprezece forme de flowchart mermaid — romburi de decizie, cilindri de bază de date, subrutine — dintr-un singur selector." },
-        { "title": "Colorezi orice", "sub": "Opt presetări plus un selector de culoare, aplicabile unui singur nod sau unei zone întregi." }
+        {
+          "title": "Construiești cu click-uri",
+          "sub": "Adaugi un bloc, îndrepți o săgeată spre altul, o etichetezi. Fără sintaxă de memorat înainte să începi."
+        },
+        {
+          "title": "Alegi o formă",
+          "sub": "Paisprezece forme de flowchart mermaid — romburi de decizie, cilindri de bază de date, subrutine — dintr-un singur selector."
+        },
+        {
+          "title": "Colorezi orice",
+          "sub": "Opt presetări plus un selector de culoare, aplicabile unui singur nod sau unei zone întregi."
+        }
       ]
     },
     {
       "heading": "Cod mermaid care rămâne al tău",
       "sub": "Fila de text este mermaid simplu — aceeași sintaxă pe care GitHub, GitLab, Notion și Obsidian o randează deja. Nimic aici nu e un format proprietar.",
       "bullets": [
-        { "title": "Îl scrii manual", "sub": "Tastezi mermaid direct și urmărești cum se randează. Șase exemple gata făcute de la care poți porni." },
-        { "title": "Se convertesc înapoi", "sub": "Flowchart-urile lipite sunt reinterpretate pe pânză — noduri, forme, culori, subgrafuri, totul." },
-        { "title": "Orice tip de diagramă", "sub": "Flowchart, secvență, clase, stare, ER, gantt, git graph, plăcintă — previzualizarea randează orice suportă mermaid." }
+        {
+          "title": "Îl scrii manual",
+          "sub": "Tastezi mermaid direct și urmărești cum se randează. Șase exemple gata făcute de la care poți porni."
+        },
+        {
+          "title": "Se convertesc înapoi",
+          "sub": "Flowchart-urile lipite sunt reinterpretate pe pânză — noduri, forme, culori, subgrafuri, totul."
+        },
+        {
+          "title": "Orice tip de diagramă",
+          "sub": "Flowchart, secvență, clase, stare, ER, gantt, git graph, plăcintă — previzualizarea randează orice suportă mermaid."
+        }
       ]
     },
     {
       "heading": "Diagramele mari rămân lizibile",
       "sub": "Diagramele de arhitectură depășesc rapid un ecran. Navigarea, zoom-ul și gruparea sunt construite pentru asta, nu ca să lupți cu ea.",
       "bullets": [
-        { "title": "Zone și imbricare", "sub": "Grupezi blocuri în subgrafuri, imbrichezi o zonă în alta, muți un subarbore întreg dintr-un singur gest." },
-        { "title": "Zoom de la 2% la 1600%", "sub": "Derulezi pentru a naviga, ctrl-derulezi pentru zoom, sau recentrezi cu un buton." },
-        { "title": "Salvat pe măsură ce lucrezi", "sub": "Diagrama ta e scrisă în stocarea locală a browserului la fiecare editare — închizi fila și revii la ea." }
+        {
+          "title": "Zone și imbricare",
+          "sub": "Grupezi blocuri în subgrafuri, imbrichezi o zonă în alta, muți un subarbore întreg dintr-un singur gest."
+        },
+        {
+          "title": "Zoom de la 2% la 1600%",
+          "sub": "Derulezi pentru a naviga, ctrl-derulezi pentru zoom, sau recentrezi cu un buton."
+        },
+        {
+          "title": "Salvat pe măsură ce lucrezi",
+          "sub": "Diagrama ta e scrisă în stocarea locală a browserului la fiecare editare — închizi fila și revii la ea."
+        }
       ]
     },
     {
       "heading": "Exporți și mergi mai departe",
       "sub": "Nimic nu te leagă. Iei imaginea, iei sursa, sau iei un bloc Markdown gata de lipit într-un document.",
       "bullets": [
-        { "title": "Fără plată", "sub": "Fiecare funcție, inclusiv exportul, e gratuită. Nu există un nivel plătit la care să treci." },
-        { "title": "Nimic nu iese din browser", "sub": "Nu există cont și nici stocare de diagrame pe server — randarea se face local." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Copiezi codul SVG, descarci un PNG 2x, salvezi sursa mermaid sau iei un bloc Markdown." }
+        {
+          "title": "Fără plată",
+          "sub": "Fiecare funcție, inclusiv exportul, e gratuită. Nu există un nivel plătit la care să treci."
+        },
+        {
+          "title": "Nimic nu iese din browser",
+          "sub": "Randarea are loc în browser; diagramele salvate trăiesc în contul tău și sunt acolo de pe orice dispozitiv."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Copiezi codul SVG, descarci un PNG 2x, salvezi sursa mermaid sau iei un bloc Markdown."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Preț",
-        "us": "Gratuit, fără cont, fără limite de export.",
+        "us": "Gratuit — doar un e-mail",
         "them": "Nivel gratuit limitat la câteva diagrame, cu export sau colaborare în spatele unui abonament."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Întrebări despre editorul",
     "headingAccent": "mermaid",
-    "sub": "Ce întreabă oamenii înainte să îl deschidă. Fără cont necesar — editorul e la un click distanță.",
+    "sub": "Pentru a începe este suficient un e-mail.",
     "items": [
       {
         "q": "Ce este mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Este acest editor mermaid online chiar gratuit?",
-        "a": "Da. Fiecare funcție, inclusiv exportul SVG și PNG, este gratuită, iar crearea unui cont nu este necesară. Nu există nivel plătit — nimic nu e reținut."
+        "a": "Da. Toate funcțiile, inclusiv exportul SVG și PNG, sunt gratuite. Îți trebuie doar un e-mail pentru autentificare — nu există plan cu plată sau restricții ascunse."
       },
       {
         "q": "Trebuie să cunosc sintaxa mermaid?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Unde este stocată diagrama mea?",
-        "a": "În stocarea locală a browserului tău, pe propriul dispozitiv. Nu există cont și nicio copie pe server, deci ștergerea datelor browserului sau schimbarea dispozitivului înseamnă un nou început — exportă sursa dacă vrei să o păstrezi."
+        "a": "Diagramele tale sunt salvate în cont, așa că sunt acolo când te întorci — de pe orice dispozitiv. Exportă sursa dacă vrei o copie locală."
       },
       {
         "q": "Pot lipi o diagramă mermaid existentă?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Funcționează offline?",
-        "a": "Randarea se face în întregime în browserul tău, așa că, odată ce pagina s-a încărcat, editorul continuă să funcționeze fără conexiune. Diagrama ta este în stocarea locală, nu pe un server."
+        "a": "Randarea are loc în întregime în browser, așa că după încărcarea paginii editorul funcționează și fără conexiune."
       }
     ]
   },
   "finalCta": {
     "heading": "Deschide editorul.",
-    "headingAccent": "Nimic la care să te înregistrezi.",
+    "headingAccent": "Gratuit — doar un e-mail",
     "sub": "O pânză goală, o filă de cod și toate opțiunile de export — gratuit, în browser, chiar acum.",
     "ctaLabel": "Deschide editorul"
   },

@@ -3,12 +3,11 @@
 import { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import type { EditorTexts } from "./texts";
-import AuthGate from "./AuthGate.jsx";
 
 // mermaid is ~500 kB and touches `document` at import time, so the whole
-// editor is client-only and loaded on demand. The gate below adds a second
-// reason to keep it lazy: a signed-out visitor never pulls the mermaid chunk —
-// they only ever see AuthGate. Everything outside /app never pulls it at all.
+// editor is client-only and loaded on demand. Because the editor is now a
+// shared *background* layer on every marketing page (under the closable
+// window), it is mounted lazily after hydration — SSR never pays for it.
 const EditorShell = dynamic(() => import("./EditorShell.jsx"), {
   ssr: false,
   loading: () => <div className="editor-loading" />,
@@ -16,15 +15,10 @@ const EditorShell = dynamic(() => import("./EditorShell.jsx"), {
 
 type AuthState = { status: "loading" } | { status: "anon" } | { status: "authed"; email: string };
 
-export function EditorClient({
-  t,
-  homeHref,
-  brand,
-}: {
-  t: EditorTexts;
-  homeHref: string;
-  brand: string;
-}) {
+// The editor is open to everyone now: the canvas renders for anonymous
+// visitors too. Sign-in gates only the actions that persist or export —
+// new/open/save/copy/download — which the shell triggers via `requireAuth`.
+export function EditorClient({ t }: { t: EditorTexts }) {
   const [auth, setAuth] = useState<AuthState>({ status: "loading" });
 
   useEffect(() => {
@@ -45,17 +39,11 @@ export function EditorClient({
 
   const handleAuthed = useCallback((email: string) => setAuth({ status: "authed", email }), []);
 
-  const handleSignOut = useCallback(async () => {
-    try {
-      await fetch("/api/auth/logout", { method: "POST" });
-    } catch {
-      // Even if the network drops, drop the local gate — the cookie is the
-      // source of truth and the next check will bounce anyway.
-    }
-    setAuth({ status: "anon" });
-  }, []);
-
+  // The shell needs the resolved state (authed vs not) and both transitions.
+  // While the initial check is in flight we hold the loading screen; the
+  // editor itself never swaps to a full-page gate.
   if (auth.status === "loading") return <div className="editor-loading" />;
-  if (auth.status === "anon") return <AuthGate t={t} homeHref={homeHref} brand={brand} onAuthed={handleAuthed} />;
-  return <EditorShell t={t} homeHref={homeHref} email={auth.email} onSignOut={handleSignOut} />;
+  return (
+    <EditorShell t={t} authed={auth.status === "authed"} onAuthed={handleAuthed} />
+  );
 }

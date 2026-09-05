@@ -11,10 +11,14 @@
    colours, and its dark theme is selected in JS (see mermaid-client.js). */
 
 .iqm-root {
-  height: 100dvh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: var(--noise-bg);
+  background-size: 340px 340px;
+  
+  background-repeat: repeat;
   color: var(--text);
 }
 
@@ -87,9 +91,9 @@
   background: hsl(0 60% 50% / 0.12);
 }
 .iqm-root button.primary {
-  background: linear-gradient(135deg, hsl(9, 100%, 58%), hsl(35, 95%, 55%));
+  background: var(--button);
   border-color: transparent;
-  color: #fff;
+  color: var(--button-text);
   font-weight: 600;
 }
 .iqm-root button:disabled {
@@ -213,23 +217,6 @@
   overflow-y: auto;
   margin: 0 -6px;
   padding: 0 6px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
-}
-.iqm-root .modal-list-scroll::-webkit-scrollbar {
-  width: 10px;
-}
-.iqm-root .modal-list-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-.iqm-root .modal-list-scroll::-webkit-scrollbar-thumb {
-  background-color: var(--border);
-  border-radius: 999px;
-  border: 3px solid transparent;
-  background-clip: padding-box;
-}
-.iqm-root .modal-list-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: var(--hint);
 }
 .iqm-root .modal-empty {
   font-size: 13px;
@@ -286,38 +273,175 @@
      the thumb the full height of the track — the same "there but nothing to
      drag" look a disabled control has, with no extra state to track for it. */
   overflow-y: scroll;
-  /* Firefox draws its own thin bar from these two properties; Chrome/Safari
-     ignore them and use the ::-webkit-scrollbar rules below instead. Setting
-     both is what keeps the bar's width and colours identical on Windows and
-     macOS — native scrollbars on the two platforms do not match, a drawn one
-     does. */
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
-}
-.iqm-root .code-input::-webkit-scrollbar {
-  width: 12px;
-}
-.iqm-root .code-input::-webkit-scrollbar-track {
-  background: transparent;
-}
-.iqm-root .code-input::-webkit-scrollbar-thumb {
-  background-color: var(--border);
-  border-radius: 999px;
-  /* Transparent border + padding-box clip inset the visible thumb inside the
-     12px track, so it reads as a slim pill rather than a wall flush with the
-     edge. */
-  border: 3px solid transparent;
-  background-clip: padding-box;
-}
-.iqm-root .code-input::-webkit-scrollbar-thumb:hover {
-  background-color: var(--hint);
+  /* No scrollbar-width / scrollbar-color here and no ::-webkit-scrollbar
+     rules: the global recipe in app/globals.css styles every scrollable
+     surface (thin 5px pill in the header tone, transparent track), in
+     Chrome/Safari via ::-webkit-scrollbar and in Firefox via @supports. */
 }
 .iqm-root .code-modal-close {
   position: absolute;
   top: 10px;
-  /* Clear of the always-on scrollbar (12px track) plus a matching gap on
-     both sides, so the button reads as its own control and not as part of
-     the scrollbar. */
+  /* Clear of the always-on 5px scrollbar plus a matching gap on both sides,
+     so the button reads as its own control and not as part of the
+     scrollbar. */
+  right: 22px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+  border-radius: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+   Portaled chrome (same tokens, no .iqm-root ancestor).
+   The editor is the shared background, so its modals / code sheet are portaled
+   onto <body> to sit above the closable marketing window. Because they render
+   outside `.iqm-root`, the scoped rules above no longer match — these mirror
+   them for the portaled elements.
+--------------------------------------------------------------------------- */
+.modal-backdrop,
+.code-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+.code-modal-backdrop { z-index: 120; }
+.modal-panel,
+.code-modal {
+  position: relative;
+  background: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  min-width: 260px;
+  max-width: min(440px, 90vw);
+}
+.code-modal {
+  width: min(900px, 100%);
+  height: min(80vh, 100%);
+  padding: 0;
+  overflow: hidden;
+}
+.modal-title {
+  font-size: 13px;
+  color: var(--hint);
+  margin-bottom: 10px;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+.modal-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.modal-list-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  width: 100%;
+}
+.modal-list-btn.active { border-color: var(--button); }
+.modal-list-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.modal-list-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.modal-list-date {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--hint);
+}
+.modal-list-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.modal-list-row .modal-list-btn {
+  flex: 1;
+  min-width: 0;
+}
+.modal-list-delete,
+.modal-list-rename {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-list-scroll {
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0 -6px;
+  padding: 0 6px;
+}
+.modal-empty {
+  font-size: 13px;
+  color: var(--hint);
+  padding: 8px 0;
+}
+/* Chrome inside portaled modals: buttons / inputs / textarea use the tokens. */
+.modal-backdrop button,
+.modal-backdrop select,
+.modal-backdrop .modal-input,
+.code-modal-backdrop button,
+.code-modal-backdrop .code-input {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.modal-backdrop button:hover,
+.code-modal-backdrop button:hover { border-color: var(--button); }
+.code-input {
+  width: 100%;
+  height: 100%;
+  display: block;
+  resize: none;
+  border: none !important;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 16px 64px 16px 16px;
+  overflow-y: scroll;
+}
+.code-modal-close {
+  position: absolute;
+  top: 10px;
   right: 22px;
   width: 32px;
   height: 32px;
@@ -356,7 +480,10 @@
   overflow: hidden;
   position: relative;
   cursor: grab;
-  background: #ffffff;
+  /* Transparent, not white: the editor is the shared background of the site,
+     so the canvap must let the desktop wallpaper (--bg) show through — the
+     same colour the page has whether or not the editor is open. */
+  background: transparent;
   /* The canvas handles its own panning through pointer events; without this
      a touch drag scrolls the page instead. */
   touch-action: none;
@@ -403,14 +530,14 @@
 .iqm-root .canvas-wrap .diagram-selected circle,
 .iqm-root .canvas-wrap .diagram-selected ellipse,
 .iqm-root .canvas-wrap .diagram-selected path.basic {
-  stroke: hsl(23 100% 42%) !important;
+  stroke: var(--button) !important;
   stroke-width: 3px !important;
 }
 .iqm-root .canvas-wrap path[id*="L_"] {
   cursor: pointer;
 }
 .iqm-root .canvas-wrap path.diagram-selected {
-  stroke: hsl(23 100% 42%) !important;
+  stroke: var(--button) !important;
   stroke-width: 3px !important;
 }
 
@@ -425,12 +552,12 @@
 .iqm-root .canvas-wrap.mode-connect .node:hover polygon,
 .iqm-root .canvas-wrap.mode-connect .node:hover circle,
 .iqm-root .canvas-wrap.mode-connect .node:hover ellipse {
-  stroke: hsl(23 100% 42%) !important;
+  stroke: var(--button) !important;
   stroke-width: 3px !important;
 }
 .iqm-root .canvas-wrap.mode-move .cluster:hover rect,
 .iqm-root .canvas-wrap.mode-paste .cluster:hover rect {
-  stroke: hsl(23 100% 42%) !important;
+  stroke: var(--button) !important;
   stroke-width: 3px !important;
 }
 
@@ -502,18 +629,19 @@
 }
 
 /* Actions for the current selection, floating over the element they act on
-   rather than sitting in the header where they are nowhere near it. */
+   rather than sitting in the header where they are nowhere near it. Styled as
+   a horizontal version of the dock islands: same glass surface, same 6px
+   radius, same tight icon-only buttons (lucide icons, no emoji). */
 .iqm-root .element-toolbar {
   position: absolute;
-  z-index: 20;
+  z-index: 30;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--accent);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  gap: 2px;
+  padding: 3px;
+  background: var(--taskbar-bg);
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
   /* Centred on the element and lifted clear of it. */
   transform: translate(-50%, calc(-100% - 10px));
   white-space: nowrap;
@@ -522,8 +650,173 @@
   transform: translate(-50%, 10px);
 }
 .iqm-root .element-toolbar button {
-  font-size: 16px;
-  line-height: 1;
-  padding: 5px 8px;
-  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  color: var(--text);
+}
+.iqm-root .element-toolbar button:hover,
+.iqm-root .element-toolbar button:focus-visible {
+  background: color-mix(in srgb, var(--taskbar-bg) 72%, var(--border));
+}
+.iqm-root .element-toolbar button.danger {
+  color: var(--hint);
+}
+.iqm-root .element-toolbar button.danger:hover {
+  color: hsl(0 70% 45%);
+  background: color-mix(in srgb, hsl(0 70% 45%) 12%, transparent);
+}
+
+/* --- Editor dock islands --------------------------------------------------
+   Two floating vertical islands on the left and right edges, portaled onto
+   <body> so they sit above the closable marketing window. Matches the header
+   "cloud" exactly: same `--taskbar-bg`, same 6px corner radius (`rounded-md`,
+   the header uses `rounded-md`), and a width equal to the header's height
+   (h-10 = 40px) — and, like the header island, no border. A tight column of
+   icon-only buttons; on hover-capable desktop, hovering one reveals a small
+   tooltip beside it with the action's name (touch devices never get those). */
+.iqm-dock {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 40px;
+  padding: 4px 0;
+  background: var(--taskbar-bg);
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+.iqm-dock-left { left: 24px; }
+.iqm-dock-right { right: 24px; }
+.iqm-dock .header-actions,
+.iqm-dock .header-zoom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+}
+/* The island is a tight stack of icon-only buttons that fill the 40px width.
+   The icon uses the default text colour (dark in the light theme) and a thin
+   default stroke, sized to sit comfortably inside the island. */
+.iqm-dock .dock-btn {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: var(--text);
+}
+.iqm-dock .dock-btn:hover,
+.iqm-dock .dock-btn:focus-visible {
+  background: color-mix(in srgb, var(--taskbar-bg) 72%, var(--border));
+}
+.iqm-dock .dock-btn .tool-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--text);
+}
+/* Hover tooltip: a small card that pops out beside the icon. It sits outside
+   the button (so it doesn't widen the island column), anchored to the side
+   nearest the edge — right rail opens left, left rail opens right. */
+.iqm-dock .dock-btn .dock-tip {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  z-index: 70;
+}
+.iqm-dock-left .dock-btn .dock-tip {
+  left: calc(100% + 10px);
+}
+.iqm-dock-right .dock-btn .dock-tip {
+  right: calc(100% + 10px);
+}
+/* The label is a hover affordance, so it only ever shows on devices that can
+   actually hover with a fine pointer. Touch browsers emulate `:hover` on tap
+   (and keep it until the next tap), which would leave the label stuck open
+   next to the icon on a phone — so on coarse-pointer / hover-less devices the
+   tip is removed from the layout entirely. */
+@media (hover: hover) and (pointer: fine) {
+  .iqm-dock .dock-btn:hover .dock-tip,
+  .iqm-dock .dock-btn:focus-visible .dock-tip {
+    opacity: 1;
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .iqm-dock .dock-tip {
+    display: none;
+  }
+}
+.iqm-dock .dock-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.iqm-dock .dock-btn:disabled:hover {
+  background: transparent;
+}
+.iqm-dock .dock-btn:disabled .dock-tip {
+  opacity: 0;
+}
+.iqm-dock .status-line {
+  max-width: 56px;
+  overflow-wrap: anywhere;
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.3;
+  padding: 2px;
+  color: var(--hint);
+}
+@media (max-width: 640px) {
+  /* On a phone the content window spans the whole strip, so the floating dock
+     rails would sit on top of the content. They only show once the editor is
+     revealed (AppWindow toggles `iqm-editor-revealed` on <html>). */
+  .iqm-dock {
+    display: none;
+  }
+  html.iqm-editor-revealed .iqm-dock {
+    display: flex;
+  }
+  .iqm-dock-left { left: 16px; }
+  .iqm-dock-right { right: 16px; }
+  .iqm-dock {
+    width: 36px;
+    padding: 3px 0;
+  }
+  .iqm-dock .dock-btn {
+    height: 30px;
+  }
+  .iqm-dock .dock-btn .tool-icon {
+    width: 19px;
+    height: 19px;
+  }
 }

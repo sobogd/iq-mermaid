@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LegalPage } from "../../_landing/LegalPage";
 import { OPERATOR, PRIVACY_SECTIONS, PRIVACY_TITLE } from "../../_landing/legal-content";
+import { legalAlternates } from "@/lib/hreflang";
 import { OG_IMAGE, SITE_URL, TWITTER_CARD } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "What IQ Mermaid collects and what it does not: no account, no analytics, and diagrams that never leave your browser. Server logs, retention and your GDPR rights.",
   robots: { index: true, follow: true },
-  alternates: { canonical: `${SITE_URL}/privacy` },
+  alternates: { canonical: `${SITE_URL}/privacy`, languages: legalAlternates("privacy") },
   openGraph: {
     type: "website",
     url: `${SITE_URL}/privacy`,
@@ -26,5 +27,5 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  return <LegalPage title={PRIVACY_TITLE} sections={PRIVACY_SECTIONS} pathname="/privacy" />;
+  return <LegalPage title={PRIVACY_TITLE} sections={PRIVACY_SECTIONS} />;
 }

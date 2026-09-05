@@ -1,19 +1,20 @@
 # IQ Mermaid
 
-> IQ Mermaid is a free, no-sign-up mermaid diagram editor. It has two synced views — a visual canvas (double-click to add a block, drag to connect) and a mermaid code editor — so you can build a diagram either way and get valid mermaid syntax out. Supports flowchart, sequence, class, ER, state, gantt, git graph, and pie diagrams. Export to SVG, PNG, .mmd, or a fenced Markdown block. Nothing is stored server-side: diagrams live in the browser's local storage.
+> IQ Mermaid is a free mermaid diagram editor — all it needs is an email to sign in. It has two synced views: a visual canvas (double-click to add a block, drag to connect) and a mermaid code editor, so you can build a diagram either way and get valid mermaid syntax out. It supports flowchart, sequence, class, ER, state, gantt, git graph and pie diagrams, and exports to SVG, PNG, .mmd or a fenced Markdown block. Sign-in is by an emailed one-time code; saved diagrams live in your account and sync across devices.
 
 ## Product
 
-- [Editor](https://iq-mermaid.com/app) — the live editor: visual canvas and mermaid code side by side.
-- [Home](https://iq-mermaid.com) — overview, feature list, FAQ.
+- [IQ Mermaid](https://iq-mermaid.com) — the editor: visual canvas and mermaid code side by side, right on the home page (no separate app URL).
+- [Guides](https://iq-mermaid.com/blog) — mermaid syntax guides and how-tos.
 
 ## How it works
 
-- No account, no paywall, every feature (including export) is free.
+- Free with no paid tier; signing in only takes an email (no password, no credit card).
 - Visual tab edits flowcharts directly; the mermaid code tab renders any diagram type mermaid supports.
-- Paste existing mermaid code into the code tab — a flowchart is parsed back onto the canvas with nodes, shapes, colors, and subgraphs intact; other diagram types render in preview but stay code-only.
-- Works offline once loaded — rendering happens client-side, storage is local to the browser.
-- Available in 34 languages; the editor itself and blog slugs stay in English across locales.
+- Paste existing mermaid code into the code tab — a flowchart is parsed back onto the canvas with nodes, shapes, colors and subgraphs intact; other diagram types render in preview but stay code-only.
+- Diagrams are saved to your account as you work and are there when you come back on another device.
+- Rendering happens client-side in the browser.
+- Available in 34 languages.
 
 ## Guides
 

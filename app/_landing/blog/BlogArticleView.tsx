@@ -1,38 +1,40 @@
 import Link from "next/link";
-import { Header } from "../Header";
-import { Footer, productLinksFor } from "../Footer";
+import { DesktopShell } from "../desktop/DesktopShell";
+import { OpenEditorButton } from "../desktop/OpenEditorButton";
 import { FinalCta } from "../FinalCta";
 import { Breadcrumbs } from "../Breadcrumbs";
 import { PageTracker } from "../PageTracker";
-import { Container, Band, PAGE, PRIMARY_BTN } from "../shell";
-import { localeHome, localePath } from "@/lib/locale-paths";
+import { Band, PRIMARY_BTN } from "../shell";
+import { localeHome } from "@/lib/locale-paths";
 import type { Locale } from "@/lib/locales";
 import type { SiteTexts } from "../types";
 import type { BlogArticleContent, BlogBlock, BlogManifestEntry } from "./types";
 import { blogHref, renderInline } from "./inline";
 import { formatBlogDate, type BlogCardData } from "./registry";
 
-function BlockView({ block, locale, appHref }: { block: BlogBlock; locale: string; appHref: string }) {
+function BlockView({ block, locale }: { block: BlogBlock; locale: string }) {
   switch (block.type) {
     case "h2":
       return (
-        <h2 className="mb-4 mt-10 text-xl font-semibold tracking-tight sm:text-2xl">
+        <h2 className="mb-3 mt-10 text-xl font-semibold tracking-tight sm:text-2xl">
           {renderInline(block.text, locale)}
         </h2>
       );
     case "h3":
       return (
-        <h3 className="mb-3 mt-8 text-lg font-semibold">{renderInline(block.text, locale)}</h3>
+        <h3 className="mb-2 mt-8 text-lg font-semibold tracking-tight">
+          {renderInline(block.text, locale)}
+        </h3>
       );
     case "p":
       return (
-        <p className="mb-3 text-[15px] leading-relaxed text-text/80">
+        <p className="mb-4 text-[15px] leading-relaxed text-text/80 sm:text-base">
           {renderInline(block.text, locale)}
         </p>
       );
     case "list":
       return (
-        <ul className="mb-3 list-disc space-y-1.5 pl-5 text-[15px] leading-relaxed text-text/80 marker:text-text/40">
+        <ul className="mb-4 list-disc space-y-1.5 pl-5 text-[15px] leading-relaxed text-text/80 marker:text-text/40 sm:text-base">
           {block.items.map((it, i) => (
             <li key={i}>{renderInline(it, locale)}</li>
           ))}
@@ -40,7 +42,7 @@ function BlockView({ block, locale, appHref }: { block: BlogBlock; locale: strin
       );
     case "steps":
       return (
-        <ol className="mb-3 list-decimal space-y-1.5 pl-5 text-[15px] leading-relaxed text-text/80 marker:text-text/40">
+        <ol className="mb-4 list-decimal space-y-1.5 pl-5 text-[15px] leading-relaxed text-text/80 marker:text-text/40 sm:text-base">
           {block.items.map((it, i) => (
             <li key={i}>{renderInline(it, locale)}</li>
           ))}
@@ -48,23 +50,26 @@ function BlockView({ block, locale, appHref }: { block: BlogBlock; locale: strin
       );
     case "code":
       return (
-        <figure className="my-5">
-          <pre className="overflow-x-auto rounded-xl border border-border bg-card p-4 font-mono text-[13px] leading-relaxed">
+        <figure className="my-6">
+          <pre className="overflow-x-auto font-mono text-[13px] leading-relaxed text-text/85">
             <code>{block.code}</code>
           </pre>
           {block.caption && (
-            <figcaption className="mt-2 text-xs text-hint">{block.caption}</figcaption>
+            <figcaption className="mt-1.5 text-xs text-hint">{block.caption}</figcaption>
           )}
         </figure>
       );
     case "table":
       return (
-        <div className="my-5 overflow-x-auto rounded-xl border border-border">
-          <table className="w-full min-w-[480px] text-sm">
+        <div className="my-6 overflow-x-auto">
+          <table className="w-full min-w-[480px] border-separate border-spacing-0 text-sm">
             <thead>
-              <tr className="border-b border-border bg-card">
+              <tr>
                 {block.headers.map((h, i) => (
-                  <th key={i} className="px-4 py-3 text-start font-semibold">
+                  <th
+                    key={i}
+                    className="px-3 pb-2 text-start text-xs font-semibold tracking-wide text-hint first:pl-0 last:pr-0"
+                  >
                     {renderInline(h, locale)}
                   </th>
                 ))}
@@ -72,9 +77,12 @@ function BlockView({ block, locale, appHref }: { block: BlogBlock; locale: strin
             </thead>
             <tbody>
               {block.rows.map((row, ri) => (
-                <tr key={ri} className="border-b border-border last:border-b-0">
+                <tr key={ri}>
                   {row.map((cell, ci) => (
-                    <td key={ci} className="px-4 py-3 align-top text-text/80">
+                    <td
+                      key={ci}
+                      className="px-3 py-2 align-top text-text/80 first:pl-0 last:pr-0"
+                    >
                       {renderInline(cell, locale)}
                     </td>
                   ))}
@@ -86,40 +94,41 @@ function BlockView({ block, locale, appHref }: { block: BlogBlock; locale: strin
       );
     case "tip":
       return (
-        <div className="my-4 rounded-xl border border-border bg-card px-4 py-3 text-[14px] leading-relaxed text-text/80">
-          💡 {renderInline(block.text, locale)}
-        </div>
+        <p className="my-4 flex gap-2.5 text-[15px] leading-relaxed text-text/80">
+          <span aria-hidden="true">💡</span>
+          <span>{renderInline(block.text, locale)}</span>
+        </p>
       );
     case "note":
       return (
-        <div className="my-4 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-[14px] leading-relaxed text-text/80">
+        <p className="mb-4 text-[15px] leading-relaxed text-text/80">
           {renderInline(block.text, locale)}
-        </div>
+        </p>
       );
     case "cta":
       return (
-        <div className="my-6 flex flex-col items-start gap-3 rounded-2xl border border-border bg-[hsl(28_48%_93%)] p-6 dark:bg-[hsl(28_15%_13%)]">
-          <p className="text-lg font-semibold">{block.heading}</p>
-          <p className="text-sm leading-relaxed text-hint/80">{renderInline(block.text, locale)}</p>
-          <Link href={appHref} prefetch={false} className={PRIMARY_BTN}>
+        <div className="my-8 flex flex-col items-start gap-3">
+          <p className="text-lg font-semibold tracking-tight">{block.heading}</p>
+          <p className="max-w-[62ch] text-[15px] leading-relaxed text-text/75">
+            {renderInline(block.text, locale)}
+          </p>
+          <OpenEditorButton track="Blog CTA" className={PRIMARY_BTN}>
             {block.buttonLabel}
-          </Link>
+          </OpenEditorButton>
         </div>
       );
     case "faq":
       return (
-        <div className="mt-10">
-          <h2 className="mb-4 text-xl font-semibold tracking-tight sm:text-2xl">{block.heading}</h2>
-          <div className="flex flex-col gap-3">
-            {block.items.map((it, i) => (
-              <div key={i} className="rounded-xl border border-border px-4 py-3">
-                <p className="text-[15px] font-semibold">{it.q}</p>
-                <p className="mt-1.5 text-[15px] leading-relaxed text-text/80">
-                  {renderInline(it.a, locale)}
-                </p>
-              </div>
-            ))}
-          </div>
+        <div className="mt-10 flex flex-col gap-6">
+          <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">{block.heading}</h2>
+          {block.items.map((it, i) => (
+            <section key={i} className="flex flex-col gap-2">
+              <h3 className="text-lg font-semibold tracking-tight">{renderInline(it.q, locale)}</h3>
+              <p className="text-[15px] leading-relaxed text-text/75">
+                {renderInline(it.a, locale)}
+              </p>
+            </section>
+          ))}
         </div>
       );
     default:
@@ -127,8 +136,8 @@ function BlockView({ block, locale, appHref }: { block: BlogBlock; locale: strin
   }
 }
 
-// Article page: header → article card (breadcrumb, date, h1, intro, blocks) →
-// related articles → final CTA → footer.
+// Article page: breadcrumbs + title + intro + the guide's blocks as one plain
+// typographic column (no card), then the related guides and the closing CTA.
 export function BlogArticleView({
   locale,
   texts,
@@ -143,14 +152,16 @@ export function BlogArticleView({
   related: BlogCardData[];
 }) {
   const blog = texts.blog;
-  const appHref = localePath(locale, "app");
   return (
-    <main className={PAGE}>
-      <Header homeHref={localeHome(locale)} locale={locale} texts={texts.header} />
-      <Container>
-        <Band section="blog-article">
-          <article className="rounded-2xl border border-border p-6 sm:p-10">
-            <div className="mx-auto max-w-[720px]">
+    <main className="pointer-events-none relative">
+      <DesktopShell
+        locale={locale}
+        homeHref={localeHome(locale)}
+        headerTexts={texts.header}
+      >
+        <div className="flex flex-col">
+          <Band section="blog-article" className="px-6 pb-12 pt-8 sm:px-8 sm:pb-16 sm:pt-10">
+            <article className="w-full max-w-[760px]">
               <Breadcrumbs
                 homeHref={blogHref(locale)}
                 homeLabel={blog.title}
@@ -158,66 +169,69 @@ export function BlogArticleView({
               />
               <time
                 dateTime={entry.date}
-                className="mt-6 block text-xs font-medium uppercase tracking-wide text-hint/70"
+                className="mt-8 block text-xs font-medium uppercase tracking-wide text-hint"
               >
                 {formatBlogDate(entry.date, locale)}
               </time>
-              <h1 className="mt-2 text-2xl font-medium leading-[1.2] tracking-tight sm:text-[2rem]">
+              <h1 className="mt-2 text-balance text-3xl font-semibold leading-[1.15] tracking-tight text-text sm:text-4xl">
                 {content.h1}
               </h1>
-              <p className="mt-4 text-base leading-relaxed text-text/80">
+              <p className="mt-5 text-lg leading-relaxed text-text/80">
                 {renderInline(content.intro, locale)}
               </p>
-              <div className="mt-6">
+              <div className="mt-2">
                 {content.blocks.map((b, i) => (
-                  <BlockView key={i} block={b} locale={locale} appHref={appHref} />
+                  <BlockView key={i} block={b} locale={locale} />
                 ))}
               </div>
-            </div>
-          </article>
-        </Band>
-
-        {related.length > 0 && (
-          <Band section="blog-related">
-            <h2 className="mb-4 text-xl font-semibold tracking-tight">{blog.relatedHeading}</h2>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {related.map(({ entry: rel, title, excerpt }) => (
-                <Link
-                  key={rel.id}
-                  href={blogHref(locale, rel.id)}
-                  prefetch={false}
-                  className="group flex flex-col gap-2 rounded-2xl border border-border p-6 transition-colors hover:bg-card"
-                >
-                  <time
-                    dateTime={rel.date}
-                    className="text-xs font-medium uppercase tracking-wide text-hint/70"
-                  >
-                    {formatBlogDate(rel.date, locale)}
-                  </time>
-                  <h3 className="text-lg font-semibold leading-snug">{title}</h3>
-                  <p className="text-sm leading-relaxed text-hint/80">{excerpt}</p>
-                </Link>
-              ))}
-            </div>
+            </article>
           </Band>
-        )}
 
-        <Band section="blog-cta">
-          <FinalCta
-            heading={texts.finalCta.heading}
-            headingAccent={texts.finalCta.headingAccent}
-            sub={texts.finalCta.sub}
-            ctaLabel={texts.finalCta.ctaLabel}
-            ctaHref={appHref}
-          />
-        </Band>
-      </Container>
-      <Footer
-        locale={locale}
-        pathname={blogHref(locale, entry.id)}
-        texts={texts.footer}
-        productLinks={productLinksFor(locale, { editor: texts.header.openEditor, blog: texts.header.blog })}
-      />
+          {related.length > 0 && (
+            <Band section="blog-related" className="px-6 pb-12 sm:px-8 sm:pb-16">
+              <div className="flex w-full max-w-[760px] flex-col gap-5">
+                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                  {blog.relatedHeading}
+                </h2>
+                <ol className="flex flex-col gap-7">
+                  {related.map(({ entry: rel, title, excerpt }) => (
+                    <li key={rel.id}>
+                      <article className="flex flex-col items-start gap-1.5">
+                        <h3 className="text-lg font-semibold leading-snug tracking-tight">
+                          <Link
+                            href={blogHref(locale, rel.id)}
+                            prefetch={false}
+                            className="underline-offset-4 transition-colors hover:underline hover:decoration-text/40"
+                          >
+                            {title}
+                          </Link>
+                        </h3>
+                        <time
+                          dateTime={rel.date}
+                          className="text-xs font-medium uppercase tracking-wide text-hint"
+                        >
+                          {formatBlogDate(rel.date, locale)}
+                        </time>
+                        <p className="max-w-[62ch] text-[15px] leading-relaxed text-text/75">
+                          {excerpt}
+                        </p>
+                      </article>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </Band>
+          )}
+
+          <Band section="blog-cta" className="px-6 pb-16 sm:px-8 sm:pb-24">
+            <FinalCta
+              heading={texts.finalCta.heading}
+              headingAccent={texts.finalCta.headingAccent}
+              sub={texts.finalCta.sub}
+            />
+          </Band>
+        </div>
+      </DesktopShell>
       <PageTracker page="Blog article" />
     </main>
   );

@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Ókeypis mermaid ritill á netinu — skýringarmyndir",
-    "description": "Ókeypis mermaid ritill á netinu: teiknaðu myndrænt eða skrifaðu kóða, hvort tveggja í samræmi. Flæðirit, runurit, ER, Gantt. Engin skráning, útflutningur SVG/PNG.",
-    "ogTitle": "Mermaid ritill á netinu — ókeypis, engin skráning",
+    "description": "Ókeypis mermaid-ritill á netinu: teiknaðu eða skrifaðu mermaid-kóða — samstillt. Innskráning bara með netfangi. Flytja út SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — ókeypis, á netinu, bara netfang",
     "ogDescription": "Teiknaðu skýringarmyndir á striga eða skrifaðu mermaid kóða. Hvort tveggja helst í samræmi. Flyttu út sem SVG, PNG, .mmd eða Markdown.",
     "twitterTitle": "Ókeypis mermaid ritill á netinu",
-    "twitterDescription": "Sjónrænn strigi og mermaid kóði, hlið við hlið. Engin skráning, enginn múr."
+    "twitterDescription": "Sjónræn striga og mermaid-kóði hlið við hlið. Ókeypis án greiðslu — innskráning bara með netfangi."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Eiginleikar",
     "blog": "Leiðbeiningar",
     "faq": "Spurt og svarað",
     "openEditor": "Opna ritilinn",
-    "menu": "Valmynd"
+    "menu": "Valmynd",
+    "legal": "Lögfræði",
+    "languages": "Tungumál",
+    "documents": "Rit",
+    "export": "Flytja út",
+    "editCode": "Breyta kóða",
+    "openDocuments": "Nýlega opnað",
+    "createNew": "Bæta við nýju",
+    "exportCopyMermaid": "Afrita Mermaid",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Stillingar",
+    "theme": "Þema",
+    "themeSystem": "Kerfi",
+    "themeLight": "Ljóst",
+    "themeDark": "Dökkt",
+    "legalPrivacy": "Persónuvernd",
+    "legalTerms": "Skilmálar"
   },
   "hero": {
     "badgeFree": "Ókeypis að eilífu",
-    "badgeNoSignup": "Engin skráning",
+    "badgeNoSignup": "Ókeypis — bara netfang",
     "badgeDiagrams": "8 tegundir skýringarmynda",
     "title": "Ókeypis mermaid ritill á netinu,",
     "titleAccent": "sjónrænt og kóði á einum stað",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Birt skýringarmynd"
   },
   "statCards": [
-    { "title": "Birtist um leið og þú skrifar", "sub": "Alvöru mermaid vélin, endurteiknuð nokkrum hundruðum millisekúndna eftir síðasta niðurslátt." },
-    { "title": "Kóði og strigi í samræmi", "sub": "Breyttu hvorri hliðinni sem er. Hin fylgir með — ekkert afrita-líma milli tveggja verkfæra." },
-    { "title": "14 lögun hnúta", "sub": "Rétthyrningur, ávalur, pilla, hringur, tígull, gagnagrunnur, sexhyrningur og fleira, einn smellur hvert." },
-    { "title": "Ókeypis, enginn aðgangur", "sub": "Engin skráning, engin prufa, ekkert vatnsmerki á útflutningi. Skýringarmyndin þín er áfram í vafranum þínum." }
+    {
+      "title": "Birtist um leið og þú skrifar",
+      "sub": "Alvöru mermaid vélin, endurteiknuð nokkrum hundruðum millisekúndna eftir síðasta niðurslátt."
+    },
+    {
+      "title": "Kóði og strigi í samræmi",
+      "sub": "Breyttu hvorri hliðinni sem er. Hin fylgir með — ekkert afrita-líma milli tveggja verkfæra."
+    },
+    {
+      "title": "14 lögun hnúta",
+      "sub": "Rétthyrningur, ávalur, pilla, hringur, tígull, gagnagrunnur, sexhyrningur og fleira, einn smellur hvert."
+    },
+    {
+      "title": "Ókeypis, bara netfang",
+      "sub": "Engin prufutímabil eða vatnsmerki við flutning — netfang nægir til að vista skýringarmyndirnar þínar."
+    }
   ],
   "spotlights": [
     {
       "heading": "Strigi, ekki bara textareitur",
       "sub": "Sjónræni flipinn er alvöru ritill ofan á birtu skýringarmyndina: smelltu á hnút til að velja hann, tvísmelltu til að endurnefna hann á staðnum, dragðu hvar sem er til að fletta.",
       "bullets": [
-        { "title": "Smelltu til að byggja", "sub": "Bættu við kubbi, beindu ör á annan, merktu örina. Engin málskipan að muna áður en þú byrjar." },
-        { "title": "Veldu lögun", "sub": "Fjórtán mermaid flæðiritslögun — ákvörðunartíglar, gagnagrunnssívalningar, undirferli — úr einum veljara." },
-        { "title": "Litaðu hvað sem er", "sub": "Átta forstillingar auk litavals, sem hægt er að beita á einn hnút eða heilt svæði." }
+        {
+          "title": "Smelltu til að byggja",
+          "sub": "Bættu við kubbi, beindu ör á annan, merktu örina. Engin málskipan að muna áður en þú byrjar."
+        },
+        {
+          "title": "Veldu lögun",
+          "sub": "Fjórtán mermaid flæðiritslögun — ákvörðunartíglar, gagnagrunnssívalningar, undirferli — úr einum veljara."
+        },
+        {
+          "title": "Litaðu hvað sem er",
+          "sub": "Átta forstillingar auk litavals, sem hægt er að beita á einn hnút eða heilt svæði."
+        }
       ]
     },
     {
       "heading": "Mermaid kóði sem er áfram þinn",
       "sub": "Textaflipinn er hreinn mermaid — sama málskipan og GitHub, GitLab, Notion og Obsidian birta nú þegar. Ekkert hér er sérsniðið snið.",
       "bullets": [
-        { "title": "Skrifaðu í höndunum", "sub": "Skrifaðu mermaid beint og sjáðu það birtast. Sex tilbúin dæmi til að byrja með." },
-        { "title": "Fer báðar leiðir", "sub": "Flæðirit sem þú límir inn eru þáttuð aftur á strigann — hnútar, lögun, litir, undirgröf og allt." },
-        { "title": "Hver tegund skýringarmyndar", "sub": "Flæðirit, runurit, klasarit, stöðurit, ER, Gantt, git graf, kökurit — forskoðunin birtir hvað sem mermaid styður." }
+        {
+          "title": "Skrifaðu í höndunum",
+          "sub": "Skrifaðu mermaid beint og sjáðu það birtast. Sex tilbúin dæmi til að byrja með."
+        },
+        {
+          "title": "Fer báðar leiðir",
+          "sub": "Flæðirit sem þú límir inn eru þáttuð aftur á strigann — hnútar, lögun, litir, undirgröf og allt."
+        },
+        {
+          "title": "Hver tegund skýringarmyndar",
+          "sub": "Flæðirit, runurit, klasarit, stöðurit, ER, Gantt, git graf, kökurit — forskoðunin birtir hvað sem mermaid styður."
+        }
       ]
     },
     {
       "heading": "Stórar skýringarmyndir haldast læsilegar",
       "sub": "Byggingarskýringarmyndir vaxa fljótt út fyrir einn skjá. Flakk, aðdráttur og hópun eru hönnuð fyrir það í stað þess að berjast gegn því.",
       "bullets": [
-        { "title": "Svæði og hreiðrun", "sub": "Hópaðu kubba í undirgröf, hreiðraðu svæði innan í öðru, færðu heilt undirtré í einni hreyfingu." },
-        { "title": "Aðdráttur frá 2% upp í 1600%", "sub": "Skrunaðu til að fletta, ctrl-skrun til að renna aðdrátt, eða miðjaðu aftur með einum hnappi." },
-        { "title": "Vistað jafnóðum", "sub": "Skýringarmyndin þín er skrifuð í staðbundna geymslu vafrans við hverja breytingu — lokaðu flipanum og komdu aftur í hana." }
+        {
+          "title": "Svæði og hreiðrun",
+          "sub": "Hópaðu kubba í undirgröf, hreiðraðu svæði innan í öðru, færðu heilt undirtré í einni hreyfingu."
+        },
+        {
+          "title": "Aðdráttur frá 2% upp í 1600%",
+          "sub": "Skrunaðu til að fletta, ctrl-skrun til að renna aðdrátt, eða miðjaðu aftur með einum hnappi."
+        },
+        {
+          "title": "Vistað jafnóðum",
+          "sub": "Skýringarmyndin þín er skrifuð í staðbundna geymslu vafrans við hverja breytingu — lokaðu flipanum og komdu aftur í hana."
+        }
       ]
     },
     {
       "heading": "Flyttu út og haltu áfram",
       "sub": "Ekkert er læst inni. Taktu myndina, taktu frumkóðann, eða taktu Markdown blokk tilbúna til að líma inn í skjal.",
       "bullets": [
-        { "title": "Enginn múr", "sub": "Sérhver eiginleiki, þar á meðal útflutningur, er ókeypis. Það er engin greidd áskrift til að uppfæra í." },
-        { "title": "Ekkert fer út úr vafranum þínum", "sub": "Það er enginn aðgangur og engin geymsla skýringarmynda á netþjóni — birting fer fram staðbundið." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Afritaðu SVG kóðann, sæktu 2x PNG mynd, vistaðu mermaid frumkóðann, eða taktu afgirta Markdown blokk." }
+        {
+          "title": "Enginn múr",
+          "sub": "Sérhver eiginleiki, þar á meðal útflutningur, er ókeypis. Það er engin greidd áskrift til að uppfæra í."
+        },
+        {
+          "title": "Ekkert fer út úr vafranum þínum",
+          "sub": "Ritun fer fram í vafranum; vistuð skýringarmyndir búa í reikningnum þínum og eru tiltækar af hvaða tæki sem er."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Afritaðu SVG kóðann, sæktu 2x PNG mynd, vistaðu mermaid frumkóðann, eða taktu afgirta Markdown blokk."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Verð",
-        "us": "Ókeypis, enginn aðgangur, engin takmörk á útflutningi.",
+        "us": "Ókeypis — bara netfang",
         "them": "Ókeypis áskrift takmörkuð við fáar skýringarmyndir, með útflutning eða samvinnu á bak við áskrift."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Spurningar um mermaid",
     "headingAccent": "ritilinn",
-    "sub": "Það sem fólk spyr áður en það opnar hann. Engin skráning þarf — ritillinn er einum smelli í burtu.",
+    "sub": "Nóg netfang til að byrja.",
     "items": [
       {
         "q": "Hvað er mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Er þessi mermaid ritill virkilega ókeypis?",
-        "a": "Já. Sérhver eiginleiki, þar á meðal SVG og PNG útflutningur, er ókeypis, og það er enginn aðgangur til að stofna. Það er engin greidd áskrift — ekkert er haldið eftir."
+        "a": "Já. Allir eiginleikar, þar á meðal SVG- og PNG-flutningur, eru ókeypis. Nóg er að gefa upp netfang til innskráningar — enginn greiddur pakki og ekkert falið."
       },
       {
         "q": "Þarf ég að kunna mermaid málskipan?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Hvar er skýringarmyndin mín geymd?",
-        "a": "Í staðbundinni geymslu vafrans þíns, á þínu eigin tæki. Það er enginn aðgangur og ekkert afrit á netþjóni, þannig að ef þú hreinsar vafragögnin þín eða skiptir um tæki byrjarðu upp á nýtt — fluttu frumkóðann út ef þú vilt halda honum."
+        "a": "Skýringarmyndirnar þínar eru vistaðar á reikninginn þinn, svo þær eru þar hvenær sem þú kemur aftur — af hvaða tæki sem er. Flyttu út grunnkóðann ef þú vilt staðbundið afrit."
       },
       {
         "q": "Get ég límt inn mermaid skýringarmynd sem er þegar til?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Virkar hann ótengt?",
-        "a": "Birting fer alfarið fram í vafranum þínum, þannig að þegar síðan hefur hlaðist heldur ritillinn áfram að virka án nettengingar. Skýringarmyndin þín er í staðbundinni geymslu, ekki á netþjóni."
+        "a": "Ritun fer fram alfarið í vafranum, svo um leið og síðan er hlaðin virkar ritillinn án nettengingar."
       }
     ]
   },
   "finalCta": {
     "heading": "Opnaðu ritilinn.",
-    "headingAccent": "Ekkert til að skrá sig í.",
+    "headingAccent": "Ókeypis — bara netfang",
     "sub": "Auður strigi, kóðaflipi og hver einasti útflutningsmöguleiki — ókeypis, í vafranum þínum, núna.",
     "ctaLabel": "Opna ritilinn"
   },

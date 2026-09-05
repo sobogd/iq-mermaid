@@ -1,7 +1,19 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import {
+  ArrowLeftRight,
+  ArrowRight,
+  Layers,
+  Move,
+  Palette,
+  Pencil,
+  Plus,
+  Shapes,
+  Trash2,
+} from "lucide-react";
 import { renderDiagram } from "./mermaid-client";
 import AskModal from "./AskModal.jsx";
+import ToolIcon from "./ToolIcon.jsx";
 
 const DEFAULT_COLOR = "#ECECFF"; // mermaid default-theme node fill (mainBkg)
 const DEFAULT_SHAPE = "rect";
@@ -1438,33 +1450,45 @@ export default function VisualEditor({
 
   return (
     <div className="visual-editor">
+      {/* LEFT rail: build actions — add block, add area, copy, paste. Each is a
+          hand-drawn icon with a short caption beneath, sitting free of any
+          background box on the wallpaper. */}
       {active && actionsSlot && createPortal(
         <>
           <button
-            title={t.toolbar.undo}
-            aria-label={t.toolbar.undo}
-            onClick={undo}
-            disabled={!history.past.length}
-          >↩️</button>
+            className="dock-btn"
+            aria-label={t.toolbar.addBlock}
+            onClick={() => { addBlock(); }}
+          >
+            <ToolIcon name="addBlock" />
+            <span className="dock-tip">{t.dock.addBlock}</span>
+          </button>
           <button
-            title={t.toolbar.redo}
-            aria-label={t.toolbar.redo}
-            onClick={redo}
-            disabled={!history.future.length}
-          >↪️</button>
-          <span className="header-sep" />
+            className="dock-btn"
+            aria-label={t.toolbar.addGroup}
+            onClick={() => { addGroup(); }}
+          >
+            <ToolIcon name="addGroup" />
+            <span className="dock-tip">{t.dock.addGroup}</span>
+          </button>
           <button
-            title={t.toolbar.copy} aria-label={t.toolbar.copy}
+            className="dock-btn"
+            aria-label={t.toolbar.copy}
             onClick={copySelected}
             disabled={!selected || selected.type === "edge"}
-          >📋</button>
-          {/* 📥 now belongs to the header's Download menu — paste keeps its
-              own icon so the two are never confused at a glance. */}
-          <button title={t.toolbar.paste} aria-label={t.toolbar.paste} onClick={startPaste} disabled={!clipboard}>📌</button>
-          <span className="header-sep" />
-          {/* Nothing that acts on the current selection lives here any more —
-              rename, connect, move, colour, shape and delete are all in the
-              toolbar that hangs over the element itself. */}
+          >
+            <ToolIcon name="copy" />
+            <span className="dock-tip">{t.dock.copy}</span>
+          </button>
+          <button
+            className="dock-btn"
+            aria-label={t.toolbar.paste}
+            onClick={startPaste}
+            disabled={!clipboard}
+          >
+            <ToolIcon name="paste" />
+            <span className="dock-tip">{t.dock.paste}</span>
+          </button>
         </>,
         actionsSlot
       )}
@@ -1526,9 +1550,48 @@ export default function VisualEditor({
       <AskModal ask={ask} onClose={() => setAsk(null)} t={t} />
       {active && zoomSlot && createPortal(
         <>
-          <button onClick={() => zoomBy(0.8)} title={t.zoom.out} aria-label={t.zoom.out}>➖</button>
-          <button onClick={() => zoomBy(1.25)} title={t.zoom.in} aria-label={t.zoom.in}>➕</button>
-          <button onClick={fitView} title={t.zoom.fit} aria-label={t.zoom.fit}>🖥️</button>
+          <button
+            className="dock-btn"
+            onClick={undo}
+            aria-label={t.toolbar.undo}
+            disabled={!history.past.length}
+          >
+            <ToolIcon name="undo" />
+            <span className="dock-tip">{t.dock.undo}</span>
+          </button>
+          <button
+            className="dock-btn"
+            onClick={redo}
+            aria-label={t.toolbar.redo}
+            disabled={!history.future.length}
+          >
+            <ToolIcon name="redo" />
+            <span className="dock-tip">{t.dock.redo}</span>
+          </button>
+          <button
+            className="dock-btn"
+            onClick={() => zoomBy(1.25)}
+            aria-label={t.zoom.in}
+          >
+            <ToolIcon name="zoomIn" />
+            <span className="dock-tip">{t.dock.zoomIn}</span>
+          </button>
+          <button
+            className="dock-btn"
+            onClick={() => zoomBy(0.8)}
+            aria-label={t.zoom.out}
+          >
+            <ToolIcon name="zoomOut" />
+            <span className="dock-tip">{t.dock.zoomOut}</span>
+          </button>
+          <button
+            className="dock-btn"
+            onClick={fitView}
+            aria-label={t.zoom.fit}
+          >
+            <ToolIcon name="fit" />
+            <span className="dock-tip">{t.dock.fit}</span>
+          </button>
         </>,
         zoomSlot
       )}
@@ -1561,87 +1624,89 @@ export default function VisualEditor({
               title={t.toolbar.rename}
               aria-label={t.toolbar.rename}
               onClick={() => askRename(selected.type, selected.id)}
-            >✏️</button>
+            >
+              <Pencil size={16} strokeWidth={1.75} />
+            </button>
             {selected.type === "block" && (
               <button
                 title={t.toolbar.addConnected}
                 aria-label={t.toolbar.addConnected}
                 onClick={addConnectedBlock}
-              >➕</button>
+              >
+                <Plus size={16} strokeWidth={1.75} />
+              </button>
             )}
             {selected.type === "block" && (
               <button
                 title={t.toolbar.connect}
                 aria-label={t.toolbar.connect}
                 onClick={() => setInteractionMode({ type: "connect", id: selected.id })}
-              >➡️</button>
+              >
+                <ArrowRight size={16} strokeWidth={1.75} />
+              </button>
             )}
             {selected.type === "group" && (
               <button
                 title={t.toolbar.addBlock}
                 aria-label={t.toolbar.addBlock}
                 onClick={() => addBlockToGroup(selected.id)}
-              >➕</button>
+              >
+                <Plus size={16} strokeWidth={1.75} />
+              </button>
             )}
             {selected.type === "group" && (
               <button
                 title={t.toolbar.addGroup}
                 aria-label={t.toolbar.addGroup}
                 onClick={() => addGroupToGroup(selected.id)}
-              >📦</button>
+              >
+                <Layers size={16} strokeWidth={1.75} />
+              </button>
             )}
             {selected.type === "edge" && (
               <button
                 title={t.toolbar.reverse}
                 aria-label={t.toolbar.reverse}
                 onClick={reverseSelectedEdge}
-              >🔄</button>
+              >
+                <ArrowLeftRight size={16} strokeWidth={1.75} />
+              </button>
             )}
             {selected.type !== "edge" && (
               <button
                 title={t.toolbar.move}
                 aria-label={t.toolbar.move}
                 onClick={() => setInteractionMode({ type: "move", id: selected.id, kind: selected.type })}
-              >✋</button>
+              >
+                <Move size={16} strokeWidth={1.75} />
+              </button>
             )}
             {selected.type !== "edge" && (
               <button
                 title={t.toolbar.color}
                 aria-label={t.toolbar.color}
                 onClick={() => setColorModalOpen(true)}
-              >🎨</button>
+              >
+                <Palette size={16} strokeWidth={1.75} />
+              </button>
             )}
             {selected.type === "block" && (
               <button
                 title={t.toolbar.shape}
                 aria-label={t.toolbar.shape}
                 onClick={() => setShapeModalOpen(true)}
-              >🔷</button>
+              >
+                <Shapes size={16} strokeWidth={1.75} />
+              </button>
             )}
             <button
               className="danger"
               title={t.toolbar.delete}
               aria-label={t.toolbar.delete}
               onClick={deleteSelected}
-            >🗑️</button>
-          </div>
-        )}
-        {addAt && !selected && !interactionMode && !ask && (
-          <div
-            className="element-toolbar"
-            style={{ left: addAt.x, top: addAt.y }}
-            onPointerDown={(e) => e.stopPropagation()}
-          >
-            <button
-              title={t.toolbar.addBlock}
-              aria-label={t.toolbar.addBlock}
-              onClick={() => { addBlock(); setAddAt(null); }}
-            >➕</button>
-            <button
-              title={t.toolbar.addGroup}
-              aria-label={t.toolbar.addGroup}
-              onClick={() => { addGroup(); setAddAt(null); }}
-            >📦</button>
+            >
+              <Trash2 size={16} strokeWidth={1.75} />
+            </button>
           </div>
         )}
         {codeOnly && <div className="canvas-notice canvas-notice-warn">{t.notices.codeOnly}</div>}

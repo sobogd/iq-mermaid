@@ -1,24 +1,25 @@
 import { Zap, Code2, Shapes, Wallet } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { CARD } from "./shell";
 import type { StatCard } from "./types";
 
 // Positional icons (index-matched to `statCards` in texts.json).
 const ICONS: LucideIcon[] = [Zap, Code2, Shapes, Wallet];
 
+// The four quick claims under the hero: an icon, a bold line and one muted
+// sentence. Two per row on every screen from sm up — a simple flex wrap.
 export function StatCards({ items }: { items: StatCard[] }) {
   return (
-    <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+    <ul className="flex flex-col gap-y-8 sm:flex-row sm:flex-wrap sm:gap-x-6">
       {items.map(({ title, sub }, i) => {
         const Icon = ICONS[i] ?? Zap;
         return (
-          <div key={title} className={`${CARD} flex flex-col gap-1.5 p-5 sm:p-6`}>
-            <Icon className="mb-1 h-7 w-7 text-button" />
-            <div className="font-semibold">{title}</div>
-            <p className="text-sm text-hint">{sub}</p>
-          </div>
+          <li key={title} className="flex w-full flex-col items-start gap-2 sm:w-[calc(50%-12px)]">
+            <Icon className="h-6 w-6 text-button" strokeWidth={1.75} />
+            <p className="text-[15px] font-semibold leading-snug text-text">{title}</p>
+            <p className="text-sm leading-relaxed text-hint">{sub}</p>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }

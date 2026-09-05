@@ -5,10 +5,10 @@
 // Labels are English (Start / Ready? / Ship it / Fix it) in every locale
 // because they are the sample source's node labels, shown verbatim next to it.
 export function DiagramPreview({ className }: { className?: string }) {
-  const box = "fill-[hsl(38_30%_97%)] stroke-[hsl(30_12%_8%)] dark:fill-[hsl(30_18%_14%)] dark:stroke-[hsl(40_38%_95%)]";
-  const label = "fill-[hsl(30_12%_8%)] dark:fill-[hsl(40_38%_95%)]";
-  const edge = "stroke-[hsl(30_8%_42%)] fill-none";
-  const edgeLabel = "fill-[hsl(30_8%_42%)]";
+  const box = "fill-[rgb(253_253_248)] stroke-[rgb(17_17_17)] dark:fill-[rgb(30_31_35)] dark:stroke-[rgb(250_250_250)]";
+  const label = "fill-[rgb(17_17_17)] dark:fill-[rgb(250_250_250)]";
+  const edge = "stroke-[rgb(101_103_94)] fill-none";
+  const edgeLabel = "fill-[rgb(101_103_94)]";
 
   return (
     <svg

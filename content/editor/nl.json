@@ -28,6 +28,18 @@
     "out": "Uitzoomen",
     "fit": "Passend maken"
   },
+  "dock": {
+    "addBlock": "Blok toevoegen",
+    "addGroup": "Gebied toevoegen",
+    "copy": "Kopiëren",
+    "paste": "Plakken",
+    "undo": "Ongedaan",
+    "redo": "Opnieuw",
+    "zoomIn": "Inzoomen",
+    "zoomOut": "Uitzoomen",
+    "fit": "Passen",
+    "editCode": "Code bewerken"
+  },
   "modals": {
     "colorTitle": "Kleur",
     "shapeTitle": "Vorm",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Helemaal gratis — zonder betaald abonnement of creditcard. Alleen een e-mail om diagrammen op te slaan, te synchroniseren en te exporteren.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Terug"
   }
 }

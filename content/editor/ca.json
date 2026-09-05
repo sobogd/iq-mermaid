@@ -28,6 +28,18 @@
     "out": "Allunya",
     "fit": "Ajusta"
   },
+  "dock": {
+    "addBlock": "Afegeix bloc",
+    "addGroup": "Afegeix àrea",
+    "copy": "Copia",
+    "paste": "Enganxa",
+    "undo": "Desfés",
+    "redo": "Refés",
+    "zoomIn": "Amplia",
+    "zoomOut": "Redueix",
+    "fit": "Ajusta",
+    "editCode": "Edita el codi"
+  },
   "modals": {
     "colorTitle": "Color",
     "shapeTitle": "Forma",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Completament gratuït, sense plans de pagament ni targetes. Només un correu per desar, sincronitzar i exportar diagrames.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Enrere"
   }
 }

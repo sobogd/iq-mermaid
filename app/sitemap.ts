@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { localeHome, localePath } from "@/lib/locale-paths";
-import { appAlternates, blogAlternates, homeAlternates } from "@/lib/hreflang";
+import { blogAlternates, homeAlternates, legalAlternates } from "@/lib/hreflang";
 import { BLOG_ARTICLES } from "@/app/_landing/blog/registry";
 import { READY_LOCALES } from "@/content";
 import { SITE_URL } from "@/lib/site";
@@ -32,16 +32,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: { languages: homeLanguages },
   }));
 
-  // The editor is the product; it outranks the marketing copy in importance
-  // even though it carries almost no crawlable text.
-  const appLanguages = appAlternates();
-  const appEntries: MetadataRoute.Sitemap = READY_LOCALES.map((locale) => ({
-    url: url(locale, "app"),
-    lastModified: lastMod(`editor:${locale}`),
-    changeFrequency: "monthly",
-    priority: 0.9,
-    alternates: { languages: appLanguages },
-  }));
+  // The editor is no longer a separate /app route — it is the shared
+  // background under the window on every page, so it has no sitemap entries of
+  // its own; the landing homes already cover it.
 
   const blogIndexLanguages = blogAlternates();
   const blogIndexEntries: MetadataRoute.Sitemap = READY_LOCALES.map((locale) => ({
@@ -63,13 +56,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
   });
 
-  // English-only legal pages (app/(en)/privacy, app/(en)/terms).
-  const legalEntries: MetadataRoute.Sitemap = ["privacy", "terms"].map((slug) => ({
-    url: url("en", slug),
-    lastModified: lastMod("legal"),
-    changeFrequency: "yearly",
-    priority: 0.3,
-  }));
+  // Legal documents ship under the same slug in every locale (/privacy,
+  // /terms, /<locale>/privacy, /<locale>/terms) — the body is English, the
+  // chrome is localized.
+  const legalEntries: MetadataRoute.Sitemap = ["privacy", "terms"].flatMap((slug) => {
+    const languages = legalAlternates(slug as "privacy" | "terms");
+    return READY_LOCALES.map((locale) => ({
+      url: url(locale, slug),
+      lastModified: lastMod("legal"),
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+      alternates: { languages },
+    }));
+  });
 
-  return [...homeEntries, ...appEntries, ...blogIndexEntries, ...articleEntries, ...legalEntries];
+  return [...homeEntries, ...blogIndexEntries, ...articleEntries, ...legalEntries];
 }

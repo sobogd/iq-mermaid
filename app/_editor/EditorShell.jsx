@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { createPortal } from "react-dom";
+import { Code2, Pencil, Trash2 } from "lucide-react";
 import VisualEditor, { defaultState, toMermaid } from "./VisualEditor.jsx";
 import CodeModal from "./CodeModal.jsx";
 import AskModal from "./AskModal.jsx";
-import { LogoIcon } from "../_landing/LogoIcon";
+import AuthGate from "./AuthGate.jsx";
 import { configureMermaid } from "./mermaid-client";
 import * as exporters from "./export";
 import { PageTracker } from "../_landing/PageTracker";
 import { analytics } from "@/lib/analytics";
+import { isDarkTheme, subscribeTheme } from "@/lib/theme";
 import {
   deleteDocument,
   loadDocuments,
@@ -16,6 +18,19 @@ import {
   saveCurrentDocumentId,
   saveDocument,
 } from "./documents";
+import {
+  CONTENT_OPEN_EVENT,
+  EDITOR_DOWNLOAD_EVENT,
+  EDITOR_COPY_EVENT,
+  EDITOR_CODE_EVENT,
+  EDITOR_OPEN_DOCS_EVENT,
+  EDITOR_NEW_DOC_EVENT,
+  EDITOR_REVEAL_EVENT,
+  hasEditorRevealed,
+  isContentWindowOpen,
+  requestContentOpen,
+} from "../_landing/desktop/editor-events";
+import { openEditor } from "../_landing/desktop/open-editor";
 import "./editor.css";
 
 const DOC_SAVE_DEBOUNCE = 600;
@@ -31,12 +46,20 @@ const formatDate = (ms) =>
 // The editor: a full-height canvas, with the mermaid source available as a
 // sheet over it. The two are kept in sync in both directions. Ported from the
 // standalone Vite app; the strings come from `t` (content/editor/<locale>.json).
-export default function EditorShell({ t, homeHref, email, onSignOut }) {
+//
+// The editor is now the shared background layer of every marketing page, so its
+// chrome has moved out of a top header into a floating left dock (rendered via
+// a portal onto <body> so it stays above the closable content window). The
+// canvas itself is open to everyone; actions that persist or export
+// (new/open/save/copy/download) are gated on sign-in through `requireAuth`,
+// which swaps in the inline AuthGate until `onAuthed(email)` lands.
+export default function EditorShell({ t, authed, onAuthed }) {
   // Gates the canvas' first mount until the boot effect below has resolved
   // which document is actually open — VisualEditor has its own localStorage
   // cache and would otherwise flash whatever THAT happened to hold for one
   // frame before the real document's source lands.
   const [ready, setReady] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const [codeOpen, setCodeOpen] = useState(false);
   const [downloadOpen, setDownloadOpen] = useState(false);
   const [openOpen, setOpenOpen] = useState(false);
@@ -50,6 +73,9 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
   const [zoomSlot, setZoomSlot] = useState(null);
   const [status, setStatus] = useState("");
   const [themeSeq, setThemeSeq] = useState(0);
+  // Whether the marketing window is gone (the editor revealed). While the
+  // content window is open the dock rails must NOT act on the canvas — a press
+  // there opens the editor first instead (see dockGuard).
   // Bumped after a manual code edit so VisualEditor re-fits (centres) the
   // diagram once it has rendered the new source.
   const [recenterSeq, setRecenterSeq] = useState(0);
@@ -57,22 +83,24 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
   const docSaveDebounceRef = useRef(null);
   const statusTimerRef = useRef(null);
   const currentDocIdRef = useRef(null);
+  const pendingAuthRef = useRef(null);
   // The code as last loaded from storage. Autosave only fires when `code`
   // differs from this, so merely opening/switching a document never re-saves it
   // (which used to bump its "edited" timestamp for no reason).
   const loadedCodeRef = useRef("");
 
-  // Mermaid's own light/dark themes, following the OS setting the rest of the
-  // site follows. Bumping themeSeq is what makes the canvas redraw.
+  // Mermaid's own light/dark themes, following the site's resolved theme
+  // (OS preference by default, but overridable from the header's Settings →
+  // Theme menu — see lib/theme.ts). Bumping themeSeq makes the canvas
+  // redraw; subscribeTheme re-resolves when the OS flips in "system" mode and
+  // when the visitor picks a theme manually anywhere.
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
     const apply = () => {
-      configureMermaid(mq.matches);
+      configureMermaid(isDarkTheme());
       setThemeSeq((n) => n + 1);
     };
     apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    return subscribeTheme(apply);
   }, []);
 
   // Resolve which document is open on first load: whatever was open last
@@ -154,6 +182,77 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
     clearTimeout(statusTimerRef.current);
     // A status line that never clears stops being a status line.
     statusTimerRef.current = setTimeout(() => setStatus(""), 2500);
+  }
+
+  // Signs the visitor in on demand. Any action that persists a document or
+  // exports (new/open/save/copy/download) runs through here when the shell is
+  // not yet authed: it closes whatever content window is open (the editor —
+  // and its auth gate — always take the whole desktop), raises the inline gate
+  // and defers the action until `onAuthed(email)` has landed. Returns true when
+  // the action may proceed now (authed), false when it was deferred.
+  function requireAuth(action) {
+    if (authed) {
+      action();
+      return true;
+    }
+    pendingAuthRef.current = action;
+    if (isContentWindowOpen()) openEditor();
+    setAuthOpen(true);
+    return false;
+  }
+
+  // Called by the inline gate once the visitor is signed in: run whatever
+  // action was deferred behind the gate, then close it.
+  function handleAuthed(nextEmail) {
+    onAuthed(nextEmail);
+    setAuthOpen(false);
+    const pending = pendingAuthRef.current;
+    pendingAuthRef.current = null;
+    pending?.();
+  }
+
+  // The editor is sign-in-first: while the content window is closed (the
+  // editor revealed), an anonymous visitor is sent to the auth gate right
+  // away — no longer only when they try to save/export. The authoritative
+  // content-window state (editor-events) guards against stale events firing
+  // the gate after the content part was reopened (e.g. the language switcher).
+  useEffect(() => {
+    if (authed) return;
+    const open = () => {
+      if (isContentWindowOpen()) return;
+      pendingAuthRef.current = null;
+      setAuthOpen(true);
+    };
+    const close = () => {
+      pendingAuthRef.current = null;
+      setAuthOpen(false);
+    };
+    window.addEventListener(EDITOR_REVEAL_EVENT, open);
+    window.addEventListener(CONTENT_OPEN_EVENT, close);
+    if (!isContentWindowOpen() && hasEditorRevealed()) open();
+    return () => {
+      window.removeEventListener(EDITOR_REVEAL_EVENT, open);
+      window.removeEventListener(CONTENT_OPEN_EVENT, close);
+    };
+  }, [authed]);
+
+  // Dock rails are live only once the editor is revealed. While the content
+  // window is open, any press on them opens the editor and does nothing else —
+  // the canvas is never edited "behind" the landing. Reads the live state so a
+  // remount (client navigation) can never leave the guard stale.
+  const dockGuard = (e) => {
+    if (!isContentWindowOpen()) return;
+    e.preventDefault();
+    e.stopPropagation();
+    openEditor();
+  };
+
+  // The gate cannot be dismissed into the editor — the only way out is back
+  // to the content window (which drops whatever action waited behind it).
+  function closeAuthAndReturn() {
+    pendingAuthRef.current = null;
+    setAuthOpen(false);
+    requestContentOpen();
   }
 
   async function runExport(fn, okMessage, key) {
@@ -284,75 +383,37 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
     { icon: "🖼️", label: t.text.downloadPng, run: () => runExport(exporters.downloadPng, t.text.statusSaved, "Download png") },
   ];
 
+  // The taskbar (a separate tree) acts on the open diagram through window
+  // events: Download / Copy open context menus there, Edit Code opens this
+  // sheet. They all need auth (persist/export) so they go through requireAuth.
+  useEffect(() => {
+    const onDownload = (e) => {
+      const kind = e?.detail?.kind;
+      const action = { mermaid: exportActions[1], md: exportActions[2], svg: exportActions[4], png: exportActions[5] }[kind];
+      if (action) requireAuth(action.run);
+    };
+    const onCopy = () => requireAuth(exportActions[0].run);
+    const onCode = () => setCodeOpen(true);
+    const onOpenDocs = () => requireAuth(() => setOpenOpen(true));
+    const onNewDoc = () => requireAuth(() => startNewDocument());
+    window.addEventListener(EDITOR_DOWNLOAD_EVENT, onDownload);
+    window.addEventListener(EDITOR_COPY_EVENT, onCopy);
+    window.addEventListener(EDITOR_CODE_EVENT, onCode);
+    window.addEventListener(EDITOR_OPEN_DOCS_EVENT, onOpenDocs);
+    window.addEventListener(EDITOR_NEW_DOC_EVENT, onNewDoc);
+    return () => {
+      window.removeEventListener(EDITOR_DOWNLOAD_EVENT, onDownload);
+      window.removeEventListener(EDITOR_COPY_EVENT, onCopy);
+      window.removeEventListener(EDITOR_CODE_EVENT, onCode);
+      window.removeEventListener(EDITOR_OPEN_DOCS_EVENT, onOpenDocs);
+      window.removeEventListener(EDITOR_NEW_DOC_EVENT, onNewDoc);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [code, authed, exportActions]);
+
   return (
     <div className="iqm-root app">
       <PageTracker page="App" />
-      <header className="app-header">
-        <Link href={homeHref} className="brand" title={t.backToSite}>
-          <LogoIcon className="brand-badge" />
-        </Link>
-        <div className="header-actions" ref={setActionsSlot} />
-        <div className="header-zoom" ref={setZoomSlot} />
-        <span className="status-line" role="status" aria-live="polite">{status}</span>
-        <span className="header-sep" />
-        <button
-          className="header-icon-btn"
-          onClick={() => {
-            analytics.track("Click", "Open documents");
-            setOpenOpen(true);
-          }}
-          title={t.header.open}
-          aria-label={t.header.open}
-        >
-          📂
-        </button>
-        <button
-          className="header-icon-btn"
-          onClick={() => {
-            analytics.track("Click", "New document");
-            startNewDocument();
-          }}
-          title={t.header.newDocument}
-          aria-label={t.header.newDocument}
-        >
-          ✏️
-        </button>
-        <span className="header-sep" />
-        <button
-          className="header-icon-btn"
-          onClick={() => {
-            analytics.track("Click", "Download menu");
-            setDownloadOpen(true);
-          }}
-          title={t.header.download}
-          aria-label={t.header.download}
-        >
-          📥
-        </button>
-        <span className="header-sep" />
-        <button
-          className="header-icon-btn"
-          onClick={() => {
-            analytics.track("Click", "Code view");
-            setCodeOpen(true);
-          }}
-          title={t.header.code}
-          aria-label={t.header.code}
-        >
-          💻
-        </button>
-        <button
-          className="header-icon-btn"
-          onClick={() => {
-            analytics.track("Click", "Sign out");
-            onSignOut();
-          }}
-          title={`${t.auth.signedInAs} ${email}`}
-          aria-label={t.auth.signOut}
-        >
-          🔑
-        </button>
-      </header>
       <main className="app-main">
         {ready && (
           <VisualEditor
@@ -369,67 +430,124 @@ export default function EditorShell({ t, homeHref, email, onSignOut }) {
           />
         )}
       </main>
-      {codeOpen && (
-        <CodeModal code={code} onChange={handleTextChange} onClose={() => setCodeOpen(false)} t={t} />
-      )}
-      {downloadOpen && (
-        <div className="modal-backdrop" onPointerDown={() => setDownloadOpen(false)}>
-          <div className="modal-panel" onPointerDown={(e) => e.stopPropagation()}>
-            <div className="modal-title">{t.modals.downloadTitle}</div>
-            <div className="modal-list">
-              {exportActions.map((a) => (
+
+      {/* The two vertical rails (portaled onto <body> so the backdrop-blur
+          containers on the desktop shell can't pin them). Left = build actions
+          (add block / add area / copy / paste) + edit code; right = history +
+          view (undo / redo / zoom in / zoom out / fit). */}
+      {typeof document !== "undefined" &&
+        createPortal(
+          <>
+            <aside
+              className="iqm-dock iqm-dock-left"
+              data-scheme="tertiary"
+              onPointerDownCapture={dockGuard}
+              onClickCapture={dockGuard}
+            >
+              <div className="header-actions" ref={setActionsSlot} />
+              {/* Source-code mode, moved out of the site header into the
+                  editor's own rail — same tight spacing as every other icon.
+                  Opens the same code sheet the header's Edit Code used to. */}
+              <div className="header-actions">
                 <button
-                  key={a.label}
-                  className="modal-list-btn"
+                  type="button"
+                  className="dock-btn"
+                  aria-label={t.dock.editCode}
                   onClick={() => {
-                    a.run();
-                    setDownloadOpen(false);
+                    analytics.track("Click", "Dock edit code");
+                    setCodeOpen(true);
                   }}
                 >
-                  <span className="modal-list-icon">{a.icon}</span> {a.label}
+                  <Code2 className="tool-icon" strokeWidth={1.75} />
+                  <span className="dock-tip">{t.dock.editCode}</span>
                 </button>
-              ))}
+              </div>
+            </aside>
+            <aside
+              className="iqm-dock iqm-dock-right"
+              data-scheme="tertiary"
+              onPointerDownCapture={dockGuard}
+              onClickCapture={dockGuard}
+            >
+              <div className="header-zoom" ref={setZoomSlot} />
+              <div className="status-line" role="status" aria-live="polite">{status}</div>
+            </aside>
+          </>,
+          document.body,
+        )}
+
+      {authOpen &&
+        createPortal(
+          <AuthGate t={t} onAuthed={handleAuthed} onBack={closeAuthAndReturn} />,
+          document.body,
+        )}
+      {codeOpen &&
+        createPortal(
+          <CodeModal code={code} onChange={handleTextChange} onClose={() => setCodeOpen(false)} t={t} />,
+          document.body,
+        )}
+      {downloadOpen &&
+        createPortal(
+          <div className="modal-backdrop" onPointerDown={() => setDownloadOpen(false)}>
+            <div className="modal-panel" onPointerDown={(e) => e.stopPropagation()}>
+              <div className="modal-title">{t.modals.downloadTitle}</div>
+              <div className="modal-list">
+                {exportActions.map((a) => (
+                  <button
+                    key={a.label}
+                    className="modal-list-btn"
+                    onClick={() => {
+                      a.run();
+                      setDownloadOpen(false);
+                    }}
+                  >
+                    <span className="modal-list-icon">{a.icon}</span> {a.label}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
-      {openOpen && (
-        <div className="modal-backdrop" onPointerDown={() => setOpenOpen(false)}>
-          <div className="modal-panel" onPointerDown={(e) => e.stopPropagation()}>
-            <div className="modal-title">{t.modals.openTitle}</div>
-            <div className="modal-list modal-list-scroll">
-              {docs.map((d) => (
-                <div key={d.id} className="modal-list-row">
-                  <button
-                    className={"modal-list-btn" + (d.id === currentDocId ? " active" : "")}
-                    onClick={() => openDocument(d)}
-                  >
-                    <span className="modal-list-title">{d.customTitle || d.title}</span>
-                    <span className="modal-list-date">{formatDate(d.updatedAt)}</span>
-                  </button>
-                  <button
-                    className="modal-list-rename"
-                    title={t.documents.rename}
-                    aria-label={t.documents.rename}
-                    onClick={() => confirmRenameDocument(d)}
-                  >
-                    ✏️
-                  </button>
-                  <button
-                    className="modal-list-delete danger"
-                    title={t.documents.delete}
-                    aria-label={t.documents.delete}
-                    onClick={() => confirmDeleteDocument(d)}
-                  >
-                    🗑️
-                  </button>
-                </div>
-              ))}
+          </div>,
+          document.body,
+        )}
+      {openOpen &&
+        createPortal(
+          <div className="modal-backdrop" onPointerDown={() => setOpenOpen(false)}>
+            <div className="modal-panel" onPointerDown={(e) => e.stopPropagation()}>
+              <div className="modal-title">{t.modals.openTitle}</div>
+              <div className="modal-list modal-list-scroll">
+                {docs.map((d) => (
+                  <div key={d.id} className="modal-list-row">
+                    <button
+                      className={"modal-list-btn" + (d.id === currentDocId ? " active" : "")}
+                      onClick={() => openDocument(d)}
+                    >
+                      <span className="modal-list-title">{d.customTitle || d.title}</span>
+                      <span className="modal-list-date">{formatDate(d.updatedAt)}</span>
+                    </button>
+                    <button
+                      className="modal-list-rename"
+                      title={t.documents.rename}
+                      aria-label={t.documents.rename}
+                      onClick={() => confirmRenameDocument(d)}
+                    >
+                      <Pencil size={15} strokeWidth={1.75} />
+                    </button>
+                    <button
+                      className="modal-list-delete danger"
+                      title={t.documents.delete}
+                      aria-label={t.documents.delete}
+                      onClick={() => confirmDeleteDocument(d)}
+                    >
+                      <Trash2 size={15} strokeWidth={1.75} />
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
-      <AskModal ask={docAsk} onClose={() => setDocAsk(null)} t={t} />
+          </div>,
+          document.body,
+        )}
+      {docAsk && createPortal(<AskModal ask={docAsk} onClose={() => setDocAsk(null)} t={t} />, document.body)}
     </div>
   );
 }

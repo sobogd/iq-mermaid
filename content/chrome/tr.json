@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Ücretsiz Online Mermaid Editör — Diyagram Aracı",
-    "description": "Ücretsiz mermaid editörü: görsel çizin veya kod yazın, ikisi senkronize kalır. Akış şeması, sıralama, sınıf, ER, durum, gantt. Kayıt gerekmez, SVG/PNG aktarın.",
-    "ogTitle": "Mermaid Canlı Editör — ücretsiz, online, kayıtsız",
+    "description": "Ücretsiz çevrimiçi mermaid editörü: çizin veya mermaid kodu yazın — senkron. Yalnızca e-postayla giriş. SVG/PNG dışa aktarım.",
+    "ogTitle": "Mermaid Live Editor — ücretsiz, çevrimiçi, sadece e-posta",
     "ogDescription": "Tuval üzerinde diyagram çizin veya mermaid kodu yazın. İki görünüm senkronize kalır. SVG, PNG, .mmd veya Markdown olarak dışa aktarın.",
     "twitterTitle": "Ücretsiz mermaid canlı editör",
-    "twitterDescription": "Görsel tuval ve mermaid kodu yan yana. Kayıt yok, ücret duvarı yok."
+    "twitterDescription": "Görsel tuval ve mermaid kodu yan yana. Ücretsiz, ücretli plan yok — giriş yalnızca e-postayla."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Özellikler",
     "blog": "Rehberler",
     "faq": "SSS",
     "openEditor": "Editörü aç",
-    "menu": "Menü"
+    "menu": "Menü",
+    "legal": "Yasal",
+    "languages": "Diller",
+    "documents": "Şema",
+    "export": "Dışa aktar",
+    "editCode": "Kodu düzenle",
+    "openDocuments": "Son açılanlar",
+    "createNew": "Yeni ekle",
+    "exportCopyMermaid": "Mermaid'ı kopyala",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Ayarlar",
+    "theme": "Tema",
+    "themeSystem": "Sistem",
+    "themeLight": "Açık",
+    "themeDark": "Koyu",
+    "legalPrivacy": "Gizlilik",
+    "legalTerms": "Kullanım Koşulları"
   },
   "hero": {
     "badgeFree": "Sonsuza kadar ücretsiz",
-    "badgeNoSignup": "Kayıt gerekmez",
+    "badgeNoSignup": "Ücretsiz — sadece e-posta",
     "badgeDiagrams": "8 diyagram türü",
     "title": "Ücretsiz online mermaid editör,",
     "titleAccent": "görsel ve kod aynı ekranda",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Render edilen diyagram"
   },
   "statCards": [
-    { "title": "Yazarken render edilir", "sub": "Gerçek mermaid motoru, son tuş vuruşunuzdan birkaç yüz milisaniye sonra yeniden çizilir." },
-    { "title": "Kod ve tuval senkronize", "sub": "Her iki tarafı da düzenleyin. Diğeri kendini günceller — iki araç arasında kopyala-yapıştır yok." },
-    { "title": "14 düğüm şekli", "sub": "Dikdörtgen, yuvarlak köşeli, hap, daire, eşkenar dörtgen, veritabanı, altıgen ve daha fazlası, tek tıkla." },
-    { "title": "Ücretsiz, hesap gerekmez", "sub": "Kayıt yok, deneme süresi yok, dışa aktarmada filigran yok. Diyagramınız tarayıcınızda kalır." }
+    {
+      "title": "Yazarken render edilir",
+      "sub": "Gerçek mermaid motoru, son tuş vuruşunuzdan birkaç yüz milisaniye sonra yeniden çizilir."
+    },
+    {
+      "title": "Kod ve tuval senkronize",
+      "sub": "Her iki tarafı da düzenleyin. Diğeri kendini günceller — iki araç arasında kopyala-yapıştır yok."
+    },
+    {
+      "title": "14 düğüm şekli",
+      "sub": "Dikdörtgen, yuvarlak köşeli, hap, daire, eşkenar dörtgen, veritabanı, altıgen ve daha fazlası, tek tıkla."
+    },
+    {
+      "title": "Ücretsiz, sadece e-posta",
+      "sub": "Deneme sürümü veya dışa aktarma filigranı yok — diyagramları kaydetmek için yalnızca e-posta yeterli."
+    }
   ],
   "spotlights": [
     {
       "heading": "Sadece bir metin kutusu değil, gerçek bir tuval",
       "sub": "Görsel sekme, render edilen diyagramın üzerinde çalışan gerçek bir editördür: bir düğümü seçmek için tıklayın, yerinde yeniden adlandırmak için çift tıklayın, gezinmek için herhangi bir yeri sürükleyin.",
       "bullets": [
-        { "title": "Tıklayarak oluşturun", "sub": "Bir blok ekleyin, bir oku başka bir bloğa yöneltin, oku etiketleyin. Başlamadan önce ezberlenecek bir sözdizimi yok." },
-        { "title": "Bir şekil seçin", "sub": "Ondört mermaid akış şeması şekli — karar eşkenar dörtgenleri, veritabanı silindirleri, alt yordamlar — tek bir seçiciden." },
-        { "title": "Her şeyi renklendirin", "sub": "Sekiz hazır ayar artı bir renk seçici, tek bir düğüme veya tüm bir alana uygulanır." }
+        {
+          "title": "Tıklayarak oluşturun",
+          "sub": "Bir blok ekleyin, bir oku başka bir bloğa yöneltin, oku etiketleyin. Başlamadan önce ezberlenecek bir sözdizimi yok."
+        },
+        {
+          "title": "Bir şekil seçin",
+          "sub": "Ondört mermaid akış şeması şekli — karar eşkenar dörtgenleri, veritabanı silindirleri, alt yordamlar — tek bir seçiciden."
+        },
+        {
+          "title": "Her şeyi renklendirin",
+          "sub": "Sekiz hazır ayar artı bir renk seçici, tek bir düğüme veya tüm bir alana uygulanır."
+        }
       ]
     },
     {
       "heading": "Sizde kalan mermaid kodu",
       "sub": "Metin sekmesi düz mermaid kodudur — GitHub, GitLab, Notion ve Obsidian'ın zaten render ettiği aynı sözdizimi. Burada özel bir format yok.",
       "bullets": [
-        { "title": "Elle yazın", "sub": "Mermaid'i doğrudan yazın ve render edildiğini izleyin. Başlamak için altı hazır örnek." },
-        { "title": "Çift yönlü çalışır", "sub": "Yapıştırdığınız akış şemaları tuval üzerine geri ayrıştırılır — düğümler, şekiller, renkler, alt grafikler ve tüm diğerleri." },
-        { "title": "Her diyagram türü", "sub": "Akış şeması, sıralama, sınıf, durum, ER, gantt, git grafiği, pasta — önizleme mermaid'in desteklediği her şeyi render eder." }
+        {
+          "title": "Elle yazın",
+          "sub": "Mermaid'i doğrudan yazın ve render edildiğini izleyin. Başlamak için altı hazır örnek."
+        },
+        {
+          "title": "Çift yönlü çalışır",
+          "sub": "Yapıştırdığınız akış şemaları tuval üzerine geri ayrıştırılır — düğümler, şekiller, renkler, alt grafikler ve tüm diğerleri."
+        },
+        {
+          "title": "Her diyagram türü",
+          "sub": "Akış şeması, sıralama, sınıf, durum, ER, gantt, git grafiği, pasta — önizleme mermaid'in desteklediği her şeyi render eder."
+        }
       ]
     },
     {
       "heading": "Büyük diyagramlar okunabilir kalır",
       "sub": "Mimari diyagramlar hızla bir ekranın sınırlarını aşar. Kaydırma, yakınlaştırma ve gruplama bununla mücadele etmek yerine bunun için tasarlandı.",
       "bullets": [
-        { "title": "Alanlar ve iç içe geçme", "sub": "Blokları alt grafiklerde gruplandırın, bir alanı diğerinin içine yerleştirin, tüm bir alt ağacı tek hareketle taşıyın." },
-        { "title": "%2'den %1600'e yakınlaştırma", "sub": "Gezinmek için kaydırın, yakınlaştırmak için ctrl+kaydırma yapın veya tek bir düğmeyle yeniden ortalayın." },
-        { "title": "İlerledikçe kaydedilir", "sub": "Diyagramınız her düzenlemede tarayıcının yerel depolamasına yazılır — sekmeyi kapatın ve kaldığınız yerden devam edin." }
+        {
+          "title": "Alanlar ve iç içe geçme",
+          "sub": "Blokları alt grafiklerde gruplandırın, bir alanı diğerinin içine yerleştirin, tüm bir alt ağacı tek hareketle taşıyın."
+        },
+        {
+          "title": "%2'den %1600'e yakınlaştırma",
+          "sub": "Gezinmek için kaydırın, yakınlaştırmak için ctrl+kaydırma yapın veya tek bir düğmeyle yeniden ortalayın."
+        },
+        {
+          "title": "İlerledikçe kaydedilir",
+          "sub": "Diyagramınız her düzenlemede tarayıcının yerel depolamasına yazılır — sekmeyi kapatın ve kaldığınız yerden devam edin."
+        }
       ]
     },
     {
       "heading": "Dışa aktarın ve işinize devam edin",
       "sub": "Hiçbir şey kilitli değil. Görseli alın, kaynağı alın veya bir belgeye yapıştırmaya hazır bir Markdown bloğu alın.",
       "bullets": [
-        { "title": "Ücret duvarı yok", "sub": "Dışa aktarma dahil her özellik ücretsizdir. Yükseltilecek ücretli bir katman yoktur." },
-        { "title": "Hiçbir şey tarayıcınızdan çıkmaz", "sub": "Hesap ve sunucu taraflı diyagram depolama yoktur — render işlemi yerel olarak gerçekleşir." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "SVG işaretlemesini kopyalayın, 2 kat çözünürlükte bir PNG indirin, mermaid kaynağını kaydedin veya çevrelenmiş bir Markdown bloğu alın." }
+        {
+          "title": "Ücret duvarı yok",
+          "sub": "Dışa aktarma dahil her özellik ücretsizdir. Yükseltilecek ücretli bir katman yoktur."
+        },
+        {
+          "title": "Hiçbir şey tarayıcınızdan çıkmaz",
+          "sub": "İşleme tarayıcınızda gerçekleşir; kaydedilen diyagramlar hesabınızda durur ve her cihazdan oradadır."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "SVG işaretlemesini kopyalayın, 2 kat çözünürlükte bir PNG indirin, mermaid kaynağını kaydedin veya çevrelenmiş bir Markdown bloğu alın."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Fiyat",
-        "us": "Ücretsiz, hesap gerekmez, dışa aktarma sınırı yok.",
+        "us": "Ücretsiz — sadece e-posta",
         "them": "Birkaç diyagramla sınırlı ücretsiz katman, dışa aktarma veya işbirliği ise abonelik arkasında."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Mermaid editörü",
     "headingAccent": "soruları",
-    "sub": "İnsanların açmadan önce sordukları sorular. Kayıt gerekmez — editör bir tık uzağınızda.",
+    "sub": "Başlamak için yalnızca bir e-posta yeter.",
     "items": [
       {
         "q": "Mermaid nedir?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Bu mermaid editörü gerçekten ücretsiz mi?",
-        "a": "Evet. SVG ve PNG dışa aktarma dahil her özellik ücretsizdir ve oluşturulacak bir hesap yoktur. Ücretli bir katman yoktur — hiçbir şey kısıtlanmaz."
+        "a": "Evet. SVG ve PNG dışa aktarım dahil tüm özellikler ücretsizdir. Giriş için yalnızca bir e-posta gerekir — ücretli plan veya gizli kısıtlama yoktur."
       },
       {
         "q": "Mermaid sözdizimini bilmem gerekiyor mu?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Diyagramım nerede saklanıyor?",
-        "a": "Kendi cihazınızdaki tarayıcınızın yerel depolamasında. Hesap ve sunucu tarafı kopya yoktur, bu yüzden tarayıcı verilerinizi temizlemek veya cihaz değiştirmek yeniden başlamak anlamına gelir — saklamak istiyorsanız kaynağı dışa aktarın."
+        "a": "Diyagramlarınız hesabınıza kaydedilir, böylece geri döndüğünüzde her cihazdan oradadırlar. Yerel bir kopya istiyorsanız kaynağı dışa aktarın."
       },
       {
         "q": "Var olan bir mermaid diyagramını yapıştırabilir miyim?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Çevrimdışı çalışır mı?",
-        "a": "Render işlemi tamamen tarayıcınızda gerçekleşir, bu yüzden sayfa bir kez yüklendikten sonra editör bağlantı olmadan çalışmaya devam eder. Diyagramınız bir sunucuda değil, yerel depolamadadır."
+        "a": "İşleme tamamen tarayıcınızda gerçekleşir; sayfa yüklendikten sonra editör bağlantı olmadan da çalışır."
       }
     ]
   },
   "finalCta": {
     "heading": "Editörü açın.",
-    "headingAccent": "Kaydolacak hiçbir şey yok.",
+    "headingAccent": "Ücretsiz — sadece e-posta",
     "sub": "Boş bir tuval, bir kod sekmesi ve her dışa aktarma seçeneği — ücretsiz, tarayıcınızda, şimdi.",
     "ctaLabel": "Editörü aç"
   },

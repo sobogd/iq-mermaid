@@ -28,6 +28,18 @@
     "out": "Uzaklaştır",
     "fit": "Sığdır"
   },
+  "dock": {
+    "addBlock": "Blok ekle",
+    "addGroup": "Alan ekle",
+    "copy": "Kopyala",
+    "paste": "Yapıştır",
+    "undo": "Geri al",
+    "redo": "Yinele",
+    "zoomIn": "Yakınlaştır",
+    "zoomOut": "Uzaklaştır",
+    "fit": "Sığdır",
+    "editCode": "Kodu düzenle"
+  },
   "modals": {
     "colorTitle": "Renk",
     "shapeTitle": "Şekil",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Tamamen ücretsiz — ücretli plan veya kart yok. Diyagramları kaydetmek, senkronize etmek ve dışa aktarmak için yalnızca bir e-posta.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Geri"
   }
 }

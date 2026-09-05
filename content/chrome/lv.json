@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Mermaid tiešsaistes redaktors — bezmaksas diagrammu veidošana",
-    "description": "Bezmaksas mermaid tiešsaistes redaktors: zīmējiet diagrammu vizuāli vai rakstiet mermaid kodu — abi paliek sinhronizēti. Bez reģistrācijas, eksports SVG/PNG.",
-    "ogTitle": "Mermaid tiešsaistes redaktors — bezmaksas, bez reģistrācijas",
+    "description": "Bezmaksas mermaid redaktors: zīmējiet vai rakstiet mermaid kodu — sinhroni. Pietiek ar e-pastu. Eksports SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — bez maksas, tiešsaistē, tikai e-pasts",
     "ogDescription": "Zīmējiet diagrammas uz audekla vai rakstiet mermaid kodu. Abi skati paliek sinhronizēti. Eksportējiet SVG, PNG, .mmd vai Markdown formātā.",
     "twitterTitle": "Bezmaksas mermaid tiešsaistes redaktors",
-    "twitterDescription": "Vizuāls audekls un mermaid kods līdzās. Bez reģistrācijas, bez maksas sienas."
+    "twitterDescription": "Vizuāls audekls un mermaid kods blakus. Bez maksas, bez maksas plāna — pieslēgšanās tikai ar e-pastu."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Iespējas",
     "blog": "Rokasgrāmatas",
     "faq": "BUJ",
     "openEditor": "Atvērt redaktoru",
-    "menu": "Izvēlne"
+    "menu": "Izvēlne",
+    "legal": "Juridiskā informācija",
+    "languages": "Valodas",
+    "documents": "Shēma",
+    "export": "Eksportēt",
+    "editCode": "Rediģēt kodu",
+    "openDocuments": "Nesen atvērtie",
+    "createNew": "Pievienot jaunu",
+    "exportCopyMermaid": "Kopēt Mermaid",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Iestatījumi",
+    "theme": "Tēma",
+    "themeSystem": "Sistēma",
+    "themeLight": "Gaiša",
+    "themeDark": "Tumša",
+    "legalPrivacy": "Privātums",
+    "legalTerms": "Noteikumi"
   },
   "hero": {
     "badgeFree": "Vienmēr bezmaksas",
-    "badgeNoSignup": "Bez reģistrācijas",
+    "badgeNoSignup": "Bezmaksas — tikai e-pasts",
     "badgeDiagrams": "8 diagrammu veidi",
     "title": "Mermaid tiešsaistes redaktors,",
     "titleAccent": "vizuāli un kods vienuviet",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Atveidotā diagramma"
   },
   "statCards": [
-    { "title": "Atveido rakstīšanas laikā", "sub": "Īstais mermaid dzinējs, kas pārzīmē dažus simtus milisekunžu pēc jūsu pēdējā taustiņsitiena." },
-    { "title": "Kods un audekls sinhronizējas", "sub": "Rediģējiet jebkuru pusi — otra pievienojas automātiski, bez kopēšanas starp diviem rīkiem." },
-    { "title": "14 mezglu formas", "sub": "Taisnstūris, noapaļots, tablete, aplis, rombs, datubāze, sešstūris un pārējie — katrs vienā klikšķī." },
-    { "title": "Bezmaksas, bez konta", "sub": "Bez reģistrācijas, bez izmēģinājuma, bez ūdenszīmes eksportā. Jūsu diagramma paliek pārlūkā." }
+    {
+      "title": "Atveido rakstīšanas laikā",
+      "sub": "Īstais mermaid dzinējs, kas pārzīmē dažus simtus milisekunžu pēc jūsu pēdējā taustiņsitiena."
+    },
+    {
+      "title": "Kods un audekls sinhronizējas",
+      "sub": "Rediģējiet jebkuru pusi — otra pievienojas automātiski, bez kopēšanas starp diviem rīkiem."
+    },
+    {
+      "title": "14 mezglu formas",
+      "sub": "Taisnstūris, noapaļots, tablete, aplis, rombs, datubāze, sešstūris un pārējie — katrs vienā klikšķī."
+    },
+    {
+      "title": "Bezmaksas — tikai e-pasts",
+      "sub": "Bez izmēģinājuma perioda un ūdenszīmes eksportā — diagrammu saglabāšanai pietiek ar e-pastu."
+    }
   ],
   "spotlights": [
     {
       "heading": "Audekls, ne tikai teksta lauks",
       "sub": "Vizuālā cilne ir īsts redaktors tieši virs atveidotās diagrammas: uzklikšķiniet uz mezgla, lai to atlasītu, veiciet dubultklikšķi, lai pārdēvētu uz vietas, velciet jebkur, lai pārvietotu skatu.",
       "bullets": [
-        { "title": "Būvējiet ar klikšķi", "sub": "Pievienojiet bloku, norādiet bultu uz citu, pievienojiet bultai etiķeti. Nav sintakses, kas jāatceras pirms sākuma." },
-        { "title": "Izvēlieties formu", "sub": "Četrpadsmit mermaid plūsmas diagrammas formas — lēmumu rombi, datubāzu cilindri, apakšprogrammas — vienā izvēlnē." },
-        { "title": "Iekrāsojiet jebko", "sub": "Astoņi sagatavotie varianti plus krāsu izvēle, ko var pielietot vienam mezglam vai visam apgabalam." }
+        {
+          "title": "Būvējiet ar klikšķi",
+          "sub": "Pievienojiet bloku, norādiet bultu uz citu, pievienojiet bultai etiķeti. Nav sintakses, kas jāatceras pirms sākuma."
+        },
+        {
+          "title": "Izvēlieties formu",
+          "sub": "Četrpadsmit mermaid plūsmas diagrammas formas — lēmumu rombi, datubāzu cilindri, apakšprogrammas — vienā izvēlnē."
+        },
+        {
+          "title": "Iekrāsojiet jebko",
+          "sub": "Astoņi sagatavotie varianti plus krāsu izvēle, ko var pielietot vienam mezglam vai visam apgabalam."
+        }
       ]
     },
     {
       "heading": "Mermaid kods, kas paliek jūsu",
       "sub": "Teksta cilne ir tīrs mermaid — tā pati sintakse, ko jau atveido GitHub, GitLab, Notion un Obsidian. Šeit nav neviena patentēta formāta.",
       "bullets": [
-        { "title": "Rakstiet ar roku", "sub": "Rakstiet mermaid tieši un vērojiet, kā tas atveidojas. Seši gatavi piemēri, no kuriem sākt." },
-        { "title": "Divvirzienu process", "sub": "Ielīmētas plūsmas diagrammas tiek atkal atpazītas audeklā — mezgli, formas, krāsas, apakšgrafi un viss pārējais." },
-        { "title": "Visi diagrammu veidi", "sub": "Flowchart, secības, klašu, stāvokļu, ER, gantt, git grafa, apļa diagrammas — priekšskatījums atveido visu, ko atbalsta mermaid." }
+        {
+          "title": "Rakstiet ar roku",
+          "sub": "Rakstiet mermaid tieši un vērojiet, kā tas atveidojas. Seši gatavi piemēri, no kuriem sākt."
+        },
+        {
+          "title": "Divvirzienu process",
+          "sub": "Ielīmētas plūsmas diagrammas tiek atkal atpazītas audeklā — mezgli, formas, krāsas, apakšgrafi un viss pārējais."
+        },
+        {
+          "title": "Visi diagrammu veidi",
+          "sub": "Flowchart, secības, klašu, stāvokļu, ER, gantt, git grafa, apļa diagrammas — priekšskatījums atveido visu, ko atbalsta mermaid."
+        }
       ]
     },
     {
       "heading": "Lielas diagrammas paliek lasāmas",
       "sub": "Arhitektūras diagrammas ātri pārsniedz viena ekrāna izmēru. Pārvietošana, tuvināšana un grupēšana ir izveidotas tieši šim, nevis pret to.",
       "bullets": [
-        { "title": "Apgabali un ligzdošana", "sub": "Grupējiet blokus apakšgrafos, ievietojiet vienu apgabalu citā, pārvietojiet visu apakškoku vienā kustībā." },
-        { "title": "Tuvināšana no 2% līdz 1600%", "sub": "Ritiniet, lai pārvietotos, ctrl+ritināšana, lai tuvinātu, vai atcentrējiet ar vienu pogu." },
-        { "title": "Saglabājas automātiski", "sub": "Jūsu diagramma tiek ierakstīta pārlūka lokālajā krātuvē pēc katras izmaiņas — aizveriet cilni un atgriezieties pie tās vēlāk." }
+        {
+          "title": "Apgabali un ligzdošana",
+          "sub": "Grupējiet blokus apakšgrafos, ievietojiet vienu apgabalu citā, pārvietojiet visu apakškoku vienā kustībā."
+        },
+        {
+          "title": "Tuvināšana no 2% līdz 1600%",
+          "sub": "Ritiniet, lai pārvietotos, ctrl+ritināšana, lai tuvinātu, vai atcentrējiet ar vienu pogu."
+        },
+        {
+          "title": "Saglabājas automātiski",
+          "sub": "Jūsu diagramma tiek ierakstīta pārlūka lokālajā krātuvē pēc katras izmaiņas — aizveriet cilni un atgriezieties pie tās vēlāk."
+        }
       ]
     },
     {
       "heading": "Eksportējiet un turpiniet darbu",
       "sub": "Nekas nav ieslēgts būrī. Ņemiet attēlu, ņemiet pirmkodu vai ņemiet Markdown bloku, kas gatavs ielīmēšanai dokumentā.",
       "bullets": [
-        { "title": "Bez maksas sienas", "sub": "Visas funkcijas, tostarp eksports, ir bezmaksas. Nav maksas plāna, uz kuru pāriet." },
-        { "title": "Nekas nepamet jūsu pārlūku", "sub": "Nav konta un nav diagrammu glabāšanas serverī — atveidošana notiek lokāli." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Kopējiet SVG kodu, lejupielādējiet 2x PNG, saglabājiet mermaid pirmkodu vai paņemiet Markdown bloku." }
+        {
+          "title": "Bez maksas sienas",
+          "sub": "Visas funkcijas, tostarp eksports, ir bezmaksas. Nav maksas plāna, uz kuru pāriet."
+        },
+        {
+          "title": "Nekas nepamet jūsu pārlūku",
+          "sub": "Renderēšana notiek jūsu pārlūkā; saglabātās diagrammas glabājas jūsu kontā un ir pieejamas no jebkuras ierīces."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Kopējiet SVG kodu, lejupielādējiet 2x PNG, saglabājiet mermaid pirmkodu vai paņemiet Markdown bloku."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Cena",
-        "us": "Bezmaksas, bez konta, bez eksporta ierobežojumiem.",
+        "us": "Bezmaksas — tikai e-pasts",
         "them": "Bezmaksas plāns ierobežots līdz pāris diagrammām, eksports vai sadarbība pieejama tikai ar abonementu."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Mermaid redaktora",
     "headingAccent": "jautājumi",
-    "sub": "To, ko cilvēki jautā, pirms to atver. Reģistrācija nav vajadzīga — redaktors ir viena klikšķa attālumā.",
+    "sub": "Lai sāktu, pietiek ar e-pastu.",
     "items": [
       {
         "q": "Kas ir mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Vai šis mermaid redaktors tiešām ir bezmaksas?",
-        "a": "Jā. Visas funkcijas, tostarp SVG un PNG eksports, ir bezmaksas, un konts nav jāveido. Nav maksas plāna — nekas netiek paturēts."
+        "a": "Jā. Visi rīki, tostarp SVG un PNG eksports, ir bez maksas. Pietiek tikai ar e-pastu, lai pieslēgtos — maksas plāna vai slēptu ierobežojumu nav."
       },
       {
         "q": "Vai man jāzina mermaid sintakse?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Kur tiek glabāta mana diagramma?",
-        "a": "Jūsu pārlūka lokālajā krātuvē, jūsu pašu ierīcē. Nav konta un nav kopijas serverī, tāpēc pārlūka datu dzēšana vai ierīces maiņa nozīmē sākt no jauna — eksportējiet pirmkodu, ja vēlaties to saglabāt."
+        "a": "Jūsu diagrammas glabājas kontā, tāpēc tās ir tur, kad atgriežaties — no jebkuras ierīces. Ja vēlaties lokālu kopiju, eksportējiet avotu."
       },
       {
         "q": "Vai varu ielīmēt jau esošu mermaid diagrammu?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Vai tas darbojas bezsaistē?",
-        "a": "Atveidošana notiek pilnībā jūsu pārlūkā, tāpēc pēc lapas ielādes redaktors turpina darboties bez interneta savienojuma. Jūsu diagramma atrodas lokālajā krātuvē, nevis serverī."
+        "a": "Renderēšana notiek pilnībā pārlūkā, tāpēc pēc lapas ielādes redaktors darbojas arī bez savienojuma."
       }
     ]
   },
   "finalCta": {
     "heading": "Atveriet redaktoru.",
-    "headingAccent": "Nav nekur jāreģistrējas.",
+    "headingAccent": "Bezmaksas — tikai e-pasts",
     "sub": "Tukšs audekls, koda cilne un visas eksporta iespējas — bez maksas, jūsu pārlūkā, tieši tagad.",
     "ctaLabel": "Atvērt redaktoru"
   },

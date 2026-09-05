@@ -28,6 +28,18 @@
     "out": "Віддалити",
     "fit": "Вписати"
   },
+  "dock": {
+    "addBlock": "Додати блок",
+    "addGroup": "Додати область",
+    "copy": "Копіювати",
+    "paste": "Вставити",
+    "undo": "Скасувати",
+    "redo": "Повторити",
+    "zoomIn": "Наблизити",
+    "zoomOut": "Віддалити",
+    "fit": "Вписати",
+    "editCode": "Редагувати код"
+  },
   "modals": {
     "colorTitle": "Колір",
     "shapeTitle": "Форма",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Абсолютно безкоштовно — без платних тарифів і карток. Потрібен лише e-mail, щоб зберігати, синхронізувати та експортувати схеми.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Назад"
   }
 }

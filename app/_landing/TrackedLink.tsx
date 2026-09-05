@@ -13,16 +13,22 @@ export function TrackedLink({
   track,
   className,
   children,
+  openEditor = false,
 }: {
   href: string;
   /** Event name, locale-stable (route key / slug, never a translated label). */
   track: string;
   className?: string;
   children: React.ReactNode;
+  /** Set for links that should collapse the marketing window (reveal the
+   *  shared editor) instead of navigating — `AppWindow`'s click delegate
+   *  listens for `[data-iqm-open-editor]`. */
+  openEditor?: boolean;
 }) {
   return (
     <a
-      href={href}
+      href={openEditor ? "#" : href}
+      data-iqm-open-editor={openEditor ? "true" : undefined}
       className={className}
       onClick={() => {
         analytics.track("Click", track);

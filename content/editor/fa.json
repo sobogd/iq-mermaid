@@ -28,6 +28,18 @@
     "out": "کوچک‌نمایی",
     "fit": "اندازهٔ مناسب"
   },
+  "dock": {
+    "addBlock": "افزودن بلوک",
+    "addGroup": "افزودن ناحیه",
+    "copy": "کپی",
+    "paste": "چسباندن",
+    "undo": "بازگشت",
+    "redo": "از نو",
+    "zoomIn": "بزرگنمایی",
+    "zoomOut": "کوکنمایی",
+    "fit": "جای دادن",
+    "editCode": "ویرایش کد"
+  },
   "modals": {
     "colorTitle": "رنگ",
     "shapeTitle": "شکل",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "کاملاً رایگان — بدون طرح پولی یا کارت. فقط یک ایمیل برای ذخیره، همگام‌سازی و خروجی نمودارها.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "بازگشت"
   }
 }

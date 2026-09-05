@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Mermaid-editori ilmaiseksi verkossa – tee kaavio",
-    "description": "Ilmainen mermaid-editori: piirrä kaavio tai kirjoita koodia, molemmat synkassa. Vuokaavio, sekvenssi, luokka, ER, tila, gantt. Ei rekisteröitymistä, vie SVG/PNG.",
-    "ogTitle": "Mermaid-editori – ilmainen, verkossa, ei rekisteröitymistä",
+    "description": "Ilmainen mermaid-editori verkossa: piirrä tai kirjoita mermaid-koodia — synkronoidusti. Kirjautuminen vain sähköpostilla. Vie SVG/PNG:ään.",
+    "ogTitle": "Mermaid Live Editor — ilmainen, verkossa, vain sähköposti",
     "ogDescription": "Piirrä kaavioita kankaalle tai kirjoita mermaid-koodia. Molemmat näkymät pysyvät synkassa. Vie SVG-, PNG-, .mmd- tai Markdown-muotoon.",
     "twitterTitle": "Ilmainen mermaid-editori verkossa",
-    "twitterDescription": "Visuaalinen kanvas ja mermaid-koodi rinnakkain. Ei rekisteröitymistä, ei maksumuuria."
+    "twitterDescription": "Visuaalinen kangas ja mermaid-koodi rinnakkain. Ilmainen, ei maksullista tasoa — kirjaudu vain sähköpostilla."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Ominaisuudet",
     "blog": "Oppaat",
     "faq": "UKK",
     "openEditor": "Avaa editori",
-    "menu": "Valikko"
+    "menu": "Valikko",
+    "legal": "Lakitiedot",
+    "languages": "Kielet",
+    "documents": "Kaavio",
+    "export": "Vie",
+    "editCode": "Muokkaa koodia",
+    "openDocuments": "Äskettäin avatut",
+    "createNew": "Lisää uusi",
+    "exportCopyMermaid": "Kopioi Mermaid",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Asetukset",
+    "theme": "Teema",
+    "themeSystem": "Järjestelmä",
+    "themeLight": "Vaalea",
+    "themeDark": "Tumma",
+    "legalPrivacy": "Yksityisyys",
+    "legalTerms": "Käyttöehdot"
   },
   "hero": {
     "badgeFree": "Ikuisesti ilmainen",
-    "badgeNoSignup": "Ei rekisteröitymistä",
+    "badgeNoSignup": "Ilmainen — vain sähköposti",
     "badgeDiagrams": "8 kaaviotyyppiä",
     "title": "Mermaid-editori verkossa,",
     "titleAccent": "visuaalinen näkymä ja koodi samassa paikassa",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Piirretty kaavio"
   },
   "statCards": [
-    { "title": "Piirtyy sitä mukaa kun kirjoitat", "sub": "Todellinen mermaid-moottori, piirretään uudelleen muutaman sadan millisekunnin kuluttua viimeisestä näppäimenpainalluksesta." },
-    { "title": "Koodi ja kanvas synkassa", "sub": "Muokkaa kumpaa tahansa puolta. Toinen päivittyy perässä – ei kopiointia kahden työkalun välillä." },
-    { "title": "14 solmun muotoa", "sub": "Suorakulmio, pyöristetty, pilleri, ympyrä, vinoneliö, tietokanta, kuusikulmio ja muut, yhdellä klikkauksella." },
-    { "title": "Ilmainen, ei tiliä", "sub": "Ei rekisteröitymistä, ei kokeilujaksoa, ei vesileimaa viennissä. Kaaviosi pysyy selaimessasi." }
+    {
+      "title": "Piirtyy sitä mukaa kun kirjoitat",
+      "sub": "Todellinen mermaid-moottori, piirretään uudelleen muutaman sadan millisekunnin kuluttua viimeisestä näppäimenpainalluksesta."
+    },
+    {
+      "title": "Koodi ja kanvas synkassa",
+      "sub": "Muokkaa kumpaa tahansa puolta. Toinen päivittyy perässä – ei kopiointia kahden työkalun välillä."
+    },
+    {
+      "title": "14 solmun muotoa",
+      "sub": "Suorakulmio, pyöristetty, pilleri, ympyrä, vinoneliö, tietokanta, kuusikulmio ja muut, yhdellä klikkauksella."
+    },
+    {
+      "title": "Ilmainen, vain sähköposti",
+      "sub": "Ei kokeilujaksoa eikä vesileimaa viennissä — kaavioiden tallentamiseen riittää sähköposti."
+    }
   ],
   "spotlights": [
     {
       "heading": "Kanvas, ei pelkkä tekstikenttä",
       "sub": "Visuaalinen välilehti on oikea editori piirretyn kaavion päällä: klikkaa solmua valitaksesi sen, kaksoisklikkaa nimetäksesi sen uudelleen paikan päällä, vedä mistä tahansa panoroidaksesi.",
       "bullets": [
-        { "title": "Rakenna klikkaamalla", "sub": "Lisää lohko, osoita nuolella toiseen, nimeä nuoli. Ei syntaksia opeteltavaksi ennen aloittamista." },
-        { "title": "Valitse muoto", "sub": "Neljätoista mermaid-vuokaavion muotoa – päätösvinoneliöt, tietokantasylinterit, aliohjelmat – yhdestä valitsimesta." },
-        { "title": "Väritä mitä tahansa", "sub": "Kahdeksan valmista väriä ja värivalitsin, sovellettavissa yhteen solmuun tai kokonaiseen alueeseen." }
+        {
+          "title": "Rakenna klikkaamalla",
+          "sub": "Lisää lohko, osoita nuolella toiseen, nimeä nuoli. Ei syntaksia opeteltavaksi ennen aloittamista."
+        },
+        {
+          "title": "Valitse muoto",
+          "sub": "Neljätoista mermaid-vuokaavion muotoa – päätösvinoneliöt, tietokantasylinterit, aliohjelmat – yhdestä valitsimesta."
+        },
+        {
+          "title": "Väritä mitä tahansa",
+          "sub": "Kahdeksan valmista väriä ja värivalitsin, sovellettavissa yhteen solmuun tai kokonaiseen alueeseen."
+        }
       ]
     },
     {
       "heading": "Mermaid-koodi, joka pysyy sinun omanasi",
       "sub": "Tekstivälilehti on tavallista mermaidia – samaa syntaksia jonka GitHub, GitLab, Notion ja Obsidian jo osaavat piirtää. Mikään täällä ei ole suljettu formaatti.",
       "bullets": [
-        { "title": "Kirjoita käsin", "sub": "Kirjoita mermaidia suoraan ja katso sen piirtyvän. Kuusi valmista esimerkkiä aloitukseen." },
-        { "title": "Kulkee kumpaankin suuntaan", "sub": "Liitetyt vuokaaviot jäsennetään takaisin kanvakselle – solmut, muodot, värit, alikaaviot ja kaikki." },
-        { "title": "Jokainen kaaviotyyppi", "sub": "Vuokaavio, sekvenssi, luokka, tila, ER, gantt, git-graafi, piirakka – esikatselu piirtää kaiken minkä mermaid tukee." }
+        {
+          "title": "Kirjoita käsin",
+          "sub": "Kirjoita mermaidia suoraan ja katso sen piirtyvän. Kuusi valmista esimerkkiä aloitukseen."
+        },
+        {
+          "title": "Kulkee kumpaankin suuntaan",
+          "sub": "Liitetyt vuokaaviot jäsennetään takaisin kanvakselle – solmut, muodot, värit, alikaaviot ja kaikki."
+        },
+        {
+          "title": "Jokainen kaaviotyyppi",
+          "sub": "Vuokaavio, sekvenssi, luokka, tila, ER, gantt, git-graafi, piirakka – esikatselu piirtää kaiken minkä mermaid tukee."
+        }
       ]
     },
     {
       "heading": "Isot kaaviot pysyvät luettavina",
       "sub": "Arkkitehtuurikaaviot kasvavat nopeasti yhtä näyttöä suuremmiksi. Panorointi, zoomaus ja ryhmittely on suunniteltu juuri siihen sen sijaan että ne olisivat esteenä.",
       "bullets": [
-        { "title": "Alueet ja sisäkkäisyys", "sub": "Ryhmittele lohkoja alikaavioiksi, upota alue toisen sisään, siirrä kokonainen alipuu yhdellä eleellä." },
-        { "title": "Zoomaa 2 %:sta 1600 %:iin", "sub": "Vieritä panoroidaksesi, ctrl+vieritä zoomataksesi, tai keskitä uudelleen yhdellä painikkeella." },
-        { "title": "Tallentuu matkan varrella", "sub": "Kaaviosi kirjoitetaan selaimen paikalliseen tallennustilaan jokaisella muokkauksella – sulje välilehti ja palaa siihen myöhemmin." }
+        {
+          "title": "Alueet ja sisäkkäisyys",
+          "sub": "Ryhmittele lohkoja alikaavioiksi, upota alue toisen sisään, siirrä kokonainen alipuu yhdellä eleellä."
+        },
+        {
+          "title": "Zoomaa 2 %:sta 1600 %:iin",
+          "sub": "Vieritä panoroidaksesi, ctrl+vieritä zoomataksesi, tai keskitä uudelleen yhdellä painikkeella."
+        },
+        {
+          "title": "Tallentuu matkan varrella",
+          "sub": "Kaaviosi kirjoitetaan selaimen paikalliseen tallennustilaan jokaisella muokkauksella – sulje välilehti ja palaa siihen myöhemmin."
+        }
       ]
     },
     {
       "heading": "Vie ja jatka eteenpäin",
       "sub": "Mikään ei ole lukittu. Ota kuva, ota lähdekoodi, tai ota Markdown-lohko valmiina liitettäväksi dokumenttiin.",
       "bullets": [
-        { "title": "Ei maksumuuria", "sub": "Jokainen ominaisuus, vienti mukaan lukien, on ilmainen. Ei maksullista tasoa johon päivittää." },
-        { "title": "Mikään ei poistu selaimestasi", "sub": "Ei tiliä eikä palvelinpuolen kaaviotallennusta – piirtäminen tapahtuu paikallisesti." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Kopioi SVG-merkkaus, lataa 2x PNG, tallenna mermaid-lähdekoodi tai ota aidattu Markdown-lohko." }
+        {
+          "title": "Ei maksumuuria",
+          "sub": "Jokainen ominaisuus, vienti mukaan lukien, on ilmainen. Ei maksullista tasoa johon päivittää."
+        },
+        {
+          "title": "Mikään ei poistu selaimestasi",
+          "sub": "Renderöinti tapahtuu selaimessasi; tallennetut kaaviot ovat tililläsi ja käytettävissä millä tahansa laitteella."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Kopioi SVG-merkkaus, lataa 2x PNG, tallenna mermaid-lähdekoodi tai ota aidattu Markdown-lohko."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Hinta",
-        "us": "Ilmainen, ei tiliä, ei vientirajoituksia.",
+        "us": "Ilmainen — vain sähköposti",
         "them": "Ilmainen taso rajattu muutamaan kaavioon, vienti tai yhteistyö tilauksen takana."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Mermaid-editorin",
     "headingAccent": "kysymyksiä",
-    "sub": "Mitä ihmiset kysyvät ennen sen avaamista. Ei rekisteröitymistä – editori on yhden klikkauksen päässä.",
+    "sub": "Aloittamiseen riittää vain sähköposti.",
     "items": [
       {
         "q": "Mikä on mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Onko tämä mermaid-editori todella ilmainen?",
-        "a": "Kyllä. Jokainen ominaisuus, SVG- ja PNG-vienti mukaan lukien, on ilmainen, eikä tiliä tarvitse luoda. Maksullista tasoa ei ole – mitään ei pidätetä."
+        "a": "Kyllä. Kaikki ominaisuudet, myös SVG- ja PNG-vienti, ovat ilmaisia. Aloittamiseen riittää sähköposti — maksullista tasoa tai piilotettua rajausta ei ole."
       },
       {
         "q": "Pitääkö minun osata mermaid-syntaksia?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Mihin kaavioni tallentuu?",
-        "a": "Selaimesi paikalliseen tallennustilaan, omalle laitteellesi. Ei tiliä eikä palvelinpuolen kopiota, joten selaindatan tyhjentäminen tai laitteen vaihtaminen tarkoittaa aloittamista alusta – vie lähdekoodi jos haluat säilyttää sen."
+        "a": "Kaaviosi tallennetaan tilillesi, joten ne ovat siellä, kun palaat — miltä tahansa laitteelta. Vie lähde, jos haluat paikallisen kopion."
       },
       {
         "q": "Voinko liittää olemassa olevan mermaid-kaavion?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Toimiiko se offline-tilassa?",
-        "a": "Piirtäminen tapahtuu kokonaan selaimessasi, joten kun sivu on ladattu, editori toimii jatkossakin ilman yhteyttä. Kaaviosi on paikallisessa tallennustilassa, ei palvelimella."
+        "a": "Renderöinti tapahtuu kokonaan selaimessasi, joten sivun latauduttua editori toimii myös ilman yhteyttä."
       }
     ]
   },
   "finalCta": {
     "heading": "Avaa editori.",
-    "headingAccent": "Ei mitään rekisteröitävää.",
+    "headingAccent": "Ilmainen — vain sähköposti",
     "sub": "Tyhjä kanvas, koodivälilehti ja jokainen vientivaihtoehto – ilmaiseksi, selaimessasi, juuri nyt.",
     "ctaLabel": "Avaa editori"
   },

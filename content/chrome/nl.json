@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Mermaid Editor Online Gratis — Diagram Maken Online",
-    "description": "Gratis mermaid live editor: teken een diagram visueel of schrijf mermaid-code, altijd synchroon. Flowchart, sequence, class, ER, gantt. Geen account, SVG/PNG-export.",
-    "ogTitle": "Mermaid Live Editor — gratis, online, zonder account",
+    "description": "Gratis mermaid-editor online: teken of schrijf mermaid-code, gesynchroniseerd. Inloggen met alleen een e-mail. Export naar SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — gratis, online, alleen een e-mail",
     "ogDescription": "Teken diagrammen op een canvas of schrijf mermaid-code. Beide weergaven blijven synchroon. Exporteer naar SVG, PNG, .mmd of Markdown.",
     "twitterTitle": "Gratis mermaid editor online",
-    "twitterDescription": "Visueel canvas en mermaid-code, naast elkaar. Geen account, geen betaalmuur."
+    "twitterDescription": "Visueel canvas en mermaid-code naast elkaar. Gratis, zonder betaald abonnement — inloggen met alleen een e-mail."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Functies",
     "blog": "Gidsen",
     "faq": "FAQ",
     "openEditor": "Open de editor",
-    "menu": "Menu"
+    "menu": "Menu",
+    "legal": "Juridisch",
+    "languages": "Talen",
+    "documents": "Schema",
+    "export": "Exporteren",
+    "editCode": "Code bewerken",
+    "openDocuments": "Recent geopend",
+    "createNew": "Nieuw toevoegen",
+    "exportCopyMermaid": "Mermaid kopiëren",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Instellingen",
+    "theme": "Thema",
+    "themeSystem": "Systeem",
+    "themeLight": "Licht",
+    "themeDark": "Donker",
+    "legalPrivacy": "Privacy",
+    "legalTerms": "Voorwaarden"
   },
   "hero": {
     "badgeFree": "Voor altijd gratis",
-    "badgeNoSignup": "Geen account nodig",
+    "badgeNoSignup": "Gratis — alleen een e-mail",
     "badgeDiagrams": "8 diagramtypes",
     "title": "Mermaid editor online gratis,",
     "titleAccent": "visueel en code op één plek",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Gerenderd diagram"
   },
   "statCards": [
-    { "title": "Rendert terwijl je typt", "sub": "De echte mermaid-engine, opnieuw getekend een paar honderd milliseconden na je laatste toetsaanslag." },
-    { "title": "Code en canvas synchroon", "sub": "Bewerk beide kanten. De andere volgt automatisch — geen kopiëren en plakken tussen twee tools." },
-    { "title": "14 knoopvormen", "sub": "Rechthoek, afgerond, pil, cirkel, ruit, database, zeshoek en de rest, met één klik." },
-    { "title": "Gratis, geen account", "sub": "Geen registratie, geen proefperiode, geen watermerk bij export. Je diagram blijft in je browser." }
+    {
+      "title": "Rendert terwijl je typt",
+      "sub": "De echte mermaid-engine, opnieuw getekend een paar honderd milliseconden na je laatste toetsaanslag."
+    },
+    {
+      "title": "Code en canvas synchroon",
+      "sub": "Bewerk beide kanten. De andere volgt automatisch — geen kopiëren en plakken tussen twee tools."
+    },
+    {
+      "title": "14 knoopvormen",
+      "sub": "Rechthoek, afgerond, pil, cirkel, ruit, database, zeshoek en de rest, met één klik."
+    },
+    {
+      "title": "Gratis, alleen e-mail",
+      "sub": "Geen proefperiode of watermerk bij export — één e-mail volstaat om je diagrammen op te slaan."
+    }
   ],
   "spotlights": [
     {
       "heading": "Een canvas, geen tekstvak",
       "sub": "Het visuele tabblad is een echte editor bovenop het gerenderde diagram: klik op een knoop om te selecteren, dubbelklik om ter plekke te hernoemen, sleep overal om te pannen.",
       "bullets": [
-        { "title": "Bouw met klikken", "sub": "Voeg een blok toe, wijs een pijl naar een ander blok, label de pijl. Geen syntax om te onthouden voordat je begint." },
-        { "title": "Kies een vorm", "sub": "Veertien mermaid-flowchartvormen — beslissingsruiten, databasecilinders, subroutines — uit één kiezer." },
-        { "title": "Kleur alles", "sub": "Acht voorinstellingen plus een kleurkiezer, toegepast op één knoop of op een heel gebied." }
+        {
+          "title": "Bouw met klikken",
+          "sub": "Voeg een blok toe, wijs een pijl naar een ander blok, label de pijl. Geen syntax om te onthouden voordat je begint."
+        },
+        {
+          "title": "Kies een vorm",
+          "sub": "Veertien mermaid-flowchartvormen — beslissingsruiten, databasecilinders, subroutines — uit één kiezer."
+        },
+        {
+          "title": "Kleur alles",
+          "sub": "Acht voorinstellingen plus een kleurkiezer, toegepast op één knoop of op een heel gebied."
+        }
       ]
     },
     {
       "heading": "Mermaid-code die van jou blijft",
       "sub": "Het codetabblad is gewoon mermaid — dezelfde syntax die GitHub, GitLab, Notion en Obsidian al renderen. Niets hier is een eigen formaat.",
       "bullets": [
-        { "title": "Schrijf het handmatig", "sub": "Typ mermaid rechtstreeks en kijk hoe het rendert. Zes kant-en-klare voorbeelden om mee te beginnen." },
-        { "title": "Gaat beide kanten op", "sub": "Flowcharts die je plakt worden teruggelezen op het canvas — knopen, vormen, kleuren, subgraphs en al." },
-        { "title": "Elk diagramtype", "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — de preview rendert alles wat mermaid ondersteunt." }
+        {
+          "title": "Schrijf het handmatig",
+          "sub": "Typ mermaid rechtstreeks en kijk hoe het rendert. Zes kant-en-klare voorbeelden om mee te beginnen."
+        },
+        {
+          "title": "Gaat beide kanten op",
+          "sub": "Flowcharts die je plakt worden teruggelezen op het canvas — knopen, vormen, kleuren, subgraphs en al."
+        },
+        {
+          "title": "Elk diagramtype",
+          "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — de preview rendert alles wat mermaid ondersteunt."
+        }
       ]
     },
     {
       "heading": "Grote diagrammen blijven leesbaar",
       "sub": "Architectuurdiagrammen groeien snel voorbij één scherm. Pannen, zoomen en groeperen zijn daarvoor gebouwd, in plaats van ertegen te vechten.",
       "bullets": [
-        { "title": "Gebieden en nesten", "sub": "Groepeer blokken in subgraphs, nest een gebied binnen een ander, verplaats een hele deelboom met één gebaar." },
-        { "title": "Zoom van 2% tot 1600%", "sub": "Scroll om te pannen, ctrl-scroll om te zoomen, of centreer opnieuw met één knop." },
-        { "title": "Automatisch opgeslagen", "sub": "Je diagram wordt bij elke bewerking naar de lokale opslag van de browser geschreven — sluit het tabblad en kom later terug." }
+        {
+          "title": "Gebieden en nesten",
+          "sub": "Groepeer blokken in subgraphs, nest een gebied binnen een ander, verplaats een hele deelboom met één gebaar."
+        },
+        {
+          "title": "Zoom van 2% tot 1600%",
+          "sub": "Scroll om te pannen, ctrl-scroll om te zoomen, of centreer opnieuw met één knop."
+        },
+        {
+          "title": "Automatisch opgeslagen",
+          "sub": "Je diagram wordt bij elke bewerking naar de lokale opslag van de browser geschreven — sluit het tabblad en kom later terug."
+        }
       ]
     },
     {
       "heading": "Exporteer en ga verder",
       "sub": "Niets zit vast. Neem de afbeelding, neem de broncode, of neem een Markdown-blok klaar om in een document te plakken.",
       "bullets": [
-        { "title": "Geen betaalmuur", "sub": "Elke functie, inclusief export, is gratis. Er is geen betaald abonnement om naar te upgraden." },
-        { "title": "Niets verlaat je browser", "sub": "Er is geen account en geen opslag van diagrammen op een server — renderen gebeurt lokaal." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Kopieer de SVG-markup, download een 2x PNG, sla de mermaid-broncode op, of pak een Markdown-blok met code." }
+        {
+          "title": "Geen betaalmuur",
+          "sub": "Elke functie, inclusief export, is gratis. Er is geen betaald abonnement om naar te upgraden."
+        },
+        {
+          "title": "Niets verlaat je browser",
+          "sub": "Rendering gebeurt in je browser; opgeslagen diagrammen leven in je account en zijn er vanaf elk apparaat."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Kopieer de SVG-markup, download een 2x PNG, sla de mermaid-broncode op, of pak een Markdown-blok met code."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Prijs",
-        "us": "Gratis, geen account, geen exportlimiet.",
+        "us": "Gratis — alleen een e-mail",
         "them": "Gratis laag beperkt tot een paar diagrammen, met export of samenwerking achter een abonnement."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Vragen over de",
     "headingAccent": "mermaid editor",
-    "sub": "Wat mensen vragen voordat ze hem openen. Geen account nodig — de editor is één klik verwijderd.",
+    "sub": "Om te starten is alleen een e-mail nodig.",
     "items": [
       {
         "q": "Wat is mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Is deze mermaid editor echt gratis?",
-        "a": "Ja. Elke functie, inclusief SVG- en PNG-export, is gratis, en er is geen account nodig. Er is geen betaald abonnement — niets wordt achtergehouden."
+        "a": "Ja. Alle functies, inclusief SVG- en PNG-export, zijn gratis. Je hebt alleen een e-mail nodig om in te loggen — er is geen betaald abonnement en niets verborgen."
       },
       {
         "q": "Moet ik mermaid-syntax kennen?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Waar wordt mijn diagram opgeslagen?",
-        "a": "In de lokale opslag van je browser, op je eigen apparaat. Er is geen account en geen kopie op een server, dus je browsergegevens wissen of van apparaat wisselen betekent opnieuw beginnen — exporteer de broncode als je hem wilt bewaren."
+        "a": "Je diagrammen worden opgeslagen in je account, dus ze zijn er wanneer je terugkomt — vanaf elk apparaat. Exporteer de bron als je een lokale kopie wilt."
       },
       {
         "q": "Kan ik een bestaand mermaid-diagram plakken?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Werkt het offline?",
-        "a": "Renderen gebeurt volledig in je browser, dus zodra de pagina geladen is blijft de editor werken zonder verbinding. Je diagram staat in de lokale opslag, niet op een server."
+        "a": "Rendering gebeurt volledig in je browser, dus zodra de pagina is geladen werkt de editor ook zonder verbinding."
       }
     ]
   },
   "finalCta": {
     "heading": "Open de editor.",
-    "headingAccent": "Nergens voor aanmelden.",
+    "headingAccent": "Gratis — alleen een e-mail",
     "sub": "Een leeg canvas, een codetabblad en elke exportoptie — gratis, in je browser, nu meteen.",
     "ctaLabel": "Open de editor"
   },

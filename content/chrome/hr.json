@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Mermaid Editor Uživo — Besplatni Online Editor Dijagrama",
-    "description": "Besplatni mermaid editor: crtajte vizualno ili pišite kod, oboje u sinkronu. Flowchart, sequence, class, ER, state, gantt. Bez registracije, izvoz SVG/PNG.",
-    "ogTitle": "Mermaid Editor Uživo — besplatan, online, bez registracije",
+    "description": "Besplatan mermaid uređivač online: crtajte ili pišite mermaid kôd — sinkronizirano. Prijava samo e-poštom. Izvoz SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — besplatno, online, samo e-pošta",
     "ogDescription": "Crtajte dijagrame na platnu ili pišite mermaid kod. Oba prikaza ostaju sinkronizirana. Izvezite u SVG, PNG, .mmd ili Markdown.",
     "twitterTitle": "Besplatni mermaid editor uživo",
-    "twitterDescription": "Vizualno platno i mermaid kod, jedno pored drugog. Bez registracije, bez naplate."
+    "twitterDescription": "Vizualno platno i mermaid kôd jedno uz drugo. Besplatno, bez plaćanja — prijava samo e-poštom."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Značajke",
     "blog": "Vodiči",
     "faq": "Česta pitanja",
     "openEditor": "Otvori editor",
-    "menu": "Izbornik"
+    "menu": "Izbornik",
+    "legal": "Pravne informacije",
+    "languages": "Jezici",
+    "documents": "Dijagram",
+    "export": "Izvoz",
+    "editCode": "Uredi kôd",
+    "openDocuments": "Nedavno otvoreno",
+    "createNew": "Dodaj novo",
+    "exportCopyMermaid": "Kopiraj Mermaid",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Postavke",
+    "theme": "Tema",
+    "themeSystem": "Sustav",
+    "themeLight": "Svijetlo",
+    "themeDark": "Tamno",
+    "legalPrivacy": "Privatnost",
+    "legalTerms": "Uvjeti"
   },
   "hero": {
     "badgeFree": "Zauvijek besplatno",
-    "badgeNoSignup": "Bez registracije",
+    "badgeNoSignup": "Besplatno — samo e-pošta",
     "badgeDiagrams": "8 vrsta dijagrama",
     "title": "Mermaid editor uživo,",
     "titleAccent": "vizualno i kod na jednom mjestu",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Prikazani dijagram"
   },
   "statCards": [
-    { "title": "Prikazuje se dok tipkate", "sub": "Pravi mermaid engine, ponovno iscrtan nekoliko stotina milisekundi nakon vaše zadnje tipke." },
-    { "title": "Kod i platno sinkronizirani", "sub": "Uredite bilo koju stranu. Druga se sama ažurira — bez kopiranja i lijepljenja između dva alata." },
-    { "title": "14 oblika čvorova", "sub": "Pravokutnik, zaobljeni, pilula, krug, romb, baza podataka, šesterokut i ostalo, jednim klikom." },
-    { "title": "Besplatno, bez računa", "sub": "Bez registracije, bez probnog razdoblja, bez vodenog žiga na izvozu. Vaš dijagram ostaje u vašem pregledniku." }
+    {
+      "title": "Prikazuje se dok tipkate",
+      "sub": "Pravi mermaid engine, ponovno iscrtan nekoliko stotina milisekundi nakon vaše zadnje tipke."
+    },
+    {
+      "title": "Kod i platno sinkronizirani",
+      "sub": "Uredite bilo koju stranu. Druga se sama ažurira — bez kopiranja i lijepljenja između dva alata."
+    },
+    {
+      "title": "14 oblika čvorova",
+      "sub": "Pravokutnik, zaobljeni, pilula, krug, romb, baza podataka, šesterokut i ostalo, jednim klikom."
+    },
+    {
+      "title": "Besplatno, samo e-pošta",
+      "sub": "Bez probnog razdoblja i bez vodenog žiga pri izvozu — za spremanje dijagrama dovoljna je samo e-pošta."
+    }
   ],
   "spotlights": [
     {
       "heading": "Platno, ne samo tekstualni okvir",
       "sub": "Vizualna kartica pravi je editor iznad prikazanog dijagrama: kliknite čvor da ga odaberete, dvaput kliknite da ga preimenujete na mjestu, povucite bilo gdje za pomicanje.",
       "bullets": [
-        { "title": "Kliknite za izradu", "sub": "Dodajte blok, usmjerite strelicu prema drugom, označite strelicu. Nema sintakse za pamćenje prije nego počnete." },
-        { "title": "Odaberite oblik", "sub": "Četrnaest oblika mermaid flowcharta — rombovi odluke, cilindri baze podataka, potprogrami — iz jednog birača." },
-        { "title": "Obojite bilo što", "sub": "Osam gotovih paleta plus birač boja, primijenjeno na jedan čvor ili na cijelo područje." }
+        {
+          "title": "Kliknite za izradu",
+          "sub": "Dodajte blok, usmjerite strelicu prema drugom, označite strelicu. Nema sintakse za pamćenje prije nego počnete."
+        },
+        {
+          "title": "Odaberite oblik",
+          "sub": "Četrnaest oblika mermaid flowcharta — rombovi odluke, cilindri baze podataka, potprogrami — iz jednog birača."
+        },
+        {
+          "title": "Obojite bilo što",
+          "sub": "Osam gotovih paleta plus birač boja, primijenjeno na jedan čvor ili na cijelo područje."
+        }
       ]
     },
     {
       "heading": "Mermaid kod koji ostaje vaš",
       "sub": "Tekstualna kartica čisti je mermaid — ista sintaksa koju GitHub, GitLab, Notion i Obsidian već prikazuju. Ništa ovdje nije vlasnički format.",
       "bullets": [
-        { "title": "Pišite ručno", "sub": "Upišite mermaid izravno i gledajte kako se prikazuje. Šest gotovih primjera za početak." },
-        { "title": "Dvosmjerno", "sub": "Flowcharti koje zalijepite raščlanjuju se natrag na platno — čvorovi, oblici, boje, podgrafovi, sve." },
-        { "title": "Svaka vrsta dijagrama", "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — pregled prikazuje sve što mermaid podržava." }
+        {
+          "title": "Pišite ručno",
+          "sub": "Upišite mermaid izravno i gledajte kako se prikazuje. Šest gotovih primjera za početak."
+        },
+        {
+          "title": "Dvosmjerno",
+          "sub": "Flowcharti koje zalijepite raščlanjuju se natrag na platno — čvorovi, oblici, boje, podgrafovi, sve."
+        },
+        {
+          "title": "Svaka vrsta dijagrama",
+          "sub": "Flowchart, sequence, class, state, ER, gantt, git graph, pie — pregled prikazuje sve što mermaid podržava."
+        }
       ]
     },
     {
       "heading": "Veliki dijagrami ostaju čitljivi",
       "sub": "Arhitekturni dijagrami brzo prerastu jedan ekran. Pomicanje, zumiranje i grupiranje napravljeni su za to, umjesto da se s tim bore.",
       "bullets": [
-        { "title": "Područja i ugniježđivanje", "sub": "Grupirajte blokove u podgrafove, ugnijezdite područje unutar drugog, pomaknite cijelo podstablo jednim potezom." },
-        { "title": "Zum od 2% do 1600%", "sub": "Skrolajte za pomicanje, ctrl-skrol za zumiranje, ili se ponovno centrirajte jednim gumbom." },
-        { "title": "Spremljeno u hodu", "sub": "Vaš dijagram zapisuje se u lokalnu pohranu preglednika pri svakoj izmjeni — zatvorite karticu i vratite se kasnije." }
+        {
+          "title": "Područja i ugniježđivanje",
+          "sub": "Grupirajte blokove u podgrafove, ugnijezdite područje unutar drugog, pomaknite cijelo podstablo jednim potezom."
+        },
+        {
+          "title": "Zum od 2% do 1600%",
+          "sub": "Skrolajte za pomicanje, ctrl-skrol za zumiranje, ili se ponovno centrirajte jednim gumbom."
+        },
+        {
+          "title": "Spremljeno u hodu",
+          "sub": "Vaš dijagram zapisuje se u lokalnu pohranu preglednika pri svakoj izmjeni — zatvorite karticu i vratite se kasnije."
+        }
       ]
     },
     {
       "heading": "Izvezite i nastavite dalje",
       "sub": "Ništa nije zaključano. Uzmite sliku, uzmite izvorni kod, ili uzmite Markdown blok spreman za lijepljenje u dokument.",
       "bullets": [
-        { "title": "Bez plaćanja", "sub": "Svaka značajka, uključujući izvoz, besplatna je. Ne postoji plaćeni plan za nadogradnju." },
-        { "title": "Ništa ne napušta vaš preglednik", "sub": "Nema računa i nema pohrane dijagrama na poslužitelju — prikazivanje se odvija lokalno." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Kopirajte SVG oznake, preuzmite PNG u 2x, spremite mermaid izvor, ili uzmite Markdown blok u ogradi." }
+        {
+          "title": "Bez plaćanja",
+          "sub": "Svaka značajka, uključujući izvoz, besplatna je. Ne postoji plaćeni plan za nadogradnju."
+        },
+        {
+          "title": "Ništa ne napušta vaš preglednik",
+          "sub": "Renderiranje se događa u vašem pregledniku; spremljeni dijagrami žive u vašem računu i dostupni su s bilo kojeg uređaja."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Kopirajte SVG oznake, preuzmite PNG u 2x, spremite mermaid izvor, ili uzmite Markdown blok u ogradi."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Cijena",
-        "us": "Besplatno, bez računa, bez ograničenja izvoza.",
+        "us": "Besplatno — samo e-pošta",
         "them": "Besplatni plan ograničen na nekoliko dijagrama, s izvozom ili suradnjom iza pretplate."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Mermaid editor",
     "headingAccent": "pitanja",
-    "sub": "Ono što ljudi pitaju prije nego ga otvore. Registracija nije potrebna — editor je udaljen jedan klik.",
+    "sub": "Za početak dovoljna je samo e-pošta.",
     "items": [
       {
         "q": "Što je mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Je li ovaj mermaid editor zaista besplatan?",
-        "a": "Da. Svaka značajka, uključujući izvoz u SVG i PNG, besplatna je, a računa nije potrebno stvoriti. Ne postoji plaćeni plan — ništa se ne zadržava."
+        "a": "Da. Sve značajke, uključujući izvoz SVG-a i PNG-a, besplatne su. Za prijavu je dovoljna samo e-pošta — nema plaćenog paketa ni skrivenih ograničenja."
       },
       {
         "q": "Moram li znati mermaid sintaksu?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Gdje se pohranjuje moj dijagram?",
-        "a": "U lokalnoj pohrani vašeg preglednika, na vašem uređaju. Nema računa i nema kopije na poslužitelju, pa brisanje podataka preglednika ili promjena uređaja znači početak iznova — izvezite izvor ako ga želite zadržati."
+        "a": "Vaši dijagrami spremljeni su u vaš račun, pa su tu kad god se vratite — s bilo kojeg uređaja. Izvezite izvor ako želite lokalnu kopiju."
       },
       {
         "q": "Mogu li zalijepiti postojeći mermaid dijagram?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Radi li offline?",
-        "a": "Prikazivanje se u potpunosti odvija u vašem pregledniku, pa nakon što se stranica učita, editor nastavlja raditi bez veze. Vaš dijagram je u lokalnoj pohrani, ne na poslužitelju."
+        "a": "Renderiranje se u potpunosti događa u pregledniku, pa nakon učitavanja uređivač radi i bez veze."
       }
     ]
   },
   "finalCta": {
     "heading": "Otvorite editor.",
-    "headingAccent": "Nema se za što registrirati.",
+    "headingAccent": "Besplatno — samo e-pošta",
     "sub": "Prazno platno, kartica koda i sve opcije izvoza — besplatno, u vašem pregledniku, odmah.",
     "ctaLabel": "Otvori editor"
   },

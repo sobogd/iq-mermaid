@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Mermaid Live Editor – gratis diagrameditor på nett",
-    "description": "Gratis mermaid-editor: tegn diagram visuelt eller skriv kode, synkronisert. Flytskjema, sekvens, klasse, ER, gantt. Ingen registrering, eksporter SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor – gratis, på nett, ingen registrering",
+    "description": "Gratis mermaid-editor på nett: tegn eller skriv mermaid-kode — synkronisert. Logg inn bare med en e-post. Eksport til SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — gratis, på nett, bare en e-post",
     "ogDescription": "Tegn diagrammer på et lerret eller skriv mermaid-kode. Begge visningene holdes synkronisert. Eksporter til SVG, PNG, .mmd eller Markdown.",
     "twitterTitle": "Gratis mermaid live editor",
-    "twitterDescription": "Visuelt lerret og mermaid-kode, side om side. Ingen registrering, ingen betalingsmur."
+    "twitterDescription": "Visuelt lerret og mermaid-kode side om side. Gratis uten betalt plan — logg inn bare med en e-post."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Funksjoner",
     "blog": "Guider",
     "faq": "FAQ",
     "openEditor": "Åpne editoren",
-    "menu": "Meny"
+    "menu": "Meny",
+    "legal": "Juridisk",
+    "languages": "Språk",
+    "documents": "Diagram",
+    "export": "Eksporter",
+    "editCode": "Rediger kode",
+    "openDocuments": "Nylig åpnet",
+    "createNew": "Legg til ny",
+    "exportCopyMermaid": "Kopier Mermaid",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Innstillinger",
+    "theme": "Tema",
+    "themeSystem": "System",
+    "themeLight": "Lys",
+    "themeDark": "Mørk",
+    "legalPrivacy": "Personvern",
+    "legalTerms": "Vilkår"
   },
   "hero": {
     "badgeFree": "Gratis for alltid",
-    "badgeNoSignup": "Ingen registrering",
+    "badgeNoSignup": "Gratis — bare en e-post",
     "badgeDiagrams": "8 diagramtyper",
     "title": "Mermaid live editor,",
     "titleAccent": "lag diagram på nett – visuelt og med kode",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Gjengitt diagram"
   },
   "statCards": [
-    { "title": "Rendres mens du skriver", "sub": "Den ekte mermaid-motoren, tegnet på nytt noen hundre millisekunder etter siste tastetrykk." },
-    { "title": "Kode og lerret synkronisert", "sub": "Rediger på begge sider. Den andre følger med – ingen kopiering mellom to verktøy." },
-    { "title": "14 nodeformer", "sub": "Rektangel, avrundet, pille, sirkel, diamant, database, sekskant og resten, ett klikk hver." },
-    { "title": "Gratis, ingen konto", "sub": "Ingen registrering, ingen prøveperiode, ingen vannmerke ved eksport. Diagrammet ditt blir i nettleseren." }
+    {
+      "title": "Rendres mens du skriver",
+      "sub": "Den ekte mermaid-motoren, tegnet på nytt noen hundre millisekunder etter siste tastetrykk."
+    },
+    {
+      "title": "Kode og lerret synkronisert",
+      "sub": "Rediger på begge sider. Den andre følger med – ingen kopiering mellom to verktøy."
+    },
+    {
+      "title": "14 nodeformer",
+      "sub": "Rektangel, avrundet, pille, sirkel, diamant, database, sekskant og resten, ett klikk hver."
+    },
+    {
+      "title": "Gratis, bare e-post",
+      "sub": "Ingen prøveperiode eller vannmerke ved eksport — en e-post er alt som trengs for å lagre diagrammene."
+    }
   ],
   "spotlights": [
     {
       "heading": "Et lerret, ikke bare en tekstboks",
       "sub": "Den visuelle fanen er en ekte editor oppå det gjengitte diagrammet: klikk på en node for å velge den, dobbeltklikk for å gi den nytt navn direkte, dra hvor som helst for å panorere.",
       "bullets": [
-        { "title": "Klikk for å bygge", "sub": "Legg til en boks, pek en pil mot en annen, merk pilen. Ingen syntaks å huske før du starter." },
-        { "title": "Velg en form", "sub": "Fjorten mermaid-flytskjemaformer – beslutningsdiamanter, databasesylindre, subrutiner – fra én velger." },
-        { "title": "Farge hva som helst", "sub": "Åtte forhåndsinnstillinger pluss en fargevelger, brukt på én enkelt node eller på et helt område." }
+        {
+          "title": "Klikk for å bygge",
+          "sub": "Legg til en boks, pek en pil mot en annen, merk pilen. Ingen syntaks å huske før du starter."
+        },
+        {
+          "title": "Velg en form",
+          "sub": "Fjorten mermaid-flytskjemaformer – beslutningsdiamanter, databasesylindre, subrutiner – fra én velger."
+        },
+        {
+          "title": "Farge hva som helst",
+          "sub": "Åtte forhåndsinnstillinger pluss en fargevelger, brukt på én enkelt node eller på et helt område."
+        }
       ]
     },
     {
       "heading": "Mermaid-kode som forblir din",
       "sub": "Kode-fanen er ren mermaid – samme syntaks som GitHub, GitLab, Notion og Obsidian allerede gjengir. Ingenting her er et proprietært format.",
       "bullets": [
-        { "title": "Skriv den for hånd", "sub": "Skriv mermaid direkte og se den gjengis. Seks ferdige eksempler å starte fra." },
-        { "title": "Går begge veier", "sub": "Flytskjema du limer inn tolkes tilbake til lerretet – noder, former, farger, undergrafer og alt." },
-        { "title": "Alle diagramtyper", "sub": "Flytskjema, sekvens, klasse, tilstand, ER, gantt, git-graf, kake – forhåndsvisningen gjengir alt mermaid støtter." }
+        {
+          "title": "Skriv den for hånd",
+          "sub": "Skriv mermaid direkte og se den gjengis. Seks ferdige eksempler å starte fra."
+        },
+        {
+          "title": "Går begge veier",
+          "sub": "Flytskjema du limer inn tolkes tilbake til lerretet – noder, former, farger, undergrafer og alt."
+        },
+        {
+          "title": "Alle diagramtyper",
+          "sub": "Flytskjema, sekvens, klasse, tilstand, ER, gantt, git-graf, kake – forhåndsvisningen gjengir alt mermaid støtter."
+        }
       ]
     },
     {
       "heading": "Store diagrammer forblir lesbare",
       "sub": "Arkitekturdiagrammer vokser raskt forbi én skjerm. Panorering, zoom og gruppering er bygget for nettopp det, i stedet for å kjempe imot det.",
       "bullets": [
-        { "title": "Områder og nesting", "sub": "Grupper bokser i undergrafer, nest et område inni et annet, flytt et helt undertre med én bevegelse." },
-        { "title": "Zoom fra 2 % til 1600 %", "sub": "Rull for å panorere, ctrl-rull for å zoome, eller sentrer på nytt med én knapp." },
-        { "title": "Lagres underveis", "sub": "Diagrammet ditt skrives til nettleserens lokale lagring ved hver endring – lukk fanen og kom tilbake til det." }
+        {
+          "title": "Områder og nesting",
+          "sub": "Grupper bokser i undergrafer, nest et område inni et annet, flytt et helt undertre med én bevegelse."
+        },
+        {
+          "title": "Zoom fra 2 % til 1600 %",
+          "sub": "Rull for å panorere, ctrl-rull for å zoome, eller sentrer på nytt med én knapp."
+        },
+        {
+          "title": "Lagres underveis",
+          "sub": "Diagrammet ditt skrives til nettleserens lokale lagring ved hver endring – lukk fanen og kom tilbake til det."
+        }
       ]
     },
     {
       "heading": "Eksporter og gå videre",
       "sub": "Ingenting er låst inne. Ta bildet, ta kildekoden, eller ta en Markdown-blokk klar til å limes inn i et dokument.",
       "bullets": [
-        { "title": "Ingen betalingsmur", "sub": "Alle funksjoner, inkludert eksport, er gratis. Det finnes ingen betalt versjon å oppgradere til." },
-        { "title": "Ingenting forlater nettleseren din", "sub": "Det finnes ingen konto og ingen lagring av diagrammer på server – gjengivelsen skjer lokalt." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Kopier SVG-markup, last ned en 2x PNG, lagre mermaid-kilden, eller hent en Markdown-blokk med kodeformatering." }
+        {
+          "title": "Ingen betalingsmur",
+          "sub": "Alle funksjoner, inkludert eksport, er gratis. Det finnes ingen betalt versjon å oppgradere til."
+        },
+        {
+          "title": "Ingenting forlater nettleseren din",
+          "sub": "Rendering skjer i nettleseren din; lagrede diagrammer ligger på kontoen din og er der fra hvilken som helst enhet."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Kopier SVG-markup, last ned en 2x PNG, lagre mermaid-kilden, eller hent en Markdown-blokk med kodeformatering."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Pris",
-        "us": "Gratis, ingen konto, ingen eksportbegrensninger.",
+        "us": "Gratis — bare en e-post",
         "them": "Gratisversjon begrenset til noen få diagrammer, med eksport eller samarbeid bak et abonnement."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Mermaid-editor",
     "headingAccent": "spørsmål",
-    "sub": "Det folk lurer på før de åpner den. Ingen registrering nødvendig – editoren er ett klikk unna.",
+    "sub": "Alt du trenger for å komme i gang er en e-post.",
     "items": [
       {
         "q": "Hva er mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Er denne mermaid-editoren virkelig gratis?",
-        "a": "Ja. Alle funksjoner, inkludert SVG- og PNG-eksport, er gratis, og det er ingen konto å opprette. Det finnes ingen betalt versjon – ingenting holdes tilbake."
+        "a": "Ja. Alle funksjoner, inkludert SVG- og PNG-eksport, er gratis. Du trenger bare en e-post for å logge inn — det finnes ingen betalt plan eller skjulte begrensninger."
       },
       {
         "q": "Må jeg kunne mermaid-syntaks?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Hvor lagres diagrammet mitt?",
-        "a": "I nettleserens lokale lagring, på din egen enhet. Det finnes ingen konto og ingen kopi på server, så hvis du tømmer nettleserdataene eller bytter enhet, starter du på nytt – eksporter kilden hvis du vil beholde den."
+        "a": "Diagrammene dine lagres på kontoen din, så de er der når du kommer tilbake — fra hvilken som helst enhet. Eksporter koden hvis du vil ha en lokal kopi."
       },
       {
         "q": "Kan jeg lime inn et eksisterende mermaid-diagram?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Fungerer det uten nett?",
-        "a": "Gjengivelsen skjer helt i nettleseren din, så når siden først er lastet, fortsetter editoren å fungere uten tilkobling. Diagrammet ditt ligger i lokal lagring, ikke på en server."
+        "a": "Rendering skjer helt i nettleseren din, så når siden er lastet, fungerer editoren også uten tilkobling."
       }
     ]
   },
   "finalCta": {
     "heading": "Åpne editoren.",
-    "headingAccent": "Ingenting å registrere seg for.",
+    "headingAccent": "Gratis — bare en e-post",
     "sub": "Et blankt lerret, en kode-fane og alle eksportalternativer – gratis, i nettleseren din, akkurat nå.",
     "ctaLabel": "Åpne editoren"
   },

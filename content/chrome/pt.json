@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Editor Mermaid Online Grátis — Editor de Diagramas",
-    "description": "Editor mermaid online grátis: desenhe visualmente ou escreva código mermaid, sincronizados. Fluxograma, sequência, classes, ER, gantt. Sem registo, exporta SVG/PNG.",
-    "ogTitle": "Editor Mermaid Online — grátis, sem registo",
+    "description": "Editor mermaid online gratuito: desenhe ou escreva código mermaid, em sincronia. Entre apenas com um e-mail. Exporte SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — grátis, online, só um e-mail",
     "ogDescription": "Desenhe diagramas numa tela ou escreva código mermaid. As duas vistas ficam sincronizadas. Exporte para SVG, PNG, .mmd ou Markdown.",
     "twitterTitle": "Editor mermaid online grátis",
-    "twitterDescription": "Tela visual e código mermaid, lado a lado. Sem registo, sem paywall."
+    "twitterDescription": "Canvas visual e código mermaid lado a lado. Grátis, sem plano pago — entre apenas com um e-mail."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Recursos",
     "blog": "Guias",
     "faq": "FAQ",
     "openEditor": "Abrir editor",
-    "menu": "Menu"
+    "menu": "Menu",
+    "legal": "Legal",
+    "languages": "Idiomas",
+    "documents": "Diagrama",
+    "export": "Exportar",
+    "editCode": "Editar código",
+    "openDocuments": "Abertos recentemente",
+    "createNew": "Adicionar nova",
+    "exportCopyMermaid": "Copiar Mermaid",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Configurações",
+    "theme": "Tema",
+    "themeSystem": "Sistema",
+    "themeLight": "Claro",
+    "themeDark": "Escuro",
+    "legalPrivacy": "Privacidade",
+    "legalTerms": "Termos"
   },
   "hero": {
     "badgeFree": "Grátis para sempre",
-    "badgeNoSignup": "Sem registo",
+    "badgeNoSignup": "Grátis — só um e-mail",
     "badgeDiagrams": "8 tipos de diagrama",
     "title": "Editor mermaid online grátis,",
     "titleAccent": "visual e código no mesmo lugar",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Diagrama renderizado"
   },
   "statCards": [
-    { "title": "Renderiza à medida que escreve", "sub": "O motor mermaid real, redesenhado poucas centenas de milissegundos depois da última tecla." },
-    { "title": "Código e tela sincronizados", "sub": "Edite qualquer um dos lados. O outro acompanha — sem copiar e colar entre duas ferramentas." },
-    { "title": "14 formas de nó", "sub": "Retângulo, arredondado, pílula, círculo, losango, base de dados, hexágono e as restantes, um clique cada." },
-    { "title": "Grátis, sem conta", "sub": "Sem registo, sem período de teste, sem marca de água na exportação. O seu diagrama fica no seu navegador." }
+    {
+      "title": "Renderiza à medida que escreve",
+      "sub": "O motor mermaid real, redesenhado poucas centenas de milissegundos depois da última tecla."
+    },
+    {
+      "title": "Código e tela sincronizados",
+      "sub": "Edite qualquer um dos lados. O outro acompanha — sem copiar e colar entre duas ferramentas."
+    },
+    {
+      "title": "14 formas de nó",
+      "sub": "Retângulo, arredondado, pílula, círculo, losango, base de dados, hexágono e as restantes, um clique cada."
+    },
+    {
+      "title": "Grátis, só e-mail",
+      "sub": "Sem teste nem marca d'água na exportação — basta um e-mail para guardar seus diagramas."
+    }
   ],
   "spotlights": [
     {
       "heading": "Uma tela, não só uma caixa de texto",
       "sub": "O separador visual é um editor real sobre o diagrama renderizado: clique num nó para o selecionar, clique duas vezes para o renomear no local, arraste em qualquer ponto para deslocar a vista.",
       "bullets": [
-        { "title": "Clique para construir", "sub": "Adicione um bloco, aponte uma seta para outro, coloque um texto na seta. Sem sintaxe para memorizar antes de começar." },
-        { "title": "Escolha uma forma", "sub": "Catorze formas de fluxograma mermaid — losangos de decisão, cilindros de base de dados, subrotinas — num único seletor." },
-        { "title": "Colora o que quiser", "sub": "Oito predefinições mais um seletor de cor, aplicadas a um único nó ou a uma área inteira." }
+        {
+          "title": "Clique para construir",
+          "sub": "Adicione um bloco, aponte uma seta para outro, coloque um texto na seta. Sem sintaxe para memorizar antes de começar."
+        },
+        {
+          "title": "Escolha uma forma",
+          "sub": "Catorze formas de fluxograma mermaid — losangos de decisão, cilindros de base de dados, subrotinas — num único seletor."
+        },
+        {
+          "title": "Colora o que quiser",
+          "sub": "Oito predefinições mais um seletor de cor, aplicadas a um único nó ou a uma área inteira."
+        }
       ]
     },
     {
       "heading": "Código mermaid que continua seu",
       "sub": "O separador de texto é mermaid puro — a mesma sintaxe que o GitHub, o GitLab, o Notion e o Obsidian já renderizam. Nada aqui é um formato proprietário.",
       "bullets": [
-        { "title": "Escreva à mão", "sub": "Escreva mermaid diretamente e veja-o renderizar. Seis exemplos prontos para começar." },
-        { "title": "Vai e volta", "sub": "Os fluxogramas que cola são interpretados de volta para a tela — nós, formas, cores, subgráficos e tudo o resto." },
-        { "title": "Todos os tipos de diagrama", "sub": "Fluxograma, sequência, classes, estados, ER, gantt, git graph, circular — a pré-visualização renderiza tudo o que o mermaid suporta." }
+        {
+          "title": "Escreva à mão",
+          "sub": "Escreva mermaid diretamente e veja-o renderizar. Seis exemplos prontos para começar."
+        },
+        {
+          "title": "Vai e volta",
+          "sub": "Os fluxogramas que cola são interpretados de volta para a tela — nós, formas, cores, subgráficos e tudo o resto."
+        },
+        {
+          "title": "Todos os tipos de diagrama",
+          "sub": "Fluxograma, sequência, classes, estados, ER, gantt, git graph, circular — a pré-visualização renderiza tudo o que o mermaid suporta."
+        }
       ]
     },
     {
       "heading": "Diagramas grandes continuam legíveis",
       "sub": "Diagramas de arquitetura rapidamente ultrapassam um ecrã. Deslocar, ampliar e agrupar foram pensados para isso, em vez de lutar contra isso.",
       "bullets": [
-        { "title": "Áreas e aninhamento", "sub": "Agrupe blocos em subgráficos, aninhe uma área dentro de outra, mova uma subárvore inteira num só gesto." },
-        { "title": "Zoom de 2% a 1600%", "sub": "Deslize para mover a vista, ctrl+deslize para ampliar, ou recentre com um botão." },
-        { "title": "Guardado automaticamente", "sub": "O seu diagrama é escrito no armazenamento local do navegador a cada edição — feche o separador e volte a encontrá-lo." }
+        {
+          "title": "Áreas e aninhamento",
+          "sub": "Agrupe blocos em subgráficos, aninhe uma área dentro de outra, mova uma subárvore inteira num só gesto."
+        },
+        {
+          "title": "Zoom de 2% a 1600%",
+          "sub": "Deslize para mover a vista, ctrl+deslize para ampliar, ou recentre com um botão."
+        },
+        {
+          "title": "Guardado automaticamente",
+          "sub": "O seu diagrama é escrito no armazenamento local do navegador a cada edição — feche o separador e volte a encontrá-lo."
+        }
       ]
     },
     {
       "heading": "Exporte e siga em frente",
       "sub": "Nada fica preso. Leve a imagem, leve a fonte, ou leve um bloco Markdown pronto para colar num documento.",
       "bullets": [
-        { "title": "Sem paywall", "sub": "Todas as funcionalidades, incluindo a exportação, são grátis. Não há nenhum plano pago para o qual atualizar." },
-        { "title": "Nada sai do seu navegador", "sub": "Não há conta nem armazenamento de diagramas no servidor — a renderização acontece localmente." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Copie o código SVG, transfira um PNG a 2x, guarde a fonte mermaid, ou obtenha um bloco Markdown delimitado." }
+        {
+          "title": "Sem paywall",
+          "sub": "Todas as funcionalidades, incluindo a exportação, são grátis. Não há nenhum plano pago para o qual atualizar."
+        },
+        {
+          "title": "Nada sai do seu navegador",
+          "sub": "A renderização acontece no seu navegador; os diagramas salvos vivem na sua conta e estão lá de qualquer dispositivo."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Copie o código SVG, transfira um PNG a 2x, guarde a fonte mermaid, ou obtenha um bloco Markdown delimitado."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Preço",
-        "us": "Grátis, sem conta, sem limites de exportação.",
+        "us": "Grátis — só um e-mail",
         "them": "Plano gratuito limitado a alguns diagramas, com exportação ou colaboração atrás de uma subscrição."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Perguntas sobre o editor",
     "headingAccent": "mermaid",
-    "sub": "O que as pessoas perguntam antes de o abrir. Sem necessidade de registo — o editor está a um clique de distância.",
+    "sub": "Basta um e-mail para começar.",
     "items": [
       {
         "q": "O que é o mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Este editor mermaid é mesmo grátis?",
-        "a": "Sim. Todas as funcionalidades, incluindo a exportação para SVG e PNG, são grátis, e não é preciso criar nenhuma conta. Não há plano pago — nada fica reservado."
+        "a": "Sim. Todos os recursos, incluindo exportação SVG e PNG, são gratuitos. Basta um e-mail para entrar — não há plano pago nem nada oculto."
       },
       {
         "q": "Preciso de saber a sintaxe mermaid?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Onde fica guardado o meu diagrama?",
-        "a": "No armazenamento local do seu navegador, no seu próprio dispositivo. Não há conta nem cópia no servidor, por isso limpar os dados do navegador ou mudar de dispositivo significa começar de novo — exporte a fonte se quiser guardá-la."
+        "a": "Seus diagramas são salvos na sua conta, então estão lá quando você voltar — de qualquer dispositivo. Exporte a fonte se quiser uma cópia local."
       },
       {
         "q": "Posso colar um diagrama mermaid já existente?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Funciona offline?",
-        "a": "A renderização acontece inteiramente no seu navegador, por isso, depois de a página carregar, o editor continua a funcionar sem ligação. O seu diagrama está no armazenamento local, não num servidor."
+        "a": "A renderização acontece inteiramente no navegador: depois que a página carrega, o editor funciona sem conexão."
       }
     ]
   },
   "finalCta": {
     "heading": "Abra o editor.",
-    "headingAccent": "Não há nada para se registar.",
+    "headingAccent": "Grátis — só um e-mail",
     "sub": "Uma tela em branco, um separador de código e todas as opções de exportação — grátis, no seu navegador, agora mesmo.",
     "ctaLabel": "Abrir o editor"
   },

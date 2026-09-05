@@ -1,23 +1,42 @@
 {
   "meta": {
     "title": "Mermaid editor online zadarmo — vizuálne aj kódom",
-    "description": "Mermaid editor online zadarmo: kreslite vizuálne, alebo píšte mermaid kód — synchronizované. Flowchart, sekvenčný, class, ER, gantt. Bez registrácie, export SVG/PNG.",
-    "ogTitle": "Mermaid editor online zadarmo, bez registrácie",
+    "description": "Bezplatný mermaid editor online: kreslite alebo píšte mermaid kód — synchrónne. Stačí e-mail. Export SVG/PNG.",
+    "ogTitle": "Mermaid Live Editor — zadarmo, online, stačí e-mail",
     "ogDescription": "Kreslite diagramy na plátne, alebo píšte mermaid kód. Oba pohľady sú synchronizované. Export do SVG, PNG, .mmd alebo Markdownu.",
     "twitterTitle": "Mermaid editor online zadarmo",
-    "twitterDescription": "Vizuálne plátno a mermaid kód vedľa seba. Bez registrácie, bez platenia."
+    "twitterDescription": "Vizuálne plátno a mermaid kód vedľa seba. Zadarmo bez plateného plánu — prihlásenie len e-mailom."
   },
   "header": {
-    "logo": "Mermaid",
+    "logo": "Mermaid Editor",
     "features": "Funkcie",
     "blog": "Návody",
     "faq": "Časté otázky",
     "openEditor": "Otvoriť editor",
-    "menu": "Menu"
+    "menu": "Menu",
+    "legal": "Právne informácie",
+    "languages": "Jazyky",
+    "documents": "Schéma",
+    "export": "Export",
+    "editCode": "Upraviť kód",
+    "openDocuments": "Nedávno otvorené",
+    "createNew": "Pridať nový",
+    "exportCopyMermaid": "Kopírovať Mermaid",
+    "exportMermaidMmd": "Mermaid (.mmd)",
+    "exportMd": "Markdown (.md)",
+    "exportSvg": "SVG",
+    "exportPng": "PNG (2x)",
+    "settings": "Nastavenia",
+    "theme": "Motív",
+    "themeSystem": "Systém",
+    "themeLight": "Svetlý",
+    "themeDark": "Tmavý",
+    "legalPrivacy": "Súkromie",
+    "legalTerms": "Podmienky"
   },
   "hero": {
     "badgeFree": "Navždy zadarmo",
-    "badgeNoSignup": "Bez registrácie",
+    "badgeNoSignup": "Zadarmo — stačí e-mail",
     "badgeDiagrams": "8 typov diagramov",
     "title": "Mermaid editor online,",
     "titleAccent": "vizuál a kód na jednom mieste",
@@ -28,46 +47,94 @@
     "mockDiagramLabel": "Vykreslený diagram"
   },
   "statCards": [
-    { "title": "Vykresľuje sa za chodu", "sub": "Skutočný mermaid engine, prekreslený pár stoviek milisekúnd po poslednom stlačení klávesy." },
-    { "title": "Kód a plátno synchronizované", "sub": "Upravujte ktorúkoľvek stranu. Druhá sa doplní sama — žiadne kopírovanie medzi dvoma nástrojmi." },
-    { "title": "14 tvarov uzlov", "sub": "Obdĺžnik, zaoblený, pilulka, kruh, kosoštvorec, databáza, šesťuholník a ďalšie, jedným kliknutím." },
-    { "title": "Zadarmo, bez účtu", "sub": "Žiadna registrácia, žiadna skúšobná verzia, žiadny vodoznak pri exporte. Diagram zostáva vo vašom prehliadači." }
+    {
+      "title": "Vykresľuje sa za chodu",
+      "sub": "Skutočný mermaid engine, prekreslený pár stoviek milisekúnd po poslednom stlačení klávesy."
+    },
+    {
+      "title": "Kód a plátno synchronizované",
+      "sub": "Upravujte ktorúkoľvek stranu. Druhá sa doplní sama — žiadne kopírovanie medzi dvoma nástrojmi."
+    },
+    {
+      "title": "14 tvarov uzlov",
+      "sub": "Obdĺžnik, zaoblený, pilulka, kruh, kosoštvorec, databáza, šesťuholník a ďalšie, jedným kliknutím."
+    },
+    {
+      "title": "Zadarmo, len e-mail",
+      "sub": "Žiadna skúšobná verzia ani vodoznak pri exporte — na uloženie schém stačí e-mail."
+    }
   ],
   "spotlights": [
     {
       "heading": "Plátno, nielen textové pole",
       "sub": "Vizuálna karta je skutočný editor nad vykresleným diagramom: kliknite na uzol pre výber, dvojklikom ho premenujete priamo na mieste, ťahaním kdekoľvek plátno posuniete.",
       "bullets": [
-        { "title": "Stavajte klikaním", "sub": "Pridajte blok, namierte šípku na iný, popíšte ju. Žiadnu syntax sa nemusíte učiť vopred." },
-        { "title": "Vyberte tvar", "sub": "Štrnásť tvarov mermaid flowchartu — rozhodovacie kosoštvorce, databázové valce, podprogramy — z jednej ponuky." },
-        { "title": "Vyfarbite čokoľvek", "sub": "Osem prednastavených farieb plus výber vlastnej, aplikovateľné na jeden uzol alebo na celú oblasť." }
+        {
+          "title": "Stavajte klikaním",
+          "sub": "Pridajte blok, namierte šípku na iný, popíšte ju. Žiadnu syntax sa nemusíte učiť vopred."
+        },
+        {
+          "title": "Vyberte tvar",
+          "sub": "Štrnásť tvarov mermaid flowchartu — rozhodovacie kosoštvorce, databázové valce, podprogramy — z jednej ponuky."
+        },
+        {
+          "title": "Vyfarbite čokoľvek",
+          "sub": "Osem prednastavených farieb plus výber vlastnej, aplikovateľné na jeden uzol alebo na celú oblasť."
+        }
       ]
     },
     {
       "heading": "Mermaid kód, ktorý zostáva váš",
       "sub": "Textová karta je čistý mermaid — rovnaká syntax, akú už vedia vykresliť GitHub, GitLab, Notion aj Obsidian. Nič z toho nie je proprietárny formát.",
       "bullets": [
-        { "title": "Píšte ručne", "sub": "Napíšte mermaid priamo a sledujte, ako sa vykresľuje. Šesť hotových príkladov na začiatok." },
-        { "title": "Obojsmerné", "sub": "Vložené flowcharty sa spätne rozparsujú na plátno — uzly, tvary, farby, podgrafy, všetko." },
-        { "title": "Každý typ diagramu", "sub": "Flowchart, sekvenčný, class, state, ER, gantt, git graph, koláčový — náhľad vykreslí čokoľvek, čo mermaid podporuje." }
+        {
+          "title": "Píšte ručne",
+          "sub": "Napíšte mermaid priamo a sledujte, ako sa vykresľuje. Šesť hotových príkladov na začiatok."
+        },
+        {
+          "title": "Obojsmerné",
+          "sub": "Vložené flowcharty sa spätne rozparsujú na plátno — uzly, tvary, farby, podgrafy, všetko."
+        },
+        {
+          "title": "Každý typ diagramu",
+          "sub": "Flowchart, sekvenčný, class, state, ER, gantt, git graph, koláčový — náhľad vykreslí čokoľvek, čo mermaid podporuje."
+        }
       ]
     },
     {
       "heading": "Veľké diagramy zostávajú čitateľné",
       "sub": "Architektonické diagramy rýchlo prerastú jednu obrazovku. Posun, zoom a zoskupovanie sú stavané presne na toto, namiesto toho, aby proti tomu bojovali.",
       "bullets": [
-        { "title": "Oblasti a vnáranie", "sub": "Zoskupte bloky do podgrafov, vložte oblasť do inej, presuňte celý podstrom jedným gestom." },
-        { "title": "Zoom od 2 % do 1600 %", "sub": "Kolieskom posúvate, ctrl+koliesko priblíži, alebo vycentrujte jedným tlačidlom." },
-        { "title": "Ukladá sa za chodu", "sub": "Diagram sa pri každej úprave zapisuje do local storage prehliadača — zavrite kartu a vráťte sa k nemu kedykoľvek." }
+        {
+          "title": "Oblasti a vnáranie",
+          "sub": "Zoskupte bloky do podgrafov, vložte oblasť do inej, presuňte celý podstrom jedným gestom."
+        },
+        {
+          "title": "Zoom od 2 % do 1600 %",
+          "sub": "Kolieskom posúvate, ctrl+koliesko priblíži, alebo vycentrujte jedným tlačidlom."
+        },
+        {
+          "title": "Ukladá sa za chodu",
+          "sub": "Diagram sa pri každej úprave zapisuje do local storage prehliadača — zavrite kartu a vráťte sa k nemu kedykoľvek."
+        }
       ]
     },
     {
       "heading": "Exportujte a choďte ďalej",
       "sub": "Nič vás tu neviaže. Vezmite si obrázok, zdroj, alebo Markdown blok pripravený na vloženie do dokumentu.",
       "bullets": [
-        { "title": "Žiadne platenie", "sub": "Každá funkcia, vrátane exportu, je zadarmo. Neexistuje platený tarif, na ktorý by ste museli prejsť." },
-        { "title": "Nič neopúšťa váš prehliadač", "sub": "Žiadny účet, žiadne ukladanie diagramov na serveri — vykresľovanie prebieha lokálne." },
-        { "title": "SVG, PNG, .mmd, .md", "sub": "Skopírujte SVG kód, stiahnite PNG v 2x rozlíšení, uložte mermaid zdroj, alebo vezmite Markdown blok v úvodzovkách." }
+        {
+          "title": "Žiadne platenie",
+          "sub": "Každá funkcia, vrátane exportu, je zadarmo. Neexistuje platený tarif, na ktorý by ste museli prejsť."
+        },
+        {
+          "title": "Nič neopúšťa váš prehliadač",
+          "sub": "Vykresľovanie prebieha vo vašom prehliadači; uložené schémy žijú vo vašom účte a sú dostupné z ľubovoľného zariadenia."
+        },
+        {
+          "title": "SVG, PNG, .mmd, .md",
+          "sub": "Skopírujte SVG kód, stiahnite PNG v 2x rozlíšení, uložte mermaid zdroj, alebo vezmite Markdown blok v úvodzovkách."
+        }
       ]
     }
   ],
@@ -95,7 +162,7 @@
       },
       {
         "title": "Cena",
-        "us": "Zadarmo, bez účtu, bez limitov na export.",
+        "us": "Zadarmo — stačí e-mail",
         "them": "Zadarmo len do pár diagramov, export alebo spolupráca sú za predplatné."
       },
       {
@@ -108,7 +175,7 @@
   "faq": {
     "heading": "Otázky k mermaid",
     "headingAccent": "editoru",
-    "sub": "Čo ľudia riešia, kým ho otvoria. Bez registrácie — editor je jeden klik ďaleko.",
+    "sub": "Na začiatok stačí e-mail.",
     "items": [
       {
         "q": "Čo je mermaid?",
@@ -116,7 +183,7 @@
       },
       {
         "q": "Je tento mermaid editor naozaj zadarmo?",
-        "a": "Áno. Každá funkcia, vrátane exportu do SVG a PNG, je zadarmo a účet zakladať nemusíte. Neexistuje platený tarif — nič sa neschováva za platbu."
+        "a": "Áno. Všetky funkcie vrátane exportu SVG a PNG sú zadarmo. Stačí e-mail na prihlásenie — neexistuje platený plán ani nič skryté."
       },
       {
         "q": "Musím poznať syntax mermaid?",
@@ -132,7 +199,7 @@
       },
       {
         "q": "Kde sa ukladá môj diagram?",
-        "a": "V local storage vášho prehliadača, na vašom vlastnom zariadení. Žiadny účet, žiadna kópia na serveri — vymazanie dát prehliadača alebo prechod na iné zariadenie znamená začať odznova, takže ak chcete diagram zachovať, exportujte zdroj."
+        "a": "Vaše schémy sa ukladajú do účtu, takže sú tam, keď sa vrátite — z ľubovoľného zariadenia. Zdroj exportujte, ak chcete lokálnu kópiu."
       },
       {
         "q": "Môžem vložiť existujúci mermaid diagram?",
@@ -140,13 +207,13 @@
       },
       {
         "q": "Funguje to aj offline?",
-        "a": "Vykresľovanie prebieha celé v prehliadači, takže hneď ako sa stránka raz načíta, editor funguje ďalej aj bez pripojenia. Diagram je v local storage, nie na serveri."
+        "a": "Vykresľovanie prebieha úplne vo vašom prehliadači, takže po načítaní stránky editor funguje aj bez pripojenia."
       }
     ]
   },
   "finalCta": {
     "heading": "Otvorte editor.",
-    "headingAccent": "Nič na registráciu.",
+    "headingAccent": "Zadarmo — stačí e-mail",
     "sub": "Prázdne plátno, kódová karta a všetky možnosti exportu — zadarmo, priamo v prehliadači, hneď teraz.",
     "ctaLabel": "Otvoriť editor"
   },

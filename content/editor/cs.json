@@ -28,6 +28,18 @@
     "out": "Oddálit",
     "fit": "Přizpůsobit"
   },
+  "dock": {
+    "addBlock": "Přidat blok",
+    "addGroup": "Přidat oblast",
+    "copy": "Kopírovat",
+    "paste": "Vložit",
+    "undo": "Zpět",
+    "redo": "Znovu",
+    "zoomIn": "Přiblížit",
+    "zoomOut": "Oddálit",
+    "fit": "Přizpůsobit",
+    "editCode": "Upravit kód"
+  },
   "modals": {
     "colorTitle": "Barva",
     "shapeTitle": "Tvar",
@@ -92,7 +104,7 @@
   },
   "auth": {
     "title": "Sign in to open the editor",
-    "subtitle": "Enter your email and we'll send you a one-time code.",
+    "subtitle": "Zcela zdarma — žádné placené plány ani karty. Jen e-mail pro ukládání, synchronizaci a export schémat.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",
@@ -110,6 +122,7 @@
     "tooManyAttempts": "Too many attempts. Wait a bit and try again.",
     "genericError": "Something went wrong. Please try again.",
     "signedInAs": "Signed in as",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "goBack": "Zpět"
   }
 }

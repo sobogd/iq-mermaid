@@ -15,7 +15,7 @@ W, H = 1200, 630
 BG = (249, 246, 241)        # --bg, warm paper
 TEXT = (21, 18, 15)         # --text
 HINT = (114, 106, 96)       # --hint
-GRAD = ((255, 73, 41), (249, 158, 31))  # brand gradient, hsl(9 100% 58%) -> hsl(35 95% 55%)
+ACCENT = (217, 83, 79)      # brand red #d9534f, solid (no gradient)
 
 
 def sf(size, weight="Regular"):
@@ -28,12 +28,8 @@ def sf(size, weight="Regular"):
 
 
 def gradient(w, h, radius):
-    """Rounded-square brand gradient tile (same as LogoIcon's linearGradient)."""
-    row = Image.new("RGB", (w, 1))
-    for x in range(w):
-        t = x / max(1, w - 1)
-        row.putpixel((x, 0), tuple(round(GRAD[0][k] + (GRAD[1][k] - GRAD[0][k]) * t) for k in range(3)))
-    tile = row.resize((w, h))
+    """Solid rounded-square brand tile (same as LogoIcon's fill)."""
+    tile = Image.new("RGB", (w, h), ACCENT)
     mask = Image.new("L", (w, h), 0)
     ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, h - 1], radius, fill=255)
     return tile, mask
@@ -55,7 +51,7 @@ d.text((96, 352), "Draw it. Or write it.", font=sf(76, "Bold"), fill=TEXT, ancho
 d.text((96, 432), "Free mermaid live editor — visual canvas and", font=sf(36), fill=HINT, anchor="ls")
 d.text((96, 482), "mermaid code, always in sync. No sign-up.", font=sf(36), fill=HINT, anchor="ls")
 
-# Brand accent bar, bottom-left (mirrors the hero's gradient underline).
+# Brand accent bar, bottom-left (mirrors the hero's accent underline).
 bar, bar_mask = gradient(220, 12, radius=6)
 img.paste(bar, (96, 534), bar_mask)
 

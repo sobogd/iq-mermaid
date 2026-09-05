@@ -18,6 +18,8 @@ export interface EditorTexts {
     codePlaceholder: string;
     verify: string;
     back: string;
+    /** Generic "back" for leaving the blocking gate to the content window. */
+    goBack: string;
     codeSent: string;
     resend: string;
     sending: string;
@@ -59,6 +61,21 @@ export interface EditorTexts {
     shape: string;
   };
   zoom: { in: string; out: string; fit: string };
+  /** Short captions shown under each icon in the editor's two floating dock
+   *  rails (left: add block/area, copy, paste; right: undo, redo, zoom, fit).
+   *  Kept terse so they fit beneath the icon without wrapping to three lines. */
+  dock: {
+    addBlock: string;
+    addGroup: string;
+    copy: string;
+    paste: string;
+    editCode: string;
+    undo: string;
+    redo: string;
+    zoomIn: string;
+    zoomOut: string;
+    fit: string;
+  };
   modals: {
     colorTitle: string;
     shapeTitle: string;
