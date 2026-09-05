@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import EditorDock from "@/app/_editor/EditorDock";
 import type { EditorTexts } from "@/app/_editor/texts";
 import { SafeArea } from "./SafeArea";
 
@@ -33,6 +34,10 @@ export function EditorBackdrop({ texts }: { texts: EditorTexts }) {
   return (
     <div data-editor-layer inert aria-hidden="true" className="absolute inset-0 z-0">
       <SafeArea>
+        {/* The dock is light and eager: its buttons appear on every marketing
+            page (portaled onto <body>), while the mermaid canvas stays behind
+            EditorClient's lazy boundary and only boots on the first reveal. */}
+        <EditorDock t={texts} />
         <EditorClient t={texts} />
       </SafeArea>
     </div>

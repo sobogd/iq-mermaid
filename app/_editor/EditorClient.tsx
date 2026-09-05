@@ -4,39 +4,60 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import type { EditorTexts } from "./texts";
 import {
+  EDITOR_ADD_BLOCK_EVENT,
+  EDITOR_ADD_GROUP_EVENT,
   EDITOR_CODE_EVENT,
+  EDITOR_COPY_BLOCK_EVENT,
   EDITOR_COPY_EVENT,
   EDITOR_DOWNLOAD_EVENT,
+  EDITOR_FIT_EVENT,
   EDITOR_NEW_DOC_EVENT,
   EDITOR_OPEN_DOCS_EVENT,
+  EDITOR_PASTE_EVENT,
   EDITOR_READY_EVENT,
+  EDITOR_REDO_EVENT,
   EDITOR_REVEAL_EVENT,
+  EDITOR_UNDO_EVENT,
+  EDITOR_ZOOM_IN_EVENT,
+  EDITOR_ZOOM_OUT_EVENT,
   hasEditorRevealed,
 } from "../_landing/desktop/editor-events";
+import "./editor-loading.css";
 
 // mermaid is ~500 kB and touches `document` at import time, so the whole
 // editor is client-only and loaded on demand. Because the editor is now a
 // shared *background* layer on every marketing page (under the closable
-// window), it is mounted lazily after hydration — SSR never pays for it.
+// window), it is mounted lazily after hydration — SSR never pays for it. The
+// loading state is a decorative four-square loader (see editor-loading.css).
 const EditorShell = dynamic(() => import("./EditorShell.jsx"), {
   ssr: false,
-  loading: () => <div className="editor-loading" />,
+  loading: () => <div className="editor-loading" aria-hidden="true"><span /><span /><span /><span /></div>,
 });
 
 type AuthState = { status: "loading" } | { status: "anon" } | { status: "authed"; email: string };
 
-// Taskbar actions that act on the open diagram. While the shell has not booted
-// (or is still booting) they are queued instead of dropped, and replayed once
-// EditorShell announces EDITOR_READY_EVENT — that keeps a first click on
-// Documents/Export/… working even though the editor no longer boots at page
-// load. EDITOR_CODE_EVENT opens the code sheet; the rest go through the
-// shell's own requireAuth flow.
+// Actions that act on the open diagram — taskbar (Documents/Export/Edit Code)
+// and the always-visible dock (add block/group, copy/paste, undo/redo, zoom).
+// While the shell has not booted (or is still booting) they are queued instead
+// of dropped, and replayed once EditorShell announces EDITOR_READY_EVENT — that
+// keeps a first click working even though the editor no longer boots at page
+// load. EDITOR_CODE_EVENT opens the code sheet; the dock's canvas events go
+// straight to VisualEditor once it has mounted.
 const ACTION_EVENTS = [
   EDITOR_DOWNLOAD_EVENT,
   EDITOR_COPY_EVENT,
   EDITOR_CODE_EVENT,
   EDITOR_OPEN_DOCS_EVENT,
   EDITOR_NEW_DOC_EVENT,
+  EDITOR_ADD_BLOCK_EVENT,
+  EDITOR_ADD_GROUP_EVENT,
+  EDITOR_COPY_BLOCK_EVENT,
+  EDITOR_PASTE_EVENT,
+  EDITOR_UNDO_EVENT,
+  EDITOR_REDO_EVENT,
+  EDITOR_ZOOM_IN_EVENT,
+  EDITOR_ZOOM_OUT_EVENT,
+  EDITOR_FIT_EVENT,
 ];
 
 // The editor is open to everyone now: the canvas renders for anonymous
@@ -132,7 +153,8 @@ export function EditorClient({ t }: { t: EditorTexts }) {
   // actor on the main thread. Once booted, hold the loading screen until the
   // auth check resolves; the editor itself never swaps to a full-page gate.
   if (!booted) return null;
-  if (auth.status === "loading") return <div className="editor-loading" />;
+  if (auth.status === "loading")
+    return <div className="editor-loading" aria-hidden="true"><span /><span /><span /><span /></div>;
   return (
     <EditorShell t={t} authed={auth.status === "authed"} onAuthed={handleAuthed} />
   );

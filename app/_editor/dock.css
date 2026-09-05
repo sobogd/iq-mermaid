@@ -1,0 +1,150 @@
+/* --- Editor dock islands --------------------------------------------------
+   Two floating vertical islands on the left and right edges, portaled onto
+   <body> so they sit above the closable marketing window. Owned by the eager
+   EditorDock component (loaded on every marketing page), so these styles live
+   here rather than in editor.css (which only ships with the lazy canvas).
+   Matches the header "cloud": same `--taskbar-bg`, same 6px corner radius
+   (`rounded-md`, the header uses `rounded-md`), and a width equal to the
+   header's height (h-10 = 40px) — and, like the header island, no border. A
+   tight column of icon-only buttons; on hover-capable desktop, hovering one
+   reveals a small tooltip beside it with the action's name (touch devices
+   never get those). */
+.iqm-dock {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 40px;
+  padding: 4px 0;
+  background: var(--taskbar-bg);
+  border-radius: 6px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+.iqm-dock-left { left: 24px; }
+.iqm-dock-right { right: 24px; }
+.iqm-dock .header-actions,
+.iqm-dock .header-zoom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+}
+/* The island is a tight stack of icon-only buttons that fill the 40px width.
+   The icon uses the default text colour (dark in the light theme) and a thin
+   default stroke, sized to sit comfortably inside the island. */
+.iqm-dock .dock-btn {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: var(--text);
+}
+.iqm-dock .dock-btn:hover,
+.iqm-dock .dock-btn:focus-visible {
+  background: color-mix(in srgb, var(--taskbar-bg) 72%, var(--border));
+}
+.iqm-dock .dock-btn .tool-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--text);
+}
+/* Hover tooltip: a small card that pops out beside the icon. It sits outside
+   the button (so it doesn't widen the island column), anchored to the side
+   nearest the edge — right rail opens left, left rail opens right. */
+.iqm-dock .dock-btn .dock-tip {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  z-index: 70;
+}
+.iqm-dock-left .dock-btn .dock-tip {
+  left: calc(100% + 10px);
+}
+.iqm-dock-right .dock-btn .dock-tip {
+  right: calc(100% + 10px);
+}
+/* The label is a hover affordance, so it only ever shows on devices that can
+   actually hover with a fine pointer. Touch browsers emulate `:hover` on tap
+   (and keep it until the next tap), which would leave the label stuck open
+   next to the icon on a phone — so on coarse-pointer / hover-less devices the
+   tip is removed from the layout entirely. */
+@media (hover: hover) and (pointer: fine) {
+  .iqm-dock .dock-btn:hover .dock-tip,
+  .iqm-dock .dock-btn:focus-visible .dock-tip {
+    opacity: 1;
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .iqm-dock .dock-tip {
+    display: none;
+  }
+}
+.iqm-dock .dock-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.iqm-dock .dock-btn:disabled:hover {
+  background: transparent;
+}
+.iqm-dock .dock-btn:disabled .dock-tip {
+  opacity: 0;
+}
+.iqm-dock .status-line {
+  max-width: 56px;
+  overflow-wrap: anywhere;
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.3;
+  padding: 2px;
+  color: var(--hint);
+}
+@media (max-width: 640px) {
+  /* On a phone the content window spans the whole strip, so the floating dock
+     rails would sit on top of the content. They only show once the editor is
+     revealed (AppWindow toggles `iqm-editor-revealed` on <html>). */
+  .iqm-dock {
+    display: none;
+  }
+  html.iqm-editor-revealed .iqm-dock {
+    display: flex;
+  }
+  .iqm-dock-left { left: 16px; }
+  .iqm-dock-right { right: 16px; }
+  .iqm-dock {
+    width: 36px;
+    padding: 3px 0;
+  }
+  .iqm-dock .dock-btn {
+    height: 30px;
+  }
+  .iqm-dock .dock-btn .tool-icon {
+    width: 19px;
+    height: 19px;
+  }
+}

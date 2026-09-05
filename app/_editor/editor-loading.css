@@ -1,0 +1,42 @@
+/* Four-square loader shown while the heavy editor bundle (mermaid canvas) is
+   downloading/parsing after the visitor opens the editor. A full-screen,
+   pointer-transparent grid keeps the squares centred on the desktop; each
+   square pulses in sequence. Purely decorative — hidden from assistive tech. */
+.editor-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: 16px 16px;
+  grid-template-rows: 16px 16px;
+  gap: 6px;
+  place-content: center;
+  pointer-events: none;
+}
+.editor-loading span {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: var(--button);
+  animation: editor-loading-square 1.2s ease-in-out infinite;
+}
+.editor-loading span:nth-child(1) { animation-delay: 0s; }
+.editor-loading span:nth-child(2) { animation-delay: 0.15s; }
+.editor-loading span:nth-child(3) { animation-delay: 0.3s; }
+.editor-loading span:nth-child(4) { animation-delay: 0.45s; }
+@keyframes editor-loading-square {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor-loading span {
+    animation: none;
+    opacity: 0.5;
+  }
+}

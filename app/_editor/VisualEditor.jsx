@@ -1,5 +1,4 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import {
   ArrowLeftRight,
   ArrowRight,
@@ -13,7 +12,18 @@ import {
 } from "lucide-react";
 import { renderDiagram } from "./mermaid-client";
 import AskModal from "./AskModal.jsx";
-import ToolIcon from "./ToolIcon.jsx";
+import {
+  EDITOR_ADD_BLOCK_EVENT,
+  EDITOR_ADD_GROUP_EVENT,
+  EDITOR_COPY_BLOCK_EVENT,
+  EDITOR_FIT_EVENT,
+  EDITOR_PASTE_EVENT,
+  EDITOR_REDO_EVENT,
+  EDITOR_UNDO_EVENT,
+  EDITOR_ZOOM_IN_EVENT,
+  EDITOR_ZOOM_OUT_EVENT,
+  publishDockState,
+} from "../_landing/desktop/editor-events";
 
 const DEFAULT_COLOR = "#ECECFF"; // mermaid default-theme node fill (mainBkg)
 const DEFAULT_SHAPE = "rect";
@@ -427,9 +437,6 @@ function resolveTarget(el, svgRoot, diagramId) {
 }
 
 export default function VisualEditor({
-  active,
-  actionsSlot,
-  zoomSlot,
   onCodeChange,
   importText,
   importSeq,
@@ -508,6 +515,56 @@ export default function VisualEditor({
   const [ask, setAsk] = useState(null); // { kind: "text"|"confirm", title, value?, onDone }
   const [history, setHistory] = useState({ past: [], future: [] });
   const interactionModeRef = useRef(null);
+
+  // The dock (an eager, separate tree) drives the canvas through window
+  // events. Each handler is a closure over live state, so they are kept in a
+  // ref updated after every render; the listener effect below is registered
+  // once and reads the ref at event time, so it never fires a stale closure.
+  const dockActionsRef = useRef({});
+  useEffect(() => {
+    dockActionsRef.current = {
+      [EDITOR_ADD_BLOCK_EVENT]: addBlock,
+      [EDITOR_ADD_GROUP_EVENT]: addGroup,
+      [EDITOR_COPY_BLOCK_EVENT]: copySelected,
+      [EDITOR_PASTE_EVENT]: startPaste,
+      [EDITOR_UNDO_EVENT]: undo,
+      [EDITOR_REDO_EVENT]: redo,
+      [EDITOR_ZOOM_IN_EVENT]: () => zoomBy(1.25),
+      [EDITOR_ZOOM_OUT_EVENT]: () => zoomBy(0.8),
+      [EDITOR_FIT_EVENT]: fitView,
+    };
+  });
+
+  useEffect(() => {
+    const types = [
+      EDITOR_ADD_BLOCK_EVENT,
+      EDITOR_ADD_GROUP_EVENT,
+      EDITOR_COPY_BLOCK_EVENT,
+      EDITOR_PASTE_EVENT,
+      EDITOR_UNDO_EVENT,
+      EDITOR_REDO_EVENT,
+      EDITOR_ZOOM_IN_EVENT,
+      EDITOR_ZOOM_OUT_EVENT,
+      EDITOR_FIT_EVENT,
+    ];
+    const onEvent = (e) => dockActionsRef.current[e.type]?.();
+    for (const type of types) window.addEventListener(type, onEvent);
+    return () => {
+      for (const type of types) window.removeEventListener(type, onEvent);
+    };
+  }, []);
+
+  // Keep the eager dock's disabled states honest: copy needs a selection,
+  // paste needs a clipboard, undo/redo need history. Runs on mount too, so the
+  // dock starts all-false and only enables what the canvas can actually do.
+  useEffect(() => {
+    publishDockState({
+      canCopy: !!selected && selected.type !== "edge",
+      canPaste: !!clipboard,
+      canUndo: history.past.length > 0,
+      canRedo: history.future.length > 0,
+    });
+  }, [selected, clipboard, history]);
 
   useEffect(() => {
     viewRef.current = view;
@@ -1609,48 +1666,6 @@ export default function VisualEditor({
 
   return (
     <div className="visual-editor">
-      {/* LEFT rail: build actions — add block, add area, copy, paste. Each is a
-          hand-drawn icon with a short caption beneath, sitting free of any
-          background box on the wallpaper. */}
-      {active && actionsSlot && createPortal(
-        <>
-          <button
-            className="dock-btn"
-            aria-label={t.toolbar.addBlock}
-            onClick={() => { addBlock(); }}
-          >
-            <ToolIcon name="addBlock" />
-            <span className="dock-tip">{t.dock.addBlock}</span>
-          </button>
-          <button
-            className="dock-btn"
-            aria-label={t.toolbar.addGroup}
-            onClick={() => { addGroup(); }}
-          >
-            <ToolIcon name="addGroup" />
-            <span className="dock-tip">{t.dock.addGroup}</span>
-          </button>
-          <button
-            className="dock-btn"
-            aria-label={t.toolbar.copy}
-            onClick={copySelected}
-            disabled={!selected || selected.type === "edge"}
-          >
-            <ToolIcon name="copy" />
-            <span className="dock-tip">{t.dock.copy}</span>
-          </button>
-          <button
-            className="dock-btn"
-            aria-label={t.toolbar.paste}
-            onClick={startPaste}
-            disabled={!clipboard}
-          >
-            <ToolIcon name="paste" />
-            <span className="dock-tip">{t.dock.paste}</span>
-          </button>
-        </>,
-        actionsSlot
-      )}
       {colorModalOpen && (selectedBlock || selectedGroup) && (
         <div className="modal-backdrop" onMouseDown={() => setColorModalOpen(false)}>
           <div className="modal-panel" onMouseDown={(e) => e.stopPropagation()}>
@@ -1707,53 +1722,6 @@ export default function VisualEditor({
         </div>
       )}
       <AskModal ask={ask} onClose={() => setAsk(null)} t={t} />
-      {active && zoomSlot && createPortal(
-        <>
-          <button
-            className="dock-btn"
-            onClick={undo}
-            aria-label={t.toolbar.undo}
-            disabled={!history.past.length}
-          >
-            <ToolIcon name="undo" />
-            <span className="dock-tip">{t.dock.undo}</span>
-          </button>
-          <button
-            className="dock-btn"
-            onClick={redo}
-            aria-label={t.toolbar.redo}
-            disabled={!history.future.length}
-          >
-            <ToolIcon name="redo" />
-            <span className="dock-tip">{t.dock.redo}</span>
-          </button>
-          <button
-            className="dock-btn"
-            onClick={() => zoomBy(1.25)}
-            aria-label={t.zoom.in}
-          >
-            <ToolIcon name="zoomIn" />
-            <span className="dock-tip">{t.dock.zoomIn}</span>
-          </button>
-          <button
-            className="dock-btn"
-            onClick={() => zoomBy(0.8)}
-            aria-label={t.zoom.out}
-          >
-            <ToolIcon name="zoomOut" />
-            <span className="dock-tip">{t.dock.zoomOut}</span>
-          </button>
-          <button
-            className="dock-btn"
-            onClick={fitView}
-            aria-label={t.zoom.fit}
-          >
-            <ToolIcon name="fit" />
-            <span className="dock-tip">{t.dock.fit}</span>
-          </button>
-        </>,
-        zoomSlot
-      )}
       <div className="canvas-stage" ref={stageRef}>
         <div
           className={

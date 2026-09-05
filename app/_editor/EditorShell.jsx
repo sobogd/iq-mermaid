@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Code2, Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 import VisualEditor, { defaultState, toMermaid } from "./VisualEditor.jsx";
 import CodeModal from "./CodeModal.jsx";
 import AskModal from "./AskModal.jsx";
@@ -28,6 +28,7 @@ import {
   EDITOR_REVEAL_EVENT,
   hasEditorRevealed,
   isContentWindowOpen,
+  publishStatus,
   requestContentOpen,
 } from "../_landing/desktop/editor-events";
 import { openEditor } from "../_landing/desktop/open-editor";
@@ -79,19 +80,12 @@ export default function EditorShell({ t, authed, onAuthed }) {
   const [code, setCode] = useState("");
   const [importText, setImportText] = useState("");
   const [importSeq, setImportSeq] = useState(0);
-  const [actionsSlot, setActionsSlot] = useState(null);
-  const [zoomSlot, setZoomSlot] = useState(null);
-  const [status, setStatus] = useState("");
   const [themeSeq, setThemeSeq] = useState(0);
-  // Whether the marketing window is gone (the editor revealed). While the
-  // content window is open the dock rails must NOT act on the canvas — a press
-  // there opens the editor first instead (see dockGuard).
   // Bumped after a manual code edit so VisualEditor re-fits (centres) the
   // diagram once it has rendered the new source.
   const [recenterSeq, setRecenterSeq] = useState(0);
   const lastVisualCodeRef = useRef("");
   const docSaveDebounceRef = useRef(null);
-  const statusTimerRef = useRef(null);
   const currentDocIdRef = useRef(null);
   const pendingAuthRef = useRef(null);
   // The code as last loaded from storage. Autosave only fires when `code`
@@ -202,14 +196,12 @@ export default function EditorShell({ t, authed, onAuthed }) {
 
   useEffect(() => () => {
     clearTimeout(docSaveDebounceRef.current);
-    clearTimeout(statusTimerRef.current);
   }, []);
 
+  // The dock (a separate, eager tree) renders the status line, so flashes are
+  // broadcast; the dock owns the auto-clear after a couple of seconds.
   function flash(message) {
-    setStatus(message);
-    clearTimeout(statusTimerRef.current);
-    // A status line that never clears stops being a status line.
-    statusTimerRef.current = setTimeout(() => setStatus(""), 2500);
+    publishStatus(message);
   }
 
   // Signs the visitor in on demand. Any action that persists a document or
@@ -282,17 +274,6 @@ export default function EditorShell({ t, authed, onAuthed }) {
       window.removeEventListener(CONTENT_OPEN_EVENT, close);
     };
   }, [authed]);
-
-  // Dock rails are live only once the editor is revealed. While the content
-  // window is open, any press on them opens the editor and does nothing else —
-  // the canvas is never edited "behind" the landing. Reads the live state so a
-  // remount (client navigation) can never leave the guard stale.
-  const dockGuard = (e) => {
-    if (!isContentWindowOpen()) return;
-    e.preventDefault();
-    e.stopPropagation();
-    openEditor();
-  };
 
   // The gate cannot be dismissed into the editor — the only way out is back
   // to the content window (which drops whatever action waited behind it).
@@ -483,9 +464,6 @@ export default function EditorShell({ t, authed, onAuthed }) {
       <main className="app-main">
         {ready && (
           <VisualEditor
-            active
-            actionsSlot={actionsSlot}
-            zoomSlot={zoomSlot}
             onCodeChange={handleVisualCode}
             importText={importText}
             importSeq={importSeq}
@@ -496,51 +474,6 @@ export default function EditorShell({ t, authed, onAuthed }) {
           />
         )}
       </main>
-
-      {/* The two vertical rails (portaled onto <body> so the backdrop-blur
-          containers on the desktop shell can't pin them). Left = build actions
-          (add block / add area / copy / paste) + edit code; right = history +
-          view (undo / redo / zoom in / zoom out / fit). */}
-      {typeof document !== "undefined" &&
-        createPortal(
-          <>
-            <aside
-              className="iqm-dock iqm-dock-left"
-              data-scheme="tertiary"
-              onPointerDownCapture={dockGuard}
-              onClickCapture={dockGuard}
-            >
-              <div className="header-actions" ref={setActionsSlot} />
-              {/* Source-code mode, moved out of the site header into the
-                  editor's own rail — same tight spacing as every other icon.
-                  Opens the same code sheet the header's Edit Code used to. */}
-              <div className="header-actions">
-                <button
-                  type="button"
-                  className="dock-btn"
-                  aria-label={t.dock.editCode}
-                  onClick={() => {
-                    analytics.track("Click", "Dock edit code");
-                    setCodeOpen(true);
-                  }}
-                >
-                  <Code2 className="tool-icon" strokeWidth={1.75} />
-                  <span className="dock-tip">{t.dock.editCode}</span>
-                </button>
-              </div>
-            </aside>
-            <aside
-              className="iqm-dock iqm-dock-right"
-              data-scheme="tertiary"
-              onPointerDownCapture={dockGuard}
-              onClickCapture={dockGuard}
-            >
-              <div className="header-zoom" ref={setZoomSlot} />
-              <div className="status-line" role="status" aria-live="polite">{status}</div>
-            </aside>
-          </>,
-          document.body,
-        )}
 
       {authOpen &&
         createPortal(

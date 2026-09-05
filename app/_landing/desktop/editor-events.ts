@@ -9,6 +9,48 @@ export const EDITOR_CODE_EVENT = "iqm:editor-code";
 export const EDITOR_OPEN_DOCS_EVENT = "iqm:editor-open-docs";
 export const EDITOR_NEW_DOC_EVENT = "iqm:editor-new-doc";
 
+// Dock → editor canvas actions. The dock is now an eager, lightweight tree
+// (EditorDock) rendered on every marketing page, while the mermaid canvas
+// (VisualEditor) stays behind the lazy boundary and only boots on the first
+// reveal. These window events are how the always-visible dock buttons reach
+// the canvas: EditorClient queues any that arrive before the shell is ready
+// (exactly like the taskbar actions) and VisualEditor handles them once it
+// has mounted.
+export const EDITOR_ADD_BLOCK_EVENT = "iqm:editor-add-block";
+export const EDITOR_ADD_GROUP_EVENT = "iqm:editor-add-group";
+// Note: distinct from EDITOR_COPY_EVENT above — that one copies the diagram's
+// mermaid source to the system clipboard (a taskbar action), while this one
+// copies the selected block *within* the canvas' internal clipboard.
+export const EDITOR_COPY_BLOCK_EVENT = "iqm:editor-copy-block";
+export const EDITOR_PASTE_EVENT = "iqm:editor-paste";
+export const EDITOR_UNDO_EVENT = "iqm:editor-undo";
+export const EDITOR_REDO_EVENT = "iqm:editor-redo";
+export const EDITOR_ZOOM_IN_EVENT = "iqm:editor-zoom-in";
+export const EDITOR_ZOOM_OUT_EVENT = "iqm:editor-zoom-out";
+export const EDITOR_FIT_EVENT = "iqm:editor-fit";
+
+// Editor canvas → dock. VisualEditor publishes the bits of its state the dock
+// buttons need to know about (copy needs a selection, paste needs a clipboard,
+// undo/redo need history) so the eager dock can disable them honestly before
+// anything is loaded or selected. Defaults to all-false, which is exactly the
+// state before the canvas has booted.
+export const EDITOR_DOCK_STATE_EVENT = "iqm:editor-dock-state";
+export type EditorDockState = {
+  canCopy: boolean;
+  canPaste: boolean;
+  canUndo: boolean;
+  canRedo: boolean;
+};
+export const publishDockState = (state: EditorDockState) =>
+  window.dispatchEvent(new CustomEvent<EditorDockState>(EDITOR_DOCK_STATE_EVENT, { detail: state }));
+
+// Editor shell → dock. The one-line status ("Saved", "Copied SVG", …) used to
+// live inside the shell; with the dock extracted it is broadcast here and the
+// dock renders + auto-clears it.
+export const EDITOR_STATUS_EVENT = "iqm:editor-status";
+export const publishStatus = (message: string) =>
+  window.dispatchEvent(new CustomEvent<string>(EDITOR_STATUS_EVENT, { detail: message }));
+
 /** Fired once the marketing window is gone and the shared editor is revealed:
  *  the editor is now sign-in-first, so an anonymous visitor is sent to the
  *  auth gate (see EditorShell). Fired by setContentWindowOpen(false). */
