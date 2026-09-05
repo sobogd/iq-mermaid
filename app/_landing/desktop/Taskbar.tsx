@@ -690,6 +690,21 @@ export function Taskbar({
             {texts.openEditor}
           </button>
         </div>
+
+        {/* Desktop: the same "Open the editor" action on the right edge of the
+            header, so the editor is reachable without hunting for a CTA. */}
+        <div className="ml-3 hidden shrink-0 items-center sm:flex">
+          <button
+            type="button"
+            className="inline-flex h-8 shrink-0 items-center rounded-md bg-button px-3 text-[13px] font-semibold leading-none text-button-text transition-all active:scale-[0.99]"
+            onClick={() => {
+              analytics.track("Click", "Header open editor");
+              openEditor();
+            }}
+          >
+            {texts.openEditor}
+          </button>
+        </div>
       </div>
     </header>
   );
