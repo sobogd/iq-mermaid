@@ -530,7 +530,7 @@ export default function EditorShell({ t, authed, onAuthed }) {
                       aria-label={t.documents.rename}
                       onClick={() => confirmRenameDocument(d)}
                     >
-                      <Pencil size={15} strokeWidth={1.75} />
+                      <Pencil size={18} strokeWidth={2} />
                     </button>
                     <button
                       className="modal-list-delete danger"
@@ -538,7 +538,7 @@ export default function EditorShell({ t, authed, onAuthed }) {
                       aria-label={t.documents.delete}
                       onClick={() => confirmDeleteDocument(d)}
                     >
-                      <Trash2 size={15} strokeWidth={1.75} />
+                      <Trash2 size={18} strokeWidth={2} />
                     </button>
                   </div>
                 ))}

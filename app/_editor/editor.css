@@ -207,6 +207,14 @@
   align-items: center;
   justify-content: center;
 }
+/* The row's action icons are lucide SVGs whose size comes from their own
+   width/height attributes. As shrinkable flex items they can be squeezed to
+   a 4px sliver by the row, so never let flexbox compress them below their
+   drawn size. */
+.iqm-root .modal-list-delete svg,
+.iqm-root .modal-list-rename svg {
+  flex: none;
+}
 /* A list that can grow past a handful of rows (documents, not the fixed
    14-shape or 6-export lists) scrolls on its own rather than pushing the
    modal off the bottom of the screen. Same always-drawn, cross-platform
@@ -396,6 +404,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+/* Same icon fix as the scoped rule above: never let the row's flex layout
+   squeeze the action icons into a narrow sliver. */
+.modal-list-delete svg,
+.modal-list-rename svg {
+  flex: none;
 }
 .modal-list-scroll {
   max-height: 320px;
