@@ -24,6 +24,7 @@ import {
   EDITOR_CODE_EVENT,
   EDITOR_OPEN_DOCS_EVENT,
   EDITOR_NEW_DOC_EVENT,
+  EDITOR_READY_EVENT,
   EDITOR_REVEAL_EVENT,
   hasEditorRevealed,
   isContentWindowOpen,
@@ -168,6 +169,16 @@ export default function EditorShell({ t, authed, onAuthed }) {
     // action (openDocument/startNewDocument), not a reaction to props/state.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // EditorClient mounts this shell lazily — the whole mermaid bundle only
+  // loads on the first reveal, not on marketing page loads. Taskbar actions
+  // (export/copy/documents/new) that arrive before that boot are queued by
+  // EditorClient and replayed when the shell is actually listening; this
+  // ready announcement is that "now" signal. Fires once per shell mount.
+  useEffect(() => {
+    if (!ready) return;
+    window.dispatchEvent(new Event(EDITOR_READY_EVENT));
+  }, [ready]);
 
   // Autosaves the open document on every change to its source, regardless of
   // whether that change came from typing in the sheet or editing the canvas

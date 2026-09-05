@@ -14,6 +14,13 @@ export const EDITOR_NEW_DOC_EVENT = "iqm:editor-new-doc";
  *  auth gate (see EditorShell). Fired by setContentWindowOpen(false). */
 export const EDITOR_REVEAL_EVENT = "iqm:editor-reveal";
 
+/** Fired by EditorShell once it has resolved the open document on its first
+ *  boot. EditorClient mounts the shell lazily (first reveal only, so mermaid
+ *  never loads for visitors who stay on marketing pages); taskbar actions
+ *  (export / copy / documents / new) that arrive before that boot are queued
+ *  there and replayed on this event, so the very first click is never dropped. */
+export const EDITOR_READY_EVENT = "iqm:editor-ready";
+
 /** Fired by the header's logo / Features / Guides links and by any content
  *  window mount: the content part is open (the editor is "behind" it). */
 export const CONTENT_OPEN_EVENT = "iqm:content-open";

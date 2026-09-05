@@ -5,11 +5,13 @@ import type { EditorTexts } from "@/app/_editor/texts";
 import { SafeArea } from "./SafeArea";
 
 // The editor is a heavy client-only bundle (mermaid ~500 kB, touches `document`
-// at import). It is now the shared background layer of the desktop on every
-// marketing page: lazy-loaded after hydration so SSR never pays for it, and
-// rendered UNDER the closable content window — close the window and the already
-// booted editor is revealed. `ssr:false` + the dynamic import keep the whole
-// editor out of the initial payload.
+// at import). It is the shared background layer of the desktop on every
+// marketing page, rendered UNDER the closable content window — close the
+// window and the editor is revealed. `ssr:false` + the dynamic import keep the
+// whole editor out of the initial payload, and EditorClient additionally
+// defers the editor's boot until the first reveal (or editor action): visitors
+// who never open the editor never download or execute mermaid, so the landing's
+// Lighthouse/Core-Web-Vitals are not hostage to the editor's main-thread cost.
 //
 // SafeArea: the editor shares the page's React root, so a crash inside it must
 // never take the marketing UI down with it — the boundary keeps an editor
