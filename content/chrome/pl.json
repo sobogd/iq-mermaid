@@ -115,7 +115,7 @@
         },
         {
           "title": "Zapisywane na bieżąco",
-          "sub": "Twój diagram jest zapisywany w lokalnym magazynie przeglądarki przy każdej zmianie — zamknij kartę i wróć do niego później."
+          "sub": "Twój diagram jest automatycznie zapisywany na Twoim koncie podczas edycji — zamknij kartę i wróć do niego z dowolnego urządzenia."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Każda funkcja, łącznie z eksportem, jest darmowa. Nie ma płatnego planu, do którego trzeba by przejść."
         },
         {
-          "title": "Nic nie opuszcza przeglądarki",
+          "title": "Renderowane w Twojej przeglądarce",
           "sub": "Renderowanie odbywa się w Twojej przeglądarce; zapisane schematy żyją na Twoim koncie i są dostępne z każdego urządzenia."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Gdzie są dane",
-        "us": "W lokalnym magazynie twojej przeglądarki. Bez logowania, nic nie jest wysyłane.",
+        "us": "Na Twoim koncie — do logowania wystarczy e-mail, a diagramy są dostępne na dowolnym urządzeniu.",
         "them": "Konto na czyimś serwerze, z podpiętymi do niego twoimi diagramami."
       }
     ]

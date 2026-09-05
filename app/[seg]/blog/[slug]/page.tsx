@@ -65,7 +65,7 @@ export default async function LocaleBlogArticlePage({
   const jsonLd = graphLd([
     organizationLd(),
     blogPostingLd(seg, entry, { h1: plain(content.h1), description: content.meta.description }),
-    breadcrumbLd(seg, [
+    breadcrumbLd([
       { name: texts.blog.title, url: `${SITE_URL}${localePath(seg, "blog")}` },
       { name: content.card.title, url: `${SITE_URL}${localePath(seg, `blog/${slug}`)}` },
     ]),

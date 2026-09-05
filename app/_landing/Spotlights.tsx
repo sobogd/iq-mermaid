@@ -16,7 +16,7 @@ import type { LucideIcon } from "lucide-react";
 import type { Spotlight } from "./types";
 
 // Bullet icons, positional (index-matched to each spotlight's `bullets`
-// array in texts.json) since the copy lives in the dictionary but the icon
+// array in the chrome locale JSON) since the copy lives in the dictionary but the icon
 // choice doesn't need to.
 const ICONS: LucideIcon[][] = [
   [MousePointerClick, Shapes, Palette],

@@ -115,7 +115,7 @@
         },
         {
           "title": "Lagres underveis",
-          "sub": "Diagrammet ditt skrives til nettleserens lokale lagring ved hver endring – lukk fanen og kom tilbake til det."
+          "sub": "Diagrammet ditt lagres automatisk på kontoen din mens du redigerer — lukk fanen og kom tilbake fra hvilken som helst enhet."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Alle funksjoner, inkludert eksport, er gratis. Det finnes ingen betalt versjon å oppgradere til."
         },
         {
-          "title": "Ingenting forlater nettleseren din",
+          "title": "Gjengis i nettleseren din",
           "sub": "Rendering skjer i nettleseren din; lagrede diagrammer ligger på kontoen din og er der fra hvilken som helst enhet."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Hvor dataene bor",
-        "us": "Nettleserens lokale lagring. Ingen innlogging, ingenting lastes opp.",
+        "us": "På kontoen din — bare en e-post for å logge inn, og diagrammene følger deg til hvilken som helst enhet.",
         "them": "En konto på en annens server, med diagrammene dine koblet til den."
       }
     ]

@@ -115,7 +115,7 @@
         },
         {
           "title": "Salvestub jooksvalt",
-          "sub": "Sinu diagramm kirjutatakse brauseri kohalikku salvestusruumi iga muudatuse järel — sulge sakk ja tule hiljem tagasi."
+          "sub": "Teie diagramm salvestatakse redigeerimise ajal automaatselt teie kontole — sulgege vahekaart ja tulge tagasi mis tahes seadmest."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Iga funktsioon, sealhulgas eksport, on tasuta. Ülemineku jaoks pole tasulist taset."
         },
         {
-          "title": "Miski ei lahku sinu brauserist",
+          "title": "Renderdatakse teie brauseris",
           "sub": "Renderdamine toimub brauseris; salvestatud skeemid on teie kontol ja igast seadmest käeulatuses."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Kus andmed asuvad",
-        "us": "Sinu brauseri kohalikus salvestusruumis. Sisselogimist pole, midagi ei laadita üles.",
+        "us": "Teie kontol — sisselogimiseks piisab e-postist ja diagrammid on igast seadmest käeulatuses.",
         "them": "Konto kellegi serveris, mille külge on sinu diagrammid kinnitatud."
       }
     ]

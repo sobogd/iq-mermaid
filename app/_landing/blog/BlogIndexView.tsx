@@ -21,7 +21,7 @@ export function BlogIndexView({
 }) {
   const blog = texts.blog;
   return (
-    <main className="pointer-events-none relative">
+    <>
       <DesktopShell
         locale={locale}
         homeHref={localeHome(locale)}
@@ -73,6 +73,6 @@ export function BlogIndexView({
         </div>
       </DesktopShell>
       <PageTracker page="Blog" />
-    </main>
+    </>
   );
 }

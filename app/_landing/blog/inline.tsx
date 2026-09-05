@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { localePath } from "@/lib/locale-paths";
+import { localeHome, localePath } from "@/lib/locale-paths";
 
 // Markdown-lite renderer for blog strings (see types.ts for the syntax).
 // Links resolve per locale at render time, so translated JSON carries the SAME
@@ -66,9 +66,13 @@ export function renderInline(text: string, locale: string): React.ReactNode[] {
           {m[1]}
         </a>
       ) : isOpenEditor ? (
+        // An action-only link: AppWindow's click delegate catches
+        // [data-iqm-open-editor] and reveals the editor instead of navigating.
+        // The href is only a no-JS fallback — pointing it at the locale home
+        // beats "#" (which would jump to the top of the page for nothing).
         <a
           key={`l${m.index}`}
-          href="#"
+          href={localeHome(locale)}
           data-iqm-open-editor="true"
           className="underline underline-offset-2 hover:text-text"
         >

@@ -115,7 +115,7 @@
         },
         {
           "title": "Spremljeno u hodu",
-          "sub": "Vaš dijagram zapisuje se u lokalnu pohranu preglednika pri svakoj izmjeni — zatvorite karticu i vratite se kasnije."
+          "sub": "Vaš dijagram automatski se sprema na vaš račun dok uređujete — zatvorite karticu i vratite mu se s bilo kojeg uređaja."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Svaka značajka, uključujući izvoz, besplatna je. Ne postoji plaćeni plan za nadogradnju."
         },
         {
-          "title": "Ništa ne napušta vaš preglednik",
+          "title": "Iscrtava se u vašem pregledniku",
           "sub": "Renderiranje se događa u vašem pregledniku; spremljeni dijagrami žive u vašem računu i dostupni su s bilo kojeg uređaja."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Gdje se podaci nalaze",
-        "us": "Lokalna pohrana vašeg preglednika. Bez prijave, ništa se ne učitava.",
+        "us": "Na vašem računu — za prijavu je dovoljan e-mail, a dijagrami su vam na bilo kojem uređaju.",
         "them": "Račun na tuđem poslužitelju, s vašim dijagramima vezanim uz njega."
       }
     ]

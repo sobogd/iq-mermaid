@@ -1,8 +1,10 @@
-import "../globals.css";
 import { DesktopChrome } from "@/app/_landing/desktop/DesktopChrome";
+import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme";
 import type { Locale } from "@/lib/locales";
 
-// Viewport (theme colour, no zoom lock) is inherited from the root layout.
+// Viewport (theme colour, no zoom lock) and the global stylesheet are inherited
+// from the root layout (app/layout.tsx imports ./globals.css). This group only
+// owns its document shell.
 export default function EnLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full antialiased">
@@ -10,11 +12,7 @@ export default function EnLayout({ children }: { children: React.ReactNode }) {
         {/* Set the resolved theme before first paint (see lib/theme.ts): dark
             gets `data-theme="dark"` on <html> from the stored choice or the
             OS preference, so there is no light flash for dark-mode visitors. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var k="iqm-theme",v=window.localStorage.getItem(k),d=v? v==="dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;if(d)document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();`,
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
         {/* Persistent desktop chrome (wallpaper + shared editor) — lives at the
             layout level so it is not remounted when navigating between pages of
             the same locale. The per-page DesktopShell stacks the taskbar and the

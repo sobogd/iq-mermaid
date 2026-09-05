@@ -1,7 +1,7 @@
 // JSON-LD builders, shared by the home / app / blog templates so all three
 // describe the same entity instead of three slightly different ones.
 import { BRAND, SITE_URL } from "./site";
-import { localeHome, localePath } from "./locale-paths";
+import { localePath } from "./locale-paths";
 import { OG_LOCALES } from "./og-locales";
 
 const ORG_ID = `${SITE_URL}/#organization`;
@@ -66,18 +66,19 @@ export function faqPageLd(items: { q: string; a: string }[]) {
   };
 }
 
-export function breadcrumbLd(locale: string, trail: { name: string; url: string }[]) {
+/** Breadcrumb trail that mirrors EXACTLY what the visitor sees on the page —
+ *  the JSON-LD must match the visible trail, not a longer one starting at the
+ *  hidden home page. `trail` is the visible sequence (position 1 is whatever
+ *  the first visible crumb links to). */
+export function breadcrumbLd(trail: { name: string; url: string }[]) {
   return {
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: BRAND, item: `${SITE_URL}${localeHome(locale)}` },
-      ...trail.map((t, i) => ({
-        "@type": "ListItem",
-        position: i + 2,
-        name: t.name,
-        item: t.url,
-      })),
-    ],
+    itemListElement: trail.map((t, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: t.name,
+      item: t.url,
+    })),
   };
 }
 
@@ -90,7 +91,9 @@ export function blogPostingLd(
     "@type": "BlogPosting",
     headline: content.h1,
     description: content.description,
-    inLanguage: locale,
+    // Same region-tagged BCP-47 form the WebSite node and og:locale use, so a
+    // single document never describes its own language two different ways.
+    inLanguage: (OG_LOCALES[locale] ?? "en_US").replace("_", "-"),
     datePublished: entry.date,
     dateModified: entry.dateModified ?? entry.date,
     author: { "@id": ORG_ID },

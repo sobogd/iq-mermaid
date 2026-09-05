@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BlogIndexView } from "@/app/_landing/blog/BlogIndexView";
 import { blogIndexCards } from "@/app/_landing/blog/registry";
 import { blogAlternates } from "@/lib/hreflang";
-import { breadcrumbLd, graphLd, organizationLd, webSiteLd } from "@/lib/structured-data";
+import { graphLd, organizationLd, webSiteLd } from "@/lib/structured-data";
 import { OG_IMAGE, SITE_URL, TWITTER_CARD } from "@/lib/site";
 import { CHROME } from "@/content";
 
@@ -26,11 +26,7 @@ export const metadata: Metadata = {
 };
 
 export default function EnBlogIndexPage() {
-  const jsonLd = graphLd([
-    organizationLd(),
-    webSiteLd("en"),
-    breadcrumbLd("en", [{ name: texts.blog.title, url }]),
-  ]);
+  const jsonLd = graphLd([organizationLd(), webSiteLd("en")]);
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

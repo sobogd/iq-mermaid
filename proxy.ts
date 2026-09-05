@@ -44,7 +44,8 @@ export function proxy(req: NextRequest) {
 
   // /app no longer exists as a page: the editor is the shared background under
   // the window on every page, so the old dedicated route rolls back to the
-  // locale home. Preserve the deep-link query (e.g. ?demo=) for safety.
+  // locale home (there are no /<locale>/app variants to map either). Preserve
+  // the deep-link query (e.g. ?demo=) for safety.
   if (!isAssetPath(pathname) && (pathname === "/app" || pathname.startsWith("/app/"))) {
     const redirectUrl = new URL(localeHome(detectLocale(req)), req.url);
     redirectUrl.search = req.nextUrl.search;

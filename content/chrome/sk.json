@@ -115,7 +115,7 @@
         },
         {
           "title": "Ukladá sa za chodu",
-          "sub": "Diagram sa pri každej úprave zapisuje do local storage prehliadača — zavrite kartu a vráťte sa k nemu kedykoľvek."
+          "sub": "Váš diagram sa počas úprav automaticky ukladá do vášho účtu — zatvorte kartu a vráťte sa k nemu z akéhokoľvek zariadenia."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Každá funkcia, vrátane exportu, je zadarmo. Neexistuje platený tarif, na ktorý by ste museli prejsť."
         },
         {
-          "title": "Nič neopúšťa váš prehliadač",
+          "title": "Vykresľuje sa vo vašom prehliadači",
           "sub": "Vykresľovanie prebieha vo vašom prehliadači; uložené schémy žijú vo vašom účte a sú dostupné z ľubovoľného zariadenia."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Kde žijú dáta",
-        "us": "V local storage vášho prehliadača. Žiadne prihlasovanie, nič sa nikam nenahráva.",
+        "us": "Vo vašom účte — na prihlásenie stačí e-mail a diagramy máte na akomkoľvek zariadení.",
         "them": "Účet na cudzom serveri, s vašimi diagramami k nemu pripojenými."
       }
     ]

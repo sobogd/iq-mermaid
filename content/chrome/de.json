@@ -115,7 +115,7 @@
         },
         {
           "title": "Läuft automatisch mit",
-          "sub": "Dein Diagramm wird bei jeder Änderung im lokalen Speicher des Browsers gespeichert — Tab schließen und später weitermachen."
+          "sub": "Dein Diagramm wird beim Bearbeiten automatisch in deinem Konto gespeichert — schließe den Tab und hol es dir auf jedem Gerät zurück."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Jede Funktion, auch der Export, ist kostenlos. Es gibt keine kostenpflichtige Stufe, auf die man upgraden müsste."
         },
         {
-          "title": "Nichts verlässt deinen Browser",
+          "title": "Wird in deinem Browser gerendert",
           "sub": "Das Rendern passiert im Browser; gespeicherte Diagramme liegen in Ihrem Konto und sind von jedem Gerät aus da."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Wo die Daten liegen",
-        "us": "Im lokalen Speicher deines Browsers. Kein Login, nichts wird hochgeladen.",
+        "us": "In deinem Konto — nur eine E-Mail zum Anmelden, und deine Diagramme sind auf jedem Gerät da.",
         "them": "Ein Konto auf irgendjemandes Server, mit deinen Diagrammen daran hängend."
       }
     ]

@@ -115,7 +115,7 @@
         },
         {
           "title": "Vistað jafnóðum",
-          "sub": "Skýringarmyndin þín er skrifuð í staðbundna geymslu vafrans við hverja breytingu — lokaðu flipanum og komdu aftur í hana."
+          "sub": "Skýringarmyndin þín er vistuð sjálfkrafa á reikninginn þinn á meðan þú vinnur — lokaðu flipanum og komdu aftur af hvaða tæki sem er."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Sérhver eiginleiki, þar á meðal útflutningur, er ókeypis. Það er engin greidd áskrift til að uppfæra í."
         },
         {
-          "title": "Ekkert fer út úr vafranum þínum",
+          "title": "Birtist í vafranum þínum",
           "sub": "Ritun fer fram í vafranum; vistuð skýringarmyndir búa í reikningnum þínum og eru tiltækar af hvaða tæki sem er."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Hvar gögnin eru geymd",
-        "us": "Í staðbundinni geymslu vafrans þíns. Engin innskráning, ekkert sent upp.",
+        "us": "Á reikningnum þínum — nóg er að skrá sig inn með tölvupósti og myndirnar fylgja þér á hvaða tæki sem er.",
         "them": "Aðgangur á netþjóni einhvers annars, með skýringarmyndirnar þínar tengdar honum."
       }
     ]

@@ -115,7 +115,7 @@
         },
         {
           "title": "Sparas medan du jobbar",
-          "sub": "Ditt diagram skrivs till webbläsarens lokala lagring vid varje redigering — stäng fliken och kom tillbaka till det."
+          "sub": "Ditt diagram sparas automatiskt på ditt konto medan du redigerar — stäng fliken och kom tillbaka från vilken enhet som helst."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Alla funktioner, inklusive export, är gratis. Det finns ingen betald nivå att uppgradera till."
         },
         {
-          "title": "Inget lämnar din webbläsare",
+          "title": "Renderas i din webbläsare",
           "sub": "Rendering sker i din webbläsare; sparade diagram lever på ditt konto och finns där från vilken enhet som helst."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Var datan finns",
-        "us": "Din webbläsares lokala lagring. Ingen inloggning, inget uppladdat.",
+        "us": "På ditt konto — en e-post för att logga in räcker, och dina diagram följer med till vilken enhet som helst.",
         "them": "Ett konto på någon annans server, med dina diagram kopplade till det."
       }
     ]

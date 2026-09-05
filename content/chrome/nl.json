@@ -115,7 +115,7 @@
         },
         {
           "title": "Automatisch opgeslagen",
-          "sub": "Je diagram wordt bij elke bewerking naar de lokale opslag van de browser geschreven — sluit het tabblad en kom later terug."
+          "sub": "Je diagram wordt automatisch opgeslagen in je account terwijl je bewerkt — sluit het tabblad en kom er vanaf elk apparaat op terug."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Elke functie, inclusief export, is gratis. Er is geen betaald abonnement om naar te upgraden."
         },
         {
-          "title": "Niets verlaat je browser",
+          "title": "Wordt in je browser gerenderd",
           "sub": "Rendering gebeurt in je browser; opgeslagen diagrammen leven in je account en zijn er vanaf elk apparaat."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Waar de data staat",
-        "us": "In de lokale opslag van je browser. Geen inloggen, niets geüpload.",
+        "us": "In je account — een e-mail om in te loggen is genoeg en je diagrammen volgen je naar elk apparaat.",
         "them": "Een account op iemands server, met je diagrammen eraan gekoppeld."
       }
     ]

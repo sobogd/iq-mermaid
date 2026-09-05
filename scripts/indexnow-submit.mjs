@@ -4,7 +4,7 @@
 // Seznam and Naver. Google does not participate — it stays on GSC + the
 // regular crawl, so nothing here replaces the sitemap.
 //
-// Submits only what the deploy actually changed. Re-submitting all 259 URLs
+// Submits only what the deploy actually changed. Re-submitting all 238 URLs
 // on every release is what the protocol calls spam, and repeated offenders
 // get their key throttled (429) — the whole list only goes out when the
 // change is site-wide (shared template) or the diff is unavailable.
@@ -13,6 +13,7 @@
 // built .next is shipped to the server.
 
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 
 const KEY = process.env.INDEXNOW_KEY;
@@ -59,25 +60,42 @@ const IGNORED = [
   /^postcss\.config\.mjs$/,
 ];
 
+/** Every page path of one locale (home, blog index, every article, the two
+ *  legal pages) — a locale's chrome renders on all of them. */
+function localePaths(locale) {
+  const manifest = JSON.parse(readFileSync("content/blog/manifest.json", "utf8"));
+  return [
+    localeHome(locale),
+    localePath(locale, "blog"),
+    ...manifest.map((a) => localePath(locale, `blog/${a.id}`)),
+    localePath(locale, "privacy"),
+    localePath(locale, "terms"),
+  ];
+}
+
 /** One changed file -> the page paths it affects, or null when it needs a full submit.
  *  Exported so the mapping can be exercised without performing a submission. */
 export function pathsForFile(file) {
   if (IGNORED.some((re) => re.test(file))) return [];
 
-  // Legal copy is checked before the site-wide app/_landing/ rule below:
-  // it only feeds the two English legal pages, not the shared chrome.
-  if (file === "app/_landing/legal-content.ts") return ["/privacy", "/terms"];
+  // Legal copy lives under app/_landing/, which the site-wide rule below
+  // would flag as a full submit — and that is right: legal-content.ts feeds
+  // the body of all 68 legal URLs, not just the two English ones, so a full
+  // submit is the honest mapping. No special case needed.
 
   if (SITE_WIDE.some((re) => re.test(file))) return null;
 
-  // A locale's chrome drives its home page; the blog templates read it too,
-  // but only for the header/footer, which the site-wide rule already covers.
+  // A locale's chrome drives its home page title AND its blog index
+  // title/description, and its header/footer render on every page of the
+  // locale — submit the whole locale cluster.
   const chrome = file.match(/^content\/chrome\/([a-z]{2})\.json$/);
-  if (chrome) return [localeHome(chrome[1])];
+  if (chrome) return localePaths(chrome[1]);
 
-  // Editor strings only change /app, which carries no crawlable copy anyway.
+  // Editor strings only feed the editor UI, which is client-side copy under
+  // the window on every page — no crawlable URL of its own (the old
+  // /<locale>/app mapping pinged 34 URLs that do not exist).
   const editor = file.match(/^content\/editor\/([a-z]{2})\.json$/);
-  if (editor) return [localePath(editor[1], "app")];
+  if (editor) return [];
 
   const blog = file.match(/^content\/blog\/([a-z0-9-]+)\/([a-z]{2})\.json$/);
   if (blog) return [localePath(blog[2], `blog/${blog[1]}`), localePath(blog[2], "blog")];

@@ -6,8 +6,7 @@ import { OG_IMAGE, SITE_URL, TWITTER_CARD } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `${PRIVACY_TITLE} | IQ Mermaid`,
-  description:
-    "What IQ Mermaid collects and what it does not: no account, no analytics, and diagrams that never leave your browser. Server logs, retention and your GDPR rights.",
+  description: "What IQ Mermaid collects and what it does not: sign-in is email-only, analytics are our own and cookieless, and your diagrams are saved to your account. Server logs, retention and your GDPR rights.",
   robots: { index: true, follow: true },
   alternates: { canonical: `${SITE_URL}/privacy`, languages: legalAlternates("privacy") },
   openGraph: {
@@ -16,13 +15,13 @@ export const metadata: Metadata = {
     siteName: OPERATOR.brand,
     locale: "en_US",
     title: PRIVACY_TITLE,
-    description: "No account, no analytics, and diagrams that never leave your browser. What we do log, and for how long.",
+    description: "Email-only sign-in, our own cookieless analytics and diagrams saved to your account. What we log, retention and your GDPR rights.",
     images: [OG_IMAGE],
   },
   twitter: {
     ...TWITTER_CARD,
     title: PRIVACY_TITLE,
-    description: "No account, no analytics, and diagrams that never leave your browser. What we do log, and for how long.",
+    description: "Email-only sign-in, our own cookieless analytics and diagrams saved to your account. What we log, retention and your GDPR rights.",
   },
 };
 

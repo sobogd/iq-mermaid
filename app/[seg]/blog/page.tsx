@@ -8,7 +8,7 @@ import { OG_IMAGE, SITE_URL, TWITTER_CARD } from "@/lib/site";
 import { CHROME, READY_LOCALES } from "@/content";
 import { BlogIndexView } from "@/app/_landing/blog/BlogIndexView";
 import { blogIndexCards } from "@/app/_landing/blog/registry";
-import { breadcrumbLd, graphLd, organizationLd, webSiteLd } from "@/lib/structured-data";
+import { graphLd, organizationLd, webSiteLd } from "@/lib/structured-data";
 
 export const dynamicParams = false;
 
@@ -45,11 +45,7 @@ export default async function LocaleBlogIndexPage({ params }: { params: Promise<
   const { seg } = await params;
   if (!isReadyLocale(seg)) notFound();
   const texts = CHROME[seg];
-  const jsonLd = graphLd([
-    organizationLd(),
-    webSiteLd(seg),
-    breadcrumbLd(seg, [{ name: texts.blog.title, url: `${SITE_URL}${localePath(seg, "blog")}` }]),
-  ]);
+  const jsonLd = graphLd([organizationLd(), webSiteLd(seg)]);
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

@@ -253,15 +253,9 @@ function flushOnUnload(): void {
   }
 }
 
-export interface TrackOptions {
-  /** Skip the 2s buffer and post right now. For page-entry events (Pageview):
-   *  a visitor who bounces inside the buffer window would otherwise leave no
-   *  trace, and everything after the pageview waits on its visit token. Later
-   *  interaction events still batch as usual. */
-  instant?: boolean;
-}
-
-function track(action: string, name: string, ctx?: TrackCtx, opts?: TrackOptions): void {
+// Every event is sent immediately (see `track()` below) — there is no longer
+// any "instant vs buffered" distinction to choose between at the call site.
+function track(action: string, name: string, ctx?: TrackCtx): void {
   if (typeof window === "undefined") return;
   if (!TRACKING_ENABLED) {
     if (typeof console !== "undefined") {

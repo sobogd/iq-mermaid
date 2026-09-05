@@ -1,12 +1,8 @@
 import Link from "next/link";
 
-// Visible counterpart to breadcrumbLd (lib/structured-data.ts). The
-// BreadcrumbList JSON-LD used to ship on its own, describing a trail the
-// visitor could not see anywhere on the page; the label here is the same
-// string the markup carries, so the two cannot drift.
-//
-// Rendered under the four stat cards on the feature/pair pages, which is
-// where the page stops being hero and starts being content.
+// Visible breadcrumb trail on blog articles, mirroring the trail the page's
+// BreadcrumbList JSON-LD describes (see lib/structured-data.ts), so the two
+// cannot drift. Rendered above the article title.
 export function Breadcrumbs({
   homeHref,
   homeLabel,

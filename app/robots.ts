@@ -34,7 +34,10 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         // Query patterns are campaign noise: no page varies on them, and the
         // canonical tag already points at the clean URL, but crawling them
-        // wastes budget on a small site with no authority to spare.
+        // wastes budget on a small site with no authority to spare. Note this
+        // is best-effort: Google's robots parser matches paths only (queries
+        // are stripped), so these two patterns are inert for Googlebot and
+        // only honoured by engines that apply them (Bing, Yandex, …).
         disallow: ["/*?*utm_", "/*?*from="],
       },
       { userAgent: AI_AGENTS, allow: "/" },

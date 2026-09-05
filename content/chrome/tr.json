@@ -115,7 +115,7 @@
         },
         {
           "title": "İlerledikçe kaydedilir",
-          "sub": "Diyagramınız her düzenlemede tarayıcının yerel depolamasına yazılır — sekmeyi kapatın ve kaldığınız yerden devam edin."
+          "sub": "Diyagramınız düzenlerken otomatik olarak hesabınıza kaydedilir — sekmeyi kapatın ve herhangi bir cihazdan geri dönün."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Dışa aktarma dahil her özellik ücretsizdir. Yükseltilecek ücretli bir katman yoktur."
         },
         {
-          "title": "Hiçbir şey tarayıcınızdan çıkmaz",
+          "title": "Tarayıcınızda işlenir",
           "sub": "İşleme tarayıcınızda gerçekleşir; kaydedilen diyagramlar hesabınızda durur ve her cihazdan oradadır."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Veriler nerede tutulur",
-        "us": "Tarayıcınızın yerel depolaması. Giriş yok, hiçbir şey yüklenmiyor.",
+        "us": "Hesabınızda — giriş için yalnızca bir e-posta yeterli ve diyagramlarınız her cihazda sizinle.",
         "them": "Birinin sunucusundaki bir hesap, diyagramlarınız ona bağlı."
       }
     ]

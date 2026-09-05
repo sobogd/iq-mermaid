@@ -115,7 +115,7 @@
         },
         {
           "title": "Enregistré au fil de l'eau",
-          "sub": "Votre diagramme est écrit dans le stockage local du navigateur à chaque modification — fermez l'onglet et retrouvez-le plus tard."
+          "sub": "Votre schéma est enregistré automatiquement dans votre compte pendant que vous modifiez — fermez l'onglet et retrouvez-le depuis n'importe quel appareil."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Toutes les fonctionnalités, y compris l'export, sont gratuites. Il n'existe aucune offre payante vers laquelle évoluer."
         },
         {
-          "title": "Rien ne quitte votre navigateur",
+          "title": "Rendu dans votre navigateur",
           "sub": "Le rendu se fait dans votre navigateur ; les schémas enregistrés vivent dans votre compte et sont là depuis n'importe quel appareil."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Où vivent les données",
-        "us": "Le stockage local de votre navigateur. Aucune connexion, rien n'est envoyé.",
+        "us": "Dans votre compte — un simple e-mail pour vous connecter, et vos schémas vous suivent sur n'importe quel appareil.",
         "them": "Un compte sur le serveur de quelqu'un d'autre, avec vos diagrammes qui y sont rattachés."
       }
     ]

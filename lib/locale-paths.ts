@@ -8,9 +8,9 @@ export const localePath = (locale: string, slug: string): string => {
 };
 
 // Locale switcher href. Every localized route here has a locale-stable slug
-// (/app, /blog, /blog/<id>, /privacy, /terms — blog ids are the English slug
-// in every locale), so switching is a pure prefix swap.
-const LOCALIZED_PREFIXES = ["app", "blog", "privacy", "terms"];
+// (/blog, /blog/<id>, /privacy, /terms — blog ids are the English slug in
+// every locale), so switching is a pure prefix swap.
+const LOCALIZED_PREFIXES = ["blog", "privacy", "terms"];
 
 export function swapLocale(pathname: string, target: string): string {
   const seg = pathname.split("/").filter(Boolean);

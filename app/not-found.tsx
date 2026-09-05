@@ -5,6 +5,7 @@ import { READY_LOCALES } from "@/content";
 import { LOCALE_NAMES } from "@/lib/locale-names";
 import { localeHome } from "@/lib/locale-paths";
 import { BRAND } from "@/lib/site";
+import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme";
 
 // This page owns its own <html>/<body>: the root layout deliberately renders
 // bare children (each locale's layout supplies the document shell), and
@@ -17,6 +18,8 @@ import { BRAND } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `Page not found — ${BRAND}`,
+  description:
+    "This page does not exist on IQ Mermaid, the free mermaid diagram editor. Go back to the home page or browse the mermaid guides.",
   // A 404 already carries the status code; the directive keeps it out of the
   // index if anything ever links to one.
   robots: { index: false, follow: true },
@@ -26,6 +29,10 @@ export default function NotFound() {
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
+        {/* Same pre-paint theme bootstrap as the locale layouts — the 404 owns
+            its own document shell, so without this a dark-mode visitor gets a
+            light flash on an error page. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
         <main className={`${NARROW} flex flex-1 flex-col justify-center gap-8 py-16`}>
           <div className="flex flex-col gap-4">
             <p className="text-sm font-semibold uppercase tracking-wide text-hint">404</p>
@@ -34,14 +41,14 @@ export default function NotFound() {
               <span className="text-button">— the editor does</span>
             </h1>
             <p className="max-w-[60ch] text-sm leading-relaxed text-hint/80 sm:text-base">
-              The address you followed isn&apos;t a page here. Open the editor and start a
-              diagram, or read one of the guides.
+              The address you followed isn&apos;t a page here. Go back to the home page to
+              open the editor, or read one of the guides.
             </p>
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Link href="/app" className={PRIMARY_BTN}>
-              Open the editor
+            <Link href="/" className={PRIMARY_BTN}>
+              Back to the home page
             </Link>
             <Link href="/blog" className={OUTLINE_BTN}>
               Guides

@@ -115,7 +115,7 @@
         },
         {
           "title": "Gemmes undervejs",
-          "sub": "Dit diagram skrives til browserens lokale lager ved hver redigering — luk fanen og vend tilbage til det."
+          "sub": "Dit diagram gemmes automatisk på din konto, mens du redigerer — luk fanen og vend tilbage fra enhver enhed."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Alle funktioner, inklusive eksport, er gratis. Der er intet betalt niveau at opgradere til."
         },
         {
-          "title": "Intet forlader din browser",
+          "title": "Gengives i din browser",
           "sub": "Rendering sker i din browser; gemte diagrammer ligger på din konto og er der fra enhver enhed."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Hvor dataene bor",
-        "us": "I din browsers lokale lager. Ingen login, intet uploadet.",
+        "us": "På din konto — log ind med en e-mail, og dine diagrammer følger dig til enhver enhed.",
         "them": "En konto på en andens server, med dine diagrammer hæftet til den."
       }
     ]

@@ -115,7 +115,7 @@
         },
         {
           "title": "Salvat pe măsură ce lucrezi",
-          "sub": "Diagrama ta e scrisă în stocarea locală a browserului la fiecare editare — închizi fila și revii la ea."
+          "sub": "Diagrama ta este salvată automat în contul tău în timp ce editezi — închide fila și revino la ea de pe orice dispozitiv."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Fiecare funcție, inclusiv exportul, e gratuită. Nu există un nivel plătit la care să treci."
         },
         {
-          "title": "Nimic nu iese din browser",
+          "title": "Se randează în browserul tău",
           "sub": "Randarea are loc în browser; diagramele salvate trăiesc în contul tău și sunt acolo de pe orice dispozitiv."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Unde locuiesc datele",
-        "us": "Stocarea locală a browserului tău. Fără autentificare, nimic încărcat.",
+        "us": "În contul tău — un simplu e-mail pentru autentificare, iar diagramele tale te urmează pe orice dispozitiv.",
         "them": "Un cont pe serverul cuiva, cu diagramele tale atașate de el."
       }
     ]

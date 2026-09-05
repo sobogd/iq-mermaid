@@ -27,8 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ seg: stri
   const url = `${SITE_URL}${localePath(seg, "privacy")}`;
   return {
     title: `${PRIVACY_TITLE} | ${texts.footer.brand}`,
-    description:
-      "What IQ Mermaid collects and what it does not: no account, no analytics, and diagrams that never leave your browser. Server logs, retention and your GDPR rights.",
+    description: "What IQ Mermaid collects and what it does not: sign-in is email-only, analytics are our own and cookieless, and your diagrams are saved to your account. Server logs, retention and your GDPR rights.",
     alternates: { canonical: url, languages: legalAlternates("privacy") },
     openGraph: {
       type: "website",
@@ -36,13 +35,13 @@ export async function generateMetadata({ params }: { params: Promise<{ seg: stri
       siteName: texts.footer.brand,
       locale: OG_LOCALES[seg],
       title: PRIVACY_TITLE,
-      description: "No account, no analytics, and diagrams that never leave your browser. What we do log, and for how long.",
+      description: "Email-only sign-in, our own cookieless analytics and diagrams saved to your account. What we log, retention and your GDPR rights.",
       images: [OG_IMAGE],
     },
     twitter: {
       ...TWITTER_CARD,
       title: PRIVACY_TITLE,
-      description: "No account, no analytics, and diagrams that never leave your browser. What we do log, and for how long.",
+      description: "Email-only sign-in, our own cookieless analytics and diagrams saved to your account. What we log, retention and your GDPR rights.",
     },
   };
 }

@@ -115,7 +115,7 @@
         },
         {
           "title": "Menet közben mentve",
-          "sub": "A diagramod minden szerkesztésnél a böngésző helyi tárolójába íródik — zárd be a lapot, és folytasd, ahol abbahagytad."
+          "sub": "A diagramod szerkesztés közben automatikusan elmentődik a fiókodba — csukd be a lapot, és bármely eszközről térj vissza hozzá."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Minden funkció, beleértve az exportálást is, ingyenes. Nincs fizetős csomag, amire válthatnál."
         },
         {
-          "title": "Semmi nem hagyja el a böngésződet",
+          "title": "A böngésződben jelenik meg",
           "sub": "A renderelés a böngésződben történik; a mentett ábrák a fiókodban élnek, bármely eszközről elérhetők."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Hol él az adat",
-        "us": "A böngésződ helyi tárolójában. Nincs bejelentkezés, semmi nincs feltöltve.",
+        "us": "A fiókodban — elég egy e-mail a belépéshez, és a diagramjaid bármely eszközön követnek.",
         "them": "Egy fiók valaki más szerverén, a diagramjaid hozzácsatolva."
       }
     ]

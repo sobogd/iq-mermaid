@@ -1,5 +1,6 @@
 import { locales, rtlLocales, type Locale } from "@/lib/locales";
 import { DesktopChrome } from "@/app/_landing/desktop/DesktopChrome";
+import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme";
 
 // Document shell for every dynamic-segment route (locale homes, pair pages,
 // localized pricing). The (en)/ and ru/ groups own their static shells; this
@@ -24,7 +25,7 @@ export default async function SegLayout({
             OS preference, so there is no light flash for dark-mode visitors. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var k="iqm-theme",v=window.localStorage.getItem(k),d=v? v==="dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;if(d)document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();`,
+            __html: THEME_BOOTSTRAP_SCRIPT,
           }}
         />
         {/* Persistent desktop chrome (see (en)/layout.tsx). */}

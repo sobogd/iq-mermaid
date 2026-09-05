@@ -115,7 +115,7 @@
         },
         {
           "title": "Išsaugoma savaime",
-          "sub": "Tavo diagrama įrašoma į naršyklės vietinę saugyklą po kiekvieno pakeitimo — uždaryk skirtuką ir grįžk vėliau."
+          "sub": "Jūsų diagrama redaguojant automatiškai įrašoma į jūsų paskyrą — uždarykite skirtuką ir grįžkite prie jos iš bet kurio įrenginio."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Kiekviena funkcija, įskaitant eksportą, yra nemokama. Nėra jokio mokamo lygio, į kurį reikėtų kilti."
         },
         {
-          "title": "Niekas nepalieka naršyklės",
+          "title": "Atvaizduojama jūsų naršyklėje",
           "sub": "Atvaizdavimas vyksta jūsų naršyklėje; išsaugotos diagramos gyvena jūsų paskyroje ir pasiekiamos iš bet kurio įrenginio."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Kur saugomi duomenys",
-        "us": "Tavo naršyklės vietinėje saugykloje. Jokio prisijungimo, nieko neįkeliama.",
+        "us": "Jūsų paskyroje — prisijungti užtenka el. pašto, o diagramos pasiekiamos iš bet kurio įrenginio.",
         "them": "Paskyra kažkieno serveryje, prie kurios prisegtos tavo diagramos."
       }
     ]

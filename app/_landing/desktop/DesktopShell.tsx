@@ -31,20 +31,19 @@ export function DesktopShell({
     <div className="pointer-events-none relative flex h-dvh flex-col overflow-hidden">
       {/* Floating island taskbar, above the wallpaper and the editor. */}
       <div className="pointer-events-auto relative z-30">
-        <Taskbar
-          homeHref={homeHref}
-          locale={locale}
-          texts={headerTexts}
-        />
+        <Taskbar homeHref={homeHref} locale={locale} texts={headerTexts} />
       </div>
 
-      {/* The desktop canvas the window floats in. The canvas wrapper and its
-          1000px box are pointer-events-none too: clicks pass straight through to
-          the editor layer (from the layout-level DesktopChrome) below, and the
-          floating window itself (which sets pointer-events-auto) is the only
-          thing in this area that catches them. When the window is closed it
-          returns null, so the whole area stays a no-op for clicks. */}
-      <div className="pointer-events-none relative z-10 flex min-h-0 flex-1 items-center justify-center px-2 pb-2 sm:px-6 sm:pb-5">
+      {/* The desktop canvas the window floats in. It is the page's <main>: the
+          actual content is what the window shows, while the floating taskbar
+          above stays a sibling <header> landmark instead of being nested
+          inside it. The canvas wrapper and its 1000px box are pointer-events-
+          none too: clicks pass straight through to the editor layer (from the
+          layout-level DesktopChrome) below, and the floating window itself
+          (which sets pointer-events-auto) is the only thing in this area that
+          catches them. When the window is closed it returns null, so the whole
+          area stays a no-op for clicks. */}
+      <main className="pointer-events-none relative z-10 flex min-h-0 flex-1 items-center justify-center px-2 pb-2 sm:px-6 sm:pb-5">
         {/* Mobile: the window fills the whole strip under the header, so the
             gap header → window matches the 8px side insets (the header's own
             p-2 already provides the top 8px). From sm up it floats centred in
@@ -69,7 +68,7 @@ export function DesktopShell({
             {children}
           </AppWindow>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

@@ -7,7 +7,6 @@ import AskModal from "./AskModal.jsx";
 import AuthGate from "./AuthGate.jsx";
 import { configureMermaid } from "./mermaid-client";
 import * as exporters from "./export";
-import { PageTracker } from "../_landing/PageTracker";
 import { analytics } from "@/lib/analytics";
 import { isDarkTheme, subscribeTheme } from "@/lib/theme";
 import {
@@ -35,10 +34,21 @@ import "./editor.css";
 
 const DOC_SAVE_DEBOUNCE = 600;
 
-// The visual canvas only understands flowcharts. Everything else — sequence,
-// class, ER, gantt — can be written in the source but not drawn here, so the
-// canvas has to be able to say which case it is in.
-const isFlowchart = (code) => !code.trim() || /^\s*(flowchart|graph)\b/i.test(code);
+// Mermaid lets a diagram start with %% comment lines and %%{init: ...}%%
+// directives before the diagram-type declaration, so the classifier must look
+// past those to the first real statement — otherwise `%%{init:{...}}\n
+// flowchart TD …` is treated as non-flowchart and the canvas locks itself out.
+const isFlowchart = (code) => {
+  const trimmed = (code || "").trim();
+  if (!trimmed) return true;
+  const body = trimmed
+    .split("\n")
+    .filter((line) => !/^\s*%%/.test(line))
+    .join("\n")
+    .trim();
+  if (!body) return false;
+  return /^(flowchart|graph)\b/i.test(body);
+};
 
 const formatDate = (ms) =>
   new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(ms));
@@ -61,7 +71,6 @@ export default function EditorShell({ t, authed, onAuthed }) {
   const [ready, setReady] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [codeOpen, setCodeOpen] = useState(false);
-  const [downloadOpen, setDownloadOpen] = useState(false);
   const [openOpen, setOpenOpen] = useState(false);
   const [docAsk, setDocAsk] = useState(null);
   const [docs, setDocs] = useState([]);
@@ -120,6 +129,14 @@ export default function EditorShell({ t, authed, onAuthed }) {
         // the editor still opens instead of a blank page.
       }
       let doc = list.find((d) => d.id === lastId);
+      // The pointer can be null (a sign-in that never edited anything further)
+      // or point at a document deleted elsewhere — in both cases reopen the
+      // most recently edited document instead of fabricating a new one, which
+      // used to litter the account with fresh starter docs per stray boot.
+      if (!doc && list.length > 0) {
+        doc = list[0];
+        saveCurrentDocumentId(doc.id).catch(() => {});
+      }
       if (!doc) {
         const id = newDocumentId();
         const seedCode = toMermaid(defaultState(t));
@@ -201,13 +218,28 @@ export default function EditorShell({ t, authed, onAuthed }) {
     return false;
   }
 
-  // Called by the inline gate once the visitor is signed in: run whatever
-  // action was deferred behind the gate, then close it.
-  function handleAuthed(nextEmail) {
+  // Called by the inline gate once the visitor is signed in: the open diagram
+  // was never saved while anonymous (no account to save to), so persist it and
+  // record it as the current document first — otherwise a sign-in that only
+  // triggers an export would lose the drawing, and the next boot would invent
+  // a fresh starter document. Only then run whatever action was deferred
+  // behind the gate.
+  async function handleAuthed(nextEmail) {
     onAuthed(nextEmail);
     setAuthOpen(false);
     const pending = pendingAuthRef.current;
     pendingAuthRef.current = null;
+    const id = currentDocIdRef.current;
+    if (id) {
+      try {
+        // Order matters: the pointer PUT is a no-op server-side until the
+        // document row exists, so save the document first.
+        setDocs(await saveDocument(id, code, t.documents.untitled));
+        await saveCurrentDocumentId(id);
+      } catch {
+        // Non-fatal: autosave will pick this up on the next edit anyway.
+      }
+    }
     pending?.();
   }
 
@@ -220,7 +252,11 @@ export default function EditorShell({ t, authed, onAuthed }) {
     if (authed) return;
     const open = () => {
       if (isContentWindowOpen()) return;
-      pendingAuthRef.current = null;
+      // Deliberately do NOT clear pendingAuthRef here. requireAuth() records
+      // the deferred action and THEN closes the window, which synchronously
+      // fires this reveal event — clearing the ref here would drop the very
+      // action the gate was raised for. The gate's own exit paths (handleAuthed,
+      // closeAuthAndReturn, and the CONTENT_OPEN close() below) own the ref.
       setAuthOpen(true);
     };
     const close = () => {
@@ -315,19 +351,39 @@ export default function EditorShell({ t, authed, onAuthed }) {
     setOpenOpen(false);
   }
 
-  // The document on screen is saved (via switchTo's flush) before a new,
-  // blank one is created and opened — nothing is lost, it is just no longer
-  // the one in front of you. `flush: false` only when called after the
-  // current document was just deleted (see confirmDeleteDocument).
+  // The document on screen is saved before a new, blank one is created and
+  // opened — nothing is lost, it is just no longer the one in front of you.
+  // `flush: false` only when called after the current document was just
+  // deleted (see confirmDeleteDocument).
   async function startNewDocument({ flush = true } = {}) {
+    clearTimeout(docSaveDebounceRef.current);
+    if (flush && currentDocIdRef.current && code !== loadedCodeRef.current) {
+      try {
+        setDocs(await saveDocument(currentDocIdRef.current, code, t.documents.untitled));
+      } catch {
+        // Best-effort flush; the switch still proceeds even if storage is down.
+      }
+    }
     const seedCode = toMermaid(defaultState(t));
     const id = newDocumentId();
-    await switchTo(id, seedCode, { flush });
+    let list;
     try {
-      setDocs(await saveDocument(id, seedCode, t.documents.untitled));
+      // POST the new row BEFORE the current-document pointer PUT: the server
+      // only records a current id whose document row already exists, so
+      // saving the pointer first would silently keep the previous document.
+      list = await saveDocument(id, seedCode, t.documents.untitled);
     } catch {
-      // Non-fatal: the new document still lives on screen.
+      list = [{ id, title: t.documents.untitled, code: seedCode, updatedAt: Date.now() }];
     }
+    currentDocIdRef.current = id;
+    setCurrentDocId(id);
+    setDocs(list);
+    saveCurrentDocumentId(id).catch(() => {});
+    loadedCodeRef.current = seedCode;
+    setCode(seedCode);
+    lastVisualCodeRef.current = seedCode;
+    setImportText(seedCode);
+    setImportSeq((n) => n + 1);
     setOpenOpen(false);
   }
 
@@ -413,7 +469,6 @@ export default function EditorShell({ t, authed, onAuthed }) {
 
   return (
     <div className="iqm-root app">
-      <PageTracker page="App" />
       <main className="app-main">
         {ready && (
           <VisualEditor
@@ -484,29 +539,6 @@ export default function EditorShell({ t, authed, onAuthed }) {
       {codeOpen &&
         createPortal(
           <CodeModal code={code} onChange={handleTextChange} onClose={() => setCodeOpen(false)} t={t} />,
-          document.body,
-        )}
-      {downloadOpen &&
-        createPortal(
-          <div className="modal-backdrop" onPointerDown={() => setDownloadOpen(false)}>
-            <div className="modal-panel" onPointerDown={(e) => e.stopPropagation()}>
-              <div className="modal-title">{t.modals.downloadTitle}</div>
-              <div className="modal-list">
-                {exportActions.map((a) => (
-                  <button
-                    key={a.label}
-                    className="modal-list-btn"
-                    onClick={() => {
-                      a.run();
-                      setDownloadOpen(false);
-                    }}
-                  >
-                    <span className="modal-list-icon">{a.icon}</span> {a.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>,
           document.body,
         )}
       {openOpen &&

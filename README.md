@@ -1,9 +1,9 @@
 # IQ Mermaid
 
 Free online [mermaid](https://mermaid.js.org) editor at **https://iq-mermaid.com** —
-a visual canvas and the mermaid source, kept in sync. No account, no paid tier,
-no server-side storage: everything runs in the browser and the current diagram
-lives in local storage.
+a visual canvas and the mermaid source, kept in sync. Sign-in is by an emailed
+one-time code (no password, no paid tier); saved diagrams live in your account
+and follow you across devices.
 
 ## Layout
 
@@ -70,17 +70,18 @@ the rest first.
 
 ## Deploy
 
-Push to **`release`** (not `main`) triggers `.github/workflows/deploy.yml`:
-build on the runner, scp to the VPS, `pm2 restart iq-mermaid`, then an
-IndexNow ping for the pages this push changed.
+Pushing to **`main`** triggers `.github/workflows/deploy.yml`: build on the
+runner, scp to the VPS, `pm2 restart iq-mermaid`, then an IndexNow ping for
+the pages this push changed.
 
 ```bash
-git push origin main && git push origin main:release
+git push origin main
 ```
 
 Prod runs on port **8204** behind nginx (`nginx/iq-mermaid.conf`). Repository
-secrets: `SERVER_IP`, `SSH_KEY`, `INDEXNOW_KEY` — that is the complete list,
-because the app has no database, no API keys and no third-party services.
+secrets: `DATABASE_URL`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`,
+`FROM_EMAIL`, `SERVER_IP`, `SSH_KEY`, `INDEXNOW_KEY` — the app has no payment
+or third-party services beyond its own Postgres and SMTP box.
 
 ## Design: the PostHog "desktop"
 
@@ -93,10 +94,11 @@ than the page.
 The **mermaid editor is now the shared background** of the whole site. On every
 page it is lazy-loaded under the window (SSR never pays for the ~500 kB mermaid
 bundle) and its chrome — new/open/download/code/sign-in, undo/redo, zoom — lives
-in a floating **left dock island** that stays visible above the window. Closing
-the window (its only control is a [close X] button, no minimize, no reopen
-pill) reveals the already-booted editor for good; "Open editor" buttons collapse
-the window instead of navigating to a `/app` route (which no longer exists — it
+in a floating **left dock island** that stays visible above the window. The window
+has no close control of its own — "Open editor" actions and a press on the
+desktop outside the window collapse it (click-away), revealing the already-
+booted editor; the header logo / Features / Guides links bring the window back.
+"Open editor" never navigates: the old `/app` route no longer exists (it
 redirects to the locale home). The canvas area is clickable around the window
 (the canvas wrapper passes clicks through to the editor layer); actions that
 persist or export (new/open/save/copy/download) raise an inline sign-in gate.

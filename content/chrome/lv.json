@@ -115,7 +115,7 @@
         },
         {
           "title": "Saglabājas automātiski",
-          "sub": "Jūsu diagramma tiek ierakstīta pārlūka lokālajā krātuvē pēc katras izmaiņas — aizveriet cilni un atgriezieties pie tās vēlāk."
+          "sub": "Jūsu diagramma rediģēšanas laikā automātiski tiek saglabāta jūsu kontā — aizveriet cilni un atgriezieties no jebkuras ierīces."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Visas funkcijas, tostarp eksports, ir bezmaksas. Nav maksas plāna, uz kuru pāriet."
         },
         {
-          "title": "Nekas nepamet jūsu pārlūku",
+          "title": "Tiek renderēta jūsu pārlūkā",
           "sub": "Renderēšana notiek jūsu pārlūkā; saglabātās diagrammas glabājas jūsu kontā un ir pieejamas no jebkuras ierīces."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Kur atrodas dati",
-        "us": "Jūsu pārlūka lokālajā krātuvē. Bez pieteikšanās, bez augšupielādes.",
+        "us": "Jūsu kontā — pietiek ar e-pastu, lai pierakstītos, un diagrammas jums seko uz jebkuru ierīci.",
         "them": "Konts kāda serverī, kuram piesaistītas jūsu diagrammas."
       }
     ]

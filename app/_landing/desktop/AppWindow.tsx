@@ -95,6 +95,14 @@ export function AppWindow({ children }: { children: React.ReactNode }) {
     const el = document.documentElement;
     el.classList.toggle("iqm-editor-revealed", closed);
     setContentWindowOpen(!closed);
+    // While the window is open the editor behind it is fully covered — take it
+    // out of the tab order and the accessibility tree (see EditorBackdrop).
+    // Revealing the editor removes both again.
+    const layer = document.querySelector<HTMLElement>("[data-editor-layer]");
+    if (layer) {
+      layer.toggleAttribute("inert", !closed);
+      layer.setAttribute("aria-hidden", String(!closed));
+    }
   }, [closed]);
 
   if (closed) return null;

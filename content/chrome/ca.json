@@ -115,7 +115,7 @@
         },
         {
           "title": "Desat sobre la marxa",
-          "sub": "El teu diagrama s'escriu a l'emmagatzematge local del navegador amb cada edició — tanca la pestanya i torna-hi quan vulguis."
+          "sub": "El diagrama es desa automàticament al teu compte mentre edites — tanca la pestanya i torna-hi des de qualsevol dispositiu."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Totes les funcions, inclosa l'exportació, són gratuïtes. No hi ha cap pla de pagament al qual actualitzar."
         },
         {
-          "title": "Res surt del teu navegador",
+          "title": "Es renderitza al teu navegador",
           "sub": "El render es fa al navegador; els diagrames desats viuen al teu compte i hi són des de qualsevol dispositiu."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "On viuen les dades",
-        "us": "A l'emmagatzematge local del teu navegador. Sense inici de sessió, res es puja.",
+        "us": "Al teu compte — només cal un correu per entrar-hi i els diagrames t'acompanyen a qualsevol dispositiu.",
         "them": "Un compte al servidor d'algú, amb els teus diagrames enganxats a ell."
       }
     ]

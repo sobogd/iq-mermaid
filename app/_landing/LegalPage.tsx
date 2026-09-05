@@ -34,7 +34,7 @@ export function LegalPage({
     .filter((s) => s.heading || s.paragraphs.length > 0);
 
   return (
-    <main className="pointer-events-none relative">
+    <>
       <DesktopShell
         locale={locale}
         homeHref={resolvedHome}
@@ -65,6 +65,6 @@ export function LegalPage({
         </Band>
       </DesktopShell>
       <PageTracker page="Legal" />
-    </main>
+    </>
   );
 }

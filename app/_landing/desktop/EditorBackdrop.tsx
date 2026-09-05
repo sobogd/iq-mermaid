@@ -22,9 +22,14 @@ const EditorClient = dynamic(() => import("@/app/_editor/EditorClient").then((m)
 // Renders the editor across the whole desktop area, one level below the
 // marketing window (which the DesktopShell stacks above it). The editor's own
 // chrome is its left dock island, always visible above everything.
+//
+// While the marketing window is open the editor is fully COVERED by it, so the
+// layer starts `inert` + `aria-hidden`: its duplicate <main>/toolbar must not
+// leak into the tab order or the accessibility tree of the marketing page.
+// AppWindow removes both the moment the window closes (the editor revealed).
 export function EditorBackdrop({ texts }: { texts: EditorTexts }) {
   return (
-    <div className="absolute inset-0 z-0" aria-hidden="false">
+    <div data-editor-layer inert aria-hidden="true" className="absolute inset-0 z-0">
       <SafeArea>
         <EditorClient t={texts} />
       </SafeArea>

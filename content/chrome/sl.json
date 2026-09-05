@@ -115,7 +115,7 @@
         },
         {
           "title": "Shranjeno sproti",
-          "sub": "Diagram se ob vsakem urejanju zapiše v lokalno shrambo brskalnika — zapri zavihek in se vrni nazaj kadar koli."
+          "sub": "Vaš diagram se med urejanjem samodejno shrani v vaš račun — zaprite zavihek in se k njemu vrnite s katere koli naprave."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Vsaka funkcija, tudi izvoz, je brezplačna. Ni plačljivega paketa, na katerega bi bilo treba nadgraditi."
         },
         {
-          "title": "Nič ne zapusti brskalnika",
+          "title": "Se izriše v vašem brskalniku",
           "sub": "Upodabljanje poteka v vašem brskalniku; shranjeni diagrami živijo v vašem računu in so dosegljivi s katere koli naprave."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Kje živijo podatki",
-        "us": "V lokalni shrambi tvojega brskalnika. Brez prijave, nič ni naloženo.",
+        "us": "V vašem računu — za prijavo zadostuje e-pošta, diagrami pa so na voljo na kateri koli napravi.",
         "them": "Račun na tujem strežniku, kamor so pripeti tvoji diagrami."
       }
     ]

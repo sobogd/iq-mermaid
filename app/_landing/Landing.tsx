@@ -22,7 +22,7 @@ export function Landing({ locale, texts }: { locale: Locale; texts: SiteTexts })
   ]);
 
   return (
-    <main className="pointer-events-none relative">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -66,6 +66,6 @@ export function Landing({ locale, texts }: { locale: Locale; texts: SiteTexts })
         </Band>
       </DesktopShell>
       <PageTracker page="Home" />
-    </main>
+    </>
   );
 }

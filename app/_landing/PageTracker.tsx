@@ -68,11 +68,21 @@ const MAX_SCROLL_EVENTS = 40;
  * new, one event — "Scroll down" / "Scroll up" for the action, the section it
  * came to rest on for the name.
  */
-function createScrollTracker() {
+function createScrollTracker(scroller: HTMLElement | null) {
   let settled: string | null = null;
   let settledY = 0;
   let sent = 0;
   let timer: ReturnType<typeof setTimeout> | null = null;
+
+  // The page never scrolls: the marketing content scrolls inside the
+  // window's own .window-scroll container (the shell pins the document at
+  // 100dvh), so all geometry below reads THAT scroller — falling back to the
+  // window only for the (defensive) case where no container exists yet.
+  const scrollTop = () => (scroller ? scroller.scrollTop : window.scrollY);
+  const viewportHeight = () => (scroller ? scroller.clientHeight : window.innerHeight);
+  const scrollableHeight = () =>
+    scroller ? scroller.scrollHeight : Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+  const elementTop = (el: HTMLElement) => el.getBoundingClientRect().top + scrollTop();
 
   /** The section the viewport is looking at = the one containing its middle.
    *  Using the centre rather than the top edge keeps the answer stable while a
@@ -86,17 +96,17 @@ function createScrollTracker() {
     // At the very bottom, name the last section outright. A short footer never
     // reaches the middle of the screen, so the centre rule alone would report
     // the block above it as the end of every scroll to the end of the page.
-    const scrollable = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-    if (window.scrollY + window.innerHeight >= scrollable - 2) {
+    const scrollable = scrollableHeight();
+    if (scrollTop() + viewportHeight() >= scrollable - 2) {
       const last = els[els.length - 1].dataset.section;
       return last ? sectionLabel(last) : null;
     }
 
-    const centre = window.scrollY + window.innerHeight / 2;
+    const centre = scrollTop() + viewportHeight() / 2;
     let best: string | null = null;
     let bestTop = -Infinity;
     for (const el of els) {
-      const top = el.getBoundingClientRect().top + window.scrollY;
+      const top = elementTop(el);
       if (top > centre) continue;
       // Sections are laid out in document order, but a nested one can appear
       // later with a smaller top — take the lowest section that starts above
@@ -121,7 +131,7 @@ function createScrollTracker() {
     // happened to be. Nothing done inside a modal is a scroll gesture.
     if (document.body.style.overflow === "hidden") return;
     const now = currentSection();
-    const y = window.scrollY;
+    const y = scrollTop();
     if (!now) return;
     if (settled && now !== settled && sent < MAX_SCROLL_EVENTS) {
       sent += 1;
@@ -141,7 +151,7 @@ function createScrollTracker() {
    *  means that is not necessarily the top. */
   const begin = () => {
     settled = currentSection();
-    settledY = window.scrollY;
+    settledY = scrollTop();
   };
 
   /** The pageview is ending: close any scroll still in flight and push it out.
@@ -180,12 +190,16 @@ export function PageTracker({ page }: { page: string }) {
     const attribution = ctx && (!documentCtxSent || hasFreshAttribution(ctx)) ? ctx : undefined;
     documentCtxSent = true;
     // The pageview carries the attribution ctx — the server applies it to the
-    // visit first-write-wins. Instant: it must not sit out the 2s buffer — a
-    // quick bounce would lose the whole visit, and the response carries the
+    // visit first-write-wins. Every event is sent immediately, so a quick
+    // bounce still leaves the pageview behind, and the response carries the
     // visit token every later batch wants.
-    analytics.track("Show", "Pageview", attribution, { instant: true });
+    analytics.track("Show", "Pageview", attribution);
 
-    const scroll = createScrollTracker();
+    // Marketing content scrolls in the window's own container (never the
+    // document — the shell pins it at 100dvh), so the scroll listener goes on
+    // that element. Scroll events don't bubble; attach straight to it.
+    const scroller = document.querySelector<HTMLElement>(".window-scroll");
+    const scroll = createScrollTracker(scroller);
     scroll.begin();
     // rAF-coalesced: a scroll fires dozens of events per second, and there is no
     // point restarting the settle countdown more than once per frame.
@@ -197,7 +211,8 @@ export function PageTracker({ page }: { page: string }) {
         scroll.onMove();
       });
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
+    const scrollTarget: EventTarget = scroller ?? window;
+    scrollTarget.addEventListener("scroll", onScroll, { passive: true });
     // Three exits, and all three are needed. On mobile a tab is usually swiped
     // away or backgrounded, which fires visibilitychange and often no pagehide
     // at all; desktop link-outs fire pagehide; a soft navigation fires neither
@@ -215,14 +230,14 @@ export function PageTracker({ page }: { page: string }) {
       if (!event.persisted) return;
       analytics.setPage(toPageLabel(page));
       analytics.setLocale(document.documentElement.lang || "");
-      analytics.track("Show", "Pageview", undefined, { instant: true });
+      analytics.track("Show", "Pageview", undefined);
       scroll.begin();
     };
     window.addEventListener("pageshow", onShow);
 
     return () => {
       if (frame) cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
+      scrollTarget.removeEventListener("scroll", onScroll);
       window.removeEventListener("pagehide", scroll.finish);
       window.removeEventListener("pageshow", onShow);
       document.removeEventListener("visibilitychange", onHide);

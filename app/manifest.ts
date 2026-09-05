@@ -7,9 +7,10 @@ export default function manifest(): MetadataRoute.Manifest {
     name: BRAND,
     short_name: "Mermaid",
     description: "Free online mermaid editor — visual canvas and mermaid code, side by side",
-    // Installed copies open the editor, not the marketing page. proxy.ts sends
-    // /app on to the visitor's own locale (/es/app, /de/app, …).
-    start_url: "/app",
+    // The editor has no dedicated route — it is the shared background under
+    // the window on every page (the old /app URL only 302s back to the locale
+    // home), so an installed copy simply opens the home page.
+    start_url: "/",
     scope: "/",
     display: "standalone",
     background_color: "#faf8f5",

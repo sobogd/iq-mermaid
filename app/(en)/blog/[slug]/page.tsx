@@ -52,7 +52,7 @@ export default async function EnBlogArticlePage({ params }: { params: Promise<{ 
   const jsonLd = graphLd([
     organizationLd(),
     blogPostingLd("en", entry, { h1: plain(content.h1), description: content.meta.description }),
-    breadcrumbLd("en", [
+    breadcrumbLd([
       { name: texts.blog.title, url: `${SITE_URL}/blog` },
       { name: content.card.title, url: `${SITE_URL}/blog/${slug}` },
     ]),

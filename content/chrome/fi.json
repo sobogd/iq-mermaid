@@ -115,7 +115,7 @@
         },
         {
           "title": "Tallentuu matkan varrella",
-          "sub": "Kaaviosi kirjoitetaan selaimen paikalliseen tallennustilaan jokaisella muokkauksella – sulje välilehti ja palaa siihen myöhemmin."
+          "sub": "Kaaviosi tallennetaan automaattisesti tilillesi muokatessasi — sulje välilehti ja palaa siihen miltä tahansa laitteelta."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Jokainen ominaisuus, vienti mukaan lukien, on ilmainen. Ei maksullista tasoa johon päivittää."
         },
         {
-          "title": "Mikään ei poistu selaimestasi",
+          "title": "Renderöidään selaimessasi",
           "sub": "Renderöinti tapahtuu selaimessasi; tallennetut kaaviot ovat tililläsi ja käytettävissä millä tahansa laitteella."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Missä data sijaitsee",
-        "us": "Selaimesi paikallisessa tallennustilassa. Ei kirjautumista, ei mitään ladattavaa.",
+        "us": "Tililläsi — kirjautumiseen riittää sähköposti, ja kaaviosi seuraavat sinua mille tahansa laitteelle.",
         "them": "Tili jonkun palvelimella, kaaviosi sidottuna siihen."
       }
     ]

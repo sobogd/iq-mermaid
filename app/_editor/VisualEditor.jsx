@@ -516,10 +516,18 @@ export default function VisualEditor({
   // It is anchored to a point on the canvas, so it stops meaning anything as
   // soon as the canvas moves under it or the attention goes somewhere else.
   useEffect(() => {
+    // Intentional external-state reset: the paste anchor is a transient
+    // canvas position that must clear whenever an overlay or mode takes over
+    // (there is no event handler to attach it to — every opener path would
+    // need a copy of this rule).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (ask || colorModalOpen || shapeModalOpen || interactionMode) setAddAt(null);
   }, [ask, colorModalOpen, shapeModalOpen, interactionMode]);
 
   useEffect(() => {
+    // Same transient-anchor reset on pan/zoom: the anchored point is in
+    // pre-move coordinates, so keeping it would paste at the wrong place.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setAddAt(null);
   }, [view]);
 
@@ -528,6 +536,10 @@ export default function VisualEditor({
   }, [interactionMode]);
 
   useEffect(() => {
+    // A selection change invalidates whichever node the colour/shape pickers
+    // were pointing at — closing them here keeps every selection path in sync
+    // without threading a close call through each one.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setColorModalOpen(false);
     setShapeModalOpen(false);
   }, [selected]);
@@ -1253,6 +1265,11 @@ export default function VisualEditor({
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
+    // The three handlers are plain closures over the exact state listed in the
+    // deps below (selected/state/clipboard/…) and are recreated every render —
+    // including them would re-subscribe this key listener on every keystroke
+    // for zero behavioural change.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected, state, interactionMode, colorModalOpen, shapeModalOpen, clipboard, ask, history, addAt]);
 
   function addBlock() {
@@ -1607,7 +1624,7 @@ export default function VisualEditor({
           onPointerDown={onCanvasPointerDown}
         >
           <div
-            className="mermaid-host"
+            className={"mermaid-host" + (animating ? " animating" : "")}
             ref={hostRef}
             style={{ transform: `translate(${view.x}px, ${view.y}px) scale(${view.zoom})` }}
           />

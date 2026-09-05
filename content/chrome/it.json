@@ -115,7 +115,7 @@
         },
         {
           "title": "Salvato mentre lavori",
-          "sub": "Il tuo diagramma viene scritto nell'archivio locale del browser a ogni modifica — chiudi la scheda e ritrovalo dove l'avevi lasciato."
+          "sub": "Il tuo diagramma viene salvato automaticamente nel tuo account mentre modifichi — chiudi la scheda e torna da qualsiasi dispositivo."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Ogni funzionalità, esportazione inclusa, è gratuita. Non esiste un piano a pagamento a cui passare."
         },
         {
-          "title": "Nulla lascia il tuo browser",
+          "title": "Renderizzato nel tuo browser",
           "sub": "Il rendering avviene nel tuo browser; i diagrammi salvati vivono nel tuo account e sono lì da qualsiasi dispositivo."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Dove vivono i dati",
-        "us": "Nell'archivio locale del tuo browser. Nessun accesso, nulla viene caricato.",
+        "us": "Nel tuo account — basta un'email per accedere e i tuoi diagrammi ti seguono su qualsiasi dispositivo.",
         "them": "Un account sul server di qualcun altro, con i tuoi diagrammi collegati ad esso."
       }
     ]

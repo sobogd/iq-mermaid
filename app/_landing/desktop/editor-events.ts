@@ -47,11 +47,6 @@ export function requestCopy() {
   window.dispatchEvent(new CustomEvent(EDITOR_COPY_EVENT));
 }
 
-/** Open the editor's code sheet (the mermaid source view). */
-export function requestEditCode() {
-  window.dispatchEvent(new CustomEvent(EDITOR_CODE_EVENT));
-}
-
 /** Open the editor's document list. */
 export function requestOpenDocs() {
   window.dispatchEvent(new CustomEvent(EDITOR_OPEN_DOCS_EVENT));

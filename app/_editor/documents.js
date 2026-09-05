@@ -40,13 +40,22 @@ export function newDocumentId() {
 // The title a document is recognisable by in the Open list, derived from its
 // own content so nobody ever has to name a diagram just to save it: the
 // first quoted label covers flowchart nodes and most other diagram types;
-// the first line is the fallback for the rest (sequence, gantt, …).
+// the first line is the fallback for the rest (sequence, gantt, …). Leading
+// `%%` comments and `%%{init:…}%%` directives are skipped first — they carry
+// configuration, not a title (a `%%{init:{"theme":"dark"}}%%` opening used to
+// title the document "theme").
 export function deriveTitle(code, untitledFallback) {
   const trimmed = (code || "").trim();
   if (!trimmed) return untitledFallback;
-  const quoted = trimmed.match(/"([^"]{1,60})"/);
+  const body = trimmed
+    .split("\n")
+    .filter((line) => !/^\s*%%/.test(line))
+    .join("\n")
+    .trim();
+  if (!body) return untitledFallback;
+  const quoted = body.match(/"([^"]{1,60})"/);
   if (quoted) return quoted[1].trim();
-  const firstLine = trimmed.split("\n")[0].trim();
+  const firstLine = body.split("\n")[0].trim();
   if (!firstLine || BARE_TYPE_RE.test(firstLine)) return untitledFallback;
   return firstLine.length > 60 ? `${firstLine.slice(0, 60)}…` : firstLine;
 }

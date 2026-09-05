@@ -115,7 +115,7 @@
         },
         {
           "title": "Guardado automaticamente",
-          "sub": "O seu diagrama é escrito no armazenamento local do navegador a cada edição — feche o separador e volte a encontrá-lo."
+          "sub": "O seu diagrama é guardado automaticamente na sua conta enquanto edita — feche o separador e volte a ele a partir de qualquer dispositivo."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Todas as funcionalidades, incluindo a exportação, são grátis. Não há nenhum plano pago para o qual atualizar."
         },
         {
-          "title": "Nada sai do seu navegador",
+          "title": "Renderizado no seu navegador",
           "sub": "A renderização acontece no seu navegador; os diagramas salvos vivem na sua conta e estão lá de qualquer dispositivo."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Onde ficam os dados",
-        "us": "No armazenamento local do seu navegador. Sem início de sessão, nada é enviado.",
+        "us": "Na sua conta — basta um e-mail para entrar e os seus diagramas acompanham-no em qualquer dispositivo.",
         "them": "Uma conta no servidor de outra pessoa, com os seus diagramas associados a ela."
       }
     ]

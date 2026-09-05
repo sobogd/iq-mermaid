@@ -29,7 +29,6 @@ export class SafeArea extends Component<
   }
 
   componentDidCatch(error: unknown) {
-    // eslint-disable-next-line no-console
     console.error("[iqm] editor layer crashed, isolating and retrying:", error);
   }
 
@@ -50,10 +49,9 @@ export class SafeArea extends Component<
   }
 
   render() {
-    const { retries = 2 } = this.props;
-    if (this.state.failed && this.state.attempts > retries) return null;
-    // While failed (and between retries) render nothing: the wallpaper/desktop
-    // shows through, and the marketing chrome keeps working.
+    // While failed — between retries or given up for good — render nothing:
+    // the wallpaper/desktop shows through, and the marketing chrome keeps
+    // working. Retry scheduling lives in componentDidUpdate.
     if (this.state.failed) return null;
     return this.props.children;
   }

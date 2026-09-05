@@ -638,8 +638,10 @@ export function Taskbar({
                         <button
                           key={opt.key}
                           type="button"
-                          role="menuitemradio"
-                          aria-checked={theme === opt.key}
+                          // A pressed toggle, like the mobile rows: the popover
+                          // is not a role="menu", so menuitemradio would be an
+                          // orphan role with no menu context.
+                          aria-pressed={theme === opt.key}
                           className="flex w-full items-center gap-2.5 rounded-md px-2 py-1.5 text-left text-[13px] font-medium leading-none text-text transition-colors hover:bg-accent"
                           onClick={() => {
                             analytics.track("Click", `Header theme ${opt.key}`);

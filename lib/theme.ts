@@ -4,12 +4,21 @@
 // can override the OS (header → Settings → Theme → System / Light / Dark).
 //
 // "System" follows the OS; the resolved preference is persisted in
-// localStorage under IQM_THEME_KEY ("system" | "light" | "dark").
+// localStorage under THEME_CHOICE_KEY ("system" | "light" | "dark").
 export type ThemeChoice = "system" | "light" | "dark";
 
 export const THEME_CHOICE_KEY = "iqm-theme";
 /** Dispatched on <window> after the resolved theme attribute changes. */
 export const THEME_CHANGE_EVENT = "iqm:theme-change";
+
+/** Pre-paint inline script shared by every document shell ((en), [seg], and
+ *  the root 404 page): applies the stored choice — or the OS preference under
+ *  "system" — to <html> before first paint, so dark-mode visitors never see a
+ *  light flash. Reads THEME_CHOICE_KEY here rather than hardcoding the key
+ *  next to the duplicate script in each layout. */
+export const THEME_BOOTSTRAP_SCRIPT = `(function(){try{var k=${JSON.stringify(
+  THEME_CHOICE_KEY,
+)},v=window.localStorage.getItem(k),d=v? v==="dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;if(d)document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();`;
 
 export function systemPrefersDark(): boolean {
   return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches;

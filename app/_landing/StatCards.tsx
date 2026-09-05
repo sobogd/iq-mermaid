@@ -2,7 +2,7 @@ import { Zap, Code2, Shapes, Wallet } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { StatCard } from "./types";
 
-// Positional icons (index-matched to `statCards` in texts.json).
+// Positional icons (index-matched to `statCards` in the chrome locale JSON).
 const ICONS: LucideIcon[] = [Zap, Code2, Shapes, Wallet];
 
 // The four quick claims under the hero: an icon, a bold line and one muted

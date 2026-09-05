@@ -115,7 +115,7 @@
         },
         {
           "title": "Saved as you go",
-          "sub": "Your diagram is written to the browser's local storage on every edit — close the tab and come back to it."
+          "sub": "Your diagram autosaves to your account as you edit — close the tab and pick it up on any device."
         }
       ]
     },
@@ -128,7 +128,7 @@
           "sub": "Every feature, including export, is free. There is no paid tier to upgrade to."
         },
         {
-          "title": "Nothing leaves your browser",
+          "title": "Rendered in your browser",
           "sub": "Rendering happens in your browser; saved diagrams live in your account, so they're there on any device."
         },
         {
@@ -167,7 +167,7 @@
       },
       {
         "title": "Where the data lives",
-        "us": "Your browser's local storage. No sign-in, nothing uploaded.",
+        "us": "In your account — an email to sign in, and your diagrams follow you to any device.",
         "them": "An account on someone's server, with your diagrams attached to it."
       }
     ]

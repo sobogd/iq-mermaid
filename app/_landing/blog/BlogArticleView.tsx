@@ -153,7 +153,7 @@ export function BlogArticleView({
 }) {
   const blog = texts.blog;
   return (
-    <main className="pointer-events-none relative">
+    <>
       <DesktopShell
         locale={locale}
         homeHref={localeHome(locale)}
@@ -233,6 +233,6 @@ export function BlogArticleView({
         </div>
       </DesktopShell>
       <PageTracker page="Blog article" />
-    </main>
+    </>
   );
 }
