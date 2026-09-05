@@ -164,6 +164,13 @@ button:not(:disabled),
   box-shadow: 0 10px 28px -12px rgb(0 0 0 / 0.18);
 }
 
+/* Once the shared editor is revealed (AppWindow toggles `iqm-editor-revealed`
+   on <html>), the taskbar's "Open editor" button has nothing left to open —
+   drop it from both the mobile and the desktop header. */
+html.iqm-editor-revealed .header-open-editor {
+  display: none;
+}
+
 /* ---------------------------------------------------------------------------
    The internal scroll area: content scrolls inside the window, not the page.
    Fades the top & bottom edges so rows appear to sink into the glass.
