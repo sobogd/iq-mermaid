@@ -9,9 +9,24 @@ import { sectionLabel } from "@/lib/track-sections";
 // page component (Landing, LegalPage, blog views, the editor).
 //
 // Ported from translator's app/_landing/PageTracker.tsx, minus the
-// Stripe-return / billing marker — this app has no payment flow.
+// Stripe-return / billing marker — this app has no payment flow. Like the
+// other products' trackers, this one captures allowlisted ad/campaign params
+// from the entry URL (gclid / fbclid / msclkid / … plus utm_*) as visit
+// attribution, then strips the whole query string so nothing else leaves the
+// page.
 
 const FROM_REGEX = /^[A-Za-z0-9_.-]{1,64}$/;
+
+// Allowlisted ad/campaign query params captured into ctx.q, mirroring what the
+// server keeps. Everything else in the URL is stripped and never sent, so
+// non-ad junk (tokens, internal state) never leaves the page.
+const CLICK_ID_KEYS = new Set(["gclid", "gbraid", "wbraid", "fbclid", "msclkid", "yclid"]);
+const UTM_KEY_RE = /^utm_[a-z0-9_]{1,24}$/i;
+// Client-side mirrors of the server caps: total captured params, and per-value
+// length limits (click-id keys get more room than utm values).
+const Q_MAX_KEYS = 16;
+const Q_MAX_CLICK_ID = 512;
+const Q_MAX_UTM = 256;
 
 // Document-scoped (not pageview-scoped) facts. They describe the visit, not the
 // route, so re-sending them on every client-side navigation would inflate the
@@ -19,15 +34,28 @@ const FROM_REGEX = /^[A-Za-z0-9_.-]{1,64}$/;
 // want: reset on a real document load, kept across soft navigations.
 let documentCtxSent = false;
 
-/** Collect visit attribution (?from=, search referrer, colour scheme), then
- *  strip the ENTIRE query string so a reload does not re-send it. Must run
- *  before any other tracking on the page. */
+/** Collect visit attribution (?from=, allowlisted click-id / utm_* params,
+ *  search referrer, colour scheme), then strip the ENTIRE query string so a
+ *  reload does not re-send it. Must run before any other tracking on the page. */
 function collectCtxAndCleanUrl(): TrackCtx | undefined {
   const ctx: TrackCtx = {};
   const sp = new URLSearchParams(window.location.search);
 
   const from = sp.get("from");
   if (from && FROM_REGEX.test(from)) ctx.from = from;
+  // Allowlisted ad/campaign params, kept RAW — no lowercasing or sanitising
+  // here, the server validates. Mirrors the server-side allowlist and caps:
+  // click-id keys get up to 512 chars, everything else up to 256, 16 params
+  // total. If at least one survived, it is fresh attribution for this visit.
+  let q: Record<string, string> | undefined;
+  for (const [key, value] of sp) {
+    if (q && Object.keys(q).length >= Q_MAX_KEYS) break;
+    const isClickId = CLICK_ID_KEYS.has(key);
+    if (!isClickId && !UTM_KEY_RE.test(key)) continue;
+    if (value.length > (isClickId ? Q_MAX_CLICK_ID : Q_MAX_UTM)) continue;
+    (q ??= {})[key] = value;
+  }
+  if (q) ctx.q = q;
   const ref = searchReferrerHost();
   if (ref) ctx.ref = ref;
   // The resolved theme (lib/theme.ts): `data-theme="dark"` on <html> means a
@@ -47,12 +75,13 @@ function collectCtxAndCleanUrl(): TrackCtx | undefined {
   return Object.keys(ctx).length > 0 ? ctx : undefined;
 }
 
-/** `?from=` only ever comes from a fresh entry URL, so seeing one means a
- *  genuinely new attribution — worth sending even mid-visit. `ref` is derived
- *  from document.referrer, which survives soft navigations and would otherwise
- *  re-attribute the visit on every route change. */
+/** `?from=` / click ids / utm_* only ever come from a fresh entry URL, so
+ *  seeing one means a genuinely new attribution — worth sending even
+ *  mid-visit. `ref` is derived from document.referrer, which survives soft
+ *  navigations and would otherwise re-attribute the visit on every route
+ *  change. */
 function hasFreshAttribution(ctx: TrackCtx): boolean {
-  return Boolean(ctx.from);
+  return Boolean(ctx.from || (ctx.q && Object.keys(ctx.q).length > 0));
 }
 
 /** How long the page must sit still before a scroll counts as finished. Long

@@ -46,6 +46,7 @@ export interface TrackCtx {
   from?: string;
   ref?: string;
   theme?: string;
+  q?: Record<string, string>;
 }
 
 // Current page label, set by PageTracker on mount so deep components (header,
