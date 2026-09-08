@@ -1,5 +1,6 @@
-// OTP email via the same SMTP box iq-rest uses. The sender is read from
-// FROM_EMAIL (noreply@iq-rest.com); the recipient is always the address the
+// OTP email via Brevo's transactional SMTP relay (smtp-relay.brevo.com). The
+// sender is read from FROM_EMAIL (support@iq-mermaid.com, an address on the
+// domain authenticated in Brevo); the recipient is always the address the
 // visitor typed. If SMTP is not configured the send is skipped silently so the
 // local/dev flow keeps working without mail.
 import nodemailer from "nodemailer";
@@ -9,7 +10,7 @@ export async function sendOtpEmail(email: string, code: string): Promise<void> {
   const port = Number(process.env.SMTP_PORT || 587);
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
-  const from = process.env.FROM_EMAIL || "noreply@iq-rest.com";
+  const from = process.env.FROM_EMAIL || "support@iq-mermaid.com";
 
   if (!host || !user || !pass) {
     // Never log the code or recipient — both are PII / auth secrets.
