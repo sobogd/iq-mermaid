@@ -441,7 +441,7 @@ export default function EditorShell({ t, authed, onAuthed }) {
   useEffect(() => {
     const onDownload = (e) => {
       const kind = e?.detail?.kind;
-      const action = { mermaid: exportActions[1], md: exportActions[2], svg: exportActions[4], png: exportActions[5] }[kind];
+      const action = { mermaid: exportActions[1], md: exportActions[2], svg: exportActions[4], png: exportActions[5], html: exportActions[6] }[kind];
       if (action) requireAuth(action.run);
     };
     const onCopy = () => requireAuth(exportActions[0].run);

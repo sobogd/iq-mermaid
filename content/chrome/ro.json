@@ -26,6 +26,7 @@
     "exportMd": "Markdown (.md)",
     "exportSvg": "SVG",
     "exportPng": "PNG (2x)",
+    "exportHtml": "HTML",
     "settings": "Setări",
     "theme": "Temă",
     "themeSystem": "Sistem",

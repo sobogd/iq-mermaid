@@ -50,6 +50,8 @@ export interface SiteTexts {
     exportMd: string;
     exportSvg: string;
     exportPng: string;
+    /** Standalone HTML page with the diagram inlined. */
+    exportHtml: string;
     /** Settings → Theme picker. */
     settings: string;
     theme: string;

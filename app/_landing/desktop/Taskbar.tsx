@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, ChevronRight, ChevronLeft, FileCode2, FileText, Image as ImageIcon, Copy, FolderOpen, Plus, ShieldCheck, Monitor, Sun, Moon } from "lucide-react";
+import { ChevronDown, ChevronRight, ChevronLeft, FileCode, FileCode2, FileText, Image as ImageIcon, Copy, FolderOpen, Plus, ShieldCheck, Monitor, Sun, Moon } from "lucide-react";
 import { LogoIcon } from "../LogoIcon";
 import { localePath, swapLocale } from "@/lib/locale-paths";
 import { LOCALE_NAMES } from "@/lib/locale-names";
@@ -34,6 +34,8 @@ export type TaskbarTexts = {
   exportMd: string;
   exportSvg: string;
   exportPng: string;
+  /** Standalone HTML page with the diagram inlined. */
+  exportHtml: string;
   /** Settings → Theme picker. */
   settings: string;
   theme: string;
@@ -64,6 +66,7 @@ const DEFAULT_TEXTS: TaskbarTexts = {
   exportMd: "Markdown (.md)",
   exportSvg: "SVG",
   exportPng: "PNG (2x)",
+  exportHtml: "HTML",
   settings: "Settings",
   theme: "Theme",
   themeSystem: "System",
@@ -95,6 +98,7 @@ const EXPORT_ITEMS: ExportItem[] = [
   { key: "md", action: "download", icon: <FileText className="h-4 w-4" />, color: "rgb(47 128 250)" },
   { key: "svg", action: "download", icon: <ImageIcon className="h-4 w-4" />, color: "rgb(16 185 129)" },
   { key: "png", action: "download", icon: <ImageIcon className="h-4 w-4" />, color: "rgb(245 158 11)" },
+  { key: "html", action: "download", icon: <FileCode className="h-4 w-4" />, color: "rgb(99 102 241)" },
 ];
 
 const legalLinkLabel = (t: TaskbarTexts, l: (typeof LEGAL_LINKS)[number]): string => t[l.labelKey];
@@ -103,6 +107,7 @@ const exportItemLabel = (t: TaskbarTexts, key: string, action: ExportItem["actio
   if (key === "mermaid") return action === "copy" ? t.exportCopyMermaid : t.exportMermaidMmd;
   if (key === "md") return t.exportMd;
   if (key === "svg") return t.exportSvg;
+  if (key === "html") return t.exportHtml;
   return t.exportPng;
 };
 

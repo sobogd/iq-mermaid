@@ -26,6 +26,7 @@
     "exportMd": "Markdown (.md)",
     "exportSvg": "SVG",
     "exportPng": "PNG (2x)",
+    "exportHtml": "HTML",
     "settings": "설정",
     "theme": "테마",
     "themeSystem": "시스템",

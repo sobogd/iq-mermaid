@@ -86,7 +86,7 @@ export const isContentWindowOpen = () => contentWindowOpen;
 export const hasEditorRevealed = () => editorRevealed;
 
 /** Dispatch a download of the current diagram. `kind` is one of the export
- *  shortcuts the editor understands: "mermaid" | "md" | "svg" | "png". */
+ *  shortcuts the editor understands: "mermaid" | "md" | "svg" | "png" | "html". */
 export function requestDownload(kind: string) {
   window.dispatchEvent(new CustomEvent(EDITOR_DOWNLOAD_EVENT, { detail: { kind } }));
 }
