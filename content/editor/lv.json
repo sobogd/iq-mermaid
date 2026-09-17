@@ -97,6 +97,7 @@
     "copySvg": "Kopēt SVG",
     "downloadSvg": "Lejupielādēt SVG",
     "downloadPng": "Lejupielādēt PNG",
+    "downloadHtml": "Lejupielādēt HTML",
     "statusSvgCopied": "SVG nokopēts",
     "statusMermaidCopied": "Mermaid nokopēts",
     "statusSaved": "Saglabāts",

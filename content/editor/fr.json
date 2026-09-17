@@ -97,6 +97,7 @@
     "copySvg": "Copier le SVG",
     "downloadSvg": "Télécharger le SVG",
     "downloadPng": "Télécharger le PNG",
+    "downloadHtml": "Télécharger le HTML",
     "statusSvgCopied": "SVG copié",
     "statusMermaidCopied": "Mermaid copié",
     "statusSaved": "Enregistré",

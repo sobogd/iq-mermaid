@@ -97,6 +97,7 @@
     "copySvg": "SVG'yi kopyala",
     "downloadSvg": "SVG indir",
     "downloadPng": "PNG indir",
+    "downloadHtml": "HTML indir",
     "statusSvgCopied": "SVG kopyalandı",
     "statusMermaidCopied": "Mermaid kopyalandı",
     "statusSaved": "Kaydedildi",

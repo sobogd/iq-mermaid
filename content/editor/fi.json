@@ -97,6 +97,7 @@
     "copySvg": "Kopioi SVG",
     "downloadSvg": "Lataa SVG",
     "downloadPng": "Lataa PNG",
+    "downloadHtml": "Lataa HTML",
     "statusSvgCopied": "SVG kopioitu",
     "statusMermaidCopied": "Mermaid kopioitu",
     "statusSaved": "Tallennettu",

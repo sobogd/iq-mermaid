@@ -97,6 +97,7 @@
     "copySvg": "Kopírovať SVG",
     "downloadSvg": "Stiahnuť SVG",
     "downloadPng": "Stiahnuť PNG",
+    "downloadHtml": "Stiahnuť HTML",
     "statusSvgCopied": "SVG skopírované",
     "statusMermaidCopied": "Mermaid skopírovaný",
     "statusSaved": "Uložené",

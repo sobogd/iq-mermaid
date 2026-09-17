@@ -97,6 +97,7 @@
     "copySvg": "复制 SVG",
     "downloadSvg": "下载 SVG",
     "downloadPng": "下载 PNG",
+    "downloadHtml": "下载 HTML",
     "statusSvgCopied": "已复制 SVG",
     "statusMermaidCopied": "已复制 mermaid 代码",
     "statusSaved": "已保存",

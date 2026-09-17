@@ -97,6 +97,7 @@
     "copySvg": "Kopijuoti SVG",
     "downloadSvg": "Atsisiųsti SVG",
     "downloadPng": "Atsisiųsti PNG",
+    "downloadHtml": "Atsisiųsti HTML",
     "statusSvgCopied": "SVG nukopijuotas",
     "statusMermaidCopied": "Mermaid nukopijuotas",
     "statusSaved": "Išsaugota",

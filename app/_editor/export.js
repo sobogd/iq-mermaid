@@ -46,6 +46,42 @@ async function svgMarkup(code) {
   return renderForExport("export-" + ++seq, code.trim());
 }
 
+/** A one-file HTML page around the diagram. The SVG is inlined rather than
+ *  linked, and nothing is loaded from a CDN, so the file opens and prints
+ *  offline, stays sharp at any zoom, and needs no mermaid to be viewable.
+ *
+ *  No <title> and no lang on <html>: both are copy, and this file only ever
+ *  gets the source — a page without a title makes the browser show the file
+ *  name in the tab, which is the honest label here. */
+function htmlPage(svg) {
+  return `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  html, body { margin: 0; }
+  /* Centred, and shrinking to the window instead of overflowing it: the
+     diagram's own max-width is in the SVG, so a phone gets a smaller picture
+     rather than a horizontal scrollbar. */
+  body {
+    background: #ffffff;
+    box-sizing: border-box;
+    display: grid;
+    min-height: 100vh;
+    padding: 24px;
+    place-items: center;
+  }
+  svg { height: auto; max-width: 100%; }
+</style>
+</head>
+<body>
+${svg}
+</body>
+</html>
+`;
+}
+
 export async function copySvg(code) {
   await navigator.clipboard.writeText(await svgMarkup(code));
 }
@@ -53,6 +89,11 @@ export async function copySvg(code) {
 export async function downloadSvg(code) {
   const svg = await svgMarkup(code);
   download(new Blob([svg], { type: "image/svg+xml;charset=utf-8" }), "diagram.svg");
+}
+
+export async function downloadHtml(code) {
+  const svg = await svgMarkup(code);
+  download(new Blob([htmlPage(svg)], { type: "text/html;charset=utf-8" }), "diagram.html");
 }
 
 export async function downloadPng(code, scale = 2) {

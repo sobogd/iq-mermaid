@@ -429,6 +429,10 @@ export default function EditorShell({ t, authed, onAuthed }) {
     { icon: "📋", label: t.text.copySvg, run: () => runExport(exporters.copySvg, t.text.statusSvgCopied, "Copy svg") },
     { icon: "💾", label: t.text.downloadSvg, run: () => runExport(exporters.downloadSvg, t.text.statusSaved, "Download svg") },
     { icon: "🖼️", label: t.text.downloadPng, run: () => runExport(exporters.downloadPng, t.text.statusSaved, "Download png") },
+    // Appended last on purpose: onDownload below picks these rows by index, so
+    // inserting anywhere earlier would silently repoint the taskbar's Download
+    // menu at the wrong exporter.
+    { icon: "🌐", label: t.text.downloadHtml, run: () => runExport(exporters.downloadHtml, t.text.statusSaved, "Download html") },
   ];
 
   // The taskbar (a separate tree) acts on the open diagram through window

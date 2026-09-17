@@ -97,6 +97,7 @@
     "copySvg": "SVG másolása",
     "downloadSvg": "SVG letöltése",
     "downloadPng": "PNG letöltése",
+    "downloadHtml": "HTML letöltése",
     "statusSvgCopied": "SVG másolva",
     "statusMermaidCopied": "Mermaid másolva",
     "statusSaved": "Mentve",

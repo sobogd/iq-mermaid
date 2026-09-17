@@ -97,6 +97,7 @@
     "copySvg": "SVG 복사",
     "downloadSvg": "SVG 다운로드",
     "downloadPng": "PNG 다운로드",
+    "downloadHtml": "HTML 다운로드",
     "statusSvgCopied": "SVG 복사됨",
     "statusMermaidCopied": "mermaid 복사됨",
     "statusSaved": "저장됨",

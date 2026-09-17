@@ -97,6 +97,7 @@
     "copySvg": "Kopiraj SVG",
     "downloadSvg": "Preuzmi SVG",
     "downloadPng": "Preuzmi PNG",
+    "downloadHtml": "Preuzmi HTML",
     "statusSvgCopied": "SVG kopiran",
     "statusMermaidCopied": "Mermaid kopiran",
     "statusSaved": "Spremljeno",

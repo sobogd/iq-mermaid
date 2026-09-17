@@ -129,6 +129,8 @@ export interface EditorTexts {
     copySvg: string;
     downloadSvg: string;
     downloadPng: string;
+    /** Standalone one-file HTML page with the diagram inlined. */
+    downloadHtml: string;
     statusSvgCopied: string;
     statusMermaidCopied: string;
     statusSaved: string;

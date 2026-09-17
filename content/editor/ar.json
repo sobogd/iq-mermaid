@@ -97,6 +97,7 @@
     "copySvg": "نسخ SVG",
     "downloadSvg": "تنزيل SVG",
     "downloadPng": "تنزيل PNG",
+    "downloadHtml": "تنزيل HTML",
     "statusSvgCopied": "تم نسخ SVG",
     "statusMermaidCopied": "تم نسخ mermaid",
     "statusSaved": "تم الحفظ",
