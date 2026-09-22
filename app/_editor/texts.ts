@@ -7,7 +7,10 @@
 export interface EditorTexts {
   /** Title of the logo link back to the marketing site. */
   backToSite: string;
-  /** The email-OTP sign-in gate shown before the editor unlocks. */
+  /** The email-OTP sign-in gate. It is no longer the door to the editor —
+   *  everything in the editor works signed out. It is raised only when an
+   *  anonymous visitor asks for a second document, which is the one thing an
+   *  account is needed for. */
   auth: {
     title: string;
     subtitle: string;
@@ -121,6 +124,12 @@ export interface EditorTexts {
     deleteConfirm: string;
     /** Fallback title for a document with nothing recognisable drawn yet. */
     untitled: string;
+    /** Anonymous state: one line under the document list's heading, saying
+     *  where the diagram actually lives (this browser, not an account). */
+    anonNote: string;
+    /** Anonymous state: the document list's last row, offering the account
+     *  that lifts the one-document limit. Opens the sign-in gate. */
+    anonMore: string;
   };
   text: {
     copyMermaid: string;

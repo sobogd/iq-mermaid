@@ -88,6 +88,8 @@
     "delete": "Slett dokument",
     "deleteConfirm": "Slette dette dokumentet?",
     "untitled": "Uten navn",
+    "anonNote": "Diagrammet ditt lagres bare i denne nettleseren.",
+    "anonMore": "Logg inn for å lagre flere diagrammer",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Eksporten mislyktes"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Helt gratis — uten betalte planer eller kort. Bare en e-post for å lagre, synkronisere og eksportere diagrammer.",
+    "title": "Logg inn for å lagre flere diagrammer",
+    "subtitle": "Helt gratis — uten betalte planer eller kort. Logg inn for å beholde mer enn ett diagram og synkronisere dem på tvers av enhetene dine.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

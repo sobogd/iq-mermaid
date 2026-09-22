@@ -26,10 +26,13 @@ async function postJson(path, body) {
   return { ok: res.ok && data?.ok !== false, error: data?.error ?? null, status: res.status };
 }
 
-// Sign-in gate as a blocking modal over the editor: a dimmed backdrop and one
-// small card — email → 6-digit code. There is deliberately no way to dismiss
-// it into the editor: using the editor requires signing in. `onBack` (optional)
-// goes back to the content window instead. On success `onAuthed(email)` hands
+// Sign-in gate as a modal over the editor: a dimmed backdrop and one small
+// card — email → 6-digit code. It is no longer the door to the editor: an
+// anonymous visitor works fully signed out, in a single document kept in their
+// browser, and this gate is raised only when they ask for a second one. So
+// dismissing it back to the content window (`onBack`, optional) is a normal
+// outcome, not an escape hatch — nothing is lost by taking it, the document
+// they were drawing stays where it is. On success `onAuthed(email)` hands
 // control back to the caller.
 export default function AuthGate({ t, onAuthed, onBack }) {
   const [step, setStep] = useState("email"); // "email" | "code"

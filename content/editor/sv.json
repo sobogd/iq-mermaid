@@ -88,6 +88,8 @@
     "delete": "Ta bort dokument",
     "deleteConfirm": "Ta bort det här dokumentet?",
     "untitled": "Namnlös",
+    "anonNote": "Ditt diagram sparas bara i den här webbläsaren.",
+    "anonMore": "Logga in för att spara fler diagram",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Exporten misslyckades"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Helt gratis — utan betalda planer eller kort. Bara ett mejl för att spara, synkronisera och exportera diagram.",
+    "title": "Logga in för att spara fler diagram",
+    "subtitle": "Helt gratis — utan betalda planer eller kort. Logga in för att behålla mer än ett diagram och synkronisera dem mellan dina enheter.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

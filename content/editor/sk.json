@@ -88,6 +88,8 @@
     "delete": "Odstrániť dokument",
     "deleteConfirm": "Odstrániť tento dokument?",
     "untitled": "Bez názvu",
+    "anonNote": "Schéma sa ukladá len v tomto prehliadači.",
+    "anonMore": "Prihláste sa, aby ste mohli ukladať viac schém",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Export zlyhal"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Úplne zadarmo — bez platených plánov a kariet. Stačí e-mail na ukladanie, synchronizáciu a export schém.",
+    "title": "Prihláste sa, aby ste mohli ukladať viac schém",
+    "subtitle": "Úplne zadarmo — bez platených plánov a kariet. Prihláste sa, aby ste si mohli ponechať viac ako jednu schému a synchronizovať ich medzi zariadeniami.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Ücretsiz Online Mermaid Editör — Diyagram Aracı",
-    "description": "Ücretsiz çevrimiçi mermaid editörü: çizin veya mermaid kodu yazın — senkron. Yalnızca e-postayla giriş. SVG/PNG dışa aktarım.",
-    "ogTitle": "Mermaid Live Editor — ücretsiz, çevrimiçi, sadece e-posta",
+    "description": "Ücretsiz canlı mermaid editörü: diyagramı görsel olarak çizin ya da mermaid kodu yazın — ikisi senkron kalır. Kayıt yok, SVG veya PNG olarak dışa aktarın.",
+    "ogTitle": "Canlı mermaid editörü — ücretsiz, çevrimiçi, kayıt yok",
     "ogDescription": "Tuval üzerinde diyagram çizin veya mermaid kodu yazın. İki görünüm senkronize kalır. SVG, PNG, .mmd veya Markdown olarak dışa aktarın.",
     "twitterTitle": "Ücretsiz mermaid canlı editör",
-    "twitterDescription": "Görsel tuval ve mermaid kodu yan yana. Ücretsiz, ücretli plan yok — giriş yalnızca e-postayla."
+    "twitterDescription": "Görsel tuval ve mermaid kodu yan yana. Ücretsiz, ödeme duvarı yok ve kayıt yok."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Sonsuza kadar ücretsiz",
-    "badgeNoSignup": "Ücretsiz — sadece e-posta",
+    "badgeNoSignup": "Ücretsiz — kayıt yok",
     "badgeDiagrams": "8 diyagram türü",
     "title": "Ücretsiz online mermaid editör,",
     "titleAccent": "görsel ve kod aynı ekranda",
@@ -61,8 +61,8 @@
       "sub": "Dikdörtgen, yuvarlak köşeli, hap, daire, eşkenar dörtgen, veritabanı, altıgen ve daha fazlası, tek tıkla."
     },
     {
-      "title": "Ücretsiz, sadece e-posta",
-      "sub": "Deneme sürümü veya dışa aktarma filigranı yok — diyagramları kaydetmek için yalnızca e-posta yeterli."
+      "title": "Ücretsiz, kayıt yok",
+      "sub": "Deneme sürümü veya filigran yok — editör anında açılır. Yalnızca birden fazla diyagram istiyorsanız giriş yapın."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "İlerledikçe kaydedilir",
-          "sub": "Diyagramınız düzenlerken otomatik olarak hesabınıza kaydedilir — sekmeyi kapatın ve herhangi bir cihazdan geri dönün."
+          "sub": "Diyagram siz düzenlerken tarayıcınıza otomatik kaydedilir. Giriş yaparsanız hesabınıza kaydedilir ve sizi her cihazda takip eder."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Tarayıcınızda işlenir",
-          "sub": "İşleme tarayıcınızda gerçekleşir; kaydedilen diyagramlar hesabınızda durur ve her cihazdan oradadır."
+          "sub": "Görselleştirme tarayıcınızda yapılır; hesabınız yoksa diyagram tarayıcıdan hiç çıkmaz, hesabınız varsa kaydedilen belge sizi her cihazda takip eder."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Fiyat",
-        "us": "Ücretsiz — sadece e-posta",
+        "us": "Ücretsiz — e-posta bile gerekmez.",
         "them": "Birkaç diyagramla sınırlı ücretsiz katman, dışa aktarma veya işbirliği ise abonelik arkasında."
       },
       {
         "title": "Veriler nerede tutulur",
-        "us": "Hesabınızda — giriş için yalnızca bir e-posta yeterli ve diyagramlarınız her cihazda sizinle.",
+        "us": "Tarayıcınızda ya da sizi her cihazda takip etmesini istiyorsanız hesabınızda.",
         "them": "Birinin sunucusundaki bir hesap, diyagramlarınız ona bağlı."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Mermaid editörü",
     "headingAccent": "soruları",
-    "sub": "Başlamak için yalnızca bir e-posta yeter.",
+    "sub": "Başlamak için tek gereken sayfayı açmak.",
     "items": [
       {
         "q": "Mermaid nedir?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Bu mermaid editörü gerçekten ücretsiz mi?",
-        "a": "Evet. SVG ve PNG dışa aktarım dahil tüm özellikler ücretsizdir. Giriş için yalnızca bir e-posta gerekir — ücretli plan veya gizli kısıtlama yoktur."
+        "a": "Evet. SVG ve PNG dışa aktarma dahil her özellik ücretsizdir ve editörü hiçbir şey oluşturmadan kullanabilirsiniz. İsteğe bağlı ücretsiz bir hesap daha fazla kayıtlı diyagram ve cihazlar arası eşitleme ekler — ücretli plan yok ve hiçbir şey esirgenmez."
       },
       {
         "q": "Mermaid sözdizimini bilmem gerekiyor mu?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Diyagramım nerede saklanıyor?",
-        "a": "Diyagramlarınız hesabınıza kaydedilir, böylece geri döndüğünüzde her cihazdan oradadırlar. Yerel bir kopya istiyorsanız kaynağı dışa aktarın."
+        "a": "Hesap yoksa tek diyagramınız tarayıcıya kaydedilir, böylece aynı cihazda geri döndüğünüzde oradadır. Giriş yaparsanız hesabınıza kaydedilir ve başka bir cihaza taşınabilir. Kendi kopyanızı istiyorsanız kaynağı dışa aktarın."
       },
       {
         "q": "Var olan bir mermaid diyagramını yapıştırabilir miyim?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Editörü açın.",
-    "headingAccent": "Ücretsiz — sadece e-posta",
+    "headingAccent": "Ücretsiz — kayıt yok.",
     "sub": "Boş bir tuval, bir kod sekmesi ve her dışa aktarma seçeneği — ücretsiz, tarayıcınızda, şimdi.",
     "ctaLabel": "Editörü aç"
   },

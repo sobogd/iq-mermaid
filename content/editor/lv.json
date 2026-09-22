@@ -88,6 +88,8 @@
     "delete": "Dzēst dokumentu",
     "deleteConfirm": "Dzēst šo dokumentu?",
     "untitled": "Bez nosaukuma",
+    "anonNote": "Diagramma tiek saglabāta tikai šajā pārlūkā.",
+    "anonMore": "Piesakieties, lai saglabātu vairāk diagrammu",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Eksportēšana neizdevās"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Pilnīgi bez maksas — bez maksas plāniem un kartēm. Pietiek e-pasta, lai saglabātu, sinhronizētu un eksportētu diagrammas.",
+    "title": "Piesakieties, lai saglabātu vairāk diagrammu",
+    "subtitle": "Pilnīgi bez maksas — bez maksas plāniem un kartēm. Piesakieties, lai saglabātu vairāk nekā vienu diagrammu un sinhronizētu tās visās ierīcēs.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

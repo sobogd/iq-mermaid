@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid Editor Online – Kostenloser Diagramm-Editor",
-    "description": "Kostenloser Mermaid-Editor online: zeichnen oder Mermaid-Code schreiben — synchron. Anmeldung nur mit einer E-Mail. Export als SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — kostenlos, online, nur eine E-Mail",
+    "description": "Kostenloser Live-Editor für mermaid: Zeichne ein Diagramm visuell oder schreibe mermaid-Code — beides bleibt synchron. Keine Anmeldung, Export nach SVG oder PNG.",
+    "ogTitle": "Live-Editor für mermaid — kostenlos, online, ohne Anmeldung",
     "ogDescription": "Diagramme auf einer Zeichenfläche erstellen oder Mermaid-Code schreiben. Beide Ansichten bleiben synchron. Export als SVG, PNG, .mmd oder Markdown.",
     "twitterTitle": "Kostenloser Mermaid Live Editor",
-    "twitterDescription": "Visuelle Leinwand und Mermaid-Code nebeneinander. Kostenlos, ohne Bezahlung — anmelden nur mit einer E-Mail."
+    "twitterDescription": "Visuelle Leinwand und mermaid-Code nebeneinander. Kostenlos, ohne Paywall und ohne Anmeldung."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Für immer kostenlos",
-    "badgeNoSignup": "Kostenlos — nur eine E-Mail",
+    "badgeNoSignup": "Kostenlos — ohne Anmeldung",
     "badgeDiagrams": "8 Diagrammtypen",
     "title": "Mermaid Live Editor,",
     "titleAccent": "visuell und Code an einem Ort",
@@ -61,8 +61,8 @@
       "sub": "Rechteck, abgerundet, Pille, Kreis, Raute, Datenbank, Sechseck und mehr, jede mit einem Klick."
     },
     {
-      "title": "Kostenlos, nur E-Mail",
-      "sub": "Keine Testversion, kein Wasserzeichen beim Export – zum Speichern Ihrer Diagramme reicht eine E-Mail."
+      "title": "Kostenlos, ohne Anmeldung",
+      "sub": "Keine Testversion, kein Wasserzeichen — der Editor öffnet sofort. Melde dich nur an, wenn du mehr als ein Diagramm möchtest."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Läuft automatisch mit",
-          "sub": "Dein Diagramm wird beim Bearbeiten automatisch in deinem Konto gespeichert — schließe den Tab und hol es dir auf jedem Gerät zurück."
+          "sub": "Dein Diagramm speichert sich beim Bearbeiten automatisch im Browser. Melde dich an, dann liegt es in deinem Konto und folgt dir auf jedes Gerät."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Wird in deinem Browser gerendert",
-          "sub": "Das Rendern passiert im Browser; gespeicherte Diagramme liegen in Ihrem Konto und sind von jedem Gerät aus da."
+          "sub": "Das Rendern passiert in deinem Browser; ohne Konto verlässt das Diagramm ihn nie, mit Konto folgt dir das gespeicherte Dokument auf jedes Gerät."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Preis",
-        "us": "Kostenlos — nur eine E-Mail",
+        "us": "Kostenlos — nicht einmal eine E-Mail.",
         "them": "Kostenlose Stufe auf wenige Diagramme begrenzt, Export oder Zusammenarbeit hinter einem Abo."
       },
       {
         "title": "Wo die Daten liegen",
-        "us": "In deinem Konto — nur eine E-Mail zum Anmelden, und deine Diagramme sind auf jedem Gerät da.",
+        "us": "In deinem Browser oder in deinem Konto, wenn es dir auf jedes Gerät folgen soll.",
         "them": "Ein Konto auf irgendjemandes Server, mit deinen Diagrammen daran hängend."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Mermaid-Editor",
     "headingAccent": "Fragen",
-    "sub": "Zum Loslegen reicht nur eine E-Mail.",
+    "sub": "Zum Anfangen musst du nur die Seite öffnen.",
     "items": [
       {
         "q": "Was ist Mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Ist dieser Mermaid-Editor wirklich kostenlos?",
-        "a": "Ja. Alle Funktionen, einschließlich SVG- und PNG-Export, sind kostenlos. Sie brauchen nur eine E-Mail zur Anmeldung — es gibt keinen Bezahltarif und nichts ist versteckt."
+        "a": "Ja. Jede Funktion, auch der Export nach SVG und PNG, ist kostenlos, und du kannst den Editor nutzen, ohne irgendetwas anzulegen. Ein optionales kostenloses Konto fügt mehr gespeicherte Diagramme und Synchronisierung zwischen Geräten hinzu — es gibt keinen bezahlten Tarif und nichts wird zurückgehalten."
       },
       {
         "q": "Muss ich die Mermaid-Syntax kennen?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Wo wird mein Diagramm gespeichert?",
-        "a": "Ihre Diagramme werden in Ihrem Konto gespeichert und sind da, wann immer Sie zurückkommen — auf jedem Gerät. Exportieren Sie den Quelltext, wenn Sie eine lokale Kopie möchten."
+        "a": "Ohne Konto wird dein eines Diagramm im Browser gespeichert und ist da, wenn du auf demselben Gerät zurückkommst. Melde dich an, dann liegt es in deinem Konto und kann dir auf ein anderes Gerät folgen. Exportiere den Quelltext, wenn du eine eigene Kopie möchtest."
       },
       {
         "q": "Kann ich ein bestehendes Mermaid-Diagramm einfügen?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Editor öffnen.",
-    "headingAccent": "Kostenlos — nur eine E-Mail",
+    "headingAccent": "Kostenlos — ohne Anmeldung.",
     "sub": "Eine leere Zeichenfläche, ein Code-Tab und jede Exportoption — kostenlos, in deinem Browser, sofort.",
     "ctaLabel": "Editor öffnen"
   },

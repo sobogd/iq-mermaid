@@ -88,6 +88,8 @@
     "delete": "Supprimer le document",
     "deleteConfirm": "Supprimer ce document ?",
     "untitled": "Sans titre",
+    "anonNote": "Votre diagramme n'est enregistré que dans ce navigateur.",
+    "anonMore": "Se connecter pour enregistrer plus de diagrammes",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Échec de l'export"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Entièrement gratuit — sans formule payante ni carte bancaire. Un simple e-mail pour enregistrer, synchroniser et exporter vos schémas.",
+    "title": "Connectez-vous pour enregistrer plus de diagrammes",
+    "subtitle": "Entièrement gratuit — sans formule payante ni carte bancaire. Connectez-vous pour conserver plus d'un diagramme et les synchroniser sur tous vos appareils.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

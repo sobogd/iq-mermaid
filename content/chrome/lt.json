@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid Redaktorius Internetu — Nemokamas Diagramų Kūrimas",
-    "description": "Nemokamas mermaid redaktorius: pieškite arba rašykite mermaid kodą — sinchronizuota. Prisijungti užtenka el. pašto. Eksportas SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — nemokama, internetu, užtenka el. pašto",
+    "description": "Nemokamas mermaid redaktorius: pieškite diagramą vizualiai arba rašykite kodą — abu sinchronizuojasi. Be registracijos, eksportuokite į SVG ar PNG.",
+    "ogTitle": "mermaid tiesioginis redaktorius — nemokamai, internete, be registracijos",
     "ogDescription": "Piešk diagramas ekrane arba rašyk mermaid kodą. Abu vaizdai sinchronizuoti. Eksportuok į SVG, PNG, .mmd arba Markdown.",
     "twitterTitle": "Nemokamas mermaid redaktorius internetu",
-    "twitterDescription": "Vizuali drobė ir mermaid kodas greta. Nemokama be mokamo plano — prisijungti tik el. paštu."
+    "twitterDescription": "Vizuali drobė ir mermaid kodas greta. Nemokamai, be mokėjimo sienos ir be registracijos."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Amžinai nemokama",
-    "badgeNoSignup": "Nemokama — tik el. paštas",
+    "badgeNoSignup": "Nemokamai — be registracijos",
     "badgeDiagrams": "8 diagramų tipai",
     "title": "Nemokamas mermaid redaktorius internete,",
     "titleAccent": "vizualus diagramų kūrimas ir kodas kartu",
@@ -61,8 +61,8 @@
       "sub": "Stačiakampis, suapvalintas, piliulė, apskritimas, rombas, duomenų bazė, šešiakampis ir kitos — po vieną spustelėjimą."
     },
     {
-      "title": "Nemokama — tik paštas",
-      "sub": "Be bandomojo laikotarpio ir vandens ženklo eksportuojant — diagramoms išsaugoti pakanka el. pašto."
+      "title": "Nemokamai, be registracijos",
+      "sub": "Be bandomojo laikotarpio ir vandens ženklo — redaktorius atsidaro iš karto. Prisijunkite tik jei norite daugiau nei vienos diagramos."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Išsaugoma savaime",
-          "sub": "Jūsų diagrama redaguojant automatiškai įrašoma į jūsų paskyrą — uždarykite skirtuką ir grįžkite prie jos iš bet kurio įrenginio."
+          "sub": "Redaguojant diagrama automatiškai įrašoma naršyklėje. Prisijungus ji įrašoma jūsų paskyroje ir jus lydi visuose įrenginiuose."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Atvaizduojama jūsų naršyklėje",
-          "sub": "Atvaizdavimas vyksta jūsų naršyklėje; išsaugotos diagramos gyvena jūsų paskyroje ir pasiekiamos iš bet kurio įrenginio."
+          "sub": "Atvaizdavimas vyksta jūsų naršyklėje; be paskyros diagrama jos niekada nepalieka, o su paskyra išsaugotas dokumentas jus lydi bet kuriame įrenginyje."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Kaina",
-        "us": "Nemokama — tik el. paštas",
+        "us": "Nemokamai — net el. pašto nereikia.",
         "them": "Nemokamas planas ribotas iki kelių diagramų, o eksportas ar bendradarbiavimas — už prenumeratos."
       },
       {
         "title": "Kur saugomi duomenys",
-        "us": "Jūsų paskyroje — prisijungti užtenka el. pašto, o diagramos pasiekiamos iš bet kurio įrenginio.",
+        "us": "Jūsų naršyklėje arba paskyroje, jei norite, kad jus lydėtų bet kuriame įrenginyje.",
         "them": "Paskyra kažkieno serveryje, prie kurios prisegtos tavo diagramos."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Mermaid redaktoriaus",
     "headingAccent": "klausimai",
-    "sub": "Norint pradėti pakanka el. pašto.",
+    "sub": "Norint pradėti, užtenka atidaryti puslapį.",
     "items": [
       {
         "q": "Kas yra mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Ar šis mermaid redaktorius tikrai nemokamas?",
-        "a": "Taip. Visos funkcijos, įskaitant SVG ir PNG eksportą, yra nemokamos. Prisijungti užtenka el. pašto — nėra mokamo plano ar paslėptų apribojimų."
+        "a": "Taip. Visos funkcijos, įskaitant eksportą į SVG ir PNG, nemokamos, o redaktorių galite naudoti nieko nekurdami. Pasirinktinė nemokama paskyra prideda daugiau išsaugotų diagramų ir sinchronizavimą tarp įrenginių — mokamo plano nėra ir nieko neapribojame."
       },
       {
         "q": "Ar reikia mokėti mermaid sintaksę?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Kur saugoma mano diagrama?",
-        "a": "Jūsų diagramos saugomos paskyroje, todėl jos laukia, kai grįšite — iš bet kurio įrenginio. Eksportuokite šaltinį, jei norite vietinės kopijos."
+        "a": "Be paskyros vienintelė diagrama saugoma naršyklėje, tad ji bus ten, kai grįšite tame pačiame įrenginyje. Prisijungus ji saugoma paskyroje ir gali jus lydėti kitame įrenginyje. Eksportuokite šaltinį, jei norite savo kopijos."
       },
       {
         "q": "Ar galiu įklijuoti jau turimą mermaid diagramą?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Atverk redaktorių.",
-    "headingAccent": "Nemokama — tik el. paštas",
+    "headingAccent": "Nemokamai — be registracijos.",
     "sub": "Tuščias darbalaukis, kodo skirtukas ir visos eksporto galimybės — nemokamai, naršyklėje, dabar.",
     "ctaLabel": "Atverti redaktorių"
   },

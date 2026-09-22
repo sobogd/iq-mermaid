@@ -88,6 +88,8 @@
     "delete": "Document verwijderen",
     "deleteConfirm": "Dit document verwijderen?",
     "untitled": "Naamloos",
+    "anonNote": "Je diagram wordt alleen in deze browser opgeslagen.",
+    "anonMore": "Log in om meer diagrammen op te slaan",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Exporteren mislukt"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Helemaal gratis — zonder betaald abonnement of creditcard. Alleen een e-mail om diagrammen op te slaan, te synchroniseren en te exporteren.",
+    "title": "Log in om meer diagrammen op te slaan",
+    "subtitle": "Helemaal gratis — zonder betaald abonnement of creditcard. Log in om meer dan één diagram te bewaren en ze op al je apparaten te synchroniseren.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

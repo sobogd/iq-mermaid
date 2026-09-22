@@ -88,6 +88,8 @@
     "delete": "Dokumentum törlése",
     "deleteConfirm": "Törlöd ezt a dokumentumot?",
     "untitled": "Névtelen",
+    "anonNote": "A diagram csak ebben a böngészőben van mentve.",
+    "anonMore": "Jelentkezz be több diagram mentéséhez",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Az exportálás nem sikerült"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Teljesen ingyenes — fizetős csomagok és kártyák nélkül. Csak egy e-mail az ábrák mentéséhez, szinkronizálásához és exportálásához.",
+    "title": "Jelentkezz be több diagram mentéséhez",
+    "subtitle": "Teljesen ingyenes — fizetős csomagok és kártyák nélkül. Jelentkezz be, hogy egynél több diagramot tarthass meg, és szinkronizálhasd őket az eszközeid között.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

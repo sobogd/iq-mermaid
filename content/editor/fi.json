@@ -88,6 +88,8 @@
     "delete": "Poista asiakirja",
     "deleteConfirm": "Poistetaanko tämä asiakirja?",
     "untitled": "Nimetön",
+    "anonNote": "Kaavio tallennetaan vain tähän selaimeen.",
+    "anonMore": "Kirjaudu sisään tallentaaksesi useampia kaavioita",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Vienti epäonnistui"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Täysin ilmainen — ei maksullisia tasoja eikä kortteja. Pelkkä sähköposti kaavioiden tallentamiseen, synkronointiin ja vientiin.",
+    "title": "Kirjaudu sisään tallentaaksesi useampia kaavioita",
+    "subtitle": "Täysin ilmainen — ei maksullisia tasoja eikä kortteja. Kirjaudu sisään, jos haluat säilyttää useamman kuin yhden kaavion ja synkronoida ne laitteidesi välillä.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

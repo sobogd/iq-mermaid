@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Editor Mermaid Online Gratuit — Creare Diagrame",
-    "description": "Editor mermaid online gratuit: desenați sau scrieți cod mermaid — sincronizat. Autentificare doar cu un e-mail. Export SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — gratuit, online, doar un e-mail",
+    "description": "Editor mermaid live gratuit: desenează o diagramă vizual sau scrie cod mermaid — ambele rămân sincronizate. Fără cont, exportă în SVG sau PNG.",
+    "ogTitle": "Editor mermaid live — gratuit, online, fără cont",
     "ogDescription": "Desenezi diagrame pe o pânză sau scrii cod mermaid. Ambele vederi rămân sincronizate. Export în SVG, PNG, .mmd sau Markdown.",
     "twitterTitle": "Editor mermaid live gratuit",
-    "twitterDescription": "Canvas vizual și cod mermaid unul lângă altul. Gratuit, fără plan cu plată — autentificare doar cu e-mail."
+    "twitterDescription": "Pânză vizuală și cod mermaid, alături. Gratuit, fără paywall și fără cont."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Gratuit pentru totdeauna",
-    "badgeNoSignup": "Gratuit — doar un e-mail",
+    "badgeNoSignup": "Gratuit — fără cont",
     "badgeDiagrams": "8 tipuri de diagrame",
     "title": "Editor mermaid online,",
     "titleAccent": "vizual și cod în același loc",
@@ -61,8 +61,8 @@
       "sub": "Dreptunghi, rotunjit, pilulă, cerc, romb, bază de date, hexagon și restul, la un click distanță."
     },
     {
-      "title": "Gratuit, doar e-mail",
-      "sub": "Fără perioadă de probă sau filigran la export — un simplu e-mail este suficient pentru a salva schemele."
+      "title": "Gratuit, fără cont",
+      "sub": "Fără perioadă de probă sau filigran — editorul se deschide imediat. Autentifică-te doar dacă vrei mai multe diagrame."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Salvat pe măsură ce lucrezi",
-          "sub": "Diagrama ta este salvată automat în contul tău în timp ce editezi — închide fila și revino la ea de pe orice dispozitiv."
+          "sub": "Diagrama se salvează automat în browser în timp ce editezi. Dacă te autentifici, se salvează în contul tău și te urmează pe orice dispozitiv."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Se randează în browserul tău",
-          "sub": "Randarea are loc în browser; diagramele salvate trăiesc în contul tău și sunt acolo de pe orice dispozitiv."
+          "sub": "Randarea are loc în browserul tău; fără cont diagrama nu îl părăsește niciodată, iar cu cont documentul salvat te urmează pe orice dispozitiv."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Preț",
-        "us": "Gratuit — doar un e-mail",
+        "us": "Gratuit — nici măcar un e-mail.",
         "them": "Nivel gratuit limitat la câteva diagrame, cu export sau colaborare în spatele unui abonament."
       },
       {
         "title": "Unde locuiesc datele",
-        "us": "În contul tău — un simplu e-mail pentru autentificare, iar diagramele tale te urmează pe orice dispozitiv.",
+        "us": "În browserul tău sau în contul tău, dacă vrei să te urmeze pe orice dispozitiv.",
         "them": "Un cont pe serverul cuiva, cu diagramele tale atașate de el."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Întrebări despre editorul",
     "headingAccent": "mermaid",
-    "sub": "Pentru a începe este suficient un e-mail.",
+    "sub": "Ca să începi, e suficient să deschizi pagina.",
     "items": [
       {
         "q": "Ce este mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Este acest editor mermaid online chiar gratuit?",
-        "a": "Da. Toate funcțiile, inclusiv exportul SVG și PNG, sunt gratuite. Îți trebuie doar un e-mail pentru autentificare — nu există plan cu plată sau restricții ascunse."
+        "a": "Da. Toate funcțiile, inclusiv exportul în SVG și PNG, sunt gratuite și poți folosi editorul fără să creezi nimic. Un cont gratuit opțional adaugă mai multe diagrame salvate și sincronizare între dispozitive — nu există plan cu plată și nimic nu este reținut."
       },
       {
         "q": "Trebuie să cunosc sintaxa mermaid?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Unde este stocată diagrama mea?",
-        "a": "Diagramele tale sunt salvate în cont, așa că sunt acolo când te întorci — de pe orice dispozitiv. Exportă sursa dacă vrei o copie locală."
+        "a": "Fără cont, singura ta diagramă este salvată în browser, deci e acolo când revii pe același dispozitiv. Dacă te autentifici, este salvată în contul tău și poate să te urmeze pe alt dispozitiv. Exportă sursa dacă vrei o copie a ta."
       },
       {
         "q": "Pot lipi o diagramă mermaid existentă?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Deschide editorul.",
-    "headingAccent": "Gratuit — doar un e-mail",
+    "headingAccent": "Gratuit — fără cont.",
     "sub": "O pânză goală, o filă de cod și toate opțiunile de export — gratuit, în browser, chiar acum.",
     "ctaLabel": "Deschide editorul"
   },

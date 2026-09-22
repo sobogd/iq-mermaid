@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Brezplačen Spletni Mermaid Urejevalnik v Živo",
-    "description": "Brezplačni mermaid urejevalnik online: rišite ali pišite mermaid kodo — sinhronizirano. Prijava samo z e-pošto. Izvoz SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — brezplačno, na spletu, samo e-pošta",
+    "description": "Brezplačen spletni urejevalnik mermaid: narišite diagram vizualno ali napišite kodo mermaid — oboje ostane sinhronizirano. Brez registracije, izvoz v SVG ali PNG.",
+    "ogTitle": "Spletni urejevalnik mermaid — brezplačno, na spletu, brez registracije",
     "ogDescription": "Nariši diagrame na platnu ali napiši mermaid kodo. Oba pogleda ostaneta usklajena. Izvozi v SVG, PNG, .mmd ali Markdown.",
     "twitterTitle": "Brezplačen mermaid urejevalnik v živo",
-    "twitterDescription": "Vizualno platno in koda mermaid eno ob drugem. Brezplačno, brez plačljivega načrta — prijava samo z e-pošto."
+    "twitterDescription": "Vizualno platno in koda mermaid drug ob drugem. Brezplačno, brez paywalla in brez registracije."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Za vedno brezplačno",
-    "badgeNoSignup": "Brezplačno — samo e-pošta",
+    "badgeNoSignup": "Brezplačno — brez registracije",
     "badgeDiagrams": "8 vrst diagramov",
     "title": "Mermaid urejevalnik v živo,",
     "titleAccent": "vizualno in koda na enem mestu",
@@ -61,8 +61,8 @@
       "sub": "Pravokotnik, zaobljen, tabletka, krog, romb, baza podatkov, šesterokotnik in drugo, vsako z enim klikom."
     },
     {
-      "title": "Brezplačno, samo e-pošta",
-      "sub": "Brez poskusnega obdobja in vodnega žiga pri izvozu — za shranjevanje diagramov zadostuje e-pošta."
+      "title": "Brezplačno, brez registracije",
+      "sub": "Brez poskusnega obdobja in vodnega žiga — urejevalnik se odpre takoj. Prijavite se le, če želite več kot en diagram."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Shranjeno sproti",
-          "sub": "Vaš diagram se med urejanjem samodejno shrani v vaš račun — zaprite zavihek in se k njemu vrnite s katere koli naprave."
+          "sub": "Diagram se med urejanjem samodejno shrani v vaš brskalnik. Če se prijavite, se shrani v vaš račun in vas spremlja na vsaki napravi."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Se izriše v vašem brskalniku",
-          "sub": "Upodabljanje poteka v vašem brskalniku; shranjeni diagrami živijo v vašem računu in so dosegljivi s katere koli naprave."
+          "sub": "Izris poteka v vašem brskalniku; brez računa diagram nikoli ne zapusti brskalnika, z računom pa vas shranjeni dokument spremlja na vsaki napravi."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Cena",
-        "us": "Brezplačno — samo e-pošta",
+        "us": "Brezplačno — niti e-pošte ne potrebujete.",
         "them": "Brezplačna raven omejena na nekaj diagramov, izvoz ali sodelovanje pa za naročnino."
       },
       {
         "title": "Kje živijo podatki",
-        "us": "V vašem računu — za prijavo zadostuje e-pošta, diagrami pa so na voljo na kateri koli napravi.",
+        "us": "V vašem brskalniku ali v vašem računu, če želite, da vas spremlja na vsaki napravi.",
         "them": "Račun na tujem strežniku, kamor so pripeti tvoji diagrami."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Vprašanja o urejevalniku",
     "headingAccent": "mermaid",
-    "sub": "Za začetek zadostuje e-pošta.",
+    "sub": "Za začetek je dovolj, da odprete stran.",
     "items": [
       {
         "q": "Kaj je mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Je ta mermaid urejevalnik res brezplačen?",
-        "a": "Da. Vse funkcije, vključno z izvozom SVG in PNG, so brezplačne. Za prijavo zadošča e-pošta — plačljivega načrta ali skritih omejitev ni."
+        "a": "Da. Vse funkcije, vključno z izvozom v SVG in PNG, so brezplačne in urejevalnik lahko uporabljate, ne da bi karkoli ustvarili. Neobvezen brezplačen račun doda več shranjenih diagramov in sinhronizacijo med napravami — plačljivega načrta ni in nič ni zadržano."
       },
       {
         "q": "Ali moram poznati sintakso mermaid?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Kje je shranjen moj diagram?",
-        "a": "Vaši diagrami so shranjeni v račun, zato so tam, ko se vrnete — s katere koli naprave. Če želite lokalno kopijo, izvozite izvorno kodo."
+        "a": "Brez računa se vaš edini diagram shrani v brskalnik, zato je tam, ko se vrnete na isto napravo. Če se prijavite, se shrani v vaš račun in vas lahko spremlja na drugo napravo. Izvozite izvorno kodo, če želite svojo kopijo."
       },
       {
         "q": "Lahko prilepim obstoječi mermaid diagram?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Odpri urejevalnik.",
-    "headingAccent": "Brezplačno — samo e-pošta",
+    "headingAccent": "Brezplačno — brez registracije.",
     "sub": "Prazno platno, zavihek s kodo in vse možnosti izvoza — brezplačno, v brskalniku, takoj.",
     "ctaLabel": "Odpri urejevalnik"
   },

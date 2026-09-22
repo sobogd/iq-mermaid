@@ -88,6 +88,8 @@
     "delete": "ドキュメントを削除",
     "deleteConfirm": "このドキュメントを削除しますか？",
     "untitled": "無題",
+    "anonNote": "図はこのブラウザにのみ保存されます。",
+    "anonMore": "ログインして図をさらに保存",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "エクスポートに失敗しました"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "完全無料 — 有料プランもカードも不要。メールだけで図の保存・同期・書き出しができます。",
+    "title": "複数の図を保存するにはログイン",
+    "subtitle": "完全無料 — 有料プランもカードも不要です。ログインすると、複数の図を保存して端末間で同期できます。",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

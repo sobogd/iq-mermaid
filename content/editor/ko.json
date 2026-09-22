@@ -88,6 +88,8 @@
     "delete": "문서 삭제",
     "deleteConfirm": "이 문서를 삭제할까요?",
     "untitled": "제목 없음",
+    "anonNote": "다이어그램은 이 브라우저에만 저장됩니다.",
+    "anonMore": "로그인하고 다이어그램 더 저장하기",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "내보내기 실패"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "완전 무료 — 유료 플랜도 카드도 필요 없어요. 이메일만으로 다이어그램을 저장·동기화·내보낼 수 있습니다.",
+    "title": "다이어그램을 더 저장하려면 로그인하세요",
+    "subtitle": "완전 무료 — 유료 플랜도 카드도 필요 없어요. 로그인하면 다이어그램을 여러 개 보관하고 기기 간에 동기화할 수 있습니다.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

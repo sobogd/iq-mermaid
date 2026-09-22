@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Ókeypis mermaid ritill á netinu — skýringarmyndir",
-    "description": "Ókeypis mermaid-ritill á netinu: teiknaðu eða skrifaðu mermaid-kóða — samstillt. Innskráning bara með netfangi. Flytja út SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — ókeypis, á netinu, bara netfang",
+    "description": "Ókeypis lifandi mermaid-ritill: teiknaðu skýringarmynd sjónrænt eða skrifaðu mermaid-kóða — hvort tveggja helst í takt. Engin skráning, flyttu út sem SVG eða PNG.",
+    "ogTitle": "Lifandi mermaid-ritill — ókeypis, á netinu, engin skráning",
     "ogDescription": "Teiknaðu skýringarmyndir á striga eða skrifaðu mermaid kóða. Hvort tveggja helst í samræmi. Flyttu út sem SVG, PNG, .mmd eða Markdown.",
     "twitterTitle": "Ókeypis mermaid ritill á netinu",
-    "twitterDescription": "Sjónræn striga og mermaid-kóði hlið við hlið. Ókeypis án greiðslu — innskráning bara með netfangi."
+    "twitterDescription": "Sjónrænn striga og mermaid-kóði hlið við hlið. Ókeypis, engin greiðslumúr og engin skráning."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Ókeypis að eilífu",
-    "badgeNoSignup": "Ókeypis — bara netfang",
+    "badgeNoSignup": "Ókeypis — engin skráning",
     "badgeDiagrams": "8 tegundir skýringarmynda",
     "title": "Ókeypis mermaid ritill á netinu,",
     "titleAccent": "sjónrænt og kóði á einum stað",
@@ -61,8 +61,8 @@
       "sub": "Rétthyrningur, ávalur, pilla, hringur, tígull, gagnagrunnur, sexhyrningur og fleira, einn smellur hvert."
     },
     {
-      "title": "Ókeypis, bara netfang",
-      "sub": "Engin prufutímabil eða vatnsmerki við flutning — netfang nægir til að vista skýringarmyndirnar þínar."
+      "title": "Ókeypis, engin skráning",
+      "sub": "Engin prufutímabil eða vatnsmerki — ritillinn opnast samstundis. Skráðu þig aðeins inn ef þú vilt fleiri en eina mynd."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Vistað jafnóðum",
-          "sub": "Skýringarmyndin þín er vistuð sjálfkrafa á reikninginn þinn á meðan þú vinnur — lokaðu flipanum og komdu aftur af hvaða tæki sem er."
+          "sub": "Myndin vistast sjálfkrafa í vafranum þínum meðan þú ritstýrir. Skráir þú þig inn vistast hún á reikningnum þínum og fylgir þér á öll tæki."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Birtist í vafranum þínum",
-          "sub": "Ritun fer fram í vafranum; vistuð skýringarmyndir búa í reikningnum þínum og eru tiltækar af hvaða tæki sem er."
+          "sub": "Teikningin fer fram í vafranum þínum; án reiknings yfirgefur myndin hann aldrei, og með reikningi fylgir vistað skjalið þér á öll tæki."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Verð",
-        "us": "Ókeypis — bara netfang",
+        "us": "Ókeypis — ekki einu sinni netfang.",
         "them": "Ókeypis áskrift takmörkuð við fáar skýringarmyndir, með útflutning eða samvinnu á bak við áskrift."
       },
       {
         "title": "Hvar gögnin eru geymd",
-        "us": "Á reikningnum þínum — nóg er að skrá sig inn með tölvupósti og myndirnar fylgja þér á hvaða tæki sem er.",
+        "us": "Í vafranum þínum, eða á reikningnum þínum ef þú vilt að hún fylgi þér á öll tæki.",
         "them": "Aðgangur á netþjóni einhvers annars, með skýringarmyndirnar þínar tengdar honum."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Spurningar um mermaid",
     "headingAccent": "ritilinn",
-    "sub": "Nóg netfang til að byrja.",
+    "sub": "Til að byrja þarftu bara að opna síðuna.",
     "items": [
       {
         "q": "Hvað er mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Er þessi mermaid ritill virkilega ókeypis?",
-        "a": "Já. Allir eiginleikar, þar á meðal SVG- og PNG-flutningur, eru ókeypis. Nóg er að gefa upp netfang til innskráningar — enginn greiddur pakki og ekkert falið."
+        "a": "Já. Allir eiginleikar, þar á meðal útflutningur í SVG og PNG, eru ókeypis og þú getur notað ritilinn án þess að búa til nokkuð. Valfrjáls ókeypis reikningur bætir við fleiri vistuðum myndum og samstillingu milli tækja — engin greidd áætlun er til og engu er haldið eftir."
       },
       {
         "q": "Þarf ég að kunna mermaid málskipan?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Hvar er skýringarmyndin mín geymd?",
-        "a": "Skýringarmyndirnar þínar eru vistaðar á reikninginn þinn, svo þær eru þar hvenær sem þú kemur aftur — af hvaða tæki sem er. Flyttu út grunnkóðann ef þú vilt staðbundið afrit."
+        "a": "Án reiknings vistast eina myndin þín í vafranum, svo hún er þar þegar þú kemur aftur á sama tæki. Skráir þú þig inn vistast hún á reikningnum þínum og getur fylgt þér á annað tæki. Flyttu út grunnkóðann ef þú vilt þína eigin eintök."
       },
       {
         "q": "Get ég límt inn mermaid skýringarmynd sem er þegar til?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Opnaðu ritilinn.",
-    "headingAccent": "Ókeypis — bara netfang",
+    "headingAccent": "Ókeypis — engin skráning.",
     "sub": "Auður strigi, kóðaflipi og hver einasti útflutningsmöguleiki — ókeypis, í vafranum þínum, núna.",
     "ctaLabel": "Opna ritilinn"
   },

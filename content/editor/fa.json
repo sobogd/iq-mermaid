@@ -88,6 +88,8 @@
     "delete": "حذف سند",
     "deleteConfirm": "این سند حذف شود؟",
     "untitled": "بدون عنوان",
+    "anonNote": "نمودار شما فقط در همین مرورگر ذخیره می‌شود.",
+    "anonMore": "برای ذخیره نمودارهای بیشتر وارد شوید",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "خروجی گرفتن ناموفق بود"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "کاملاً رایگان — بدون طرح پولی یا کارت. فقط یک ایمیل برای ذخیره، همگام‌سازی و خروجی نمودارها.",
+    "title": "برای ذخیره نمودارهای بیشتر وارد شوید",
+    "subtitle": "کاملاً رایگان — بدون طرح پولی یا کارت. وارد شوید تا بیش از یک نمودار را نگه دارید و آن‌ها را در همه دستگاه‌هایتان همگام کنید.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

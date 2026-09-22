@@ -88,6 +88,8 @@
     "delete": "Elimina el document",
     "deleteConfirm": "Vols eliminar aquest document?",
     "untitled": "Sense títol",
+    "anonNote": "El teu diagrama es desa només en aquest navegador.",
+    "anonMore": "Inicia sessió per desar més diagrames",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "L'exportació ha fallat"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Completament gratuït, sense plans de pagament ni targetes. Només un correu per desar, sincronitzar i exportar diagrames.",
+    "title": "Inicia sessió per desar més diagrames",
+    "subtitle": "Completament gratuït, sense plans de pagament ni targetes. Inicia sessió per desar més d'un diagrama i sincronitzar-los a tots els teus dispositius.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

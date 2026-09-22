@@ -10,12 +10,11 @@ import * as exporters from "./export";
 import { analytics } from "@/lib/analytics";
 import { isDarkTheme, subscribeTheme } from "@/lib/theme";
 import {
-  deleteDocument,
-  loadDocuments,
+  ANON_STORE,
+  SERVER_STORE,
+  clearAnonDocument,
+  loadAnonDocument,
   newDocumentId,
-  renameDocument,
-  saveCurrentDocumentId,
-  saveDocument,
 } from "./documents";
 import {
   CONTENT_OPEN_EVENT,
@@ -25,8 +24,6 @@ import {
   EDITOR_OPEN_DOCS_EVENT,
   EDITOR_NEW_DOC_EVENT,
   EDITOR_READY_EVENT,
-  EDITOR_REVEAL_EVENT,
-  hasEditorRevealed,
   isContentWindowOpen,
   publishStatus,
   requestContentOpen,
@@ -61,10 +58,15 @@ const formatDate = (ms) =>
 //
 // The editor is now the shared background layer of every marketing page, so its
 // chrome has moved out of a top header into a floating left dock (rendered via
-// a portal onto <body> so it stays above the closable content window). The
-// canvas itself is open to everyone; actions that persist or export
-// (new/open/save/copy/download) are gated on sign-in through `requireAuth`,
-// which swaps in the inline AuthGate until `onAuthed(email)` lands.
+// a portal onto <body> so it stays above the closable content window).
+//
+// Signing in is optional and buys exactly one thing: more than one document.
+// The canvas, the code sheet, export, copy and open all work signed out, and an
+// anonymous visitor works in a single document slot kept in their browser
+// (ANON_STORE). Only creating a SECOND document — or asking for more in the
+// document list — raises `requireAuth`, which swaps in the inline AuthGate
+// until `onAuthed(email)` lands, at which point that one local document is
+// handed over to the new account (handleAuthed).
 export default function EditorShell({ t, authed, onAuthed }) {
   // Gates the canvas' first mount until the boot effect below has resolved
   // which document is actually open — VisualEditor has its own localStorage
@@ -88,6 +90,21 @@ export default function EditorShell({ t, authed, onAuthed }) {
   const docSaveDebounceRef = useRef(null);
   const currentDocIdRef = useRef(null);
   const pendingAuthRef = useRef(null);
+  // The source the *starter* diagram has in this locale. "Create new" compares
+  // against it to tell an untouched slot from real work worth protecting (see
+  // requestNewDocument): replacing the starter costs nothing and must not send
+  // a brand-new visitor to a sign-in gate.
+  const seedCodeRef = useRef("");
+  // Which backend the shell writes to. An anonymous visitor gets the single
+  // browser slot, a signed-in one the account list; switching happens in place
+  // when a visitor signs in. Kept in a ref as well as in `store`, because that
+  // switch happens mid-flight (handleAuthed) while callbacks captured by the
+  // already-open AuthGate still close over the previous value.
+  const store = authed ? SERVER_STORE : ANON_STORE;
+  const storeRef = useRef(store);
+  useEffect(() => {
+    storeRef.current = store;
+  }, [store]);
   // The code as last loaded from storage. Autosave only fires when `code`
   // differs from this, so merely opening/switching a document never re-saves it
   // (which used to bump its "edited" timestamp for no reason).
@@ -111,35 +128,42 @@ export default function EditorShell({ t, authed, onAuthed }) {
   // time, or — the very first visit, or if that one was since deleted
   // elsewhere — a fresh document seeded with the same starter diagram a
   // first-time visitor has always landed on. Runs once; every later switch
-  // goes through openDocument/startNewDocument below.
+  // goes through openDocument/startNewDocument below. Which storage it reads
+  // depends on whether the visitor arrived signed in (see `store`).
   useEffect(() => {
     let cancelled = false;
     (async () => {
       let list = [];
       let lastId = null;
       try {
-        ({ docs: list, currentId: lastId } = await loadDocuments());
+        ({ docs: list, currentId: lastId } = await storeRef.current.load());
       } catch {
         // Storage unreachable — fall through to a fresh in-memory document so
         // the editor still opens instead of a blank page.
       }
       let doc = list.find((d) => d.id === lastId);
+      // The starter diagram of this locale, whether or not a document was
+      // found: "Create new" compares the open source against it to tell an
+      // untouched slot from real work (see requestNewDocument), and that
+      // comparison has to keep working after a reload, not just on the very
+      // first boot.
+      const seedCode = toMermaid(defaultState(t));
+      seedCodeRef.current = seedCode;
       // The pointer can be null (a sign-in that never edited anything further)
       // or point at a document deleted elsewhere — in both cases reopen the
       // most recently edited document instead of fabricating a new one, which
       // used to litter the account with fresh starter docs per stray boot.
       if (!doc && list.length > 0) {
         doc = list[0];
-        saveCurrentDocumentId(doc.id).catch(() => {});
+        storeRef.current.setCurrent(doc.id).catch(() => {});
       }
       if (!doc) {
         const id = newDocumentId();
-        const seedCode = toMermaid(defaultState(t));
         try {
-          // saveDocument derives the title the exact same way every later save
+          // save() derives the title the exact same way every later save
           // does, rather than a second, hand-rolled copy of that logic here.
-          list = await saveDocument(id, seedCode, t.documents.untitled);
-          await saveCurrentDocumentId(id);
+          list = await storeRef.current.save(id, seedCode, t.documents.untitled);
+          await storeRef.current.setCurrent(id);
         } catch {
           list = [{ id, title: t.documents.untitled, code: seedCode, updatedAt: Date.now() }];
         }
@@ -178,12 +202,15 @@ export default function EditorShell({ t, authed, onAuthed }) {
   // whether that change came from typing in the sheet or editing the canvas
   // — both funnel through `code`. Debounced so a fast typing burst or a drag
   // on the canvas doesn't serialise the whole document list on every frame.
+  // Writes go through storeRef, so an autosave that lands just after a sign-in
+  // goes to the account rather than back into the anonymous slot.
   useEffect(() => {
     if (!ready || !currentDocIdRef.current) return;
     clearTimeout(docSaveDebounceRef.current);
     if (code === loadedCodeRef.current) return;
     docSaveDebounceRef.current = setTimeout(() => {
-      saveDocument(currentDocIdRef.current, code, t.documents.untitled)
+      storeRef.current
+        .save(currentDocIdRef.current, code, t.documents.untitled)
         .then((list) => {
           loadedCodeRef.current = code;
           setDocs(list);
@@ -204,12 +231,13 @@ export default function EditorShell({ t, authed, onAuthed }) {
     publishStatus(message);
   }
 
-  // Signs the visitor in on demand. Any action that persists a document or
-  // exports (new/open/save/copy/download) runs through here when the shell is
-  // not yet authed: it closes whatever content window is open (the editor —
-  // and its auth gate — always take the whole desktop), raises the inline gate
-  // and defers the action until `onAuthed(email)` has landed. Returns true when
-  // the action may proceed now (authed), false when it was deferred.
+  // Signs the visitor in on demand, for the one action that genuinely needs an
+  // account: keeping MORE than one document. Everything else — the canvas, the
+  // code sheet, export, copy, open, replacing an empty draft — works signed
+  // out. It closes whatever content window is open (the editor and its gate
+  // always take the whole desktop), raises the inline gate and defers `action`
+  // until `onAuthed(email)` has landed. Returns true when the action may
+  // proceed now (authed), false when it was deferred.
   function requireAuth(action) {
     if (authed) {
       action();
@@ -221,65 +249,74 @@ export default function EditorShell({ t, authed, onAuthed }) {
     return false;
   }
 
-  // Called by the inline gate once the visitor is signed in: the open diagram
-  // was never saved while anonymous (no account to save to), so persist it and
-  // record it as the current document first — otherwise a sign-in that only
-  // triggers an export would lose the drawing, and the next boot would invent
-  // a fresh starter document. Only then run whatever action was deferred
-  // behind the gate.
+  // Called by the inline gate once the visitor is signed in. The diagram they
+  // were drawing anonymously is handed to the new account as a NEW document
+  // before anything else happens: the local slot is the only record of that
+  // work, and a sign-in is the worst possible moment to lose it. Only once the
+  // account really holds it is the local copy dropped and the action that
+  // waited behind the gate (creating a second document) run.
   async function handleAuthed(nextEmail) {
     onAuthed(nextEmail);
     setAuthOpen(false);
     const pending = pendingAuthRef.current;
     pendingAuthRef.current = null;
-    const id = currentDocIdRef.current;
+    // Sign-in flips which backend the shell writes to. Doing it here, rather
+    // than waiting for the re-render, keeps the handover and the deferred
+    // action on the account side — otherwise a stale callback would save the
+    // next document straight back into the anonymous slot.
+    storeRef.current = SERVER_STORE;
+    // The local copy is the normal source here, but the editor also works when
+    // storage is unavailable (Safari private mode) — in that case the document
+    // only ever existed in memory, and `currentDocIdRef` is all there is to
+    // hand over. Both are the same document; the stored one just carries the
+    // id and the custom title from earlier boots.
+    const anon = loadAnonDocument();
+    const id = anon ? anon.id : currentDocIdRef.current;
     if (id) {
       try {
-        // Order matters: the pointer PUT is a no-op server-side until the
-        // document row exists, so save the document first.
-        setDocs(await saveDocument(id, code, t.documents.untitled));
-        await saveCurrentDocumentId(id);
+        // `code` rather than anon.code: the canvas may be a few keystrokes
+        // ahead of the debounced local save, and the visitor means the diagram
+        // in front of them, not the one on disk.
+        setDocs(await SERVER_STORE.save(id, code, t.documents.untitled));
+        // The pointer PUT is a no-op server-side until the document row
+        // exists, so the document is saved first, as in the boot path.
+        await SERVER_STORE.setCurrent(id);
+        currentDocIdRef.current = id;
+        setCurrentDocId(id);
+        loadedCodeRef.current = code;
+        clearAnonDocument();
       } catch {
-        // Non-fatal: autosave will pick this up on the next edit anyway.
+        // Signing in still succeeded. The local document stays where it is,
+        // and the next autosave retries the handover under the same id.
       }
     }
     pending?.();
   }
 
-  // The editor is sign-in-first: while the content window is closed (the
-  // editor revealed), an anonymous visitor is sent to the auth gate right
-  // away — no longer only when they try to save/export. The authoritative
-  // content-window state (editor-events) guards against stale events firing
-  // the gate after the content part was reopened (e.g. the language switcher).
+  // The gate is only ever raised by an explicit action now (a second document,
+  // or the prompt at the end of the document list), so nothing here opens it.
+  // What remains is the exit path: any CONTENT_OPEN — the logo,
+  // Features/Guides, or a language switch remounting the window — must drop
+  // the gate and whatever action was waiting behind it, or it would hang over
+  // the marketing page it just brought back.
   useEffect(() => {
-    if (authed) return;
-    const open = () => {
-      if (isContentWindowOpen()) return;
-      // Deliberately do NOT clear pendingAuthRef here. requireAuth() records
-      // the deferred action and THEN closes the window, which synchronously
-      // fires this reveal event — clearing the ref here would drop the very
-      // action the gate was raised for. The gate's own exit paths (handleAuthed,
-      // closeAuthAndReturn, and the CONTENT_OPEN close() below) own the ref.
-      setAuthOpen(true);
-    };
     const close = () => {
       pendingAuthRef.current = null;
       setAuthOpen(false);
     };
-    window.addEventListener(EDITOR_REVEAL_EVENT, open);
     window.addEventListener(CONTENT_OPEN_EVENT, close);
-    if (!isContentWindowOpen() && hasEditorRevealed()) open();
-    return () => {
-      window.removeEventListener(EDITOR_REVEAL_EVENT, open);
-      window.removeEventListener(CONTENT_OPEN_EVENT, close);
-    };
-  }, [authed]);
+    return () => window.removeEventListener(CONTENT_OPEN_EVENT, close);
+  }, []);
 
-  // The gate cannot be dismissed into the editor — the only way out is back
-  // to the content window (which drops whatever action waited behind it).
+  // The gate cannot be dismissed into the editor — the way out is back to the
+  // content window (which drops whatever action waited behind it). The
+  // document list, when that is where the gate was raised from, is closed too:
+  // it is a modal over the editor, and leaving it up would park it on top of
+  // the marketing window that just came back.
   function closeAuthAndReturn() {
     pendingAuthRef.current = null;
     setAuthOpen(false);
+    setOpenOpen(false);
     requestContentOpen();
   }
 
@@ -322,14 +359,14 @@ export default function EditorShell({ t, authed, onAuthed }) {
     clearTimeout(docSaveDebounceRef.current);
     if (flush && currentDocIdRef.current && code !== loadedCodeRef.current) {
       try {
-        setDocs(await saveDocument(currentDocIdRef.current, code, t.documents.untitled));
+        setDocs(await storeRef.current.save(currentDocIdRef.current, code, t.documents.untitled));
       } catch {
         // Best-effort flush; the switch still proceeds even if storage is down.
       }
     }
     currentDocIdRef.current = id;
     setCurrentDocId(id);
-    saveCurrentDocumentId(id).catch(() => {});
+    storeRef.current.setCurrent(id).catch(() => {});
     loadedCodeRef.current = sourceCode;
     setCode(sourceCode);
     lastVisualCodeRef.current = sourceCode;
@@ -351,7 +388,7 @@ export default function EditorShell({ t, authed, onAuthed }) {
     clearTimeout(docSaveDebounceRef.current);
     if (flush && currentDocIdRef.current && code !== loadedCodeRef.current) {
       try {
-        setDocs(await saveDocument(currentDocIdRef.current, code, t.documents.untitled));
+        setDocs(await storeRef.current.save(currentDocIdRef.current, code, t.documents.untitled));
       } catch {
         // Best-effort flush; the switch still proceeds even if storage is down.
       }
@@ -363,20 +400,31 @@ export default function EditorShell({ t, authed, onAuthed }) {
       // POST the new row BEFORE the current-document pointer PUT: the server
       // only records a current id whose document row already exists, so
       // saving the pointer first would silently keep the previous document.
-      list = await saveDocument(id, seedCode, t.documents.untitled);
+      list = await storeRef.current.save(id, seedCode, t.documents.untitled);
     } catch {
       list = [{ id, title: t.documents.untitled, code: seedCode, updatedAt: Date.now() }];
     }
     currentDocIdRef.current = id;
     setCurrentDocId(id);
     setDocs(list);
-    saveCurrentDocumentId(id).catch(() => {});
+    storeRef.current.setCurrent(id).catch(() => {});
     loadedCodeRef.current = seedCode;
+    seedCodeRef.current = seedCode;
     setCode(seedCode);
     lastVisualCodeRef.current = seedCode;
     setImportText(seedCode);
     setImportSeq((n) => n + 1);
     setOpenOpen(false);
+  }
+
+  // "Create new" means different things to different visitors. A signed-in one
+  // just gets another document in their account. An anonymous one has a single
+  // slot: replacing the untouched starter diagram in it costs nothing and must
+  // not send a first-time visitor to a sign-in gate, but replacing real work is
+  // exactly the moment to offer the account that would let both exist.
+  function requestNewDocument() {
+    if (authed || code === seedCodeRef.current) startNewDocument();
+    else requireAuth(() => startNewDocument());
   }
 
   function confirmDeleteDocument(doc) {
@@ -389,7 +437,7 @@ export default function EditorShell({ t, authed, onAuthed }) {
         const wasCurrent = doc.id === currentDocIdRef.current;
         let next;
         try {
-          next = await deleteDocument(doc.id);
+          next = await storeRef.current.remove(doc.id);
         } catch {
           return;
         }
@@ -412,7 +460,7 @@ export default function EditorShell({ t, authed, onAuthed }) {
       onDone: async (value) => {
         if (value == null) return;
         try {
-          setDocs(await renameDocument(doc.id, value.trim()));
+          setDocs(await storeRef.current.rename(doc.id, value.trim()));
         } catch {
           // Non-fatal: the title simply stays as it was.
         }
@@ -437,17 +485,19 @@ export default function EditorShell({ t, authed, onAuthed }) {
 
   // The taskbar (a separate tree) acts on the open diagram through window
   // events: Download / Copy open context menus there, Edit Code opens this
-  // sheet. They all need auth (persist/export) so they go through requireAuth.
+  // sheet, Documents opens the list. None of them needs an account any more —
+  // the only action that does is creating a SECOND document, which is decided
+  // in requestNewDocument.
   useEffect(() => {
     const onDownload = (e) => {
       const kind = e?.detail?.kind;
       const action = { mermaid: exportActions[1], md: exportActions[2], svg: exportActions[4], png: exportActions[5], html: exportActions[6] }[kind];
-      if (action) requireAuth(action.run);
+      if (action) action.run();
     };
-    const onCopy = () => requireAuth(exportActions[0].run);
+    const onCopy = () => exportActions[0].run();
     const onCode = () => setCodeOpen(true);
-    const onOpenDocs = () => requireAuth(() => setOpenOpen(true));
-    const onNewDoc = () => requireAuth(() => startNewDocument());
+    const onOpenDocs = () => setOpenOpen(true);
+    const onNewDoc = () => requestNewDocument();
     window.addEventListener(EDITOR_DOWNLOAD_EVENT, onDownload);
     window.addEventListener(EDITOR_COPY_EVENT, onCopy);
     window.addEventListener(EDITOR_CODE_EVENT, onCode);
@@ -494,6 +544,7 @@ export default function EditorShell({ t, authed, onAuthed }) {
           <div className="modal-backdrop" onPointerDown={() => setOpenOpen(false)}>
             <div className="modal-panel" onPointerDown={(e) => e.stopPropagation()}>
               <div className="modal-title">{t.modals.openTitle}</div>
+              {!authed && <div className="modal-empty">{t.documents.anonNote}</div>}
               <div className="modal-list modal-list-scroll">
                 {docs.map((d) => (
                   <div key={d.id} className="modal-list-row">
@@ -522,6 +573,22 @@ export default function EditorShell({ t, authed, onAuthed }) {
                     </button>
                   </div>
                 ))}
+                {/* The anonymous visitor's one slot, made explicit: this row
+                    is not a document, it is the way past the limit. It closes
+                    the list first so the gate does not open on top of it. */}
+                {!authed && (
+                  <button
+                    type="button"
+                    className="modal-list-btn modal-list-locked"
+                    onClick={() => {
+                      analytics.track("Click", "Sign in for more documents");
+                      setOpenOpen(false);
+                      requireAuth(() => {});
+                    }}
+                  >
+                    <span className="modal-list-title">{t.documents.anonMore}</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>,

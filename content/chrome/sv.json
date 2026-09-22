@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid Editor Online Gratis – Skapa Diagram",
-    "description": "Gratis mermaid-editor online: rita eller skriv mermaid-kod — synkade. Logga in med bara ett mejl. Exportera till SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — gratis, online, bara ett mejl",
+    "description": "Gratis live-editor för mermaid: rita ett diagram visuellt eller skriv mermaid-kod — båda hålls synkroniserade. Ingen registrering, exportera till SVG eller PNG.",
+    "ogTitle": "Live-editor för mermaid — gratis, online, ingen registrering",
     "ogDescription": "Rita diagram på en canvas eller skriv mermaid-kod. Båda vyerna hålls synkade. Exportera till SVG, PNG, .mmd eller Markdown.",
     "twitterTitle": "Gratis mermaid-editor online",
-    "twitterDescription": "Visuell duk och mermaid-kod sida vid sida. Gratis utan betald plan — logga in med bara ett mejl."
+    "twitterDescription": "Visuell canvas och mermaid-kod sida vid sida. Gratis, ingen betalvägg och ingen registrering."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Gratis för alltid",
-    "badgeNoSignup": "Gratis — bara ett mejl",
+    "badgeNoSignup": "Gratis — ingen registrering",
     "badgeDiagrams": "8 diagramtyper",
     "title": "Mermaid editor online, gratis –",
     "titleAccent": "skapa diagram visuellt eller med kod",
@@ -61,8 +61,8 @@
       "sub": "Rektangel, rundad, piller, cirkel, romb, databas, hexagon och resten, ett klick var."
     },
     {
-      "title": "Gratis, bara mejl",
-      "sub": "Ingen provperiod eller vattenstämpel vid export — ett mejl räcker för att spara dina diagram."
+      "title": "Gratis, ingen registrering",
+      "sub": "Ingen provperiod eller vattenstämpel — editorn öppnas direkt. Logga in bara om du vill ha mer än ett diagram."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Sparas medan du jobbar",
-          "sub": "Ditt diagram sparas automatiskt på ditt konto medan du redigerar — stäng fliken och kom tillbaka från vilken enhet som helst."
+          "sub": "Diagrammet sparas automatiskt i webbläsaren medan du redigerar. Loggar du in sparas det på ditt konto och följer med till alla enheter."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Renderas i din webbläsare",
-          "sub": "Rendering sker i din webbläsare; sparade diagram lever på ditt konto och finns där från vilken enhet som helst."
+          "sub": "Rendereringen sker i din webbläsare; utan konto lämnar diagrammet den aldrig, och med konto följer det sparade dokumentet med till alla enheter."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Pris",
-        "us": "Gratis — bara ett mejl",
+        "us": "Gratis — inte ens ett mejl.",
         "them": "Gratisnivå begränsad till några få diagram, med export eller samarbete bakom en prenumeration."
       },
       {
         "title": "Var datan finns",
-        "us": "På ditt konto — en e-post för att logga in räcker, och dina diagram följer med till vilken enhet som helst.",
+        "us": "I din webbläsare, eller på ditt konto om du vill att det följer med till alla enheter.",
         "them": "Ett konto på någon annans server, med dina diagram kopplade till det."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Mermaid-editor",
     "headingAccent": "frågor",
-    "sub": "Allt du behöver för att börja är ett mejl.",
+    "sub": "Allt du behöver för att börja är att öppna sidan.",
     "items": [
       {
         "q": "Vad är mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Är den här mermaid-editorn verkligen gratis?",
-        "a": "Ja. Alla funktioner, inklusive SVG- och PNG-export, är gratis. Du behöver bara ett mejl för att logga in — det finns ingen betald plan eller något dolt."
+        "a": "Ja. Alla funktioner, inklusive export till SVG och PNG, är gratis och du kan använda editorn utan att skapa något. Ett valfritt gratis konto lägger till fler sparade diagram och synkronisering mellan enheter — det finns ingen betald nivå och inget hålls tillbaka."
       },
       {
         "q": "Behöver jag kunna mermaid-syntax?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Var lagras mitt diagram?",
-        "a": "Dina diagram sparas på ditt konto, så de finns där när du kommer tillbaka — från vilken enhet som helst. Exportera källan om du vill ha en lokal kopia."
+        "a": "Utan konto sparas ditt enda diagram i webbläsaren, så det finns där när du kommer tillbaka på samma enhet. Loggar du in sparas det på ditt konto i stället och kan följa med till en annan enhet. Exportera källan om du vill ha en egen kopia."
       },
       {
         "q": "Kan jag klistra in ett befintligt mermaid-diagram?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Öppna editorn.",
-    "headingAccent": "Gratis — bara ett mejl",
+    "headingAccent": "Gratis — ingen registrering.",
     "sub": "En tom canvas, en kodflik och alla exportalternativ — gratis, i din webbläsare, just nu.",
     "ctaLabel": "Öppna editorn"
   },

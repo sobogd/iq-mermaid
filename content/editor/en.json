@@ -88,6 +88,8 @@
     "delete": "Delete document",
     "deleteConfirm": "Delete this document?",
     "untitled": "Untitled",
+    "anonNote": "Your diagram is saved in this browser only.",
+    "anonMore": "Sign in to save more diagrams",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Export failed"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Absolutely free — no paid plan, no credit card. Just an email to save, sync and export your diagrams.",
+    "title": "Sign in to save more diagrams",
+    "subtitle": "Absolutely free — no paid plan, no credit card. Sign in to keep more than one diagram and sync them across your devices.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

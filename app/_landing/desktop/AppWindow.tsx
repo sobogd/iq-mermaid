@@ -28,9 +28,9 @@ export function AppWindow({ children }: { children: React.ReactNode }) {
   // Ref to the window surface so the click-away handler can tell "inside".
   const surfaceRef = useRef<HTMLDivElement>(null);
 
-  // Closing the window reveals the shared editor underneath — which is now
-  // sign-in-first: the state broadcast below lets the editor raise its auth
-  // gate for anonymous visitors, whatever path closed the window.
+  // Closing the window reveals the shared editor underneath, which runs
+  // without an account. The state broadcast below is what the dock rails and
+  // the editor's content-window checks read, whatever path closed the window.
   const reveal = () => setClosed(true);
 
   // "Open editor" buttons anywhere dispatch this to close the window. A

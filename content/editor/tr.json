@@ -88,6 +88,8 @@
     "delete": "Belgeyi sil",
     "deleteConfirm": "Bu belge silinsin mi?",
     "untitled": "Adsız",
+    "anonNote": "Diyagramınız yalnızca bu tarayıcıda kaydedilir.",
+    "anonMore": "Daha fazla diyagram kaydetmek için giriş yapın",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Dışa aktarma başarısız"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Tamamen ücretsiz — ücretli plan veya kart yok. Diyagramları kaydetmek, senkronize etmek ve dışa aktarmak için yalnızca bir e-posta.",
+    "title": "Birden fazla diyagram kaydetmek için giriş yapın",
+    "subtitle": "Tamamen ücretsiz — ücretli plan veya kart yok. Birden fazla diyagramı saklamak ve tüm cihazlarınızda eşitlemek için giriş yapın.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

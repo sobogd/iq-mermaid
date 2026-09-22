@@ -88,6 +88,8 @@
     "delete": "حذف المستند",
     "deleteConfirm": "حذف هذا المستند؟",
     "untitled": "بلا عنوان",
+    "anonNote": "يُحفظ مخططك في هذا المتصفح فقط.",
+    "anonMore": "سجّل الدخول لحفظ المزيد من المخططات",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "فشل التصدير"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "مجاني تمامًا — بلا خطط مدفوعة ولا بطاقات. يكفي بريد إلكتروني لحفظ مخططاتك ومزامنتها وتصديرها.",
+    "title": "سجّل الدخول لحفظ المزيد من المخططات",
+    "subtitle": "مجاني تمامًا — بلا خطط مدفوعة ولا بطاقات. سجّل الدخول للاحتفاظ بأكثر من مخطط واحد ومزامنتها على جميع أجهزتك.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

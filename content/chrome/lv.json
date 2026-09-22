@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid tiešsaistes redaktors — bezmaksas diagrammu veidošana",
-    "description": "Bezmaksas mermaid redaktors: zīmējiet vai rakstiet mermaid kodu — sinhroni. Pietiek ar e-pastu. Eksports SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — bez maksas, tiešsaistē, tikai e-pasts",
+    "description": "Bezmaksas mermaid redaktors: zīmējiet diagrammu vizuāli vai rakstiet kodu — abi paliek sinhronizēti. Bez reģistrācijas, eksportējiet uz SVG vai PNG.",
+    "ogTitle": "Tiešsaistes mermaid redaktors — bez maksas, tiešsaistē, bez reģistrācijas",
     "ogDescription": "Zīmējiet diagrammas uz audekla vai rakstiet mermaid kodu. Abi skati paliek sinhronizēti. Eksportējiet SVG, PNG, .mmd vai Markdown formātā.",
     "twitterTitle": "Bezmaksas mermaid tiešsaistes redaktors",
-    "twitterDescription": "Vizuāls audekls un mermaid kods blakus. Bez maksas, bez maksas plāna — pieslēgšanās tikai ar e-pastu."
+    "twitterDescription": "Vizuāls audekls un mermaid kods blakus. Bez maksas, bez maksas sienas un bez reģistrācijas."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Vienmēr bezmaksas",
-    "badgeNoSignup": "Bezmaksas — tikai e-pasts",
+    "badgeNoSignup": "Bez maksas — bez reģistrācijas",
     "badgeDiagrams": "8 diagrammu veidi",
     "title": "Mermaid tiešsaistes redaktors,",
     "titleAccent": "vizuāli un kods vienuviet",
@@ -61,8 +61,8 @@
       "sub": "Taisnstūris, noapaļots, tablete, aplis, rombs, datubāze, sešstūris un pārējie — katrs vienā klikšķī."
     },
     {
-      "title": "Bezmaksas — tikai e-pasts",
-      "sub": "Bez izmēģinājuma perioda un ūdenszīmes eksportā — diagrammu saglabāšanai pietiek ar e-pastu."
+      "title": "Bez maksas, bez reģistrācijas",
+      "sub": "Bez izmēģinājuma perioda un ūdenszīmes — redaktors atveras uzreiz. Pierakstieties tikai tad, ja vēlaties vairāk nekā vienu diagrammu."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Saglabājas automātiski",
-          "sub": "Jūsu diagramma rediģēšanas laikā automātiski tiek saglabāta jūsu kontā — aizveriet cilni un atgriezieties no jebkuras ierīces."
+          "sub": "Diagramma rediģēšanas laikā automātiski saglabājas pārlūkā. Ja pierakstāties, tā saglabājas jūsu kontā un seko jums visās ierīcēs."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Tiek renderēta jūsu pārlūkā",
-          "sub": "Renderēšana notiek jūsu pārlūkā; saglabātās diagrammas glabājas jūsu kontā un ir pieejamas no jebkuras ierīces."
+          "sub": "Attēlošana notiek jūsu pārlūkā; bez konta diagramma to nekad nepamet, un ar kontu saglabātais dokuments seko jums jebkurā ierīcē."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Cena",
-        "us": "Bezmaksas — tikai e-pasts",
+        "us": "Bez maksas — pat e-pasts nav vajadzīgs.",
         "them": "Bezmaksas plāns ierobežots līdz pāris diagrammām, eksports vai sadarbība pieejama tikai ar abonementu."
       },
       {
         "title": "Kur atrodas dati",
-        "us": "Jūsu kontā — pietiek ar e-pastu, lai pierakstītos, un diagrammas jums seko uz jebkuru ierīci.",
+        "us": "Jūsu pārlūkā vai kontā, ja vēlaties, lai tas jums seko jebkurā ierīcē.",
         "them": "Konts kāda serverī, kuram piesaistītas jūsu diagrammas."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Mermaid redaktora",
     "headingAccent": "jautājumi",
-    "sub": "Lai sāktu, pietiek ar e-pastu.",
+    "sub": "Lai sāktu, pietiek atvērt lapu.",
     "items": [
       {
         "q": "Kas ir mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Vai šis mermaid redaktors tiešām ir bezmaksas?",
-        "a": "Jā. Visi rīki, tostarp SVG un PNG eksports, ir bez maksas. Pietiek tikai ar e-pastu, lai pieslēgtos — maksas plāna vai slēptu ierobežojumu nav."
+        "a": "Jā. Visas funkcijas, tostarp eksports uz SVG un PNG, ir bez maksas, un redaktoru var lietot, neko neveidojot. Neobligāts bezmaksas konts pievieno vairāk saglabātu diagrammu un sinhronizāciju starp ierīcēm — maksas plāna nav un nekas netiek aizturēts."
       },
       {
         "q": "Vai man jāzina mermaid sintakse?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Kur tiek glabāta mana diagramma?",
-        "a": "Jūsu diagrammas glabājas kontā, tāpēc tās ir tur, kad atgriežaties — no jebkuras ierīces. Ja vēlaties lokālu kopiju, eksportējiet avotu."
+        "a": "Bez konta vienīgā diagramma tiek saglabāta pārlūkā, tāpēc tā ir tur, kad atgriezīsities tajā pašā ierīcē. Ja pierakstāties, tā tiek saglabāta kontā un var jums sekot citā ierīcē. Eksportējiet avotu, ja vēlaties savu kopiju."
       },
       {
         "q": "Vai varu ielīmēt jau esošu mermaid diagrammu?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Atveriet redaktoru.",
-    "headingAccent": "Bezmaksas — tikai e-pasts",
+    "headingAccent": "Bez maksas — bez reģistrācijas.",
     "sub": "Tukšs audekls, koda cilne un visas eksporta iespējas — bez maksas, jūsu pārlūkā, tieši tagad.",
     "ctaLabel": "Atvērt redaktoru"
   },

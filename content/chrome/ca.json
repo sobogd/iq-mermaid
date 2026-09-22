@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Editor Mermaid en Línia Gratuït — Diagrames en Viu",
-    "description": "Editor mermaid gratuït en línia: dibuixa o escriu codi mermaid, en sincronia. Entra només amb un correu. Exporta SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — gratuït, en línia, només cal un correu",
+    "description": "Editor mermaid en directe gratuït: dibuixa un diagrama visualment o escriu codi mermaid, sempre sincronitzats. Sense registre, exporta a SVG o PNG.",
+    "ogTitle": "Editor mermaid en directe — gratuït, en línia, sense registre",
     "ogDescription": "Dibuixa diagrames en un llenç o escriu codi mermaid. Totes dues vistes es sincronitzen. Exporta a SVG, PNG, .mmd o Markdown.",
     "twitterTitle": "Editor mermaid en viu gratuït",
-    "twitterDescription": "Llenç visual i codi mermaid, cara a cara. Gratuït, sense pagar — entra només amb un correu."
+    "twitterDescription": "Llenç visual i codi mermaid, l'un al costat de l'altre. Gratuït, sense mur de pagament i sense registre."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Gratuït per sempre",
-    "badgeNoSignup": "Gratuït — només un correu",
+    "badgeNoSignup": "Gratuït — sense registre",
     "badgeDiagrams": "8 tipus de diagrames",
     "title": "Editor mermaid en línia,",
     "titleAccent": "visual i codi en un sol lloc",
@@ -61,8 +61,8 @@
       "sub": "Rectangle, arrodonit, píndola, cercle, rombe, base de dades, hexàgon i la resta, amb un clic cadascuna."
     },
     {
-      "title": "Gratuït, només correu",
-      "sub": "Sense prova ni marca d'aigua en exportar: només cal un correu per desar els diagrames."
+      "title": "Gratuït i sense registre",
+      "sub": "Sense prova ni marca d'aigua: l'editor s'obre a l'instant. Inicia sessió només si vols més d'un diagrama."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Desat sobre la marxa",
-          "sub": "El diagrama es desa automàticament al teu compte mentre edites — tanca la pestanya i torna-hi des de qualsevol dispositiu."
+          "sub": "El diagrama es desa sol al navegador mentre edites. Si inicies sessió, es desa al teu compte i t'acompanya a qualsevol dispositiu."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Es renderitza al teu navegador",
-          "sub": "El render es fa al navegador; els diagrames desats viuen al teu compte i hi són des de qualsevol dispositiu."
+          "sub": "El renderitzat passa al teu navegador; sense compte el diagrama no en surt mai, i amb compte el document desat t'acompanya a qualsevol dispositiu."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Preu",
-        "us": "Gratuït — només un correu",
+        "us": "Gratuït — ni tan sols cal un correu.",
         "them": "Pla gratuït limitat a uns pocs diagrames, amb l'exportació o la col·laboració darrere d'una subscripció."
       },
       {
         "title": "On viuen les dades",
-        "us": "Al teu compte — només cal un correu per entrar-hi i els diagrames t'acompanyen a qualsevol dispositiu.",
+        "us": "Al teu navegador, o al teu compte si vols que t'acompanyi a qualsevol dispositiu.",
         "them": "Un compte al servidor d'algú, amb els teus diagrames enganxats a ell."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Preguntes sobre l'editor",
     "headingAccent": "mermaid",
-    "sub": "Només cal un correu per començar.",
+    "sub": "Per començar només cal obrir la pàgina.",
     "items": [
       {
         "q": "Què és mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Aquest editor mermaid és realment gratuït?",
-        "a": "Sí. Totes les funcions, inclosa l'exportació SVG i PNG, són gratuïtes. Només cal un correu per entrar: no hi ha cap pla de pagament ni res amagat."
+        "a": "Sí. Totes les funcions, inclosa l'exportació a SVG i PNG, són gratuïtes, i pots fer servir l'editor sense crear res. Un compte gratuït opcional afegeix més diagrames desats i sincronització entre dispositius: no hi ha pla de pagament i no es reserva res."
       },
       {
         "q": "Necessito saber la sintaxi de mermaid?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "On es desa el meu diagrama?",
-        "a": "Els teus diagrames es desen al teu compte, així que els trobaràs quan tornis, des de qualsevol dispositiu. Exporta la font si en vols una còpia local."
+        "a": "Sense compte, el teu únic diagrama es desa al navegador, així que hi és quan tornes al mateix dispositiu. Si inicies sessió, es desa al teu compte i pot acompanyar-te a un altre dispositiu. Exporta la font si vols una còpia pròpia."
       },
       {
         "q": "Puc enganxar un diagrama mermaid existent?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Obre l'editor.",
-    "headingAccent": "Gratuït — només un correu",
+    "headingAccent": "Gratuït — sense registre.",
     "sub": "Un llenç en blanc, una pestanya de codi i totes les opcions d'exportació — gratuïtes, al teu navegador, ara mateix.",
     "ctaLabel": "Obre l'editor"
   },

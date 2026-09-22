@@ -170,6 +170,12 @@
 .iqm-root .modal-list-btn.active {
   border-color: var(--button);
 }
+/* Same accent-only treatment as the unscoped rule below — the document list is
+   portaled out of .iqm-root, but the scoped block stays complete. */
+.iqm-root .modal-list-btn.modal-list-locked {
+  color: var(--button);
+  font-weight: 500;
+}
 .iqm-root .modal-list-icon {
   font-size: 16px;
   flex-shrink: 0;
@@ -370,6 +376,13 @@
   width: 100%;
 }
 .modal-list-btn.active { border-color: var(--button); }
+/* The anonymous document list's last row is not a document but the way past the
+   one-document limit. It reads as a link in the accent colour rather than as
+   another selectable row. */
+.modal-list-btn.modal-list-locked {
+  color: var(--button);
+  font-weight: 500;
+}
 .modal-list-icon {
   font-size: 16px;
   flex-shrink: 0;

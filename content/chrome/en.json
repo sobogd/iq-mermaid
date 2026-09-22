@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid Live Editor — Free Online Diagram Editor",
-    "description": "Free mermaid live editor: draw a diagram visually or write mermaid code, kept in sync. Sign in with just an email. Export SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — free, online, just an email",
+    "description": "Free mermaid live editor: draw a diagram visually or write mermaid code, kept in sync. No sign-up, export to SVG or PNG.",
+    "ogTitle": "Mermaid Live Editor — free, online, no sign-up",
     "ogDescription": "Draw diagrams on a canvas or write mermaid code. Both views stay in sync. Export to SVG, PNG, .mmd or Markdown.",
     "twitterTitle": "Free mermaid live editor",
-    "twitterDescription": "Visual canvas and mermaid code, side by side. Free, no paywall — sign in with just an email."
+    "twitterDescription": "Visual canvas and mermaid code, side by side. Free, no paywall, no sign-up."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Free forever",
-    "badgeNoSignup": "Free — just an email",
+    "badgeNoSignup": "Free — no sign-up",
     "badgeDiagrams": "8 diagram types",
     "title": "Mermaid live editor,",
     "titleAccent": "visual and code in one place",
@@ -61,8 +61,8 @@
       "sub": "Rectangle, rounded, pill, circle, diamond, database, hexagon and the rest, one click each."
     },
     {
-      "title": "Free, email only",
-      "sub": "No trial, no export watermark — your email is all you need to save your diagrams."
+      "title": "Free, no sign-up",
+      "sub": "No trial, no watermark — the editor opens straight away. Sign in only if you want more than one diagram."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Saved as you go",
-          "sub": "Your diagram autosaves to your account as you edit — close the tab and pick it up on any device."
+          "sub": "Your diagram autosaves in your browser as you edit. Sign in and it saves to your account instead, so it follows you to any device."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Rendered in your browser",
-          "sub": "Rendering happens in your browser; saved diagrams live in your account, so they're there on any device."
+          "sub": "Rendering happens in your browser; without an account the diagram never leaves it, and a saved document follows you to any device."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Price",
-        "us": "Free — just an email.",
+        "us": "Free — not even an email.",
         "them": "Free tier capped at a few diagrams, with export or collaboration behind a subscription."
       },
       {
         "title": "Where the data lives",
-        "us": "In your account — an email to sign in, and your diagrams follow you to any device.",
+        "us": "In your browser, or in your account if you want it to follow you to any device.",
         "them": "An account on someone's server, with your diagrams attached to it."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Mermaid editor",
     "headingAccent": "questions",
-    "sub": "All you need to start is an email.",
+    "sub": "All you need to start is the page.",
     "items": [
       {
         "q": "What is mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Is this mermaid editor really free?",
-        "a": "Yes. Every feature, including SVG and PNG export, is free. All you need is an email to sign in — there is no paid tier and nothing is held back."
+        "a": "Yes. Every feature, including SVG and PNG export, is free, and you can use the editor without creating anything at all. An optional free account adds more saved diagrams and sync across devices — there is no paid tier and nothing is held back."
       },
       {
         "q": "Do I need to know mermaid syntax?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Where is my diagram stored?",
-        "a": "Your diagrams are saved to your account, so they are there whenever you come back — on any device. Export the source if you ever want a local copy."
+        "a": "Without an account, your one diagram is saved in your browser, so it is there when you come back on the same device. Sign in and it is saved to your account instead, so it can follow you to another device. Export the source if you want a copy of your own."
       },
       {
         "q": "Can I paste in an existing mermaid diagram?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Open the editor.",
-    "headingAccent": "Free — just an email.",
+    "headingAccent": "Free — no sign-up.",
     "sub": "A blank canvas, a code tab and every export option — free, in your browser, right now.",
     "ctaLabel": "Open the editor"
   },

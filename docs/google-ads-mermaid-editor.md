@@ -48,7 +48,7 @@
 - `Visual Canvas + Mermaid Code`
 - `Draw Diagrams in the Browser`
 - `Free Forever, No Paywall`
-- `Sign In With Just an Email`
+- `No Sign-Up Required`
 - `8 Diagram Types Supported`
 - `Export to SVG and PNG`
 - `Renders as You Type`
@@ -59,7 +59,7 @@
 Описания (≤4 шт., ≤90 симв.):
 - `A mermaid editor that keeps a visual canvas and the code in sync. Free, no paywall.`
 - `Draw by clicking and dragging, or write mermaid by hand. Export SVG, PNG, .mmd or Markdown.`
-- `The real mermaid engine redraws moments after your last keystroke. Sign in with just an email.`
+- `The real mermaid engine redraws moments after your last keystroke. No sign-up needed.`
 - `Free online mermaid editor. Click to add a block, drag an arrow — the code writes itself.`
 
 ---

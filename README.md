@@ -1,9 +1,10 @@
 # IQ Mermaid
 
 Free online [mermaid](https://mermaid.js.org) editor at **https://iq-mermaid.com** —
-a visual canvas and the mermaid source, kept in sync. Sign-in is by an emailed
-one-time code (no password, no paid tier); saved diagrams live in your account
-and follow you across devices.
+a visual canvas and the mermaid source, kept in sync. No account is needed to
+use it: an anonymous visitor works in a single diagram kept in their browser.
+Signing in with an emailed one-time code (no password, no paid tier) lifts that
+limit — saved diagrams then live in the account and follow you across devices.
 
 ## Layout
 
@@ -93,15 +94,18 @@ than the page.
 
 The **mermaid editor is now the shared background** of the whole site. On every
 page it is lazy-loaded under the window (SSR never pays for the ~500 kB mermaid
-bundle) and its chrome — new/open/download/code/sign-in, undo/redo, zoom — lives
+bundle) and its chrome — new/open/download/code, undo/redo, zoom — lives
 in a floating **left dock island** that stays visible above the window. The window
 has no close control of its own — "Open editor" actions and a press on the
 desktop outside the window collapse it (click-away), revealing the already-
 booted editor; the header logo / Features / Guides links bring the window back.
 "Open editor" never navigates: the old `/app` route no longer exists (it
 redirects to the locale home). The canvas area is clickable around the window
-(the canvas wrapper passes clicks through to the editor layer); actions that
-persist or export (new/open/save/copy/download) raise an inline sign-in gate.
+(the canvas wrapper passes clicks through to the editor layer). Nothing in the
+editor is gated except a second document: anonymous work lives in one
+browser-local slot, and creating another (or asking for more in the document
+list) raises the inline sign-in gate, which hands that document over to the new
+account.
 
 The palette is PostHog's (paper white surfaces, warm-grey text, blue accent) on
 the sage-green backdrop, with amber `#ea9d2a` for accent buttons and the logo

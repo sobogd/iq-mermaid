@@ -88,6 +88,8 @@
     "delete": "删除文档",
     "deleteConfirm": "删除此文档？",
     "untitled": "无标题",
+    "anonNote": "图表仅保存在此浏览器中。",
+    "anonMore": "登录以保存更多图表",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "导出失败"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "完全免费 — 没有付费套餐，也不需要信用卡。只需一个邮箱即可保存、同步和导出图表。",
+    "title": "登录即可保存更多图表",
+    "subtitle": "完全免费 — 没有付费套餐，也不需要信用卡。登录后可保存多个图表，并在各设备间同步。",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

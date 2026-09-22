@@ -88,6 +88,8 @@
     "delete": "Șterge documentul",
     "deleteConfirm": "Ștergi acest document?",
     "untitled": "Fără titlu",
+    "anonNote": "Diagrama ta este salvată doar în acest browser.",
+    "anonMore": "Autentifică-te pentru a salva mai multe diagrame",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Exportul a eșuat"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Complet gratuit — fără planuri cu plată sau carduri. Doar un e-mail pentru a salva, sincroniza și exporta diagramele.",
+    "title": "Autentifică-te pentru a salva mai multe diagrame",
+    "subtitle": "Complet gratuit — fără planuri cu plată sau carduri. Autentifică-te pentru a păstra mai multe diagrame și a le sincroniza pe toate dispozitivele tale.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

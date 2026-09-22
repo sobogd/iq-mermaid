@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid veebiredaktor — tasuta diagrammi koostamine",
-    "description": "Tasuta mermaid-redaktor veebis: joonistage või kirjutage mermaid-koodi — sünkroonis. Sisselogimiseks piisab meiliaadressist. Eksport SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — tasuta, veebis, piisab meiliaadressist",
+    "description": "Tasuta mermaid-redaktor: joonista diagramm visuaalselt või kirjuta koodi — mõlemad püsivad sünkroonis. Registreerimist pole, ekspordi SVG või PNG-na.",
+    "ogTitle": "Reaalajas mermaid-redaktor — tasuta, veebis, ilma registreerimiseta",
     "ogDescription": "Joonista diagramme lõuendil või kirjuta mermaid koodi. Mõlemad vaated püsivad sünkroonis. Ekspordi SVG, PNG, .mmd või Markdown formaati.",
     "twitterTitle": "Tasuta mermaid veebiredaktor",
-    "twitterDescription": "Visuaalne lõuend ja mermaid-kood kõrvuti. Tasuta, ilma tasulise plaani — sisselogimine ainult meiliaadressiga."
+    "twitterDescription": "Visuaalne lõuend ja mermaid-kood kõrvuti. Tasuta, ilma tasulise müürita ja ilma registreerimiseta."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Igavesti tasuta",
-    "badgeNoSignup": "Tasuta — piisab meiliaadressist",
+    "badgeNoSignup": "Tasuta — ilma registreerimiseta",
     "badgeDiagrams": "8 diagrammitüüpi",
     "title": "Tasuta mermaid redaktor veebis,",
     "titleAccent": "visuaal ja kood ühes kohas",
@@ -61,8 +61,8 @@
       "sub": "Ristkülik, ümardatud, pill, ring, romb, andmebaas, kuusnurk ja teised, igaüks ühe klõpsuga."
     },
     {
-      "title": "Tasuta, ainult meil",
-      "sub": "Pole prooviperioodi ega vesimärki eksportimisel — diagrammide salvestamiseks piisab meiliaadressist."
+      "title": "Tasuta, ilma registreerimiseta",
+      "sub": "Pole prooviperioodi ega vesimärki — redaktor avaneb kohe. Logi sisse vaid siis, kui soovid rohkem kui üht diagrammi."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Salvestub jooksvalt",
-          "sub": "Teie diagramm salvestatakse redigeerimise ajal automaatselt teie kontole — sulgege vahekaart ja tulge tagasi mis tahes seadmest."
+          "sub": "Diagramm salvestub redigeerimise ajal automaatselt brauserisse. Kui logid sisse, salvestub see sinu kontole ja järgib sind igasse seadmesse."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Renderdatakse teie brauseris",
-          "sub": "Renderdamine toimub brauseris; salvestatud skeemid on teie kontol ja igast seadmest käeulatuses."
+          "sub": "Renderdamine toimub sinu brauseris; ilma kontota ei lahku diagramm sellest kunagi ja kontoga järgib salvestatud dokument sind igasse seadmesse."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Hind",
-        "us": "Tasuta — piisab meiliaadressist",
+        "us": "Tasuta — isegi e-posti pole vaja.",
         "them": "Tasuta tase piiratud paari diagrammiga, eksport või koostöö tellimuse taga."
       },
       {
         "title": "Kus andmed asuvad",
-        "us": "Teie kontol — sisselogimiseks piisab e-postist ja diagrammid on igast seadmest käeulatuses.",
+        "us": "Sinu brauseris või kontol, kui soovid, et see järgiks sind igasse seadmesse.",
         "them": "Konto kellegi serveris, mille külge on sinu diagrammid kinnitatud."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Mermaid redaktori",
     "headingAccent": "küsimused",
-    "sub": "Alustamiseks piisab vaid meiliaadressist.",
+    "sub": "Alustamiseks piisab lehe avamisest.",
     "items": [
       {
         "q": "Mis on mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Kas see mermaid redaktor on tõesti tasuta?",
-        "a": "Jah. Kõik funktsioonid, sealhulgas SVG ja PNG eksport, on tasuta. Alustamiseks piisab meiliaadressist — tasulist plaani ega peidetud piiranguid pole."
+        "a": "Jah. Kõik funktsioonid, sealhulgas eksport SVG- ja PNG-vormingusse, on tasuta ja saad redaktorit kasutada ilma midagi loomata. Valikuline tasuta konto lisab rohkem salvestatud diagramme ja seadmetevahelise sünkroonimise — tasulist plaani pole ja midagi ei hoita tagasi."
       },
       {
         "q": "Kas pean mermaid süntaksit oskama?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Kus mu diagramm hoiul on?",
-        "a": "Teie skeemid salvestatakse kontole, nii et need ootavad teid tagasi tulles — igast seadmest. Eksportige lähtetekst, kui soovite lokaalset koopiat."
+        "a": "Ilma kontota salvestub sinu ainus diagramm brauserisse, nii et see on seal, kui samasse seadmesse tagasi tuled. Kui logid sisse, salvestub see sinu kontole ja võib järgneda sulle teise seadmesse. Ekspordi lähtetekst, kui soovid enda koopiat."
       },
       {
         "q": "Kas saan olemasoleva mermaid diagrammi sisse kleepida?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Ava redaktor.",
-    "headingAccent": "Tasuta — piisab meiliaadressist",
+    "headingAccent": "Tasuta — ilma registreerimiseta.",
     "sub": "Tühi lõuend, koodisakk ja kõik ekspordivõimalused — tasuta, sinu brauseris, kohe praegu.",
     "ctaLabel": "Ava redaktor"
   },

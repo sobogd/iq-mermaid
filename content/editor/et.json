@@ -88,6 +88,8 @@
     "delete": "Kustuta dokument",
     "deleteConfirm": "Kas kustutada see dokument?",
     "untitled": "Nimetu",
+    "anonNote": "Skeem salvestatakse ainult sellesse brauserisse.",
+    "anonMore": "Logi sisse, et salvestada rohkem skeeme",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Eksport ebaõnnestus"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Täiesti tasuta — ilma tasuliste plaanide ja kaartideta. Piisab meiliaadressist, et skeeme salvestada, sünkroonida ja eksportida.",
+    "title": "Logi sisse, et salvestada rohkem skeeme",
+    "subtitle": "Täiesti tasuta — ilma tasuliste plaanide ja kaartideta. Logi sisse, et hoida alles rohkem kui üks skeem ja sünkroonida need oma seadmete vahel.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

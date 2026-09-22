@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid Editor Uživo — Besplatni Online Editor Dijagrama",
-    "description": "Besplatan mermaid uređivač online: crtajte ili pišite mermaid kôd — sinkronizirano. Prijava samo e-poštom. Izvoz SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — besplatno, online, samo e-pošta",
+    "description": "Besplatan mermaid editor uživo: crtajte dijagram vizualno ili pišite mermaid kôd — oboje ostaje sinkronizirano. Bez registracije, izvoz u SVG ili PNG.",
+    "ogTitle": "Mermaid editor uživo — besplatno, online, bez registracije",
     "ogDescription": "Crtajte dijagrame na platnu ili pišite mermaid kod. Oba prikaza ostaju sinkronizirana. Izvezite u SVG, PNG, .mmd ili Markdown.",
     "twitterTitle": "Besplatni mermaid editor uživo",
-    "twitterDescription": "Vizualno platno i mermaid kôd jedno uz drugo. Besplatno, bez plaćanja — prijava samo e-poštom."
+    "twitterDescription": "Vizualno platno i mermaid kôd, jedno uz drugo. Besplatno, bez paywalla i bez registracije."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Zauvijek besplatno",
-    "badgeNoSignup": "Besplatno — samo e-pošta",
+    "badgeNoSignup": "Besplatno — bez registracije",
     "badgeDiagrams": "8 vrsta dijagrama",
     "title": "Mermaid editor uživo,",
     "titleAccent": "vizualno i kod na jednom mjestu",
@@ -61,8 +61,8 @@
       "sub": "Pravokutnik, zaobljeni, pilula, krug, romb, baza podataka, šesterokut i ostalo, jednim klikom."
     },
     {
-      "title": "Besplatno, samo e-pošta",
-      "sub": "Bez probnog razdoblja i bez vodenog žiga pri izvozu — za spremanje dijagrama dovoljna je samo e-pošta."
+      "title": "Besplatno i bez registracije",
+      "sub": "Bez probnog razdoblja i bez vodenog žiga — editor se otvara odmah. Prijavite se samo ako želite više od jednog dijagrama."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Spremljeno u hodu",
-          "sub": "Vaš dijagram automatski se sprema na vaš račun dok uređujete — zatvorite karticu i vratite mu se s bilo kojeg uređaja."
+          "sub": "Dijagram se tijekom uređivanja automatski sprema u vaš preglednik. Ako se prijavite, sprema se u vaš račun i prati vas na svaki uređaj."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Iscrtava se u vašem pregledniku",
-          "sub": "Renderiranje se događa u vašem pregledniku; spremljeni dijagrami žive u vašem računu i dostupni su s bilo kojeg uređaja."
+          "sub": "Renderiranje se odvija u vašem pregledniku; bez računa dijagram ga nikad ne napušta, a s računom vas spremljeni dokument prati na svaki uređaj."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Cijena",
-        "us": "Besplatno — samo e-pošta",
+        "us": "Besplatno — čak ni e-pošta nije potrebna.",
         "them": "Besplatni plan ograničen na nekoliko dijagrama, s izvozom ili suradnjom iza pretplate."
       },
       {
         "title": "Gdje se podaci nalaze",
-        "us": "Na vašem računu — za prijavu je dovoljan e-mail, a dijagrami su vam na bilo kojem uređaju.",
+        "us": "U vašem pregledniku ili u vašem računu ako želite da vas prati na svaki uređaj.",
         "them": "Račun na tuđem poslužitelju, s vašim dijagramima vezanim uz njega."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Mermaid editor",
     "headingAccent": "pitanja",
-    "sub": "Za početak dovoljna je samo e-pošta.",
+    "sub": "Za početak je dovoljno otvoriti stranicu.",
     "items": [
       {
         "q": "Što je mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Je li ovaj mermaid editor zaista besplatan?",
-        "a": "Da. Sve značajke, uključujući izvoz SVG-a i PNG-a, besplatne su. Za prijavu je dovoljna samo e-pošta — nema plaćenog paketa ni skrivenih ograničenja."
+        "a": "Da. Sve su značajke, uključujući izvoz u SVG i PNG, besplatne i editor možete koristiti bez da išta stvarate. Neobavezan besplatan račun dodaje više spremljenih dijagrama i sinkronizaciju među uređajima — plaćenog plana nema i ništa nije zadržano."
       },
       {
         "q": "Moram li znati mermaid sintaksu?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Gdje se pohranjuje moj dijagram?",
-        "a": "Vaši dijagrami spremljeni su u vaš račun, pa su tu kad god se vratite — s bilo kojeg uređaja. Izvezite izvor ako želite lokalnu kopiju."
+        "a": "Bez računa, vaš jedini dijagram sprema se u preglednik, pa je ondje kad se vratite na istom uređaju. Ako se prijavite, sprema se u vaš račun i može vas pratiti na drugi uređaj. Izvezite izvor ako želite vlastitu kopiju."
       },
       {
         "q": "Mogu li zalijepiti postojeći mermaid dijagram?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Otvorite editor.",
-    "headingAccent": "Besplatno — samo e-pošta",
+    "headingAccent": "Besplatno — bez registracije.",
     "sub": "Prazno platno, kartica koda i sve opcije izvoza — besplatno, u vašem pregledniku, odmah.",
     "ctaLabel": "Otvori editor"
   },

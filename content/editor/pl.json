@@ -88,6 +88,8 @@
     "delete": "Usuń dokument",
     "deleteConfirm": "Usunąć ten dokument?",
     "untitled": "Bez nazwy",
+    "anonNote": "Twój schemat jest zapisywany tylko w tej przeglądarce.",
+    "anonMore": "Zaloguj się, aby zapisywać więcej schematów",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Eksport nie powiódł się"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Całkowicie za darmo — bez płatnych planów i kart. Wystarczy e-mail, aby zapisywać, synchronizować i eksportować schematy.",
+    "title": "Zaloguj się, aby zapisywać więcej schematów",
+    "subtitle": "Całkowicie za darmo — bez płatnych planów i kart. Zaloguj się, aby zachować więcej niż jeden schemat i synchronizować je na wszystkich urządzeniach.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

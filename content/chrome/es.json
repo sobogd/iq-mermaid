@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Editor Mermaid Online Gratis — Diagramas en Vivo",
-    "description": "Editor mermaid online gratis: dibuja o escribe código mermaid, en sincronía. Entra solo con un correo. Exporta SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — gratis, online, solo un correo",
+    "description": "Editor mermaid en vivo gratis: dibuja un diagrama de forma visual o escribe código mermaid, siempre sincronizados. Sin registro, exporta a SVG o PNG.",
+    "ogTitle": "Editor mermaid en vivo — gratis, online, sin registro",
     "ogDescription": "Dibuja diagramas en un lienzo o escribe código mermaid. Ambas vistas se sincronizan. Exporta a SVG, PNG, .mmd o Markdown.",
     "twitterTitle": "Editor mermaid en vivo gratis",
-    "twitterDescription": "Lienzo visual y código mermaid, uno junto al otro. Gratis, sin pagar: entra solo con un correo."
+    "twitterDescription": "Lienzo visual y código mermaid, uno al lado del otro. Gratis, sin muro de pago y sin registro."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Gratis para siempre",
-    "badgeNoSignup": "Gratis — solo un correo",
+    "badgeNoSignup": "Gratis — sin registro",
     "badgeDiagrams": "8 tipos de diagramas",
     "title": "Editor mermaid en vivo,",
     "titleAccent": "visual y código en un mismo lugar",
@@ -61,8 +61,8 @@
       "sub": "Rectángulo, redondeado, píldora, círculo, rombo, base de datos, hexágono y el resto, con un clic cada uno."
     },
     {
-      "title": "Gratis, solo correo",
-      "sub": "Sin prueba ni marca de agua al exportar: solo hace falta un correo para guardar tus diagramas."
+      "title": "Gratis y sin registro",
+      "sub": "Sin prueba ni marca de agua: el editor se abre al instante. Inicia sesión solo si quieres más de un diagrama."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Guardado sobre la marcha",
-          "sub": "Tu diagrama se guarda automáticamente en tu cuenta mientras editas — cierra la pestaña y vuelve a él desde cualquier dispositivo."
+          "sub": "Tu diagrama se guarda solo en el navegador mientras editas. Si inicias sesión, se guarda en tu cuenta y te acompaña en cualquier dispositivo."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Se renderiza en tu navegador",
-          "sub": "El renderizado ocurre en tu navegador; los diagramas guardados viven en tu cuenta y están ahí desde cualquier dispositivo."
+          "sub": "El renderizado ocurre en tu navegador; sin cuenta el diagrama no sale de él, y con cuenta el documento guardado te acompaña en cualquier dispositivo."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Precio",
-        "us": "Gratis — solo un correo",
+        "us": "Gratis — ni siquiera hace falta un correo.",
         "them": "Plan gratuito limitado a unos pocos diagramas, con la exportación o la colaboración detrás de una suscripción."
       },
       {
         "title": "Dónde viven los datos",
-        "us": "En tu cuenta — basta un correo para entrar y tus diagramas te acompañan en cualquier dispositivo.",
+        "us": "En tu navegador, o en tu cuenta si quieres que te acompañe en cualquier dispositivo.",
         "them": "Una cuenta en el servidor de alguien, con tus diagramas atados a ella."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Preguntas sobre el editor",
     "headingAccent": "mermaid",
-    "sub": "Solo necesitas un correo para empezar.",
+    "sub": "Para empezar solo hace falta abrir la página.",
     "items": [
       {
         "q": "¿Qué es mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "¿Este editor mermaid es realmente gratis?",
-        "a": "Sí. Todas las funciones, incluida la exportación a SVG y PNG, son gratis. Solo necesitas un correo para entrar: no hay plan de pago ni nada oculto."
+        "a": "Sí. Todas las funciones, incluida la exportación a SVG y PNG, son gratis, y puedes usar el editor sin crear nada. Una cuenta gratuita opcional añade más diagramas guardados y sincronización entre dispositivos: no hay plan de pago y nada queda reservado."
       },
       {
         "q": "¿Necesito saber la sintaxis de mermaid?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "¿Dónde se guarda mi diagrama?",
-        "a": "Tus diagramas se guardan en tu cuenta, así que están ahí cuando vuelvas, desde cualquier dispositivo. Exporta la fuente si quieres una copia local."
+        "a": "Sin cuenta, tu único diagrama se guarda en el navegador, así que sigue ahí cuando vuelves en el mismo dispositivo. Si inicias sesión, se guarda en tu cuenta y puede acompañarte a otro dispositivo. Exporta la fuente si quieres una copia propia."
       },
       {
         "q": "¿Puedo pegar un diagrama mermaid existente?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Abre el editor.",
-    "headingAccent": "Gratis — solo un correo",
+    "headingAccent": "Gratis — sin registro.",
     "sub": "Un lienzo en blanco, una pestaña de código y todas las opciones de exportación — gratis, en tu navegador, ahora mismo.",
     "ctaLabel": "Abrir el editor"
   },

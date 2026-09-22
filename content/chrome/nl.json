@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid Editor Online Gratis — Diagram Maken Online",
-    "description": "Gratis mermaid-editor online: teken of schrijf mermaid-code, gesynchroniseerd. Inloggen met alleen een e-mail. Export naar SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — gratis, online, alleen een e-mail",
+    "description": "Gratis live mermaid-editor: teken een diagram visueel of schrijf mermaid-code — beide blijven gesynchroniseerd. Geen aanmelding, exporteer naar SVG of PNG.",
+    "ogTitle": "Live mermaid-editor — gratis, online, geen aanmelding",
     "ogDescription": "Teken diagrammen op een canvas of schrijf mermaid-code. Beide weergaven blijven synchroon. Exporteer naar SVG, PNG, .mmd of Markdown.",
     "twitterTitle": "Gratis mermaid editor online",
-    "twitterDescription": "Visueel canvas en mermaid-code naast elkaar. Gratis, zonder betaald abonnement — inloggen met alleen een e-mail."
+    "twitterDescription": "Visueel canvas en mermaid-code naast elkaar. Gratis, geen paywall en geen aanmelding."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Voor altijd gratis",
-    "badgeNoSignup": "Gratis — alleen een e-mail",
+    "badgeNoSignup": "Gratis — geen aanmelding",
     "badgeDiagrams": "8 diagramtypes",
     "title": "Mermaid editor online gratis,",
     "titleAccent": "visueel en code op één plek",
@@ -61,8 +61,8 @@
       "sub": "Rechthoek, afgerond, pil, cirkel, ruit, database, zeshoek en de rest, met één klik."
     },
     {
-      "title": "Gratis, alleen e-mail",
-      "sub": "Geen proefperiode of watermerk bij export — één e-mail volstaat om je diagrammen op te slaan."
+      "title": "Gratis, geen aanmelding",
+      "sub": "Geen proefperiode of watermerk — de editor opent meteen. Log alleen in als je meer dan één diagram wilt."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Automatisch opgeslagen",
-          "sub": "Je diagram wordt automatisch opgeslagen in je account terwijl je bewerkt — sluit het tabblad en kom er vanaf elk apparaat op terug."
+          "sub": "Je diagram wordt tijdens het bewerken automatisch opgeslagen in je browser. Log je in, dan wordt het in je account opgeslagen en volgt het je naar elk apparaat."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Wordt in je browser gerenderd",
-          "sub": "Rendering gebeurt in je browser; opgeslagen diagrammen leven in je account en zijn er vanaf elk apparaat."
+          "sub": "Het renderen gebeurt in je browser; zonder account verlaat het diagram die nooit, en met een account volgt het opgeslagen document je naar elk apparaat."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Prijs",
-        "us": "Gratis — alleen een e-mail",
+        "us": "Gratis — zelfs geen e-mail.",
         "them": "Gratis laag beperkt tot een paar diagrammen, met export of samenwerking achter een abonnement."
       },
       {
         "title": "Waar de data staat",
-        "us": "In je account — een e-mail om in te loggen is genoeg en je diagrammen volgen je naar elk apparaat.",
+        "us": "In je browser, of in je account als je wilt dat het je naar elk apparaat volgt.",
         "them": "Een account op iemands server, met je diagrammen eraan gekoppeld."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Vragen over de",
     "headingAccent": "mermaid editor",
-    "sub": "Om te starten is alleen een e-mail nodig.",
+    "sub": "Om te beginnen hoef je alleen de pagina te openen.",
     "items": [
       {
         "q": "Wat is mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Is deze mermaid editor echt gratis?",
-        "a": "Ja. Alle functies, inclusief SVG- en PNG-export, zijn gratis. Je hebt alleen een e-mail nodig om in te loggen — er is geen betaald abonnement en niets verborgen."
+        "a": "Ja. Elke functie, inclusief export naar SVG en PNG, is gratis en je kunt de editor gebruiken zonder iets aan te maken. Een optioneel gratis account voegt meer opgeslagen diagrammen en synchronisatie tussen apparaten toe — er is geen betaald abonnement en niets wordt achtergehouden."
       },
       {
         "q": "Moet ik mermaid-syntax kennen?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Waar wordt mijn diagram opgeslagen?",
-        "a": "Je diagrammen worden opgeslagen in je account, dus ze zijn er wanneer je terugkomt — vanaf elk apparaat. Exporteer de bron als je een lokale kopie wilt."
+        "a": "Zonder account wordt je ene diagram in de browser opgeslagen, dus het staat er nog als je op hetzelfde apparaat terugkomt. Log je in, dan wordt het in je account opgeslagen en kan het je naar een ander apparaat volgen. Exporteer de bron als je een eigen kopie wilt."
       },
       {
         "q": "Kan ik een bestaand mermaid-diagram plakken?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Open de editor.",
-    "headingAccent": "Gratis — alleen een e-mail",
+    "headingAccent": "Gratis — geen aanmelding.",
     "sub": "Een leeg canvas, een codetabblad en elke exportoptie — gratis, in je browser, nu meteen.",
     "ctaLabel": "Open de editor"
   },

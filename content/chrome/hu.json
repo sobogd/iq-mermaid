@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid Élő Szerkesztő — Ingyenes Online Diagram Készítő",
-    "description": "Ingyenes mermaid szerkesztő online: rajzoljon vagy írjon mermaid kódot — szinkronban. Belépés csak e-maillel. Export SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — ingyenes, online, csak e-mail",
+    "description": "Ingyenes élő mermaid-szerkesztő: rajzolj vizuálisan vagy írj mermaid kódot — mindkettő szinkronban marad. Regisztráció nélkül, export SVG-be vagy PNG-be.",
+    "ogTitle": "Élő mermaid-szerkesztő — ingyenes, online, regisztráció nélkül",
     "ogDescription": "Rajzolj diagramot egy vásznon, vagy írj mermaid kódot. Mindkét nézet szinkronban marad. Exportálás SVG, PNG, .mmd vagy Markdown formátumba.",
     "twitterTitle": "Ingyenes mermaid élő szerkesztő",
-    "twitterDescription": "Vizuális vászon és mermaid kód egymás mellett. Ingyenes, fizetős csomag nélkül — belépés csak e-maillel."
+    "twitterDescription": "Vizuális vászon és mermaid kód egymás mellett. Ingyenes, fizetőfal és regisztráció nélkül."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Örökre ingyenes",
-    "badgeNoSignup": "Ingyenes — csak e-mail",
+    "badgeNoSignup": "Ingyenes — regisztráció nélkül",
     "badgeDiagrams": "8 diagramtípus",
     "title": "Mermaid élő szerkesztő,",
     "titleAccent": "vizuális és kód egy helyen",
@@ -61,8 +61,8 @@
       "sub": "Téglalap, lekerekített, pirula, kör, rombusz, adatbázis, hatszög és a többi, egy kattintással."
     },
     {
-      "title": "Ingyenes, csak e-mail",
-      "sub": "Próbaidő és exportvízjel nélkül — az ábrák mentéséhez elég egy e-mail."
+      "title": "Ingyenes, regisztráció nélkül",
+      "sub": "Nincs próbaidő és nincs vízjel — a szerkesztő azonnal megnyílik. Csak akkor jelentkezz be, ha több mint egy diagramot szeretnél."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Menet közben mentve",
-          "sub": "A diagramod szerkesztés közben automatikusan elmentődik a fiókodba — csukd be a lapot, és bármely eszközről térj vissza hozzá."
+          "sub": "Az ábra szerkesztés közben automatikusan mentődik a böngésződbe. Ha bejelentkezel, a fiókodba mentődik, és minden eszközön követ."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "A böngésződben jelenik meg",
-          "sub": "A renderelés a böngésződben történik; a mentett ábrák a fiókodban élnek, bármely eszközről elérhetők."
+          "sub": "A renderelés a böngésződben történik; fiók nélkül az ábra soha nem hagyja el, fiókkal pedig a mentett dokumentum minden eszközre követ."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Ár",
-        "us": "Ingyenes — csak e-mail",
+        "us": "Ingyenes — még e-mail sem kell.",
         "them": "Ingyenes csomag néhány diagramra korlátozva, az exportálás vagy az együttműködés előfizetés mögött."
       },
       {
         "title": "Hol él az adat",
-        "us": "A fiókodban — elég egy e-mail a belépéshez, és a diagramjaid bármely eszközön követnek.",
+        "us": "A böngésződben, vagy a fiókodban, ha azt szeretnéd, hogy minden eszközre kövessen.",
         "them": "Egy fiók valaki más szerverén, a diagramjaid hozzácsatolva."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Mermaid szerkesztő",
     "headingAccent": "kérdések",
-    "sub": "Az induláshoz elég egy e-mail.",
+    "sub": "Az induláshoz csak meg kell nyitnod az oldalt.",
     "items": [
       {
         "q": "Mi az a mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Tényleg ingyenes ez a mermaid szerkesztő?",
-        "a": "Igen. Minden funkció, beleértve az SVG és PNG exportot is, ingyenes. Elég egy e-mail a belépéshez — nincs fizetős csomag és semmi rejtett."
+        "a": "Igen. Minden funkció, az SVG- és PNG-export is, ingyenes, és a szerkesztőt anélkül is használhatod, hogy bármit létrehoznál. Egy opcionális ingyenes fiók több mentett diagramot és eszközök közötti szinkronizálást ad — fizetős csomag nincs, és semmit sem tartunk vissza."
       },
       {
         "q": "Ismernem kell a mermaid szintaxist?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Hol tárolódik a diagramom?",
-        "a": "Az ábráid a fiókodba mentődnek, így ott vannak, amikor visszatérsz — bármely eszközről. Exportáld a forrást, ha helyi másolatot szeretnél."
+        "a": "Fiók nélkül az egyetlen ábrád a böngészőben tárolódik, így ott van, amikor ugyanazon az eszközön visszatérsz. Ha bejelentkezel, a fiókodba mentődik, és egy másik eszközre is követhet. Exportáld a forrást, ha saját másolatot szeretnél."
       },
       {
         "q": "Beilleszthetek egy meglévő mermaid diagramot?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Nyisd meg a szerkesztőt.",
-    "headingAccent": "Ingyenes — csak e-mail",
+    "headingAccent": "Ingyenes — regisztráció nélkül.",
     "sub": "Egy üres vászon, egy kód fül és minden exportlehetőség — ingyen, a böngésződben, most azonnal.",
     "ctaLabel": "Szerkesztő megnyitása"
   },

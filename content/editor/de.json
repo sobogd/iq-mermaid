@@ -88,6 +88,8 @@
     "delete": "Dokument löschen",
     "deleteConfirm": "Dieses Dokument löschen?",
     "untitled": "Unbenannt",
+    "anonNote": "Ihr Diagramm wird nur in diesem Browser gespeichert.",
+    "anonMore": "Anmelden, um mehr Diagramme zu speichern",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Export fehlgeschlagen"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Absolut kostenlos — ohne Bezahlpläne und ohne Kreditkarte. Nur eine E-Mail zum Speichern, Synchronisieren und Exportieren Ihrer Diagramme.",
+    "title": "Melden Sie sich an, um mehr Diagramme zu speichern",
+    "subtitle": "Absolut kostenlos — ohne Bezahlpläne und ohne Kreditkarte. Melden Sie sich an, um mehr als ein Diagramm zu behalten und sie auf allen Geräten zu synchronisieren.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

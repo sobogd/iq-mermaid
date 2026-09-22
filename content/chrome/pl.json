@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Edytor Mermaid Online za Darmo — Diagramy na Żywo",
-    "description": "Bezpłatny edytor mermaid online: rysuj lub pisz kod mermaid — synchronicznie. Logowanie tylko e-mailem. Eksport SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — za darmo, online, wystarczy e-mail",
+    "description": "Darmowy edytor mermaid na żywo: rysuj schemat wizualnie lub pisz kod mermaid — oba pozostają zsynchronizowane. Bez rejestracji, eksport do SVG lub PNG.",
+    "ogTitle": "Edytor mermaid na żywo — za darmo, online, bez rejestracji",
     "ogDescription": "Rysuj diagramy na płótnie albo pisz kod mermaid. Oba widoki są zsynchronizowane. Eksport do SVG, PNG, .mmd lub Markdown.",
     "twitterTitle": "Darmowy edytor mermaid online",
-    "twitterDescription": "Wizualne płótno i kod mermaid obok siebie. Za darmo, bez płatnego planu — logowanie tylko e-mailem."
+    "twitterDescription": "Wizualne płótno i kod mermaid obok siebie. Za darmo, bez paywalla i bez rejestracji."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Zawsze za darmo",
-    "badgeNoSignup": "Za darmo — tylko e-mail",
+    "badgeNoSignup": "Za darmo — bez rejestracji",
     "badgeDiagrams": "8 typów diagramów",
     "title": "Edytor mermaid online,",
     "titleAccent": "wizualnie i w kodzie w jednym miejscu",
@@ -61,8 +61,8 @@
       "sub": "Prostokąt, zaokrąglony, pigułka, koło, romb, baza danych, sześciokąt i inne — jednym kliknięciem."
     },
     {
-      "title": "Za darmo, tylko e-mail",
-      "sub": "Bez okresu próbnego i znaku wodnego przy eksporcie — do zapisywania schematów wystarczy e-mail."
+      "title": "Za darmo, bez rejestracji",
+      "sub": "Bez okresu próbnego i znaku wodnego — edytor otwiera się od razu. Zaloguj się tylko wtedy, gdy chcesz więcej niż jeden schemat."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Zapisywane na bieżąco",
-          "sub": "Twój diagram jest automatycznie zapisywany na Twoim koncie podczas edycji — zamknij kartę i wróć do niego z dowolnego urządzenia."
+          "sub": "Schemat zapisuje się automatycznie w przeglądarce podczas edycji. Po zalogowaniu zapisuje się na koncie i podąża za Tobą na każde urządzenie."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Renderowane w Twojej przeglądarce",
-          "sub": "Renderowanie odbywa się w Twojej przeglądarce; zapisane schematy żyją na Twoim koncie i są dostępne z każdego urządzenia."
+          "sub": "Renderowanie odbywa się w Twojej przeglądarce; bez konta schemat nigdy jej nie opuszcza, a z kontem zapisany dokument podąża za Tobą na każde urządzenie."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Cena",
-        "us": "Za darmo — tylko e-mail",
+        "us": "Za darmo — nawet e-mail nie jest potrzebny.",
         "them": "Darmowy plan ograniczony do kilku diagramów, eksport lub współpraca za subskrypcją."
       },
       {
         "title": "Gdzie są dane",
-        "us": "Na Twoim koncie — do logowania wystarczy e-mail, a diagramy są dostępne na dowolnym urządzeniu.",
+        "us": "W Twojej przeglądarce albo na koncie, jeśli ma podążać za Tobą na każde urządzenie.",
         "them": "Konto na czyimś serwerze, z podpiętymi do niego twoimi diagramami."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Edytor mermaid",
     "headingAccent": "— najczęstsze pytania",
-    "sub": "Do rozpoczęcia wystarczy e-mail.",
+    "sub": "Na start wystarczy otworzyć stronę.",
     "items": [
       {
         "q": "Czym jest mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Czy ten edytor mermaid jest naprawdę darmowy?",
-        "a": "Tak. Wszystkie funkcje, w tym eksport SVG i PNG, są bezpłatne. Do logowania wystarczy e-mail — nie ma płatnego planu ani niczego ukrytego."
+        "a": "Tak. Wszystkie funkcje, w tym eksport do SVG i PNG, są darmowe, a edytora możesz używać, nie tworząc niczego. Opcjonalne darmowe konto dodaje więcej zapisanych schematów i synchronizację między urządzeniami — nie ma płatnego planu i nic nie jest blokowane."
       },
       {
         "q": "Czy muszę znać składnię mermaid?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Gdzie przechowywany jest mój diagram?",
-        "a": "Twoje schematy są zapisywane na koncie, więc są tam, gdy wrócisz — z dowolnego urządzenia. Wyeksportuj źródło, jeśli chcesz lokalną kopię."
+        "a": "Bez konta jedyny schemat zapisuje się w przeglądarce, więc jest tam, gdy wrócisz na tym samym urządzeniu. Po zalogowaniu zapisuje się na koncie i może podążać za Tobą na inne urządzenie. Wyeksportuj źródło, jeśli chcesz własną kopię."
       },
       {
         "q": "Czy mogę wkleić istniejący diagram mermaid?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Otwórz edytor.",
-    "headingAccent": "Za darmo — tylko e-mail",
+    "headingAccent": "Za darmo — bez rejestracji.",
     "sub": "Puste płótno, zakładka kodu i każda opcja eksportu — za darmo, w przeglądarce, już teraz.",
     "ctaLabel": "Otwórz edytor"
   },

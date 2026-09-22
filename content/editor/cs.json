@@ -88,6 +88,8 @@
     "delete": "Smazat dokument",
     "deleteConfirm": "Smazat tento dokument?",
     "untitled": "Bez názvu",
+    "anonNote": "Schéma se ukládá jen v tomto prohlížeči.",
+    "anonMore": "Přihlaste se, abyste mohli ukládat více schémat",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Export selhal"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Zcela zdarma — žádné placené plány ani karty. Jen e-mail pro ukládání, synchronizaci a export schémat.",
+    "title": "Přihlaste se, abyste mohli ukládat více schémat",
+    "subtitle": "Zcela zdarma — žádné placené plány ani karty. Přihlaste se, abyste si mohli nechat více než jedno schéma a synchronizovat je mezi zařízeními.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

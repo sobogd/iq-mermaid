@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid-editori ilmaiseksi verkossa – tee kaavio",
-    "description": "Ilmainen mermaid-editori verkossa: piirrä tai kirjoita mermaid-koodia — synkronoidusti. Kirjautuminen vain sähköpostilla. Vie SVG/PNG:ään.",
-    "ogTitle": "Mermaid Live Editor — ilmainen, verkossa, vain sähköposti",
+    "description": "Ilmainen mermaid-editori: piirrä kaavio visuaalisesti tai kirjoita koodia — molemmat pysyvät synkronissa. Ei rekisteröitymistä, vie SVG- tai PNG-tiedostona.",
+    "ogTitle": "Reaaliaikainen mermaid-editori — ilmainen, verkossa, ilman rekisteröitymistä",
     "ogDescription": "Piirrä kaavioita kankaalle tai kirjoita mermaid-koodia. Molemmat näkymät pysyvät synkassa. Vie SVG-, PNG-, .mmd- tai Markdown-muotoon.",
     "twitterTitle": "Ilmainen mermaid-editori verkossa",
-    "twitterDescription": "Visuaalinen kangas ja mermaid-koodi rinnakkain. Ilmainen, ei maksullista tasoa — kirjaudu vain sähköpostilla."
+    "twitterDescription": "Visuaalinen piirtoalusta ja mermaid-koodi rinnakkain. Ilmainen, ei maksumuuria eikä rekisteröitymistä."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Ikuisesti ilmainen",
-    "badgeNoSignup": "Ilmainen — vain sähköposti",
+    "badgeNoSignup": "Ilmainen — ilman rekisteröitymistä",
     "badgeDiagrams": "8 kaaviotyyppiä",
     "title": "Mermaid-editori verkossa,",
     "titleAccent": "visuaalinen näkymä ja koodi samassa paikassa",
@@ -61,8 +61,8 @@
       "sub": "Suorakulmio, pyöristetty, pilleri, ympyrä, vinoneliö, tietokanta, kuusikulmio ja muut, yhdellä klikkauksella."
     },
     {
-      "title": "Ilmainen, vain sähköposti",
-      "sub": "Ei kokeilujaksoa eikä vesileimaa viennissä — kaavioiden tallentamiseen riittää sähköposti."
+      "title": "Ilmainen, ilman rekisteröitymistä",
+      "sub": "Ei kokeilujaksoa eikä vesileimaa — editori aukeaa heti. Kirjaudu vain, jos haluat useamman kuin yhden kaavion."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Tallentuu matkan varrella",
-          "sub": "Kaaviosi tallennetaan automaattisesti tilillesi muokatessasi — sulje välilehti ja palaa siihen miltä tahansa laitteelta."
+          "sub": "Kaaviosi tallentuu muokatessa automaattisesti selaimeesi. Jos kirjaudut sisään, se tallentuu tilillesi ja seuraa sinua kaikille laitteille."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Renderöidään selaimessasi",
-          "sub": "Renderöinti tapahtuu selaimessasi; tallennetut kaaviot ovat tililläsi ja käytettävissä millä tahansa laitteella."
+          "sub": "Renderöinti tapahtuu selaimessasi; ilman tiliä kaavio ei koskaan poistu sieltä, ja tilin kanssa tallennettu asiakirja seuraa sinua mille tahansa laitteelle."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Hinta",
-        "us": "Ilmainen — vain sähköposti",
+        "us": "Ilmainen — sähköpostiakaan ei tarvita.",
         "them": "Ilmainen taso rajattu muutamaan kaavioon, vienti tai yhteistyö tilauksen takana."
       },
       {
         "title": "Missä data sijaitsee",
-        "us": "Tililläsi — kirjautumiseen riittää sähköposti, ja kaaviosi seuraavat sinua mille tahansa laitteelle.",
+        "us": "Selaimessasi tai tililläsi, jos haluat sen seuraavan sinua mille tahansa laitteelle.",
         "them": "Tili jonkun palvelimella, kaaviosi sidottuna siihen."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Mermaid-editorin",
     "headingAccent": "kysymyksiä",
-    "sub": "Aloittamiseen riittää vain sähköposti.",
+    "sub": "Aloittamiseen riittää, että avaat sivun.",
     "items": [
       {
         "q": "Mikä on mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Onko tämä mermaid-editori todella ilmainen?",
-        "a": "Kyllä. Kaikki ominaisuudet, myös SVG- ja PNG-vienti, ovat ilmaisia. Aloittamiseen riittää sähköposti — maksullista tasoa tai piilotettua rajausta ei ole."
+        "a": "Kyllä. Kaikki ominaisuudet, myös vienti SVG- ja PNG-muotoon, ovat ilmaisia, ja voit käyttää editoria luomatta mitään. Valinnainen ilmainen tili lisää tallennettuja kaavioita ja laitteiden välisen synkronoinnin — maksullista tasoa ei ole eikä mitään pidetä takana."
       },
       {
         "q": "Pitääkö minun osata mermaid-syntaksia?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Mihin kaavioni tallentuu?",
-        "a": "Kaaviosi tallennetaan tilillesi, joten ne ovat siellä, kun palaat — miltä tahansa laitteelta. Vie lähde, jos haluat paikallisen kopion."
+        "a": "Ilman tiliä ainoa kaaviosi tallentuu selaimeen, joten se on siellä, kun palaat samalla laitteella. Jos kirjaudut sisään, se tallentuu tilillesi ja voi seurata sinua toiselle laitteelle. Vie lähdekoodi, jos haluat oman kopion."
       },
       {
         "q": "Voinko liittää olemassa olevan mermaid-kaavion?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Avaa editori.",
-    "headingAccent": "Ilmainen — vain sähköposti",
+    "headingAccent": "Ilmainen — ilman rekisteröitymistä.",
     "sub": "Tyhjä kanvas, koodivälilehti ja jokainen vientivaihtoehto – ilmaiseksi, selaimessasi, juuri nyt.",
     "ctaLabel": "Avaa editori"
   },

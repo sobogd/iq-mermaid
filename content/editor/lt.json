@@ -88,6 +88,8 @@
     "delete": "Ištrinti dokumentą",
     "deleteConfirm": "Ištrinti šį dokumentą?",
     "untitled": "Be pavadinimo",
+    "anonNote": "Diagrama išsaugoma tik šioje naršyklėje.",
+    "anonMore": "Prisijunkite, kad išsaugotumėte daugiau diagramų",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Nepavyko eksportuoti"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Visiškai nemokama — be mokamų planų ir kortelių. Tik el. paštas diagramoms išsaugoti, sinchronizuoti ir eksportuoti.",
+    "title": "Prisijunkite, kad norite išsaugoti daugiau diagramų",
+    "subtitle": "Visiškai nemokama — be mokamų planų ir kortelių. Prisijunkite, kad išsaugotumėte daugiau nei vieną diagramą ir sinchronizuotumėte jas visuose įrenginiuose.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

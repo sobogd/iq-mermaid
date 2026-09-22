@@ -60,9 +60,10 @@ const ACTION_EVENTS = [
   EDITOR_FIT_EVENT,
 ];
 
-// The editor is open to everyone now: the canvas renders for anonymous
-// visitors too. Sign-in gates only the actions that persist or export —
-// new/open/save/copy/download — which the shell triggers via `requireAuth`.
+// The editor works signed out: the canvas, the code sheet, export, copy and
+// the single anonymous document slot are all available without an account.
+// Signing in buys exactly one thing — more than one document — and the shell
+// raises its AuthGate through `requireAuth` only for that.
 export function EditorClient({ t }: { t: EditorTexts }) {
   // Whether the editor has ever been revealed (or an editor action was fired).
   // The editor hides *under* the marketing window, invisible and inert, so on
@@ -151,7 +152,10 @@ export function EditorClient({ t }: { t: EditorTexts }) {
 
   // Not revealed (yet): nothing to mount — the marketing page stays the only
   // actor on the main thread. Once booted, hold the loading screen until the
-  // auth check resolves; the editor itself never swaps to a full-page gate.
+  // auth check resolves: that answer decides which storage the shell opens
+  // (the account list or the browser's single anonymous slot), and letting it
+  // flip after boot would mean loading a second document list for nothing.
+  // The editor itself never swaps to a full-page gate.
   if (!booted) return null;
   if (auth.status === "loading")
     return <div className="editor-loading" aria-hidden="true"><span /><span /><span /><span /></div>;

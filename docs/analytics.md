@@ -4,14 +4,19 @@ This app does not store analytics itself. `lib/analytics.ts` batches
 `page`/`action`/`name` events client-side and POSTs them directly to
 **iq-metrix**, a standalone ingest service (separate repo, sibling to this
 one, not part of this app) that owns hashing, visit resolution and storage.
-Nothing is stored on the visitor's device, so the site still needs no cookie
-banner — that claim is made in the privacy policy
-(`app/_landing/legal-content.ts`, sections 2, 4, 5, 6 and 7).
+The analytics pipeline stores nothing on the visitor's device, so the site still
+needs no cookie banner — that claim is made in the privacy policy
+(`app/_landing/legal-content.ts`, sections 2, 4, 5, 6 and 7). (The editor itself
+now keeps one anonymous document in local storage and sets a session cookie
+after a sign-in; both are strictly-necessary storage for features the visitor
+asked for, and section 4 says so.)
 
 Ported from translator's `lib/analytics.ts` (see its own `docs/analytics.md`
-for the fuller history of this pipeline). This app has no accounts at all, so
-unlike translator it never even has an own-domain session cookie to worry
-about not riding along — every event here is anonymous by construction.
+for the fuller history of this pipeline). This app now has accounts, but the
+measurement is kept apart from them: an event never carries an email address or
+an account id, and `lib/analytics.ts` sends the session cookie nowhere — every
+event is anonymous by construction. The one server-side surface is the
+sign-in / document API, which never touches iq-metrix.
 
 ## How it works
 

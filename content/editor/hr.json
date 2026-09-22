@@ -88,6 +88,8 @@
     "delete": "Izbriši dokument",
     "deleteConfirm": "Izbrisati ovaj dokument?",
     "untitled": "Bez naziva",
+    "anonNote": "Vaš se dijagram sprema samo u ovom pregledniku.",
+    "anonMore": "Prijavite se za spremanje više dijagrama",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Izvoz nije uspio"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Potpuno besplatno — bez plaćenih planova i kartica. Samo e-pošta za spremanje, sinkronizaciju i izvoz dijagrama.",
+    "title": "Prijavite se da biste spremali više dijagrama",
+    "subtitle": "Potpuno besplatno — bez plaćenih planova i kartica. Prijavite se da biste zadržali više od jednog dijagrama i sinkronizirali ih na svim svojim uređajima.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

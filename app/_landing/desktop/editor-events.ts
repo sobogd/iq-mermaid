@@ -51,9 +51,10 @@ export const EDITOR_STATUS_EVENT = "iqm:editor-status";
 export const publishStatus = (message: string) =>
   window.dispatchEvent(new CustomEvent<string>(EDITOR_STATUS_EVENT, { detail: message }));
 
-/** Fired once the marketing window is gone and the shared editor is revealed:
- *  the editor is now sign-in-first, so an anonymous visitor is sent to the
- *  auth gate (see EditorShell). Fired by setContentWindowOpen(false). */
+/** Fired once the marketing window is gone and the shared editor is revealed
+ *  (setContentWindowOpen(false)). The editor boots lazily on that first reveal
+ *  — it needs no account to run — and later reveals are instant because the
+ *  shell stays mounted. */
 export const EDITOR_REVEAL_EVENT = "iqm:editor-reveal";
 
 /** Fired by EditorShell once it has resolved the open document on its first
@@ -70,8 +71,9 @@ export const requestContentOpen = () => window.dispatchEvent(new Event(CONTENT_O
 
 // Authoritative "is the content window open?" state. One source of truth kept
 // in sync by AppWindow (effect on its closed state), so the editor can never
-// raise the auth gate while content is actually showing — which used to happen
-// on client navigations like the language switcher remounting the window.
+// raise the sign-in gate (or act on a stale reveal) while content is actually
+// showing — which used to happen on client navigations like the language
+// switcher remounting the window.
 let contentWindowOpen = true;
 let editorRevealed = false;
 

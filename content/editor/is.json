@@ -88,6 +88,8 @@
     "delete": "Eyða skjali",
     "deleteConfirm": "Eyða þessu skjali?",
     "untitled": "Ónefnt",
+    "anonNote": "Skýringarmyndin þín er aðeins vistuð í þessum vafra.",
+    "anonMore": "Skráðu þig inn til að vista fleiri skýringarmyndir",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Útflutningur mistókst"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Algjörlega ókeypis — án greiddra áætlana og korta. Bara netfang til að vista, samstilla og flytja út skýringarmyndir.",
+    "title": "Skráðu þig inn til að vista fleiri skýringarmyndir",
+    "subtitle": "Algjörlega ókeypis — án greiddra áætlana og korta. Skráðu þig inn til að halda fleiri en einni skýringarmynd og samstilla þær á öllum tækjunum þínum.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

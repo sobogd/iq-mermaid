@@ -88,6 +88,8 @@
     "delete": "Izbriši dokument",
     "deleteConfirm": "Izbrišem ta dokument?",
     "untitled": "Brez naslova",
+    "anonNote": "Vaš diagram se shrani samo v tem brskalniku.",
+    "anonMore": "Prijavite se za shranjevanje več diagramov",
     "rename": "Rename document"
   },
   "text": {
@@ -104,8 +106,8 @@
     "statusExportFailed": "Izvoz ni uspel"
   },
   "auth": {
-    "title": "Sign in to open the editor",
-    "subtitle": "Popolnoma brezplačno — brez plačljivih načrtov in kartic. Samo e-pošta za shranjevanje, sinhronizacijo in izvoz diagramov.",
+    "title": "Prijavite se za shranjevanje več diagramov",
+    "subtitle": "Popolnoma brezplačno — brez plačljivih načrtov in kartic. Prijavite se, da ohranite več kot en diagram in jih sinhronizirate med napravami.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "sendCode": "Send code",

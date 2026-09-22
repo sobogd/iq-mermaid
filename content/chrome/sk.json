@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Mermaid editor online zadarmo — vizuálne aj kódom",
-    "description": "Bezplatný mermaid editor online: kreslite alebo píšte mermaid kód — synchrónne. Stačí e-mail. Export SVG/PNG.",
-    "ogTitle": "Mermaid Live Editor — zadarmo, online, stačí e-mail",
+    "description": "Bezplatný živý editor mermaid: kreslite schému vizuálne alebo píšte kód mermaid — oboje zostáva synchronizované. Bez registrácie, export do SVG alebo PNG.",
+    "ogTitle": "Živý editor mermaid — zadarmo, online, bez registrácie",
     "ogDescription": "Kreslite diagramy na plátne, alebo píšte mermaid kód. Oba pohľady sú synchronizované. Export do SVG, PNG, .mmd alebo Markdownu.",
     "twitterTitle": "Mermaid editor online zadarmo",
-    "twitterDescription": "Vizuálne plátno a mermaid kód vedľa seba. Zadarmo bez plateného plánu — prihlásenie len e-mailom."
+    "twitterDescription": "Vizuálne plátno a kód mermaid vedľa seba. Zadarmo, bez paywallu a bez registrácie."
   },
   "header": {
     "logo": "Mermaid Editor",
@@ -37,7 +37,7 @@
   },
   "hero": {
     "badgeFree": "Navždy zadarmo",
-    "badgeNoSignup": "Zadarmo — stačí e-mail",
+    "badgeNoSignup": "Zadarmo — bez registrácie",
     "badgeDiagrams": "8 typov diagramov",
     "title": "Mermaid editor online,",
     "titleAccent": "vizuál a kód na jednom mieste",
@@ -61,8 +61,8 @@
       "sub": "Obdĺžnik, zaoblený, pilulka, kruh, kosoštvorec, databáza, šesťuholník a ďalšie, jedným kliknutím."
     },
     {
-      "title": "Zadarmo, len e-mail",
-      "sub": "Žiadna skúšobná verzia ani vodoznak pri exporte — na uloženie schém stačí e-mail."
+      "title": "Zadarmo a bez registrácie",
+      "sub": "Žiadna skúšobná verzia ani vodoznak — editor sa otvorí hneď. Prihláste sa len vtedy, ak chcete viac než jednu schému."
     }
   ],
   "spotlights": [
@@ -116,7 +116,7 @@
         },
         {
           "title": "Ukladá sa za chodu",
-          "sub": "Váš diagram sa počas úprav automaticky ukladá do vášho účtu — zatvorte kartu a vráťte sa k nemu z akéhokoľvek zariadenia."
+          "sub": "Schéma sa pri úpravách automaticky ukladá vo vašom prehliadači. Ak sa prihlásite, ukladá sa do účtu a ide s vami na akékoľvek zariadenie."
         }
       ]
     },
@@ -130,7 +130,7 @@
         },
         {
           "title": "Vykresľuje sa vo vašom prehliadači",
-          "sub": "Vykresľovanie prebieha vo vašom prehliadači; uložené schémy žijú vo vašom účte a sú dostupné z ľubovoľného zariadenia."
+          "sub": "Vykresľovanie prebieha vo vašom prehliadači; bez účtu schéma prehliadač nikdy neopustí a s účtom vás uložený dokument sprevádza na akékoľvek zariadenie."
         },
         {
           "title": "SVG, PNG, .mmd, .md",
@@ -163,12 +163,12 @@
       },
       {
         "title": "Cena",
-        "us": "Zadarmo — stačí e-mail",
+        "us": "Zadarmo — ani e-mail netreba.",
         "them": "Zadarmo len do pár diagramov, export alebo spolupráca sú za predplatné."
       },
       {
         "title": "Kde žijú dáta",
-        "us": "Vo vašom účte — na prihlásenie stačí e-mail a diagramy máte na akomkoľvek zariadení.",
+        "us": "Vo vašom prehliadači alebo v účte, ak chcete, aby vás sprevádzalo na akékoľvek zariadenie.",
         "them": "Účet na cudzom serveri, s vašimi diagramami k nemu pripojenými."
       }
     ]
@@ -176,7 +176,7 @@
   "faq": {
     "heading": "Otázky k mermaid",
     "headingAccent": "editoru",
-    "sub": "Na začiatok stačí e-mail.",
+    "sub": "Na začiatok stačí otvoriť stránku.",
     "items": [
       {
         "q": "Čo je mermaid?",
@@ -184,7 +184,7 @@
       },
       {
         "q": "Je tento mermaid editor naozaj zadarmo?",
-        "a": "Áno. Všetky funkcie vrátane exportu SVG a PNG sú zadarmo. Stačí e-mail na prihlásenie — neexistuje platený plán ani nič skryté."
+        "a": "Áno. Všetky funkcie vrátane exportu do SVG a PNG sú zadarmo a editor môžete používať bez toho, aby ste čokoľvek vytvárali. Voliteľný bezplatný účet pridá ďalšie uložené schémy a synchronizáciu medzi zariadeniami — platený plán neexistuje a nič nie je zadržiavané."
       },
       {
         "q": "Musím poznať syntax mermaid?",
@@ -200,7 +200,7 @@
       },
       {
         "q": "Kde sa ukladá môj diagram?",
-        "a": "Vaše schémy sa ukladajú do účtu, takže sú tam, keď sa vrátite — z ľubovoľného zariadenia. Zdroj exportujte, ak chcete lokálnu kópiu."
+        "a": "Bez účtu sa vaša jediná schéma ukladá v prehliadači, takže je tam, keď sa vrátite na tom istom zariadení. Ak sa prihlásite, ukladá sa do účtu a môže vás sprevádzať na iné zariadenie. Exportujte zdroj, ak chcete vlastnú kópiu."
       },
       {
         "q": "Môžem vložiť existujúci mermaid diagram?",
@@ -214,7 +214,7 @@
   },
   "finalCta": {
     "heading": "Otvorte editor.",
-    "headingAccent": "Zadarmo — stačí e-mail",
+    "headingAccent": "Zadarmo — bez registrácie.",
     "sub": "Prázdne plátno, kódová karta a všetky možnosti exportu — zadarmo, priamo v prehliadači, hneď teraz.",
     "ctaLabel": "Otvoriť editor"
   },
