@@ -44,14 +44,14 @@ const NEGATIVES = [
 ];
 
 // Responsive search ad — text only. Copy mirrors real strings from the site
-// (content/chrome/en.json): free, visual canvas + code, export SVG/PNG, email-only sign-in.
+// (content/chrome/en.json): free, no sign-up, visual canvas + code, export SVG/PNG.
 const HEADLINES = [
   "Free Mermaid Live Editor",
   "Mermaid Editor Online",
   "Visual Canvas + Mermaid Code",
   "Draw Diagrams in the Browser",
   "Free Forever, No Paywall",
-  "Sign In With Just an Email",
+  "No Sign-Up Required",
   "8 Diagram Types Supported",
   "Export to SVG and PNG",
   "Renders as You Type",
@@ -63,7 +63,7 @@ const HEADLINES = [
 const DESCRIPTIONS = [
   "A mermaid editor that keeps a visual canvas and the code in sync. Free, no paywall.",
   "Draw by clicking and dragging, or write mermaid by hand. Export SVG, PNG, .mmd or Markdown.",
-  "The real mermaid engine redraws moments after your last keystroke. Sign in with just an email.",
+  "The real mermaid engine redraws moments after your last keystroke. No sign-up needed.",
   "Free online mermaid editor. Click to add a block, drag an arrow — the code writes itself.",
 ];
 
